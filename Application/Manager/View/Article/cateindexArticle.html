@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--顶部按钮-->
+                    <div class="mab10">
+                        <a href="{:U('Article/Article_cate')}" class="layui-btn layui-btn-normal layui-btn-radius">添加菜单</a>
+
+                    </div>
+                    <!--列表-->
+                    <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                        <thead>
+                        <tr>
+                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                            <th>ID</th>
+                            <th>菜单名称</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="cate">
+                            <tr><td colspan="12" style="text-align: center;">暂无数据</td></tr>
+                        </empty>
+                        <volist name="cate" id="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                <td>{$item.id}</td>
+                                <td>{$item.name}</td>
+                                <td>{$item['status'] == 1 ? '启用' : '禁用'}</td>
+                                <td>
+                                    <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('Article/editArticlecate', array('id'=>$item['id'], 'system'=>0))}')">编辑</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-warm" onclick="confirmOneAction('{:U('Article/lockArticlecate')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">{$item['status'] == 1 ? '禁用' : '启用'}</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="confirmOneAction('{:U('Article/delArticlecate')}', '删除','{$item.id}')">删除</button>
+                                </td>
+                            </tr>
+                            <if condition="$item['s_cated']  eq 0">
+
+                               <volist name="item.s_cate" id="son">
+                                   <tr>
+                                       <td><input type="checkbox" name="ids" value="{$son.id}" class="layui-input"></td>
+                                       <td>{$son.id}</td>
+                                       <td>  -----  {$son.name}</td>
+                                       <td>{$son['status'] == 1 ? '启用' : '禁用'}</td>
+                                       <td>
+                                           <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('Article/editArticlecate', array('id'=>$son['id'], 'system'=>0))}')">编辑</button>
+                                           <button class="layui-btn layui-btn-xs layui-btn-warm" onclick="confirmOneAction('{:U('Article/lockArticlecate')}', '{$son['status'] == 1 ? '禁用' : '启用'}','{$son.id}')">{$son['status'] == 1 ? '禁用' : '启用'}</button>
+                                           <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="confirmOneAction('{:U('Article/delArticlecate')}', '删除','{$son.id}')">删除</button>
+                                       </td>
+                                   </tr>
+                                 </volist>
+                            </if>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <!--分页-->
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+</script>
+</body>
+</html>

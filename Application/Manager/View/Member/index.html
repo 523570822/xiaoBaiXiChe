@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <!--顶部按钮-->
+                    <div class="mab10">
+                        <input type="hidden" id="url" value="{$url}">
+                        <a href="{:U('Member/addMember')}" class="layui-btn layui-btn-normal layui-btn-radius">添加用户</a>
+                        <button class="layui-btn layui-btn-warm layui-btn-radius" >锁定</button>
+                        <button class="layui-btn layui-btn-danger layui-btn-radius" onclick="confirmAllAction('{:U('Member/delete',array('model'=>'Member'))}', '删除')">删除</button>
+                        <!--搜索框也可以放这里-->
+                        <form class="mab10 mal20 dinline"  id="myform" action="{:U('Member/index')}" method="GET">
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入账号" name="account" value="{$_REQUEST['account']}">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入昵称" name="nickname" value="{$_REQUEST['nickname']}">
+                            </div>
+                            <div class="layui-input-inline layui-form">
+                                <select name="sex" class="layui-input" style="width: 150px">
+                                    <option value="">请选择性别</option>
+                                    <option value="1" <if condition="$_REQUEST['sex'] eq 1">selected=true</if>>男</option>
+                                    <option value="2" <if condition="$_REQUEST['sex'] eq 2">selected=true</if>>女</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline">
+                                <input type="text" name="start_time" class="layui-input" id="test1" value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="注册开始时间">
+                                <!--<input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']} >-->
+                            </div>
+                            —
+                            <div class="layui-input-inline">
+                                <input type="text" name="end_time" class="layui-input" id="test2" value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="注册结束时间">
+                                <!--<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">-->
+                            </div>
+                            <button class="layui-btn" type="submit">搜索</button>
+                            <button class="layui-btn" type="button" id="button">导出搜索</button>
+                            <a href="{:U('Member/index')}" class="layui-btn layui-btn-primary">重置</a>
+                        </form>
+
+
+                        <script>
+
+                            $(function(){
+                                $("#button").click(function(){
+                                    var newUrl = "{:U('Member/exportMember')}";    //设置新提交地址
+                                    $("#myform").attr('action',newUrl);    //通过jquery为action属性赋值
+                                    $("#myform").submit();    //提交ID为myform的表单
+                                })
+                            })
+
+                        </script>
+
+                    </div>
+                    <!--列表-->
+                    <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                        <thead>
+                        <tr>
+                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                            <th>
+                                <div class="layui-table-cell laytable-cell-1-id">
+                                    <span>ID</span>
+                                    <span class="layui-table-sort layui-inline" id="id-sort" lay-sort="">
+                                        <i class="layui-edge layui-table-sort-asc" value="id" sort="asc"></i>
+                                        <i class="layui-edge layui-table-sort-desc" value="id" sort="desc"></i>
+                                    </span>
+                                </div>
+                            </th>
+                            <th>账号</th>
+                            <th>昵称</th>
+                            <th>性别</th>
+                            <th>注册时间</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr><td colspan="12" style="text-align: center;">暂无数据</td></tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                <td>{$item.id}</td>
+                                <td>{$item.account}</td>
+                                <td>{$item.nickname}</td>
+                                <td>
+                                    <switch name="item.sex">
+                                        <case value="1">男</case>
+                                        <case value="2">女</case>
+                                        <default />
+                                    </switch>
+                                </td>
+
+                                <td>{$item['create_time']|date='Y-m-d H:i',###}</td>
+                                <td>{$item['status'] == 1 ? '启用' : '禁用'}</td>
+                                <td>
+                                    <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('Member/editMember', array('id'=>$item['id'], 'system'=>0))}')">编辑</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-warm" onclick="confirmOneAction('{:U('Member/lockMember')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">{$item['status'] == 1 ? '禁用' : '启用'}</button>
+
+                                    <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="confirmDelAction('{:U('Member/delete',array('model'=>'Member'))}', '删除','{$item.id}')">删除</button>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <!--分页-->
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 排序方法
+    var sort_order = "{$_GET['sort_order']}"
+    if(sort_order){
+        var sort_arr =sort_order.split("-");
+        $('#'+sort_arr[0]+'-sort').attr('lay-sort',sort_arr[1])
+    }
+    //排序
+    $('.layui-edge').on('click', function () {
+
+        var url = $('#url').val();
+        var sort_type = $(this).attr('value');
+        var sort_key = $(this).attr('sort');
+
+        // 分为有其他搜索参数类型和无搜索参数类型 拼接URL了地址 这里我以有结束时间为例。
+        // 有搜索参数
+        if(url.indexOf('&end_time') == -1){
+            if(url.indexOf('/sort_order/') == -1){
+
+                url = url+'/sort_order/'+ sort_type + '-' + sort_key;
+            }else{
+
+                url = url.replace('/sort_order/'+sort_order,'/sort_order/'+ sort_type  + '-' + sort_key);
+
+            }
+        }else{
+            // 没有搜索参数
+            if(url.indexOf('&sort_order=') == -1){
+                url = url+'&sort_order='+ sort_type + '-' + sort_key;
+            }else{
+                url = url.replace('&sort_order='+sort_order,'&sort_order='+ sort_type  + '-' + sort_key);
+            }
+        }
+
+        window.location.href = url;
+    });
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test2' //指定元素
+    });
+</script>
+</body>
+</html>

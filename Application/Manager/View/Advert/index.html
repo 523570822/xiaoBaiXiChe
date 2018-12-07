@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--顶部按钮-->
+                    <div class="mab10">
+                        <a href="{:U('Advert/addAdvert')}" class="layui-btn layui-btn-normal layui-btn-radius">添加广告 </a>
+
+                    </div>
+                    <!--列表-->
+                    <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                        <thead>
+                        <tr>
+                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                            <th>ID</th>
+                            <th>排序</th>
+                            <th>广告名称</th>
+                            <th>跳转类型</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr><td colspan="12" style="text-align: center;">暂无数据</td></tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                <td>{$item.id}</td>
+                                <td table-edit="true" table-edit-url="{:U('Advert/editAdvertSort', array('id'=>$item['id']))}" table-edit-key="sort">{$item.sort}</td>
+                                <td>{$item.name}</td>
+                                <td><?php if($item['type'] == '1'){echo '站内跳转';}else if($item['type'] == 2){echo '三方链接';}  ?></td>
+                                <td>{$item['status'] == 1 ? '启用' : '禁用'}</td>
+                                <td>
+                                    <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('Advert/editAdvert', array('id'=>$item['id'], 'system'=>0))}')">编辑</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-warm" onclick="confirmOneAction('{:U('Advert/lockAdvert')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">{$item['status'] == 1 ? '禁用' : '启用'}</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="confirmOneAction('{:U('Advert/delAdvert')}', '删除','{$item.id}')">删除</button>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <!--分页-->
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

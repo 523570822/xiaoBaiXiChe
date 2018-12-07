@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--如果不是必填值 不需要加 required 属性-->
+
+                    <!--上传图片-->
+
+
+                    <div class="layui-form">
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上传图片</label>
+                            <div class="layui-input-block">
+                                <button type="button" class="layui-btn" id="uploadBtn"><i class="layui-icon"></i>上传文件</button>
+                            </div>
+
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上传图片</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <button type="button" class="layui-btn" id="uploadBtn2"><i class="layui-icon"></i>上传文件</button>
+                                </div>
+                                <div class="layui-input-inline" id="filename"></div>
+                                <if condition="$row['cover']  neq 0">
+                                    <div class="layui-input-block img-show">
+                                        <div class="img-show-item" id="Upload_cover_1_pre">
+                                            <img src="{$row.covers}">
+                                            <i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.cover}');"></i>
+                                            <input name="cover" value='{$row.cover}' class="layui-input" type="hidden">
+                                        </div>
+                                    </div>
+                                </if>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">输入框</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="input" value="" placeholder="输入框" class="layui-input w300" required>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">输入框2</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="input2" value="" placeholder="输入框2" class="layui-input w300" required>
+                                </div>
+                                <div class="layui-input-inline">
+                                    提示信息
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">下拉框</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <select name="p_id" class="layui-input w300">
+                                        <option value="1">下拉框1</option>
+                                        <option value="2">下拉框2</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-inline">提示信息</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">单选框</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <label class="layui-choose" for="radio_1">
+                                        <input type="radio" id="radio_1" name="radio" value="1" checked class="layui-input" required>
+                                        单选框1
+                                    </label>
+                                    <label class="layui-choose" for="radio_2">
+                                        <input type="radio" id="radio_2" name="radio" value="2" class="layui-input" required>
+                                        单选框2
+                                    </label>
+                                    <label class="layui-choose" for="radio_3">
+                                        <input type="radio" id="radio_3" name="radio" value="3" class="layui-input" required>
+                                        单选框3
+                                    </label>
+                                </div>
+                                <div class="layui-input-inline">提示信息</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">多选框</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <label class="layui-choose" for="checkbox_1">
+                                        <input type="checkbox" id="checkbox_1" name="checkbox" value="1" checked class="layui-input" required>
+                                        多选框1
+                                    </label>
+                                    <label class="layui-choose" for="checkbox_2">
+                                        <input type="checkbox" id="checkbox_2" name="checkbox" value="2" class="layui-input" required>
+                                        多选框2
+                                    </label>
+                                    <label class="layui-choose" for="checkbox_3">
+                                        <input type="checkbox" id="checkbox_3" name="checkbox" value="3" class="layui-input" required>
+                                        多选框3
+                                    </label>
+                                </div>
+                                <div class="layui-input-inline">提示信息</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">文本框1</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <textarea name="" rows="4" class="layui-input layui-textarea w300"></textarea>
+                                </div>
+                                <div class="layui-input-inline">
+                                    提示信息
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">文本框2</label>
+                            <div class="layui-input-block">
+                                <textarea name="" rows="4" class="layui-input layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">文本编辑器</label>
+                            <div class="layui-input-block">
+                                <textarea  name="content" id="content" style="height:550px;" class="layui-input">{$row['web_content']}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">时间选择器</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="date" class="layui-input w300" id="test1">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排序</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <input type="number" name="sort" value="{$row['sort']|default='0'}" placeholder="排序" class="layui-input w300" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">确认保存</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn',
+        // 多文件上传-true 单文件上传-false
+        files: true,
+        // 展示图片
+        showFile: true,
+        // input框的name
+        filedname: 'files'
+    });
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn2',
+        // 多文件上传-true 单文件上传-false
+        files: false,
+        // 展示图片
+//        showFile: '#filename',
+        showFile: 'true',
+        // input框的name
+        fieldName: 'fileaaaa'
+    });
+
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+       var url="";
+        var id = "{$row['id']}";
+        if(id){
+            url = '';
+            data.id = id
+        }else{
+            url = '{:U("RedBag/addRedBag")}'
+        }
+        if(!data) return false;
+        doPost(url, data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+
+                }
+            });
+        });
+    }
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+
+    //编辑器初始化
+    $(document).ready(function(){
+        KindEditor.ready(function(K){
+            window.editor = K.create('#content',{
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items:[
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough','lineheight', '|',
+                    'image', 'multiimage', '|',
+                    'link', 'baidumap','fullscreen'
+                ],
+                afterBlur:function(){this.sync();}
+            });
+        });
+    });
+</script>
+</body>
+</html>

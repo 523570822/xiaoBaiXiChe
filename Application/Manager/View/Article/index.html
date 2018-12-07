@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head"/>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <div style="padding-bottom: 10px;">
+                        <a href="{:U('Article/addArticle')}" class="layui-btn layui-btn-normal layui-btn-radius">添加</a>
+                       <!-- <button class="layui-btn layui-btn-warm layui-btn-radius">锁定</button>-->
+                       <!-- <button class="layui-btn layui-btn-danger layui-btn-radius">删除</button>-->
+                        <!--搜索框也可以放这里-->
+                        <form class="mab10 mal20 dinline" action="" method="GET">
+                            文章标题：
+                            <div class="layui-inline">
+                                <input class="layui-input" id="title" value="{$_REQUEST['title']}" name="title">
+                            </div>
+                            ID：
+
+                            <div class="layui-inline">
+                                <input class="layui-input" id="id" name="id" value="{$_REQUEST['id']}">
+                            </div>
+                            <button class="layui-btn" type="submit" onclick=submit()>搜索</button>
+
+                        </form>
+                    </div>
+
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th width="20" ><input type="checkbox" id="checkAllId"class="layui-input"></th>
+                            <th>ID</th>
+                            <th>排序</th>
+                            <th>文章标题</th>
+                            <th>创建时间</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr><td colspan="12" style="text-align: center;">暂无数据</td></tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids" value="{$item.id}" ></td>
+                                <td>{$item.id}</td>
+                                <td>{$item.sort}</td>
+                                <td>{$item.title}</td>
+                                <td>{$item['add_time']|date="Y/m/d",###}</td>
+                                <td>{$item['status'] == 1 ? '显示' : '隐藏'}</td>
+                                <td>
+                                    <a class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('Article/editArticle', array('id'=>$item['id']))}')">编辑</a>
+                                    <button class="layui-btn layui-btn-xs layui-btn-warm" onclick="confirmOneAction('{:U('Article/lockArticle')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">{$item['status'] == 1 ? '禁用' : '启用'}</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="confirmOneAction('{:U('Article/delArticle')}', '删除','{$item.id}')">删除</button>
+                                </td>
+                            </tr>
+                            <volist name="item['sub_list']" id="sub_item">
+                                <tr>
+                                    <td><input type="checkbox" name="ids[]" class="layui-input"></td>
+                                    <td>{$sub_item.sort}</td>
+                                    <td>{$sub_item.level|str_repeat='&nbsp;&nbsp;&nbsp;&nbsp;', ###}{$sub_item.name}</td>
+                                    <td>{$sub_item['type'] == 1 ? '菜单' : '按钮'}</td>
+                                    <td>{$sub_item['status'] == 1 ? '显示' : '隐藏'}</td>
+                                    <td>
+                                        <a class="layui-btn layui-btn-sm layui-btn-normal">编辑</a>
+                                        <a class="layui-btn layui-btn-sm layui-btn-normal">删除</a>
+                                        <a class="layui-btn layui-btn-sm layui-btn-normal">锁定</a>
+                                    </td>
+                                </tr>
+                            </volist>
+                        </volist>
+                        </tbody>
+                    </table>
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<script src="__PUBLIC__/layuiadmin/layui/layui.js"></script>-->
+<script>
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        if(!data) return false;
+        window.onload = function () {
+            var  id=$("#id").val();
+            var  title=$("#title").val();
+            $("#id").val(id);
+            $("#title").val(title);
+        }
+
+
+    }
+</script>
+</body>
+</html>

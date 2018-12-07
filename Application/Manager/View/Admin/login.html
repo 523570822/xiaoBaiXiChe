@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登入 - {$website.website_name}</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/style/login.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/style/style.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/Common/js/layer/theme/default/layer.css"/>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+<div class="layadmin-user-login layadmin-user-display-show">
+    <div class="layadmin-user-login-main">
+        <div class="layadmin-user-login-box layadmin-user-login-header">
+            <h2>后台登录系统</h2>
+            <p>{$website.website_name} By 天迅达科技</p>
+        </div>
+        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="username"></label>
+                <input type="text" name="username" id="username" placeholder="用户名" class="layui-input" value="{$username}">
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="password"></label>
+                <input type="password" name="password" id="password" placeholder="密码" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-xs7">
+                        <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="verify_code"></label>
+                        <input type="text" name="verify_code" id="verify_code" placeholder="图形验证码" class="layui-input">
+                    </div>
+                    <div class="layui-col-xs5">
+                        <div style="margin-left: 10px;">
+                            <img src="{:U('Index/verifyImage')}" class="layadmin-user-login-codeimg" id="get-vercode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item" style="margin-bottom: 20px;">
+                <label class="layui-choose" for="remember">
+                    <input type="checkbox" name="remember" id="remember" value="1" class="layui-input" <if condition="$username">checked</if>>
+                    记住用户名
+                </label>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-fluid" type="button" onclick="login()">登 入</button>
+            </div>
+        </div>
+    </div>
+    <div class="layui-trans layadmin-user-login-footer">
+        <p>&copy; {:date('Y')} <a href="https://www.txunda.com/" target="_blank">txunda.com</a></p>
+        <p>
+            <span>By: 木公子</span>
+            <span><a href="https://www.txunda.com/" target="_blank">前往官网</a></span>
+        </p>
+    </div>
+</div>
+<!--<script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>-->
+<script src="__PUBLIC__/Common/js/jquery.js"></script>
+<script src="__PUBLIC__/Common/js/layer/layer.js"></script>
+<script src="__PUBLIC__/Common/js/admin.js"></script>
+<script>
+    // 登录
+    function login() {
+        var data = {};
+        data.username = $('#username').val();
+        data.password = $('#password').val();
+        data.verify_code = $('#verify_code').val();
+        data.remember = $('#remember').val();
+        doPost('{:U("Admin/login")}', data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+                    location.href = '{:U("Index/index")}';
+                }else {
+                    $('#get-vercode').attr('src', '{:U("Index/verifyImage")}?v='+Math.random());
+                }
+            });
+        });
+    }
+
+    // 切换验证码
+    $('#get-vercode').click(function() {
+        $(this).attr('src', '{:U("Index/verifyImage")}?v='+Math.random());
+    });
+    // 背景图片切换
+    var _i = 1;
+    var _o = 2;
+    setInterval(function() {
+        _i = _i < _o ? _i + 1 : 1;
+        $('html').css('background-image', 'url(__PUBLIC__/Manager/image/login-bg'+ _i + '.png)');
+    }, 2500);
+</script>
+</body>
+</html>

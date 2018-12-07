@@ -1,0 +1,115 @@
+input[type=checkbox], .layui-form input[type=radio], .layui-form select {
+    display: inline-block !important;
+    transition: .1s linear;
+    outline: 0;
+    -webkit-appearance: none;
+}
+.layui-form select {
+    -webkit-appearance: menulist !important;
+}
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    color: #FFF;
+    padding-left: 1px !important;
+    line-height: 16px !important;
+    font-family: layui-icon !important;
+    vertical-align: middle;
+}
+/*.layui-form*/
+input[type="checkbox"]:hover {
+    border-color: #5FB878 !important;
+}
+input[type="checkbox"]:after {
+    content: "\e605";
+}
+input[type="checkbox"]:checked {
+    border-color: #5FB878 !important;
+    background-color: #5FB878 !important;
+}
+input[type="radio"] {
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    cursor: pointer;
+    color: #FFF;
+    padding-left: 3px;
+    line-height: 20px;
+    font-family: layui-icon !important;
+}
+input[type="radio"]:hover {
+    border-color: #5FB878 !important;
+ }
+input[type="radio"]:after {
+    content: "\e605";
+}
+input[type="radio"]:checked {
+    border-color: #5FB878 !important;
+    color: #FFF;
+    background: #5FB878;
+}
+.layui-choose {
+    line-height: 36px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+/**/
+.layui-layout-admin .layui-header a cite {
+    color: rgba(255,255,255,.7) !important;
+}
+.layui-layout-left .layui-nav-item a {
+    padding: 0 20px !important;
+}
+/**/
+.w300 {
+    width: 300px;
+}
+.layui-form-item .layui-input-inline {
+    width: auto !important;
+    min-height: 36px;
+    line-height: 36px;
+}
+.layui-layer-info {
+    width: 500px;
+}
+.layui-layer-info .layui-layer-content {
+    padding: 10px;
+    line-height: 25px;
+    min-height: 200px;
+    word-break: break-all;
+}
+.mab10 {
+    margin-bottom: 10px;
+}
+.dinline {
+    display: inline-block;
+}
+.mal20 {
+    margin-left: 20px;
+}
+.img-show {
+    margin-top: 5px;
+    width: 100%;
+}
+.img-show-item {
+    height: 120px;
+    width: 120px;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+.img-show-item img {
+    height: 100%;
+    width: 100%;
+}
+.img-show-item .close {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    font-size: 16px;
+    font-weight: 900;
+    color: red;
+    cursor: pointer;
+}

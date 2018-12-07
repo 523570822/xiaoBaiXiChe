@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <!--搜索框-->
+                    <form class="mab10" action="" method="GET">
+                        搜索ID：
+                        <div class="layui-inline">
+                            <input class="layui-input" name="id">
+                        </div>
+                        <button class="layui-btn" type="submit">搜索</button>
+                    </form>
+                    <!--顶部按钮-->
+                    <div class="mab10">
+                        <a href="{:U('AdminMenu/addMenu')}" class="layui-btn layui-btn-normal layui-btn-radius">添加菜单</a>
+                        <button class="layui-btn layui-btn-warm layui-btn-radius" >锁定</button>
+                        <button class="layui-btn layui-btn-danger layui-btn-radius" onclick="confirmAllAction('{:U('AdminMenu/delMenu')}', '删除')">删除</button>
+                        <!--搜索框也可以放这里-->
+                        <form class="mab10 mal20 dinline" action="{:U('Member/index')}" method="GET">
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入账号" name="account" value="{$_REQUEST['account']}">
+                            </div>
+                            <div class="layui-input-inline layui-form">
+                                <select name="sex" class="layui-input" style="width: 150px">
+                                    <option value="">请选择性别</option>
+                                    <option value="1" <if condition="$_REQUEST['sex'] eq 1">selected=true</if>>男</option>
+                                    <option value="2" <if condition="$_REQUEST['sex'] eq 2">selected=true</if>>女</option>
+                                    <option value="3" <if condition="$_REQUEST['sex'] eq '3'">selected=true</if>>保密</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline">
+                                <input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']}">
+                            </div>
+                            —
+                            <div class="layui-input-inline">
+                                <input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">
+                            </div>
+                            <button class="layui-btn" type="submit">搜索</button>
+                            <a href="{:U('Member/index')}" class="layui-btn layui-btn-primary">重置</a><button class="layui-btn" type="submit">导出搜索</button>
+                        </form>
+                    </div>
+                    <!--列表-->
+                    <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                        <thead>
+                        <tr>
+                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                            <th>ID</th>
+                            <th>排序</th>
+                            <th>菜单名称</th>
+                            <th>路由</th>
+                            <th>菜单类型</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr><td colspan="12" style="text-align: center;">暂无数据</td></tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                <td>{$item.id}</td>
+                                <td table-edit="true" table-edit-url="{:U('AdminMenu/editSort', array('id'=>$item['id']))}" table-edit-key="sort">{$item.sort}</td>
+                                <td>{$item.name}</td>
+                                <td>{$item.router}</td>
+                                <td><?php if($item['type'] == '1'){echo '菜单';}else if($item['type'] == 2){echo '行内按钮';}else {echo '按钮';} ?></td>
+                                <td>{$item['status'] == 1 ? '启用' : '禁用'}</td>
+                                <td>
+                                    <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('AdminMenu/editMenu', array('id'=>$item['id'], 'system'=>0))}')">编辑</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-warm" onclick="confirmOneAction('{:U('AdminMenu/lockMenu')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">{$item['status'] == 1 ? '禁用' : '启用'}</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="confirmOneAction('{:U('AdminMenu/delMenu')}', '删除','{$item.id}')">删除</button>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <!--分页-->
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+</script>
+</body>
+</html>

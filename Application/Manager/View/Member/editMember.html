@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--如果不是必填值 不需要加 required 属性-->
+
+                    <!--上传图片-->
+
+
+                    <div class="layui-form">
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">账号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入用户账号" lay-verify="required|phone" name="account"  value="{$row['account']}" <if condition="$row['id']">disabled=""</if>>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">账户为用户手机号</div>
+                        </div>
+                        <if condition="$row['id'] eq null">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" class="layui-input" placeholder="请输入密码" lay-verify="required" name="password">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                            </div>
+                            <else />
+                            <input type="hidden" class="layui-input" placeholder="请输入密码" lay-verify="required" name="password" value="{$row['password']}">
+                        </if>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">昵称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入用户昵称" name="nickname" value="{$row['nickname']}">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户头像</label>
+                            <if condition="$row['head_pic']  neq 0">
+                                <div class="layui-input-block img-show">
+                                    <div class="img-show-item" id="Upload_cover_1_pre">
+                                        <img src="{$row.covers}">
+                                        <i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.head_pic}');"></i>
+                                    </div>
+                                </div>
+                            </if>
+
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <button type="button" class="layui-btn"   id="uploadBtn2"><i class="layui-icon"></i>选择图片</button>
+                                </div>
+                                <div class="layui-input-inline" id="filename"></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户余额</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="" lay-verify="number" name="balance" value="{$row['balance']|default='0'}">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">元</div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">用户积分</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" placeholder="请输入用户积分" lay-verify="number" name="integral" value="{$row['integral']|default='0'}">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">用户邮箱</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" placeholder="请输入用户邮箱" lay-verify="email" name="email" value="{$row['email']}">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--<div class="layui-form-item">-->
+                        <!--<label class="layui-form-label">地址</label>-->
+                        <!--<div class="layui-input-inline">-->
+                        <!--<select id="province_list" name="province" class="sm-select" lay-filter="province">-->
+                        <!--<option value="">请选择省</option>-->
+                        <!--<volist name="province" id="item">-->
+                        <!--<option value="{$item['id']}">{$item['region_name']}</option>-->
+                        <!--</volist>-->
+                        <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="layui-input-inline">-->
+                        <!--<select id="city_list" name="city" class="sm-select" lay-filter="city">-->
+                        <!--<option value="">请选择市</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="layui-input-inline">-->
+                        <!--<select id="area_list" name="area" class="sm-select-t" lay-filter="area">-->
+                        <!--<option value="">请选择县/区</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="layui-form-mid layui-word-aux">缺少百度地图标注</div>-->
+                        <!--</div>-->
+
+
+                        <!--<div class="layui-form-item" pane="">-->
+                        <!--<label class="layui-form-label">爱好</label>-->
+                        <!--<div class="layui-input-block">-->
+                        <!--<input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked="">-->
+                        <!--<input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读">-->
+                        <!--<input type="checkbox" name="like1[game]" lay-skin="primary" title="游戏" disabled="">-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">性别</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="radio_1">
+                                    <input type="radio" id="radio_1" name="sex" value="1" class="layui-input" required <if condition="$row['sex'] eq 1">checked <elseif condition="empty($row['sex'])"/>checked</if>>
+                                    男
+                                </label>
+                                <label class="layui-choose" for="radio_2">
+                                    <input type="radio" id="radio_2" name="sex" value="2" class="layui-input" required <if condition="$row['sex'] eq 2"> checked</if>>
+                                    女
+                                </label>
+                            </div>
+                        </div>
+                        <!--<div class="layui-form-item layui-form-text">-->
+                        <!--<label class="layui-form-label">个人简介</label>-->
+                        <!--<div class="layui-input-block">-->
+                        <!--<textarea class="layui-textarea" placeholder="请输入用户个人简介内容" name="remark"></textarea>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">确认保存</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn2',
+        // 多文件上传-true 单文件上传-false
+        files: false,
+        // 展示图片
+//        showFile: '#filename',
+        showFile: 'true',
+        // input框的name
+        fieldName: 'head_pic'
+    });
+
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        var id = "{$row['id']}";
+        if(id){
+            url = '';
+            data.id = id
+        }else{
+            url = '{:U("Member/addMember")}'
+        }
+        console.log(data);
+        if(!data) return false;
+        doPost(url, data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+                    goback();
+                }
+            });
+        });
+    }
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+
+    //编辑器初始化
+    $(document).ready(function(){
+        KindEditor.ready(function(K){
+            window.editor = K.create('#content',{
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items:[
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough','lineheight', '|',
+                    'image', 'multiimage', '|',
+                    'link', 'baidumap','fullscreen'
+                ],
+                afterBlur:function(){this.sync();}
+            });
+        });
+    });
+</script>
+</body>
+</html>

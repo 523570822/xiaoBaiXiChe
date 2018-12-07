@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">模板生成</div>
+                <div class="layui-card-body">
+                    <div class="layui-tab layui-tab-brief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">模板生成</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">模板样式</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <label class="layui-choose" for="type_1">
+                                                    <input type="radio" id="type_1" name="type" value="1" checked class="layui-input" required>
+                                                    列表页模板
+                                                </label>
+                                                <label class="layui-choose" for="type_0">
+                                                    <input type="radio" id="type_0" name="type" value="0" class="layui-input" required>
+                                                    表单页模板
+                                                </label>
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">地址</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="router" value="" placeholder="控制器名/方法名" class="layui-input w300" required>
+                                            </div>
+                                            <div class="layui-input-inline">例: Index/index  <span style="color: #FF5722;">一定要区分好大小写！！！！！！！！！！！！！！</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" onclick="submit()">生成模板</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        if(!data) return false;
+        layer.confirm('确认地址Manager/View/'+data.router+'.html？', {
+            btn: ['确认','取消']
+        }, function(){
+            doPost('', data, function(res) {
+                showMsg(res.code, res.message, function() {
+                    if(res.code == 1) location.reload();
+                });
+            });
+        });
+
+    }
+</script>
+</body>
+</html>

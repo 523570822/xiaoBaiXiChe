@@ -1,0 +1,117 @@
+<head>
+    <meta charset="utf-8">
+    <title>{$website.website_name}后台管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/style/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/Common/js/layer/theme/default/layer.css"/>
+    <script>
+        /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
+    </script>
+    <script src="__PUBLIC__/Common/js/jquery.js"></script>
+    <script src="__PUBLIC__/Common/js/layer/layer.js"></script>
+    <script src="__PUBLIC__/Common/js/laydate/laydate.js"></script>
+    <script src="__PUBLIC__/Common/js/admin.js"></script>
+    <script charset="utf-8" src="__PUBLIC__/Plugins/kindeditor/kindeditor-min.js"></script>
+    <script charset="utf-8" src="__PUBLIC__/Plugins/kindeditor/lang/zh_CN.js"></script>
+    <style>
+        .btn {
+            border-radius: 0px;
+            font-weight: 100;
+            cursor: pointer;
+            display: inline-block;
+            padding: 5px;
+            font-size: 14px;
+            font-family: '微软雅黑'
+        }
+        .btn-primary {
+            color: #fff;
+            text-shadow: 0 1px rgba(0,0,0,.1);
+            background-image: -webkit-linear-gradient(top,#009688 0,#009688 100%);
+            background-image: -o-linear-gradient(top,#009688 0,#009688 100%);
+            background-image: -webkit-gradient(linear,left top,left bottom,from(#009688),to(#009688));
+            background-image: linear-gradient(to bottom,#009688 0,#009688 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff4d90fe', endColorstr='#ff4787ed', GradientType=0);
+            filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+            background-repeat: repeat-x;
+            border: 1px solid #009688;
+        }
+
+
+    </style>
+    <style type="text/css">
+        .shade {
+            position: absolute;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .shade div {
+            width: 300px;
+            height: 200px;
+            line-height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -150px;
+            background: white;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .a-upload {
+            padding: 4px 10px;
+            height: 20px;
+            line-height: 20px;
+            position: relative;
+            cursor: pointer;
+            color: #888;
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1
+        }
+
+        .a-upload input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer
+        }
+
+        .a-upload:hover {
+            color: #444;
+            background: #eee;
+            border-color: #ccc;
+            text-decoration: none
+        }
+        .img_div{min-height: 100px; min-width: 100px;}
+        .isImg{width: 120px; height: 120px; position: relative; float: left; margin-left: 10px;}
+        .removeBtn{position: absolute; top: 0; right: 0; z-index: 11; border: 0px; border-radius: 50px; background: red; width: 22px; height: 22px; color: white;}
+        .shadeImg{position: absolute;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 15;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.55);}
+        .showImg{width: 400px; height: 500px; margin-top: 140px;}
+
+    </style>
+</head>

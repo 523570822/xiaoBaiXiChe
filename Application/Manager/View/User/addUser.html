@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--如果不是必填值 不需要加 required 属性-->
+
+                    <!--上传图片-->
+
+
+                    <div class="layui-form">
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上传图片</label>
+                            <div class="layui-input-block">
+                                <button type="button" class="layui-btn" id="uploadBtn"><i class="layui-icon"></i>上传文件</button>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上传图片</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <button type="button" class="layui-btn" id="uploadBtn2"><i class="layui-icon"></i>上传文件</button>
+                                </div>
+                                <div class="layui-input-inline" id="filename"></div>
+                            </div>
+
+                        </div>
+                      <!--  <div class="layui-input-block img-show">
+                            <div class="img-show-item">
+                                <img src="" alt="">
+                                <i class="layui-icon layui-icon-close close" onclick="delFile(this, 1)"></i>
+                            </div>
+                        </div>-->
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">确认保存</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn',
+        // 多文件上传-true 单文件上传-false
+        files: true,
+        // 展示图片
+        showFile: true,
+        // input框的name
+        filedname: 'files'
+    });
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn2',
+        // 多文件上传-true 单文件上传-false
+        files: false,
+        // 展示图片
+        showFile: true,
+        // input框的name
+        fieldName: 'fileaaaa'
+    });
+
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        console.log(data);
+        if(!data) return false;
+        doPost('', data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+
+                }
+            });
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head"/>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <div style="padding-bottom: 10px;">
+                        <a href="{:U('AdminGroup/addAdminGroup')}" class="layui-btn layui-btn-normal layui-btn-radius">添加</a>
+                        <!--<button class="layui-btn layui-btn-warm layui-btn-radius">锁定</button>-->
+                        <!--<button class="layui-btn layui-btn-danger layui-btn-radius">删除</button>-->
+                    </div>
+                    <table class="layui-table">
+                        <thead>
+                            <tr>
+                                <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                                <th>排序</th>
+                                <th>分组名称</th>
+                                <th>管理员数量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <empty name="list">
+                                <tr><td colspan="12" style="text-align: center;">暂无数据</td></tr>
+                            </empty>
+                            <volist name="list" id="item">
+                                <tr>
+                                    <td><input type="checkbox" name="ids[]" value="{$item.id}" class="layui-input"></td>
+                                    <td table-edit="true" table-edit-key="sort" table-edit-url="{:U('AdminGroup/editSort', array('id'=>$item['id']))}">{$item.sort}</td>
+                                    <td>{$item.name}</td>
+                                    <td>{$item.num}</td>
+                                    <td>
+                                        <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('AdminGroup/editAdminGroup', array('id'=>$item['id']))}')">编辑</button>
+                                        <!--<button class="layui-btn layui-btn-xs layui-btn-danger" onclick="jumpUrl('{:U('AdminGroup/editAdminGroup', array('id'=>$item['id']))}')">删除</button>-->
+                                    </td>
+                                </tr>
+                                <volist name="item['sub_list']" id="sub_item">
+                                    <tr>
+                                        <td><input type="checkbox" name="ids[]" value="{$sub_item.id}" class="layui-input"></td>
+                                        <td>{$sub_item.sort}</td>
+                                        <td>{$sub_item.level|str_repeat='&nbsp;&nbsp;&nbsp;&nbsp;', ###}{$sub_item.name}</td>
+                                        <!--<td>{$sub_item.num}</td>-->
+                                        <td>
+                                            <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('AdminGroup/editAdminGroup', array('id'=>$sub_item['id']))}')">编辑</button>
+                                            <!--<button class="layui-btn layui-btn-xs layui-btn-danger" onclick="jumpUrl('{:U('AdminGroup/editAdminGroup', array('id'=>$item['id']))}')">删除</button>-->
+                                        </td>
+                                    </tr>
+                                </volist>
+                            </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

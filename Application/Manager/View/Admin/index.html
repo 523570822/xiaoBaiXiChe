@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head"/>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <div style="padding-bottom: 10px;">
+                        <a href="{:U('Admin/addAdmin')}" class="layui-btn layui-btn-normal layui-btn-radius">添加管理员</a>
+                        <!--<button class="layui-btn layui-btn-warm layui-btn-radius">锁定</button>-->
+                        <!--<button class="layui-btn layui-btn-danger layui-btn-radius">删除</button>-->
+                    </div>
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                            <th>ID</th>
+                            <th>管理员名称</th>
+                            <th>管理员分组</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr><td colspan="12" style="text-align: center;">暂无数据</td></tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids[]" value="{$item.id}" class="layui-input"></td>
+                                <td>{$item.id}</td>
+                                <td>{$item.username}</td>
+                                <td>{$item['group_id'] == 0 ? '终极管理员' : $item['group_name']}</td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

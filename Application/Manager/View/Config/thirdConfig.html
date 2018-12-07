@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <div class="layui-tab layui-tab-brief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">短信设置</li>
+                            <li class="">推送设置</li>
+                            <li class="">微信支付</li>
+                            <li class="">支付宝支付</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">短信平台</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="sms_type" value="{$config.sms_type}" placeholder="输入短信平台代码" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <span>阿里大于: alidayu</span>
+                                                <span>助通: zhutong</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">接口地址</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="sms_url" value="{$config.sms_url}" placeholder="输入接口地址" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">接口请求地址</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">Key</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="sms_key" value="{$config.sms_key}" placeholder="输入Key" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">平台用户名</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">Secret</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="sms_secret" value="{$config.sms_secret}" placeholder="输入Secret" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">平台秘钥</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">签名</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="sms_sign" value="{$config.sms_sign}" placeholder="输入签名" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">没有签名则不填</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" onclick="submit()">确认保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">推送平台</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="push_type" value="{$config.push_type}" placeholder="输入推送平台代码" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <span>极光: jpush</span>
+                                                <span>友盟: umeng</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">Key</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="push_key" value="{$config.push_key}" placeholder="输入Key" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">平台用户名</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">Secret</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="push_secret" value="{$config.push_secret}" placeholder="输入Secret" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">平台秘钥</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" onclick="submit()">确认保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="layui-form">
+                                    <h1>微信支付 - JSAPI</h1><hr/>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">AppId</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="wxjsapi_appid" value="{$config.wxjsapi_appid}" placeholder="输入appid" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <span>微信公众平台查看</span>
+                                                <a href="https://mp.weixin.qq.com" target="_blank">点击跳转</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">AppSecret</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="wxjsapi_appsecret" value="{$config.wxjsapi_appsecret}" placeholder="输入appsecret" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">商户号</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="wxjsapi_mch_id" value="{$config.wxjsapi_mch_id}" placeholder="输入商户号" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <span>微信支付平台查看</span>
+                                                <a href="https://pay.weixin.qq.com" target="_blank">点击跳转</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">支付秘钥</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="wxjsapi_key" value="{$config.wxjsapi_key}" placeholder="输入32位支付秘钥" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <h1>微信支付 - APP支付</h1><hr/>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">AppId</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="wxapp_appid" value="{$config.wxapp_appid}" placeholder="输入appid" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <span>微信开放平台查看</span>
+                                                <a href="https://open.weixin.qq.com" target="_blank">点击跳转</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">AppSecret</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="wxapp_appsecret" value="{$config.wxapp_appsecret}" placeholder="输入appsecret" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">商户号</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="wxapp_mch_id" value="{$config.wxapp_mch_id}" placeholder="输入商户号" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <span>微信支付平台查看</span>
+                                                <a href="https://pay.weixin.qq.com" target="_blank">点击跳转</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">支付秘钥</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="wxapp_key" value="{$config.wxapp_key}" placeholder="输入32位支付秘钥" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" onclick="submit()">确认保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="layui-form">
+                                    <h1>支付宝支付 - H5支付</h1><hr/>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">AppId</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="alih5_appid" value="{$config.alih5_appid}" placeholder="输入appid" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">公钥</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="alih5_public_key" value="{$config.alih5_public_key}" placeholder="输入公钥" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">私钥</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="alih5_private_key" value="{$config.alih5_private_key}" placeholder="输入私钥" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <h1>支付宝支付 - APP支付</h1><hr/>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">AppId</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="aliapp_appid" value="{$config.aliapp_appid}" placeholder="输入appid" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">公钥</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="aliapp_public_key" value="{$config.aliapp_public_key}" placeholder="输入公钥" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">私钥</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="aliapp_private_key" value="{$config.aliapp_private_key}" placeholder="输入私钥" class="layui-input w300">
+                                            </div>
+                                            <div class="layui-input-inline"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" onclick="submit()">确认保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        if(!data) return false;
+        doPost('', data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+                    location.reload();
+                }
+            });
+        });
+    }
+</script>
+</body>
+</html>

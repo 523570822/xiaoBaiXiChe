@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">添加菜单</div>
+                <div class="layui-card-body">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">菜单名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" value="{$data.name}" placeholder="输入菜单名称" class="layui-input w300" required>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上级菜单</label>
+                            <div class="layui-input-block">
+                                <select name="p_id" class="layui-input w300" id="ctrlValue">
+                                    <option value="">选择上级菜单</option>
+                                    <volist name="list" id="item">
+                                        <option value="{$item.id}" <if condition="$data['p_id'] eq $item['id']">selected</if> data-ctrl="{$item.controller}">{$item.name}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="module" value="{$data.module}" placeholder="输入模块名" class="layui-input w300" required>
+                                </div>
+                                <div class="layui-input-inline">默认为Manager</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">控制器</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="controller" value="{$data.controller}" placeholder="输入控制器名" class="layui-input w300" id="controllerValue" required>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">方法</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="action" value="{$data.action}" placeholder="输入方法名" class="layui-input w300" id="actionValue">
+                                </div>
+                                <div class="layui-input-inline">一级菜单可不填 添加:add 编辑:edit 删除:del 列表页:index 锁定:lock</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">图标</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="icon" value="{$data.icon}" placeholder="不填显示默认图标" class="layui-input w300">
+                                </div>
+                                <div class="layui-input-inline">
+                                    <a href="http://www.layui.com/doc/element/icon.html" target="_blank">图标查看地址</a>
+                                    <span>不填则用默图标</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排序</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="sort" value="{$data.sort}" placeholder="排序" class="layui-input w300">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">类型</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="type_1">
+                                    <input type="radio" id="type_1" name="type" value="1" <if condition="$data['type'] eq '1'">checked</if> class="layui-input" required>
+                                    菜单
+                                </label>
+                                <label class="layui-choose" for="type_0">
+                                    <input type="radio" id="type_0" name="type" value="0" <if condition="$data['type'] eq '0'">checked</if> class="layui-input" required>
+                                    按钮
+                                </label>
+                                <label class="layui-choose" for="type_2">
+                                    <input type="radio" id="type_2" name="type" value="2" <if condition="$data['type'] eq '2'">checked</if> class="layui-input" required>
+                                    行内按钮
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="status_1">
+                                    <input type="radio" id="status_1" name="status" value="1" <if condition="$data['status'] eq '1'">checked</if> class="layui-input" required>
+                                    启用
+                                </label>
+                                <label class="layui-choose" for="status_0">
+                                    <input type="radio" id="status_0" name="status" value="0" <if condition="$data['status'] eq '0'">checked</if> class="layui-input" required>
+                                    禁用
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">确认保存</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        if(!data) return false;
+        doPost('', data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+                    goback();
+                }
+            });
+        });
+    }
+    // 方法名自动补全
+    $('#actionValue').change(function() {
+        if($(this).val() != '') {
+            var controllerVal = $('#controllerValue').val();
+            var actionVal = $(this).val().replace(controllerVal, '');
+            var finalRes = actionVal == 'index' ? actionVal: actionVal + controllerVal;
+            $(this).val(finalRes);
+        }
+    });
+</script>
+</body>
+</html>
