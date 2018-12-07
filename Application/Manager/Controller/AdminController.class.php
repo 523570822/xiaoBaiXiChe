@@ -119,4 +119,47 @@ class AdminController extends BaseController
     }
 
 
+
+    /**
+     * 修改密码
+     * User: admin
+     * Date: 2018-09-21 16:16:46
+     */
+    public function editPwd() {
+        $this->display("Admin/editPwd");
+    }
+
+    /**
+     * 修改面操作
+     * User: admin
+     * Date: 2018-09-21 16:18:46
+     */
+    public function editPwdChk() {
+        $admin=D("Admin")->where(array('id'=>$this->userId))->find();
+        $request = $_REQUEST;
+        $rule = array(
+            array('old_password','string','请输入旧密码'),
+            array('password','string','请输入密码'),
+            array('rew_password','string','请输入确认密码'),
+        );
+        $this->checkParam($rule);
+        $old_password= CreatePassword($request['old_password'], $admin['salt']);
+        if($request['old_password'] == '' && $request['password'] == '' && $request['password'] == ''){
+            $this->apiResponse('0','必填参数不能为空');
+        }else if($old_password != $admin['password'] ){
+            $this->apiResponse('0','旧密码错误');
+        }elseif($request['password'] != $request['rew_password']){
+            $this->apiResponse('0','两次输入密码不一致');
+        }else{
+            $data['salt'] = NoticeStr(6);
+            $data['password'] = CreatePassword($request['password'], $data['salt']);
+            $res=D("Admin")->where(array('id'=>$this->userId))->save($data);
+            if($res){
+                $this->apiResponse('1','修改密码成功');
+
+            }else{
+                $this->apiResponse('0','修改密码失败');
+            }
+        }
+    }
 }

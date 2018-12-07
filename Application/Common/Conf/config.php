@@ -5,7 +5,12 @@ $config = array(
     'MODULE_DENY_LIST'   => array('Common'),
     'MODULE_ALLOW_LIST'  => array('Manager','Home','Api','Wap'),
     'DB_FIELD_CACHE'     => false,
-    'API_URL'=>""
+    'API_URL'=>"http://".$_SERVER['HTTP_HOST'],
+    'TMPL_PARSE_STRING' =>  array(
+        '__CSS__'=>'/Public/Home/css',
+        '__IMG__'=>'/Public/Home/image',
+        '__JS__'=>'/Public/Home/js',
+    ),
 
 );
 $config_path = APP_PATH.'Common/conf/';

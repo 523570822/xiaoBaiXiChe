@@ -1,10 +1,10 @@
 <?php
 return array(
     'WEBSITE' =>  array(
-        'website_name' => '天迅达框架后台',
-        'website_url' => 'http://frame.com',
-        'website_keyword' => '框架 后台 layui',
-        'website_description' => '网站介绍',
+        'website_name' => '小鲸洗车',
+        'website_url' => 'http://www.xiaojingxiche.com',
+        'website_keyword' => '小鲸鱼洗车 自动洗车',
+        'website_description' => '小鲸鱼自动洗车',
     ),
     'SMS' =>  array(
         'sms_type' => 'zhutong',

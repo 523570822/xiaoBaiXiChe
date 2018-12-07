@@ -27,7 +27,6 @@
                                         <div class="layui-input-block">
                                             <input type="text" name="website_url" value="{$config.website_url}" placeholder="输入网站域名" class="layui-input w300">
                                         </div>
-
                                     </div>
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">关键字</label>
@@ -53,12 +52,31 @@
                             </div>
                             <div class="layui-tab-item">
                                 <div class="layui-form">
+                                    <!--<div class="layui-form-item">-->
+                                    <!--<label class="layui-form-label">APP logo</label>-->
+                                    <!--<div class="layui-input-block">-->
+                                    <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" name="app_logo" value="{$config.app_logo}" placeholder="" class="layui-input w300">-->
+                                    <!--</div>-->
+                                    <!--<div class="layui-input-inline">建议图片尺寸 100*100px</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">APP logo</label>
-                                        <div class="layui-input-block">
-                                            <div class="layui-input-inline">
-                                                <input type="text" name="app_logo" value="{$config.app_logo}" placeholder="" class="layui-input w300">
+                                        <if condition="$config['app_logo']  neq 0">
+                                            <div class="layui-input-block img-show">
+                                                <div class="img-show-item" id="Upload_cover_1_pre">
+                                                    <img src="{$config.app_logos}">
+                                                    <i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$config.app_logo}');"></i>
+                                                </div>
                                             </div>
+                                        </if>
+                                        <div class="layui-input-block">
+                                            <input name="app_logo" value='{$row.app_logo}' class="layui-input" type="hidden">
+                                            <div class="layui-input-inline">
+                                                <button type="button" class="layui-btn"   id="uploadBtn2"><i class="layui-icon"></i>选择图片</button>
+                                            </div>
+                                            <div class="layui-input-inline" id="filename"></div>
                                             <div class="layui-input-inline">建议图片尺寸 100*100px</div>
                                         </div>
                                     </div>
@@ -104,6 +122,17 @@
     </div>
 </div>
 <script>
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn2',
+        // 多文件上传-true 单文件上传-false
+        files: false,
+        // 展示图片
+//        showFile: '#filename',
+        showFile: 'true',
+        // input框的name
+        fieldName: 'app_logo'
+    });
     // 提交信息
     function submit() {
         // 检查参数

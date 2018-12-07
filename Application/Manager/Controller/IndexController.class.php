@@ -5,10 +5,7 @@
  * Date: 2018/7/26
  * Time: 11:59
  */
-
 namespace Manager\Controller;
-
-
 class IndexController extends BaseController
 {
     /**
@@ -25,9 +22,9 @@ class IndexController extends BaseController
         $this->assign('menu_top', $auth['system']);
         $this->assign('menu_left', $auth['menus']);
         $this->assign('userInfo', $this->userInfo);
+        $this->assign('app_logo',C('API_URL').$this->getOnePath("205"));
         $this->display();
     }
-
     /**
      * 图形验证码
      * User: 木
@@ -43,7 +40,6 @@ class IndexController extends BaseController
         $Verify->codeSet = '0123456789';
         $Verify->entry();
     }
-
     /**
      * 上传文件
      * User: 木
@@ -57,7 +53,6 @@ class IndexController extends BaseController
             $this->apiResponse(0, $save_info);
         }
     }
-
     /**
      * 删除文件
      * User: 木
@@ -68,6 +63,5 @@ class IndexController extends BaseController
         $model = D('Common/File');
         $res = $model->querySave($id, array('status'=>9));
         $res ? $this->apiResponse(1, '删除成功') : $this->apiResponse(0, '删除失败');
-
     }
 }

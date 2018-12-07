@@ -25,8 +25,14 @@
         <div class="layui-side layui-side-menu">
             <div class="layui-side-scroll">
                 <div class="layui-logo">
+                    <if condition="$app_logo">
+                        <img src="{$app_logo}" width="40" height="40">
+                    </if>
                     <span>{$website.website_name}</span>
                 </div>
+                <!--<div class="layui-logo">-->
+                    <!--<span>{$website.website_name}</span>-->
+                <!--</div>-->
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
                     <li data-name="get" class="layui-nav-item">
                         <a href="javascript:;" lay-href="{:U('index/welcome')}" lay-tips="主页">
@@ -58,8 +64,6 @@
                             </li>
                         </empty>
                     </volist>
-
-
                 </ul>
             </div>
         </div>

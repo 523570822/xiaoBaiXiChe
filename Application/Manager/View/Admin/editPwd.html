@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">原始密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" class="layui-input" placeholder="请输入原始密码" lay-verify="required" name="old_password">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">新的密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" class="layui-input" placeholder="请输入新密码" lay-verify="required" name="rew_password">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">确认密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" class="layui-input" placeholder="请输入确认密码" lay-verify="required" name="password">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <!--<button class="layui-btn" onclick="goback()">返回</button>-->
+                            <button class="layui-btn" onclick="submit()">确认保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script>
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        console.log(data);
+        if(!data) return false;
+        url = '{:U("Admin/editPwdChk")}';
+        doPost(url, data, function(res) {
+            showMsg(res.code, res.message, function() {
+                url= '{:U("Admin/logout")}';
+                window.parent.location.href = url;
+            });
+        });
+    }
+</script>
+</html>

@@ -46,7 +46,6 @@ class ControllerService extends Controller
             $this->checkAccess();
         }
     }
-
     /**
      * 检查参数
      * User: 木
@@ -67,7 +66,6 @@ class ControllerService extends Controller
         }
         return $Res;
     }
-
     /**
      * Api返回数据
      * User: 木
@@ -84,7 +82,6 @@ class ControllerService extends Controller
         );
         exit(json_encode($response, JSON_UNESCAPED_UNICODE));
     }
-
 //    /**
 //     * 上传文件
 //     * User: 木
@@ -99,7 +96,6 @@ class ControllerService extends Controller
 //        }
 //        // 执行上传文件操作
 //    }
-
     /**
      * 设置登录信息
      * User: 木
@@ -110,7 +106,6 @@ class ControllerService extends Controller
         $key = $this->_getLoginInfoKey();
         session($key, $data);
     }
-
     /**
      * 清除登陆信息
      * User: 木
@@ -120,7 +115,6 @@ class ControllerService extends Controller
         $key = $this->_getLoginInfoKey();
         session($key, null);
     }
-
     /**
      * 获取登录信息SESSION存储名称
      * User: 木
@@ -132,7 +126,6 @@ class ControllerService extends Controller
         $key .= '_USER';
         return $key;
     }
-
     /**
      * 检查登录方法
      * User: 木
@@ -160,7 +153,6 @@ class ControllerService extends Controller
             $this->apiResponse('-1','登录失效，请重新登录');
         }
     }
-
     /**
      * 检查访问权限
      * User: 木
@@ -193,8 +185,6 @@ class ControllerService extends Controller
         );
         D('Manager/AdminBehavior')->addRow($data);
     }
-
-
     /**
      * 获取一张图片的链接地址
      * @param $id

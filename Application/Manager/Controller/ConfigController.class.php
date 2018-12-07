@@ -24,11 +24,13 @@ class ConfigController extends ControllerService
                 'website_name',
                 'website_url',
                 'website_keyword',
+//                'website_phone',
                 'website_description',
                 'app_logo',
                 'app_name',
                 'app_version',
                 'app_intro',
+//                'forum_admin'
             ));
             foreach($data as $key=>$value) {
                 D('Config')->querySave(array('key'=>$key), array('value'=>$value));
@@ -50,6 +52,7 @@ class ConfigController extends ControllerService
             foreach($data as $item) {
                 $config[$item['key']] = $item['value'];
             }
+            $config['app_logos'] = $this->getOnePath($config['app_logo'],0);
             $this->assign('config', $config);
             $this->display();
         }
