@@ -20,98 +20,91 @@ class MemberController extends BaseController
 
     }
 
-
     /**
      * 注册
-     * 参数：account(手机号),verify（短信验证码），password(密码)
-     * User: jiajia.zhao 18210213617@163.com
-     * Date: 2018/8/18 9:38
+     * 参数：account(手机号),verify（短信验证码），password(密码),repassword(确认密码)
+     *update by 谢吉发
      */
-    public function register(){
-        $request  =$_REQUEST;// I('post.');
+    public function register()
+    {
+        $request = I('post.');
         $share_from_code = $request['share_code'];
         $rule = array(
-            array('account','string','请输入手机号'),
-            array('verify','string','请输入短信验证码'),
-            array('password','string','请输入密码'),
-            array('repassword','string','请输入确认密码')
+            array('account', 'string', '请您输入手机号码'),
+            array('verify', 'string', '请您输入短信验证码'),
+            array('password', 'string', '请您输入密码'),
+            array('repassword', 'string', '请您再次输入密码')
         );
         $this->checkParam($rule);
-        if(!empty($request['password'])&&!empty($request['repassword'])){
-            if($request['password']!=$request['repassword']) {
-                $this->apiResponse('0','确认密码和密码不一致');
+        if (!empty($request['password']) && !empty($request['repassword'])) {
+            if ($request['password'] != $request['repassword']) {
+                $this->apiResponse('0', '两次密码不一致，请重试');
             }
         }
         if (!empty($share_from_code)) {
             $this->checkShareCodeBefore($share_from_code);
         }
         $param['account'] = $request['account'];
-        $member_info = D('Member')->querySave($param);
-        if($member_info){
-            $this->apiResponse('0','该手机号已被注册');
+        $param['status'] = 1;
+        $member_info = D('Member')->queryRow($param);
+        if ($member_info) {
+            $this->apiResponse('0', '该手机号已被注册');
         }
+
         //检查短信验证码
-        $res = D('Sms')->checkVerify($request['account'],$request['verify'],'register');
-        if($res['error']){
-            $this->apiResponse('0',$res['error']);
+        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'register');
+        if ($res['error']) {
+            $this->apiResponse('0', $res['error']);
         }
         //注册用户
         $member_add_info = D('Member')->addRow($request);
-        if(empty($member_add_info)){
-            $this->apiResponse('0','注册失败');
+        if (empty($member_add_info)) {
+            $this->apiResponse('0', '注册失败');
         }
 
         //创建并更新token
         $token_arr = $this->createToken();
-        D('Member')->querySave(array('id'=>$member_add_info),array('token'=>$token_arr['token'],'expired_time'=>$token_arr['expired_time']));
-
-        unset($param);
-        unset($member_info);
-        $param['where']['id'] = $member_add_info;
-        $param['field'] = 'id as m_id,account,nickname,head_pic,degree';
-        $member_info =  D('Member')->querySave($param);
-        if(empty($member_info)){
-            $this->apiResponse('0','注册失败');
-        }
+        D('Member')->querySave(array('id' => $member_add_info), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
+        $data['token'] = $token_arr['token'];
+        $data['account'] = $_REQUEST['account'];
         if (!empty($share_from_code)) {
-            $this->checkShareCode($share_from_code,$member_add_info['id']);
+            $this->checkShareCode($share_from_code, $member_add_info);
         }
-        $this->apiResponse('1','注册成功',$member_info);
+        $this->apiResponse('1', '注册成功', $data);
     }
-
 
     /**  * 账号密码登录
      * 参数：account(手机号),password（密码）
      * User: jiajia.zhao 18210213617@163.com
      * Date: 2018/8/18 9:39
      */
-    public function login(){
-        $request =$_REQUEST;// I('post.');
+    public function login()
+    {
+        $request = $_REQUEST;// I('post.');
         $rule = array(
-            array('account','string','请输入手机号'),
-            array('password','string','请输入密码'),
+            array('account', 'string', '请输入手机号'),
+            array('password', 'string', '请输入密码'),
         );
         $this->checkParam($rule);
         $param['account'] = $request['account'];
-        $param['status'] = array('neq',9);
+        $param['status'] = array('neq', 9);
         $member_info = D('Member')->queryRow($param);
-        if(!$member_info){
-            $this->apiResponse('0','该手机号尚未注册');
+        if (!$member_info) {
+            $this->apiResponse('0', '该手机号尚未注册');
         }
-        $check_password = checkPassword($request['password'],$member_info['salt'],$member_info['password']);
-
-        if($check_password == 1){
-            $this->apiResponse('0','密码错误');
+        $check_password = checkPassword($request['password'], $member_info['salt'], $member_info['password']);
+        if ($check_password == 1) {
+            $this->apiResponse('0', '密码错误');
         }
-
-        unset($member_info['password']);
-        unset($member_info['salt']);
+//        unset($member_info['password']);
+//        unset($member_info['salt']);
         //创建并更新token
         $token_arr = $this->createToken();
-        D('Member')->saveMember(array('id'=>$member_info['m_id']),array('token'=>$token_arr['token'],'expired_time'=>$token_arr['expired_time']));
-        $member_info['token'] = $token_arr['token'];
-        $this->apiResponse('1','登录成功',$member_info);
+        D('Member')->saveMember(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
+        $data['token'] = $token_arr['token'];
+        $this->apiResponse('1', '登录成功', $data);
     }
+
     /**
      * 三方登录
      * 参数：openid(三方登录唯一标识),nickname（昵称）,head_pic（头像）,type( 1QQ登录 2微信登录 3 微博登录，4支付宝，5淘宝)
@@ -120,17 +113,17 @@ class MemberController extends BaseController
     {
         $request = $_REQUEST;
         $rule = array(
-            array('openid','string','三方登录唯一标识不能为空'),
-            array('nickname','string','昵称不能为空'),
-            array('type','string','类型错误'),
+            array('openid', 'string', '三方登录唯一标识不能为空'),
+//            array('nickname','string','昵称不能为空'),
+            array('type', 'string', '类型错误'),
         );
         $this->checkParam($rule);
         $param['where']['openid'] = $request['openid'];
         $param['where']['type'] = $request['type'];
-        $bind_info =  D('MemberBind')->queryRow($param['where']);
+        $bind_info = D('MemberBind')->queryRow($param['where']);
         if (!$bind_info) {
             //还未三方登录过
-            $request['create_time']=time();
+            $request['create_time'] = time();
             $bind_id = D('MemberBind')->addRow($request);
             if ($bind_id) {
                 $result_data['bind_id'] = $bind_id . '';
@@ -153,13 +146,13 @@ class MemberController extends BaseController
                 D('Member')->querySave($where, $data);
             }
             //创建并更新token
-            $token_arr =createToken();
-            D('Member')->querySave(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' =>                  $token_arr['expired_time']));
-
-            $member_info['head_pic'] =$this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
+            $token_arr = createToken();
+            D('Member')->querySave(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
+            $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
             $member_info['token'] = $token_arr['token'];
             $member_info['expired_time'] = $token_arr['expired_time'];
-             $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
+            $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
+            $member_info['m_id'] = $bind_info['m_id'];
             $this->apiResponse('1', '登录成功', $member_info);
         } else {
             $result_data['bind_id'] = $bind_info['id'];
@@ -172,135 +165,242 @@ class MemberController extends BaseController
      * 三方登录绑定手机号
      * bind_id,account verify
      */
-    public function threeLoginBind(){
+    public function threeLoginBind()
+    {
         $request = $_REQUEST;
 
         $rule = array(
-            array('bind_id','string','bind_id不能为空'),
-            array('account','string','请输入手机号'),
-            array('verify','string','请输入验证码'),
+            array('bind_id', 'string', 'bind_id不能为空'),
+            array('account', 'string', '请输入手机号'),
+            array('verify', 'string', '请输入验证码'),
         );
         $this->checkParam($rule);
 
         //检查短信验证码
-        $res = D('Sms')->checkVerify($request['account'],$request['verify'],'re_bind');
-       if($res['error']){
-           $this->apiResponse('0',$res['error']);
+        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 're_bind');
+        if ($res['error']) {
+            $this->apiResponse('0', $res['error']);
         }
 
         unset($param);
         $param['where']['id'] = $request['bind_id'];
         $bind_info = D('MemberBind')->queryRow($param['where']);
-        if(!$bind_info){
-           $this->apiResponse('0','绑定手机号失败');
+        if (!$bind_info) {
+            $this->apiResponse('0', '绑定手机号失败');
         }
 
         unset($param);
         $param['where']['account'] = $request['account'];
         $param['where']['status'] = array('neq', 9);
         $param['field'] = 'id as m_id,account,nickname,head_pic,degree';
-        $member_info = D('Member')->queryRow($param['where'],$param['field']);
-        if($member_info){
-            $res = D('MemberBind')->querySave(array('id'=>$bind_info['id']),array('m_id'=>$member_info['m_id']));
+        $member_info = D('Member')->queryRow($param['where'], $param['field']);
+        if ($member_info) {
+            $res = D('MemberBind')->querySave(array('id' => $bind_info['id']), array('m_id' => $member_info['m_id']));
 
-            if(!$res){
-               $this->apiResponse('0','绑定手机号失败');
+            if (!$res) {
+                $this->apiResponse('0', '绑定手机号失败');
             }
             $m_id = $member_info['m_id'];
-        }else{
+        } else {
             $m_id = D('Member')->addRow($request);
-            if(empty($m_id)){
-               $this->apiResponse('0','绑定手机号失败');
+            if (empty($m_id)) {
+                $this->apiResponse('0', '绑定手机号失败');
             }
-            $res = D('MemberBind')->querySave(array('id'=>$bind_info['id']),array('m_id'=>$m_id));
+            $res = D('MemberBind')->querySave(array('id' => $bind_info['id']), array('m_id' => $m_id));
 
-            if(!$res){
-               $this->apiResponse('0','绑定手机号失败 ');
+            if (!$res) {
+                $this->apiResponse('0', '绑定手机号失败 ');
             }
         }
 
         unset($param);
         $param['where']['id'] = $m_id;
-        $param['where']['status'] = array('neq',9);
+        $param['where']['status'] = array('neq', 9);
         $param['field'] = 'id as m_id,account,nickname,head_pic,degree';
-        $member_info = D('Member')->queryRow($param['where'],$param['field']);
+        $member_info = D('Member')->queryRow($param['where'], $param['field']);
 
         //创建并更新token
         $token_arr = createToken();
-        D('Member')->querySave(array('id'=>$member_info['m_id']),array('token'=>$token_arr['token'],'expired_time'=>$token_arr['expired_time']));
+        D('Member')->querySave(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
 
-        $member_info['head_pic'] =$this->getOnePath($member_info['head_pic'],C('API_URL').'/Uploads/Member/default.png');
+        $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
         $member_info['token'] = $token_arr['token'];
         $member_info['expired_time'] = $token_arr['expired_time'];
-       $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
-       $this->apiResponse('1','绑定手机号成功',$member_info);
+        $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
+        $this->apiResponse('1', '绑定手机号成功', $member_info);
+    }
+
+//    /**
+//     * 验证手机号
+//     * bind_id,account verify
+//     */
+//    public function verifyAccount()
+//    {
+//        $m_id = $this->checkToken();
+//        $this->errorTokenMsg($m_id);
+//        $request = $_REQUEST;
+//        $param['where']['id'] = $m_id;
+//        $param['where']['status'] = array('neq', 9);
+//        $member_info = D('Member')->queryRow($param['where']);
+//        $rule = array(
+//            array('account','string','请输入手机号'),
+//            array('verify','string','请输入验证码'),
+//        );
+//        $this->checkParam($rule);
+//        if ($request['account'] != $member_info['account']) {
+//            $this->apiResponse('0', '手机号错误,请重试');
+//        }
+//        //检查短信验证码
+//        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'mod_bind');
+//        if ($res['error']) {
+//            $this->apiResponse('0', $res['error']);
+//        }else{
+//            $this->apiResponse('1', '验证成功');
+//        }
+//    }
+
+    /**
+     * 更换手机号
+     * account  verify
+     * */
+    public function changeAccount()
+    {
+        $m_id = $this->checkToken();
+        $this->errorTokenMsg($m_id);
+        $request = $_REQUEST;
+        $rule = array(
+            array('account', 'string', '请输入新手机号'),
+            array('verify', 'string', '请输入验证码'),
+        );
+        $this->checkParam($rule);
+//    检查短信验证码
+        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'mod_bind');
+        if ($res['error']) {
+            $this->apiResponse('0', $res['error']);
+        }
+        $param['where']['account'] = $request['account'];
+        $member_info = D('Member')->queryRow($param['where']);
+        if ($member_info) {
+            $this->apiResponse('0', '请更换新的手机号');
+        }
+        $where['id'] = $m_id;
+        $data['account'] = $request['account'];
+        $res = D('Member')->querySave($where, $data);
+        if ($res) {
+            $this->apiResponse('1', '手机号更换成功');
+        } else {
+            $this->apiResponse('0', '手机号更换失败');
+        }
     }
 
     /**
      * 个人中心
      * 参数：null
      */
-    public function memberCenter(){
-        $m_id =$this->checkToken();
+    public function memberCenter()
+    {
+        $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         unset($param);
         $param['where']['id'] = $m_id;
-        $param['where']['status'] = array('neq',9);
-        $param['field'] = 'id as m_id,account,nickname,head_pic,degree';
-        $member_info = D('Member')->queryRow($param['where'],$param['field']);
-        $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'],C('API_URL').'/Uploads/Member/default.png');
-
-        $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
-       /* $member_info['service_qq']    = $this->config['SERVICE_QQ'];*/
-       $this->apiResponse('1','请求成功',$member_info);
+        $param['where']['status'] = array('neq', 9);
+        $param['field'] = 'id as m_id,account,tel,nickname,head_pic,sex,degree';
+        $member_info = D('Member')->queryRow($param['where'], $param['field']);
+        $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
+//        $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
+        /* $member_info['service_qq']    = $this->config['SERVICE_QQ'];*/
+        $this->apiResponse('1', '请求成功', $member_info);
     }
 
     /**
      * 找回密码
      * account,verify password
      */
-    public function resetPassword(){
+    public function resetPassword()
+    {
         $request = $_REQUEST;
         $rule = array(
-            array('account','string','请输入手机号'),
-            array('password','string','请输入密码'),
-            array('verify','string','请输入验证码'),
+            array('account', 'string', '请您输入手机号'),
+            array('verify', 'string', '请您输入验证码'),
+            array('password', 'string', '请输入新密码'),
+            array('repassword', 'string', '请再次输入密码'),
         );
         $this->checkParam($rule);
+        if (!empty($request['password']) && !empty($request['repassword'])) {
+            if ($request['password'] != $request['repassword']) {
+                $this->apiResponse('0', '两次密码不一致，请重试');
+            }
+        }
         //检查短信验证码
-       $res = D('Sms')->checkVerify($request['account'],$request['verify'],'retrieve');
-        if($res['error']){
-           $this->apiResponse('0',$res['error']);
+        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'retrieve');
+        if ($res['error']) {
+            $this->apiResponse('0', $res['error']);
         }
 
         unset($param);
         $param['where']['account'] = $request['account'];
-        $param['where']['status'] = array('neq',9);
+        $param['where']['status'] = array('neq', 9);
         $member_info = D('Member')->queryRow($param['where']);
-        if(!$member_info){
-           $this->apiResponse('0','该手机号尚未注册');
+        if (!$member_info) {
+            $this->apiResponse('0', '该手机号尚未注册');
         }
         unset($where);
         $where['id'] = $member_info['id'];
         $data['salt'] = NoticeStr(6);
         $data['password'] = CreatePassword($request['password'], $data['salt']);
-        $res = D('Member')->querySave($where,$data);
-        if($res){
-           $this->apiResponse('1','找回密码成功');
-        }else{
-           $this->apiResponse('0','找回密码失败');
+        $res = D('Member')->querySave($where, $data);
+        if ($res) {
+            $this->apiResponse('1', '找回密码成功');
+        } else {
+            $this->apiResponse('0', '找回密码失败');
         }
     }
+
+//    /**
+//     * 修改密码
+//     * old_password   password   repassword
+//     */
+//    public function changePassword()
+//    {
+//        $m_id = $this->checkToken();
+//        $this->errorTokenMsg($m_id);
+//        $request = $_REQUEST;
+//        $rule = array(
+//            array('old_password', 'string', '请输入原来密码'),
+//            array('password', 'string', '请输入新密码'),
+//            array('repassword', 'string', '请再次输入密码'),
+//        );
+//        $this->checkParam($rule);
+//        $param['where']['id'] = $m_id;
+//        $param['where']['status'] = array('neq', 9);
+//        $member_info = D('Member')->queryRow($param['where']);
+//        $old_password = CreatePassword($request['old_password'], $member_info['salt']);
+//        if ($request['old_password'] == '' && $request['password'] == '' && $request['password'] == '') {
+//            $this->apiResponse('0', '必填参数不能为空');
+//        } else if ($old_password != $member_info['password']) {
+//            $this->apiResponse('0', '旧密码错误');
+//        } elseif ($request['password'] != $request['repassword']) {
+//            $this->apiResponse('0', '两次输入密码不一致');
+//        } else {
+//            $data['salt'] = NoticeStr(6);
+//            $data['password'] = CreatePassword($request['password'], $data['salt']);
+//            $res = D("member")->where(array('id' => $this->userId))->save($data);
+//            if ($res) {
+//                $this->apiResponse('1', '修改密码成功');
+//            } else {
+//                $this->apiResponse('0', '修改密码失败');
+//            }
+//        }
+//    }
 
     /**
      * 设置密码
      * password
      */
-    public function setPassword(){
+    public function setPassword()
+    {
         $request = $_REQUEST;
-
-        $rule =   array('password','string','请输入密码');
-
+        $rule = array('password', 'string', '请输入密码');
         $this->checkParam($rule);
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
@@ -308,11 +408,11 @@ class MemberController extends BaseController
         $where['id'] = $m_id;
         $data['salt'] = NoticeStr(6);
         $data['password'] = CreatePassword($request['password'], $data['salt']);
-        $res = D('Member')->querySave($where,$data);
-        if($res){
-           $this->apiResponse('1','设置密码成功');
-        }else{
-           $this->apiResponse('0','设置密码失败');
+        $res = D('Member')->querySave($where, $data);
+        if ($res) {
+            $this->apiResponse('1', '设置密码成功');
+        } else {
+            $this->apiResponse('0', '设置密码失败');
         }
     }
 
@@ -320,91 +420,95 @@ class MemberController extends BaseController
      * 修改密码
      * old_password,password
      */
-    public function modPassword(){
+    public function modPassword()
+    {
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $request = $_REQUEST;
         $rule = array(
-            array('old_password','string','请输入旧密码'),
-            array('password','string','请输入密码'),
+            array('old_password', 'string', '请输入旧密码'),
+            array('password', 'string', '请输入新密码'),
+            array('repassword', 'string', '请再次输入密码'),
         );
         $this->checkParam($rule);
+        if (!empty($request['password']) && !empty($request['repassword'])) {
+            if ($request['password'] != $request['repassword']) {
+                $this->apiResponse('0', '两次密码不一致，请重试');
+            }
+        }
         unset($param);
         $param['where']['id'] = $m_id;
-        $member_info = D('Member')->queryRow($param['where'],$param['field']);
-       /* if($member_info['password'] != md5($request['old_password'])){
-           $this->apiResponse('0','旧密码错误');
-        }*/
-        $check_password = checkPassword($request['old_password'],$member_info['salt'],$member_info['password']);
-
-        if($check_password == 1){
-            $this->apiResponse('0','旧密码错误');
+        $member_info = D('Member')->queryRow($param['where'], $param['field']);
+        $check_password = checkPassword($request['old_password'], $member_info['salt'], $member_info['password']);
+        if ($check_password == 1) {
+            $this->apiResponse('0', '原始密码错误');
         }
         $where['id'] = $m_id;
         $data['salt'] = NoticeStr(6);
         $data['password'] = CreatePassword($request['password'], $data['salt']);
-        $res = D('Member')->querySave($where,$data);
-        if($res){
-           $this->apiResponse('1','修改密码成功');
-        }else{
-           $this->apiResponse('0','修改密码失败');
+        $res = D('Member')->querySave($where, $data);
+        if ($res) {
+            $this->apiResponse('1', '密码修改成功');
+        } else {
+            $this->apiResponse('0', '密码修改失败');
         }
     }
 
     /**
      * 个人资料
      */
-    public function memberBaseData(){
+    public function memberBaseData()
+    {
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $param['where']['id'] = $m_id;
-        $param['field'] = 'id as m_id,account,head_pic,nickname,password';
-        $member_info = D('Member')->queryRow($param['where'],$param['field']);
-        $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'],C('API_URL').'/Uploads/Member/default.png');
-        $member_info['is_password'] = $member_info['password']?'1':'0';
+        $param['field'] = 'id as m_id,account,tel,head_pic,sex,nickname,password';
+        $member_info = D('Member')->queryRow($param['where'], $param['field']);
+        $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
+        $member_info['is_password'] = $member_info['password'] ? '1' : '0';
         unset($member_info['password']);
-
-       $this->apiResponse('1','请求成功',$member_info);
+        $this->apiResponse('1', '请求成功', $member_info);
     }
 
     /**
      * 修改个人资料
      * head_pic nickname  head_pic_id
      */
-    public function modBaseData(){
+    public function modBaseData()
+    {
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $request = $_REQUEST;
         $param = array(
-            array('check_type'=>'is_null','parameter' => $request['nickname'],'condition'=>'','error_msg'=>'请输入昵称'),
+            array('check_type' => 'is_null', 'parameter' => $request['nickname'], 'condition' => '', 'error_msg' => '请输入昵称'),
         );
         $request = $_REQUEST;
         $rule = array(
-            array('nickname','string','请输入姓名'),
-            array('sex','string','请输入性别'),
+            array('nickname', 'string', '请输入姓名'),
+            array('sex', 'string', '请输入性别'),
         );
         $this->checkParam($rule);
 
-        if(!empty($_FILES['head_pic']['name'])){
+        if (!empty($_FILES['head_pic']['name'])) {
             $res = api('UploadPic/upload', array(array('save_path' => 'Member')));
             foreach ($res as $value) {
                 $data['head_pic'] = $value['id'];
             }
         }
-        if($request['head_pic_id']){
+        if ($request['head_pic_id']) {
             $data['head_pic'] = $request['head_pic_id'];
         }
-        if($request['sex']){
+        if ($request['sex']) {
             $data['sex'] = $request['sex'];
         }
         $data['nickname'] = $request['nickname'];
 
         $where['id'] = $m_id;
-        $res = D('Member')->querySave($where,$data);
-        if($res){
-           $this->apiResponse('1','修改个人资料成功');
-        }else{
-           $this->apiResponse('0','修改个人资料失败');
+        $res = D('Member')->querySave($where, $data);
+        if ($res) {
+            $this->apiResponse('1', '修改个人资料成功');
+        } else {
+            $this->apiResponse('0', '修改个人资料失败');
         }
     }
 

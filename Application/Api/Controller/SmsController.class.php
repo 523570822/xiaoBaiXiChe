@@ -27,7 +27,7 @@ class SmsController extends BaseController{
         $param = array(
             array('account','string','请输入手机号'),
             array('send_type','string','请输入短信类型'),
-            );
+        );
         $this->checkparam($param);//判断参数的合法性
         if($request['send_type'] == 'register'){
             $res = M('Member')->where(array('account'=>$request['account'],'status'=>array('neq',9)))->find();
@@ -35,12 +35,12 @@ class SmsController extends BaseController{
                 $this->apiResponse('0','您已注册，请直接登录');
             }
         }
-       // $result = D('Sms')->sendVerify($request['account'],$request['send_type']);
+        // $result = D('Sms')->sendVerify($request['account'],$request['send_type']);
         $result=getVerification($request['account'],$request['send_type']);
-        if($result['success']){
-            $this->apiResponse('1',$result['success']);
+        if($result == '发送成功'){
+            $this->apiResponse('1',$result);
         }else{
-            $this->apiResponse('0',$result);
+            $this->apiResponse('0',$result ? : '发送失败');
         }
     }
 

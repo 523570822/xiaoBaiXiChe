@@ -251,13 +251,13 @@
         $username = $sms['sms_key'];  //环信账号
         $password = $sms['sms_secret'];      //环信密码
         $comp=C('WEBSITE');
-        $company =$comp['website_name'];// ;      //公司名称
+        $company =$comp['website_name'];      //公司名称
         vendor('Txunda.Txunda#Verification');
 
         $verifivation = new \Verification();
         $result = $verifivation->sendVerification($account,$username,$password,$company,$type,$sender);
         if ($result['success']) {
-            return '发送成功';
+            return '发送成功，10分钟内有效';
         } else {
             return $result['error'];
         }
