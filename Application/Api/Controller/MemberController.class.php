@@ -576,7 +576,7 @@ class MemberController extends BaseController
             $extension_log_add = M("integral_log")->data($data_ext)->add();
             $m_info = D("Member")->where('invite_code=' . $invite_code)->find();
             $content = '您成功推荐了一位好友，获得1积分，快来看看吧！';
-            pushOneUser($content, $m_info['token'], '3');
+//            pushOneUser($content, $m_info['token'], '2');
         } else {
             $this->apiResponse('0', '推荐码不存在');
         }
