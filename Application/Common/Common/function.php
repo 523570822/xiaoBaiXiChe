@@ -306,3 +306,56 @@
         return call_user_func_array($callback,$vars);
     }
 
+    /**
+     *接口验空
+     * @param null $parameter
+     * @param null $keys
+     * @param null $jump
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2018/12/18 16:08
+     */
+    function checkAppData($parameter=null,$keys=null,$jump=null){
+        $data = $_POST;
+        if($data==null){
+            $data = array();    // 无请求参数
+        }
+        if(!empty($parameter)){
+            $parameter = explode(',',$parameter);
+            $keys = explode('-',$keys);
+            $jump = explode('|',$jump);
+            foreach($parameter as $k=>$v){
+                if((!isset($data[$v]))||(empty($data[$v]))){
+                    if ($jump != null) {
+                        if (in_array($v, $jump)) {
+                            if ($data[$v] == '') {
+                                apiResponse(0, '请输入' . $keys[$k]);
+                            }
+                        } else {
+                            if ($data[$v] !== '0' || $data[$v] == '') {
+                                apiResponse(0, '请输入' . $keys[$k]);
+                            }
+                        }
+                    } else {
+                        if ($data[$v] !== '0' || $data[$v] == '') {
+                            apiResponse(0, '请输入' . $keys[$k]);
+                        }
+                    }
+                }
+            }
+        }
+        return $data;
+    }
+
+    /**
+     *验证手机号
+     * @param $mobile
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2018/12/18 16:08
+     */
+    function isMobile($mobile) {
+        if (!is_numeric($mobile)) {
+            return false;
+        }
+        return preg_match('#^1[0-9]{10}$#', $mobile) ? true : false;
+    }
+
