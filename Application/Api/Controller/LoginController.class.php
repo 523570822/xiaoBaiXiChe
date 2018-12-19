@@ -7,7 +7,7 @@
  */
 
 namespace Api\Controller;
-use Think\Controller;
+use Common\Service\ControllerService;
 
 /**
  * 登录接口
@@ -38,7 +38,7 @@ class LoginController extends BaseController
         if (!isMobile($post['phone'])) {
             $this->apiResponse('0','手机号格式有误');
         }
-        $member = D('Member')->where(array('account'=>$post['phone']))->find();
+        $member = D('Agent')->where(array('account'=>$post['phone']))->find();
         $check_password = checkPassword($post['password'], $member['salt'], $member['password']);
         if ($member) {
             if ($check_password != 1) {
