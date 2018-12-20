@@ -9,7 +9,11 @@
 namespace Api\Controller;
 use Common\Service\ControllerService;
 
-
+/**
+ * 加盟商模块
+ * Class AgentController
+ * @package Api\Controller
+ */
 class AgentController extends BaseController
 {
     /**
@@ -65,20 +69,6 @@ class AgentController extends BaseController
         }
     }
 
-    /**
-     *洗车机
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2018/12/20 10:38
-     */
-    public function carWasher()
-    {
-        $post = checkAppData();
-        $car_washer = D('CarWasher')->field('mc_id,car_num,net_income')->select();
-        if($car_washer){
-            $this->apiResponse('1','成功',$car_washer);
-        }else{
-            $this->apiResponse('0','暂无数据');
-        }
-    }
+
 
 }
