@@ -304,7 +304,9 @@
             parse_str($vars,$vars);
         }
         return call_user_func_array($callback,$vars);
-    }
+    };
+
+
 
     /**
      *接口验空
@@ -328,16 +330,16 @@
                     if ($jump != null) {
                         if (in_array($v, $jump)) {
                             if ($data[$v] == '') {
-                                $this->apiResponse(0, '请输入' . $keys[$k]);
+                                apiResponse(0, '请输入' . $keys[$k]);
                             }
                         } else {
                             if ($data[$v] !== '0' || $data[$v] == '') {
-                                $this->apiResponse(0, '请输入' . $keys[$k]);
+                                apiResponse(0, '请输入' . $keys[$k]);
                             }
                         }
                     } else {
                         if ($data[$v] !== '0' || $data[$v] == '') {
-                            $this->apiResponse(0, '请输入' . $keys[$k]);
+                            apiResponse(0, '请输入' . $keys[$k]);
                         }
                     }
                 }
@@ -357,5 +359,14 @@
             return false;
         }
         return preg_match('#^1[0-9]{10}$#', $mobile) ? true : false;
+    }
+
+    function apiResponse($code=0, $message='', $data=array()) {
+        $response = array(
+            'code' => $code,
+            'message' => $message,
+            'data' => $data
+        );
+        exit(json_encode($response, JSON_UNESCAPED_UNICODE));
     }
 
