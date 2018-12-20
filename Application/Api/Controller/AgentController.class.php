@@ -70,8 +70,8 @@ class AgentController extends BaseController
         $income = D('Income')->where($where)->field("id,SUM(net_income),car_wash,day")->group("day")->select();
         $agent = D('Agent')->where(array('id'=>$post['agent_id']))->field('car_washer_num')->find();
         $data = array(
+            'agent' =>$agent,
             'income' =>$income,
-            'agent' =>$agent
         );
         if($data){
             $this->apiResponse('1','成功',$data);
