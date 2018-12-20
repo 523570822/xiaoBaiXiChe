@@ -328,16 +328,16 @@
                     if ($jump != null) {
                         if (in_array($v, $jump)) {
                             if ($data[$v] == '') {
-                                apiResponse(0, '请输入' . $keys[$k]);
+                                $this->apiResponse(0, '请输入' . $keys[$k]);
                             }
                         } else {
                             if ($data[$v] !== '0' || $data[$v] == '') {
-                                apiResponse(0, '请输入' . $keys[$k]);
+                                $this->apiResponse(0, '请输入' . $keys[$k]);
                             }
                         }
                     } else {
                         if ($data[$v] !== '0' || $data[$v] == '') {
-                            apiResponse(0, '请输入' . $keys[$k]);
+                            $this->apiResponse(0, '请输入' . $keys[$k]);
                         }
                     }
                 }
