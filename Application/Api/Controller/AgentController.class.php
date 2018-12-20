@@ -59,7 +59,6 @@ class AgentController extends BaseController
     public function income(){
         $post = checkAppData('agent_id,month','代理商ID-月份');
         /*$post['agent_id'] = 1;
-        $post['mc_id'] = 'A00001';
         $post['month'] = '2018-12';*/
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
@@ -68,7 +67,12 @@ class AgentController extends BaseController
             'agent_id' =>$post['agent_id'],
             'month' => strtotime($post['month']),
         );
-        $data=D('Income')->where($where)->field("id,SUM(net_income),day")->group("day")->select();
+        $income = D('Income')->where($where)->field("id,SUM(net_income),car_wash,day")->group("day")->select();
+        $agent = D('Agent')->where(array('id'=>$post['agent_id']))->field('car_washer_num')->find();
+        $data = array(
+            'income' =>$income,
+            'agent' =>$agent
+        );
         if($data){
             $this->apiResponse('1','成功',$data);
         }else{
