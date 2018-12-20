@@ -48,23 +48,6 @@ class CarWasherController extends BaseController
      *Date:2018/12/20 11:53
      */
     public function carWasherIncome(){
-        $post = checkAppData('agent_id,mc_id,month','代理商ID-洗车机编号-月份');
-        /*$post['agent_id'] = 1;
-        $post['mc_id'] = 'A00001';
-        $post['month'] = '2018-12';*/
-        /*$month = date('Y/m',$post['month']);
-        var_dump($month);exit;*/
 
-        $where = array(
-            'agent_id' =>$post['agent_id'],
-            'mc_id' =>$post['mc_id'],
-            'month' => strtotime($post['month']),
-        );
-        $data=D('Income')->where($where)->field("id,SUM(net_income),day")->group("day")->select();
-        if($data){
-            $this->apiResponse('1','成功',$data);
-        }else{
-            $this->apiResponse('2','暂无数据');
-        }
     }
 }
