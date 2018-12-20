@@ -865,3 +865,16 @@ INFO: [ app_begin ] --END-- [ RunTime:0.000546s ]
 SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0122s ]
 SQL: SELECT `id`,SUM(net_income),`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day  [ RunTime:0.0112s ]
 
+[ 2018-12-20T20:20:44+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000444s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000504s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0132s ]
+ERR: 1054:Unknown column 'car_num' in 'field list'
+ [ SQL语句 ] : SELECT `id`,SUM(net_income),`car_num`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day 
+ERR: 1054:Unknown column 'car_num' in 'field list'
+ [ SQL语句 ] : SELECT `id`,SUM(net_income),`car_num`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day 
+
