@@ -20,7 +20,6 @@ class IncomeController extends BaseController
     {
         parent::_initialize();
     }
-
     /**
      *收益
      *user:jiaming.wang  459681469@qq.com
@@ -38,5 +37,6 @@ class IncomeController extends BaseController
             var_dump($incomel);exit;
         }
     }
+
 
 }
