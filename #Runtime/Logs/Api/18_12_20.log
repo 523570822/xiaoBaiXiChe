@@ -8,3 +8,13 @@ INFO: [ app_begin ] --END-- [ RunTime:0.001983s ]
 SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0134s ]
 SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0101s ]
 
+[ 2018-12-20T09:17:42+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000334s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000689s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0098s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0109s ]
+
