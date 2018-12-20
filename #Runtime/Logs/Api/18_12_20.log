@@ -109,3 +109,33 @@ INFO: [ app_begin ] --END-- [ RunTime:0.000154s ]
 SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0108s ]
 SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0102s ]
 
+[ 2018-12-20T11:07:07+08:00 ] 127.0.0.1 /index.php/Api/Agent/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000341s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000692s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000823s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0125s ]
+ERR: Too few arguments to function Think\Model::where(), 0 passed in D:\test\Littlewhale\Application\Api\Controller\AgentController.class.php on line 76 and at least 1 expected
+
+[ 2018-12-20T11:07:44+08:00 ] 127.0.0.1 /index.php/Api/Agent/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000247s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000483s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000553s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0102s ]
+SQL: SELECT `mc_id`,`car_num`,`net_income` FROM `db_car_washer`  [ RunTime:0.0097s ]
+
+[ 2018-12-20T11:10:02+08:00 ] 127.0.0.1 /index.php/Api/Agent/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000835s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000855s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001004s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0106s ]
+SQL: SELECT `mc_id`,`car_num`,`net_income` FROM `db_car_washer`  [ RunTime:0.0096s ]
+
