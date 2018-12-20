@@ -42,4 +42,13 @@ class CarWasherController extends BaseController
         }
     }
 
+    /**
+     *洗车机收入
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2018/12/20 11:53
+     */
+    public function carWasherIncome(){
+        $post = checkAppData('mc_id','洗车机编号');
+    }
+
 }

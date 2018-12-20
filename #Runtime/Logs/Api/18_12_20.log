@@ -139,3 +139,42 @@ INFO: [ app_begin ] --END-- [ RunTime:0.001004s ]
 SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0106s ]
 SQL: SELECT `mc_id`,`car_num`,`net_income` FROM `db_car_washer`  [ RunTime:0.0096s ]
 
+[ 2018-12-20T13:02:02+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000377s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000565s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000696s ]
+NOTIC: [8] Undefined index: phone，password D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T13:02:23+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000462s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000744s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000884s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0101s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0101s ]
+
+[ 2018-12-20T13:02:24+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000077s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000455s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000157s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0121s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0104s ]
+
+[ 2018-12-20T13:02:24+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000084s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000113s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0452s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0324s ]
+
