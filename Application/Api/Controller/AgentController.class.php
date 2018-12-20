@@ -57,7 +57,7 @@ class AgentController extends BaseController
      *Date:2018/12/19 02:01
      */
     public function income(){
-        $post = checkAppData('agent_id,mc_id,month','代理商ID-洗车机编号-月份');
+        $post = checkAppData('agent_id,month','代理商ID-月份');
         /*$post['agent_id'] = 1;
         $post['mc_id'] = 'A00001';
         $post['month'] = '2018-12';*/
@@ -66,7 +66,6 @@ class AgentController extends BaseController
 
         $where = array(
             'agent_id' =>$post['agent_id'],
-            'mc_id' =>$post['mc_id'],
             'month' => strtotime($post['month']),
         );
         $data=D('Income')->where($where)->field("id,SUM(net_income),day")->group("day")->select();
