@@ -32,7 +32,7 @@ class AgentController extends BaseController
      *Date:2018/12/18 16:22
      */
     public function login(){
-        $post = checkAppData('phone，password','手机号-密码');
+        $post = checkAppData('phone,password','账号-密码');
         /*$post['phone'] = 17622818248;
         $post['password'] = 123456;*/
         if (!isMobile($post['phone'])) {
