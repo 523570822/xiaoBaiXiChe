@@ -60,7 +60,7 @@ class CarWasherController extends BaseController
             'mc_id' =>$post['mc_id'],
             'month' => strtotime($post['month']),
         );
-        $data=D('Income')->where($where)->field("id,SUM(net_income),day")->group("day")->select();
+        $data=D('Income')->where($where)->field("id,SUM(net_income),car_num,day")->group("day")->select();
         if($data){
             $this->apiResponse('1','成功',$data);
         }else{
