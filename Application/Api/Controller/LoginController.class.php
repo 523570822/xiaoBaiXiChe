@@ -31,23 +31,23 @@ class LoginController extends BaseController
      *user:jiaming.wang  459681469@qq.com
      *Date:2018/12/18 16:22
      */
-    public function login(){
-        $post = checkAppData('phone，password','手机号-密码');
-        /*$post['phone'] = 17622818248;
-        $post['password'] = 123456;*/
-        if (!isMobile($post['phone'])) {
-            $this->apiResponse('0','手机号格式有误');
-        }
-        $member = D('Agent')->where(array('account'=>$post['phone']))->find();
-        $check_password = checkPassword($post['password'], $member['salt'], $member['password']);
-        if ($member) {
-            if ($check_password != 1) {
-                $this->apiResponse('1','登陆成功',array('token'=>$member['token']));
-            }else{
-                $this->apiResponse('0','密码错误');
-            }
-        } else {
-            $this->apiResponse('0','用户不存在',array('token'=>''));
-        }
-    }
+//    public function login(){
+//        $post = checkAppData('phone，password','手机号-密码');
+//        /*$post['phone'] = 17622818248;
+//        $post['password'] = 123456;*/
+//        if (!isMobile($post['phone'])) {
+//            $this->apiResponse('0','手机号格式有误');
+//        }
+//        $member = D('Agent')->where(array('account'=>$post['phone']))->find();
+//        $check_password = checkPassword($post['password'], $member['salt'], $member['password']);
+//        if ($member) {
+//            if ($check_password != 1) {
+//                $this->apiResponse('1','登陆成功',array('token'=>$member['token']));
+//            }else{
+//                $this->apiResponse('0','密码错误');
+//            }
+//        } else {
+//            $this->apiResponse('0','用户不存在',array('token'=>''));
+//        }
+//    }
 }
