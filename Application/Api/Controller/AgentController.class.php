@@ -57,20 +57,19 @@ class AgentController extends BaseController
      *Date:2018/12/19 02:01
      */
     public function income(){
-        $post = checkAppData('agent_id,month','代理商ID-月份');
-        /*$post['agent_id'] = 1;
+        $post = checkAppData('token,month','token-月份');
+        /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
         $post['month'] = '2018-12';*/
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
-
+        $agent = $this->getAgentInfo($post['token']);
         $where = array(
-            'agent_id' =>$post['agent_id'],
+            'agent_id' =>$agent['id'],
             'month' => strtotime($post['month']),
         );
         $income = D('Income')->where($where)->field("id,SUM(net_income),car_wash,day")->group("day")->select();
-        $agent = D('Agent')->where(array('id'=>$post['agent_id']))->field('car_washer_num')->find();
         $data = array(
-            'agent' =>$agent,
+            'agent' =>$agent['car_washer_num'],
             'income' =>$income,
         );
         if($data){
