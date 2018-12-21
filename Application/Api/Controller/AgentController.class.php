@@ -52,12 +52,60 @@ class AgentController extends BaseController
     }
 
     /**
+     *日期格式筛选
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2018/12/21 11:20
+     */
+    public function timeType(){
+        $post = checkAppData('token','token');
+        /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';*/
+        $agent = $this->getAgentInfo($post['token']);
+        //日筛选
+        $day = D('Income')->where(array('agent_id'=>$agent['id']))->field('day,week_star,month,year')->select();
+        foreach ($day as $k=>$v){
+            $vs[] = $day[$k]['day'];
+            $week[] = $day[$k]['week_star'];
+            $mon[] = $day[$k]['month'];
+            $year[] = $day[$k]['year'];
+        }
+        $days = array_unique($vs);
+        //周筛选
+        $weeks = array_unique($week);
+        foreach ($weeks as $key=>$value){
+            $weekend[] = D('Income')->where(array('agent_id'=>$agent['id'],'week_star'=>$value))->field('week_star,week_end')->find();
+        }
+        $weeks = $weekend;
+        //月筛选
+        $month = array_unique($mon);
+        //年筛选
+        $years = array_unique($year);
+        $data = array(
+            'day' =>$days,
+            'week' =>$weeks,
+            'month' =>$month,
+            'year' =>$years
+        );
+        if($data){
+            $this->apiResponse('1','成功',$data);
+        }else{
+            $this->apiResponse('0','错误');
+
+        }
+    }
+
+    /**
      *收益
      *user:jiaming.wang  459681469@qq.com
      *Date:2018/12/19 02:01
      */
     public function income(){
-        $post = checkAppData('token,month','token-月份');
+        $a = $this->weeks();
+        foreach ($a as $k=>$v){
+            $c = $v;
+            $b[] = date('Y-m-d',$c);
+        }
+        var_dump($b);exit;
+        $post = checkAppData('token','token');
         /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
         $post['month'] = '2018-12';*/
         /*$month = date('Y/m',$post['month']);
@@ -72,12 +120,24 @@ class AgentController extends BaseController
             'agent' =>$agent['car_washer_num'],
             'income' =>$income,
         );
+
         if($data){
             $this->apiResponse('1','成功',$data);
         }else{
             $this->apiResponse('2','暂无数据');
         }
     }
+
+    /**/
+    public function weeks()
+    {
+        $timestamp = time();
+        return [
+            strtotime(date('Y-m-d', strtotime("this week Monday", $timestamp))),
+            strtotime(date('Y-m-d', strtotime("this week Sunday", $timestamp))) + 24 * 3600 - 1
+        ];
+    }
+
 
 
 
