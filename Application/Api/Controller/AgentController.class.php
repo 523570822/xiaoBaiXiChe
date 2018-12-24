@@ -108,9 +108,9 @@ class AgentController extends BaseController
     public function income(){
         /*$a = $this->weeks();
         var_dump($a);exit;*/
-        //$post = checkAppData('token,timeType,time','token-时间筛选-时间');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $post['timeType'] = 4;                  //查询方式  1日  2周  3月   4年
+        $post = checkAppData('token,timeType,time','token-时间筛选-时间');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['timeType'] = 4;                  //查询方式  1日  2周  3月   4年
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
         $agent = $this->getAgentInfo($post['token']);
