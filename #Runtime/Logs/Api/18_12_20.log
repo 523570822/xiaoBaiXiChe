@@ -1,0 +1,989 @@
+[ 2018-12-20T08:39:10+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000633s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002043s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001898s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001983s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0134s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0101s ]
+
+[ 2018-12-20T09:17:42+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000334s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000689s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0098s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0109s ]
+
+[ 2018-12-20T09:52:50+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003154s ]
+NOTIC: [8] Undefined index: phone，password D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T09:52:54+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000307s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000468s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000608s ]
+NOTIC: [8] Undefined index: phone，password D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T09:55:05+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000304s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000740s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000867s ]
+NOTIC: [8] Undefined index: phone，password D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T09:55:06+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000100s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000139s ]
+NOTIC: [8] Undefined index: phone，password D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T09:55:06+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000118s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000111s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000196s ]
+NOTIC: [8] Undefined index: phone，password D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T09:55:07+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000209s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000118s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000224s ]
+NOTIC: [8] Undefined index: phone，password D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T09:55:07+08:00 ] 127.0.0.1 /index.php/Api/login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000086s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000090s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000153s ]
+NOTIC: [8] Undefined index: phone，password D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T09:55:27+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000059s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000963s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000465s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000568s ]
+
+[ 2018-12-20T09:55:36+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000216s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000157s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0239s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0096s ]
+
+[ 2018-12-20T09:55:55+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000132s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000154s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0108s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0102s ]
+
+[ 2018-12-20T11:07:07+08:00 ] 127.0.0.1 /index.php/Api/Agent/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000341s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000692s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000823s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0125s ]
+ERR: Too few arguments to function Think\Model::where(), 0 passed in D:\test\Littlewhale\Application\Api\Controller\AgentController.class.php on line 76 and at least 1 expected
+
+[ 2018-12-20T11:07:44+08:00 ] 127.0.0.1 /index.php/Api/Agent/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000247s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000483s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000553s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0102s ]
+SQL: SELECT `mc_id`,`car_num`,`net_income` FROM `db_car_washer`  [ RunTime:0.0097s ]
+
+[ 2018-12-20T11:10:02+08:00 ] 127.0.0.1 /index.php/Api/Agent/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000835s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000855s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001004s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0106s ]
+SQL: SELECT `mc_id`,`car_num`,`net_income` FROM `db_car_washer`  [ RunTime:0.0096s ]
+
+[ 2018-12-20T13:02:02+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000377s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000565s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000696s ]
+NOTIC: [8] Undefined index: phone，password D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T13:02:23+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000462s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000744s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000884s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0101s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0101s ]
+
+[ 2018-12-20T13:02:24+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000077s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000455s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000157s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0121s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0104s ]
+
+[ 2018-12-20T13:02:24+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000084s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000113s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0452s ]
+SQL: SELECT * FROM `db_agent` WHERE `account` = 17622818248 LIMIT 1   [ RunTime:0.0324s ]
+
+[ 2018-12-20T13:52:36+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000324s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000468s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000534s ]
+NOTIC: [8] Undefined index: phone D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T13:53:37+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000147s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000217s ]
+
+[ 2018-12-20T14:12:00+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000447s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000706s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000848s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0129s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time` FROM `db_income`  [ RunTime:0.0117s ]
+
+[ 2018-12-20T14:14:31+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002579s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002712s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0121s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time` FROM `db_income`  [ RunTime:0.5923s ]
+
+[ 2018-12-20T14:14:47+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000287s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000529s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000607s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0123s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time` FROM `db_income`  [ RunTime:0.0109s ]
+
+[ 2018-12-20T14:19:32+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000258s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000481s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000538s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0103s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time` FROM `db_income`  [ RunTime:0.0093s ]
+
+[ 2018-12-20T14:25:29+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000863s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000965s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0121s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time` FROM `db_income`  [ RunTime:0.0114s ]
+
+[ 2018-12-20T14:25:34+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000128s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000114s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000206s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0150s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time` FROM `db_income`  [ RunTime:0.0119s ]
+
+[ 2018-12-20T14:30:38+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000295s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000523s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000595s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0346s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0102s ]
+
+[ 2018-12-20T14:30:49+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000062s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000380s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000321s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000544s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0106s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0100s ]
+
+[ 2018-12-20T14:34:27+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000376s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000472s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000539s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0095s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0084s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 62 行.
+
+[ 2018-12-20T14:34:40+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000118s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000164s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000335s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0114s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0089s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T14:34:54+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000467s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000543s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0112s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0106s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 62 行.
+
+[ 2018-12-20T14:34:55+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000170s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000137s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000240s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0128s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0110s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 62 行.
+
+[ 2018-12-20T14:34:55+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000124s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000129s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0129s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0141s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 62 行.
+
+[ 2018-12-20T14:35:03+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000162s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000291s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0103s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0100s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T14:35:14+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000227s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000776s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0111s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0104s ]
+
+[ 2018-12-20T14:35:15+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000154s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000379s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0141s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0111s ]
+
+[ 2018-12-20T14:35:30+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000059s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000403s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000334s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000455s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0092s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0093s ]
+
+[ 2018-12-20T14:35:44+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000109s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000230s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000374s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0103s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0087s ]
+
+[ 2018-12-20T14:35:54+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000292s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000167s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000263s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0122s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0118s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T14:38:03+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000602s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000761s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000898s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0122s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0110s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T14:39:11+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000064s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000456s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000181s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000335s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0130s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0129s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T14:40:39+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000521s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000798s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000948s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0108s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0103s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T14:41:24+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000125s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000092s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000158s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0177s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0114s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T14:41:50+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000200s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000089s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000151s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0110s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0103s ]
+
+[ 2018-12-20T14:42:49+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000265s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000431s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000489s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0091s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0088s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T14:42:59+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000125s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000092s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000155s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0335s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0589s ]
+
+[ 2018-12-20T14:43:08+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000099s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000072s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000133s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0467s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0458s ]
+
+[ 2018-12-20T14:43:23+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000079s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000490s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000235s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000515s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0258s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.3404s ]
+
+[ 2018-12-20T14:54:41+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000429s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000488s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000553s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0119s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0101s ]
+
+[ 2018-12-20T14:55:09+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000578s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000706s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0401s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.8007s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T15:00:00+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000530s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001171s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001485s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0159s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0178s ]
+
+[ 2018-12-20T15:00:39+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000185s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000150s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000271s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0171s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0145s ]
+
+[ 2018-12-20T15:01:06+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000595s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000678s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000826s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0122s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0119s ]
+
+[ 2018-12-20T15:02:58+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000082s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000461s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000345s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0104s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0095s ]
+
+[ 2018-12-20T15:09:38+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000802s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000989s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0122s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0147s ]
+
+[ 2018-12-20T15:09:52+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000109s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000132s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0113s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0114s ]
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+NOTIC: [2] strtotime() expects parameter 1 to be string, array given D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 60 行.
+
+[ 2018-12-20T15:10:57+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000069s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001318s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000645s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000743s ]
+NOTIC: [8] Undefined index: phone D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T15:13:37+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000081s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000636s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000702s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000830s ]
+NOTIC: [8] Undefined index: phone D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T15:13:38+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000184s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000208s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000331s ]
+NOTIC: [8] Undefined index: phone D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T15:13:39+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000210s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000101s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000271s ]
+NOTIC: [8] Undefined index: phone D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T15:13:39+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000086s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000112s ]
+NOTIC: [8] Undefined index: phone D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T15:13:39+08:00 ] 127.0.0.1 /index.php/Api/Agent/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000095s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000118s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000222s ]
+NOTIC: [8] Undefined index: phone D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T15:13:45+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000255s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000169s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000291s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0156s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0131s ]
+
+[ 2018-12-20T15:13:48+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000164s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000136s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000208s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0134s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income`  [ RunTime:0.0141s ]
+
+[ 2018-12-20T15:20:25+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000239s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000603s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000694s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0106s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0103s ]
+
+[ 2018-12-20T15:20:47+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000220s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000283s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000569s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0116s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0108s ]
+
+[ 2018-12-20T15:21:20+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000197s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000282s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000474s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0338s ]
+SQL: SELECT `net_income`,`car_wash`,`create_time`,`day`,`month` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1541001600  [ RunTime:0.0367s ]
+
+[ 2018-12-20T15:29:20+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000381s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001180s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001607s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0104s ]
+SQL: SELECT `net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0086s ]
+
+[ 2018-12-20T18:06:43+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000575s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000797s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000890s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0118s ]
+SQL: SELECT `net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0121s ]
+
+[ 2018-12-20T18:09:40+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000254s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000429s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000492s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0109s ]
+SQL: SELECT `net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0116s ]
+SQL: SELECT count(*) as count,`day` FROM `db_income` GROUP BY day  [ RunTime:0.0096s ]
+
+[ 2018-12-20T18:10:28+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000274s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000569s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0110s ]
+SQL: SELECT `net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0087s ]
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as net_income,`day` FROM `db_income` GROUP BY day' at line 1
+ [ SQL语句 ] : SELECT net_income(*) as net_income,`day` FROM `db_income` GROUP BY day 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as net_income,`day` FROM `db_income` GROUP BY day' at line 1
+ [ SQL语句 ] : SELECT net_income(*) as net_income,`day` FROM `db_income` GROUP BY day 
+
+[ 2018-12-20T18:11:12+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000141s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000126s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0088s ]
+SQL: SELECT `net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0077s ]
+SQL: SELECT net_income as net_income,`day` FROM `db_income` GROUP BY day  [ RunTime:0.0088s ]
+
+[ 2018-12-20T18:11:52+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000437s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000598s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000683s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0132s ]
+SQL: SELECT `net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0100s ]
+SQL: SELECT net_income as net_income,`day` FROM `db_income` GROUP BY day  [ RunTime:0.0093s ]
+
+[ 2018-12-20T18:12:20+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000114s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000129s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0125s ]
+SQL: SELECT `net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0112s ]
+SQL: SELECT net_income as net_income,`day` FROM `db_income` GROUP BY day  [ RunTime:0.0106s ]
+
+[ 2018-12-20T18:13:17+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000318s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000457s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000514s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0108s ]
+SQL: SELECT `net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0096s ]
+SQL: SELECT net_income as net_income,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day  [ RunTime:0.0097s ]
+
+[ 2018-12-20T18:13:47+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000268s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000240s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000381s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0092s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0087s ]
+SQL: SELECT `id`,net_income as net_income,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day  [ RunTime:0.0097s ]
+
+[ 2018-12-20T18:15:22+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000351s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001170s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001365s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0111s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0102s ]
+SQL: SELECT `id`,net_income as net_income,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day  [ RunTime:0.0099s ]
+
+[ 2018-12-20T18:30:39+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000122s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002418s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002538s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002736s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0148s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0138s ]
+SQL: SELECT `id`,net_income as net_income,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day  [ RunTime:0.0112s ]
+
+[ 2018-12-20T19:09:41+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001186s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001986s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002089s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0109s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600  [ RunTime:0.0109s ]
+SQL: SELECT `id`,SUM(net_income),`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day  [ RunTime:0.0105s ]
+
+[ 2018-12-20T19:48:42+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000709s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001202s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001495s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.2226s ]
+SQL: SELECT `id`,SUM(net_income),`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day  [ RunTime:0.4333s ]
+
+[ 2018-12-20T19:49:02+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000248s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000480s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000546s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0122s ]
+SQL: SELECT `id`,SUM(net_income),`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day  [ RunTime:0.0112s ]
+
+[ 2018-12-20T20:20:44+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000444s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000504s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0132s ]
+ERR: 1054:Unknown column 'car_num' in 'field list'
+ [ SQL语句 ] : SELECT `id`,SUM(net_income),`car_num`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day 
+ERR: 1054:Unknown column 'car_num' in 'field list'
+ [ SQL语句 ] : SELECT `id`,SUM(net_income),`car_num`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day 
+
+[ 2018-12-20T20:22:38+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000250s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000482s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000536s ]
+NOTIC: [8] Undefined index: agent_id D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2018-12-20T20:40:46+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000276s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000465s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000524s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.143597s ]
+INFO: [ app_end ] --END-- [ RunTime:0.143683s ]
+
+[ 2018-12-20T20:40:48+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000244s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000083s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000150s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000172s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000345s ]
+
+[ 2018-12-20T20:40:48+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000114s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000067s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000127s ]
+
+[ 2018-12-20T20:40:48+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000086s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000060s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000125s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000104s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000187s ]
+
+[ 2018-12-20T20:41:10+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000165s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000096s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000163s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000092s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000161s ]
+
+[ 2018-12-20T20:41:11+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000155s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000089s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000161s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000683s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000944s ]
+
+[ 2018-12-20T20:41:11+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000225s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000137s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000117s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000232s ]
+
+[ 2018-12-20T20:41:11+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasherIncome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000114s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000063s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000115s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000069s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000126s ]
+
+[ 2018-12-20T20:41:28+08:00 ] 127.0.0.1 /index.php/Api/Agent/income
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000366s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000545s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000617s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0118s ]
+SQL: SELECT `id`,SUM(net_income),`car_wash`,`day` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1543593600 GROUP BY day  [ RunTime:0.0124s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0124s ]
+SQL: SELECT `car_washer_num` FROM `db_agent` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0117s ]
+
