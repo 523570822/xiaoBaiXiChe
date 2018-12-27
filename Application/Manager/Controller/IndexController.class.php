@@ -59,6 +59,7 @@ class IndexController extends BaseController
      * Date: 2018/8/16 11:48
      */
     public function delFile() {
+
         $id = $this->checkParam(array('id', 'int', 'id不能为空'));
         $model = D('Common/File');
         $res = $model->querySave($id, array('status'=>9));
