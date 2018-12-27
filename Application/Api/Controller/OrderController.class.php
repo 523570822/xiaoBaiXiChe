@@ -238,9 +238,9 @@ class OrderController extends BaseController
      **/
     public function invoice ()
     {
-        $request = I ("");
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
+        $request = I("");
         $rule = array (
             array ('orderid' , 'string' , "请输入订单编号") ,
             array ('b_method' , 'int' , '请选择开票方式') ,//开票方式 1商品类别 2商品明细
@@ -343,11 +343,11 @@ class OrderController extends BaseController
         $this->errorTokenMsg ($m_id);
         $rule = array (
             array ('o_id' , 'string' , "请输入订单编号") ,
-            array ('email' , 'email' , "请输入邮箱号") ,
+//            array ('email' , 'email' , "请输入邮箱号") ,
         );
         $this->checkParam ($rule);
         $email = D ("invoice")->where (array ('o_id' => $request['o_id']))->field ('email')->find ();
-        if ( $request['email'] == $email['email'] ) {
+        if (empty($request['email'])||$request['email'] == $email['email'] ) {
             $this->apiResponse (1 , '请求成功' , $email);
         } else {
             D ("invoice")->where (array ('o_id' => $request['o_id']))->save (array ('email' => $request['email']));
