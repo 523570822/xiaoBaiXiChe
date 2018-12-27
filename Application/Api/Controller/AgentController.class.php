@@ -108,12 +108,13 @@ class AgentController extends BaseController
     public function income(){
         /*$a = $this->weeks();
         var_dump($a);exit;*/
-        $post = checkAppData('token,timeType','token-时间筛选');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['timeType'] = 4;                  //查询方式  1日  2周  3月   4年
+        //$post = checkAppData('token,timeType','token-时间筛选');
+        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post['timeType'] = 2;                  //查询方式  1日  2周  3月   4年
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
         $agent = $this->getAgentInfo($post['token']);
+        $car_num = D('CarWasher')->where(array("agent_id"=>$agent['id']))->select();
         //日筛选
         $day = D('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('day,week_star,month,year')->select();
         foreach ($day as $k=>$v){
@@ -157,7 +158,7 @@ class AgentController extends BaseController
                 }
             }
             $data = array(
-                'agent' => $agent['car_washer_num'],
+                'agent' => count($car_num),
                 'income' => $income,
                 'day' =>$agoDay,
             );
@@ -186,7 +187,7 @@ class AgentController extends BaseController
                 }
             }
             $data = array(
-                'agent' => $agent['car_washer_num'],
+                'agent' => count($car_num),
                 'income' => $income,
                 'week' =>$agoWeek,
             );
@@ -219,7 +220,7 @@ class AgentController extends BaseController
             }*/
 
             $data = array(
-                'agent' => $agent['car_washer_num'],
+                'agent' => count($car_num),
                 'income' => $income,
                 'month' =>$agoMonth,
             );
@@ -249,7 +250,7 @@ class AgentController extends BaseController
                 }
             }
             $data = array(
-                'agent' => $agent['car_washer_num'],
+                'agent' => count($car_num),
                 'income' => $income,
                 'year' =>$agoYear,
             );
@@ -284,7 +285,14 @@ class AgentController extends BaseController
      */
     public function agent(){
         $post = checkAppData();
-        $agent = D('Agent')->where(array('status'=>1))->field('nickname,account,car_washer_num')->select();
+        $agent = D('Agent')->where(array('status'=>1))->field('id,nickname,account')->select();
+        foreach($agent as $k=>$v){
+            $car[] = D('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
+            foreach($car as $kk=>$vv){
+                $car_num = count($vv);
+                $agent[$k]['car_num'] = $car_num;
+            }
+        }
         if(!empty($agent)){
             $this->apiResponse('1','成功',$agent);
         }else{
