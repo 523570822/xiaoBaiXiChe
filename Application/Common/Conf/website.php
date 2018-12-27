@@ -14,10 +14,10 @@ return array(
         'sms_sign' => 'aa',
     ),
     'APP' =>  array(
-        'app_logo' => '',
-        'app_name' => '3445',
-        'app_version' => '5454',
-        'app_intro' => '444',
+        'app_logo' => '218',
+        'app_name' => '小鲸洗车',
+        'app_version' => 'V1.0.0',
+        'app_intro' => '',
     ),
     'PUSH' =>  array(
         'push_type' => 'ac',

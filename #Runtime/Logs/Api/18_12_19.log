@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [ 2018-12-19T11:05:01+08:00 ] 127.0.0.1 /index.php/Api/login/login
 INFO: [ app_init ] --START--
 INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
@@ -1354,4 +1355,383 @@ INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000145s ]
 INFO: [ app_begin ] --END-- [ RunTime:0.000246s ]
 SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0111s ]
 SQL: SELECT `id` FROM `db_income`  [ RunTime:0.0137s ]
+=======
+[ 2018-12-19T11:56:54+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+
+[ 2018-12-19T11:57:42+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545191861 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0100s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0100s ]
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+
+[ 2018-12-19T13:18:23+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545196703 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0110s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0090s ]
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+
+[ 2018-12-19T13:21:19+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545196879 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0090s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0090s ]
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+
+[ 2018-12-19T13:25:33+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545197133 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0100s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0090s ]
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+
+[ 2018-12-19T13:37:37+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545197857 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0090s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0100s ]
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  WHERE db_coupon.m_id = '91' LIMIT 1  
+
+[ 2018-12-19T13:39:50+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545197990 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0080s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0100s ]
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  LIMIT 1  
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  LIMIT 1  
+
+[ 2018-12-19T13:40:26+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545198026 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0100s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0090s ]
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  LIMIT 1  
+ERR: 1054:Unknown column 'db_member.id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` INNER JOIN db_integral_log ON db_coupon.id = db_member.id  LIMIT 1  
+
+[ 2018-12-19T13:40:52+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545198052 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0100s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon` LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2018-12-19T13:41:41+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545198100 AND `status` <> 0 LIMIT 1   [ RunTime:0.2180s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0190s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0100s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon` LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2018-12-19T13:43:04+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545198184 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0100s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon` LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2018-12-19T13:43:50+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545198230 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0090s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon` LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2018-12-19T13:44:26+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545198266 AND `status` <> 0 LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0070s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon` LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2018-12-19T13:45:26+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545198326 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0100s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon` LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2018-12-19T13:47:36+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545198456 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0090s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0090s ]
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 504 行.
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` WHERE (  ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `db_coupon` WHERE (  ) LIMIT 1  
+
+[ 2018-12-19T13:50:21+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545198621 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0090s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon` LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2018-12-19T13:57:35+08:00 ] 127.0.0.1 /index.php/Api/Invitation/IInvitationdetails?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:IInvitationdetails
+
+[ 2018-12-19T13:57:45+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationdetails?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545199065 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0090s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0090s ]
+
+[ 2018-12-19T14:07:07+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?token=3b85d91fe23951cba0c26be393a81241
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1545199627 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0080s ]
+SQL: SELECT db_integral_log.id,db_integral_log.create_time,db_member.nickname FROM `db_integral_log` INNER JOIN db_member ON db_integral_log.s_id = db_member.id  WHERE db_integral_log.m_id = '91'  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_coupon` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon` LIMIT 1   [ RunTime:0.0090s ]
+>>>>>>> Stashed changes
 

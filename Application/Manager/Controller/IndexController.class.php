@@ -22,7 +22,7 @@ class IndexController extends BaseController
         $this->assign('menu_top', $auth['system']);
         $this->assign('menu_left', $auth['menus']);
         $this->assign('userInfo', $this->userInfo);
-        $this->assign('app_logo',C('API_URL').$this->getOnePath("205"));
+        $this->assign('app_logo',$this->getOnePath(C('APP')['app_logo']));
         $this->display();
     }
     /**
