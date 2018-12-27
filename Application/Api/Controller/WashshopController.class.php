@@ -40,7 +40,7 @@ class WashshopController extends BaseController
             $this->apiResponse('0', '缺少坐标参数');
         }
         $wh3 = '(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(' . $lat . '-lat)/360),2)+COS(3.1415926535898*' . $lat . '/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(' . $lon . '-lon)/360),2))))*1000';
-        $shopList = M('Washshop')->where(array('status' => 1))->field('id as shop_id,shop_pic,shop_name,lon,lat,shop_phone,address,startime,create_time,endtime,mtime,etime,' . $wh3 . ' as distance')->order('distance asc')->select();
+        $shopList = M('Washshop')->where(array('status' => 1))->field('id,shop_pic,shop_name,lon,lat,shop_phone,address,startime,create_time,endtime,mtime,etime,' . $wh3 . ' as distance')->order('distance asc')->select();
         if ($shopList) {
             foreach ($shopList as $k => $v) {
                 if ($lat == "") {

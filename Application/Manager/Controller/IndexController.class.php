@@ -22,7 +22,7 @@ class IndexController extends BaseController
         $this->assign('menu_top', $auth['system']);
         $this->assign('menu_left', $auth['menus']);
         $this->assign('userInfo', $this->userInfo);
-        $this->assign('app_logo',C('API_URL').$this->getOnePath("205"));
+        $this->assign('app_logo',$this->getOnePath(C('APP')['app_logo']));
         $this->display();
     }
     /**
@@ -59,6 +59,7 @@ class IndexController extends BaseController
      * Date: 2018/8/16 11:48
      */
     public function delFile() {
+
         $id = $this->checkParam(array('id', 'int', 'id不能为空'));
         $model = D('Common/File');
         $res = $model->querySave($id, array('status'=>9));

@@ -28,6 +28,8 @@
                                     <option value="">请选择性别</option>
                                     <option value="1" <if condition="$_REQUEST['sex'] eq 1">selected=true</if>>男</option>
                                     <option value="2" <if condition="$_REQUEST['sex'] eq 2">selected=true</if>>女</option>
+                                    <option value="3" <if condition="$_REQUEST['sex'] eq 3">selected=true</if>>保密</option>
+
                                 </select>
                             </div>
 
@@ -95,6 +97,7 @@
                                     <switch name="item.sex">
                                         <case value="1">男</case>
                                         <case value="2">女</case>
+                                        <case value="3">保密</case>
                                         <default />
                                     </switch>
                                 </td>
