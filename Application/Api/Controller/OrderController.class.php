@@ -341,10 +341,7 @@ class OrderController extends BaseController
         $request = I ("");
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
-        $rule = array (
-            array ('o_id' , 'string' , "请输入订单编号") ,
-//            array ('email' , 'email' , "请输入邮箱号") ,
-        );
+        $rule = array ('o_id' , 'string' , "请输入订单编号");
         $this->checkParam ($rule);
         $email = D ("invoice")->where (array ('o_id' => $request['o_id']))->field ('email')->find ();
         if (empty($request['email'])||$request['email'] == $email['email'] ) {
