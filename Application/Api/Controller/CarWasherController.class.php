@@ -38,7 +38,7 @@ class CarWasherController extends BaseController
         $agent = $this->getAgentInfo($post['token']);
         $car_washer = D('CarWasher')->field('id,mc_id')->select();
         foreach($car_washer as $k=>$v){
-            $income = D('Income')->where(array('car_washer_id'=>$v['id'],'agent_id'=>$agent['id']))->field('SUM(net_income),SUM(car_wash),day,car_washer_id')->group('car_washer_id')->find();
+            $income = D('Income')->where(array('car_washer_id'=>$v['id'],'agent_id'=>$agent['id']))->field('SUM(net_income),SUM(car_wash),car_washer_id')->group('car_washer_id')->find();
             if(!empty($income)){
                 $incomes[] = $income;
                 $incomes[$k]['mc_id']= $v['mc_id'];
@@ -57,6 +57,25 @@ class CarWasherController extends BaseController
      *Date:2018/12/20 11:53
      */
     public function carWasherIncome(){
+        $post = checkAppData('token,car_washer_id','token-洗车机ID');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['car_washer_id'] = 1;
+//        $post['month'] = '';
+        if(empty($post['month'])){
+            $post['month'] = strtotime(date('Y-m'));
+        }
+        $agent = $this->getAgentInfo($post['token']);
+        $income = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agrnt_id'=>$agent['id'],'month'=>$post['month']))->field('net_income,car_wash,day,car_washer_id')->select();
 
+        $month = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agrnt_id'=>$agent['id'],'month'=>$post['month']))->field('SUM(net_income),month')->select();
+        $data = array(
+            'month' => $month,
+            'income' => $income,
+        );
+        if(!empty($income)){
+            $this->apiResponse('1','成功',$data);
+        }else{
+            $this->apiResponse('0','暂无加盟商信息');
+        }
     }
 }
