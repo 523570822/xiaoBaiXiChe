@@ -33,17 +33,20 @@ class CarWasherController extends BaseController
     */
     public function carWasher()
     {
-        $post = checkAppData();
+        $post = checkAppData('token','token');
+        /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $agent = $this->getAgentInfo($post['token']);*/
         $car_washer = D('CarWasher')->field('id,mc_id')->select();
         foreach($car_washer as $k=>$v){
-            $income = D('Income')->where(array('car_washer_id'=>$v['id']))->field('agent_id,net_income,car_wash,day')->select();
-            $in[] = $income;
+            $income = D('Income')->where(array('car_washer_id'=>$v['id'],'agent_id'=>$agent['id']))->field('SUM(net_income),SUM(car_wash),day,car_washer_id')->group('car_washer_id')->find();
+            if(!empty($income)){
+                $incomes[] = $income;
+            }
         }
-        var_dump($in);exit;
-        if($car_washer){
-            $this->apiResponse('1','成功',$car_washer);
+        if(!empty($incomes)){
+            $this->apiResponse('1','成功',$incomes);
         }else{
-            $this->apiResponse('0','暂无数据');
+            $this->apiResponse('0','暂无加盟商信息');
         }
     }
 
