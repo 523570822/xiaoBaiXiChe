@@ -1052,3 +1052,298 @@ SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_
 SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1503244800 GROUP BY week_star LIMIT 1   [ RunTime:0.0107s ]
 SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1545580800 GROUP BY week_star LIMIT 1   [ RunTime:0.0090s ]
 
+[ 2018-12-28T16:28:41+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000290s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000664s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000754s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0114s ]
+ERR: 1054:Unknown column 'car_num' in 'field list'
+ [ SQL语句 ] : SELECT `mc_id`,`car_num`,`net_income` FROM `db_car_washer` 
+ERR: 1054:Unknown column 'car_num' in 'field list'
+ [ SQL语句 ] : SELECT `mc_id`,`car_num`,`net_income` FROM `db_car_washer` 
+
+[ 2018-12-28T16:29:26+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000379s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001546s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001764s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0122s ]
+ERR: 1054:Unknown column 'net_income' in 'field list'
+ [ SQL语句 ] : SELECT `mc_id`,`net_income` FROM `db_car_washer` 
+ERR: 1054:Unknown column 'net_income' in 'field list'
+ [ SQL语句 ] : SELECT `mc_id`,`net_income` FROM `db_car_washer` 
+
+[ 2018-12-28T16:29:39+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000324s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000498s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0132s ]
+SQL: SELECT `mc_id` FROM `db_car_washer`  [ RunTime:0.0109s ]
+
+[ 2018-12-28T16:29:55+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000273s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000098s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000165s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0118s ]
+SQL: SELECT `mc_id` FROM `db_car_washer`  [ RunTime:0.0094s ]
+ERR: Call to undefined function Api\Controller\var_dumo()
+
+[ 2018-12-28T16:30:05+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000141s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000150s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000250s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0108s ]
+SQL: SELECT `mc_id` FROM `db_car_washer`  [ RunTime:0.0112s ]
+
+[ 2018-12-28T16:41:33+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000465s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000526s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0116s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0112s ]
+
+[ 2018-12-28T16:54:58+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000613s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000478s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000556s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0106s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0137s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0148s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0098s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0092s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0095s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0094s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0093s ]
+
+[ 2018-12-28T16:56:06+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000144s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000347s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0093s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0113s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0098s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0094s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0093s ]
+NOTIC: [8] Undefined index: id D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 39 行.
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = null  [ RunTime:0.0107s ]
+
+[ 2018-12-28T16:56:18+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000736s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000501s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000568s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0119s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0084s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0093s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0091s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0106s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0083s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0091s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0091s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0081s ]
+
+[ 2018-12-28T16:57:00+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000106s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000135s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0086s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0086s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0095s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0086s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0090s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0090s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0084s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0086s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0133s ]
+
+[ 2018-12-28T16:57:09+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000130s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000104s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000169s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0102s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0104s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0094s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0105s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0092s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0091s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0106s ]
+SQL: SELECT SUM(net_income),`car_wash` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0088s ]
+
+[ 2018-12-28T17:13:46+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000312s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000669s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000823s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0106s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0104s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0097s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0100s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0104s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0097s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0094s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0100s ]
+
+[ 2018-12-28T17:14:04+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000234s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000464s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000520s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0111s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0099s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0089s ]
+
+[ 2018-12-28T17:24:52+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000255s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000776s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000932s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0093s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0112s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0082s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0081s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0077s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0109s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0075s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0110s ]
+
+[ 2018-12-28T17:25:00+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000238s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000228s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000422s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0109s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0158s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0103s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0111s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0103s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0105s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0101s ]
+SQL: SELECT `net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0099s ]
+
+[ 2018-12-28T17:25:14+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000277s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000469s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0091s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0084s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0091s ]
+SQL: SELECT `id`,`net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0089s ]
+SQL: SELECT `id`,`net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0092s ]
+SQL: SELECT `id`,`net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0084s ]
+SQL: SELECT `id`,`net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0093s ]
+SQL: SELECT `id`,`net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0089s ]
+SQL: SELECT `id`,`net_income`,`car_wash` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0128s ]
+
+[ 2018-12-28T17:26:10+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000382s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000095s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000162s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0103s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0086s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0101s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0093s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0093s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0100s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0117s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0094s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0103s ]
+
+[ 2018-12-28T17:26:11+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000109s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000161s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0116s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0114s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0179s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0123s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0105s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0105s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0105s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0103s ]
+SQL: SELECT `id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0130s ]
+
+[ 2018-12-28T17:27:04+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000065s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000649s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000817s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000975s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0099s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0096s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0109s ]
+SQL: SELECT `agent_id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 1  [ RunTime:0.0108s ]
+SQL: SELECT `agent_id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 2  [ RunTime:0.0102s ]
+SQL: SELECT `agent_id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 3  [ RunTime:0.0104s ]
+SQL: SELECT `agent_id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 4  [ RunTime:0.0101s ]
+SQL: SELECT `agent_id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 5  [ RunTime:0.0102s ]
+SQL: SELECT `agent_id`,`net_income`,`car_wash`,`day` FROM `db_income` WHERE `car_washer_id` = 6  [ RunTime:0.0101s ]
+

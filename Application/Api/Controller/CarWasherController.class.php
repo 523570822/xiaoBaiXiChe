@@ -34,7 +34,12 @@ class CarWasherController extends BaseController
     public function carWasher()
     {
         $post = checkAppData();
-        $car_washer = D('CarWasher')->field('mc_id,car_num,net_income')->select();
+        $car_washer = D('CarWasher')->field('id,mc_id')->select();
+        foreach($car_washer as $k=>$v){
+            $income = D('Income')->where(array('car_washer_id'=>$v['id']))->field('agent_id,net_income,car_wash,day')->select();
+            $in[] = $income;
+        }
+        var_dump($in);exit;
         if($car_washer){
             $this->apiResponse('1','成功',$car_washer);
         }else{
