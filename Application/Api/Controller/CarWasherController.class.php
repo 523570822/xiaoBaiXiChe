@@ -34,8 +34,8 @@ class CarWasherController extends BaseController
     public function carWasher()
     {
         $post = checkAppData('token','token');
-        /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $agent = $this->getAgentInfo($post['token']);*/
+        //$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $agent = $this->getAgentInfo($post['token']);
         $car_washer = D('CarWasher')->field('id,mc_id')->select();
         foreach($car_washer as $k=>$v){
             $income = D('Income')->where(array('car_washer_id'=>$v['id'],'agent_id'=>$agent['id']))->field('SUM(net_income),SUM(car_wash),day,car_washer_id')->group('car_washer_id')->find();
