@@ -45,7 +45,7 @@ class InvitationController extends BaseController
                 $list_info[$k]['create_time'] = date('Y/m/d', $v['create_time']);
             }
         }
-        $this->apiResponse(1, '����ɹ�', array("count" => count($list_info), "invite_code" => $invite_code, "myinviter"=>$inviterphone, "couponLiset"=>$list));
+        $this->apiResponse(1, '请求成功', array("count" => count($list_info), "invite_code" => $invite_code, "myinviter"=>$inviterphone, "couponLiset"=>$list));
     }
     /**
      * 推广记录
@@ -69,6 +69,6 @@ class InvitationController extends BaseController
                 $list_info[$k]['create_time'] = date('Y/m/d', $v['create_time']);
             }
         }
-        $this->apiResponse(1, '����ɹ�', array("list" => $list_info));
+        $this->apiResponse(1, '请求成功', array("list" => $list_info));
     }
 }
