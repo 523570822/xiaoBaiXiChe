@@ -35,7 +35,7 @@ class InvitationController extends BaseController
         $inviterphone=$member['account'];
         $list_info = D('ExtensionLog')
             ->where(array('db_extension_log.m_id' => $m_id))
-            ->join("db_member ON db_extension_log.s_id = db_member.s_id")
+            ->join("db_member ON db_extension_log.m_id = db_member.id")
             ->field('db_extension_log.id,db_extension_log.create_time,db_member.nickname')
             ->select();
 
