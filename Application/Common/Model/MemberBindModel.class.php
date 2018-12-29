@@ -1,15 +1,11 @@
 <?php
-
-namespace Common\Model;
-
 /**
- * 三方绑定表
- * Class MemberBindModel
- * @package Common\Model
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2018/8/13
+ * Time: 11:37
  */
-
+namespace Common\Model;
 use Common\Service\ModelService;
 class MemberBindModel extends ModelService{
-
-
 }

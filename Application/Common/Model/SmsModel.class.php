@@ -1,15 +1,19 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2018/8/13
+ * Time: 11:37
+ */
 namespace Common\Model;
-use Think\Model;
-
+use Common\Service\ModelService;
 /**
  * Class SmsModel
  * @package Home\Model
  * 会员操作  找回密码  激活账号
  * 发送邮件 发送短信
  */
-class SmsModel extends Model{
+class SmsModel extends ModelService{
 
     protected $tableName = 'sms';
 

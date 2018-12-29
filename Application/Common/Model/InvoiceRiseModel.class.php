@@ -7,10 +7,5 @@
  */
 namespace Common\Model;
 use Common\Service\ModelService;
-/**
- * 消息模型
- * Class MsgModel
- * @package Common\Model
- */
-class WashshopModel extends ModelService{
+class InvoiceRiseModel extends ModelService{
 }

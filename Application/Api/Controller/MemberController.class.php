@@ -5,11 +5,8 @@
  * Date: 2018/8/13
  * Time: 10:02
  */
-
 namespace Api\Controller;
-
 use Common\Service\ControllerService;
-
 class MemberController extends BaseController
 {
     public function _initialize()
