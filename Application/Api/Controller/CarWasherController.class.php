@@ -85,10 +85,10 @@ class CarWasherController extends BaseController
      *Date:2019/01/02 10:22
      */
     public function incomeInfo(){
-        $post = checkAppData('token,car_washer_id,day','token-洗车机ID-日期时间戳');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['car_washer_id'] = 1;
-//        $post['day'] = 1545148800;
+//        $post = checkAppData('token,car_washer_id,day','token-洗车机ID-日期时间戳');
+        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post['car_washer_id'] = 1;
+        $post['day'] = 1545148800;
         /*if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
         }*/
@@ -98,7 +98,9 @@ class CarWasherController extends BaseController
             $order = M('CarWasher')->where(array('id'=>$post['car_washer_id']))->field('mc_id')->find();
             $order_num = M('Order')->where(array('mc_id'=>$order['mc_id']))->field('orderid')->find();
             $income[$k]['mc_id'] = $order_num['orderid'];
+            $income[$k]['car_washer'] = $order['mc_id'];
         }
+        var_dump($income);exit;
         if(!empty($income)){
             $this->apiResponse('1','成功',$income);
         }else{

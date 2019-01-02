@@ -334,3 +334,152 @@ SQL: SELECT `orderid` FROM `db_order` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTi
 SQL: SELECT `mc_id` FROM `db_car_washer` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0101s ]
 SQL: SELECT `orderid` FROM `db_order` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0083s ]
 
+[ 2019-01-02T18:06:15+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/incomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000257s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000544s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000622s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0068s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0065s ]
+SQL: SELECT `net_income`,`create_time` FROM `db_income` WHERE `car_washer_id` = 1 AND `day` = 1545148800  [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0068s ]
+SQL: SELECT `mc_id` FROM `db_car_washer` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0070s ]
+SQL: SELECT `orderid` FROM `db_order` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0077s ]
+SQL: SELECT `mc_id` FROM `db_car_washer` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0062s ]
+SQL: SELECT `orderid` FROM `db_order` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0074s ]
+
+[ 2019-01-02T18:06:29+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/incomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000256s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000118s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000213s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0089s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0087s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0106s ]
+SQL: SELECT `net_income`,`create_time` FROM `db_income` WHERE `car_washer_id` = 2 AND `day` = 1545148800  [ RunTime:0.0081s ]
+
+[ 2019-01-02T18:06:30+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/incomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000094s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000136s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0123s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0098s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0095s ]
+SQL: SELECT `net_income`,`create_time` FROM `db_income` WHERE `car_washer_id` = 2 AND `day` = 1545148800  [ RunTime:0.0096s ]
+
+[ 2019-01-02T18:06:34+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/incomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000063s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000118s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0101s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0136s ]
+SQL: SELECT `net_income`,`create_time` FROM `db_income` WHERE `car_washer_id` = 2 AND `day` = 1545148800  [ RunTime:0.0115s ]
+
+[ 2019-01-02T18:06:37+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/incomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000216s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000363s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0101s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0123s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0100s ]
+SQL: SELECT `net_income`,`create_time` FROM `db_income` WHERE `car_washer_id` = 3 AND `day` = 1545148800  [ RunTime:0.0087s ]
+
+[ 2019-01-02T18:06:45+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/incomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000574s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000581s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000725s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0099s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0102s ]
+SQL: SELECT `net_income`,`create_time` FROM `db_income` WHERE `car_washer_id` = 4 AND `day` = 1545148800  [ RunTime:0.0097s ]
+
+[ 2019-01-02T18:07:14+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/incomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000293s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000304s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000614s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0428s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.2398s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.1291s ]
+SQL: SELECT `net_income`,`create_time` FROM `db_income` WHERE `car_washer_id` = 4 AND `day` = 1545148800  [ RunTime:0.0361s ]
+
+[ 2019-01-02T18:07:23+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/incomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000140s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000093s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000163s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0084s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0081s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0090s ]
+SQL: SELECT `net_income`,`create_time` FROM `db_income` WHERE `car_washer_id` = 3 AND `day` = 1545148800  [ RunTime:0.0112s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0089s ]
+SQL: SELECT `mc_id` FROM `db_car_washer` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0083s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0095s ]
+SQL: SELECT `orderid` FROM `db_order` WHERE `mc_id` = 'A00003' LIMIT 1   [ RunTime:0.0083s ]
+
+[ 2019-01-02T18:07:29+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/incomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000176s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000099s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000168s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0096s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0098s ]
+SQL: SELECT `net_income`,`create_time` FROM `db_income` WHERE `car_washer_id` = 1 AND `day` = 1545148800  [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0099s ]
+SQL: SELECT `mc_id` FROM `db_car_washer` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0114s ]
+SQL: SELECT `orderid` FROM `db_order` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0107s ]
+
