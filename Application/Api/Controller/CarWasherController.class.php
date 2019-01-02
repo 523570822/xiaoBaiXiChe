@@ -84,7 +84,7 @@ class CarWasherController extends BaseController
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/02 10:22
      */
-    public function incomeInfo(){
+    public function anbh(){
         $post = checkAppData('token,car_washer_id,day','token-洗车机ID-日期时间戳');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
 //        $post['car_washer_id'] = 1;
@@ -104,5 +104,6 @@ class CarWasherController extends BaseController
             $this->apiResponse('1','成功',$income);
         }else{
             $this->apiResponse('0','暂无加盟商信息');
-        }    }
+        }
+    }
 }
