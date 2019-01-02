@@ -483,3 +483,12 @@ SQL: SELECT `mc_id` FROM `db_car_washer` WHERE `id` = 1 LIMIT 1   [ RunTime:0.01
 SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0114s ]
 SQL: SELECT `orderid` FROM `db_order` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0107s ]
 
+[ 2019-01-02T18:42:22+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carIncomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000319s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000512s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000577s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+

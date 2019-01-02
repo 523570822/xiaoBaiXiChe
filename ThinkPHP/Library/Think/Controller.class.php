@@ -159,6 +159,7 @@ abstract class Controller {
      * @return mixed
      */
     public function __call($method,$args) {
+        echo 111;exit;
         if( 0 === strcasecmp($method,ACTION_NAME.C('ACTION_SUFFIX'))) {
             if(method_exists($this,'_empty')) {
                 // 如果定义了_empty操作 则调用
