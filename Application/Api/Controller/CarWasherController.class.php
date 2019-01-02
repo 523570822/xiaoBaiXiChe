@@ -85,10 +85,10 @@ class CarWasherController extends BaseController
      *Date:2019/01/02 10:22
      */
     public function incomeInfo(){
-//        $post = checkAppData('token,car_washer_id,day','token-洗车机ID-日期时间戳');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $post['car_washer_id'] = 1;
-        $post['day'] = 1545148800;
+        $post = checkAppData('token,car_washer_id,day','token-洗车机ID-日期时间戳');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['car_washer_id'] = 1;
+//        $post['day'] = 1545148800;
         /*if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
         }*/
