@@ -100,7 +100,6 @@ class CarWasherController extends BaseController
             $income[$k]['mc_id'] = $order_num['orderid'];
             $income[$k]['car_washer'] = $order['mc_id'];
         }
-        var_dump($income);exit;
         if(!empty($income)){
             $this->apiResponse('1','成功',$income);
         }else{
