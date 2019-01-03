@@ -218,3 +218,1559 @@ INFO: [ app_begin ] --END-- [ RunTime:0.000218s ]
 SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0236s ]
 SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0109s ]
 
+[ 2019-01-03T14:30:14+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000695s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001627s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001852s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0142s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0096s ]
+
+[ 2019-01-03T14:41:15+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000307s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000439s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000496s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0831s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.4283s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0229s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0141s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0106s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0123s ]
+
+[ 2019-01-03T14:43:50+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000326s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000100s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000201s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:7.0927s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:5.0729s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:4.5448s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:3.2825s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:5.5995s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:13.8377s ]
+
+[ 2019-01-03T14:43:52+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000454s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000660s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000749s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.2352s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.1467s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0293s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0581s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0437s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0129s ]
+
+[ 2019-01-03T14:43:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000144s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000608s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000723s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0389s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0220s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0267s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0187s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0251s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0493s ]
+
+[ 2019-01-03T14:43:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000110s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000539s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000614s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0244s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0286s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0279s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0150s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0335s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0201s ]
+
+[ 2019-01-03T14:43:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000170s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000622s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000730s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0303s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0158s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0301s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0139s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0412s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0294s ]
+
+[ 2019-01-03T14:43:54+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000073s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000552s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000715s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000808s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0444s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0119s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0132s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0169s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0174s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0347s ]
+
+[ 2019-01-03T14:43:54+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000131s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001234s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001549s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0380s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.2494s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.1492s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0516s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0612s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0522s ]
+
+[ 2019-01-03T14:43:55+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000134s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000711s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0242s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0273s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0167s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0500s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.2982s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0384s ]
+
+[ 2019-01-03T14:43:57+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001043s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000743s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000836s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.2774s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.1835s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.1758s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0655s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0471s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0142s ]
+
+[ 2019-01-03T14:43:58+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000078s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000328s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000515s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000616s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0662s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0222s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0571s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0719s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0538s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0338s ]
+
+[ 2019-01-03T14:43:58+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000281s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000439s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000496s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.3267s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.1475s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0422s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0378s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0720s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0562s ]
+
+[ 2019-01-03T14:45:01+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000222s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000352s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000600s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0127s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0145s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0108s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0092s ]
+
+[ 2019-01-03T14:45:02+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000099s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000084s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000164s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0119s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0131s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0103s ]
+
+[ 2019-01-03T14:45:03+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000091s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000095s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000159s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0100s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0123s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0097s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0089s ]
+
+[ 2019-01-03T14:45:03+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000087s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000090s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000146s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0119s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0148s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0108s ]
+
+[ 2019-01-03T14:45:46+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000068s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000833s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001427s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002087s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0119s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0086s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0122s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0107s ]
+
+[ 2019-01-03T14:47:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000275s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000486s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000539s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.2621s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0403s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0948s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0155s ]
+
+[ 2019-01-03T14:47:56+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000120s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000159s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000265s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0430s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.1696s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0958s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0141s ]
+
+[ 2019-01-03T14:48:31+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000308s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001301s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001480s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0107s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0125s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0092s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0091s ]
+
+[ 2019-01-03T14:48:31+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000282s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000081s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000145s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0114s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0136s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0102s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0085s ]
+
+[ 2019-01-03T14:48:33+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000300s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000086s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000153s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0112s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0144s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0108s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0099s ]
+
+[ 2019-01-03T14:48:33+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000154s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000112s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000177s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0164s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0105s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0112s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0101s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0097s ]
+
+[ 2019-01-03T14:48:33+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000086s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000062s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000112s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0107s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0116s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0112s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0118s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0102s ]
+
+[ 2019-01-03T14:48:46+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000119s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000090s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000152s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0147s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0151s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0260s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0207s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.1307s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0127s ]
+
+[ 2019-01-03T14:48:47+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000128s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000111s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000210s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.1005s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0684s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0337s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0239s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0423s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0479s ]
+
+[ 2019-01-03T14:49:18+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000123s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000365s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0104s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0098s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0113s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0094s ]
+
+[ 2019-01-03T14:49:36+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000320s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000297s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000657s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0150s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0112s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0096s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0100s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-01-03T14:49:51+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000314s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000140s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000238s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0138s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0078s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0092s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0087s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0113s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0081s ]
+
+[ 2019-01-03T14:49:52+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000091s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000066s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000115s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0140s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0125s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0097s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0107s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0092s ]
+
+[ 2019-01-03T14:49:52+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000090s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000072s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000126s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0110s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0134s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0140s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0108s ]
+
+[ 2019-01-03T14:49:52+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000090s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000073s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000133s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0104s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0115s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0096s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0115s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0125s ]
+
+[ 2019-01-03T14:49:52+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000114s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000064s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000114s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0129s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0164s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0109s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0113s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0102s ]
+
+[ 2019-01-03T14:49:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000181s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000205s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000721s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0110s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0126s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0119s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0117s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0096s ]
+
+[ 2019-01-03T14:49:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000249s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000094s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000166s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0096s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0102s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0097s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0150s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0084s ]
+
+[ 2019-01-03T14:49:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000095s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000064s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000117s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0144s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0112s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0131s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0115s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-01-03T14:49:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000076s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000486s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000134s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000250s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0128s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0092s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0106s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0146s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0156s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0112s ]
+
+[ 2019-01-03T14:49:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000122s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000130s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000301s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0107s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0127s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0106s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0111s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0112s ]
+
+[ 2019-01-03T14:49:54+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000194s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000123s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000203s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0187s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0250s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0361s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0128s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0590s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0166s ]
+
+[ 2019-01-03T14:50:26+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000168s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000234s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000364s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0096s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0087s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0109s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0096s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0101s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0085s ]
+
+[ 2019-01-03T14:50:27+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000096s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000073s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000134s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0110s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0140s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0125s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0123s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0099s ]
+
+[ 2019-01-03T14:50:27+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000171s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000066s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000118s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0118s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0119s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0111s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0115s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-01-03T14:50:27+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000122s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000486s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0119s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0106s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0129s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0128s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0105s ]
+
+[ 2019-01-03T14:50:40+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000325s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000480s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000562s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0112s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0086s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0102s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0073s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0097s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0081s ]
+
+[ 2019-01-03T14:55:12+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000380s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000527s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000667s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0108s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0107s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0103s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0123s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0081s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0121s ]
+
+[ 2019-01-03T14:55:12+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000149s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000763s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000865s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0106s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0106s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0105s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0088s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0106s ]
+
+[ 2019-01-03T14:55:47+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000284s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000521s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000589s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0505s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0200s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0247s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0120s ]
+
+[ 2019-01-03T14:56:38+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000103s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000423s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000109s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000176s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0124s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0091s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0182s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0118s ]
+
+[ 2019-01-03T14:57:16+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000282s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000217s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000356s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0156s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0129s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0116s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0106s ]
+
+[ 2019-01-03T14:58:42+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000224s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000612s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000690s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0111s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0097s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0114s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0117s ]
+
+[ 2019-01-03T14:58:58+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000276s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000449s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000503s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.1009s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0082s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0104s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0113s ]
+
+[ 2019-01-03T15:03:58+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000239s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000498s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000575s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0133s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0142s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0097s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0085s ]
+ERR: Using $this when not in object context
+
+[ 2019-01-03T15:05:21+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000101s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000170s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0094s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0232s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0091s ]
+ERR: Call to undefined function /Uploads/Index/2019-01-02/5c2c293461605.png()
+
+[ 2019-01-03T15:06:04+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000131s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000947s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001545s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001781s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0100s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0086s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0124s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 219 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-03T15:09:17+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000244s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000850s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000979s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0846s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.1240s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0164s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0105s ]
+
+[ 2019-01-03T15:09:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000283s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000521s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000586s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0097s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0135s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0125s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0137s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0111s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0088s ]
+
+[ 2019-01-03T15:10:46+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000238s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000092s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000152s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0102s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0084s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0157s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0089s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0083s ]
+
+[ 2019-01-03T15:10:48+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000163s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000135s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000245s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0145s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0122s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0137s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0427s ]
+
+[ 2019-01-03T15:10:48+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000110s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000136s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0116s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0324s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0115s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0134s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0112s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0121s ]
+
+[ 2019-01-03T15:10:48+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000199s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000210s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000520s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0116s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0112s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0112s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0113s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0106s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0104s ]
+
+[ 2019-01-03T15:10:49+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000209s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000131s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0177s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0156s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0147s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0149s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0099s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0101s ]
+
+[ 2019-01-03T15:10:49+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000095s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000174s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0107s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0096s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0106s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0092s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0106s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0117s ]
+
+[ 2019-01-03T15:10:49+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000137s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000136s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0126s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0137s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0109s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0082s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0264s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0087s ]
+
+[ 2019-01-03T15:10:49+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000529s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000112s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000210s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0146s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0105s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0262s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0294s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0204s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0096s ]
+
+[ 2019-01-03T15:11:20+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000134s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000466s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0155s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0107s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0093s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0099s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-01-03T15:11:22+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000235s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000148s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000321s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0116s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0104s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0107s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0092s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0107s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0105s ]
+
+[ 2019-01-03T15:11:22+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000149s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000176s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000313s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0280s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0145s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0416s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0114s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0180s ]
+
+[ 2019-01-03T15:11:22+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000103s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000081s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000144s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.1208s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0217s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0121s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0104s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0118s ]
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 550 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 596 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 597 行.
+NOTIC: [8] Undefined offset: 0 D:\test\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 600 行.
+SQL: SELECT `path` FROM `db_file` WHERE ( `id` = null  ) LIMIT 1   [ RunTime:0.0183s ]
+
+[ 2019-01-03T15:11:33+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000404s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000885s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001131s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0111s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0104s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0153s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0098s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0086s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0087s ]
+
+[ 2019-01-03T15:11:35+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000306s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000219s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000431s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0136s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0111s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0121s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0121s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0102s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0119s ]
+
+[ 2019-01-03T15:11:44+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000401s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000147s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000234s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0101s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0081s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0114s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0081s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0290s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0098s ]
+ERR: Cannot use [] for reading
+
+[ 2019-01-03T15:11:57+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000320s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000183s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000318s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0127s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0112s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0097s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0081s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0105s ]
+
+[ 2019-01-03T15:12:17+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000324s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0115s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0091s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0106s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0082s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0107s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0087s ]
+
+[ 2019-01-03T15:12:17+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000116s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000163s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0119s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0106s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0098s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0117s ]
+
+[ 2019-01-03T15:12:18+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000189s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000136s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0130s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0121s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0116s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0139s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0138s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0158s ]
+
+[ 2019-01-03T15:12:18+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000092s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000067s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000129s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0103s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0091s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0116s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0104s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0091s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0089s ]
+
+[ 2019-01-03T15:12:18+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000198s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000123s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000236s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0123s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0125s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0122s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0096s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0134s ]
+
+[ 2019-01-03T15:12:18+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000275s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000096s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000178s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0109s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0112s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0118s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0124s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0089s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0091s ]
+
+[ 2019-01-03T15:12:18+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000085s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000064s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000146s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0145s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0112s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0150s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0122s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0115s ]
+
+[ 2019-01-03T15:12:28+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000146s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000177s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000300s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.1964s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0791s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0203s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0091s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0735s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0130s ]
+
