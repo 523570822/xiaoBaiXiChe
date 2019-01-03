@@ -188,3 +188,33 @@ SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `
 NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
 NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
 
+[ 2019-01-03T14:21:37+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000727s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002996s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000738s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000845s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0119s ]
+SQL: SELECT * FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0099s ]
+
+[ 2019-01-03T14:22:14+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000758s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000459s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000550s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0121s ]
+SQL: SELECT `id`,`bank_pic`,`create_time`,`update_time`,`sort`,`status` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0176s ]
+
+[ 2019-01-03T14:22:54+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000233s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000128s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000218s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.0236s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.0109s ]
+

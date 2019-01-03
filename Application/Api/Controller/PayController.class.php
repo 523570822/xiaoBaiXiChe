@@ -41,4 +41,13 @@ class PayController extends BaseController
             $this->apiResponse('1','成功',$member['balance']);
         }
     }
+
+    public function bankType(){
+        $bank = M('BankType')->where(array('status'=>1))->field('bank_name,bank_pic')->select();
+        if(!empty($bank)){
+            $this->apiResponse('1','成功',$bank);
+        }else{
+            $this->apiResponse('0','暂无提现类型');
+        }
+    }
 }
