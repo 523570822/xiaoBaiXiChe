@@ -60,4 +60,36 @@ class PayController extends BaseController
             $this->apiResponse('0','暂无提现类型');
         }
     }
+
+    /**
+     *添加银行卡
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/03 15:52
+     */
+    public function addBankCard(){
+        $post = checkAppData('token,card_name,card_code,ID_card,phone,card_id','token-持卡人姓名-持卡人卡号-身份证号-手机号-卡类型');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['card_name'] = '王子';
+//        $post['card_code'] = '621669020750127784585';
+//        $post['ID_card'] = '587456988541235187';
+//        $post['phone'] = '18635359874';
+//        $post['card_id'] = 1;
+
+        $agent = $this->getAgentInfo($post['token']);
+        $data = array(
+            'agent_id' =>$agent['id'],
+            'card_name' =>$post['card_name'],
+            'card_code' =>$post['card_code'],
+            'ID_card' =>$post['ID_card'],
+            'phone' =>$post['phone'],
+            'card_id' =>$post['card_id'],
+        );
+        $card = M('BankCard')->where(array('agent_id'=>$agent['id'],'card_code'=>$post['card_code']))->find();
+        if(empty($card)){
+            $add = M('BankCard')->add($data);
+            $this->apiResponse('1','成功');
+        }else{
+            $this->apiResponse('0','此卡号已绑定');
+        }
+    }
 }

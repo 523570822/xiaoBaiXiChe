@@ -1774,3 +1774,154 @@ SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.0091s ]
 SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0735s ]
 SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.0130s ]
 
+[ 2019-01-03T15:16:28+08:00 ] 127.0.0.1 /index.php/Api/Agent/income
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000386s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000651s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000754s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2019-01-03T15:16:41+08:00 ] 127.0.0.1 /index.php/Api/Pay/bankType
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000198s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000324s ]
+SQL: SHOW COLUMNS FROM `db_bank_type` [ RunTime:0.1906s ]
+SQL: SELECT `bank_name`,`bank_pic` FROM `db_bank_type` WHERE `status` = 1  [ RunTime:0.1729s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.2046s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 210 LIMIT 1   [ RunTime:0.1504s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 209 LIMIT 1   [ RunTime:0.1737s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 208 LIMIT 1   [ RunTime:0.1608s ]
+
+[ 2019-01-03T18:24:06+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000082s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001112s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001267s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001473s ]
+ERR: Call to undefined function Api\Controller\getAgentInfo()
+
+[ 2019-01-03T18:24:56+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000270s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000487s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000544s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0136s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0142s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+
+[ 2019-01-03T18:40:44+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000367s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000631s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000726s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0094s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0083s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_bank_card` [ RunTime:0.0093s ]
+SQL: INSERT INTO `db_bank_card` (`id`) VALUES ('1') [ RunTime:0.0266s ]
+
+[ 2019-01-03T18:47:50+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000936s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001055s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0103s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0094s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_bank_card` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `db_bank_card` WHERE `agent_id` = 1 AND `card_code` = '621669020750127784585' LIMIT 1   [ RunTime:0.0100s ]
+SQL: INSERT INTO `db_bank_card` (`agent_id`,`card_name`,`card_code`,`ID_card`,`phone`,`card_id`) VALUES ('1','王子','621669020750127784585','587456988541235187','18635359874','1') [ RunTime:0.0149s ]
+
+[ 2019-01-03T18:47:51+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000081s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000065s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000116s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0112s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0095s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_bank_card` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `db_bank_card` WHERE `agent_id` = 1 AND `card_code` = '621669020750127784585' LIMIT 1   [ RunTime:0.0097s ]
+
+[ 2019-01-03T18:47:52+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000101s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000099s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000191s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0119s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0111s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_bank_card` [ RunTime:0.0137s ]
+SQL: SELECT * FROM `db_bank_card` WHERE `agent_id` = 1 AND `card_code` = '621669020750127784585' LIMIT 1   [ RunTime:0.0113s ]
+
+[ 2019-01-03T18:47:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000145s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000104s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000173s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0112s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0099s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_bank_card` [ RunTime:0.0129s ]
+SQL: SELECT * FROM `db_bank_card` WHERE `agent_id` = 1 AND `card_code` = '621669020750127784585' LIMIT 1   [ RunTime:0.0103s ]
+
+[ 2019-01-03T18:47:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000081s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000060s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000110s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0119s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0109s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_bank_card` [ RunTime:0.0116s ]
+SQL: SELECT * FROM `db_bank_card` WHERE `agent_id` = 1 AND `card_code` = '621669020750127784585' LIMIT 1   [ RunTime:0.0106s ]
+
+[ 2019-01-03T18:47:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000082s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000063s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000111s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0109s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0103s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_bank_card` [ RunTime:0.0119s ]
+SQL: SELECT * FROM `db_bank_card` WHERE `agent_id` = 1 AND `card_code` = '621669020750127784585' LIMIT 1   [ RunTime:0.0117s ]
+
