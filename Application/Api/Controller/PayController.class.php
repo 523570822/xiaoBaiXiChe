@@ -54,7 +54,6 @@ class PayController extends BaseController
             $pic_path = getPicPath($pic['bank_pic']);
             $bank[$k]['bank_pic_path'] = $pic_path;
         }
-        var_dump($bank);exit;
         if(!empty($bank)){
             $this->apiResponse('1','成功',$bank);
         }else{
