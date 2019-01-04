@@ -1925,3 +1925,12 @@ NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controlle
 SQL: SHOW COLUMNS FROM `db_bank_card` [ RunTime:0.0119s ]
 SQL: SELECT * FROM `db_bank_card` WHERE `agent_id` = 1 AND `card_code` = '621669020750127784585' LIMIT 1   [ RunTime:0.0117s ]
 
+[ 2019-01-03T18:50:09+08:00 ] 127.0.0.1 /index.php/Api/Pay/addBankCard
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000549s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001167s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001320s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+

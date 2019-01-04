@@ -92,4 +92,29 @@ class PayController extends BaseController
             $this->apiResponse('0','此卡号已绑定');
         }
     }
+
+    /**
+     *提现提交
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/04 02:01
+     */
+    public function getWithdraw(){
+        $post = checkAppData('token,price','token-提现金额');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['price'] = 500;
+
+        $agent = $this->getAgentInfo($post['token']);
+        $data = array(
+            'balance' =>$agent['balance']- $post['price'],
+        );
+        if($data['balance'] < 0){
+            $this->apiResponse('0','对不起,您余额不足');
+        }
+        $balance = M('Agent')->where(array('id'=>$agent['id']))->save($data);
+        if(!empty($balance)){
+            $this->apiResponse('1','已提交申请');
+        }else{
+            $this->apiResponse('0','申请失败');
+        }
+    }
 }
