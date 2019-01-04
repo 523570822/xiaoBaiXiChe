@@ -370,3 +370,28 @@
         exit(json_encode($response, JSON_UNESCAPED_UNICODE));
     }
 
+
+    /**
+ * 替换图片
+ * @param $id 所查图片ID
+ * @param string $type 图片类型  默认缩略图
+ * @return string
+ * User: jinrui.wang wangjinrui2010@163.com
+ * Date: 2018/5/30 9:12
+ */
+    function getPicPath($id,$type=''){
+        if ($id == '' || $id == 0) {
+            $id = '999999';
+        }
+        if ($type == 'th') {
+            $field = 'th_savepath';
+        } else {
+            $field = 'path';
+        }
+        $url = M('File')->where(array('id'=>$id))->getField($field);
+        if (substr($url,0,4 == 'http')) {
+            return $url;
+        }
+        return C ('API_URL') . $url;
+        //return C('API_URL').'/index.php'.$url;
+    }

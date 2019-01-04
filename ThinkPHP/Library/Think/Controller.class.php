@@ -167,7 +167,8 @@ abstract class Controller {
                 // 检查是否存在默认模版 如果有直接输出模版
                 $this->display();
             }else{
-                E(L('_ERROR_ACTION_').':'.ACTION_NAME);
+                echo 111;exit;
+                //E(L('_ERROR_ACTION_').':'.ACTION_NAME);
             }
         }else{
             E(__CLASS__.':'.$method.L('_METHOD_NOT_EXIST_'));
