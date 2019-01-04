@@ -1,0 +1,309 @@
+/*公共部分*/
+
+html,
+body,
+header,
+section,
+footer,
+div,
+ul,
+ol,
+li,
+img,
+a,
+span,
+em,
+del,
+legend,
+center,
+strong,
+var,
+fieldset,
+form,
+label,
+dl,
+dt,
+dd,
+cite,
+input,
+hr,
+time,
+mark,
+code,
+figcaption,
+figure,
+textarea,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	font-style: normal;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+*{
+	font-family: "苹方", Helvetica, Arial, sans-serif;
+}
+ol,
+ul {
+	list-style: none;
+}
+
+ul li {
+	list-style: none;
+}
+
+input,
+button,
+textarea {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+span {
+	display: inline-block;
+}
+
+a:active,
+a:hover {
+	outline: 0;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+}
+
+label,
+.wordWrap {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 0;
+}
+
+nav,
+article,
+aside,
+details,
+main,
+header,
+footer,
+section,
+fieldset,
+figcaption,
+figure {
+	display: block;
+}
+
+img,
+a,
+button,
+em,
+del,
+strong,
+var,
+label,
+cite,
+small,
+time,
+mark,
+code,
+textarea {
+	display: inline-block;
+}
+
+.clearfix{
+	clear: both;
+}
+/*公共部分*/
+/*下载界面*/
+.bga{
+	background-image: url(../images/bannera.png);
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+	background-position: center center; 
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+}
+.logo-box{
+	width: 70px;
+	height: 70px;
+	margin: 80px auto 20px auto;
+}
+.logo{
+	width: 100%;
+	height: 100%;
+}
+.title{
+	width: 60%;
+    margin: 0 auto;
+}
+.title li{
+	float: left;
+}
+.title li:nth-child(2){
+	font-size: 20px;
+	color: white;
+	width: 60%;
+	text-align: center;
+}
+.title li:nth-child(1),.title li:nth-child(3){
+	width: 20%;
+	height: 1px;
+	background-color:#fff;
+	margin-top: 13px;
+}
+.download{
+	width: 80%;
+	margin: 0 auto;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 20px;
+	border: 1px solid #fff;
+	margin-bottom: 25px;
+}
+.content{
+	text-align: center;
+}
+.intro{
+	color: #fff;
+	font-size: 12px;
+	margin-top: 15px;
+	margin-bottom: 80px;
+}
+.ios{
+	width: 20px;
+	margin-right: 10px;
+	vertical-align: -4px;
+}
+.download span{
+	color: #fff;
+	font-size: 16px;
+}
+/*下载界面*/
+
+/*分享界面*/
+.bgb{
+	background-image: url(../images/bannerb.png);
+	width: 100%;
+	height: 100%;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: top center; 
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+}
+.logo-box1{
+	margin: 45px auto 20px auto;
+}
+.group-box{
+	width: 80%;
+	margin: 0 auto;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 20px;
+	border: 1px solid #03becf;
+	margin-bottom: 10px;
+	text-align: left;
+}
+.inco{
+	width: 20px;
+    margin-left: 21px;
+    vertical-align: -3px;
+}
+.group-box input{
+	width: 60%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	width: calc(100% - 50px);
+	background-color: transparent;
+}
+.group-box input::-webkit-input-placeholder{
+	color:#03becf;
+}
+.group-box input:-moz-placeholder{
+	color:#03becf;
+}
+.group-box input::-moz-placeholder{
+	color:#03becf;
+}
+.group-box input:-ms-input-placeholder{
+	color:#03becf;
+}
+.group-box{
+	position: relative;
+}
+.yanzhengma{
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	font-size: 16px;
+	color:#03becf;
+	font-weight: 500;
+}
+.agree-box span{
+	color: #03becf;
+}
+.agree-box{
+	font-size: 12px;
+	margin-top: 20px;
+}
+.agree{
+	width: 12px;
+	margin-right: 10;
+}
+.register{
+	height: 40px;
+	line-height: 40px;
+	border-radius: 20px;
+	background-color: #03becf;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	line-height: 40px;
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 8px;
+}
+/*分享界面*/
+@media screen and (max-width:350px){
+	.intro {
+    color: #fff;
+    font-size: 12px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+}
+/*.box{*/
+	/*position: fixed;*/
+	/*bottom: 3%;*/
+	/*left: 0px;*/
+	/*width: 100%;*/
+/*}*/
+

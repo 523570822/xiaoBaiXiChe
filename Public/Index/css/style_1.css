@@ -1,0 +1,429 @@
+/*公共部分*/
+
+html,
+body,
+header,
+section,
+footer,
+div,
+ul,
+ol,
+li,
+img,
+a,
+span,
+em,
+del,
+legend,
+center,
+strong,
+var,
+fieldset,
+form,
+label,
+dl,
+dt,
+dd,
+cite,
+input,
+hr,
+time,
+mark,
+code,
+figcaption,
+figure,
+textarea,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	font-style: normal;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+*{
+	font-family: "苹方", Helvetica, Arial, sans-serif;
+}
+ol,
+ul {
+	list-style: none;
+}
+
+ul li {
+	list-style: none;
+}
+
+input,
+button,
+textarea {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+span {
+	display: inline-block;
+}
+
+a:active,
+a:hover {
+	outline: 0;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+}
+
+label,
+.wordWrap {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 0;
+}
+
+nav,
+article,
+aside,
+details,
+main,
+header,
+footer,
+section,
+fieldset,
+figcaption,
+figure {
+	display: block;
+}
+
+img,
+a,
+button,
+em,
+del,
+strong,
+var,
+label,
+cite,
+small,
+time,
+mark,
+code,
+textarea {
+	display: inline-block;
+}
+
+.clearfix{
+	clear: both;
+}
+/*公共部分*/
+/*样式*/
+.bg{
+	background-color: #4dceb5;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+.top-box{
+	background-color: #02bece;
+	width: 100%;
+}
+.top{
+	/*width: 1200px;*/
+	margin: 0 auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 63%;
+}
+.top ul li{
+	float: left;
+	line-height: 56px;
+	height: 56px;
+}
+.top ul li:nth-child(2){
+	font-size: 28px;
+	color: white;
+	margin-left: 25px;
+}
+.content-box{
+	width: 100%;
+}
+.content{
+	/*width: 1200px;*/
+	width: 63%;
+	margin: 0 auto;
+	background-color: #68d6c7;
+	padding-bottom: 120px;
+}
+.information{
+	background-color:white;
+	line-height: 60px;
+	padding-left: 20px;
+	color: #333;
+	font-size: 18px;
+	margin-bottom: 117px;
+}
+.group ul li{
+	float: left;
+	line-height: 42px;
+}
+.group ul .ri{
+	margin-left: 25px;
+}
+.group ul .ri input{
+	width: 280px;
+	height: 40px;
+	border-radius: 6px;
+	border: 1px solid #d2d2d2;
+	padding: 0px 10px 0px 10px;
+}
+.group ul .ri select{
+	width: 302px;
+	height: 42px;
+	border-radius: 6px;
+	border: 1px solid #d2d2d2;
+	background-color: white;
+	outline: none;
+}
+.group ul .ri textarea{
+	width: 280px;
+	border-radius: 6px;
+	border: 1px solid #d2d2d2;
+	height: 120px;
+	padding: 10px 10px 10px 10px ;
+	resize: none;
+}
+.group ul .ri a{
+	padding: 1px 40px;
+	background-color: #02bece;
+	color: white;
+	display: block;
+
+}
+.group .up li:nth-child(2) {
+	float: left;
+	width: 120px;
+	height: 120px;
+	position: relative;
+	margin-left: 20px;
+}
+.group .up li:nth-child(2) .close{
+	position: absolute;
+	right: 6px;
+	top: 6px;
+}
+.group .up li:nth-child(2) .close:hover{
+	cursor: pointer;
+}
+.group{
+	margin-bottom: 22px;
+	margin-left: 54px;
+}
+.group ul .ri a:hover{
+	cursor: pointer;
+}
+.group ul .le{
+	width: 100px;
+	text-align: right;
+}
+.submit a{
+	padding: 12px 40px;
+	background-color: #02bece;
+	color: white;
+}
+.submit{
+	margin-left: 180px;
+}
+.submit:hover{
+	cursor: pointer;
+}
+/*样式*/
+@media screen and (max-width:1200px){
+	.top {
+		width: 700px;
+		margin: 0 auto;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.group ul .ri select{
+		display: block;
+		margin-bottom: 15px;
+	}
+	.content {
+		width: 700px;
+		margin: 0 auto;
+		background-color: #68d6c7;
+		padding-bottom: 120px;
+	}
+}
+@media screen and (max-width:700px){
+	.top {
+		width: 500px;
+		margin: 0 auto;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.group ul .ri select{
+		display: block;
+		margin-bottom: 15px;
+	}
+	.content {
+		width: 500px;
+		margin: 0 auto;
+		background-color: #68d6c7;
+		padding-bottom: 120px;
+	}
+}
+@media screen and (max-width:500px){
+	.bg {
+		background-color: #02bece;
+	}
+	.top-box {
+		background-color: #02bece;
+		width: calc(100% - 30px);
+	}
+	.group ul li {
+		float: left;
+		line-height: 26px;
+	}
+	.submit a {
+		padding: 6px 20px;
+		background-color: #02bece;
+		color: white;
+	}
+	.top {
+		width: 100%;
+		margin: 0 auto;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding: 15px 15px;
+	}
+	.top ul li img{
+		width: 110px;
+		height: 35px;
+	}
+	.top ul li:nth-child(2) {
+		font-size: 20px;
+		color: white;
+		margin-left: 15px;
+	}
+	.top ul li {
+		float: left;
+		line-height: 35px;
+		height: 35px;
+	}
+	.content {
+		width: 100%;
+		margin: 0 auto;
+		background-color: #68d6c7;
+		padding-bottom: 120px;
+	}
+	.information {
+		background-color: white;
+		line-height: 40px;
+		padding-left: 20px;
+		color: #333;
+		font-size: 18px;
+		margin-bottom: 20px;
+	}
+	.group ul .ri textarea {
+		width: calc(100% - 20px);
+		border-radius: 6px;
+		border: 1px solid #d2d2d2;
+		height: 120px;
+		padding: 10px 10px 10px 10px;
+		resize: none;
+	}
+	.group ul .ri select {
+		width: 100%;
+		display: block;
+		margin-bottom: 15px;
+	}
+	.group ul .ri a {
+		padding: 0px 10px;
+		background-color: #02bece;
+		color: white;
+		display: block;
+		font-size: 14px;
+	}
+
+	.submit {
+		margin-left: 31%;
+	}
+	.group {
+		margin-bottom: 22px;
+		margin-left: 0px;
+		width: 100%;
+	}
+	.group ul .le {
+		width: 25%;
+		text-align: right;
+		font-size: 14px;
+	}
+	.group ul .ri {
+		width: 60%;
+	}
+	.group ul .ri input {
+		width: calc(100% - 20px);
+	}
+}
+@media screen and (max-width:320px){
+	.group .up li:nth-child(2) {
+		float: left;
+		width: 120px;
+		height: 120px;
+		position: relative;
+		margin-left: 0px;
+		margin-top: 10px;
+	}
+	.group ul .le {
+		width: 29%;
+		text-align: right;
+		font-size: 14px;
+	}
+	.group ul .ri {
+		margin-left: 10px;
+	}
+}
+.group ul .ri .file{
+	width: 144px;
+	height: 44px;
+	padding: 0px 0px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	opacity: 0;
+}
+.group .up li{
+	position: relative;
+}
+.pic{
+	width: 120px;
+	height: 120px;
+}
+.close{
+	width:16px;
+	height: 16px;
+}

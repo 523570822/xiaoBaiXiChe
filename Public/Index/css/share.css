@@ -1,0 +1,30 @@
+@charset "utf-8";
+*{margin:0;padding:0;outline:0 none;border:0 none;-webkit-text-size-adjust:none;}
+img{vertical-align:middle;-ms-interpolation-mode:bicubic;max-width: 100%}
+p{margin: 0px;}
+input::-ms-clear{display:none}
+input::-ms-reveal{display:none}
+button,input,select,textarea{font-size:100%;vertical-align:middle;outline:0;font-family:"microsoft yahei"}
+button,input[type=button],input[type=text],input[type=reset],input[type=submit]{-webkit-appearance:none;display:initial;cursor:pointer;-webkit-appearance:button;-moz-appearance:button}
+input:focus:-moz-placeholder,input:focus::-webkit-input-placeholder{color:transparent}
+button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
+.btn.active, .btn:active,.btn.focus, .btn:focus, .btn:hover {background-image: none;-webkit-box-shadow:none; box-shadow: none;color: #FFFFff;
+}
+header{
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    width: 100%;
+    color: white;
+    background-color:black;
+}
+.btn{
+    width:75%;
+    height: 60px;
+    line-height: 60px;
+    border-radius:2px;
+    border: 1px solid white;
+    margin: auto;
+    margin-top:30px;
+    color: white;
+}

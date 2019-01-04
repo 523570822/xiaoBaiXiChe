@@ -1,0 +1,1272 @@
+*{margin:0;padding:0;outline:0 none;border:0 none;-webkit-text-size-adjust:none;}
+img{vertical-align:middle;-ms-interpolation-mode:bicubic;max-width: 100%}
+p{margin: 0px;}
+input::-ms-clear{display:none}
+input::-ms-reveal{display:none}
+button,input,select,textarea{vertical-align:middle;outline:0;font-family:"microsoft yahei"}
+button,input[type=button],input[type=text],input[type=reset],input[type=submit]{-webkit-appearance:none;display:initial;cursor:pointer;-webkit-appearance:button;-moz-appearance:button}
+input:focus:-moz-placeholder,input:focus::-webkit-input-placeholder{color:transparent}
+button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
+.btn.active, .btn:active,.btn.focus, .btn:focus, .btn:hover {background-image: none;-webkit-box-shadow:none; box-shadow: none;color: #FFFFff;
+}
+.bc-youshi{
+    background:url(../images/youshi.png) no-repeat;
+    background-size: 100% 100%;
+}
+.swiper-container .swiper-wrapper .swiper-slide .banner{
+    width: 100%;
+}
+.u-line1{
+    width: 80px;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    /*border-bottom: 2px solid #7bb852;*/
+    font-size: 16px;
+}
+.u-line2{
+    width: 80px;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid  #ffa800;
+    font-size: 16px;
+    height: 30px;
+}
+.u-line3{
+    width: 80px;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #409ce5;
+    font-size: 16px;
+}
+.liaojie {
+    background-color: #7bb852;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px #d4e1cc;
+    width: 109px;
+    display: inherit;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.list{
+    padding-top: 15px;
+    background-color: #f6f6f6;
+}
+.list.on{
+    background-color: #7bb852;
+    color: white;
+}
+.list.on h4{
+    color: white;
+}
+.list:hover{
+    background-color: #7bb852;
+    color: white;
+}
+.list:hover h4{
+    color: white;
+}
+.list-t{
+    border-right: 1px solid #dedede;
+}
+.banner3-h4{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    height: 18px;
+}
+
+/*大于1200*/
+@media screen and (min-width:1200px){
+    a:hover {text-decoration: none;}
+    .header{
+        height: 110px;
+        background-color: black;
+    }
+    /**/
+    .navbar-header{
+        width: 30%;
+        padding-left: 15%;
+        background: white;
+        height: 110px;
+        padding-top: 13px;
+        padding-right: 3%;
+    }
+    .navbar .container ul{
+        margin-top: 15px !important;
+    }
+    .headerlogo{
+        margin-top: 16px;
+        padding-left:40%;
+    }
+    .navbar{
+        height: 100%;
+        /*padding-top: 10px;*/
+    }
+    .banner2-top{
+        margin-top: 50px;
+    }
+    .banner5{
+        margin-top: 50px;
+        padding-bottom: 20px;
+    }
+
+    .banner6-T{
+        padding-top: 30px;
+    }
+    .banner6-T img{
+        width: 290px;
+        height: 65px;
+    }
+    .banner6-C{
+        padding-top: 30px;
+        font-size: 20px;
+    }
+    .copy{
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+    .u-line1{
+        width: 80px;
+        margin: auto;
+        border-bottom: 2px solid #7bb852;
+        text-align: center;
+        margin-top: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        font-size: 20px;
+    }
+    .u-line1:before{
+        border-bottom: 2px solid #7bb852;
+        padding-bottom: 10px;
+        text-decoration: none;
+    }
+    .u-line2{
+        width: 80px;
+        margin: auto;
+        text-align: center;
+        margin-top: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid  #ffa800;
+        font-weight: 600;
+        font-size: 20px;
+    }
+    .u-line3{
+        width: 90px;
+        margin: auto;
+        text-align: center;
+        margin-top: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #409ce5;
+        font-weight: 600;
+        font-size: 20px;
+    }
+    .bc-youshi{
+        margin-top: 80px;
+    }
+    .suoyin{
+        font-size: 20px;
+        float: right;
+        margin-top: 30px;
+    }
+    .environment{
+        margin-top: 10px;
+    }
+    .environmentD{
+        margin-top: 30px;
+    }
+    .zhashi img{
+        margin-top: 30px;
+    }
+    .zhengwen{
+        margin-bottom: 30px;
+    }
+    .smart-title{
+        font-size: 26px;
+        margin-top: 50px;
+        font-weight: 600;
+        height: 33px;
+    }
+    .smart-text{
+        font-size: 22px;
+        margin-top:15px;
+        height: 30px;
+    }
+
+    .contact-tittle{
+        font-size: 26px;
+        margin-top: 50px;
+        font-weight: 600;
+    }
+    .contact-text{
+        font-size: 20px;
+        margin-top:15px;
+    }
+    .sanjiaoxing{
+        /*margin-top: 10px;*/
+    }
+    .map{
+        margin-top: 40px;
+        width: 100%;
+    }
+    .liaojie{
+       margin-top: 90px;
+        float: right;
+    }
+    .paragraph{
+        margin-top: 30px;
+    }
+    .but-top,.but-bottom{
+        padding: 10px 30px;
+        margin: 30px 0px;
+    }
+    .but-top{
+        margin-right: 20px;
+    }
+    .yeshu.on{
+        color: white;
+        background-color:#7bb852 ;
+    }
+    .yeshu{
+        color: black;
+        background-color: #e5e5e5;
+        padding: 10px 10px;
+        margin-right: 20px;
+    }
+    .footer{
+        padding-top: 40px;
+    }
+    .copy{
+       margin-top: 40px;
+        font-size: 18px;
+    }
+    .address{
+        background: url(../images/bc-address.png) 0 center no-repeat;
+        background-size: 80% 100%;
+        height: 550px;
+        margin:80px 0px 50px 0px;
+    }
+    .address-top{
+        position: absolute;
+        left: 14%;
+        top: 35%;
+        width: 52%;
+    }
+    .address-h{
+        margin-top: 30px;
+        font-size: 22px;
+        height: 30px;
+    }
+    .address-c{
+        margin-top: 20px;
+        font-size: 16px;
+        line-height: 1.8em;
+    }
+    .phone{
+        background: url(../images/bc-phone.png) 0 center no-repeat;
+        background-size: 80% 100%;
+        height: 550px;
+        margin:80px 0px 50px 0px;
+    }
+    .list1 img{
+        height: 200px;
+        width: 200px;
+        margin-left: 30px;
+    }
+    .list{
+        height: 290px;
+        padding-top: 50px;
+    }
+    .list3{
+        font-size: 18px;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        height: 130px;
+        overflow: hidden;
+        margin-top: 30px;
+    }
+    .list5{
+        font-size: 45px;
+        margin-top: 50px;
+    }
+    .list6 {
+        font-size: 20px;
+    }
+    .ganyingBox{
+        height: 1300px;
+    }
+    .ganying{
+        background: url(../images/ganying.png);
+        background-size: 100% 100%;
+        height: 980px;
+        padding-top: 730px;
+    }
+    .img-ganying{
+        margin-top: 60px;
+    }
+    .ganyingc1{
+        background-color: #409ce5;
+        height: 450px;
+        padding: 0px 20px;
+    }
+    .ganyingc1-t{
+        margin-top: 90px;
+        font-size: 20px;
+    }
+    .ganyingc1-h{
+        padding-top: 10px;
+        font-size: 16px;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:3;
+        overflow: hidden;
+    }
+    /*环保*/
+    .huanbaoBox{
+        /*background-color: rebeccapurple;*/
+        height: 750px;
+    }
+    .huanbao-T{
+        background: url(../images/huanbao.png);
+        background-size: 100% 100%;
+        height: 600px;
+        padding-top: 150px;
+    }
+    .huabao-C{
+        background: url(../images/huanbaoD.png);
+        background-size: 100% 100%;
+        height:300px;
+        padding-top: 100px;
+    }
+    .huabao-C1{
+        font-size: 20px;
+        height: 30px;
+    }
+    .huabao-C2{
+        font-size: 40px;
+    }
+    .team{
+        width: 150px;
+        height:150px;
+    }
+    .team-p{
+        width: 60%;
+        margin: auto;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:3;
+        overflow: hidden;
+        margin-bottom: 10px;
+        height: 80px;
+    }
+    /*服务轮播2*/
+    .swiper-button-next,
+    .swiper-button-prev {
+        position: absolute;
+        top: 40%;
+        width: 90px;
+        height: 90px;
+        margin-top: -22px;
+        z-index: 10;
+        cursor: pointer;
+        background-size: 27px 44px;
+        background-position: center;
+        background-repeat: no-repeat
+    }
+    .swiper-button-prev,
+    .swiper-container-rtl .swiper-button-next {
+        background:url(../images/wenhua-l.png) center no-repeat;
+        left: 10px;
+        background-size: 90px;
+        right: auto
+    }
+    .swiper-button-next,
+    .swiper-container-rtl .swiper-button-prev {
+        background: url(../images/wenhua-r.png) center no-repeat;
+        right: 10px;
+        background-size: 90px;
+        left: auto
+    }
+    .team{
+        width: 150px;
+        height: 150px;
+    }
+    .wenhua-img{
+        width: 332px;
+        height: 332px;
+    }
+    .environment{
+        height: 230px;
+    }
+    .list2{
+        height: 22px;
+        font-weight: 600;
+    }
+}
+@media screen and (min-width: 960px) and (max-width: 1199px) {
+    .headerlogo{
+        padding-top: 15px;
+        padding-left: 20px;
+        padding-bottom: 10px;
+    }
+    .header{
+        height: 85px;
+        background: black;
+    }
+    .navbar .navbar-t ul {
+        width: auto;
+        background-color: transparent;
+        margin: initial;
+        color: #222;
+        font-size: 22px !important;
+        margin-top: 10px;
+        padding-left: 0px !important;
+    }
+    .navbar-inverse .navbar-nav>li>a {
+        color: white;
+        text-align: center;
+        width: 155px !important;
+    }
+    #navbar{
+        /*margin-top: 10px;*/
+    }
+    .contact-tittle{
+        font-size: 20px;
+    }
+    .sanjiaoxing{
+        margin-bottom: 10px;
+    }
+    .contact-tittle{
+        margin-top: 20px;
+    }
+    .liaojie{
+        margin-top: 50px;
+        float: right;
+    }
+    .address{
+        background: url(../images/bc-address.png) 0 center no-repeat;
+        background-size: 80% 100%;
+        height: 450px;
+        margin:80px 0px 50px 0px;
+    }
+    .address-top{
+        position: absolute;
+        left: 3%;
+        top: 35%;
+        width: 74%;
+    }
+    .address-h{
+        font-size: 22px;
+    }
+    .address-c{
+        margin-top: 10px;
+        font-size: 16px;
+        line-height: 1.8em;
+    }
+    .phone{
+        background: url(../images/bc-phone.png) 0 center no-repeat;
+        background-size: 80% 100%;
+        height: 450px;
+        margin:80px 0px 50px 0px;
+    }
+    .banner6-T img{
+        margin-top: 20px;
+    }
+    .banner6-C{
+        margin-top: 20px;
+    }
+    .banner2-top{
+        margin-top: 20px;
+    }
+    .u-line1{
+        border-bottom: 2px solid #7bb852;
+    }
+    .copy{
+        margin: 20px 0px;
+    }
+    .list{
+        height: 240px;
+    }
+    .list2{
+        height: 20px;
+        font-size: 16px;
+    }
+    .list3{
+        font-size: 14px;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:4;
+        height: 130px;
+        overflow: hidden;
+        margin-top: 30px;
+    }
+    .suoyin{
+        margin-top: 10px;
+        font-size: 18px;
+    }
+    .paragraph{
+        margin-top: 20px;
+    }
+    .smart-title{
+        margin-top: 20px;
+        font-size: 20px;
+    }
+    .list1 img{
+        height: 210px;
+    }
+    .list5{
+        font-size: 30px;
+        margin-top: 60px;
+    }
+    .list6{
+        font-size: 20px;
+    }
+    .but-top,.but-bottom{
+        padding: 10px 30px;
+        margin: 30px 0px;
+    }
+    .but-top{
+        margin-right: 20px;
+    }
+    .yeshu.on{
+        color: white;
+        background-color:#7bb852 ;
+    }
+
+    .yeshu{
+        color: black;
+        background-color: #e5e5e5;
+        padding: 10px 10px;
+        margin-right: 20px;
+    }
+
+    .ganyingBox{
+        height: 850px;;
+    }
+    .ganying{
+        background: url(../images/ganying.png);
+        background-size: 100% 100%;
+        height: 550px;
+        padding-top: 400px;
+    }
+    .img-ganying{
+        margin-top: 20px;
+        width: 100px;
+        height: 100px;
+    }
+    .ganyingc1{
+        background-color: #409ce5;
+        height: 360px;
+        padding: 0px 20px;
+    }
+    .ganyingc1-t{
+        margin-top: 50px;
+        font-size: 20px;
+    }
+    .ganyingc1-h{
+        padding-top: 20px;
+        font-size: 16px;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:3;
+        overflow: hidden;
+    }
+    /*环保*/
+    .huanbaoBox{
+        /*background-color: rebeccapurple;*/
+        height: 650px;
+    }
+    .huanbao-T{
+        background: url(../images/huanbao.png);
+        background-size: 100% 100%;
+        height: 550px;
+        padding-top: 100px;
+    }
+    .huabao-C{
+        background: url(../images/huanbaoD.png);
+        background-size: 100% 100%;
+        height:300px;
+        padding-top: 100px;
+    }
+    .huabao-C1{
+        font-size: 20px;
+        height: 30px;
+    }
+    .huabao-C2{
+        font-size: 40px;
+    }
+    .team{
+        width: 120px;
+        height:120px;
+    }
+    .team-p{
+        width: 60%;
+        margin: auto;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:3;
+        overflow: hidden;
+        margin-bottom: 10px;
+        height: 80px;
+    }
+    .zhengwen{
+        margin-bottom: 40px;
+    }
+    /*服务轮播2*/
+    .swiper-button-next,
+    .swiper-button-prev {
+        position: absolute;
+        top: 40%;
+        width: 90px;
+        height: 90px;
+        margin-top: -22px;
+        z-index: 10;
+        cursor: pointer;
+        background-size: 27px 44px;
+        background-position: center;
+        background-repeat: no-repeat
+    }
+    .swiper-button-prev,
+    .swiper-container-rtl .swiper-button-next {
+        background:url(../images/wenhua-l.png) center no-repeat;
+        left: 10px;
+        background-size: 90px;
+        right: auto
+    }
+    .swiper-button-next,
+    .swiper-container-rtl .swiper-button-prev {
+        background: url(../images/wenhua-r.png) center no-repeat;
+        right: 10px;
+        background-size: 90px;
+        left: auto
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 959px) {
+    .headerlogo{
+        padding-top: 15px;
+        padding-left: 20px;
+        padding-bottom: 10px;
+    }
+    .header{
+        height:80px;
+        background: black;
+    }
+    .navbar .navbar-t ul {
+        width: auto;
+        background-color: transparent;
+        margin: initial;
+        color: #222;
+        font-size: 18px !important;
+        margin-top: 10px;
+        padding-left: 0px !important;
+    }
+    .navbar-inverse .navbar-nav>li>a {
+        color: white !important;
+        text-align: center;
+        width: 125px !important;
+    }
+    .navbar-inverse .navbar-nav>li>a
+    /*.header{*/
+        /*height: 80px;*/
+    /*}*/
+    /*.headerlogo{*/
+        /*margin-top: 9px;*/
+        /*width: 200px;*/
+        /*padding-left: 20px;*/
+        /*padding-bottom: 10px;*/
+    /*}*/
+    .navbar{
+        height: 100%;
+    }
+    /*.nav.navbar-nav{*/
+        /*margin-top: 15px !important;*/
+    /*}*/
+    .banner6-C{
+        margin-top: 10px;
+    }
+    .banner2-top{
+        margin-top: 20px;
+    }
+    .u-line1{
+        margin-top: 10px;
+        border-bottom: 2px solid #7bb852;
+    }
+    .u-line2{
+        margin-top: 10px;
+    }
+    .u-line3{
+        margin-top: 10px;
+    }
+    .suoyin{
+        margin-top: 20px;
+    }
+    .footer{
+        margin-top: 20px;
+    }
+    .contact-tittle{
+        margin-top: 10px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .sanjiaoxing{
+        margin-bottom: 20px;
+    }
+    .liaojie{
+        font-size: 16px;
+        margin-top: 50px;
+        float: right;
+    }
+    .banner6{
+        padding-top: 10px;
+    }
+    .paragraph{
+        margin-top: 20px;
+    }
+    .copy{
+        padding-bottom: 20px;
+    }
+    .smart-title{
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    .list{
+        height: 190px;
+    }
+    .list3{
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:4;
+        height: 100px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+    .list4{
+        margin-top: 50px;
+    }
+    .but-top{
+        padding: 5px 10px;
+        margin:20px 0px;
+        margin-right: 20px;
+    }
+    .but-bottom{
+        padding: 5px 10px;
+        margin:20px 0px;
+    }
+    .yeshu.on{
+        color: white;
+        background-color:#7bb852 ;
+    }
+    .yeshu{
+        color: black;
+        background-color: #e5e5e5;
+        padding: 1px 5px;
+        margin-right: 20px;
+    }
+    .address{
+        background: url(../images/bc-address.png) 0 center no-repeat;
+        background-size: 90% 100%;
+        height: 350px;
+        margin: 20px 0px 20px 0px;
+    }
+    .address-top{
+        position: absolute;
+        left: 14%;
+        top: 25%;
+        width: 60%;
+    }
+    .address-h{
+        margin-top: 30px;
+        font-size: 22px;
+    }
+    .address-c{
+        margin-top: 20px;
+        font-size: 16px;
+        line-height: 1.8em;
+    }
+    .phone{
+        background: url(../images/bc-phone.png) 0 center no-repeat;
+        background-size: 90% 100%;
+        height: 350px;
+        margin: 20px 0px 20px 0px;
+    }
+    .ganyingBox{
+        height: 780px;;
+    }
+    .ganying{
+        background: url(../images/ganying.png);
+        background-size: 100% 100%;
+        height: 500px;
+        padding-top: 350px;
+    }
+    .img-ganying{
+        margin-top: 20px;
+        width: 100px;
+        height: 100px;
+    }
+    .ganyingc1{
+        background-color: #409ce5;
+        height: 320px;
+        padding: 0px 20px;
+    }
+    .ganyingc1-t{
+        margin-top: 30px;
+        font-size: 20px;
+    }
+    .ganyingc1-h{
+        padding-top: 10px;
+        font-size: 16px;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:4;
+        overflow: hidden;
+    }
+    /*环保*/
+    .huanbaoBox{
+        /*background-color: rebeccapurple;*/
+        height: 550px;
+    }
+    .huanbao-T{
+        background: url(../images/huanbao.png);
+        background-size: 100% 100%;
+        height: 450px;
+        padding-top: 50px;
+    }
+    .huabao-C{
+        background: url(../images/huanbaoD.png);
+        background-size: 100% 100%;
+        height:300px;
+        padding-top: 120px;
+    }
+    .huabao-C1{
+        font-size: 18px;
+        height: 30px;
+    }
+    .huabao-C2{
+        font-size: 30px;
+    }
+    .team{
+        width: 100px;
+        height:100px;
+    }
+    .team-p{
+        width: 60%;
+        margin: auto;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:3;
+        overflow: hidden;
+        margin-bottom: 10px;
+        height: 80px;
+    }
+    /*服务轮播2*/
+    .swiper-button-next,
+    .swiper-button-prev {
+        position: absolute;
+        top: 40%;
+        width: 90px;
+        height: 90px;
+        margin-top: -40px;
+        z-index: 10;
+        cursor: pointer;
+        background-size: 27px 44px;
+        background-position: center;
+        background-repeat: no-repeat
+    }
+    .swiper-button-prev,
+    .swiper-container-rtl .swiper-button-next {
+        background:url(../images/wenhua-l.png) center no-repeat;
+        left: 10px;
+        background-size: 70px;
+        right: auto
+    }
+    .swiper-button-next,
+    .swiper-container-rtl .swiper-button-prev {
+        background: url(../images/wenhua-r.png) center no-repeat;
+        right: 10px;
+        background-size: 70px;
+        left: auto
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .header{
+        height: 50px;
+        /*background-color: red;*/
+    }
+    .headerlogo{
+        height: 35px;
+        margin-top: 9px;
+        padding-left: 20px;
+        font-size: 16px;
+    }
+    .navbar-header{
+        background-color: white;
+        height: 35px;
+    }
+    .swiper-pagination-bullet{
+        width: 30px;
+        height: 6px;
+    }
+    .swiper{
+        height: 200px;
+    }
+    .banner{
+        height: 100%;
+        width: 100%;
+    }
+    .navbar{
+        padding-top: 0px;
+    }
+    .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+        bottom: 15px !important;
+        left: 0;
+        width: 100%;
+    }
+    .swiper-pagination-bullet{
+        width: 40px !important;
+        height: 4px !important;
+    }
+    .banner2-top{
+        margin-top: 20px;
+    }
+    .banner6-T{
+        padding-top: 20px;
+        text-align: center;
+    }
+    .banner6{
+        padding-bottom: 10px;
+    }
+    .banner6-C{
+        padding-top: 20px;
+        text-align: center;
+    }
+    .copy{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 12px;
+    }
+    .u-line1{
+        width: 80px;
+        margin: auto;
+        text-align: center;
+        margin-top: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #7bb852;
+        font-size: 16px;
+    }
+    .u-line2{
+        width: 80px;
+        margin: auto;
+        text-align: center;
+        margin-top: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid  #ffa800;
+        font-size: 16px;
+    }
+    .u-line3{
+        width: 80px;
+        margin: auto;
+        text-align: center;
+        margin-top: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #409ce5;
+        font-size: 16px;
+    }
+    .bc-youshi{
+        margin-top: 20px;
+    }
+    .suoyin{
+        padding-left: 20px;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+    .zhashi{
+        text-align: center;
+    }
+    .zhashi h4{
+        margin-top: 10px;
+        text-align: center;
+    }
+    .zhashi img{
+        margin-top: 20px;
+    }
+
+    .banner6-T img{
+        height: 50px;
+    }
+    .contact-tittle{
+        margin-top: 10px;
+        font-size: 18px;
+    }
+    .sanjiaoxing{
+        width: 30px;
+        height: 16px;
+        margin-bottom: 10px;
+    }
+    .liaojie{
+        font-size: 16px;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 10px;
+        float: right;
+    }
+    .paragraph{
+        margin-top: 20px;
+    }
+    .informationD{
+        width: 100%;
+        height: 150px;
+    }
+    .but-top,.but-bottom{
+        padding: 5px 20px;
+        margin: 10px 0px;
+    }
+    .but-top{
+        margin-right: 20px;
+    }
+    .smart-title{
+        font-size: 20px;;
+        margin-top: 20px;
+        font-weight: 600;
+    }
+    .smart-text{
+        margin-top: 10px;
+        font-size: 16px;
+    }
+    .address{
+        background: url(../images/bc-address.png) 0 center no-repeat;
+        background-size: 100% 100%;
+        height: 380px;
+        margin: 20px 0px 20px 0px;
+        width: calc(100% - 20%);
+        margin-left: 10%;
+    }
+    .address-top{
+        position: absolute;
+        left: 23%;
+        top: 35%;
+        width: 60%;
+    }
+    .address-h{
+        font-size: 16px;
+    }
+    .address-c{
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 1.8em;
+    }
+    .phone{
+        background: url(../images/bc-phone.png) 0 center no-repeat;
+        background-size: 100% 100%;
+        height: 380px;
+        margin: 20px 0px 20px 0px;
+        width: calc(100% - 20%);
+        margin-left: 10%;
+    }
+    .list{
+        height: 120px;
+    }
+    .list1 img{
+        margin-top: 10px;
+    }
+    .list2{
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        font-size: 16px;
+    }
+    .list3{
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        font-size: 14px;
+    }
+    .list4{
+         margin-top: 15px;
+    }
+    .list6{
+        font-size: 12px;
+    }
+    .but-top,.but-bottom{
+        padding: 5px 10px;
+        margin: 10px 0px;
+    }
+    .but-top{
+        margin-right: 20px;
+    }
+    .yeshu.on{
+        color: white;
+        background-color:#7bb852 ;
+    }
+    .yeshu{
+        color: black;
+        background-color: #e5e5e5;
+        padding: 5px 10px;
+        margin-right: 20px;
+    }
+    .swiper-button-prev{
+        width: 50px;
+    }
+    .ganyingBox{
+        height: 1400px;
+    }
+    .ganying{
+        background: url(../images/ganying.png);
+        background-size: 100% 100%;
+        height: 300px;
+        padding-top: 200px;
+    }
+    .ganyingc1{
+        height: 350px;
+        padding: 0px 20px;
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 20px;
+    }
+    .img-ganying{
+        margin-top: 30px;
+    }
+    .ganyingc1-t{
+        margin-top: 15px;
+        font-size: 20px;
+    }
+    .ganyingc1-h{
+        padding-top: 10px;
+        font-size: 16px;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:4;
+        overflow: hidden;
+    }
+    /*环保*/
+    .huanbaoBox{
+        /*background-color: rebeccapurple;*/
+        height:450px;
+    }
+    .huanbao-T{
+        background: url(../images/huanbao.png);
+        background-size: 100% 100%;
+        height: 350px;
+        padding-top: 30px;;
+    }
+    .huabao-C{
+        background: url(../images/huanbaoD.png);
+        background-size: 100% 100%;
+        height:280px;
+        padding-top: 120px;
+    }
+    .huabao-C1{
+        font-size: 16px;
+        height: 38px;
+    }
+    .huabao-C2{
+        font-size: 25px;
+    }
+    .team{
+        width: 100px;
+        height:100px;
+    }
+    .team-p{
+        width: 60%;
+        margin: auto;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:3;
+        overflow: hidden;
+        margin-bottom: 10px;
+        height: 80px;
+    }
+    /*服务轮播2*/
+    .swiper-button-next,
+    .swiper-button-prev {
+        position: absolute;
+        top: 16%;
+        width: 90px;
+        height: 90px;
+        margin-top: -22px;
+        z-index: 10;
+        cursor: pointer;
+        background-size: 27px 44px;
+        background-position: center;
+        background-repeat: no-repeat
+    }
+    .swiper-button-prev,
+    .swiper-container-rtl .swiper-button-next {
+        background:url(../images/wenhua-l.png) center no-repeat;
+        left: -10px;
+        background-size: 30px;
+    }
+    .swiper-button-next,
+    .swiper-container-rtl .swiper-button-prev {
+        background: url(../images/wenhua-r.png) center no-repeat;
+        right: -10px;
+        background-size: 30px;
+    }
+    .environmentD{
+        margin-bottom: 20px;
+    }
+    .zhashi{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

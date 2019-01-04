@@ -1,0 +1,645 @@
+[ 2019-01-02T09:45:06+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393506 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T09:45:32+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393532 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T09:45:43+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393543 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T09:46:06+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393566 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T09:46:44+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393604 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-02T09:48:37+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393717 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-02T09:48:46+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393726 AND `status` <> 0 LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0070s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0070s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T09:49:06+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393746 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0140s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Array to string conversion G:\Littlewhale\Application\Api\Controller\InvoiceController.class.php 第 131 行.
+
+[ 2019-01-02T09:49:34+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393773 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-01-02T09:50:30+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393830 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T09:51:25+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393885 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+
+[ 2019-01-02T09:51:51+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393911 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0110s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-02T09:52:11+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546393931 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T09:58:28+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-02T10:00:11+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394411 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+
+[ 2019-01-02T10:00:49+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394449 AND `status` <> 0 LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T10:01:09+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394469 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T10:01:20+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394480 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T10:02:13+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394533 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-02T10:03:08+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394588 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-02T10:03:26+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394606 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T10:04:06+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394646 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0130s ]
+
+[ 2019-01-02T10:04:33+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0140s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394673 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-01-02T10:05:14+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394714 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0110s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-01-02T10:05:51+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0560s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394750 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-02T10:06:13+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394773 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0120s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0150s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0130s ]
+
+[ 2019-01-02T10:06:44+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394804 AND `status` <> 0 LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T10:06:56+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394816 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-02T10:07:37+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394857 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T10:07:50+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394870 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-02T10:08:15+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394894 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0110s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: * G:\Littlewhale\Application\Api\Controller\InvoiceController.class.php 第 131 行.
+
+[ 2019-01-02T10:08:59+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546394939 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T10:10:02+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546395002 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221653594' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0070s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221653594' LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T10:10:44+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546395044 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221651950' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221651950' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T10:11:47+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546395107 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221651950' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221651950' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T10:12:13+08:00 ] 127.0.0.1 /index.php/Api/Invoice/invoiceDetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546395133 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT `content`,`status`,`money`,`type`,`create_time`,`email` FROM `db_invoice` WHERE `o_id` = '201812221651950' AND `status` <> 9 ORDER BY update_time asc  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_invoice` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_invoice` WHERE `o_id` = '201812221651950' LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T15:34:46+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0150s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546414486 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid` FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T15:35:21+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546414521 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid` FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T15:35:44+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0140s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546414543 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid` FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-02T15:35:51+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546414551 AND `status` <> 0 LIMIT 1   [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0060s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid` FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0060s ]
+
+[ 2019-01-02T15:36:05+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546414564 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid` FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T15:36:32+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546414592 AND `status` <> 0 LIMIT 1   [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0060s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0050s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid` FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0050s ]
+
+[ 2019-01-02T15:36:39+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546414599 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid` FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-02T15:36:46+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546414605 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0070s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid` FROM `db_order` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'B00003' LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0060s ]
+SQL: INSERT INTO `db_order` (`m_id`,`w_id`,`orderid`,`o_type`,`w_type`,`create_time`,`mc_id`) VALUES ('91','2','XC201901021536331','1','1','1546414606','B00003') [ RunTime:0.0130s ]
+

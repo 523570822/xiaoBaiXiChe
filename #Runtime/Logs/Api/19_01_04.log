@@ -1,0 +1,987 @@
+[ 2019-01-04T11:09:53+08:00 ] 127.0.0.1 /index.php/Api/Sms/sendVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_member` WHERE `account` = '18538707602' AND `status` <> 9 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-04T11:12:16+08:00 ] 127.0.0.1 /index.php/Api/Sms/sendVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709520' AND `status` <> 9 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709520' AND `type` = 'register' LIMIT 1   [ RunTime:0.0100s ]
+SQL: INSERT INTO `db_sms` (`way`,`vc`,`times`,`expire_time`,`type`,`create_time`) VALUES ('13203709520','845347','1','1546572136','register','1546571536') [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_send_template` [ RunTime:0.0070s ]
+SQL: SELECT `id`,`type`,`subject`,`template`,`attachment`,`status` FROM `db_send_template` WHERE `unique_code` = 'register' AND `status` < 9 LIMIT 1   [ RunTime:0.0170s ]
+SQL: SHOW COLUMNS FROM `db_send_log` [ RunTime:0.0070s ]
+SQL: INSERT INTO `db_send_log` (`m_id`,`receiver`,`sender`,`content`,`type`,`template_id`,`create_time`,`attachment`,`status`) VALUES ('0','13203709520','0','欢迎您使用手机认证，您注册的动态密码为：845347，若非本人操作请忽略。10分钟内有效。','1','1','1546571536','','1') [ RunTime:0.0070s ]
+
+[ 2019-01-04T11:12:40+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 26 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709520' AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709520' AND `vc` = '845347' AND `type` = 'register' LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: error G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 60 行.
+SQL: INSERT INTO `db_member` (`account`,`salt`,`password`,`nickname`,`create_time`) VALUES ('13203709520','Gp7bGN','ad4d7c45c95c24ef636eb769bcf4042c','FpoiSb','1546571560') [ RunTime:0.0070s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=123780 ) LIMIT 1   [ RunTime:0.0060s ]
+SQL: UPDATE `db_member` SET `token`='fe004fa617e86592898005c4c2c1967d',`expired_time`='1547176360',`invite_code`='123780' WHERE `id` = 110 [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 74 行.
+SQL: SELECT `integral` FROM `db_member` WHERE `invite_code` = null LIMIT 1   [ RunTime:0.0070s ]
+SQL: SELECT `id` FROM `db_member` WHERE `parent_id` = 0 AND `integral` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 88 行.
+
+[ 2019-01-04T11:15:12+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 26 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709520' AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-04T11:15:17+08:00 ] 127.0.0.1 /index.php/Api/Sms/sendVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709521' AND `status` <> 9 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709521' AND `type` = 'register' LIMIT 1   [ RunTime:0.0070s ]
+SQL: INSERT INTO `db_sms` (`way`,`vc`,`times`,`expire_time`,`type`,`create_time`) VALUES ('13203709521','249505','1','1546572317','register','1546571717') [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_send_template` [ RunTime:0.0080s ]
+SQL: SELECT `id`,`type`,`subject`,`template`,`attachment`,`status` FROM `db_send_template` WHERE `unique_code` = 'register' AND `status` < 9 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_send_log` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_send_log` (`m_id`,`receiver`,`sender`,`content`,`type`,`template_id`,`create_time`,`attachment`,`status`) VALUES ('0','13203709521','0','欢迎您使用手机认证，您注册的动态密码为：249505，若非本人操作请忽略。10分钟内有效。','1','1','1546571717','','1') [ RunTime:0.0060s ]
+
+[ 2019-01-04T11:15:29+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 26 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709521' AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709521' AND `vc` = '249505' AND `type` = 'register' LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: error G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 60 行.
+SQL: INSERT INTO `db_member` (`account`,`salt`,`password`,`nickname`,`create_time`) VALUES ('13203709521','H3XheX','203e122fee365fee98ae0d6d4d06f0ea','XT9QUX','1546571729') [ RunTime:0.0080s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=356789 ) LIMIT 1   [ RunTime:0.0080s ]
+SQL: UPDATE `db_member` SET `token`='a949d8d082b723a1a4e4b07b2f9dfc72',`expired_time`='1547176529',`invite_code`='356789' WHERE `id` = 111 [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 74 行.
+SQL: SELECT `integral` FROM `db_member` WHERE `invite_code` = null LIMIT 1   [ RunTime:0.0070s ]
+SQL: SELECT `id` FROM `db_member` WHERE `parent_id` = 0 AND `integral` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 88 行.
+
+[ 2019-01-04T11:16:47+08:00 ] 127.0.0.1 /index.php/Api/Sms/sendVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709524' AND `status` <> 9 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709524' AND `type` = 'register' LIMIT 1   [ RunTime:0.0070s ]
+SQL: INSERT INTO `db_sms` (`way`,`vc`,`times`,`expire_time`,`type`,`create_time`) VALUES ('13203709524','925172','1','1546572407','register','1546571807') [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_send_template` [ RunTime:0.0090s ]
+SQL: SELECT `id`,`type`,`subject`,`template`,`attachment`,`status` FROM `db_send_template` WHERE `unique_code` = 'register' AND `status` < 9 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_send_log` [ RunTime:0.0070s ]
+SQL: INSERT INTO `db_send_log` (`m_id`,`receiver`,`sender`,`content`,`type`,`template_id`,`create_time`,`attachment`,`status`) VALUES ('0','13203709524','0','欢迎您使用手机认证，您注册的动态密码为：925172，若非本人操作请忽略。10分钟内有效。','1','1','1546571807','','1') [ RunTime:0.0090s ]
+
+[ 2019-01-04T11:17:05+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 26 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709524' AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709524' AND `vc` = '925172' AND `type` = 'register' LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: error G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 60 行.
+SQL: INSERT INTO `db_member` (`account`,`salt`,`password`,`nickname`,`create_time`) VALUES ('13203709524','WnphZD','e8f68ee26279b57d9408cef0c51a275b','JYX0ar','1546571825') [ RunTime:0.0110s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=346789 ) LIMIT 1   [ RunTime:0.0090s ]
+SQL: UPDATE `db_member` SET `token`='8793be1dc4cf061c2690151a500dcbb5',`expired_time`='1547176625',`invite_code`='346789' WHERE `id` = 112 [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 74 行.
+SQL: SELECT `integral` FROM `db_member` WHERE `invite_code` = null LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT `id` FROM `db_member` WHERE `parent_id` = 0 AND `integral` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: invite_code G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 88 行.
+
+[ 2019-01-04T11:33:21+08:00 ] 127.0.0.1 /index.php/Api/Sms/sendVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709522' AND `status` <> 9 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709522' AND `type` = 'register' LIMIT 1   [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_sms` (`way`,`vc`,`times`,`expire_time`,`type`,`create_time`) VALUES ('13203709522','984654','1','1546573401','register','1546572801') [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_send_template` [ RunTime:0.0080s ]
+SQL: SELECT `id`,`type`,`subject`,`template`,`attachment`,`status` FROM `db_send_template` WHERE `unique_code` = 'register' AND `status` < 9 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_send_log` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_send_log` (`m_id`,`receiver`,`sender`,`content`,`type`,`template_id`,`create_time`,`attachment`,`status`) VALUES ('0','13203709522','0','欢迎您使用手机认证，您注册的动态密码为：984654，若非本人操作请忽略。10分钟内有效。','1','1','1546572801','','1') [ RunTime:0.0080s ]
+
+[ 2019-01-04T11:33:37+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709522' AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709522' AND `vc` = '984654' AND `type` = 'register' LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: error G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 60 行.
+SQL: INSERT INTO `db_member` (`account`,`salt`,`password`,`nickname`,`create_time`) VALUES ('13203709522','nfmMxe','3d27fb6f01767038af701af044a14843','uPqc6a','1546572817') [ RunTime:0.0080s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=234689 ) LIMIT 1   [ RunTime:0.0070s ]
+SQL: UPDATE `db_member` SET `token`='1fa405b5a0e68939351679754699ecf5',`expired_time`='1547177617',`invite_code`='234689' WHERE `id` = 113 [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+SQL: SELECT `integral` FROM `db_member` WHERE `invite_code` = '' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT `id` FROM `db_member` WHERE `parent_id` = 0 AND `integral` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-04T11:46:32+08:00 ] 127.0.0.1 /index.php/Api/Sms/sendVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203700000' AND `status` <> 9 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203700000' AND `type` = 'register' LIMIT 1   [ RunTime:0.0060s ]
+SQL: INSERT INTO `db_sms` (`way`,`vc`,`times`,`expire_time`,`type`,`create_time`) VALUES ('13203700000','058500','1','1546574192','register','1546573592') [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_send_template` [ RunTime:0.0080s ]
+SQL: SELECT `id`,`type`,`subject`,`template`,`attachment`,`status` FROM `db_send_template` WHERE `unique_code` = 'register' AND `status` < 9 LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_send_log` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_send_log` (`m_id`,`receiver`,`sender`,`content`,`type`,`template_id`,`create_time`,`attachment`,`status`) VALUES ('0','13203700000','0','欢迎您使用手机认证，您注册的动态密码为：058500，若非本人操作请忽略。10分钟内有效。','1','1','1546573592','','1') [ RunTime:0.0080s ]
+
+[ 2019-01-04T11:46:49+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203700000' AND `status` = 1 LIMIT 1   [ RunTime:0.0130s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203700000' AND `vc` = '058500' AND `type` = 'register' LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: error G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 60 行.
+SQL: INSERT INTO `db_member` (`account`,`salt`,`password`,`nickname`,`create_time`) VALUES ('13203700000','u3PhN7','1f751b24745d098fdce9ceba56530183','qc7CiI','1546573609') [ RunTime:0.0090s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=126789 ) LIMIT 1   [ RunTime:0.0070s ]
+SQL: UPDATE `db_member` SET `token`='915afb36d6d77502f4d382b84dadf976',`expired_time`='1547178409',`invite_code`='126789' WHERE `id` = 114 [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+SQL: SELECT `integral` FROM `db_member` WHERE `invite_code` = '' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT `id` FROM `db_member` WHERE `parent_id` = 0 AND `integral` = 1 LIMIT 1   [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-04T11:56:00+08:00 ] 127.0.0.1 /index.php/Api/Sms/sendVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `account` = '18545678911' AND `status` <> 9 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '18545678911' AND `type` = 'register' LIMIT 1   [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_sms` (`way`,`vc`,`times`,`expire_time`,`type`,`create_time`) VALUES ('18545678911','245297','1','1546574760','register','1546574160') [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_send_template` [ RunTime:0.0090s ]
+SQL: SELECT `id`,`type`,`subject`,`template`,`attachment`,`status` FROM `db_send_template` WHERE `unique_code` = 'register' AND `status` < 9 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_send_log` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_send_log` (`m_id`,`receiver`,`sender`,`content`,`type`,`template_id`,`create_time`,`attachment`,`status`) VALUES ('0','18545678911','0','欢迎您使用手机认证，您注册的动态密码为：245297，若非本人操作请忽略。10分钟内有效。','1','1','1546574160','','1') [ RunTime:0.0070s ]
+
+[ 2019-01-04T11:56:16+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = 'account' AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-04T11:56:27+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = 'account' AND `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-04T11:56:40+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = 'account' AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-04T11:56:48+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = 'account' AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-04T11:57:47+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = 'account' AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-04T11:57:49+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = 'account' AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-04T11:58:01+08:00 ] 127.0.0.1 /index.php/Api/Sms/sendVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709500' AND `status` <> 9 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709500' AND `type` = 'register' LIMIT 1   [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_sms` (`way`,`vc`,`times`,`expire_time`,`type`,`create_time`) VALUES ('13203709500','627551','1','1546574881','register','1546574281') [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_send_template` [ RunTime:0.0080s ]
+SQL: SELECT `id`,`type`,`subject`,`template`,`attachment`,`status` FROM `db_send_template` WHERE `unique_code` = 'register' AND `status` < 9 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_send_log` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_send_log` (`m_id`,`receiver`,`sender`,`content`,`type`,`template_id`,`create_time`,`attachment`,`status`) VALUES ('0','13203709500','0','欢迎您使用手机认证，您注册的动态密码为：627551，若非本人操作请忽略。10分钟内有效。','1','1','1546574281','','1') [ RunTime:0.0080s ]
+
+[ 2019-01-04T11:58:16+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709500' AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=invite_code ) LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+SQL: SELECT `id` FROM `db_member` WHERE `invite_code` = 'invite_code' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709500' AND `vc` = '058500' AND `type` = 'register' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-04T11:58:35+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709500' AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=invite_code ) LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+SQL: SELECT `id` FROM `db_member` WHERE `invite_code` = 'invite_code' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709500' AND `vc` = '627551' AND `type` = 'register' LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: error G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 60 行.
+SQL: INSERT INTO `db_member` (`account`,`salt`,`password`,`nickname`,`create_time`) VALUES ('13203709500','cLRIHV','2d959e44c6cc4c92e5e8c39065d9e4e4','rOyO6r','1546574315') [ RunTime:0.0100s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=236790 ) LIMIT 1   [ RunTime:0.0080s ]
+SQL: UPDATE `db_member` SET `token`='17bc7941714c1aa6b8729a9981d1d030',`expired_time`='1547179115',`invite_code`='236790' WHERE `id` = 115 [ RunTime:0.0100s ]
+SQL: SELECT `integral` FROM `db_member` WHERE `invite_code` = 'invite_code' LIMIT 1   [ RunTime:0.0070s ]
+SQL: SELECT `id` FROM `db_member` WHERE `parent_id` = null AND `integral` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=invite_code ) LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_member` WHERE ( invite_code=invite_code ) LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_integral_log` WHERE ( s_id=115 ) LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_appsetting` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_appsetting` LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fenxiang_guige G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 570 行.
+SQL: INSERT INTO `db_integral_log` (`m_id`,`s_id`,`create_time`,`desc`) VALUES ('110','115','1546574315','邀请好友获得积分') [ RunTime:0.0240s ]
+SQL: SELECT * FROM `db_member` WHERE ( invite_code=invite_code ) LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-01-04T12:13:15+08:00 ] 127.0.0.1 /index.php/Api/Sms/sendVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709311' AND `status` <> 9 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709311' AND `type` = 'register' LIMIT 1   [ RunTime:0.0070s ]
+SQL: INSERT INTO `db_sms` (`way`,`vc`,`times`,`expire_time`,`type`,`create_time`) VALUES ('13203709311','321811','1','1546575795','register','1546575195') [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_send_template` [ RunTime:0.0070s ]
+SQL: SELECT `id`,`type`,`subject`,`template`,`attachment`,`status` FROM `db_send_template` WHERE `unique_code` = 'register' AND `status` < 9 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_send_log` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_send_log` (`m_id`,`receiver`,`sender`,`content`,`type`,`template_id`,`create_time`,`attachment`,`status`) VALUES ('0','13203709311','0','欢迎您使用手机认证，您注册的动态密码为：321811，若非本人操作请忽略。10分钟内有效。','1','1','1546575195','','1') [ RunTime:0.0070s ]
+
+[ 2019-01-04T12:13:29+08:00 ] 127.0.0.1 /index.php/Api/Member/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '13203709311' AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=invite_code ) LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+SQL: SELECT `id` FROM `db_member` WHERE `invite_code` = 'invite_code' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_sms` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_sms` WHERE `way` = '13203709311' AND `vc` = '321811' AND `type` = 'register' LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: error G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 60 行.
+SQL: INSERT INTO `db_member` (`account`,`salt`,`password`,`nickname`,`create_time`) VALUES ('13203709311','YDGMeQ','d37520965da02935dbffa515f62c684b','thbtIu','1546575209') [ RunTime:0.0080s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=135689 ) LIMIT 1   [ RunTime:0.0070s ]
+SQL: UPDATE `db_member` SET `token`='881b2a66a5f127242d40d54268529326',`expired_time`='1547180009',`invite_code`='135689' WHERE `id` = 116 [ RunTime:0.0070s ]
+SQL: SELECT `integral` FROM `db_member` WHERE `invite_code` = 'invite_code' LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: m_id G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 78 行.
+SQL: SELECT `id` FROM `db_member` WHERE `parent_id` = null AND `integral` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT `id` FROM `db_member` WHERE ( invite_code=invite_code ) LIMIT 1   [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_member` WHERE ( invite_code=invite_code ) LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_integral_log` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_integral_log` WHERE ( s_id=116 ) LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_appsetting` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_appsetting` LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fenxiang_guige G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 570 行.
+SQL: INSERT INTO `db_integral_log` (`m_id`,`s_id`,`create_time`,`desc`) VALUES ('110','116','1546575209','邀请好友获得积分') [ RunTime:0.0230s ]
+SQL: SELECT * FROM `db_member` WHERE ( invite_code=invite_code ) LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-04T13:22:31+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546579351 AND `status` <> 0 LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 21 行.
+
+[ 2019-01-04T13:22:45+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+
+[ 2019-01-04T13:22:51+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546579371 AND `status` <> 0 LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 21 行.
+
+[ 2019-01-04T14:17:22+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546582642 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 21 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T14:21:11+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546582871 AND `status` <> 0 LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 21 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T14:22:04+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546582924 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 21 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T14:22:14+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546582934 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 21 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T14:22:43+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546582963 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 21 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T14:22:55+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546582975 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'C00003' LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined variable: php_errormsg G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 31 行.
+
+[ 2019-01-04T14:23:03+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546582983 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'B00003' LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_feedback` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_feedback` (`mc_id`,`pro_id`,`content`,`m_id`,`create_time`) VALUES ('0','1','11111','91','1546582983') [ RunTime:0.0200s ]
+
+[ 2019-01-04T14:24:09+08:00 ] 127.0.0.1 /index.php/Api/Feedback/submit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546583049 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'B00003' LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_feedback` [ RunTime:0.0070s ]
+SQL: INSERT INTO `db_feedback` (`mc_id`,`pro_id`,`content`,`m_id`,`create_time`) VALUES ('B00003','1','11111','91','1546583049') [ RunTime:0.0200s ]
+
+[ 2019-01-04T14:58:56+08:00 ] 127.0.0.1 /index.php/Api/Feedback/problem
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_problem` [ RunTime:0.0080s ]
+ERR: Think\Model:queryList方法不存在！
+
+[ 2019-01-04T14:59:48+08:00 ] 127.0.0.1 /index.php/Api/Feedback/problem
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_problem` [ RunTime:0.0080s ]
+
+[ 2019-01-04T15:02:53+08:00 ] 127.0.0.1 /index.php/Api/Feedback/problem
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_problem` [ RunTime:0.0060s ]
+
+[ 2019-01-04T15:03:12+08:00 ] 127.0.0.1 /index.php/Api/Feedback/problem
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_problem` [ RunTime:0.0080s ]
+SQL: SELECT `id`,`content` FROM `db_problem` WHERE `status` = 1  [ RunTime:0.0070s ]
+
+[ 2019-01-04T15:06:32+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:07:02+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546585622 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:07:06+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:07:20+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:07:39+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:07:48+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:08:18+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:08:18+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:08:19+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:08:19+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:08:27+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 25 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:10:13+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+
+[ 2019-01-04T15:10:15+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+
+[ 2019-01-04T15:10:33+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+
+[ 2019-01-04T15:10:40+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546585840 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 27 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:10:45+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546585845 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 27 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:10:52+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546585852 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: content G:\Littlewhale\Application\Api\Controller\FeedbackController.class.php 第 27 行.
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T15:12:12+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+
+[ 2019-01-04T15:13:16+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546585996 AND `status` <> 0 LIMIT 1   [ RunTime:0.0170s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0190s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'B00003' LIMIT 1   [ RunTime:0.0230s ]
+SQL: SHOW COLUMNS FROM `db_feedback` [ RunTime:0.0230s ]
+SQL: INSERT INTO `db_feedback` (`mc_id`,`pro_id`,`content`,`m_id`,`create_time`) VALUES ('B00003','1','222','91','1546585996') [ RunTime:0.0190s ]
+
+[ 2019-01-04T15:14:32+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546586072 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'B00003' LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2048] Non-static method Common\Api\UploadPicApi::_returnSetting() should not be called statically G:\Littlewhale\Application\Common\Api\UploadPicApi.class.php 第 99 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given G:\Littlewhale\ThinkPHP\Library\Think\Upload.class.php 第 171 行.
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_file` (`name`,`size`,`ext`,`savepath`,`path`) VALUES ('登录-微信@3x.png','5582','png','Feedback/2019-01-04/','Feedback/2019-01-04/5c2f07d865c98.png') [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_feedback` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_feedback` (`mc_id`,`pro_id`,`content`,`m_id`,`create_time`,`pic_id`) VALUES ('B00003','1','222','91','1546586072','221') [ RunTime:0.0210s ]
+
+[ 2019-01-04T15:15:18+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546586117 AND `status` <> 0 LIMIT 1   [ RunTime:0.0120s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0190s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'B00003' LIMIT 1   [ RunTime:0.0150s ]
+NOTIC: [2048] Non-static method Common\Api\UploadPicApi::_returnSetting() should not be called statically G:\Littlewhale\Application\Common\Api\UploadPicApi.class.php 第 99 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given G:\Littlewhale\ThinkPHP\Library\Think\Upload.class.php 第 171 行.
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0110s ]
+SQL: INSERT INTO `db_file` (`name`,`size`,`ext`,`savepath`,`path`) VALUES ('登录-新浪@3x.png','5967','png','Feedback/2019-01-04/','Feedback/2019-01-04/5c2f080614264.png') [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_feedback` [ RunTime:0.0100s ]
+SQL: INSERT INTO `db_feedback` (`mc_id`,`pro_id`,`content`,`m_id`,`create_time`,`pic_id`) VALUES ('B00003','1','222','91','1546586118','222') [ RunTime:0.0230s ]
+
+[ 2019-01-04T15:23:12+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0160s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546586592 AND `status` <> 0 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'B00003' LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2048] Non-static method Common\Api\UploadPicApi::_returnSetting() should not be called statically G:\Littlewhale\Application\Common\Api\UploadPicApi.class.php 第 99 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given G:\Littlewhale\ThinkPHP\Library\Think\Upload.class.php 第 171 行.
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0140s ]
+SQL: INSERT INTO `db_file` (`name`,`size`,`ext`,`savepath`,`path`) VALUES ('登录-新浪@3x.png','5967','png','Feedback/2019-01-04/','Feedback/2019-01-04/5c2f09e0ce777.png') [ RunTime:0.0130s ]
+
+[ 2019-01-04T15:29:03+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546586943 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'B00003' LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2048] Non-static method Common\Api\UploadPicApi::_returnSetting() should not be called statically G:\Littlewhale\Application\Common\Api\UploadPicApi.class.php 第 99 行.
+NOTIC: [8] Undefined offset: 0 G:\Littlewhale\ThinkPHP\Library\Think\Upload.class.php 第 237 行.
+NOTIC: [8] Undefined offset: 0 G:\Littlewhale\ThinkPHP\Library\Think\Upload.class.php 第 237 行.
+NOTIC: [8] Undefined offset: 0 G:\Littlewhale\ThinkPHP\Library\Think\Upload.class.php 第 237 行.
+NOTIC: [8] Undefined offset: 0 G:\Littlewhale\ThinkPHP\Library\Think\Upload.class.php 第 237 行.
+NOTIC: [8] Undefined offset: 0 G:\Littlewhale\ThinkPHP\Library\Think\Upload.class.php 第 237 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given G:\Littlewhale\ThinkPHP\Library\Think\Upload.class.php 第 171 行.
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0100s ]
+SQL: INSERT INTO `db_file` (`name`,`size`,`ext`,`savepath`,`path`) VALUES ('登录-LOGO@3x.png','11239','png','Feedback/2019-01-04/','Feedback/2019-01-04/5c2f0b3f40a1a.png') [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_feedback` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_feedback` (`mc_id`,`pro_id`,`content`,`m_id`,`create_time`,`pic_id`) VALUES ('B00003','1','222','91','1546586943','224') [ RunTime:0.0150s ]
+
+[ 2019-01-04T16:08:26+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546589306 AND `status` <> 0 LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T16:08:31+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546589311 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T16:08:37+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546589317 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-04T16:08:41+08:00 ] 127.0.0.1 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546589320 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'B00003' LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_feedback` [ RunTime:0.0070s ]
+SQL: INSERT INTO `db_feedback` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('B00003','1','11111','18538707602','91','1546589321') [ RunTime:0.0130s ]
+
