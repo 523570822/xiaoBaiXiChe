@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鲸洗车分享</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <script type="text/javascript" src="__INTJS__/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="__INTJS__/mui.min.js"></script>
+    <link rel="stylesheet" href="__INTCSS__/style.css">
+    <link rel="stylesheet" href="__INTCSS__/mui.css"/>
+    <style>
+        html, body {
+            background: url(__INT__/bc.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+
+        .form-group input.phone {
+            background: url(__INT__/shouji.png) 16px center no-repeat;
+            background-size: 25px;
+        }
+
+        .form-group input.zhuce {
+            background: url(__INT__/zhuce.png) 16px center no-repeat;
+            background-size: 25px;
+        }
+
+        .form-group input.mima {
+            background: url(__INT__/mima.png) 16px center no-repeat;
+            background-size: 25px;
+        }
+
+        .form-sub {
+            margin-top: 28px;
+            text-align: center;
+            margin-bottom: 120px;
+        }
+    </style>
+</head>
+<body>
+<div class="bc">
+    <div class="logo text-c" style="">
+        <img src="__INT__/logo.png" class="img-logo"/>
+    </div>
+    <div class="logo text-c" style="">
+        <div style="color: #fcf1f1; font-size: 20px;">
+            <if condition=" $code eq 0">请登录获取邀请码
+                <else/>
+                邀请码: {$code}
+                <div style="color: #fcf1f1; font-size: 15px;">请复制</div>
+            </if>
+        </div>
+        <input type="hidden" value="{$code}" id="invite_code" name="invite_code" class="invite_code">
+    </div>
+
+    <div class="form text-c">
+        <div class="form-group">
+            <input class="input_css" type="number" name="account" id="account" placeholder="请输入手机号">
+        </div>
+        <div class="form-group position-re">
+            <input placeholder="请输入验证码" class="input_css" type="number" name="verify" id="verify">
+            <button class="verify" type="1">获取验证码</button>
+        </div>
+        <div class="form-group">
+            <input placeholder="请输入密码（至少6位）" class="input_css" type="password" name="password" id="passwrod">
+        </div>
+        <div class="form-group">
+            <input placeholder="请再次确认密码" class="input_css" type="password" name="repassword" id="repassword">
+        </div>
+        <div class="form-sub">
+            <input type="submit" class="submits" style="background: dodgerblue ;border: 1px solid blue;">
+        </div>
+    </div>
+    <div class="" style="height: 100px;"></div>
+</div>
+<script>
+    $(function () {
+        setTimeout(colors(), 3000);
+    })
+
+    function colors() {
+        $(".invite_code").css('color', 'white !important')
+    }
+
+    $(".verify").click(function () {
+        var type = $(".verify").attr('type');
+        if (type == 1) {
+            var account = $("#account").val()
+            if (!(/^1[3|4|5|7|8][0-9]\d{8}$/.test(account))) {
+                mui.alert('请您填写正确的手机号', '温馨提示', '确定', function () {
+                }, 'div');
+                return false;
+            }
+            $(".verify").attr('type', '2');
+            timeCount(60)
+            var URls = "{:U('Api/Sms/sendVerify')}";
+            var datas = {
+                account: account,
+                send_type: 'register'
+            }
+            requestUrl(URls, datas, '', function (ress) {
+                if (ress.code == '0') {
+                    mui.alert(ress.message, '温馨提示');
+                }
+            })
+        }
+    })
+
+    function timeCount(s) {
+        $('.verify').css('width', '35%');
+        $('.verify').text(s + '秒后重新获取');
+        s = s - 1;
+        if (s >= 0) {
+            setTimeout("timeCount(" + s + ")", 1000);
+        } else {
+            $('.verify').text('获取验证码');
+            $(".verify").attr('type', '1');
+            $('.verify').css('width', '30%');
+        }
+    }
+
+    function requestUrl(URL, DATA, TOKEN, CALLBACK, TYPE, DATATYPE) {
+        if (!URL) return;
+        if (!TYPE) TYPE = "post";
+        if (!DATATYPE) DATATYPE = "json";
+        $.ajax({
+            "url": URL,
+            "data": DATA,
+            "headers": {
+                "token": TOKEN,
+                'Access-Control-Allow-Origin': '*'
+            },
+            "dataType": DATATYPE,
+            "type": TYPE,
+            "success": function (res) {
+                if (res.code == "-1") {
+                    location.href = "/index.php?m=Wap&c=Login&a=pwdLogin";
+                }
+                if (typeof CALLBACK == 'function') {
+                    CALLBACK(res);
+                }
+            }
+        });
+    }
+
+    $(".submits").click(function () {
+        var account = $("#account").val()
+        var verify = $("#verify").val()
+        var password = $("#passwrod").val()
+        var repassword = $("#repassword").val()
+        var invite_code = $("#invite_code").val()
+        if (!(/^1[3|4|5|7|8][0-9]\d{8}$/.test(account))) {
+            mui.alert('请您填写正确的手机号', '温馨提示', '确定', function () {
+            }, 'div');
+            return false;
+        }
+        if (verify == '') {
+            mui.alert('请您填写验证码', '温馨提示', '确定', function () {
+            }, 'div');
+            return false;
+        }
+        if (password == '') {
+            mui.alert('请您填写密码', '温馨提示', '确定', function () {
+            }, 'div');
+            return false;
+        }
+        if (repassword == '') {
+            mui.alert('请您确认密码', '温馨提示', '确定', function () {
+            }, 'div');
+            return false;
+        }
+
+        var URls = "{:U('Api/Member/register')}";
+        var datas = {
+            account: account,
+            verify: verify,
+            password: password,
+            repassword: repassword,
+            invite_code: 'invite_code',
+            send_type: 'register'
+        }
+        requestUrl(URls, datas, '', function (ress) {
+            if (ress.code == '0') {
+                mui.alert(ress.message, '温馨提示');
+            } else {
+                mui.alert('恭喜您注册成功，点击确定跳转到下载页', '温馨提示', '确定', function () {
+                    window.location.href = "{:U('Integral/success')}";
+                }, 'div');
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -7,9 +7,12 @@ $config = array(
     'DB_FIELD_CACHE'     => false,
     'API_URL'=>"http://".$_SERVER['HTTP_HOST'],
     'TMPL_PARSE_STRING' =>  array(
-        '__CSS__'=>'/Public/Home/css',
-        '__IMG__'=>'/Public/Home/image',
-        '__JS__'=>'/Public/Home/js',
+        '__IND__'=>'/Public/Index/img',
+        '__INDCSS__'=>'/Public/Index/css',
+        '__INDJS__'=>'/Public/Index/js',
+        '__INTCSS__'=>'/Public/Integral/css',
+        '__INT__'=>'/Public/Integral/images',
+        '__INTJS__'=>'/Public/Integral/js',
     ),
 
 );

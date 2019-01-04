@@ -5,15 +5,15 @@ use Common\Service\ControllerService;
 class IndexController extends BaseController {
 
     public function index(){
-
-        $rule = array(
-            array('email', 'email', '请输入邮箱'),
-            array('phone', 'phone', '请输入手机号'),
-            array('idcard', 'string#isIdcard', '输入正确的身份证号')
-        );
-
-        echo '<meta charset="utf8">';
-        $this->checkParam($rule);
+        $this->display('index');
+//        $rule = array(
+//            array('email', 'email', '请输入邮箱'),
+//            array('phone', 'phone', '请输入手机号'),
+//            array('idcard', 'string#isIdcard', '输入正确的身份证号')
+//        );
+//
+//        echo '<meta charset="utf8">';
+//        $this->checkParam($rule);
 //        $rule = array(
 //            'id|string#is_string|请输入ID',
 //            'username|string|请输入用户名',
