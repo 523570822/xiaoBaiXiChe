@@ -1,0 +1,274 @@
+[ 2019-01-05T11:58:00+08:00 ] 101.201.252.128 /index.php/Api/Feedback/aboutUs
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000085s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000065s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000116s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0008s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 229 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2019-01-05T12:00:06+08:00 ] 101.201.252.128 /index.php/Api/Invoice/invoiceRlue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000082s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000077s ]
+SQL: SHOW COLUMNS FROM `db_article` [ RunTime:0.0007s ]
+SQL: SELECT `title`,`content` FROM `db_article` WHERE `id` = 1 AND `status` = 1 AND `sort` = 1 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2019-01-05T13:05:49+08:00 ] 101.201.252.128 /index.php/Api/Feedback/problem
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000091s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000050s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000104s ]
+SQL: SHOW COLUMNS FROM `db_problem` [ RunTime:0.0005s ]
+SQL: SELECT `id`,`content` FROM `db_problem` WHERE `status` = 1  [ RunTime:0.0003s ]
+
+[ 2019-01-05T13:08:16+08:00 ] 101.201.252.128 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000082s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000081s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000131s ]
+NOTIC: [8] Undefined index: token /home/wwwroot/Littlewhale.txunda.com/Application/Api/Controller/BaseController.class.php 第 26 行.
+
+[ 2019-01-05T13:08:29+08:00 ] 101.201.252.128 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000083s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000069s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546664909 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+NOTIC: [8] Undefined index: mc_id /home/wwwroot/Littlewhale.txunda.com/Application/Api/Controller/FeedbackController.class.php 第 38 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_feedback` [ RunTime:0.0005s ]
+SQL: INSERT INTO `db_feedback` (`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('1','一般','18538707602','91','1546664909') [ RunTime:0.0070s ]
+
+[ 2019-01-05T13:40:46+08:00 ] 101.201.252.128 /index.php/Api/Feedback/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000085s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000049s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000098s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546666846 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+NOTIC: [8] Undefined index: mc_id /home/wwwroot/Littlewhale.txunda.com/Application/Api/Controller/FeedbackController.class.php 第 38 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `db_feedback` [ RunTime:0.0004s ]
+SQL: INSERT INTO `db_feedback` (`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('4','软件闪退','18538707602','91','1546666846') [ RunTime:0.0066s ]
+
+[ 2019-01-05T13:43:34+08:00 ] 101.201.252.128 /index.php/Api/Fault/issue?=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000118s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000067s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000105s ]
+ERR: 无法加载控制器:Fault
+
+[ 2019-01-05T13:45:16+08:00 ] 101.201.252.128 /index.php/Api/Fault/issue?=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000097s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000057s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000132s ]
+SQL: SHOW COLUMNS FROM `db_problem` [ RunTime:0.0007s ]
+SQL: SELECT `id`,`content` FROM `db_problem` WHERE `status` = 1 AND `type` = 2 ORDER BY sort asc  [ RunTime:0.0004s ]
+
+[ 2019-01-05T13:45:55+08:00 ] 101.201.252.128 /index.php/Api/Feedback/problem
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000070s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000032s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000068s ]
+SQL: SHOW COLUMNS FROM `db_problem` [ RunTime:0.0005s ]
+SQL: SELECT `id`,`content` FROM `db_problem` WHERE `status` = 1 AND `type` = 1 ORDER BY sort asc  [ RunTime:0.0003s ]
+
+[ 2019-01-05T13:51:40+08:00 ] 101.201.252.128 /index.php/Api/Fault/fault
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000080s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000086s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546667500 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0004s ]
+SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`pic_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','','洗车枪损坏','18538707602','91','1546667500') [ RunTime:0.0065s ]
+
+[ 2019-01-05T13:52:16+08:00 ] 101.201.252.128 /index.php/Api/Fault/issue?该接口无需传参
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000098s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000069s ]
+SQL: SHOW COLUMNS FROM `db_problem` [ RunTime:0.0004s ]
+SQL: SELECT `id`,`content` FROM `db_problem` WHERE `status` = 1 AND `type` = 2 ORDER BY sort asc  [ RunTime:0.0001s ]
+
+[ 2019-01-05T13:53:22+08:00 ] 101.201.252.128 /index.php/Api/Fault/fault
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000085s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000057s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000107s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546667602 AND `status` <> 0 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0005s ]
+SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','洗车机损坏','18538707602','91','1546667602') [ RunTime:0.0065s ]
+
+[ 2019-01-05T13:56:02+08:00 ] 101.201.252.128 /index.php/Api/Fault/fault
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000110s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000042s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000078s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546667762 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0005s ]
+SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','洗车枪损坏111','18538707602','91','1546667762') [ RunTime:0.0092s ]
+
+[ 2019-01-05T13:59:26+08:00 ] 101.201.252.128 /index.php/Api/Fault/fault
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000084s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000104s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546667966 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0004s ]
+SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','洗车枪损坏111','18538707602','91','1546667966') [ RunTime:0.0071s ]
+
+[ 2019-01-05T13:59:27+08:00 ] 101.201.252.128 /index.php/Api/Fault/fault
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000080s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000078s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546667967 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0005s ]
+SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','洗车枪损坏111','18538707602','91','1546667967') [ RunTime:0.0148s ]
+
+[ 2019-01-05T13:59:28+08:00 ] 101.201.252.128 /index.php/Api/Fault/fault
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000138s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000059s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000118s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546667968 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0005s ]
+SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','洗车枪损坏111','18538707602','91','1546667968') [ RunTime:0.0087s ]
+
+[ 2019-01-05T13:59:51+08:00 ] 101.201.252.128 /index.php/Api/Fault/fault
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000071s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000068s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546667991 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0004s ]
+SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','洗车枪损坏111','18538707602','91','1546667991') [ RunTime:0.0077s ]
+
+[ 2019-01-05T13:59:57+08:00 ] 101.201.252.128 /index.php/Api/Fault/fault
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000074s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000078s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546667997 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0004s ]
+SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','22222','18538707602','91','1546667997') [ RunTime:0.0066s ]
+
+[ 2019-01-05T13:59:58+08:00 ] 101.201.252.128 /index.php/Api/Fault/fault
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000070s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000087s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/Littlewhale.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '3b85d91fe23951cba0c26be393a81241' AND `expired_time` >= 1546667998 AND `status` <> 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/Littlewhale.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = 'A00001' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0005s ]
+SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','22222','18538707602','91','1546667998') [ RunTime:0.0112s ]
+
