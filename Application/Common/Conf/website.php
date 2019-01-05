@@ -14,10 +14,11 @@ return array(
         'sms_sign' => 'aa',
     ),
     'APP' =>  array(
-        'app_logo' => '218',
+        'app_logo' => '230',
         'app_name' => '小鲸洗车',
         'app_version' => 'V1.0.0',
-        'app_intro' => '',
+        'app_intro' => 'Copyright © 2019-2020    
+北京小鲸一诺科技有限公司',
     ),
     'PUSH' =>  array(
         'push_type' => 'ac',
