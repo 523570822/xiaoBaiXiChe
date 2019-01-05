@@ -57,6 +57,10 @@ class FeedbackController extends BaseController {
     }
 
     public function aboutUs(){
-
+        //->field('app_name,app_logo,app_version,app_intro')
+        $aboutus_info = M ('config')->select ();
+        $picture['app_logo'] =  $this->getOnePath ($aboutus_info['app_logo'] , C ('API_URL') . '/Uploads/Member/default.png');
+        var_dump ($picture);die;
+        $this->apiResponse('1','查询成功',$aboutus_info,$picture['app_logo']);
     }
 }
