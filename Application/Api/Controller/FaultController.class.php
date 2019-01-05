@@ -8,6 +8,8 @@ namespace Api\Controller;
  */
 class FaultController extends BaseController
 {
+
+
     public function _initialize ()
     {
         parent::_initialize ();
