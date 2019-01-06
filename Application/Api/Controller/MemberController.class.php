@@ -432,7 +432,7 @@ class MemberController extends BaseController
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $param['where']['id'] = $m_id;
-        $param['field'] = 'id as m_id,account,tel,head_pic,sex,nickname,password';
+        $param['field'] = 'id as m_id,account,tel,head_pic,sex,nickname,password,realname';
         $member_info = D('Member')->queryRow($param['where'], $param['field']);
         $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
         $member_info['is_password'] = $member_info['password'] ? '1' : '0';
@@ -456,7 +456,8 @@ class MemberController extends BaseController
         );
         $request = $_REQUEST;
         $rule = array(
-            array('nickname', 'string', '请输入姓名'),
+            array('nickname', 'string', '请输入昵称'),
+            array('realname', 'string', '请输入姓名'),
             array('sex', 'string', '请输入性别'),
         );
         $this->checkParam($rule);
@@ -474,6 +475,7 @@ class MemberController extends BaseController
             $data['sex'] = $request['sex'];
         }
         $data['nickname'] = $request['nickname'];
+        $data['realname'] = $request['realname'];
         $where['id'] = $m_id;
         $res = D('Member')->querySave($where, $data);
         if ($res) {
