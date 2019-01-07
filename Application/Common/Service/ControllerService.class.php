@@ -153,6 +153,16 @@ class ControllerService extends Controller
             $this->apiResponse('-1','登录失效，请重新登录');
         }
     }
+
+    function checkMsg($m_id = 0) {
+        $msg_count = D('Msg')->where('status=1')->count();
+        $msg_read_count = D('MsgReadLog')->where('m_id='.$m_id)->count();
+        if ($msg_count > $msg_read_count) {
+            return 1;
+        }else {
+            return 0;
+        }
+    }
     /**
      * 检查访问权限
      * User: 木

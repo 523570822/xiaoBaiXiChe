@@ -99,13 +99,6 @@ class WashshopController extends BaseController
             $v = $this->getOnePath($v, C('API_URL') . '/Uploads/Member/default.png');
             $new[$key]['env'] = $v;
         }
-//        $count = M('Evaluation')->where(array("parameter" => $shopDetail['shop_id'], 'type' => "2"))->count('star');
-//        $star = M('Evaluation')->where(array("parameter" => $shopDetail['shop_id'], 'type' => "2"))->sum('star');
-//        if ($star) {
-//            $shopDetail['star'] = $star / $count . "";
-//        } else {
-//            $shopDetail['star'] = "0";
-//        }
         $desc = 'id desc';
         $data['status'] = array('neq', 9);
         $data['ws_id'] = $shop_id;
@@ -120,9 +113,6 @@ class WashshopController extends BaseController
         }
         if ($list) {
             foreach ($list as $k => $v) {
-                //$list[$k]['commodity_detail'] = $this->setAbsoluteUrl($v['commodity_detail']);
-                //$list[$k]['commodity_detail'] = htmlspecialchars_decode($list[$k]['commodity_detail']);
-                //$list[$k]['commodity_detail'] = str_replace('img src="','img src = "'.C('API_URL'),$list[$k]['commodity_detail']);
                 $path = D('File')->where('id=' . $v['commodity_logo'])->getField('path');
                 $list[$k]['commodity_logo'] = C('API_URL') . $path;
                 $list[$k]['shop_name'] = M('Washshop')->where(array('id' => $v['ws_id']))->getField('shop_name');
@@ -210,4 +200,40 @@ class WashshopController extends BaseController
         $data['card_type'] = $member_info['card_type'];
         $this->apiResponse('1', '请求成功', $data);
     }
+
+    /**
+     * 洗车机列表
+     * 传递参数的方式：post
+     * 需要传递的参数：
+     * 经度：lon
+     * 纬度：lat
+     */
+    public function washcarList()
+    {
+        $m_id = $this->checkToken();
+        $lon = empty($_REQUEST['lon']) ? 0 : $_REQUEST['lon'];  // 经度
+        $lat = empty($_REQUEST['lat']) ? 0 : $_REQUEST['lat'];  // 纬度
+        if (empty($lon) && empty($lat)) {
+            $this->apiResponse('0', '缺少坐标参数');
+        }
+        $wh3 = '(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(' . $lat . '-lat)/360),2)+COS(3.1415926535898*' . $lat . '/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(' . $lon . '-lon)/360),2))))*1000';
+        $washcar = M('CarWasher')->where(array('status' => 1))->field('*,' . $wh3 . ' as distance')->find();
+        $washcar['distance'] = round($washcar['distance'] / 1000, 2) . 'Km';// '距离我' .;
+        $washcar['washcar_pic'] = $this->getOnePath($washcar['washcar_pic'], C('API_URL') . '/Uploads/Member/default.png');
+        if ($m_id) {
+            $this->errorTokenMsg($m_id);
+            $param['where']['id'] = $m_id;
+            $param['where']['status'] = array('neq', 9);
+            $param['field'] = 'id as m_id,degree,integral';
+            $member_info = M('Member')->find($param);
+            $data['degree'] = $member_info['degree'];
+            if ($m_id === 0) {
+                $data['sys_msg_code'] = 0;
+            } else {
+                $data['sys_msg_code'] = $this->checkMsg($m_id);
+            }
+        }
+        $this->apiResponse('1', '请求成功', $washcar);
+    }
+
 }

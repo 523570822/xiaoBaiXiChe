@@ -552,11 +552,13 @@ class MemberController extends BaseController
     /**
      * 检查推广码方案
      **/
-    public function checkShareCode($invite_code = '', $s_id = 0)
+    public function checkShareCode($invite_code='', $s_id = 0)
     {
-        $m_info = D("Member")->where('invite_code=' . $invite_code)->find();
-        $check_hid = M("integral_log")->where('s_id=' . $s_id)->find();
+        $m_info = D("Member")->where(array ('invite_code='.$invite_code))->find();
+//        var_dump ($m_info);die;
+        $check_hid = M("integral_log")->where('s_id='.$s_id)->find();
         $appsetting = M('appsetting')->find();
+//        var_dump ($m_info['id']);die;
         if ($check_hid) {
             $this->apiResponse(0, '您已经绑定过推荐人了，请不要填写推荐码');
         }
@@ -569,13 +571,13 @@ class MemberController extends BaseController
                 's_id' => $s_id,
                 'create_time' => time(),
                 'status' => 1,
-                'integral_num' => $appsetting['fenxiang_guige'],
-                'desc' => '邀请好友获得积分',
+                'integral_num' => $appsetting['register_num'],
+                'desc' => '邀请好友获得洗车劵',
             );
             $extension_log_add = M("integral_log")->data($data_ext)->add();
             $m_info = D("Member")->where('invite_code=' . $invite_code)->find();
-            $content = '您成功推荐了一位好友，获得1积分，快来看看吧！';
-//            pushOneUser($content, $m_info['token'], '2');
+            $content = '您成功推荐了一位好友，获得'.$appsetting['register_num'].'张洗车劵，快来看看吧！';
+            pushOneUser($content, $m_info['token'], '1');
         } else {
             $this->apiResponse('0', '推荐码不存在');
         }

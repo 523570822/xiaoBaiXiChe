@@ -1,26 +1,21 @@
 <?php
- require_once("./JPush/Config.php");
-require_once("./JPush/PushPayload.php");
-require_once("./JPush/SchedulePayload.php");
-require_once("./JPush/Client.php");
-require_once("./JPush/Http.php");
-require_once("./JPush/Exceptions/JPushException.php");
-require_once("./JPush/Exceptions/APIRequestException.php");
-/*vendor('Txunda.JPush.Config');
+vendor('Txunda.JPush.Config');
 vendor('Txunda.JPush.PushPayload');
 vendor('Txunda.JPush.SchedulePayload');
 vendor('Txunda.JPush.Client');
 vendor('Txunda.JPush.Http');
 vendor('Txunda.JPush.Exceptions.JPushException');
-vendor('Txunda.JPush.Exceptions.APIRequestException');*/
+vendor('Txunda.JPush.Exceptions.APIRequestException');
+
+
 /**
  * @param $content
  * @param 推送给个人
- * @param $msg_type  1匹配成功 2邀请好友成功注册
+ * @param $msg_type  1系统消息 2订单消息
  */
-function pushOneUser($content,$msg_user,$msg_type,$nickname,$company){
-    $app_key = "251fbd8cebcccf850fd8bd73";
-    $master_secret = "d51d737658870d3e94708a56";
+function pushOneUser($content,$msg_user,$msg_type){
+    $app_key = "4e80dea3d357d0ee26b873dd";
+    $master_secret = "290bcbb6f70aa304682261c7";
     $client = new \JPush\Client($app_key,$master_secret);//初始化JPush
     $payload  = $client->push()
         ->setPlatform('all')
@@ -29,25 +24,19 @@ function pushOneUser($content,$msg_user,$msg_type,$nickname,$company){
             'sound' => 'sound.caf',
             'category' => 'jiguang',
             'extras' => array(
-                'msg_type'=>$msg_type,
-                'nickname'=>$nickname,
-                'company'=>$company
+                'msg_type'=>$msg_type
             ),
         ))
         ->androidNotification($content, array(
-            'title' => '电商人生',
+            'title' => '小鲸洗车',
             'extras' => array(
                 'msg_type'=>$msg_type,
-                'nickname'=>$nickname,
-                'company'=>$company
             ),
         ))
         ->message($content, array(
-            'title' => '电商人生',
+            'title' => '小鲸洗车',
             'extras' => array(
-                'msg_type'=>$msg_type,
-                'nickname'=>$nickname,
-                'company'=>$company
+                'msg_type'=>$msg_type
             ),
         ))
         ->options(array(
@@ -71,9 +60,9 @@ function pushOneUser($content,$msg_user,$msg_type,$nickname,$company){
  * User: jiajia.zhao 18210213617@163.com
  * Date: 2018/7/17 11:34
  */
-function pushAllUser($content,$msg_type,$nickname,$company,$head_pic){
-    $app_key = "251fbd8cebcccf850fd8bd73";
-    $master_secret = "d51d737658870d3e94708a56";
+function pushAllUser($content,$msg_type){
+    $app_key = "4e80dea3d357d0ee26b873dd";
+    $master_secret = "290bcbb6f70aa304682261c7";
     $client = new \JPush\Client($app_key,$master_secret);//初始化JPush
     $payload  = $client->push()
         ->setPlatform('all')
@@ -82,28 +71,19 @@ function pushAllUser($content,$msg_type,$nickname,$company,$head_pic){
             'sound' => 'sound.caf',
             'category' => 'jiguang',
             'extras' => array(
-                'msg_type'=>$msg_type,
-                'nickname'=>$nickname,
-                'company'=>$company,
-                'head_pic'=>$head_pic,
+                'msg_type'=>$msg_type
             ),
         ))
         ->androidNotification($content, array(
-            'title' => '电商人生',
+            'title' => '小鲸洗车',
             'extras' => array(
                 'msg_type'=>$msg_type,
-                'nickname'=>$nickname,
-                'company'=>$company,
-                'head_pic'=>$head_pic,
             ),
         ))
         ->message($content, array(
-            'title' => '电商人生',
+            'title' => '小鲸洗车',
             'extras' => array(
-                'msg_type'=>$msg_type,
-                'nickname'=>$nickname,
-                'company'=>$company,
-                'head_pic'=>$head_pic,
+                'msg_type'=>$msg_type
             ),
         ))
         ->options(array(

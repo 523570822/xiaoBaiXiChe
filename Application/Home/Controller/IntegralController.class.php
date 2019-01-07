@@ -13,6 +13,7 @@ class IntegralController extends BaseController {
         if(!$member_info) {
             $member_info['invite_code']="0";
         }
+
         $this->assign('code',$member_info['invite_code']);
         $this->display('integral');
     }

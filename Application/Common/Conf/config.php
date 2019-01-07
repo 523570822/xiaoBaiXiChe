@@ -14,6 +14,7 @@ $config = array(
         '__INT__'=>'/Public/Integral/images',
         '__INTJS__'=>'/Public/Integral/js',
     ),
+    "LOAD_EXT_FILE" => "jpush"
 
 );
 $config_path = APP_PATH.'Common/conf/';

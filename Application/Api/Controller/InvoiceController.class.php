@@ -11,7 +11,7 @@ class InvoiceController extends BaseController
 {
     /**
      * 可开发票的订单列表
-     * o_type 订单类型//1洗车订单 2小鲸卡订单
+     * o_type 订单类型//1洗车订单 2小鲸卡订单 3钱包充值
      */
     public function canInvoice ()
     {
