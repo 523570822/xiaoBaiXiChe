@@ -1,43 +1,28 @@
-<?php
-class AlipayConfig
-{
+    <?php
 
-    const gatewayUrl = "https://openapi.alipay.com/gateway.do";
-
-    const      appId = "2018062760456218";//      2088131715095202
-
-
-    const rsaPrivateKey = 'MIIEpQIBAAKCAQEAq1WJsTmG/9JUovC8s9bpOyhSGJ1FYHduJG9Swc1vZTEC+Cvg
-fj4iyfw2GOtnwC/asCMAcbRWNQFLJI23f+PYRgfzSviSa5ivgDI0X7MgqWOJzNRs
-rRN4i0R8+SicHAlX4V+p4uwwFo8Kjlfo3ncmIP87ND/oXRi9PP0gRlGh7Of0Aa02
-VdTFxyQUCxwTB9vJ5SJrNbAbqYTmpIV09JqysJOzTSCHXgOfBSBhUjOndt0rmqUK
-xOMTjuaFGg6dy8MAtOqbbWPKB9yZq71P+I4Ka63+zFK7QWYgzeb0y/++caXfv8Ia
-8/zMQ9IpViH0ROxmLBVUlJdLr+0+tXbT3qjQgQIDAQABAoIBAQCo9IICzTruPQiP
-YZyEL9LxLlK+ySAn/74SmeDfEmnePNWzyvjnJPkDe/4Q1tsJ72bVOL7wYah9PphO
-JJ4mtJWKgb6OWM9y4S932IpDMQ5tW6YA4h2FE2VU2KXwwfYnw6LwsXiDOOw24rnD
-IreV4aMs+OP2I2tNmt7KLMdN8KQgTALb5G3ND0VLtdBRmxZaoE7s2dUZebeVkTkZ
-oFpn6lK43cEEJGbxi2CXJ+DWKMAfwRlLEx2reJtTbO5K9Zrsnn2jUeAx8n5uEHw8
-A2Zrt3F3KSNdrjS5/P9NtNKVhSTaf+fneR2C7er7km3mCx8nL/YBoJLHRgBg6AEl
-vER8KIABAoGBANfAc1KMLqwMHW43GdsjtRW4bB1Sh+QMWxm9iSySmbB3Ux3YcHXJ
-VbD+7rdp2FSjrh5RHB1sDLBJUuFdud3sENtO3dG7mD2ptuImqJoHhBYU8vSgkrE/
-w4ToTtjEV9enilBYhtwxrSXG2r/jwz40WZ3J1ESlDJL3Voxgj5y+Ar2BAoGBAMtL
-21lmx/ikjsIY96t52ppoDkNCG4ySjEz88MmIUVLEDPM7xpFiiZDEhwcF89MJ8EA/
-TzWpBNFWXPz2Q47yv2EhVUaRXrmVIw7Ha6ImpnPY4ZJ24Tx5pQMjerlmGIJCgU5G
-mVrwU5ykhG+5LyLw3A9hw76NuZ2UTnvdxMeiVZMBAoGBAJ8XlHI8WHYZgOIy02ga
-Tn+zvFVq9DWfPtYeQzaQ66+KbcnGPjc8vWmEsvagoBrZj51fZgH0GO8tQmZYvKP+
-XPe6kisDz+E4clkU9KKQBEBcNkNY3JLDWCN7Qhjpv3SQYJeaj+dy4iDHH6r8Ao6t
-/58wosvzgPAmXrWoxn1oR5EBAoGBAJSkXDdb7S6hsze75ardJ7bqCjOnLFl19Vt9
-Pdk88Kkha46U0DUQ5SCScV/zPDm79IwlPhcwA7PD/619qhvk5YVxR9aXB7mNj9qI
-eOxQcjgWBah/f2QmVT6cPGk+ewES+1RuTkatnZTUvXiq4AoeLeiZRPQYz/SlsVTj
-67NDwGoBAoGAd8PU4LIzIgMyDz7yw8Shumj/ZzeOXmwXNk0nKSt7qqhIdAFaGxJM
-TOkT3/iQG+fv4LMJitS7X3UmMnI9D0oa0AqbaL4DOhCrkPubivfXgcNsdcIBm6Nr
-LU/rpbmTEWfVH2ofV4B1gVLd32kC4mEIBTB3tWRYdTgGTdNUsfAw0Fo=';
-
-    const format = "json";
-
-    const charset = "UTF-8";
-
-    const signType = "RSA2";
-
-    const alipayrsaPublicKey = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApyIaVyuiO7laO41tGsHhKjZ8vX9PrvsP9DUbaki60HMrrK/CGgWc51WzseHm2sK8200Q8MKfu4JOkob/XGt25CtRM4uhyTeAZDjUGuv9YPM76AryY4J6rceP4RD6Dnbz7De9NrnuKlgIDZYabNWi7lTFucsBb0O5tHpq1Yw/tYgKhcyzxUh28MzoJSIZ1a5TutPlvyMFkU7GPwZP/mN5DaKXqc+Xf1KfYQde3VxK91fBis2CJsW9eA2XzekSSp2w4iD4ddFZ58HYleMilXVq1AFtHaSKg7hu526i8DG+1kkfv7ge0vDqDFlIGuw/iAYZzXcA7LwZ3TTrCrWtyyrLiwIDAQAB';
-}
+    class AlipayConfig
+    {
+        const gatewayUrl = "https://openapi.alipay.com/gateway.do";
+        const appId = "2088331663516484";
+        const rsaPrivateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAN2mzk5PFoZCYqQD
+                                OeD0gHhzQYU0XR3iGC8E+VGdbXOjPcmYQShCbM1dZgnETEy5DtH3miRyUvFy+V79
+                                TkdEl9VuHtue4ZLh+6mMWYdUZrfXDr6ET47wTh/pCWt1XnaYkfKyYNLfnpwcTo9V
+                                Yct+HYB+HmS9EEh9FBxYmakW1BzBAgMBAAECgYEArlKdWPtclLUrTSD4aVMCozjK
+                                ZA/92B3UtU4tI6IzzcmqM53aSOaNGasGMFJBS+oTnNEmWtnLH/gz5iBEa0qoOg3Z
+                                LsZKGlar8Sqy/79+UFChyRFnZdZ7Jgv2wZl/N6Bfjp7lhFKYshAjUkO0Hh32smNv
+                                u6fhAwfIRY5QPp77+9ECQQD2pNV5Ec6AFzfVXTZ07VRE52o7i+OOV2BkHMFqW+9W
+                                BEb3YGgfgzpT4LCSrrm1NJzAIVA3p8f51Ms9U2L+Xd01AkEA5g9FZEOJ1K1PMqQx
+                                q2XSLNtTLPutlBzrdZVOgACFbKApd0PFCjw6hti7dPkpKvGjpVfU7JLg6bRWEL22
+                                x45O3QJAQlaFYEHs08Dq8IVYr0xiHQJNLWTruI5By8t8Ljo5/l26JLEWcFtgZc0K
+                                UPmT02wqOPb812tWOxkD7SOvfZELfQJAe4/SJkK8AXU/5yQW5UaftqXpq2xVUwqh
+                                UBrr+YXOI4R2IO9OIewtRwWa0P2Npdn4mbJt0s4kbIEGBKHQTKfbJQJBAOEczc80
+                                rgaBCOKKxqOypPBFgCzr/T4YjxOy20MUlt2pqxJlz3I1rfYFreua8rpDwnMdc2Il
+                                iM4Uk9Dte4yuH+A=';
+        const format = "json";
+        const charset = "UTF-8";
+        const signType = "RSA2";
+        const alipayrsaPublicKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdps5OTxaGQmKkAzng9IB4c0GF
+                                    NF0d4hgvBPlRnW1zoz3JmEEoQmzNXWYJxExMuQ7R95okclLxcvle/U5HRJfVbh7b
+                                    nuGS4fupjFmHVGa31w6+hE+O8E4f6QlrdV52mJHysmDS356cHE6PVWHLfh2Afh5k
+                                    vRBIfRQcWJmpFtQcwQIDAQAB';
+    }
