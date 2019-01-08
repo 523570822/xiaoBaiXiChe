@@ -124,6 +124,23 @@ class PayController extends BaseController
         }
     }
 
+    /**
+     *提现记录
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/04 17:26
+     */
+    public function withdrawInfo(){
+//        $post = checkAppData('token','token');
+        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $agent = $this->getAgentInfo($post['token']);
+        $withdraw = M('Withdraw')->where(array('agent_id'=>$agent['id']))->field('money,status,create_time')->select();
+        //var_dump($withdraw);exit;
+        if(!empty($withdraw)){
+            $this->apiResponse('1','成功',$withdraw);
+        }else{
+            $this->apiResponse('0','暂无提现记录');
+        }
+    }
 
     /*****————————————————————用户端支付————————————————————*****/
 
