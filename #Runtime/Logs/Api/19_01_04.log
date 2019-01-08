@@ -66,3 +66,138 @@ NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controlle
 SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0119s ]
 SQL: UPDATE `db_agent` SET `balance`='60' WHERE `id` = 1 [ RunTime:0.0192s ]
 
+[ 2019-01-04T15:26:38+08:00 ] 127.0.0.1 /index.php/Api/Pay/getWithdraw
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001954s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000727s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000814s ]
+
+[ 2019-01-04T15:31:09+08:00 ] 127.0.0.1 /index.php/Api/Pay/getWithdraw
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000276s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000610s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000709s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0112s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0129s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+
+[ 2019-01-04T15:31:47+08:00 ] 127.0.0.1 /index.php/Api/Pay/getWithdraw
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000263s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000451s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000510s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0094s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0111s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0086s ]
+SQL: UPDATE `db_agent` SET `balance`='260' WHERE `id` = 1 [ RunTime:0.0315s ]
+SQL: SHOW COLUMNS FROM `db_withdraw` [ RunTime:0.0107s ]
+SQL: INSERT INTO `db_withdraw` (`agent_id`,`money`,`create_time`) VALUES ('1','500','1546587107') [ RunTime:0.0176s ]
+
+[ 2019-01-04T15:32:18+08:00 ] 127.0.0.1 /index.php/Api/Pay/getWithdraw
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000061s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000340s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000105s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000183s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0124s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0174s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0092s ]
+SQL: UPDATE `db_agent` SET `balance`='250' WHERE `id` = 1 [ RunTime:0.0198s ]
+SQL: SHOW COLUMNS FROM `db_withdraw` [ RunTime:0.0115s ]
+SQL: INSERT INTO `db_withdraw` (`agent_id`,`money`,`create_time`) VALUES ('1','10','1546587138') [ RunTime:0.0144s ]
+
+[ 2019-01-04T16:17:00+08:00 ] 127.0.0.1 /index.php/Api/Pay/getWithdraw
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000511s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000630s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000803s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0099s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0109s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0128s ]
+SQL: UPDATE `db_agent` SET `balance`='240' WHERE `id` = 1 [ RunTime:0.0184s ]
+SQL: SHOW COLUMNS FROM `db_withdraw` [ RunTime:0.0317s ]
+SQL: INSERT INTO `db_withdraw` (`agent_id`,`money`,`create_time`) VALUES ('1','10','1546589820') [ RunTime:0.0211s ]
+
+[ 2019-01-04T17:30:44+08:00 ] 127.0.0.1 /index.php/Api/Pay/getWithdraw
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001122s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001431s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001586s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2019-01-04T17:30:53+08:00 ] 127.0.0.1 /index.php/Api/Pay/withdrawInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000721s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2019-01-04T17:31:09+08:00 ] 127.0.0.1 /index.php/Api/Pay/withdrawInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000263s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000221s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000344s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0111s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0109s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_withdraw` [ RunTime:0.0110s ]
+SQL: SELECT `money`,`status`,`create_time` FROM `db_withdraw` WHERE `agent_id` = 1 LIMIT 1   [ RunTime:0.0130s ]
+
+[ 2019-01-04T17:31:27+08:00 ] 127.0.0.1 /index.php/Api/Pay/withdrawInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000255s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000188s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000323s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0093s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0092s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_withdraw` [ RunTime:0.0094s ]
+SQL: SELECT `money`,`status`,`create_time` FROM `db_withdraw` WHERE `agent_id` = 1  [ RunTime:0.0115s ]
+
+[ 2019-01-04T17:33:24+08:00 ] 127.0.0.1 /index.php/Api/Pay/withdrawInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000367s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000460s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000537s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0117s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0114s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_withdraw` [ RunTime:0.0113s ]
+SQL: SELECT `money`,`status`,`create_time` FROM `db_withdraw` WHERE `agent_id` = 1  [ RunTime:0.0101s ]
+

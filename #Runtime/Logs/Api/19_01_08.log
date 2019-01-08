@@ -1,0 +1,654 @@
+[ 2019-01-08T08:43:45+08:00 ] 127.0.0.1 /index.php/Api/Agent/detail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001182s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004054s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003324s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003429s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.4574s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.5274s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+
+[ 2019-01-08T14:33:20+08:00 ] 127.0.0.1 /index.php/Api/Agent/income
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000112s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002698s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001443s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001635s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2019-01-08T14:33:50+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000308s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001073s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001266s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0134s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0303s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0097s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0172s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0094s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0085s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0182s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0146s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0092s ]
+
+[ 2019-01-08T14:34:59+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000215s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000098s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000161s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.3960s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.4620s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.5271s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.4500s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.2463s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0242s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0207s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0650s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0330s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0239s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0770s ]
+
+[ 2019-01-08T14:39:58+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000238s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000883s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001353s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.1876s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0266s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0113s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0118s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0099s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0219s ]
+NOTIC: [8] Undefined index: net_income D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0128s ]
+NOTIC: [8] Undefined index: net_income D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0196s ]
+NOTIC: [8] Undefined index: net_income D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: net_income D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0116s ]
+NOTIC: [8] Undefined index: net_income D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0317s ]
+
+[ 2019-01-08T14:40:35+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000219s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000206s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000363s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0111s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0093s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0118s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0104s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0134s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0105s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0085s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0089s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0095s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0088s ]
+
+[ 2019-01-08T14:40:39+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000128s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000110s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000184s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0131s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0087s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0137s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0111s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0106s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0103s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0103s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0104s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0125s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0107s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0155s ]
+
+[ 2019-01-08T14:40:40+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000105s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000098s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000166s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0171s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0199s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0235s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0383s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0354s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0610s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0318s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0264s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0506s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0565s ]
+
+[ 2019-01-08T14:40:50+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000157s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000157s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000275s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0076s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0088s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0094s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0103s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0079s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0190s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0109s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0106s ]
+
+[ 2019-01-08T14:40:51+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000134s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0126s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0123s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0108s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0155s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0078s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0113s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0086s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0123s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0085s ]
+
+[ 2019-01-08T14:40:52+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000176s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000156s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0106s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0097s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0092s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0098s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0099s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0092s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0168s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0105s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0095s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0095s ]
+
+[ 2019-01-08T14:40:52+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000095s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000289s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000498s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0098s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0085s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0084s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0089s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0088s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0072s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-08T14:40:53+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000067s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000119s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0096s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0093s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0112s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0129s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0094s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0108s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0091s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0085s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0101s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0095s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0107s ]
+
+[ 2019-01-08T14:41:10+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000141s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000256s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000473s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0572s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0301s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0153s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0153s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0672s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0327s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0258s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0098s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0087s ]
+
+[ 2019-01-08T14:41:10+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000175s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000320s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0154s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0083s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0091s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0134s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0150s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0152s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0109s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0106s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0099s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0142s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0158s ]
+
+[ 2019-01-08T14:41:11+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000062s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000371s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000273s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000554s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0099s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0103s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0110s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0107s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0101s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0086s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0097s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0126s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0108s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-08T14:41:18+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000470s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000527s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0106s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0097s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0115s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0087s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0113s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0151s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0108s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0083s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0088s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0099s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0085s ]
+
+[ 2019-01-08T14:41:41+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000195s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000125s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000191s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0118s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0085s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0087s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0098s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0119s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0097s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0072s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 43 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0205s ]
+
+[ 2019-01-08T14:43:32+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000596s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000505s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000571s ]
+ERR: syntax error, unexpected 'if' (T_IF)
+
+[ 2019-01-08T14:43:40+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000267s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000564s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000639s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0124s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0141s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0110s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0249s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0424s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0111s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 45 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0119s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 45 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0220s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 45 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 45 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0088s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 44 行.
+NOTIC: [8] Undefined index: car_wash D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 45 行.
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0139s ]
+
+[ 2019-01-08T14:44:41+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000165s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000135s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000207s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0067s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0079s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0066s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0077s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 42 行.
+
+[ 2019-01-08T14:44:42+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000112s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000093s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000202s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0096s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0095s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0091s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0215s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0133s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 42 行.
+
+[ 2019-01-08T14:44:42+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000084s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000093s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000188s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0115s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0112s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0105s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0105s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0118s ]
+NOTIC: [8] Undefined index: SUM(net_income) D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 42 行.
+
+[ 2019-01-08T14:45:46+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000433s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000589s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000690s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0086s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0083s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0097s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0085s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0115s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0077s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0078s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0085s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0121s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0131s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0097s ]
+
+[ 2019-01-08T14:47:07+08:00 ] 127.0.0.1 /index.php/Api/CarWasher/carWasher
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001048s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000176s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000272s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0114s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0088s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0218s ]
+SQL: SELECT `id`,`mc_id` FROM `db_car_washer`  [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0101s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 1 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0082s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 2 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0096s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 3 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0079s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 4 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0105s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 5 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0076s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`car_washer_id` FROM `db_income` WHERE `car_washer_id` = 6 AND `agent_id` = 1 GROUP BY car_washer_id LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index:  D:\test\Littlewhale\Application\Api\Controller\CarWasherController.class.php 第 49 行.
+

@@ -272,3 +272,68 @@ SQL: SELECT * FROM `db_member` WHERE `id` = 91 LIMIT 1   [ RunTime:0.0002s ]
 SQL: SHOW COLUMNS FROM `db_fault` [ RunTime:0.0005s ]
 SQL: INSERT INTO `db_fault` (`mc_id`,`pro_id`,`content`,`contact`,`m_id`,`create_time`) VALUES ('A00001','1','22222','18538707602','91','1546667998') [ RunTime:0.0112s ]
 
+[ 2019-01-05T16:23:04+08:00 ] 127.0.0.1 /index.php/Api/Agent/detail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001574s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001636s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001731s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0139s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+
+[ 2019-01-05T16:43:06+08:00 ] 127.0.0.1 /index.php/Api/Agent/detail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001057s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001330s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0096s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0081s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+
+[ 2019-01-05T16:43:08+08:00 ] 127.0.0.1 /index.php/Api/Agent/detail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000162s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000092s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000171s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0085s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0086s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+
+[ 2019-01-05T16:43:08+08:00 ] 127.0.0.1 /index.php/Api/Agent/detail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000206s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000127s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000244s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0087s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0085s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+
+[ 2019-01-05T16:43:08+08:00 ] 127.0.0.1 /index.php/Api/Agent/detail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000167s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000138s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0075s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+

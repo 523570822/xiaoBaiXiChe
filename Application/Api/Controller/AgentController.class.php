@@ -266,8 +266,8 @@ class AgentController extends BaseController
      */
     public function weeks()
     {
-        //$timestamp = time();
-        $timestamp = 1545674199;
+        $timestamp = time();
+//        $timestamp = 1545674199;
         return [
             strtotime(date('Y-m-d', strtotime("this week Monday", $timestamp))),
             strtotime(date('Y-m-d', strtotime("this week Sunday", $timestamp))) + 24 * 3600 - 1,
@@ -298,8 +298,17 @@ class AgentController extends BaseController
         }
     }
 
-    /**/
-
+    /**
+     *账户明细
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/05 16:07
+     */
+    /*public function detail(){
+        //$post = checkAppData('token','token');
+        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $agent = $this->getAgentInfo($post['token']);
+        var_dump($agent);exit;
+    }*/
 
 
 }

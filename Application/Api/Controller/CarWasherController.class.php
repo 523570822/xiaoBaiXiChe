@@ -44,8 +44,14 @@ class CarWasherController extends BaseController
                 $incomes[$k]['mc_id']= $v['mc_id'];
             }
         }
+        $data = array(
+            'net_income' => $incomes[''],
+            'car_wash' => $incomes[''],
+            'car_washer_id' => $incomes[''],
+            'mc_id' => $incomes[''],
+        );
         if(!empty($incomes)){
-            $this->apiResponse('1','成功',$incomes);
+            $this->apiResponse('1','成功',$data);
         }else{
             $this->apiResponse('0','暂无加盟商信息');
         }
