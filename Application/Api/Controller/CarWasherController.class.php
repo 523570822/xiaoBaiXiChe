@@ -63,19 +63,19 @@ class CarWasherController extends BaseController
      *Date:2018/12/20 11:53
      */
     public function carWasherIncome(){
-        $post = checkAppData('token,car_washer_id,month','token-洗车机ID-月份时间戳');
+        $post = checkAppData('token,car_washer_id,in_month','token-洗车机ID-月份时间戳');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
 //        $post['car_washer_id'] = 1;
-//        $post['month'] = '';
-        if(empty($post['month'])){
-            $post['month'] = strtotime(date('Y-m'));
+//        $post['in_month'] = '';
+        if(empty($post['in_month'])){
+            $post['in_month'] = strtotime(date('Y-m'));
         }
         $agent = $this->getAgentInfo($post['token']);
         $income = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agrnt_id'=>$agent['id'],'month'=>$post['month']))->field('net_income,car_wash,day,car_washer_id')->select();
 
         $month = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agrnt_id'=>$agent['id'],'month'=>$post['month']))->field('SUM(net_income),month')->select();
         $data = array(
-            'month' => $month,
+            'now_month' => $month,
             'income' => $income,
         );
         if(!empty($income)){
