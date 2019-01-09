@@ -143,54 +143,265 @@ class PayController extends BaseController
     }
 
     /*****————————————————————用户端支付————————————————————*****/
-
     /**
      * 获取支付宝支付参数
      * 传递参数的方式：post
      * 需要传递的参数：
-     * 订单id：orderid
+     * 订单编号：orderid
      * 类型：o_type 1洗车订单 2小鲸卡购买 3余额充值
+     * 卡券id：c_id
+     * 卡券类型：c_type
      */
-    public function getAlipayParam ()
+    public function Alipay()
     {
-        vendor ('Txunda.Alipay.Alipay');
-        if ( empty($_REQUEST['orderid']) ) {
-            $this->apiResponse ('0' , '参数不完整');
+        Vendor('Txunda.Alipay.Alipay');
+        $request = I ('post.');
+        $rule = array(
+            array('orderid','string','订单编号不能为空'),
+            array('o_type','string','订单类型不能为空'),
+        );
+        $this->checkParam($rule);
+        $order_info = D("Order")->where(array('orderid' => $request['orderid'],'o_type'=>$request['o_type']))->find();
+        if (!$order_info) {
+            $this->apiResponse(0, '订单信息查询失败');
         }
-        if ( empty($_REQUEST['o_type']) ) {
-            $this->apiResponse ('0' , '类型错误');
+        if ($request['c_id']){
+            $rule = array('c_type','string','卡券类型不能为空');
+            $this->checkParam($rule);
+            $card = D("VipCard")->where(array('id' => $request['c_id'],'c_type'=>$request['c_type'],'status'=>1,'k_status'=>1))->find();
+            if (!$card) {
+                $this->apiResponse(0, '卡券信息查询失败');
+            }
         }
-        $orderid = $_REQUEST['orderid'];
-        $pay_money = '';
-        if ( $_REQUEST['o_type'] == 1 ) {
-            $info = M ('Order')->where (array ('orderid' => $_REQUEST['orderid']))->find ();
-            if ( !$info ) {
-                $this->apiResponse ('0' , '信息查询失败');
-            }
-            $orderid = $info['orderid'];
-            $pay_money = 0.01;//$info['pay_money'];
-        } elseif ( $_REQUEST['o_type'] == 2 ) {
-            $info = M ('Order')->where (array ('orderid' => $_REQUEST['orderid']))->find ();
-            if ( !$info ) {
-                $this->apiResponse ('0' , '信息查询失败');
-            }
-            $pay_money = 0.01;// $info['pay_money'];
-        } elseif ( $_REQUEST['o_type'] == 3 ) {
-            $info = M ('Order')->where (array ('orderid' => $_REQUEST['orderid']))->find ();
-            if ( !$info ) {
-                $this->apiResponse ('0' , '信息查询失败');
-            }
-            $pay_money = 0.01;// $info['pay_money'];
-        }
-        //生成支付字符串
-        $notify_url = C ('API_URL') . '/index.php/Api/Pay/alipayNotify/o_type/' . $_REQUEST['o_type'];
-        $out_trade_no = $orderid;
-        $total_amount = $pay_money;
-        $signo_type = 'RSA2';
-        $payObject = new \Alipay($notify_url , $out_trade_no , $total_amount , $signo_type);
-        $pay_string = $payObject->appPay ();
-        $this->apiResponse ('1' , '请求成功' , array ('pay_string' => $pay_string));
+
+        // 回调地址
+        $url_data = [
+            "orderid" => $request['orderid'],
+            "o_type" => $request['o_type'],
+            "id" => $request['c_id'],
+            "c_type"=>$request['c_type'],
+            "m_id"=>$request['m_id'],
+        ];
+        $notify_url = C('API_URL') . '/index.php/Api/Pay/alipayNotify?' . http_build_query($url_data);
+
+        // 生成支付字符串
+        $out_trade_no = $order_info['orderid'];
+        $total_amount = $order_info['pay_money'];
+        $signType = 'RSA2';
+        $payObject = new \Alipay($notify_url, $out_trade_no, $total_amount, $signType);
+        $pay_string = $payObject->appPay();
+        $result['pay_string'] = $pay_string;
+        $this->apiResponse(1, '请求成功', $result);
     }
+
+    /**
+     * 支付宝回调
+     */
+    public function alipayNotify ()
+    {
+        Vendor ('Txunda.Alipay.Notify');
+        $notify = new \Notify();
+        if ( $notify->rsaCheck () ) {
+            $out_trade_no = $_REQUEST['out_trade_no'];
+            $trade_status = $_REQUEST['trade_status'];
+            $trade_no = $_REQUEST['trade_no'];
+            $c_id=$_REQUEST['id'];
+            if ( $trade_status == 'TRADE_SUCCESS' ) {
+                if ( $_REQUEST['o_type'] == 1 ) {
+                    $order = M ('Order')->where (array ('orderid' => $out_trade_no,'status' => array ('eq' , 1)))->find ();
+                    if ( $_REQUEST['c_type'] == 1 ) {
+                        $card = M ('VipCard')->where (array ('id'=> $c_id,'c_type'=> 1,'status'=> array ('eq' , 1),'k_status'=>array ('eq' , 1)))->find ();
+                        $price = M ('WashCard')->where (array ('id' => $card['card_id'],'card_type'=>1))->find ();
+                        if ( array ($price && $card) ) {//修改订单状态
+                            M ('VipCard')->where (array ('id' => $c_id))->data (array ('status' => 1 , 'm_id' => $_REQUEST['m_id'] , 'use_time' => time () , 'num' => $card['num'] + 1))->save ();
+                            $kq['price'] = $order['pay_money']*$price['price'];$allowance=$price['price'];
+                        }
+                    }
+                    if ( $_REQUEST['c_type'] == 2 ) {
+                        $card = M ('VipCard')->where (array ('id'=> $c_id,'c_type'=> 2,'status'=> array ('eq' , 1),'k_status'=>array ('eq' , 1)))->find ();
+                        $price = M ('WashCard')->where (array ('id' => $card['card_id'],'card_type'=>2))->find ();
+                        if ( array ($price && $card) ) {//修改订单状态
+                            M ('VipCard')->where (array ('id' => $c_id))->data (array ('status' => 3 , 'm_id' => $_REQUEST['m_id'] , 'use_time' => time ()))->save ();
+                            $kq['price'] = $price['card_price'];$allowance=$price['card_price'];
+                        }
+                    }
+                    unset($where);
+                    $where['orderid'] = $out_trade_no;
+                    $where['status'] = array ('eq' , 1);
+                    $order = M ('Order')->where ($where)->find ();
+                    if ( $order ) {
+                        //修改订单状态
+                        M ('Order')->where (array ('id' => $order['id']))->data (array ('pay_type' => 2 , 'trade_no' => $trade_no , 'pay_time' => time () , 'status' => 2,'pay_money'=>$order['money']-$kq['price'],'allowance'=>$allowance,'c_type'=>$_REQUEST['c_type']))->save ();
+                    }
+                    echo "success";
+                }
+            }
+            elseif ( $_REQUEST['o_type'] == 2 ) {
+                unset($where);
+                $where['orderid'] = $out_trade_no;
+                $where['status'] = array ('eq' ,1 );
+                $order = M ('Order')->where ($where)->find ();
+                if ( $order ) {
+                    //修改订单状态
+                    M ('Order')->where (array ('orderid' => $order['orderid']))
+                        ->data (array ('pay_type' => 2 , 'trade_no' => $trade_no , 'pay_time' => time ()  , 'status' => 2 ))
+                        ->save ();
+                    //增加余额明细
+                    $where['orderid'] = $out_trade_no;
+                    $where['status'] = array ('eq' , 1);
+                    $order_card = M ('Order')->where ($where)->find ();
+                    $where1['id'] = $order_card['m_id'];
+                    $where1['status'] = array ('eq' , 1);
+                    $memberinfo = M ('Member')->where ($where1)->find ();
+                    $where2['id'] = $order_card['card_id'];
+                    $where2['status'] = array ('eq' , 1);
+                    $washcard = M ('WashCard')->where ($where2)->find ();
+                    $m_endtime = 2592000 * $washcard['end_time'];//var_dump($m_endtime);
+                    if ( time () <= $memberinfo['m_endtime'] ) {//1当前有会员卡且尚未过期
+                        if ( $order_card['card_id'] >= $memberinfo['card_id'] ) {//card_id越大卡的等级越大
+                        } else {
+                            $order_card['card_id'] = $memberinfo['card_id'];
+                            $washcard['car_type'] = $memberinfo['degree'];
+                        }
+                        $m_endtime = $m_endtime + $memberinfo['m_endtime'];
+                        M ('Member')->where ($where1)
+                            ->data (array ('pay_type' => 2 ,'m_endtime' => $m_endtime , 'card_type' => $washcard['car_type'] , 'update_time' => time () , 'card_id' => $order_card['card_id'] ))
+                            ->save ();
+                    } else {//1当前无会员卡或已过期
+                        $startime = time ();
+                        $m_endtime = $m_endtime + $startime;
+                        M ('Member')->where ($where1)
+                            ->data (array ('pay_type' => 2 ,'startime' => $startime , 'm_endtime' => $m_endtime , 'card_type' => $washcard['car_type'] , 'update_time' => time () , 'card_id' => $order_card['card_id'] ))
+                            ->save ();
+                    }
+                    echo "success";
+                }
+            }
+            elseif ( $_REQUEST['o_type'] == 3 ) {
+                unset($where);
+                $where['orderid'] = $out_trade_no;
+                $where['status'] = array ('eq' , 0);
+                $order = M ('Order')->where ($where)->find ();
+                if ( $order ) {
+                    //修改订单状态
+                    M ('Order')->where (array ('orderid' => $order['orderid']))
+                        ->data (array ('pay_type' => 2 , 'trade_no' => $trade_no , 'update_time' => time () , 'detail' => "1" , 'status' =>2))
+                        ->save ();
+                    //增加余额明细
+                    $where['orderid'] = $out_trade_no;
+                    $where['status'] = array ('eq' , 1);
+                    $order_card = M ('Order')->where ($where)->find ();
+                    $where1['id'] = $order_card['m_id'];
+                    $where1['status'] = array ('eq' , 1);
+                    $memberinfo = M ('Member')->where ($where1)->find ();
+                    $washcard['balance'] = $memberinfo['balance'] + $order_card['pay_money'];//var_dump($memberinfo );var_dump($order_card['pay_money']);
+                    $wash = M ('Appsetting')->where (array ('id' => 1))
+                        ->find ();
+                    $give_price = $wash['give_price'];
+                    $washcard['give_balance'] = $memberinfo['give_balance'] + ($order_card['pay_money'] * $give_price);//var_dump($memberinfo );var_dump($order_card['pay_money']);
+                    if ( $washcard['balance'] >= $memberinfo['balance'] ) {
+                        M ('Member')->where ($where1)
+                            ->data (array ('balance' => $washcard['balance'] , 'give_balance' => $washcard['give_balance'] , 'update_time' => time () , 'is_pay' => 1))
+                            ->save ();
+                    }
+                    $this->addPayLog ($memberinfo['id'] , 1 , 1 , $order_card['pay_money'] , '钱包充值');
+                    $this->addPayLog ($memberinfo['id'] , 1 , 1 , $order_card['pay_money'] * $give_price , '钱包充值赠送');
+                    $wash = M ('Appsetting')->where (array ('id' => 1))->find ();
+                    /* $status =1;// $order['type'] == 1 ? 2 : 1;
+                     M('Order')->where(array('orderid' => $order['orderid']))
+                         ->data(array('pay_type' =>2, 'order_trade_no' => $trade_no, 'update_time' => time(), 'title' => "钱包充值", 'sign'=>"1", 'status' => $status, 'is_pay' => 1))
+                         ->save();
+                     //增加余额明细
+                     $where['orderid'] = $out_trade_no;
+                     $where['status'] = array('eq', 1);
+                     $order_card = M('Order')->where($where)->find();
+                     $where1['id'] = $order_card['m_id'];
+                     $where1['status'] = array('eq', 1);
+                     $memberinfo = M('Member')->where($where1)->find();
+//                    $washcard['balance'] = $memberinfo['balance']+ $order_card['pay_money'];//var_dump($memberinfo );var_dump($order_card['pay_money']);
+//                        if ($washcard['balance']>=$memberinfo['balance']){
+//                            M('Member')->where($where1)
+//                                ->data(array(  'balance' => $washcard['balance'], 'update_time' => time(),   'is_pay' => 1))
+//                                ->save();
+//                        }
+                     $wash=M('Appsetting')->where(array('id' => 1))
+                         ->find();
+                     $give_price=$wash['give_price'];
+                     $washcard['give_balance'] = $memberinfo['give_balance']+ ($order_card['pay_money']*$give_price);//var_dump($memberinfo );var_dump($order_card['pay_money']);
+                     if ($washcard['balance']>=$memberinfo['balance']){
+                         M('Member')->where($where1)
+                             ->data(array(  'balance' => $washcard['balance'], 'give_balance' => $washcard['give_balance'], 'update_time' => time(),   'is_pay' => 1))
+                             ->save();
+                     }
+                     $this->addPayLog($memberinfo['m_id'],1,1,$order_card['pay_money']['order_price'],'充值');
+                     $this->addPayLog($memberinfo['m_id'],1,1,$order_card['pay_money']*$give_price,'充值赠送');
+                     $wash=M('Appsetting')->where(array('id' => 1))
+                         ->find();
+                     if ($order_card['m_id']) {
+                         if (time()<=$memberinfo['m_endtime']) {
+                             $wash['ratio'] = $order_card['pay_money'] / $wash['ratio'];
+                             //增加积分
+                             $wash['db_integral'] = $memberinfo['db_integral'] + $wash['ratio'];
+                             if ($wash['db_integral'] >= $memberinfo['db_integral']) {
+
+                                 M('Member')->where(array('id' => $order_card['m_id']))->save(array('db_integral' => $wash['db_integral']));
+                             }
+                             //增加积分明细
+                             $this->addIntegralLog($order_card['m_id'], 2, 2, 0, $wash['ratio'], '充值获取积分');
+                         }
+                     }*/
+                    echo "success";
+                }
+            }
+        }
+    }
+//    public function getAlipayParam ()
+//    {
+//        vendor ('Txunda.Alipay.Alipay');
+//        if ( empty($_REQUEST['orderid']) ) {
+//            $this->apiResponse ('0' , '请输入订单编号');
+//        }
+//        if ( empty($_REQUEST['o_type']) ) {
+//            $this->apiResponse ('0' , '请输入订单类型');
+//        }
+//        if ($_REQUEST['card_id']) {
+//            $card = M ('VipCard')->where (array ('id' => $_REQUEST['card_id'],'status'=>1))->find ();
+//            if ( !$card ) {
+//                $this->apiResponse ('0' , '您的卡券已失效');
+//            }
+//        }
+//        $orderid = $_REQUEST['orderid'];
+//        $pay_money = '';
+//        if ( $_REQUEST['o_type'] == 1 ) {
+//            $info = M ('Order')->where (array ('orderid' => $_REQUEST['orderid']))->find ();
+//            if ( !$info ) {
+//                $this->apiResponse ('0' , '信息查询失败');
+//            }
+//            $orderid = $info['orderid'];
+//
+//            $pay_money = $info['money']-$card[''];//0.01;
+//        } elseif ( $_REQUEST['o_type'] == 2 ) {
+//            $info = M ('Order')->where (array ('orderid' => $_REQUEST['orderid']))->find ();
+//            if ( !$info ) {
+//                $this->apiResponse ('0' , '信息查询失败');
+//            }
+//            $pay_money = 0.01;// $info['pay_money'];
+//        } elseif ( $_REQUEST['o_type'] == 3 ) {
+//            $info = M ('Order')->where (array ('orderid' => $_REQUEST['orderid']))->find ();
+//            if ( !$info ) {
+//                $this->apiResponse ('0' , '信息查询失败');
+//            }
+//            $pay_money = 0.01;// $info['pay_money'];
+//        }
+//        //生成支付字符串
+//        $notify_url = C ('API_URL') . '/index.php/Api/Pay/alipayNotify/type/' . $_REQUEST['o_type'];
+//        $out_trade_no = $orderid;
+//        $total_amount = $pay_money;
+//        $signo_type = 'RSA2';
+//        $payObject = new \Alipay($notify_url , $out_trade_no , $total_amount , $signo_type);
+//        $pay_string = $payObject->appPay ();
+//        $this->apiResponse ('1' , '请求成功' , array ('pay_string' => $pay_string));
+//    }
 
     /**
      * 获取微信支付参数
@@ -472,150 +683,5 @@ class PayController extends BaseController
         }
     }
 
-    /**
-     * 支付宝回调
-     */
-    public function alipayNotify ()
-    {
-        Vendor ('Txunda.Alipay.Notify');
-        $notify = new \Notify();
-        if ( $notify->rsaCheck () ) {
-            $out_trade_no = $_REQUEST['out_trade_no'];
-            $trade_status = $_REQUEST['trade_status'];
-            $trade_no = $_REQUEST['trade_no'];
-            if ( $trade_status == 'TRADE_SUCCESS' ) {
-                if ( $_REQUEST['o_type'] == 1 ) {
-                    unset($where);
-                    $where['orderid'] = $out_trade_no;
-                    $where['status'] = array ('eq' , 1);
-                    $order = M ('Order')->where ($where)->find ();
-                    if ( $order ) {
-                        //修改订单状态
-                        M ('Order')
-                            ->where (array ('id' => $order['id']))
-                            ->data (array ('pay_type' => 2 , 'trade_no' => $trade_no , 'pay_time' => time () , 'status' => 2))
-                            ->save ();
-                    }
-                    echo "success";
-                }
-            } elseif ( $_REQUEST['o_type'] == 2 ) {
-                unset($where);
-                $where['orderid'] = $out_trade_no;
-                $where['status'] = array ('eq' ,1 );
-                $order = M ('Order')->where ($where)->find ();
-                if ( $order ) {
-                    //修改订单状态
-                    M ('Order')->where (array ('orderid' => $order['orderid']))
-                        ->data (array ('pay_type' => 2 , 'trade_no' => $trade_no , 'pay_time' => time ()  , 'status' => 2 ))
-                        ->save ();
-                    //增加余额明细
-                    $where['orderid'] = $out_trade_no;
-                    $where['status'] = array ('eq' , 1);
-                    $order_card = M ('Order')->where ($where)->find ();
-                    $where1['id'] = $order_card['m_id'];
-                    $where1['status'] = array ('eq' , 1);
-                    $memberinfo = M ('Member')->where ($where1)->find ();
-                    $where2['id'] = $order_card['card_id'];
-                    $where2['status'] = array ('eq' , 1);
-                    $washcard = M ('WashCard')->where ($where2)->find ();
-                    $m_endtime = 2592000 * $washcard['end_time'];//var_dump($m_endtime);
-                    if ( time () <= $memberinfo['m_endtime'] ) {//1当前有会员卡且尚未过期
-                        if ( $order_card['card_id'] >= $memberinfo['card_id'] ) {//card_id越大卡的等级越大
-                        } else {
-                            $order_card['card_id'] = $memberinfo['card_id'];
-                            $washcard['car_type'] = $memberinfo['degree'];
-                        }
-                        $m_endtime = $m_endtime + $memberinfo['m_endtime'];
-                        M ('Member')->where ($where1)
-                            ->data (array ('m_endtime' => $m_endtime , 'card_type' => $washcard['car_type'] , 'update_time' => time () , 'card_id' => $order_card['card_id'] , 'is_pay' => 1))
-                            ->save ();
-                    } else {//1当前无会员卡或已过期
-                        $startime = time ();
-                        $m_endtime = $m_endtime + $startime;
-                        M ('Member')->where ($where1)
-                            ->data (array ('startime' => $startime , 'm_endtime' => $m_endtime , 'card_type' => $washcard['car_type'] , 'update_time' => time () , 'card_id' => $order_card['card_id'] , 'is_pay' => 1))
-                            ->save ();
-                    }
-                    echo "success";
-                }
-            } elseif ( $_REQUEST['o_type'] == 3 ) {
-                unset($where);
-                $where['orderid'] = $out_trade_no;
-                $where['status'] = array ('eq' , 0);
-                $order = M ('Order')->where ($where)->find ();
-                if ( $order ) {
-                    //修改订单状态
-                    $status = 1;// $order['type'] == 1 ? 2 : 1;
-                    M ('Order')->where (array ('orderid' => $order['orderid']))
-                        ->data (array ('pay_type' => 1 , 'order_trade_no' => $trade_no , 'update_time' => time () , 'title' => "钱包充值" , 'sign' => "1" , 'status' => $status , 'is_pay' => 1))
-                        ->save ();
-                    //增加余额明细
-                    $where['orderid'] = $out_trade_no;
-                    $where['status'] = array ('eq' , 1);
-                    $order_card = M ('Order')->where ($where)->find ();
-                    $where1['id'] = $order_card['m_id'];
-                    $where1['status'] = array ('eq' , 1);
-                    $memberinfo = M ('Member')->where ($where1)->find ();
-                    $washcard['balance'] = $memberinfo['balance'] + $order_card['pay_money'];//var_dump($memberinfo );var_dump($order_card['pay_money']);
-                    $wash = M ('Appsetting')->where (array ('id' => 1))
-                        ->find ();
-                    $give_price = $wash['give_price'];
-                    $washcard['give_balance'] = $memberinfo['give_balance'] + ($order_card['pay_money'] * $give_price);//var_dump($memberinfo );var_dump($order_card['pay_money']);
-                    if ( $washcard['balance'] >= $memberinfo['balance'] ) {
-                        M ('Member')->where ($where1)
-                            ->data (array ('balance' => $washcard['balance'] , 'give_balance' => $washcard['give_balance'] , 'update_time' => time () , 'is_pay' => 1))
-                            ->save ();
-                    }
-                    $this->addPayLog ($memberinfo['id'] , 1 , 1 , $order_card['pay_money'] , '钱包充值');
-                    $this->addPayLog ($memberinfo['id'] , 1 , 1 , $order_card['pay_money'] * $give_price , '钱包充值赠送');
-                    $wash = M ('Appsetting')->where (array ('id' => 1))->find ();
-                    /* $status =1;// $order['type'] == 1 ? 2 : 1;
-                     M('Order')->where(array('orderid' => $order['orderid']))
-                         ->data(array('pay_type' =>2, 'order_trade_no' => $trade_no, 'update_time' => time(), 'title' => "钱包充值", 'sign'=>"1", 'status' => $status, 'is_pay' => 1))
-                         ->save();
-                     //增加余额明细
-                     $where['orderid'] = $out_trade_no;
-                     $where['status'] = array('eq', 1);
-                     $order_card = M('Order')->where($where)->find();
-                     $where1['id'] = $order_card['m_id'];
-                     $where1['status'] = array('eq', 1);
-                     $memberinfo = M('Member')->where($where1)->find();
-//                    $washcard['balance'] = $memberinfo['balance']+ $order_card['pay_money'];//var_dump($memberinfo );var_dump($order_card['pay_money']);
-//                        if ($washcard['balance']>=$memberinfo['balance']){
-//                            M('Member')->where($where1)
-//                                ->data(array(  'balance' => $washcard['balance'], 'update_time' => time(),   'is_pay' => 1))
-//                                ->save();
-//                        }
-                     $wash=M('Appsetting')->where(array('id' => 1))
-                         ->find();
-                     $give_price=$wash['give_price'];
-                     $washcard['give_balance'] = $memberinfo['give_balance']+ ($order_card['pay_money']*$give_price);//var_dump($memberinfo );var_dump($order_card['pay_money']);
-                     if ($washcard['balance']>=$memberinfo['balance']){
-                         M('Member')->where($where1)
-                             ->data(array(  'balance' => $washcard['balance'], 'give_balance' => $washcard['give_balance'], 'update_time' => time(),   'is_pay' => 1))
-                             ->save();
-                     }
-                     $this->addPayLog($memberinfo['m_id'],1,1,$order_card['pay_money']['order_price'],'充值');
-                     $this->addPayLog($memberinfo['m_id'],1,1,$order_card['pay_money']*$give_price,'充值赠送');
-                     $wash=M('Appsetting')->where(array('id' => 1))
-                         ->find();
-                     if ($order_card['m_id']) {
-                         if (time()<=$memberinfo['m_endtime']) {
-                             $wash['ratio'] = $order_card['pay_money'] / $wash['ratio'];
-                             //增加积分
-                             $wash['db_integral'] = $memberinfo['db_integral'] + $wash['ratio'];
-                             if ($wash['db_integral'] >= $memberinfo['db_integral']) {
-
-                                 M('Member')->where(array('id' => $order_card['m_id']))->save(array('db_integral' => $wash['db_integral']));
-                             }
-                             //增加积分明细
-                             $this->addIntegralLog($order_card['m_id'], 2, 2, 0, $wash['ratio'], '充值获取积分');
-                         }
-                     }*/
-                    echo "success";
-                }
-            }
-        }
-    }
 //    }
 }

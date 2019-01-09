@@ -144,21 +144,21 @@ class AgentController extends BaseController
                 $income['car_wash'] = 0;
 //                $income['weeks'] = date('Y-m-d',$income['day']);
             }
-            $income['day'] = date("Y-m-d");
+            $income['now_day'] = date("Y-m-d");
             if($days){
                 foreach($days as $dk=>$dv){
                     $dayss[] = strtotime($dv);
                 }
                 foreach ($dayss as $dkk=>$dvv){
-                    $dayIncome = D('Income')->where(array('day'=>$dvv))->field("SUM(net_income),day")->group("day")->find();
-                    $dayIncome['day'] = date("Y-m-d",$dayIncome['day']);
+                    $dayIncome = D('Income')->where(array('day'=>$dvv))->field("SUM(net_income) as net_income,day as ago_day")->group("day")->find();
+                    $dayIncome['ago_day'] = date("Y-m-d",$dayIncome['ago_day']);
                     $agoDay[] = $dayIncome;
                 }
             }
             $data = array(
                 'agent' => count($car_num),
                 'income' => $income,
-                'day' =>$agoDay,
+                'ag_day' =>$agoDay,
             );
             if ($data) {
                 $this->apiResponse('1', '成功', $data);
@@ -189,6 +189,7 @@ class AgentController extends BaseController
                 'income' => $income,
                 'week' =>$agoWeek,
             );
+//            var_dump($data);exit;
             if ($data) {
                 $this->apiResponse('1', '成功', $data);
             }
@@ -252,6 +253,7 @@ class AgentController extends BaseController
                 'income' => $income,
                 'year' =>$agoYear,
             );
+//            var_dump($data);exit;
             if ($data) {
                 $this->apiResponse('1', '成功', $data);
             }
