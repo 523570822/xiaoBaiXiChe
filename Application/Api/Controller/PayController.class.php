@@ -173,6 +173,7 @@ class PayController extends BaseController
                 $this->apiResponse(0, '卡券信息查询失败');
             }
         }
+
         // 回调地址
         $url_data = [
             "orderid" => $request['orderid'],
