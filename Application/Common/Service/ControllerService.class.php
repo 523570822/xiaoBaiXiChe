@@ -205,5 +205,4 @@ class ControllerService extends Controller
         $path = M('File')->where(array('id'=>$id))->getField('path');
         return $path?$path:$default_path;
     }
-
 }

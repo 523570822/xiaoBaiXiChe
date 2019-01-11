@@ -1,18 +1,17 @@
-    <?php
+<?php
 
-    class AlipayConfig
-    {
-        const gatewayUrl = "https://openapi.alipay.com/gateway.do";
+class AlipayConfig
+{
+    const gatewayUrl = "https://openapi.alipay.com/gateway.do";
 
-        const appId = "2088331663516484";
+    const appId = "2018121362529699";
 
-        const rsaPrivateKey = 'MIICXgIBAAKBgQDGPH0jSYdaR2659yHYYVjkEEyZbnNXsSX09e5WRUkswsbPn/y3s89bswnuI1MoVOTkBY/02czSpm/jjqrniWu0R6jzbf1CQ2uoGn+23cz1+foyNQyr+rSXG2ajLeFsg/CqtxE27+nr5qhBQRQfY/V6+dsWU9bn9AUB4zdwr4+rsQIDAQABAoGBAKwo1DTVIquQ5eSzb71PrbdDQILvnVRHEMPQ4ZAi1A3/ilG+i+euTSNCNhmOrCWWtMIi4oausGcxDHL/8ATtH48FwblFg4v4/7WqqnFIhOA0IV4CZ+8K7drVaDdkIJE552jQLLE9wuBELNfQUjDvr4pj4KQbU9xdF9m8xmKEdzTBAkEA7xjnlqVx7Lcs18/V0IngnFB+fhCiYgV5RIRHOfZ655rH9INZ+RvGIQp5KapK4t90VnlsXNwZ42KYC+FmBJCRdQJBANRAGMMwXrPP43ArOoKFPBQyZChgMHHtLdZLdiWTA3upAw50BWXUb3gWFx9f5KbwFzX/fBrRmyCAfKOuond/Tc0CQQDaWXoVX13c+aNgKxNucJvI5NG/ut0weyM16T9Ktcej/vwgVlwyXKThw7jGzhe5fKu31Qea/f4+Y+nK37rU7FmJAkEA0rcbnlQcALmnm0lfWgq53Xc1lhwAnGoSMohSL/Vm5NKi9Stb3H9tdrO/mudRkiYTdQlCBUIIltjYZIvQQYBCFQJAMfRieK7hdN5Yc+eENAX1xSFFI+fZ3LU4srok6ukg/hq2aa4ieGx+5jawHbdzk6cWWWNawkLUELsYa1t5nXcx0g==';
+    const rsaPrivateKey = 'MIIEogIBAAKCAQEArl4hVzm1fkVio75fWmRW5rb6syrVEaqPTVVUrhJVxlIARrZtvyGnIxpoDkJ4zhMt31UlLdxX15x9ab2UHhFiuMIBTdvDQHlVPCsx/NNej4EPmxYduZW6feR9MqINk4GFtwtbed/GyU0SmEUVA43YS6/iswtMgmHFkM9+FHXn8tsCNnN4u5FLmpNFcs7+Yht0mVYIdAAWMYbsBcpcPnskmaFvOv+SN4JSm60zdAHuTWWMVNgwKOIDKJ58GMoB+aqFv/Em9Lv4Dtpr+wL3RSIsRYqh1rvdvExTe08vi1X3CXupywHJo/cUqZ3rfn/e/L6qqPu2wAV6vPmLN9sJMglVnwIDAQABAoIBAAEZ+x/v72OS0KK0KyoJBDuE4GSNWrc32pvkdBp9ZylPj0zjDiJs9f9UxV+Br/2tRVbp1MhLYgqspGYsmmjuNy9vmk6BmuQnYBB3PWOZejlx2UVjiGCJv5nX/ap6N5e887lKSxOkBD91Sy7HEPDqznj77XSwF5WjRHo7tVIvxH1WPikR2XraxxvK6huDyp6ThRLXWc+Q0/+UFT4ngOvI0n1sz9bAv3i5o08ZiCZHq44N1WhcyhX/xl3NY3unofPkltxsKk0Yz3QFoUl9Fw5ZilweZ67fx9M98RqGaVL0E3DHOwrhGBAw2xbH2A70TsADl9AF/gyCD3X1lnGXCD5oX0ECgYEA57de8cUPof1aTr70r72J/e8OtiL2wj0YlL1YIhF85U7IbS689RjijnMNkmrH4v3Mgl1mhR71QOJirsqIOgiCWGtTsNgvhQ9Z4/dgzIXBQ3iqXIrXUd6qk1TjvZToP9GZyh/REkS88oLcZWwY1l0v/dzEQa0z4moBU1Xid3Ap4O8CgYEAwKQs6/Ap4OnidJT/U1zArNt8GNxj4LBchOUMJtQbwjszvkw03v3IjoYYDfu8AFneoLl8hXMhtistZz/2lYezdavJiR5VsY5KiwhY3S5QZK640X2xaJr+Sl+bxTcb2VFwNO8gDmJecYakj3jSz4kVlYmN+5DlZtfi8eYBVESVdlECgYA4g5C0hst5RsFv00L6Wc/+DwAXjA+C8EO+gy+rn3hGtSBNAMk1PgyDkawNud1mj2ABq6YFcbd/S7elyd/Px6OCzSpsR03Pth7Gat9BAp5QRm3GhFZfsV8I7/tbkaXTatuHYJstSXaL7z6xvduQ7Ml3sRBstEGjRxdrq9bAKqsMIQKBgGmmIFTNA8qrulxBkr2/MpQaUza3N7d0QWlIzJ9G2GpvWXNWC/D3sdQoSmzw0CxJHUV8NIRjnetwRphHhg5/u7YfHooqrsiPxuX1D/dNfR2ajRWnH3LE/gz/3kgMbyOB/E2rjyMUY8NTGlDs7ICRJ9s48zsyPf1nDLmpcLUsX+PhAoGADOArhdWECMpWPZ+x3o04NaL4I6eXrZwY1j0D1rZDDV3Wiq7E4nG6wGQcpfkq48GX78TmMb9am8S9d2bvB2NOfMczl64TuwpFLcpCtzj3ZWfgtFIhHRnO+E9EWMRZLe1qObcm4IGDIq1t3Y5VPEqFAjiihIWCLoxn6uhoT+B1B5g=';
+    const format = "json";
 
-        const format = "json";
+    const charset = "UTF-8";
 
-        const charset = "UTF-8";
+    const signType = "RSA2";
 
-        const signType = "RSA2";
-
-        const alipayrsaPublicKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDGPH0jSYdaR2659yHYYVjkEEyZbnNXsSX09e5WRUkswsbPn/y3s89bswnuI1MoVOTkBY/02czSpm/jjqrniWu0R6jzbf1CQ2uoGn+23cz1+foyNQyr+rSXG2ajLeFsg/CqtxE27+nr5qhBQRQfY/V6+dsWU9bn9AUB4zdwr4+rsQIDAQAB';
-    }
+    const alipayrsaPublicKey = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjHzlXEmxqnDLJRviDSR0Mg9lDHuEADp0nH6kqUPChXnfziL3X0Uwhlh29Hu0kt9YOTUXa4Dll33YYpvwXizTHFiVZtPiLxM/Tvl01/Se0w/mpc9tH7kzbm/H9gcReEhSTiT8ACVjOEM9pln8PZfTNYLMEAjTx2nUdMCwRbIZETbXBrmnEtRQmZhhL0khgTvreVYpmwsl8n9SUtDjpLIn6/d1qyUhdKVVLYRUG1QVSREA6QSDr5o0IxT4c77b2bAPnFV/jzWR24iWgiRIdQFyjG+WHmzEAjmISjAw+sJD9ZLD+1IUVkeRGCdCN07PMrSblmzOTOXMZBGq+zRmndJ8jQIDAQAB';
+}
