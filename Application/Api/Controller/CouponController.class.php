@@ -34,17 +34,17 @@ class CouponController extends BaseController
     }
 
     /**
-     * 生成vip激活码
-     * @param int $nums 生成多少个优惠码
-     * @param array $exist_array 排除指定数组中的优惠码
-     * @param int $code_length 生成优惠码的长度
+     * 生成兑换活码
+     * @param int $nums 生成多少个兑换活码
+     * @param array $exist_array 排除指定数组中的兑换活码
+     * @param int $code_length 生成兑换活码的长度
      * @param int $prefix 生成指定前缀
-     * @return array                 返回优惠码数组
+     * @return array                 返回兑换活码数组
      */
     public function generateCode ($nums='10' , $exist_array = '' , $code_length = 6 , $prefix = 'DHQ')
     {
         $characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz";
-        $promotion_codes = array ();//这个数组用来接收生成的优惠码
+        $promotion_codes = array ();//这个数组用来接收生成的兑换活码
         for ( $j = 0; $j < $nums; $j++ ) {
             $code = '';
             for ( $i = 0; $i < $code_length; $i++ ) {
@@ -53,13 +53,13 @@ class CouponController extends BaseController
             //如果生成的4位随机数不再我们定义的$promotion_codes数组里面
             if ( !in_array ($code , $promotion_codes) ) {
                 if ( is_array ($exist_array) ) {
-                    if ( !in_array ($code , $exist_array) ) {//排除已经使用的优惠码
-                        $promotion_codes[$j] = $prefix . $code; //将生成的新优惠码赋值给promotion_codes数组
+                    if ( !in_array ($code , $exist_array) ) {//排除已经使用的兑换活码
+                        $promotion_codes[$j] = $prefix . $code; //将生成的新兑换活码赋值给promotion_codes数组
                     } else {
                         $j--;
                     }
                 } else {
-                    $promotion_codes[$j] = $prefix . $code;//将优惠码赋值给数组
+                    $promotion_codes[$j] = $prefix . $code;//将兑换活码赋值给数组
                 }
             } else {
                 $j--;
@@ -69,8 +69,8 @@ class CouponController extends BaseController
         foreach ($promotion_codes as $k => $v) {
             $one= $promotion_codes[$k];
             $data = [['exchange'=>$one,'is_activation'=>1,'creator_time'=>time (),'end_time'=>time ()]];
-            $res = M ('RedeemCode')->addAll($data);
+            M ('RedeemCode')->addAll($data);
         }
-        $this->apiResponse (1,'添加成功',count ($data));
+        $this->apiResponse (1,'添加成功',count ($one));
     }
 }

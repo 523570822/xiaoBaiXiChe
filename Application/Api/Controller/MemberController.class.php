@@ -27,10 +27,14 @@ class MemberController extends BaseController
         $rule = array(
             array('account', 'string', '请您输入手机号码'),
             array('verify', 'string', '请您输入短信验证码'),
-            array('password', 'string', '请您输入密码'),
-            array('repassword', 'string', '请您再次输入密码')
+            array('password', 'notnull', '请您输入密码'),
+            array('repassword', 'notnull', '请您再次输入密码')
         );
         $this->checkParam($rule);
+        //检查手机号是否存在
+        if(empty( $request['password'])&&empty( $request['repassword'])){
+            $this->apiResponse('0', '请输入密码');
+        }
         //检查手机号是否存在
         $param['account'] = $request['account'];
         $param['status'] = 1;
