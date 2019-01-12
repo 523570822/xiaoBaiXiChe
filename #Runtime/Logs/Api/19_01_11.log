@@ -1,0 +1,138 @@
+[ 2019-01-11T16:34:06+08:00 ] 127.0.0.1 /index.php/Api/Agent/income
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000718s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002263s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002739s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002847s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2019-01-11T16:34:18+08:00 ] 127.0.0.1 /index.php/Api/Agent/income
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000277s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000279s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 336 行.
+
+[ 2019-01-11T16:34:41+08:00 ] 127.0.0.1 /index.php/Api/Agent/income
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000363s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000079s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000135s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0663s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0749s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0642s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `agent_id` = 1  [ RunTime:0.0610s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0590s ]
+SQL: SELECT `day`,`week_star`,`month`,`year` FROM `db_income` WHERE `agent_id` = 1 AND `status` = 1  [ RunTime:0.0662s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1544976000 LIMIT 1   [ RunTime:0.0648s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1543766400 LIMIT 1   [ RunTime:0.0634s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1541952000 LIMIT 1   [ RunTime:0.0659s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1531670400 LIMIT 1   [ RunTime:0.0584s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1503244800 LIMIT 1   [ RunTime:0.0598s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1545580800 LIMIT 1   [ RunTime:0.0649s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1546790400 AND `status` = 1 GROUP BY week_star LIMIT 1   [ RunTime:0.0723s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1544976000 GROUP BY week_star LIMIT 1   [ RunTime:0.0592s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1543766400 GROUP BY week_star LIMIT 1   [ RunTime:0.0653s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1541952000 GROUP BY week_star LIMIT 1   [ RunTime:0.0613s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1531670400 GROUP BY week_star LIMIT 1   [ RunTime:0.0732s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1503244800 GROUP BY week_star LIMIT 1   [ RunTime:0.0610s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1545580800 GROUP BY week_star LIMIT 1   [ RunTime:0.0865s ]
+
+[ 2019-01-11T16:35:14+08:00 ] 127.0.0.1 /index.php/Api/Agent/income
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000200s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000188s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000392s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0573s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0685s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0600s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `agent_id` = 1  [ RunTime:0.0625s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0911s ]
+SQL: SELECT `day`,`week_star`,`month`,`year` FROM `db_income` WHERE `agent_id` = 1 AND `status` = 1  [ RunTime:0.0600s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1544976000 LIMIT 1   [ RunTime:0.0527s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1543766400 LIMIT 1   [ RunTime:0.0569s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1541952000 LIMIT 1   [ RunTime:0.0536s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1531670400 LIMIT 1   [ RunTime:0.0583s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1503244800 LIMIT 1   [ RunTime:0.0587s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1545580800 LIMIT 1   [ RunTime:0.0596s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1546790400 AND `status` = 1 GROUP BY week_star LIMIT 1   [ RunTime:0.0695s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1544976000 GROUP BY week_star LIMIT 1   [ RunTime:0.0564s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1543766400 GROUP BY week_star LIMIT 1   [ RunTime:0.0601s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1541952000 GROUP BY week_star LIMIT 1   [ RunTime:0.0563s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1531670400 GROUP BY week_star LIMIT 1   [ RunTime:0.0588s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1503244800 GROUP BY week_star LIMIT 1   [ RunTime:0.0599s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1545580800 GROUP BY week_star LIMIT 1   [ RunTime:0.0641s ]
+
+[ 2019-01-11T16:35:38+08:00 ] 127.0.0.1 /index.php/Api/Agent/income
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000217s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000400s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0559s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0730s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0644s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `agent_id` = 1  [ RunTime:0.0552s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0780s ]
+SQL: SELECT `day`,`week_star`,`month`,`year` FROM `db_income` WHERE `agent_id` = 1 AND `status` = 1  [ RunTime:0.0634s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1544976000 LIMIT 1   [ RunTime:0.0596s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1543766400 LIMIT 1   [ RunTime:0.0578s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1541952000 LIMIT 1   [ RunTime:0.0625s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1531670400 LIMIT 1   [ RunTime:0.0598s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1503244800 LIMIT 1   [ RunTime:0.0573s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1545580800 LIMIT 1   [ RunTime:0.0536s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1546790400 AND `status` = 1 GROUP BY week_star LIMIT 1   [ RunTime:0.0666s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1544976000 GROUP BY week_star LIMIT 1   [ RunTime:0.0608s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1543766400 GROUP BY week_star LIMIT 1   [ RunTime:0.0679s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1541952000 GROUP BY week_star LIMIT 1   [ RunTime:0.0603s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1531670400 GROUP BY week_star LIMIT 1   [ RunTime:0.0589s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1503244800 GROUP BY week_star LIMIT 1   [ RunTime:0.0589s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1545580800 GROUP BY week_star LIMIT 1   [ RunTime:0.0726s ]
+
+[ 2019-01-11T16:52:00+08:00 ] 127.0.0.1 /index.php/Api/Agent/income
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000350s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000251s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000329s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0797s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`address`,`grade`,`balance` FROM `db_agent` WHERE `token` = 'b7c6f0307448306e8c840ec6fc322cb4' AND `status` <> '9' LIMIT 1   [ RunTime:0.0744s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 117 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 120 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0726s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `agent_id` = 1  [ RunTime:0.0688s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0727s ]
+SQL: SELECT `day`,`week_star`,`month`,`year` FROM `db_income` WHERE `agent_id` = 1 AND `status` = 1  [ RunTime:0.0689s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1544976000 LIMIT 1   [ RunTime:0.0912s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1543766400 LIMIT 1   [ RunTime:0.0713s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1541952000 LIMIT 1   [ RunTime:0.0730s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1531670400 LIMIT 1   [ RunTime:0.0676s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1503244800 LIMIT 1   [ RunTime:0.0712s ]
+SQL: SELECT `week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1545580800 LIMIT 1   [ RunTime:0.0650s ]
+SQL: SELECT SUM(net_income),SUM(car_wash),`week_star`,`week_end` FROM `db_income` WHERE `agent_id` = 1 AND `week_star` = 1546790400 AND `status` = 1 GROUP BY week_star LIMIT 1   [ RunTime:0.0761s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1544976000 GROUP BY week_star LIMIT 1   [ RunTime:0.0730s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1543766400 GROUP BY week_star LIMIT 1   [ RunTime:0.0748s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1541952000 GROUP BY week_star LIMIT 1   [ RunTime:0.0714s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1531670400 GROUP BY week_star LIMIT 1   [ RunTime:0.0653s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1503244800 GROUP BY week_star LIMIT 1   [ RunTime:0.0742s ]
+SQL: SELECT SUM(net_income),`week_star`,`week_end` FROM `db_income` WHERE `week_star` = 1545580800 GROUP BY week_star LIMIT 1   [ RunTime:0.0728s ]
+

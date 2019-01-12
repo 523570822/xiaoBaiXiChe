@@ -107,8 +107,8 @@ class AgentController extends BaseController
      */
     public function income(){
         $post = checkAppData('token,timeType','token-时间筛选');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['timeType'] = 2;                  //查询方式  1日  2周  3月   4年
+        /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post['timeType'] = 4; */                 //查询方式  1日  2周  3月   4年
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
         $agent = $this->getAgentInfo($post['token']);
@@ -138,13 +138,13 @@ class AgentController extends BaseController
             $where['day'] = strtotime(date('Y-m-d'));
             $where['status'] = 1;
 //            var_dump($where['day']);exit;
-            $income = D('Income')->where($where)->field("SUM(net_income),SUM(car_wash),day")->group("day")->find();
-            if(empty($income['day'])) {
+            $income = D('Income')->where($where)->field("SUM(net_income) as net_income,SUM(car_wash) as car_wash,day as now_day")->group("day")->find();
+            if(empty($income['now_day'])) {
                 $income['net_income'] = 0;
                 $income['car_wash'] = 0;
 //                $income['weeks'] = date('Y-m-d',$income['day']);
             }
-            $income['now_day'] = date("Y-m-d");
+            $income['now_day'] = date("Y-m-d",$where['day']);
             if($days){
                 foreach($days as $dk=>$dv){
                     $dayss[] = strtotime($dv);
@@ -167,50 +167,53 @@ class AgentController extends BaseController
             $array = $this->weeks();
             $where['week_star'] = $array['0'];
             $where['status'] = 1;
-            $income = D('Income')->where($where)->field("SUM(net_income),SUM(car_wash),week_star,week_end")->group("week_star")->find();
-            if(empty($income['week_star'])){
+//            var_dump($where);exit;
+            $week_income = D('Income')->where($where)->field("SUM(net_income) as net_income,SUM(car_wash) as car_wash,week_star,week_end")->group("week_star")->find();
+//            var_dump($week_income);exit;
+            $income['net_income'] = $week_income['net_income'];
+            $income['car_wash'] = $week_income['car_wash'];
+            if(empty($week_income['week_star'])){
                 $income['net_income'] = 0;
                 $income['car_wash'] = 0;
             }
-            $income['weeks'] = date('Y-m-d',$array['0']).'~'.date('Y-m-d',$array['1']);
+            $income['now_day'] = date('Y-m-d',$array['0']).'~'.date('Y-m-d',$array['1']);
 
             if($weeks){
                 foreach($weeks as $wk=>$wv){
                     $weekss[] = strtotime($wv);
                 }
                 foreach ($weekss as $wkk=>$wvv){
-                    $weekIncome = D('Income')->where(array('week_star'=>$wvv))->field("SUM(net_income),week_star,week_end")->group("week_star")->find();
-                    $weekIncome['week'] = date("Y-m-d",$weekIncome['week_star']).'~'.date("Y-m-d",$weekIncome['week_end']);
-                    $agoWeek[] = $weekIncome;
+                    $weekIncome = D('Income')->where(array('week_star'=>$wvv))->field("SUM(net_income) as n_net_income,week_star,week_end")->group("week_star")->find();
+                    $weekIncomes['net_income'] = $weekIncome['n_net_income'];
+                    $weekIncomes['ago_day'] = date("Y-m-d",$weekIncome['week_star']).'~'.date("Y-m-d",$weekIncome['week_end']);
+                    $agoWeek[] = $weekIncomes;
                 }
             }
             $data = array(
                 'agent' => count($car_num),
                 'income' => $income,
-                'week' =>$agoWeek,
+                'ag_day' =>$agoWeek,
             );
-//            var_dump($data);exit;
             if ($data) {
                 $this->apiResponse('1', '成功', $data);
             }
         } elseif($post['timeType'] == 3) {
             $where['month'] = strtotime(date('Y-m'));
             $where['status'] = 1;
-            $income = D('Income')->where($where)->field("SUM(net_income),SUM(car_wash),month")->group("month")->find();
-            if(empty($income['month'])){
+            $income = D('Income')->where($where)->field("SUM(net_income) as net_income,SUM(car_wash) as car_wash,month as now_day")->group("month")->find();
+//            var_dump($where['month']);exit;
+            if(empty($income['now_day'])){
                 $income['net_income'] = 0;
                 $income['car_wash'] = 0;
             }
-            $income['month'] = date('Y-m');
-
-//            var_dump($income);exit;
+            $income['now_day'] = date('Y-m',$where['month']);
             if($month){
                 foreach($month as $mk=>$mv){
                     $months[] = strtotime($mv);
                 }
                 foreach ($months as $mkk=>$mvv){
-                    $monIncome = D('Income')->where(array('month'=>$mvv))->field("SUM(net_income),month")->group("month")->find();
-                    $monIncome['month'] = date("Y-m",$monIncome['month']);
+                    $monIncome = D('Income')->where(array('month'=>$mvv))->field("SUM(net_income) as net_income,month as ago_day")->group("month")->find();
+                    $monIncome['ago_day'] = date("Y-m",$monIncome['ago_day']);
                     $agoMonth[] = $monIncome;
                 }
             }
@@ -221,39 +224,37 @@ class AgentController extends BaseController
             $data = array(
                 'agent' => count($car_num),
                 'income' => $income,
-                'month' =>$agoMonth,
+                'ag_day' =>$agoMonth,
             );
-//            var_dump($data);exit;
             if ($data) {
                 $this->apiResponse('1', '成功', $data);
             }
         }elseif($post['timeType'] == 4) {
-            $y = date("Y",time());
+            $y = date("Y",1545205151);
             $where['year'] = strtotime($y.'-1-1');
-            $where['status'] = 2;
-            $income = D('Income')->where($where)->field("SUM(net_income),SUM(car_wash),year")->group("year")->find();
+            $where['status'] = 1;
+            $income = D('Income')->where($where)->field("SUM(net_income) as net_income,SUM(car_wash) as car_wash,year as now_day")->group("year")->find();
 //            echo D('Income')->_sql();
-            if(empty($income['year'])){
+            if(empty($income['now_day'])){
                 $income['net_income'] = 0;
                 $income['car_wash'] = 0;
             }
-            $income['year'] = date('Y');
+            $income['now_day'] = date('Y',$where['year']);
             if($years){
                 foreach($years as $yk=>$yv){
                     $yearss[] = strtotime($yv.'-1-1');
                 }
                 foreach ($yearss as $ykk=>$yvv){
-                    $yearIncome = D('Income')->where(array('year'=>$yvv))->field("SUM(net_income),SUM(car_wash),year")->group("year")->find();
-                    $yearIncome['year'] = date("Y",$yearIncome['year']);
+                    $yearIncome = D('Income')->where(array('year'=>$yvv))->field("SUM(net_income) as net_income,year as ago_day")->group("year")->find();
+                    $yearIncome['ago_day'] = date("Y",$yearIncome['ago_day']);
                     $agoYear[] = $yearIncome;
                 }
             }
             $data = array(
                 'agent' => count($car_num),
                 'income' => $income,
-                'year' =>$agoYear,
+                'ag_day' =>$agoYear,
             );
-//            var_dump($data);exit;
             if ($data) {
                 $this->apiResponse('1', '成功', $data);
             }
