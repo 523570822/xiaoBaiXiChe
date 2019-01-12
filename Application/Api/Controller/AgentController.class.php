@@ -62,7 +62,7 @@ class AgentController extends BaseController
             $c = $v;
             $b[] = date('Y-m-d',$c);
         }
-        var_dump($a);exit;
+//        var_dump($a);exit;
         //$post = checkAppData('token','token');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
         $agent = $this->getAgentInfo($post['token']);
