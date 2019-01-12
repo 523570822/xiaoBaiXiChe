@@ -64,7 +64,7 @@ class AgentController extends BaseController
         }
         var_dump($a);exit;
         //$post = checkAppData('token','token');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
         $agent = $this->getAgentInfo($post['token']);
         //日筛选
         $day = D('Income')->where(array('agent_id'=>$agent['id']))->field('id,day,week_star,month,year')->select();
