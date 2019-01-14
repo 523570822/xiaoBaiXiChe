@@ -31,9 +31,12 @@ class MemberController extends BaseController
             array('repassword', 'notnull', '请您再次输入密码')
         );
         $this->checkParam($rule);
-        //检查手机号是否存在
-        if(empty( $request['password'])&&empty( $request['repassword'])){
+        //密码判空
+        if(empty($request['password'])){
             $this->apiResponse('0', '请输入密码');
+        }
+        if(empty($request['repassword'])){
+            $this->apiResponse('0', '请再次输入密码');
         }
         //检查手机号是否存在
         $param['account'] = $request['account'];
@@ -96,11 +99,9 @@ class MemberController extends BaseController
         if (!empty($invite_code)) {
             $this->checkShareCode($invite_code, $member_add_info);
         }
-
 //        $appsetting = M('Appsetting')->find();
 //        for ($i = 0; $i < $appsetting['register_num']; $i++) {
 //        }
-
         $this->apiResponse('1', '注册成功', $data);
         //创建并更新token
 //        $token_arr = $this->createToken();
@@ -141,8 +142,11 @@ class MemberController extends BaseController
 //        unset($member_info['salt']);
         //创建并更新token
         $token_arr = $this->createToken();
-        D('Member')->saveMember(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
+        D('Member')
+            ->where(array('id' => $member_info['id']))
+            ->save (array ('token' => $token_arr['token'],'expired_time' => $token_arr['expired_time']));
         $data['token'] = $token_arr['token'];
+//        var_dump ($member_info['id']);die;
         $this->apiResponse('1', '登录成功', $data);
     }
 
@@ -189,7 +193,7 @@ class MemberController extends BaseController
             //创建并更新token
             $token_arr = createToken();
             D('Member')->where(array('id' => $member_info['m_id']))->save(array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
-            $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
+            $member_info['head_pic'] = C('API_URL') . $this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
             $member_info['token'] = $token_arr['token'];
             $member_info['expired_time'] = $token_arr['expired_time'];
             $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
@@ -263,12 +267,15 @@ class MemberController extends BaseController
         $token_arr = createToken();
         D('Member')->querySave(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
 
-        $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
+        $member_info['head_pic'] =  C('API_URL') .$this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
         $member_info['token'] = $token_arr['token'];
         $member_info['expired_time'] = $token_arr['expired_time'];
         $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
         $this->apiResponse('1', '绑定手机号成功', $member_info);
     }
+
+
+
 
     /**
      * 更换手机号
@@ -284,8 +291,8 @@ class MemberController extends BaseController
             array('verify', 'string', '请输入验证码'),
         );
         $this->checkParam($rule);
-//    检查短信验证码
-        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'mod_bind');
+        //检查短信验证码
+        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 're_bind');
         if ($res['error']) {
             $this->apiResponse('0', $res['error']);
         }
@@ -317,7 +324,7 @@ class MemberController extends BaseController
         $param['where']['status'] = array('neq', 9);
         $param['field'] = 'id as m_id,account,tel,nickname,head_pic,sex,degree';
         $member_info = D('Member')->queryRow($param['where'], $param['field']);
-        $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
+        $member_info['head_pic'] =  C('API_URL') .$this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
 //        $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
         /* $member_info['service_qq']    = $this->config['SERVICE_QQ'];*/
         $this->apiResponse('1', '请求成功', $member_info);
@@ -337,6 +344,13 @@ class MemberController extends BaseController
             array('repassword', 'string', '请再次输入密码'),
         );
         $this->checkParam($rule);
+        //密码判空
+        if(empty($request['password'])){
+            $this->apiResponse('0', '请输入密码');
+        }
+        if(empty($request['repassword'])){
+            $this->apiResponse('0', '请再次输入密码');
+        }
         if (!empty($request['password']) && !empty($request['repassword'])) {
             if ($request['password'] != $request['repassword']) {
                 $this->apiResponse('0', '两次密码不一致，请重试');
@@ -373,11 +387,26 @@ class MemberController extends BaseController
      */
     public function setPassword()
     {
-        $request = $_REQUEST;
-        $rule = array('password', 'string', '请输入密码');
-        $this->checkParam($rule);
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
+        $request = $_REQUEST;
+        $rule =array (
+            array('password', 'string', '请设置密码'),
+            array('repassword', 'string', '请验证密码'),
+        );
+        $this->checkParam($rule);
+        //密码判空
+        if(empty($request['password'])){
+            $this->apiResponse('0', '请输入密码');
+        }
+        if(empty($request['repassword'])){
+            $this->apiResponse('0', '请再次输入密码');
+        }
+        if (!empty($request['password']) && !empty($request['repassword'])) {
+            if ($request['password'] != $request['repassword']) {
+                $this->apiResponse('0', '两次密码不一致，请重试');
+            }
+        }
         unset($where);
         $where['id'] = $m_id;
         $data['salt'] = NoticeStr(6);
@@ -405,6 +434,21 @@ class MemberController extends BaseController
             array('repassword', 'string', '请再次输入密码'),
         );
         $this->checkParam($rule);
+        //密码判空
+        if(empty($request['old_password'])){
+            $this->apiResponse('0', '请输入旧密码');
+        }
+        if(empty($request['password'])){
+            $this->apiResponse('0', '请输入密码');
+        }
+        if(empty($request['repassword'])){
+            $this->apiResponse('0', '请再次输入密码');
+        }
+        if (!empty($request['old_password']) && !empty($request['password'])) {
+            if ($request['old_password'] != $request['password']) {
+                $this->apiResponse('0', '新旧密码一致，请重试');
+            }
+        }
         if (!empty($request['password']) && !empty($request['repassword'])) {
             if ($request['password'] != $request['repassword']) {
                 $this->apiResponse('0', '两次密码不一致，请重试');
@@ -438,10 +482,9 @@ class MemberController extends BaseController
         $param['where']['id'] = $m_id;
         $param['field'] = 'id as m_id,account,tel,head_pic,sex,nickname,password,realname';
         $member_info = D('Member')->queryRow($param['where'], $param['field']);
-        $member_info['head_pic'] = $this->getOnePath($member_info['head_pic'], C('API_URL') . '/Uploads/Member/default.png');
+        D('Member')->where (array ('id'=>$m_id))->save(array ('tel'=>$member_info['account']));
+        $member_info['head_pic'] = C('API_URL') . $this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
         $member_info['is_password'] = $member_info['password'] ? '1' : '0';
-        //        $A =$this->buildCode();
-//        var_dump($A);die;
         unset($member_info['password']);
         $this->apiResponse('1', '请求成功', $member_info);
     }
@@ -454,10 +497,6 @@ class MemberController extends BaseController
     {
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
-        $request = $_REQUEST;
-        $param = array(
-            array('check_type' => 'is_null', 'parameter' => $request['nickname'], 'condition' => '', 'error_msg' => '请输入昵称'),
-        );
         $request = $_REQUEST;
         $rule = array(
             array('nickname', 'string', '请输入昵称'),

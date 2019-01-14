@@ -79,7 +79,9 @@ class SmsModel extends ModelService{
         if ($sms_info['expire_time'] < time()) {
             return array('error' => '验证码已过期');
         }
-
         return array('success'=>'验证通过');
     }
+
+
+
 }
