@@ -81,4 +81,7 @@ class SmsModel extends ModelService{
         }
         return array('success'=>'验证通过');
     }
+
+
+
 }

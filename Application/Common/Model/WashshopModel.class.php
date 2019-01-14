@@ -13,4 +13,6 @@ use Common\Service\ModelService;
  * @package Common\Model
  */
 class WashshopModel extends ModelService{
+
+
 }

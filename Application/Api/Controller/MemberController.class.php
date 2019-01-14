@@ -291,7 +291,7 @@ class MemberController extends BaseController
             array('verify', 'string', '请输入验证码'),
         );
         $this->checkParam($rule);
-//    检查短信验证码
+        //检查短信验证码
         $res = D('Sms')->checkVerify($request['account'], $request['verify'], 're_bind');
         if ($res['error']) {
             $this->apiResponse('0', $res['error']);
