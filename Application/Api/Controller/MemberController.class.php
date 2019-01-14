@@ -32,8 +32,11 @@ class MemberController extends BaseController
         );
         $this->checkParam($rule);
         //检查手机号是否存在
-        if(empty( $request['password'])&&empty( $request['repassword'])){
+        if(empty($request['password'])){
             $this->apiResponse('0', '请输入密码');
+        }
+        if(empty($request['repassword'])){
+            $this->apiResponse('0', '请再次输入密码');
         }
         //检查手机号是否存在
         $param['account'] = $request['account'];

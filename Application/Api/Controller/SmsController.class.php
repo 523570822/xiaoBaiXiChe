@@ -37,7 +37,7 @@ class SmsController extends BaseController{
         }
         // $result = D('Sms')->sendVerify($request['account'],$request['send_type']);
         $result=getVerification($request['account'],$request['send_type']);
-        if($result == '发送成功'){
+        if($result == '发送成功，10分钟内有效'){
             $this->apiResponse('1',$result);
         }else{
             $this->apiResponse('0',$result ? : '发送失败');
