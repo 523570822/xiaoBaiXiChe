@@ -145,7 +145,7 @@ class MemberController extends BaseController
 //        unset($member_info['salt']);
         //创建并更新token
         $token_arr = $this->createToken();
-        D('Member')->saveMember(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
+        D('Member')->where(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']))->save ();
         $data['token'] = $token_arr['token'];
         $this->apiResponse('1', '登录成功', $data);
     }
