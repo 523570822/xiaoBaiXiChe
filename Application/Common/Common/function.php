@@ -31,6 +31,20 @@
         $pwd = md5(sha1(md5($initValue) . md5($salt)));
         return $R ? array('password'=>$pwd, 'salt'=>$salt) : $pwd;
     }
+
+    /**
+     * 获取密码
+     * @param string $password 准备加密的密码
+     * @return array
+     * User: jinrui.wang wangjinrui2010@163.com
+     * Date:2018/05/17 上午11:20
+     */
+    function getPassword($password) {
+        $salt = substr(md5(date('ymd')),0,6);
+        $password = md5(md5($password.$salt));
+        return array('password'=>$password,'salt'=>$salt);
+    }
+
     /**
      * 验证密码
      * @param string $password 验证的密码
