@@ -289,7 +289,7 @@ class MemberController extends BaseController
         );
         $this->checkParam($rule);
 //    检查短信验证码
-        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'mod_bind');
+        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 're_bind');
         if ($res['error']) {
             $this->apiResponse('0', $res['error']);
         }
