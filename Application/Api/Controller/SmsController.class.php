@@ -44,6 +44,7 @@ class SmsController extends BaseController{
         }
     }
 
+
     /**
      * 验证短信验证码
      * 传参方式：post

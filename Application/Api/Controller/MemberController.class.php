@@ -38,6 +38,7 @@ class MemberController extends BaseController
         if(empty($request['repassword'])){
             $this->apiResponse('0', '请再次输入密码');
         }
+
         //检查手机号是否存在
         $param['account'] = $request['account'];
         $param['status'] = 1;
