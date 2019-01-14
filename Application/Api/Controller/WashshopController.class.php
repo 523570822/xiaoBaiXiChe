@@ -201,6 +201,10 @@ class WashshopController extends BaseController
         $this->apiResponse('1', '请求成功', $data);
     }
 
+
+
+
+
     /**
      * 洗车机列表
      * 传递参数的方式：post

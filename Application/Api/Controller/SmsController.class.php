@@ -60,7 +60,6 @@ class SmsController extends BaseController{
             array('send_type','string','请输入短信类型'),
             array('verify','string','请输入验证码'),
         );
-
         $this->checkparam($param);//判断参数的合法性
 
         $res = D('Sms')->checkVerify($request['account'],$request['verify'],$request['send_type']);

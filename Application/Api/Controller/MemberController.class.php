@@ -274,6 +274,9 @@ class MemberController extends BaseController
         $this->apiResponse('1', '绑定手机号成功', $member_info);
     }
 
+
+
+
     /**
      * 更换手机号
      * account  verify
