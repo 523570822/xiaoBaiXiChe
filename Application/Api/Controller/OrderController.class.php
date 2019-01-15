@@ -144,7 +144,10 @@ class OrderController extends BaseController
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
         $request = $_REQUEST;
-        $rule = array ('order_type' , 'string' , '请选择查看的订单状态');//0全部 1待支付 2已完成
+        $rule = array (
+            array ('order_type' , 'string' , '请选择查看的订单状态'),//0全部 1待支付 2已完成
+            array ('page' , 'string' , '请选择查看的订单状态'),
+            );
         $this->checkParam ($rule);
         if($request['order_type']==1){
             $where['db_order.status'] = 1;
@@ -158,7 +161,12 @@ class OrderController extends BaseController
             ->where ($where)
             ->join("db_washshop ON db_order.w_id = db_washshop.id")
             ->field('db_order.id,db_order.mc_id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_washshop.shop_name')
+            ->page($request['page'], '10')
             ->select();
+        if (!$list_info) {
+            $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
+            $this->apiResponse('1', $message);
+        }
         $this->apiResponse ('1' , '请求成功' ,  $list_info);
     }
 
