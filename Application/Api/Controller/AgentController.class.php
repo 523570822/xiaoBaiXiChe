@@ -32,9 +32,9 @@ class AgentController extends BaseController
      *Date:2018/12/18 16:22
      */
     public function login(){
-        $post = checkAppData('phone,password','账号-密码');
-        /*$post['phone'] = 17622818248;
-        $post['password'] = 123456;*/
+//        $post = checkAppData('phone,password','账号-密码');
+        $post['phone'] = 17622818248;
+        $post['password'] = 789456;
         if (!isMobile($post['phone'])) {
             $this->apiResponse('0','手机号格式有误');
         }
@@ -52,11 +52,44 @@ class AgentController extends BaseController
     }
 
     /**
+     *修改密码
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/14 01:36
+     */
+    public function changePassword(){
+//        $post = checkAppData('token,old_password,password','token-旧密码-新密码');
+        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post['old_password'] = 789456;
+        $post['password'] = 789456;
+        $member = $this->getAgentInfo($post['token']);
+        var_dump($post['old_password']);
+        var_dump($post['password']);
+        var_dump($member);exit;
+        if (checkPassword($post['password'],$member['salt'],$member['password'])) {
+            echo 111;exit;
+//            $password = getPassword($post['password']);
+            $data['salt'] = NoticeStr(6);
+            $data['password'] = CreatePassword($post['old_password'], $data['salt']);
+            $mem['password'] = $data['password'];
+            $mem['salt'] = $data['salt'];
+            $mem['update_time'] = time();
+            $r = M('Agent')->where(array('id'=>$member['id']))->save($mem);
+            if ($r) {
+                $this->apiResponse('1','成功');
+            } else {
+                $this->apiResponse('0','修改失败');
+            }
+        } else {
+            $this->apiResponse('0','原密码错误');
+        }
+    }
+
+    /**
      *判断周时间
      *user:jiaming.wang  459681469@qq.com
      *Date:2018/12/21 11:20
      */
-    public function timeType(){
+    /*public function timeType(){
         $a = $this->weeks();
         foreach ($a as $k=>$v){
             $c = $v;
@@ -64,7 +97,7 @@ class AgentController extends BaseController
         }
 //        var_dump($a);exit;
         //$post = checkAppData('token','token');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
 //        $agent = $this->getAgentInfo($post['token']);
         //日筛选
         $day = D('Income')->where(array('agent_id'=>$agent['id']))->field('id,day,week_star,month,year')->select();
@@ -98,7 +131,7 @@ class AgentController extends BaseController
             $this->apiResponse('0','错误');
 
         }
-    }
+    }*/
 
     /**
      *收益
@@ -299,6 +332,15 @@ class AgentController extends BaseController
         }else{
             $this->apiResponse('1','暂无可查询加盟商');
         }
+    }
+
+    /**
+     *管理列表
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/14 00:41
+     */
+    public function management(){
+
     }
 
     /**
