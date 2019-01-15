@@ -5,6 +5,7 @@
  * Date: 2018/8/13
  * Time: 10:02
  */
+
 namespace Api\Controller;
 /**
  * 订单模块
@@ -53,10 +54,10 @@ class OrderController extends BaseController
         if ( $request['o_type'] == '1' ) {
             $param['where']['status'] = 1;
             $param['where']['o_type'] = 1;
-            $check_order =  D('Order')->queryCount($param['where']);
-            $pay =  D('Order')->field ('orderid')->queryRow($param['where']);
-            if ($check_order){
-                $this->apiResponse ('0' , '您有'.$check_order.'个订单待支付,请支付后再进行下订单',$pay);
+            $check_order = D ('Order')->queryCount ($param['where']);
+            $pay = D ('Order')->field ('orderid')->queryRow ($param['where']);
+            if ( $check_order ) {
+                $this->apiResponse ('0' , '您有' . $check_order . '个订单待支付,请支付后再进行下订单' , $pay);
             }
             $rule = array ('w_type' , 'string' , '请输入洗车类型');
             $this->checkParam ($rule);
@@ -70,7 +71,7 @@ class OrderController extends BaseController
                 $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
                 $data['m_id'] = $m_id;
                 $data['w_id'] = $car_washer_info['p_id'];
-                $data['orderid'] ='XC'. date ('YmdHi') . rand (100 , 999);
+                $data['orderid'] = 'XC' . date ('YmdHi') . rand (100 , 999);
                 $data['title'] = "扫码洗车";
                 $data['o_type'] = '1';
                 $data['w_type'] = '1';
@@ -97,7 +98,7 @@ class OrderController extends BaseController
                 $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
                 $data['m_id'] = $m_id;
                 $data['w_id'] = $car_washer_info['p_id'];
-                $data['orderid'] ='YC'.date ('YmdHi') . rand (100 , 999);
+                $data['orderid'] = 'YC' . date ('YmdHi') . rand (100 , 999);
                 $data['title'] = "预约洗车";
                 $data['o_type'] = '1';
                 $data['w_type'] = '2';
@@ -121,7 +122,7 @@ class OrderController extends BaseController
             $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
             $data['m_id'] = $m_id;
             $data['w_id'] = $car_washer_info['p_id'];
-            $data['orderid'] ='MK'.date ('YmdHi') . rand (100 , 999);
+            $data['orderid'] = 'MK' . date ('YmdHi') . rand (100 , 999);
             $data['title'] = "小鲸卡购买";
             $data['o_type'] = '2';
             $data['create_time'] = time ();
@@ -145,29 +146,31 @@ class OrderController extends BaseController
         $this->errorTokenMsg ($m_id);
         $request = $_REQUEST;
         $rule = array (
-            array ('order_type' , 'string' , '请选择查看的订单状态'),//0全部 1待支付 2已完成
-            array ('page' , 'string' , '请选择查看的订单状态'),
-            );
+            array ('order_type' , 'string' , '请选择查看的订单状态') ,//0全部 1待支付 2已完成
+            array ('page' , 'string' , '请选择查看的订单状态') ,
+        );
         $this->checkParam ($rule);
-        if($request['order_type']==1){
+        if ( $request['order_type'] == 0 ) {
+            $where['db_order.status'] = array ('neq' , 9);
+        }
+        if ( $request['order_type'] == 1 ) {
             $where['db_order.status'] = 1;
         }
-        if($request['order_type']==2){
+        if ( $request['order_type'] == 2 ) {
             $where['db_order.status'] = 2;
         }
-        $list_info = D('Order')
-            ->where(array('db_order.m_id' => $m_id))
-            ->where (array ('db_order.status' => array ('neq' , 9)))
+        $list_info = D ('Order')
+            ->where (array ('db_order.m_id' => $m_id))
             ->where ($where)
-            ->join("db_washshop ON db_order.w_id = db_washshop.id")
-            ->field('db_order.id,db_order.mc_id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_washshop.shop_name')
-            ->page($request['page'], '10')
-            ->select();
-        if (!$list_info) {
+            ->join ("db_washshop ON db_order.w_id = db_washshop.id")
+            ->field ('db_order.id,db_order.mc_id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_washshop.shop_name')
+            ->page ($request['page'] , '10')
+            ->select ();
+        if ( !$list_info ) {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
-            $this->apiResponse('1', $message);
+            $this->apiResponse ('1' , $message);
         }
-        $this->apiResponse ('1' , '请求成功' ,  $list_info);
+        $this->apiResponse ('1' , '请求成功' , $list_info);
     }
 
     /**
@@ -180,15 +183,52 @@ class OrderController extends BaseController
         $request = $_REQUEST;
         $rule = array ('id' , 'string' , '请选择查看的订单详情');
         $this->checkParam ($rule);
-        $list_info = D('Order')
-            ->where(array('db_order.m_id' => $m_id))
-            ->where(array('db_order.id' => $request['id']))
-            ->where (array ('db_order.status' => array ('neq' , 9)))
-            ->join("db_washshop ON db_order.w_id = db_washshop.id")
-            ->join("db_car_washer ON db_order.mc_id = db_car_washer.mc_id")
-            ->field('db_order.mc_id,db_order.status,db_washshop.shop_name,db_order.money,db_order.c_type,db_order.pay_money,db_order.orderid,db_order.pay_type,db_order.create_time,db_order.update_time,db_order.pay_time,db_car_washer.lon,db_car_washer.lat,db_car_washer.address')
-            ->select();
-        $this->apiResponse ('1' , '请求成功' , $list_info[0]);
+        $order = D ('Order')->where (array ('id' => $request['id'] , 'o_type' => 1))->field ('id,status,money,pay_money,orderid,pay_type,c_id,is_dis,card_id,coup_id,update_time,create_time,pay_time')->find ();
+        if ( !$order ) {
+            $this->apiResponse ('0' , '请输入正确订单ID');
+        }
+        $car = D ('CarWasher')->where (array ('id' => $order['c_id']))->field ('*')->find ();
+        $shop = D ('Washshop')->where (array ('id' => $car['p_id']))->field ('shop_name')->find ();
+        $details = D ('Details')->where (array ('o_id' => $order['id']))->field ('*')->find ();
+        $order['shop_name'] = $shop['shop_name'];
+        $order['lon'] = $car['lon'];
+        $order['lat'] = $car['lat'];
+        $order['mc_id'] = $car['mc_id'];
+        $order['address'] = $car['address'];
+        $order['washing'] = $details['washing'] . '(min)';
+        $order['foam'] = $details['foam'] . '(min)';
+        $order['rinse'] = $details['rinse'] . '(min)';
+        $order['cleaner'] = $details['cleaner'] . '(min)';
+        $appsetting = D ('Appsetting')->find ();
+        $order['washing_money'] = $details['washing'] * $appsetting['washing_money'];
+        $order['foam_money'] = $details['foam'] * $appsetting['foam_money'];
+        $order['rinse_money'] = $details['rinse'] * $appsetting['rinse_money'];
+        $order['cleaner_money'] = $details['cleaner'] * $appsetting['cleaner_money'];
+        if ( $order['is_dis'] == 0 ) {//无优惠
+            $this->apiResponse ('1' , '查询成功' , $order);
+        }
+        if ( $order['is_dis'] == 1 ) {//有优惠
+            if ( $order['card_id'] ) {//小鲸卡
+                $m_id = $this->checkToken ();
+                $this->errorTokenMsg ($m_id);
+                $list = D ('CardUser')->where (array ('db_card_user.id' => $order['card_id'] , 'db_card_user.m_id' => $m_id , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate')->select ();
+                foreach ( $list as $key => $value ) {
+                    $card = $list[$key]['name'] . '会员' . ($list[$key]['rebate'] * 10) . '折';
+                    $order['discount'] = $card;
+                    $this->apiResponse ('1' , '查询成功' , $order);
+                }
+            }
+            if ( $order['coup_id'] ) {//现金抵用券
+                $m_id = $this->checkToken ();
+                $this->errorTokenMsg ($m_id);
+                $list = D ('CouponBind')->where (array ('db_coupon_bind.id' => $order['coup_id'] , 'db_coupon_bind.m_id' => $m_id , 'is_bind' => 1))->join ("db_batch ON db_coupon_bind.b_id = db_batch.id")->field ('db_batch.title,db_batch.price')->select ();
+                foreach ( $list as $key => $value ) {
+                    $card = $list[$key]['title'] . $list[$key]['price'] . '元';
+                    $order['discount'] = $card;
+                    $this->apiResponse ('1' , '查询成功' , $order);
+                }
+            }
+        }
     }
 
     /**
