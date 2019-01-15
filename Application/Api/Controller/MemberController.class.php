@@ -477,6 +477,7 @@ class MemberController extends BaseController
      */
     public function memberBaseData()
     {
+
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $param['where']['id'] = $m_id;
