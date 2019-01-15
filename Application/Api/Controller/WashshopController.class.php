@@ -217,7 +217,7 @@ class WashshopController extends BaseController
             $this->apiResponse('0', '缺少坐标参数');
         }
         $wh3 = '(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(' . $lat . '-lat)/360),2)+COS(3.1415926535898*' . $lat . '/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(' . $lon . '-lon)/360),2))))*1000';
-        $washcar = M('CarWasher')->where(array('status' => 1))->field('*,' . $wh3 . ' as distance')->select();
+        $washcar = M('CarWasher')->where(array('status' => 1))->field('*,' . $wh3 . ' as distance')->order(array('distance'=>asc))->select();
         if ($washcar) {
             foreach ($washcar as $k => $v) {
                 if ($lat == "") {
@@ -225,12 +225,11 @@ class WashshopController extends BaseController
                     $washcar[$k]['distance'] = round($v['distance'] / 1000, 2) . 'Km';// '距离我' .;
                 }
                 $washcar[$k]['washcar_pic'] = $this->getOnePath($washcar[$k]['washcar_pic'], C('API_URL') . '/Uploads/Member/default.png');
-                $washcar[$k]['shop_name']=D ('Washshop')->where (array('id' =>$washcar[$k]['p_id'] ))->field ('shop_name')->find ();
-//                var_dump ($washcar[$k]['p_id']);die;
+                $name= D ('Washshop')->where (array('id' =>$washcar[$k]['p_id'] ))->field ('shop_name')->find ();
+                $washcar[$k]['shop_name']=$name['shop_name'];
             }
+
         }
-//        $washcar['distance'] = round($washcar['distance'] / 1000, 2) . 'Km';// '距离我' .;
-//        $washcar['washcar_pic'] =C('API_URL') . $this->getOnePath($washcar['washcar_pic'],  '/Uploads/Member/default.png');
         if ($m_id) {
             $this->errorTokenMsg($m_id);
             $param['where']['id'] = $m_id;
