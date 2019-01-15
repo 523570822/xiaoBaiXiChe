@@ -481,8 +481,9 @@ class MemberController extends BaseController
         $this->errorTokenMsg($m_id);
         $param['where']['id'] = $m_id;
         $param['field'] = 'id as m_id,account,tel,head_pic,sex,nickname,password,realname';
+        $member = D('Member')->queryRow($param['where'], $param['field']);
+        D('Member')->where (array ('id'=>$m_id))->save(array ('tel'=>$member['account']));
         $member_info = D('Member')->queryRow($param['where'], $param['field']);
-        D('Member')->where (array ('id'=>$m_id))->save(array ('tel'=>$member_info['account']));
         $member_info['head_pic'] = C('API_URL') . $this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
         $member_info['is_password'] = $member_info['password'] ? '1' : '0';
         unset($member_info['password']);
