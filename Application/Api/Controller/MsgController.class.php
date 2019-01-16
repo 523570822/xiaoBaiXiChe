@@ -20,61 +20,6 @@ class MsgController extends BaseController{
         $this->member_obj = D('Member');
         $this->msg_read_log = D('MsgReadLog');
     }
-
-    /*
-     * 消息通知
-     * token  type//1系统消息 2 订单消息
-     * */
-    public function info()
-    {
-        $m_id = $this->checkToken();
-        $this->errorTokenMsg($m_id);
-        $request=$_REQUEST;
-        $rule=array('type','string','参数类型不正确');
-        $this->checkParam($rule);
-        $type=$request['type'];
-        $sys_msg_info = M('Msg')->where(array('type' => $type, 'status' => array('neq', 9)))->order('create_time desc')->find();
-        if ($sys_msg_info) {
-            $check_log = D("MsgReadLog")->where(array('m_id' => $m_id, 'msg_id' => $sys_msg_info['id']))->find();
-            if ($check_log) {
-                $data['sys_msg_code'] = 0; //没有未读消息
-            } else {
-                $data['sys_msg_code'] = 1; //有未读系统消息
-            }
-        }
-        $this->apiResponse('1', '请求成功', $data);
-    }
-
-    /*
-     * 系统消息列表
-     * */
-    public function myMsgList()
-    {
-        $m_id = $this->checkToken();
-        $this->errorTokenMsg($m_id);
-        $request = $_REQUEST;
-
-        $list = M('Msg')->where(array('type' => 1, 'status' => array('neq', 9)))->order('create_time desc')
-            ->field('id as act_msg_id,sys_msg_title as act_msg_title,sys_msg_content as act_msg_content,create_time')
-            ->page($request['page'], '15')
-            ->order('create_time desc')
-            ->select();
-
-        if (empty($list)) {
-            $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
-            $this->apiResponse('1', $message);
-        }
-        foreach ($list as $k => $v) {
-            $list[$k]['act_msg_content'] = htmlspecialchars_decode($list[$k]['act_msg_content']);
-
-            $list[$k]['create_time'] = date('Y/m/d', $v['create_time']);
-            unset($list[$k]['act_pic']);
-            $res = M('msg_read_log')->where(array('m_id' => $m_id, 'msg_id' => $v['act_msg_id']))->find();
-            $list[$k]['is_read'] = $res ? 0 : 1;//1未读0已读
-        }
-        $this->apiResponse('1', '请求成功', $list);
-    }
-
     /**
      * 系统消息详情
      * 消息id act_msg_id
@@ -101,38 +46,86 @@ class MsgController extends BaseController{
     }
 
     /**
-     * 订单消息详情
-     * 消息id act_msg_id
-     */
-    public function orderDetail()
+     * 消息列表
+     * */
+    public function myMsgList()
     {
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $request = $_REQUEST;
-        $list = M('Msg')->where(array('m_id' => $m_id, 'type' => 2, 'status' => array('neq', 9)))->order('create_time desc')
-            ->field('id as act_msg_id,sys_msg_title as act_msg_title, order_id,order_msg_content as act_msg_content, create_time')
+        $list = M('Msg')
+            ->where(array('status' => array('neq', 9),))
+            ->order('create_time desc')
             ->page($request['page'], '15')
             ->order('create_time desc')
             ->select();
+
         if (empty($list)) {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
             $this->apiResponse('1', $message);
         }
         foreach ($list as $k => $v) {
-            $list[$k]['act_msg_content'] = htmlspecialchars_decode($list[$k]['act_msg_content']);
+            $list[$k]['msg_content'] = htmlspecialchars_decode($list[$k]['msg_content']);
 
             $list[$k]['create_time'] = date('Y/m/d', $v['create_time']);
             unset($list[$k]['act_pic']);
-            $res = M('msg_read_log')->where(array('m_id' => $m_id, 'msg_id' => $v['act_msg_id']))->find();
+            $res = M('msg_read_log')->where(array('m_id' => $m_id, 'msg_id' => $v['id']))->find();
             $list[$k]['is_read'] = $res ? 0 : 1;//1未读0已读
         }
         $this->apiResponse('1', '请求成功', $list);
     }
 
-
-
-
-
+//    /**
+//     * 消息通知
+//     * token  type//1系统消息 2 订单消息
+//     * */
+//    public function info()
+//    {
+//        $m_id = $this->checkToken();
+//        $this->errorTokenMsg($m_id);
+//        $request=$_REQUEST;
+//        $rule=array('type','string','参数类型不正确');
+//        $this->checkParam($rule);
+//        $type=$request['type'];
+//        $sys_msg_info = M('Msg')->where(array('type' => $type, 'status' => array('neq', 9)))->order('create_time desc')->find();
+//        if ($sys_msg_info) {
+//            $check_log = D("MsgReadLog")->where(array('m_id' => $m_id, 'msg_id' => $sys_msg_info['id']))->find();
+//            if ($check_log) {
+//                $data['sys_msg_code'] = 0; //没有未读消息
+//            } else {
+//                $data['sys_msg_code'] = 1; //有未读系统消息
+//            }
+//        }
+//        $this->apiResponse('1', '请求成功', $data);
+//    }
+//    /**
+//     * 订单消息详情
+//     * 消息id id
+//     */
+//    public function orderDetail()
+//    {
+//        $m_id = $this->checkToken();
+//        $this->errorTokenMsg($m_id);
+//        $request = $_REQUEST;
+//        $list = M('Msg')->where(array('m_id' => $m_id, 'type' => 2, 'status' => array('neq', 9)))->order('create_time desc')
+//            ->field('id as act_msg_id,sys_msg_title as act_msg_title, orderid,order_msg_content as act_msg_content, create_time')
+//            ->page($request['page'], '15')
+//            ->order('create_time desc')
+//            ->select();
+//        if (empty($list)) {
+//            $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
+//            $this->apiResponse('1', $message);
+//        }
+//        foreach ($list as $k => $v) {
+//            $list[$k]['act_msg_content'] = htmlspecialchars_decode($list[$k]['act_msg_content']);
+//
+//            $list[$k]['create_time'] = date('Y/m/d', $v['create_time']);
+//            unset($list[$k]['act_pic']);
+//                $res = M('msg_read_log')->where(array('m_id' => $m_id, 'msg_id' => $v['act_msg_id']))->find();
+//            $list[$k]['is_read'] = $res ? 0 : 1;//1未读0已读
+//        }
+//        $this->apiResponse('1', '请求成功', $list);
+//    }
 //    /**
 //     * 消息首页
 //     */
