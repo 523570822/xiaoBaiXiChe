@@ -147,7 +147,7 @@ class OrderController extends BaseController
         $request = $_REQUEST;
         $rule = array (
             array ('order_type' , 'string' , '请选择查看的订单状态') ,//0全部 1待支付 2已完成
-            array ('page' , 'string' , '请选择查看的订单状态') ,
+            array ('page' , 'string' , '请输入参数:page') ,
         );
         $this->checkParam ($rule);
         if ( $request['order_type'] == 0 ) {
@@ -162,10 +162,15 @@ class OrderController extends BaseController
         $list_info = D ('Order')
             ->where (array ('db_order.m_id' => $m_id))
             ->where ($where)
-            ->join ("db_washshop ON db_order.w_id = db_washshop.id")
-            ->field ('db_order.id,db_order.mc_id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_washshop.shop_name')
+            ->join ("db_car_washer ON db_order.c_id = db_car_washer.id")
+            ->field ('db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id')
             ->page ($request['page'] , '10')
             ->select ();
+        foreach ($list_info as $k => $v) {
+            $m=$list_info[$k]['p_id'];
+            $shop=D('Washshop')->where (array ('id'=>$m))->field ('shop_name')->find ();
+            $list_info[$k]['shop_name']=$shop['shop_name'];
+    }
         if ( !$list_info ) {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
             $this->apiResponse ('1' , $message);
@@ -197,12 +202,10 @@ class OrderController extends BaseController
         $order['address'] = $car['address'];
         $order['washing'] = $details['washing'] . '(min)';
         $order['foam'] = $details['foam'] . '(min)';
-        $order['rinse'] = $details['rinse'] . '(min)';
         $order['cleaner'] = $details['cleaner'] . '(min)';
         $appsetting = D ('Appsetting')->find ();
         $order['washing_money'] = $details['washing'] * $appsetting['washing_money'];
         $order['foam_money'] = $details['foam'] * $appsetting['foam_money'];
-        $order['rinse_money'] = $details['rinse'] * $appsetting['rinse_money'];
         $order['cleaner_money'] = $details['cleaner'] * $appsetting['cleaner_money'];
         if ( $order['is_dis'] == 0 ) {//无优惠
             $this->apiResponse ('1' , '查询成功' , $order);
