@@ -73,17 +73,21 @@ class CardController extends BaseController
             ->where (array ('db_card_user.m_id' => $m_id,array ('db_card_user.status' => array ('neq' , 9))))
             ->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")
             ->field ('db_card_user.id,db_card_user.l_id,db_card_user.end_time,db_littlewhale_card.name,db_littlewhale_card.rebate')
-            ->select ();
-        foreach ($list_info as $k => $v) {
-            $list_info[$k]['rebate'] = $list_info[$k]['rebate']*10;
+            ->find ();
+            $time = time ();//1549693253;
+        if ($list_info['end_time']){
+            if ( $time > $list_info['end_time'] ) {
+                $mgs = '已过期';
+            } else {
+                $day = ($list_info['end_time'] - $time);
+                $mgs = intval ($day / (60 * 60 * 24)) . '天';
+            }
+            $list_info['date'] = $mgs;
+            $list_info['name']=$list_info['name'].'会员';
+            $list_info['rebate']=($list_info['rebate']*10).'折';
+            $this->apiResponse ('1' ,'查询成功' ,$list_info);
+        }else{
+            $this->apiResponse ('1' ,'查询成功');
         }
-        $time = time ();//1549693253;
-        if ( $time > $list_info[0]['end_time'] ) {
-            $mgs = '已过期';
-        } else {
-            $day = ($list_info[0]['end_time'] - $time);
-            $mgs = intval ($day / (60 * 60 * 24)) . '天';
-        }
-        $this->apiResponse ('1' , $mgs ,$list_info[0]);
     }
 }
