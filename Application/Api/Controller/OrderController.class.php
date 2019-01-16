@@ -54,7 +54,7 @@ class OrderController extends BaseController
         if ( $request['o_type'] == '1' ) {
             $param['where']['status'] = 1;
             $param['where']['o_type'] = 1;
-            $check_order = D ('Order')->where (array ('m_id'=>$m_id,'w_type'=>1,'o_type'=>1))->queryCount ($param['where']);
+            $check_order = D ('Order')->where (array ('m_id' => $m_id , 'w_type' => 1 , 'o_type' => 1))->queryCount ($param['where']);
             $pay = D ('Order')->field ('orderid')->queryRow ($param['where']);
             if ( $check_order ) {
                 $this->apiResponse ('0' , '您有' . $check_order . '个订单待支付,请支付后再进行下订单' , $pay);
@@ -66,31 +66,25 @@ class OrderController extends BaseController
                 $this->checkParam ($rule);
                 $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
                 if ( !$request['mc_id'] = $car_washer_info['mc_id'] ) {
-                    $this->apiResponse ('0' , '找不到该机器' , $php_errormsg);
+                    $this->apiResponse ('0' , '找不到该机器');
                 }
-                if ( $car_washer_info['status'] ) {
-                    if ( $car_washer_info['status'] == 2 ) {
-                        $mgs = '机器故障';
-                    }
-                    if ( $car_washer_info['status'] == 3 ) {
-                        $mgs = '机器报警';
-                    }
-                    if ( $car_washer_info['status'] == 4 ) {
-                        $mgs = '机器不在线';
-                    }
-                    $this->apiResponse ('0' , $mgs , $php_errormsg);
+                if ( $car_washer_info['status'] == 2 ) {
+                    $this->apiResponse ('0' , '机器故障');
                 }
-                if ( $car_washer_info['status'] ) {
-                    if ( $car_washer_info['type'] == 2 ) {
-                        $mgs = '机器正在使用中';
-                    }
-                    if ( $car_washer_info['type'] == 3 ) {
-                        $mgs = '机器已经被预订';
-                    }
-                    if ( $car_washer_info['type'] == 4 ) {
-                        $mgs = '机器暂停使用';
-                    }
-                    $this->apiResponse ('0' , $mgs , $php_errormsg);
+                if ( $car_washer_info['status'] == 3 ) {
+                    $this->apiResponse ('0' , '机器报警');
+                }
+                if ( $car_washer_info['status'] == 4 ) {
+                    $this->apiResponse ('0' , '机器不在线');
+                }
+                if ( $car_washer_info['type'] == 2 ) {
+                    $this->apiResponse ('0' , '机器正在使用中');
+                }
+                if ( $car_washer_info['type'] == 3 ) {
+                    $this->apiResponse ('0' , '机器已经被预订');
+                }
+                if ( $car_washer_info['type'] == 4 ) {
+                    $this->apiResponse ('0' , '机器暂停使用');
                 }
                 $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
                 $data['m_id'] = $m_id;
@@ -103,7 +97,10 @@ class OrderController extends BaseController
                 $data['mc_id'] = $car_washer_info['mc_id'];
                 $data['mobile'] = $member_info['account'];
                 $res = M ('Order')->data ($data)->add ();
-                if ( $res ) {
+                $type['type'] = '2';
+                $XG['mc_id'] = $request['mc_id'];
+                $yes = M ('CarWasher')->where ($XG)->save ($type);
+                if ( $res && $yes ) {
                     $this->apiResponse ('1' , '下单成功' , array ('orderid' => $data['orderid']));
                 } else {
                     $this->apiResponse ('0' , '下单失败');
@@ -117,7 +114,25 @@ class OrderController extends BaseController
 //                $this->checkParam ($rule);
                 $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
                 if ( !$request['mc_id'] = $car_washer_info['mc_id'] ) {
-                    $this->apiResponse ('0' , '找不到该机器' , $php_errormsg);
+                    $this->apiResponse ('0' , '找不到该机器');
+                }
+                if ( $car_washer_info['status'] == 2 ) {
+                    $this->apiResponse ('0' , '机器故障');
+                }
+                if ( $car_washer_info['status'] == 3 ) {
+                    $this->apiResponse ('0' , '机器报警');
+                }
+                if ( $car_washer_info['status'] == 4 ) {
+                    $this->apiResponse ('0' , '机器不在线');
+                }
+                if ( $car_washer_info['type'] == 2 ) {
+                    $this->apiResponse ('0' , '机器正在使用中');
+                }
+                if ( $car_washer_info['type'] == 3 ) {
+                    $this->apiResponse ('0' , '机器已经被预订');
+                }
+                if ( $car_washer_info['type'] == 4 ) {
+                    $this->apiResponse ('0' , '机器暂停使用');
                 }
                 $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
                 $data['m_id'] = $m_id;
@@ -130,10 +145,10 @@ class OrderController extends BaseController
                 $data['mc_id'] = $car_washer_info['mc_id'];
                 $data['mobile'] = $member_info['account'];
                 $res = M ('Order')->data ($data)->add ();
-                $type['type']='3';
-                $tj['mc_id']=$request['mc_id'];
-                M ('CarWasher')->data ($tj)->save($type);
-                if ( $res && $tj ) {
+                $type['type'] = '3';
+                $XG['mc_id'] = $request['mc_id'];
+                $yes = M ('CarWasher')->where ($XG)->save ($type);
+                if ( $res && $yes ) {
                     $this->apiResponse ('1' , '预约成功' , array ('orderid' => $data['orderid']));
                 } else {
                     $this->apiResponse ('0' , '预约失败');
@@ -193,11 +208,11 @@ class OrderController extends BaseController
             ->field ('db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id')
             ->page ($request['page'] , '10')
             ->select ();
-        foreach ($list_info as $k => $v) {
-            $m=$list_info[$k]['p_id'];
-            $shop=D('Washshop')->where (array ('id'=>$m))->field ('shop_name')->find ();
-            $list_info[$k]['shop_name']=$shop['shop_name'];
-    }
+        foreach ( $list_info as $k => $v ) {
+            $m = $list_info[$k]['p_id'];
+            $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();
+            $list_info[$k]['shop_name'] = $shop['shop_name'];
+        }
         if ( !$list_info ) {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
             $this->apiResponse ('1' , $message);
