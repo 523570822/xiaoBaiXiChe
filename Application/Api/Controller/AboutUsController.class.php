@@ -24,11 +24,10 @@ class AboutUsController extends BaseController
 
     /**
      *关于我们
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/18 05:28
-     */
-    public function AboutUsList(){
-        $find = M('AboutUs')->where(array('id'=>1))->field('us_name,us_pic,company,address')->find();
-        $this->apiResponse('1','成功',$find);
+     **/
+    public function aboutUs(){
+        $aboutus_info = C('APP');
+        $picture['app_agent'] = C ('API_URL') . $this->getOnePath ($aboutus_info['app_agent'] , C ('API_URL') . '/Uploads/Member/default.png');
+        $this->apiResponse('1','查询成功',array ('app_agent'=>$picture['app_agent'],'app_name'=>$aboutus_info['app_name'],'app_version'=>$aboutus_info['app_version'],'app_intro'=>$aboutus_info['app_intro']));
     }
 }

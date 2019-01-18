@@ -15,6 +15,7 @@ return array(
     ),
     'APP' =>  array(
         'app_logo' => '230',
+        'agent' => '254',
         'app_name' => '小鲸洗车',
         'app_version' => 'V1.0.0',
         'app_intro' => 'Copyright © 2019-2020    

@@ -26,6 +26,8 @@ class AgentController extends BaseController
         parent::_initialize();
     }
 
+
+
     /**
      *登录方法
      *user:jiaming.wang  459681469@qq.com
@@ -365,5 +367,36 @@ class AgentController extends BaseController
         var_dump($agent);exit;
     }*/
 
+    /**
+     *净收入详情
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/02 10:22
+     */
+    public function carIncomeInfo(){
+        $post = checkAppData('token,day','token-日期时间戳');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['day'] = 1545148800;
+        /*if(empty($post['day'])){
+            $post['day'] = strtotime(date('Y-m-d'));
+        }*/
+        $agent = $this->getAgentInfo($post['token']);
+
+        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_id')->select();
+        foreach ($car_washer as $k=>$v){
+            $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,money as net_income,pay_time')->find();
+            if(!empty($order_num['orderid'])){
+                $cars[$k]['net_income'] = $order_num['net_income'];
+                $cars[$k]['create_time'] = $order_num['pay_time'];
+                $cars[$k]['mc_id'] = $order_num['orderid'];
+                $cars[$k]['car_washer'] = $v['mc_id'];
+            }
+
+        }
+        if(!empty($cars)){
+            $this->apiResponse('1','成功',$cars);
+        }else{
+            $this->apiResponse('0','暂无收入详情');
+        }
+    }
 
 }
