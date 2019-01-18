@@ -54,9 +54,6 @@
      * Date:2018/08/17
      */
     function checkPassword($password,$salt,$old_password) {
-        var_dump($password);
-        var_dump($salt);
-        var_dump($old_password);exit;
 
         $a = CreatePassword($password, $salt) !== $old_password;
         if(CreatePassword($password, $salt) !== $old_password){

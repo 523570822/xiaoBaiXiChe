@@ -32,9 +32,9 @@ class AgentController extends BaseController
      *Date:2018/12/18 16:22
      */
     public function login(){
-//        $post = checkAppData('phone,password','账号-密码');
-        $post['phone'] = 17622818248;
-        $post['password'] = 123456;
+        $post = checkAppData('phone,password','账号-密码');
+        /*$post['phone'] = 17622818248;
+        $post['password'] = 123456;*/
         if (!isMobile($post['phone'])) {
             $this->apiResponse('0','手机号格式有误');
         }
@@ -57,25 +57,33 @@ class AgentController extends BaseController
      *Date:2019/01/14 01:36
      */
     public function changePassword(){
-//        $post = checkAppData('token,old_password,password','token-旧密码-新密码');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $post['old_password'] = 789456;
-        $post['password'] = 789456;
+        $post = checkAppData('token,old_password,password,apassword','token-旧密码-新密码-再一次输新密码');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['old_password'] = 123456;
+//        $post['password'] = 123456;
+//        $post['apassword'] = 123456;
+        if($post['old_password'] == $post['password']){
+            $this->apiResponse('1','新旧密码不能一致');
+        }
+        if($post['password'] != $post['apassword']){
+            $this->apiResponse('1','新密码不一致');
+        }
         $member = $this->getAgentInfo($post['token']);
 //        var_dump($post['old_password']);
 //        var_dump($post['password']);
 //        var_dump($member);exit;
-        $a = checkPassword($post['old_password'],$member['salt'],$member['password']);
-        var_dump($a);exit;
-        if (checkPassword($post['old_password'],$member['salt'],$member['password'])) {
-            echo 111;exit;
+//        $a = checkPassword($post['old_password'],$member['salt'],$member['password']);
+//        var_dump($a);exit;
+        $check_password = checkPassword($post['old_password'],$member['salt'],$member['password']);
+        if ($check_password != 1) {
 //            $password = getPassword($post['password']);
             $data['salt'] = NoticeStr(6);
-            $data['password'] = CreatePassword($post['old_password'], $data['salt']);
+            $data['password'] = CreatePassword($post['password'], $data['salt']);
             $mem['password'] = $data['password'];
             $mem['salt'] = $data['salt'];
             $mem['update_time'] = time();
             $r = M('Agent')->where(array('id'=>$member['id']))->save($mem);
+
             if ($r) {
                 $this->apiResponse('1','成功');
             } else {
