@@ -105,7 +105,7 @@ class OrderController extends BaseController
                     $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
                     $data['m_id'] = $m_id;$data['w_id'] = $car_washer_info['p_id'];$data['orderid'] = 'XC' . date ('YmdHi') . rand (100 , 999);
                     $data['title'] = "扫码洗车";$data['o_type'] = '1';$data['w_type'] = '1';$data['create_time'] = time ();
-                    $data['mc_id'] = $car_washer_info['mc_id'];$data['mobile'] = $member_info['account'];
+                    $data['mc_id'] = $car_washer_info['mc_id'];$data['mobile'] = $member_info['account'];$data['c_id'] =$car_washer_info['id'];
                     $res = M ('Order')->data ($data)->add ();
                     $type['type'] = '2';$XG['mc_id'] = $request['mc_id'];
                     $yes = M ('CarWasher')->where ($XG)->save ($type);
@@ -123,18 +123,12 @@ class OrderController extends BaseController
                 $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
                 $data['m_id'] = $m_id;$data['w_id'] = $car_washer_info['p_id'];$data['orderid'] = 'YC' . date ('YmdHi') . rand (100 , 999);
                 $data['title'] = "预约洗车";$data['o_type'] = '1';$data['w_type'] = '2';$data['create_time'] = time ();$data['subs_time'] = time ();
-                $data['mc_id'] = $car_washer_info['mc_id'];$data['mobile'] = $member_info['account'];
-                $res = M ('Order')->data ($data)->add ();
+                $data['mc_id'] = $car_washer_info['mc_id'];$data['mobile'] = $member_info['account'];$data['c_id'] =$car_washer_info['id'];
+                    $res = M ('Order')->data ($data)->add ();
                 $type['type'] = '3';$XG['mc_id'] = $request['mc_id'];
                 $yes = M ('CarWasher')->where ($XG)->save ($type);
                 if ( $res && $yes ) {
-                    if ($request['w_type']){
-                        $data['is_use']=$request['w_type'] ? 1:0;
-                    }
-                    if($data['is_use']==1){
-                        $data['is_use']=$data['subs_time']+(15*60)>time () ? 1:2;
-                    }
-                    $this->apiResponse ('1' , '预约成功' , array ('orderid' => $data['orderid'],'is_use'=>$data['is_use']));
+                    $this->apiResponse ('1' , '预约成功' , array ('orderid' => $data['orderid']));
                 } else {
                     $this->apiResponse ('0' , '预约失败');
                 }
@@ -142,11 +136,11 @@ class OrderController extends BaseController
             }
         }
         if ( $request['o_type'] == 2 ) {
-//            $rule = array (
-//                array ('' , 'string' , '小鲸卡') ,
-//                array ('' , 'string' , '小鲸卡') ,
-//            );
-//            $this->checkParam ($rule);
+            $rule = array (
+                array ('' , 'string' , '小鲸卡') ,
+                array ('' , 'string' , '小鲸卡') ,
+            );
+            $this->checkParam ($rule);
             $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
             $data['m_id'] = $m_id;
             $data['w_id'] = $car_washer_info['p_id'];

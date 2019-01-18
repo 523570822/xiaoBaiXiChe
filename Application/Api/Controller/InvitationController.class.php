@@ -39,7 +39,7 @@ class InvitationController extends BaseController
             ->field('db_extension_log.id,db_extension_log.create_time,db_member.nickname')
             ->select();
 
-        $list = D('Coupon') ->where('c_type' == 1)->field('db_create_time') ->count();
+        $list = D('CouponBind') ->where('c_type' == 1)->field('db_create_time') ->count();
         if ($list_info) {
             foreach ($list_info as $k => $v) {
                 $list_info[$k]['create_time'] = date('Y/m/d', $v['create_time']);
