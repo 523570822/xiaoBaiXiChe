@@ -384,13 +384,15 @@ class AgentController extends BaseController
         $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_id')->select();
         foreach ($car_washer as $k=>$v){
             $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,money as net_income,pay_time')->find();
-            if(!empty($order_num['orderid'])){
-                $cars[$k]['net_income'] = $order_num['net_income'];
-                $cars[$k]['create_time'] = $order_num['pay_time'];
-                $cars[$k]['mc_id'] = $order_num['orderid'];
-                $cars[$k]['car_washer'] = $v['mc_id'];
+            $time = strtotime(date('Y-m-d',$order_num['pay_time']));
+            if($time == $post['day']){
+                if(!empty($order_num['orderid'])){
+                    $cars[$k]['net_income'] = $order_num['net_income'];
+                    $cars[$k]['create_time'] = $order_num['pay_time'];
+                    $cars[$k]['mc_id'] = $order_num['orderid'];
+                    $cars[$k]['car_washer'] = $v['mc_id'];
+                }
             }
-
         }
         if(!empty($cars)){
             $this->apiResponse('1','成功',$cars);
