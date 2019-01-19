@@ -227,7 +227,7 @@ class WxPayApi
 		$xml = $inputObj->ToXml();
 		
 		$response = self::postXmlCurl($xml, $url, false, $timeOut);
-		if(substr($response, 0 , 5) == "<xml>"){
+		if(substr($response, 0 , 5) == "<xml></xml>"){
 			return "";
 		}
 		return $response;

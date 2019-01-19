@@ -106,54 +106,64 @@ class IndexController extends BaseController
         return $data;
     }
 
-    public function fg ()
+    public function send_post ()
     {
-        $param1 = "{
-        \"devices\": [{
-        \"deviceid\":\"510042001451373435363337\",
-        \"setitem\":{
-            \"service_status\":true,
-            \"valve1_status\":true,
-            \"pump1_status\":true,
-            \"pump2_status\":true,
-            \"vacuum_status\":true,
-            \"heater_status\":true,
-            \"valid_voltage\":true,
-            \"valid_temperature\":true,
-            \"ttsplay\":true
+        $request = $_REQUEST;//device_manage  runtime_query
+        if ( $request['type'] ) {
+            if ( $request['type'] == 'device_manage' ) {
+                $param = "{
+                            \"devices\": [{
+                                \"deviceid\": \"510042001451373435363337\",
+                                \"setitem\": {
+                                    \"service_status\": 4,
+                                    \"pump1_status\": 3,
+                                    \"pump2_status\": 3,
+                                    \"valve1_status\": 3,
+                                    \"vacuum_status\": 2,
+                                    \"heater_status\": 2,
+                                    \"valid_voltage\":{
+                                                     \"low\": \"190\",
+                                                     \"high\": \"240\"
+                                    },
+                                    \"valid_temperature\":{
+                                                        \"low\": \"5\",
+                                                        \"high\": \"40\"
+                                    }
+                                }
+                            }]
+                        }";
+            } elseif ( $request['type'] == 'runtime_query' ) {
+                $param = "{
+                            \"devices\": [{
+                                \"deviceid\": \"510042001451373435363337\",
+                                \"queryitem\": {
+                                    \"service_status\": true,
+                                    \"pressure\": true,
+                                    \"pump1_status\": true,
+                                    \"pump2_status\": true,
+                                    \"valve1_status\": true,
+                                    \"valve2_status\": true,
+                                    \"valve3_status\": true,
+                                    \"clean_water_usage\": true,
+                                    \"foam_usage\": true,
+                                    \"lastfilled_foam_uasge\": true,
+                                    \"vacuum_info\": true,
+                                    \"heater_status\": true,
+                                    \"env_temperature\": true,
+                                    \"device_volt\": true,
+                                    \"device_current\": true,
+                                    \"device_power\": true,
+                                    \"device_energy\": true,
+                                    \"location\": true
+                                }
+                            }]
+                        }";
             }
-        ]}
-    }";
-
-        $param = "{
-	    \"devices\": [{
-		\"deviceid\": \"510042001451373435363337\",
-		\"queryitem\": {
-			\"service_status\": true,
-			\"pressure\": true,
-			\"pump1_status\": true,
-			\"pump2_status\": true,
-			\"valve1_status\": true,
-			\"valve2_status\": true,
-			\"valve3_status\": true,
-			\"clean_water_usage\": true,
-			\"foam_usage\": true,
-			\"lastfilled_foam_uasge\": true,
-			\"vacuum_info\": true,
-			\"heater_status\": true,
-			\"env_temperature\": true,
-			\"device_volt\": true,
-			\"device_current\": true,
-			\"device_power\": true,
-			\"device_energy\": true,
-			\"location\": true
-		}
-	}]
-}";
-        //runtime_query
-        $response = $this->push_curl ($param1 , "" , "http://guojiulin.gicp.net:18000/car_wash/device_manage");
+        } else {
+            $php_errormsg = '查询失败，请传参数---->\'type\'';
+            $this->ajaxReturn ($php_errormsg);
+        }
+        $response = $this->push_curl ($param , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://guojiulin.gicp.net:18000/car_wash/" . $request['type']);
         $this->ajaxReturn ($response);
     }
-
-
 }
