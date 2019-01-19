@@ -54,6 +54,27 @@ class AgentController extends BaseController
     }
 
     /**
+     *添加
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/18 17:49
+     */
+//    public function add(){
+//        $post['account'] = 18635356098;
+//        $post['password'] = 123456;
+//        $post['nickname'] = '东南角';
+//        $token = $this->createToken();
+//        $data['salt'] = NoticeStr(6);;
+//        $data['password'] = CreatePassword($post['password'], $data['salt']);
+//        $data['account'] = $post['account'];
+//        $data['token'] = $token['token'];
+//        $data['token'] = $token['token'];
+//        $data['nickname'] = $post['nickname'];
+//        $data['grade'] = 1;
+//
+//        $add = M('Agent')->add($data);
+//    }
+
+    /**
      *修改密码
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/14 01:36
@@ -95,55 +116,6 @@ class AgentController extends BaseController
             $this->apiResponse('0','原密码错误');
         }
     }
-
-    /**
-     *判断周时间
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2018/12/21 11:20
-     */
-    /*public function timeType(){
-        $a = $this->weeks();
-        foreach ($a as $k=>$v){
-            $c = $v;
-            $b[] = date('Y-m-d',$c);
-        }
-//        var_dump($a);exit;
-        //$post = checkAppData('token','token');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $agent = $this->getAgentInfo($post['token']);
-        //日筛选
-        $day = D('Income')->where(array('agent_id'=>$agent['id']))->field('id,day,week_star,month,year')->select();
-        foreach ($day as $k=>$v){
-            $vs[] = date("Y-m-d",$day[$k]['day']);
-            $week[] = $day[$k]['week_star'];
-            $mon[] = date("Y-m",$day[$k]['month']);
-            $year[] = date("Y", $day[$k]['year']);
-        }
-        $days = array_unique($vs);
-        //周筛选
-        $weeks = array_unique($week);
-        foreach ($weeks as $key=>$value){
-            $weekend = D('Income')->where(array('agent_id'=>$agent['id'],'week_star'=>$value))->field('week_star,week_end')->find();
-            $weekends[$key] = date('Y-m-d',$weekend['week_star']).'~'.date('Y-m-d',$weekend['week_end']);
-        }
-        $weeks = $weekends;
-        //月筛选
-        $month = array_unique($mon);
-        //年筛选
-        $years = array_unique($year);
-        $data = array(
-            'day' =>$days,
-            'week' =>$weeks,
-            'month' =>$month,
-            'year' =>$years,
-        );
-        if($data){
-            $this->apiResponse('1','成功',$data);
-        }else{
-            $this->apiResponse('0','错误');
-
-        }
-    }*/
 
     /**
      *收益
@@ -347,12 +319,82 @@ class AgentController extends BaseController
     }
 
     /**
+     *加盟商详情
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/18 16:46
+     */
+    public function agentInfo(){
+        $post = checkAppData('token','token');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $agent = $this->getAgentInfo($post['token']);
+        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->select();
+        $data['car_washer'] = count($car_washer);
+        if($agent['grade'] == 1){
+            $t_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
+            foreach ($t_agent as $k=>$v){
+                $where['status'] = array('neq',9);
+                $where['agent_id'] = $v['id'];
+                $t_num[$k] = M('CarWasher')->where($where)->field('agent_id')->select();
+                foreach ($t_num[$k] as $k1=>$v1){
+                    foreach ($v1 as $k2=>$v2){
+                        $tn[$k2] = $v2;
+                        $tnumber[] = $tn[$k2];
+                    }
+                }
+            }
+//            var_dump($a);exit;
+//            var_dump(count($a));exit;
+            $s_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id')->select();
+            foreach ($s_agent as $kk=>$vv){
+                $where['status'] = array('neq',9);
+                $where['agent_id'] = $vv['id'];
+                $s_num[$kk] = M('CarWasher')->where($where)->field('agent_id')->select();
+                foreach ($s_num[$kk] as $kk1=>$vv1){
+                    foreach($vv1 as $kk2=>$vv2){
+                        $sn[$kk2] = $vv2;
+                        $snumber[] = $sn[$kk2];
+                    }
+                }
+            }
+            $data['two'] = count($t_agent);
+            $data['t_num'] = count($tnumber);
+            $data['three'] = count($s_agent);
+            $data['s_num'] = count($snumber);
+            $data['car_washer'] = count($car_washer)+$data['t_num']+$data['s_num'];
+
+        }
+        if($data){
+            $this->apiResponse('1','成功',$data);
+        }
+    }
+
+    /**
      *管理列表
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/14 00:41
      */
     public function management(){
+//        $post = checkAppData('page,size','页数-个数');
 
+        $post['page'] = 1;
+        $post['size'] = 10;
+
+        $agent = M('Agent')->where(array('grade'=>1,'status'=>1))->field('id')->select();
+        foreach($agent as $k=>$v){
+            $where['status'][$k] = array('neq',9);
+            $where['agent_id'] = $v['id'];
+            $car= M('CarWasher')->where($where)->field('id,agent_id')->find();
+            $cars[] = $car;
+
+        }
+        var_dump($cars);exit;
+
+        $where['status'] = array('neq',9);
+        $result = M('CarWasher')->field('agent_id')->where($where)->select();
+        foreach ($result as $kk=>$vv){
+
+        }
+        var_dump(count($result));exit;
     }
 
     /**
@@ -360,12 +402,14 @@ class AgentController extends BaseController
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/05 16:07
      */
-    /*public function detail(){
+    public function detail(){
         //$post = checkAppData('token','token');
         $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
         $agent = $this->getAgentInfo($post['token']);
+
+
         var_dump($agent);exit;
-    }*/
+    }
 
     /**
      *净收入详情
@@ -400,5 +444,23 @@ class AgentController extends BaseController
             $this->apiResponse('0','暂无收入详情');
         }
     }
+
+    /**
+     *我的详情
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/19 17:51
+     */
+    public function myInfo(){
+        $post = checkAppData('token','token');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+
+        $agent = $this->getAgentInfo($post['token']);
+
+        $my = M('Agent')->where(array('id'=>$agent['id']))->field('account,nickname,balance,grade')->find();
+        if($my){
+            $this->apiResponse('1','成功',$my);
+        }
+    }
+
 
 }

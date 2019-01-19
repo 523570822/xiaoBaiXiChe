@@ -78,4 +78,56 @@ class CarWasherController extends BaseController
         }
     }
 
+    /**
+     *我的洗车机
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/19 11:45
+     */
+    public function myCarWasher(){
+        $post = checkAppData('token,address,car_num,status,page,size','token-洗车机地址-洗车机编号-洗车机状态-页数-个数');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['address'] = '';
+//        $post['car_num'] = '';
+//        $post['status'] = '';
+//        $post['page'] = '';
+//        $post['size'] = 10;
+        $order[] = 'sort DESC';
+        if($post['address']){            //筛选地址
+
+            if(!empty($post['address'])){
+                $where['address'] = array('LIKE', "%" . $post['address'] . "%");
+            }else{
+                $where['address'] = '';
+            }
+        }
+
+        if($post['car_num']){        //搜索洗车机编号
+            if(!empty($post['car_num'])){
+                $where['mc_id'] = array('Like', "%" . $post['car_num'] . "%");
+            }else{
+                $where['mc_id'] = '';
+            }
+        }
+
+        if($post['status']){                  //筛选状态  1正常  2故障 3报警  4不在线
+            if(!empty($post['status'])){
+                $where['status'] = $post['status'];
+            }else{
+                $where['status'] = '';
+            }
+        }
+
+        $agent = $this->getAgentInfo($post['token']);
+
+        $where['agent_id'] = $agent['id'];
+        if ($post['page'] != '') {
+            $result = M('CarWasher')->field('address,mc_id,status')->where($where)->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        } else {
+            $result = M('CarWasher')->field('address,mc_id,status')->where($where)->order($order)->select();
+        }
+        if($result){
+            $this->apiResponse('1','成功',$result);
+        }
+    }
+
 }

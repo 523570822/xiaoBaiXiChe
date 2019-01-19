@@ -105,7 +105,7 @@ class BaseController extends ControllerService
             apiResponse('-1','please login again');
         }
         if ($type == 'info') {
-            $agent = D('Agent')->findAgent(array('token'=>$token),'id,account,token,nickname,address,grade,balance,salt,password');
+            $agent = D('Agent')->findAgent(array('token'=>$token),'id,account,token,nickname,grade,balance,salt,password,grade');
         } elseif ($type == 'field') {
             $agent = D('Agent')->findAgent(array('token'=>$token),$field);
         } else {
