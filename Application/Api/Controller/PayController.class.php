@@ -166,9 +166,7 @@ class PayController extends BaseController
      * 需要传递的参数：
      * 订单编号：orderid
      * 类型：o_type 1洗车订单 2小鲸卡购买 3余额充值
-     * 卡券id：c_id
-     * 卡券类型：c_type
-     */
+     **/
     public function Alipay ()
     {
         Vendor ('Txunda.Alipay.Alipay');
@@ -214,22 +212,37 @@ class PayController extends BaseController
             if ( $trade_status == 'TRADE_SUCCESS' ) {
                 $order = D ('Order')->where (array ('orderid' => $out_trade_no))->find ();
                 $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
-                if ( $_REQUEST['o_type'] == 1 or 2 ) {//1洗车订单//2小鲸卡购买
-                    $date['pay_time'] = time ();
-                    $date['status'] = 2;
+                $date['pay_type'] = 2;
+                $date['status'] = 2;
+                $date['pay_time'] = time ();
+                $date['trade_no'] = $trade_no;
+                if ( $_REQUEST['o_type'] == 1 ) {//1洗车订单
                     $date['detail'] = 0;
-                    $date['pay_type'] = 2;
-                    $date['trade_no'] = $trade_no;
+                    $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
+                    if ( $save ) {
+                        echo "success";
+                    }
+                } elseif ( $_REQUEST['o_type'] == 2 ) {//2小鲸卡购买
+                    $have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
+                    if ( $have ) {
+                        $where['end_time'] = $have['end_time'] + 30 * 24 * 3600;
+                        $where['update_time'] = time ();
+                        D ("CardUser")->where (array ('m_id' => $order['m_id']))->save ($where);
+                    } else {
+                        $where['end_time'] = time () + 30 * 24 * 3600;
+                        $where['create_time'] = time ();
+                        $where['stare_time'] = time ();
+                        $where['l_id'] = $order['card_id'];
+                        $where['m_id'] = $order['m_id'];
+                        D ("CardUser")->add ($where);
+                    }
+                    $date['detail'] = 0;
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     if ( $save ) {
                         echo "success";
                     }
                 } elseif ( $_REQUEST['o_type'] == 3 ) {//3余额充值
-                    $date['pay_time'] = time ();
-                    $date['status'] = 2;
-                    $date['detail'] = 0;
-                    $date['pay_type'] = 2;
-                    $date['trade_no'] = $trade_no;
+                    $date['detail'] = 1;
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
                     if ( $save && $buy ) {
@@ -245,7 +258,7 @@ class PayController extends BaseController
      * 传递参数的方式：post
      * 需要传递的参数：
      * 订单id：orderid
-     * 类型：o_type 1.积分订单 2 购买会员卡订单 3充值
+     * 类型：o_type 1洗车订单 2小鲸卡购买 3余额充值
      */
     public function WeChat ()
     {
@@ -313,22 +326,37 @@ class PayController extends BaseController
         $where['orderid'] = $xml_res["out_trade_no"];
         $order = D ('Order')->where (array ('orderid' => $out_trade_no))->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
-        if ( $_REQUEST['o_type'] == 1 or 2 ) {//1洗车订单//2小鲸卡购买
-            $date['pay_time'] = time ();
-            $date['status'] = 2;
+        $date['pay_time'] = time ();
+        $date['status'] = 2;
+        $date['pay_type'] = 1;
+        $date['trade_no'] = $trade_no;
+        if ( $_REQUEST['o_type'] == 1 ) {//1洗车订单
             $date['detail'] = 0;
-            $date['pay_type'] = 1;
-            $date['trade_no'] = $trade_no;
+            $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
+            if ( $save ) {
+                echo "success";
+            }
+        } elseif ( $_REQUEST['o_type'] == 2 ) {//2小鲸卡购买
+            $have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
+            if ( $have ) {
+                $where['end_time'] = $have['end_time'] + 30 * 24 * 3600;
+                $where['update_time'] = time ();
+                D ("CardUser")->where (array ('m_id' => $order['m_id']))->save ($where);
+            } else {
+                $where['end_time'] = time () + 30 * 24 * 3600;
+                $where['create_time'] = time ();
+                $where['stare_time'] = time ();
+                $where['l_id'] = $order['card_id'];
+                $where['m_id'] = $order['m_id'];
+                D ("CardUser")->add ($where);
+            }
+            $date['detail'] = 0;
             $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
             if ( $save ) {
                 echo "success";
             }
         } elseif ( $_REQUEST['o_type'] == 3 ) {//3余额充值
-            $date['pay_time'] = time ();
-            $date['status'] = 2;
-            $date['detail'] = 0;
-            $date['pay_type'] = 1;
-            $date['trade_no'] = $trade_no;
+            $date['detail'] = 1;
             $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
             $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
             if ( $save && $buy ) {
@@ -388,22 +416,66 @@ class PayController extends BaseController
             array ('o_type' , 'string' , '订单类型不能为空') ,
         );
         $this->checkParam ($rule);
+        $order = D ("Order")->where (array ('m_id' => $m_id , 'orderid' => $request['orderid'] , 'o_type' => $request['o_type'] , 'status' => 1))->find ();
+        $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
+        if ( !$order ) {
+            $this->apiResponse (0 , '订单信息查询失败');
+        }
+        $date['detail'] = 2;
+        $date['pay_time'] = time ();
+        $date['status'] = 2;
+        $date['pay_type'] = 3;
+        $date['trade_no'] = 'YZF4200000' . date ('YmdHis') . rand (1000 , 9999);
+        if ( $Member['balance'] < $order['pay_money'] ) {
+            $this->apiResponse (0 , '您的余额不足，请充值');
+        }
         if ( $request['o_type'] == 3 ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
-        $order_info = D ("Order")->where (array ('m_id' => $m_id , 'orderid' => $request['orderid'] , 'o_type' => $request['o_type'] , 'status' => 1))->find ();
-        if ( !$order_info ) {
-            $this->apiResponse (0 , '订单信息查询失败');
+        if ( $_REQUEST['o_type'] ) {
+            if ( $_REQUEST['o_type'] == 1 ) {//1洗车订单
+                $pay = D ('Member')->where (array ('id' => $m_id))->field ('balance')->Save (array ('balance' => $Member['balance'] - $order['pay_money']));
+                $save = D ("Order")->where (array ('orderid' => $request['orderid']))->save ($date);
+                if ( $save && $pay ) {
+                    $this->apiResponse (1 , '支付成功');
+                }
+            } elseif ( $_REQUEST['o_type'] == 2 ) {//2小鲸卡购买
+                $have = D ("CardUser")->where (array ('m_id' => $m_id))->select ();
+                foreach ( $have as $k => $v ) {
+                    $have['l_id'] = $have[$k]['l_id'];
+                    $have['end_time'] = $have[$k]['end_time'];
+                }
+                $is_have = D ("CardUser")->where (array ('m_id' => $m_id))->find ();
+                if ( $is_have ) {
+                    if ( $have['l_id'] == $order['card_id'] ) {
+                        $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
+                        $off['update_time'] = time ();
+                        $card = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => $order['card_id']))->save ($off);
+                    }
+                    if ( $have['l_id'] !== $order['card_id'] ) {
+                        $on['end_time'] = time () + (30 * 24 * 3600);
+                        $on['create_time'] = time ();
+                        $on['stare_time'] = time ();
+                        $on['l_id'] = $order['card_id'];
+                        $on['m_id'] = $m_id;
+                        $card = D ("CardUser")->add ($on);
+                    }
+                }
+                if ( !$is_have ) {
+                    $on['end_time'] = time () + (30 * 24 * 3600);
+                    $on['create_time'] = time ();
+                    $on['stare_time'] = time ();
+                    $on['l_id'] = $order['card_id'];
+                    $on['m_id'] = $m_id;
+                    $card = D ("CardUser")->add ($on);
+                }
+                $pay = D ('Member')->where (array ('id' => $m_id))->field ('balance')->Save (array ('degree' => $have['l_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
+                $save = D ("Order")->where (array ('orderid' => $request['orderid']))->save ($date);
+            }
         }
-        $balance = D ('Member')->where (array ('id' => $m_id))->field ('balance')->find ();
-        D ('Member')->where (array ('id' => $m_id))->field ('balance')->Save (array ('balance' => $balance['balance'] - $order_info['pay_money']));
-        $date['pay_time'] = time ();
-        $date['status'] = 2;
-        $date['detail'] = 2;
-        $date['pay_type'] = 3;
-        $date['trade_no'] = 'YZF4200000' . date ('YmdHis') . rand (1000 , 9999);
-        $pay = D ("Order")->where (array ('orderid' => $request['orderid']))->save ($date);
-        $this->apiResponse (1 , '支付成功' , $pay);
+        if ( $save && $pay && $card ) {
+            $this->apiResponse (1 , '支付成功');
+        }
     }
 
 //        if ( $request['c_id'] ) {

@@ -107,16 +107,13 @@ class OrderController extends BaseController
                     $this->checkParam ($rule);
                     $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
                     $this->checkMsgs ($request['mc_id'] , $car_washer_info['mc_id'] , $car_washer_info['status'] , $car_washer_info['type']);
-                    $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
                     $data['m_id'] = $m_id;
-                    $data['w_id'] = $car_washer_info['p_id'];
                     $data['orderid'] = 'XC' . date ('YmdHis') . rand (1000 , 9999);
                     $data['title'] = "扫码洗车";
                     $data['o_type'] = '1';
                     $data['w_type'] = '1';
                     $data['create_time'] = time ();
                     $data['mc_id'] = $car_washer_info['mc_id'];
-                    $data['mobile'] = $member_info['account'];
                     $data['c_id'] = $car_washer_info['id'];
                     $res = M ('Order')->data ($data)->add ();
                     $type['type'] = '2';
@@ -133,9 +130,7 @@ class OrderController extends BaseController
                     $this->checkParam ($rule);
                     $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
                     $this->checkMsgs ($request['mc_id'] , $car_washer_info['mc_id'] , $car_washer_info['status'] , $car_washer_info['type']);
-                    $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
                     $data['m_id'] = $m_id;
-                    $data['w_id'] = $car_washer_info['p_id'];
                     $data['orderid'] = 'YC' . date ('YmdHis') . rand (1000 , 9999);
                     $data['title'] = "预约洗车";
                     $data['o_type'] = '1';
@@ -143,7 +138,6 @@ class OrderController extends BaseController
                     $data['create_time'] = time ();
                     $data['subs_time'] = time ();
                     $data['mc_id'] = $car_washer_info['mc_id'];
-                    $data['mobile'] = $member_info['account'];
                     $data['c_id'] = $car_washer_info['id'];
                     $res = M ('Order')->data ($data)->add ();
                     $type['type'] = '3';
@@ -160,15 +154,16 @@ class OrderController extends BaseController
         if ( $request['o_type'] == 2 ) {
             $rule = array ('id' , 'string' , '请输入小鲸卡ID');
             $this->checkParam ($rule);
-            $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
+            $request=$_REQUEST;
+            $card=M('LittlewhaleCard')->where (array ('id'=>$request['id']))->find ();
+            $data['pay_money'] = $card['card_price'];
             $data['m_id'] = $m_id;
-            $data['w_id'] = $car_washer_info['p_id'];
+            $data['allowance'] = $card['rebate'];
+            $data['card_id']=$card['id'];
             $data['orderid'] = 'MK' . date ('YmdHis') . rand (1000 , 9999);
             $data['title'] = "小鲸卡购买";
             $data['o_type'] = '2';
             $data['create_time'] = time ();
-            $data['mc_id'] = $car_washer_info['mc_id'];
-            $data['mobile'] = $member_info['account'];
             $res = M ('Order')->data ($data)->add ();
             if ( $res ) {
                 $this->apiResponse ('1' , '购买成功' , array ('orderid' => $data['orderid']));
