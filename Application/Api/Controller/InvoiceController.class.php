@@ -170,7 +170,7 @@ class InvoiceController extends BaseController
      **/
     public function invoiceRlue ()
     {
-        $data = D ("Article")->where (array ('id' => 1 , 'status' => 1 , 'sort' => 1))->field ('title,content')->find ();
+        $data = D ("Article")->where (array ('type' => 1 , 'status' => 1 ))->field ('title,content')->find ();
         $this->apiResponse (1 , '请求成功' , $data);
     }
 

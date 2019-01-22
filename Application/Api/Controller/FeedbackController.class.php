@@ -60,4 +60,31 @@ class FeedbackController extends BaseController {
         $picture['app_logo'] = C ('API_URL') . $this->getOnePath ($aboutus_info['app_logo'] , C ('API_URL') . '/Uploads/Member/default.png');
         $this->apiResponse('1','查询成功',array ('app_logo'=>$picture['app_logo'],'app_name'=>$aboutus_info['app_name'],'app_version'=>$aboutus_info['app_version'],'app_intro'=>$aboutus_info['app_intro']));
     }
+
+    /**
+     *客服中心列表
+     **/
+    public function customerCenter(){
+        $request = I('post.');
+        $data = D ("Article")->where (array ('type' => 3 , 'status' => 1 ))->order('sort asc')->field ('id,title')->page($request['page'], '10')->select ();
+        if (!$data) {
+            $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
+            $this->apiResponse('1', $message);
+        }
+        $this->apiResponse (1 , '请求成功' , $data);
+    }
+
+    /**
+     *用户指南内容
+     **/
+    public function centerDetail(){
+        $request = I('post.');
+        $rule =array('id','int','请选择反馈原因');
+        $this->checkParam($rule);
+        $data = D ("Article")->where (array ('id'=>$request['id'],'type' => 3 , 'status' => 1 ))->field ('id,title,content')->find();
+        $data['content'] = $this->setAbsoluteUrl($data['content']);
+        $data['content'] =htmlspecialchars_decode($data['content']);
+        $data['content'] = str_replace('img src="', 'img src = "' . C('API_URL'), $data['content']);
+        $this->apiResponse (1,'查询成功',$data);
+    }
 }

@@ -19,7 +19,7 @@ class CardController extends BaseController
      **/
     public function card ()
     {
-        $data = D ("Article")->where (array ('id' => 2 , 'status' => 1 , 'sort' => 2))->field ('title,content')->find ();
+        $data = D ("Article")->where (array ('type' => 2 , 'status' => 1 ))->field ('title,content')->find ();
         $this->apiResponse (1 , '请求成功' , $data);
     }
 
