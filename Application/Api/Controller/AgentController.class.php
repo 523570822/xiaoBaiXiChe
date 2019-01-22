@@ -534,7 +534,6 @@ class AgentController extends BaseController
             'day_income' => $now_days,
         );
 
-        var_dump($data);exit;
         if(!empty($income)){
             $this->apiResponse('1','成功',$data);
         }else{
