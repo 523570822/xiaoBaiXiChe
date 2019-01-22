@@ -99,19 +99,7 @@ class MemberController extends BaseController
         if (!empty($invite_code)) {
             $this->checkShareCode($invite_code, $member_add_info);
         }
-//        $appsetting = M('Appsetting')->find();
-//        for ($i = 0; $i < $appsetting['register_num']; $i++) {
-//        }
         $this->apiResponse('1', '注册成功', $data);
-        //创建并更新token
-//        $token_arr = $this->createToken();
-//        D('Member')->querySave(array('id' => $member_add_info), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
-//        $data['token'] = $token_arr['token'];
-//        $data['account'] = $_REQUEST['account'];
-//        if (!empty($share_from_code)) {
-//            $this->checkShareCode($share_from_code, $member_add_info);
-//        }
-//        $this->apiResponse('1', '注册成功', $data);
     }
 
     /**
@@ -138,15 +126,12 @@ class MemberController extends BaseController
         if ($check_password == 1) {
             $this->apiResponse('0', '密码错误');
         }
-//        unset($member_info['password']);
-//        unset($member_info['salt']);
         //创建并更新token
         $token_arr = $this->createToken();
         D('Member')
             ->where(array('id' => $member_info['id']))
             ->save (array ('token' => $token_arr['token'],'expired_time' => $token_arr['expired_time']));
         $data['token'] = $token_arr['token'];
-//        var_dump ($member_info['id']);die;
         $this->apiResponse('1', '登录成功', $data);
     }
 
@@ -159,7 +144,6 @@ class MemberController extends BaseController
         $request = $_REQUEST;
         $rule = array(
             array('openid', 'string', '三方登录唯一标识不能为空'),
-            // array('nickname','string','昵称不能为空'),
             array('type', 'string', '类型错误'),
         );
         $this->checkParam($rule);
@@ -212,27 +196,23 @@ class MemberController extends BaseController
     public function threeLoginBind()
     {
         $request = $_REQUEST;
-
         $rule = array(
             array('bind_id', 'string', 'bind_id不能为空'),
             array('account', 'string', '请输入手机号'),
             array('verify', 'string', '请输入验证码'),
         );
         $this->checkParam($rule);
-
         //检查短信验证码
         $res = D('Sms')->checkVerify($request['account'], $request['verify'], 're_bind');
         if ($res['error']) {
             $this->apiResponse('0', $res['error']);
         }
-
         unset($param);
         $param['where']['id'] = $request['bind_id'];
         $bind_info = D('MemberBind')->queryRow($param['where']);
         if (!$bind_info) {
             $this->apiResponse('0', '绑定手机号失败');
         }
-
         unset($param);
         $param['where']['account'] = $request['account'];
         $param['where']['status'] = array('neq', 9);
@@ -240,7 +220,6 @@ class MemberController extends BaseController
         $member_info = D('Member')->queryRow($param['where'], $param['field']);
         if ($member_info) {
             $res = D('MemberBind')->querySave(array('id' => $bind_info['id']), array('m_id' => $member_info['m_id']));
-
             if (!$res) {
                 $this->apiResponse('0', '绑定手机号失败');
             }
@@ -251,31 +230,24 @@ class MemberController extends BaseController
                 $this->apiResponse('0', '绑定手机号失败');
             }
             $res = D('MemberBind')->querySave(array('id' => $bind_info['id']), array('m_id' => $m_id));
-
             if (!$res) {
                 $this->apiResponse('0', '绑定手机号失败 ');
             }
         }
-
         unset($param);
         $param['where']['id'] = $m_id;
         $param['where']['status'] = array('neq', 9);
         $param['field'] = 'id as m_id,account,nickname,head_pic,degree';
         $member_info = D('Member')->queryRow($param['where'], $param['field']);
-
         //创建并更新token
         $token_arr = createToken();
         D('Member')->querySave(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
-
         $member_info['head_pic'] =  C('API_URL') .$this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
         $member_info['token'] = $token_arr['token'];
         $member_info['expired_time'] = $token_arr['expired_time'];
         $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
         $this->apiResponse('1', '绑定手机号成功', $member_info);
     }
-
-
-
 
     /**
      * 更换手机号
@@ -325,8 +297,6 @@ class MemberController extends BaseController
         $param['field'] = 'id as m_id,account,tel,nickname,head_pic,sex,degree';
         $member_info = D('Member')->queryRow($param['where'], $param['field']);
         $member_info['head_pic'] =  C('API_URL') .$this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
-//        $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
-        /* $member_info['service_qq']    = $this->config['SERVICE_QQ'];*/
         $this->apiResponse('1', '请求成功', $member_info);
     }
 
@@ -361,7 +331,6 @@ class MemberController extends BaseController
         if ($res['error']) {
             $this->apiResponse('0', $res['error']);
         }
-
         unset($param);
         $param['where']['account'] = $request['account'];
         $param['where']['status'] = array('neq', 9);
@@ -477,7 +446,6 @@ class MemberController extends BaseController
      */
     public function memberBaseData()
     {
-
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $param['where']['id'] = $m_id;
@@ -506,7 +474,6 @@ class MemberController extends BaseController
             array('sex', 'string', '请输入性别'),
         );
         $this->checkParam($rule);
-
         if (!empty($_FILES['head_pic']['name'])) {
             $res = api('UploadPic/upload', array(array('save_path' => 'Member')));
             foreach ($res as $value) {
@@ -541,10 +508,7 @@ class MemberController extends BaseController
         $this->errorTokenMsg($m_id);
         if (!empty($_FILES['head_pic']['name'])) { //头像
             $res = uploadimg($_FILES, CONTROLLER_NAME);
-            //  api('UploadPic/upload', array(array('save_path' => 'Member')));
-            //  foreach ($res as $value) {
             $data['head_pic'] = $res['save_id'];
-            // }
         }
         if ($request['head_pic_id']) {
             $data['head_pic'] = $request['head_pic_id'];
@@ -599,32 +563,41 @@ class MemberController extends BaseController
      **/
     public function checkShareCode($invite_code='', $s_id = 0)
     {
-        $m_info = D("Member")->where(array ('invite_code='.$invite_code))->find();
-//        var_dump ($m_info);die;
-        $check_hid = M("integral_log")->where('s_id='.$s_id)->find();
-        $appsetting = M('appsetting')->find();
-//        var_dump ($m_info['id']);die;
-        if ($check_hid) {
-            $this->apiResponse(0, '您已经绑定过推荐人了，请不要填写推荐码');
+        $m_info = D ("Member")->where (array ('invite_code=' . $invite_code))->find ();
+        $check_hid = M ("coupon_log")->where ('s_id=' . $s_id)->find ();
+        $appsetting = M ('Appsetting')->find ();
+        if ( $check_hid ) {
+            $this->apiResponse (0 , '您已经绑定过推荐人了，请不要填写推荐码');
         }
-        if ($m_info['id'] == $s_id) {
-            $this->apiResponse(0, '您不能推荐您自己');
+        if ( $m_info['id'] == $s_id ) {
+            $this->apiResponse (0 , '您不能推荐您自己');
         }
-        if ($m_info) {
-            $data_ext = array(
-                'm_id' => $m_info['id'],
-                's_id' => $s_id,
-                'create_time' => time(),
-                'status' => 1,
-                'integral_num' => $appsetting['register_num'],
-                'desc' => '邀请好友获得洗车劵',
+        if ( $m_info ) {
+            $data_ext = array (
+                'm_id' => $m_info['id'] ,
+                's_id' => $s_id ,
+                'create_time' => time () ,
+                'status' => 1 ,
+                'desc' => '邀请好友获得洗车代金劵' ,
             );
-            $extension_log_add = M("integral_log")->data($data_ext)->add();
-            $m_info = D("Member")->where('invite_code=' . $invite_code)->find();
-            $content = '您成功推荐了一位好友，获得'.$appsetting['register_num'].'张洗车劵，快来看看吧！';
-            pushOneUser($content, $m_info['token'], '1');
+            $data = array (
+                'm_id' => $m_info['id'] ,
+                'create_time' => time () ,
+                'end_time' => time () + ($appsetting['expire_time'] * 24 * 3600) ,
+                'money'=>$appsetting['price'],
+                'type' => 1 ,
+                'is_bind' => 1 ,
+                'comes' => '邀请好友赠送代金券' ,
+            );
+            $log = M ("coupon_log")->data ($data_ext)->add ();
+            $bind = M ("coupon_bind")->data ($data)->add ();
+            if ( $log && $bind ) {
+                $m_info = D ("Member")->where ('invite_code=' . $invite_code)->find ();
+                $content = '您成功邀请了一位好友，获得一张现金抵用劵，快来看看吧！';
+                pushOneUser ($content , $m_info['token'] , '1');
+            }
         } else {
-            $this->apiResponse('0', '推荐码不存在');
+            $this->apiResponse ('0' , '推荐码不存在');
         }
     }
 //    /**

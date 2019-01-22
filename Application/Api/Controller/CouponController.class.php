@@ -11,26 +11,69 @@ class CouponController extends BaseController
 {
     /**
      *现金抵扣券
-     * 参数:status //卡券状态 1未使用/正常 2已使用 3已过期
+     * 参数:token status page
      **/
     public function Coupon ()
     {
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
         $request = $_REQUEST;
-        $rule = array ('status' , 'int' , '请选择卡片状态');
+        $rule = array ('status' , 'int' , '请选择卡片状态');//0未使用 1已使用 2已过期
         $this->checkParam ($rule);
-        $list = D ('VipCard')
-            ->where (array ('db_vip_card.m_id' => $m_id , 'db_vip_card.c_type' => 2 , array ('db_vip_card.status' => $request['status'] , 'k_status' => 1)))
-            ->join ("db_wash_card ON db_vip_card.card_id = db_wash_card.id")
-            ->join ("LEFT JOIN db_vip_card_bind ON db_vip_card.activation_code = db_vip_card_bind.exchange")
-            ->field ('db_vip_card.id,db_vip_card.end_time,db_vip_card.status,db_vip_card.activation_code,db_wash_card.name,db_wash_card.card_price, db_vip_card_bind.id as is_bind')
-            ->select ();
-
-        foreach ( $list as $key => $value ) {
-            $list[$key]['is_bind'] = (empty($value['is_bind'])) ? 0 : 1;
+        if ( $request['status'] == 0 ) {
+            $where = array (
+                'is_use' => 0 ,
+                'end_time'=> array('gt',time ())
+            );
         }
-        $this->apiResponse (1 , '查询成功' , $list);
+        if ( $request['status'] == 1 ) {
+            $where = array (
+                'is_use' => 1
+            );
+        }
+        if ( $request['status'] == 2 ) {
+            $where = array (
+                'is_use' => 0 ,
+                'end_time'=> array('lt',time ())
+            );
+        }
+        $date = D ('CouponBind')->where (array ('m_id' => $m_id))->where ($where)->field ('id,end_time,money')->page ($request['page'] , '10')->select ();
+        foreach ($date as $k=>$v){
+            $date[$k]['title']='小鲸洗车代金券';
+            $date[$k]['remarks']='请在有效期内使用。';
+            $date[$k]['status']=$request['status'];
+        }
+
+        if ( !$date ) {
+            $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
+            $this->apiResponse ('1' , $message);
+        }
+        $this->apiResponse (1 , '查询成功' , $date);
+    }
+
+    /**
+     *生成代金券兑换活码
+     * 参数:
+     **/
+    public function couponCode ()
+    {
+        $request = $_REQUEST;
+        $rule = array (
+            array ('nums' , 'int' , '数量'),
+            array ('code_length' , 'int' , '长度'),
+            array ('prefix' , 'string' , '前缀'),
+            array ('data' , 'int' , '有效期天数'),
+            array ('id' , 'int' , '批次ID'),
+            );
+        $this->checkParam ($rule);
+        $code=$this->generateCode($request['nums'],'',$request['code_length'],$request['prefix']);
+        foreach ($code as $k => $v) {
+            $one= $code[$k];
+            $data = [['exchange'=>$one,'is_activation'=>0,'creator_time'=>time (),'end_time'=>time ()+($request['data']*24*3600),'b_id'=>$request['id']]];
+            M ('RedeemCode')->addAll($data);
+        }
+        $this->apiResponse (1,'添加成功',count ($one));
+
     }
 
     /**
@@ -41,7 +84,7 @@ class CouponController extends BaseController
      * @param int $prefix 生成指定前缀
      * @return array                 返回兑换活码数组
      */
-    public function generateCode ($nums='10' , $exist_array = '' , $code_length = 6 , $prefix = 'DHQ')
+    public function generateCode ($nums='' , $exist_array = '' , $code_length = '' , $prefix = '')
     {
         $characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz";
         $promotion_codes = array ();//这个数组用来接收生成的兑换活码
@@ -65,12 +108,43 @@ class CouponController extends BaseController
                 $j--;
             }
         }
-//        return $promotion_codes;
-        foreach ($promotion_codes as $k => $v) {
-            $one= $promotion_codes[$k];
-            $data = [['exchange'=>$one,'is_activation'=>1,'creator_time'=>time (),'end_time'=>time ()]];
-            M ('RedeemCode')->addAll($data);
+        return $promotion_codes;
+    }
+
+    /**
+     * 兑换代金券
+    **/
+    public function useCode ()
+    {
+        $m_id = $this->checkToken ();
+        $this->errorTokenMsg ($m_id);
+        $request = $_REQUEST;
+        $rule = array ('exchange' , 'string' , '请输入兑换码');
+        $this->checkParam ($rule);
+        if( !$request['exchange'] ){
+            $this->apiResponse ('0' , '请输入兑换码');
         }
-        $this->apiResponse (1,'添加成功',count ($one));
+        $have_code = D ('RedeemCode')->where (array ('exchange' => $request['exchange'] , 'is_activation' => 0))->find ();
+        $batch = D ('Batch')->where (array ('id' => $have_code['b_id']))->find ();
+        if ( $have_code ) {
+            $date['is_activation'] = 1;
+            $JH = D ('RedeemCode')->where (array ('exchange' => $request['exchange'] , 'is_activation' => 0))->save ($date);
+            $where['m_id'] = $m_id;
+            $where['is_bind'] = 1;
+            $where['type'] = 2;
+            $where['create_time'] = time ();
+            $where['end_time'] = $have_code['end_time'];
+            $where['comes'] = $batch['title'];
+            $where['money'] = $batch['price'];
+            $where['code_id'] = $have_code['id'];
+            $BD = D ('CouponBind')->add ($where);
+            if ( $JH && $BD ) {
+                $this->apiResponse ('1' , '兑换成功');
+            } else {
+                $this->apiResponse ('0', '兑换失败');
+            }
+        }else{
+            $this->apiResponse ('0' , '请输入正确的兑换码');
+        }
     }
 }
