@@ -514,17 +514,23 @@ class AgentController extends BaseController
 //        for($i = 0; $i < count($two_orders); $i++) {
 //            $comm += $two_orders[$i]['comm'];
 //        }
-
-        if($agent['grade']){}
         $data = array(
             'total' => $sum,     //总收入
             'income' => $income,     //总收入
             'come' => $comm,     //总收入
         );
-        var_dump($data);exit;
         if($data){
             $this->apiResponse('1','成功',$data);
         }
+    }
+
+    /**
+     *收入明细
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/22 14:01
+     */
+    public function incomeDetail(){
+        $post = checkAppData('token','token');
     }
 
     /**
