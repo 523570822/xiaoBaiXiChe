@@ -54,10 +54,15 @@ class CardController extends BaseController
     {
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
-        $wallet = D ('LittlewhaleCard')->where ((array ('status' => 1)))->field ('*')->select ();
+        $request = $_REQUEST;
+        $wallet = D ('LittlewhaleCard')->where ((array ('status' => 1)))->field ('*') ->page($request['page'], '10')->select ();
         foreach ($wallet as $k => $v) {
             $wallet[$k]['card_pic'] =C ('API_URL') . $this->getOnePath ($wallet[$k]['card_pic'] ,'/Uploads/Member/default.png');
             $wallet[$k]['rebate'] = $wallet[$k]['rebate']*10;
+        }
+        if (!$wallet) {
+            $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
+            $this->apiResponse('1', $message);
         }
         $this->apiResponse ('1' , '小鲸卡购买列表' ,$wallet);
     }

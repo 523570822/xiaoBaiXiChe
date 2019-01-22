@@ -278,35 +278,19 @@ class OrderController extends BaseController
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
         $request = $_REQUEST;
-        $rule = array ('orderid' , 'string' , '参数不能为空'
-//            array(),
-//            array('type','string','参数不能为空'),
-        );
+        $rule = array ('orderid' , 'string' , '订单编号不能为空');
         $this->checkParam ($rule);
+        $where['status'] =  array ('neq' , 9);
         $where['orderid'] = $request['orderid'];
-        D ('Order')->where ($where)->find ();
-//        if($_REQUEST['type']==1){
-        $datal['pay_type'] = "9";
-        $where['orderid'] = $request['orderid'];
-        //  $where['pay_type']=array("neq"=>"9");
         $orderid = D ('Order')->where ($where)->find ();
         if ( $orderid ) {
+            $datal['status'] = "9";
+            $datal['update_time'] = time ();
+            D ('Order')->where ($where)->save ($datal);
+            $this->apiResponse (1 , '取消订单成功');
         } else {
             $this->apiResponse (0 , '订单不存在');
         }
-        $datal['update_time'] = time ();
-        D ('Order')->where ($where)->save ($datal);
-        $this->apiResponse (1 , '取消订单成功');
-//        }elseif($_REQUEST['type']==1){
-//            $where['orderid']=$request['orderid'];
-//            $where['status']=array("neq","9");
-//            $orderid=D('Carwash')->where($where)->find();//var_dump($orderid);die;
-//            if($orderid){}else{
-//                $this->apiResponse(0, '订单不存在');
-//            }
-//            $datal['status']="9";
-//            D('Order')->where($where)->save($datal);
-//            $this->apiResponse(1, '取消订单成功');
-//        }
+
     }
 }

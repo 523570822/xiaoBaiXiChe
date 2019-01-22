@@ -173,4 +173,15 @@ class InvoiceController extends BaseController
         $data = D ("Article")->where (array ('id' => 1 , 'status' => 1 , 'sort' => 1))->field ('title,content')->find ();
         $this->apiResponse (1 , '请求成功' , $data);
     }
+
+    /**
+     * 取消发票
+     **/
+    public function invoiceCancel ()
+    {
+        $request = I ("");
+        $m_id = $this->checkToken ();
+        $this->errorTokenMsg ($m_id);
+
+    }
 }
