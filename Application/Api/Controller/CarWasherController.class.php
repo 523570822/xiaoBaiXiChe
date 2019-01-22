@@ -84,13 +84,13 @@ class CarWasherController extends BaseController
      *Date:2019/01/19 11:45
      */
     public function myCarWasher(){
-//        $post = checkAppData('token,address,car_num,status,page,size','token-洗车机地址-洗车机编号-洗车机状态-页数-个数');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $post['address'] = 'all';
-        $post['car_num'] = 'all';
-        $post['status'] = 'all';
-        $post['page'] = 1;
-        $post['size'] = 10;
+        $post = checkAppData('token,address,car_num,status,page,size','token-洗车机地址-洗车机编号-洗车机状态-页数-个数');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['address'] = 'all';
+//        $post['car_num'] = 'all';
+//        $post['status'] = 'all';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
         if($post['address'] == 'all'){
             $post['address'] = '';
         }
