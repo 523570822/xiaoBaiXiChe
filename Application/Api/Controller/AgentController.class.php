@@ -379,22 +379,79 @@ class AgentController extends BaseController
         $post['page'] = 1;
         $post['size'] = 10;
 
-        $agent = M('Agent')->where(array('grade'=>1,'status'=>1))->field('id')->select();
+        $agent = M('Agent')->where(array('grade'=>1,'status'=>1))->field('id,nickname')->select();
         foreach($agent as $k=>$v){
-            $where['status'][$k] = array('neq',9);
-            $where['agent_id'] = $v['id'];
-            $car= M('CarWasher')->where($where)->field('id,agent_id')->find();
+            $wheres['status'][$k] = array('neq',9);
+            $wheres['agent_id'] = $v['id'];
+            $car= M('CarWasher')->where($wheres)->field('id,agent_id')->select();
+            if(empty($car)){
+               $car[0]['agent_id'] = $v['id'];
+            }
+            $car[0]['nickname'] = $v['nickname'];
             $cars[] = $car;
+        }
+//        var_dump($cars);exit;
+        $f_where['status'] = array('neq',9);
+        $f_where['grade'] = array('neq',1);
+        $f_agent = M('Agent')->where($f_where)->field('id,p_id')->select();
+        foreach ($cars as $k1=>$v1){
+            $agents[] = $v1;
+        }
+        foreach ($f_agent as $kk=>$vv){
+//            $f_agents[] = $vv;
+            $f_car['status'] = array('neq',9);
+            $f_car['agent_id'] = $vv['id'];
+            $f_car_num = M('CarWasher')->where($f_car)->field('id,agent_id')->select();
+            foreach ($f_car_num as $kk1=>$vv1){
+                $f_car_num[$kk1]['p_id'] = $vv['p_id'];
+            }
+            $f_car_nums[] = $f_car_num;
 
         }
-        var_dump($cars);exit;
 
+//        var_dump($f_car_num);exit;
+        foreach ($f_car_nums as $kk2=>$vv2){
+            foreach ($vv2 as $kk3=>$vv3){
+                $num = $vv3;
+            }
+        }
+        foreach ($agents as $k2=>$v2){
+            if(!empty($v2)){
+//                foreach ($v2 as $k3=>$v3){
+//                    $a[$k3] = $v3;
+//                }
+
+                $agent_num[$k2]['name'] = $v2[0]['nickname'];
+                $agent_num[$k2]['agent_id'] = $v2[0]['agent_id'];
+                $agent_num[$k2]['car_num'] = count($v2);
+                if($num['p_id'] == $v2[0]['agent_id']){
+                    $nums[] = $num;
+                    $agent_num[$k2]['num'] = count($num);
+                }
+                if(empty($v2[0]['id'])){
+                    $agent_num[$k2]['car_num'] = $agent_num[$k2]['car_num']-1;
+                }
+                $w_total['status'] = array('neq',9);
+                $total = M('CarWasher')->where($w_total)->select();
+                $agent_total = count($total);
+                $agent_num[$k2]['percent'] = $agent_num[$k2]['car_num']/$agent_total*100.."%";
+
+            }
+        }
+
+//        var_dump($nums);exit;
+        var_dump($f_car_nums);exit;
+
+        //
         $where['status'] = array('neq',9);
         $result = M('CarWasher')->field('agent_id')->where($where)->select();
-        foreach ($result as $kk=>$vv){
-
+        foreach ($result as $k2=>$v2){
+            $a[] = $v2;exit;
+            if(!empty($v2)){
+                $a[] = $v2;
+            }
         }
-        var_dump(count($result));exit;
+        var_dump($a);exit;
     }
 
     /**
@@ -403,12 +460,71 @@ class AgentController extends BaseController
      *Date:2019/01/05 16:07
      */
     public function detail(){
-        //$post = checkAppData('token','token');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post = checkAppData('token','token');
+//        $post['token'] = '64a516f028e6fb9cdc7f9dc497f5653a';
         $agent = $this->getAgentInfo($post['token']);
+        $car_where['status'] = array('neq',9);
+        $car_where['agent_id'] = array('eq',$agent['id']);
+        $car = M('CarWasher')->where($car_where)->field('id,agent_id')->select();
+        foreach ($car as $k=>$v){
+            $in_where['status'] = array('eq',2);
+            $in_where['c_id'] = array('eq',$v['id']);
+            $in_where['o_type'] = array('eq',1);
+            $income = M('Order')->where($in_where)->field('SUM(pay_money) income,id')->find();
+            $incomes[] = $income;
+        }
+        $sum = 0;
+        for($i = 0; $i < count($incomes); $i++) {
+            $sum += $incomes[$i]['income'];
+        }
+        if($agent['grade'] == 1){
+            $comm = $sum*0.05;
+        }elseif($agent['grade'] == 2){
+            $comm = $sum*0.10;
+        }elseif($agent['grade'] == 3) {
+            $comm = $sum * 0.15;
+        }
+        $income = $sum-$comm;
+//        var_dump($income);exit;
+            //平台提成
+//        $two_agent['status'] = array('neq',9);
+//        $two_agent['p_id'] = $agent['id'];
+//        $two_agent['grade'] = array('neq',1);
+//
+//        $two = M('Agent')->where($two_agent)->field('id')->select();
+//        foreach ($two as $k1=>$v1){
+//            $two_where['status'] = array('neq',9);
+//            $two_where['agent_id'] = $v1['id'];
+//            $two_car = M('CarWasher')->where($two_where)->field('id')->select();
+//            if(!empty($two_car)){
+//                $two_cars[] = $two_car;
+//            }
+//        }
+//        foreach ($two_cars as $k2=>$v2){
+//            foreach ($v2 as $k3=>$v3){
+//                $two_order_where['status'] = array('eq',2);
+//                $two_order_where['c_id'] = array('eq',$v3['id']);
+//                $two_order_where['o_type'] = array('eq',1);
+//
+//                $two_order = M('Order')->where($two_order_where)->field('SUM(pay_money) comm')->find();
+//                $two_orders[] = $two_order;
+//            }
+//        }
+//        $comm = 0;
+//        for($i = 0; $i < count($two_orders); $i++) {
+//            $comm += $two_orders[$i]['comm'];
+//        }
 
-
-        var_dump($agent);exit;
+        if($agent['grade']){}
+        $data = array(
+            'total' => $sum,     //总收入
+            'income' => $income,     //总收入
+            'come' => $comm,     //总收入
+        );
+        var_dump($data);exit;
+        if($data){
+            $this->apiResponse('1','成功',$data);
+        }
     }
 
     /**
