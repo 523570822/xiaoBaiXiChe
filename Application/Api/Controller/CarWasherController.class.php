@@ -60,8 +60,8 @@ class CarWasherController extends BaseController
         $post = checkAppData('token,car_washer_id,in_month','token-洗车机ID-月份时间戳');
         /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
         $post['car_washer_id'] = 1;
-        $post['in_month'] = '';*/
-        if(empty($post['in_month'])){
+        $post['in_month'] = 'all';*/
+        if($post['in_month'] == 'all'){
             $post['in_month'] = strtotime(date('Y-m'));
         }
         $agent = $this->getAgentInfo($post['token']);

@@ -640,6 +640,13 @@ class PayController extends BaseController
             if ( $_REQUEST['o_type'] == 1 ) {//1洗车订单
                 $pay = D ('Member')->where (array ('id' => $m_id))->field ('balance')->Save (array ('balance' => $Member['balance'] - $order['pay_money']));
                 $save = D ("Order")->where (array ('orderid' => $request['orderid']))->save ($date);
+
+                //添加收益表
+//                if($save){
+//                    $find_order = M('Order')->where()->field()->find();
+//                }
+
+
                 if ( $save && $pay ) {
                     $this->apiResponse (1 , '支付成功');
                 }

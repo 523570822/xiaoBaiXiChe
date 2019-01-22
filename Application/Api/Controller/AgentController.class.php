@@ -485,35 +485,6 @@ class AgentController extends BaseController
             $comm = $sum * 0.15;
         }
         $income = $sum-$comm;
-//        var_dump($income);exit;
-            //平台提成
-//        $two_agent['status'] = array('neq',9);
-//        $two_agent['p_id'] = $agent['id'];
-//        $two_agent['grade'] = array('neq',1);
-//
-//        $two = M('Agent')->where($two_agent)->field('id')->select();
-//        foreach ($two as $k1=>$v1){
-//            $two_where['status'] = array('neq',9);
-//            $two_where['agent_id'] = $v1['id'];
-//            $two_car = M('CarWasher')->where($two_where)->field('id')->select();
-//            if(!empty($two_car)){
-//                $two_cars[] = $two_car;
-//            }
-//        }
-//        foreach ($two_cars as $k2=>$v2){
-//            foreach ($v2 as $k3=>$v3){
-//                $two_order_where['status'] = array('eq',2);
-//                $two_order_where['c_id'] = array('eq',$v3['id']);
-//                $two_order_where['o_type'] = array('eq',1);
-//
-//                $two_order = M('Order')->where($two_order_where)->field('SUM(pay_money) comm')->find();
-//                $two_orders[] = $two_order;
-//            }
-//        }
-//        $comm = 0;
-//        for($i = 0; $i < count($two_orders); $i++) {
-//            $comm += $two_orders[$i]['comm'];
-//        }
         $data = array(
             'total' => $sum,     //总收入
             'income' => $income,     //总收入
@@ -530,7 +501,45 @@ class AgentController extends BaseController
      *Date:2019/01/22 14:01
      */
     public function incomeDetail(){
-        $post = checkAppData('token','token');
+        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
+        /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post['in_month'] = 1543593600;
+        $post['page'] = 1;
+        $post['size'] = 10;*/
+        if($post['in_month'] == 'all'){
+            $post['in_month'] = strtotime(date('Y-m'));
+        }
+        $agent = $this->getAgentInfo($post['token']);
+        $car_where['status'] = array('neq',9);
+        $car_where['agent_id'] = array('eq',$agent['id']);
+        $car_where['month'] = $post['in_month'];
+        //总净收入
+        $income = M('Income')->where($car_where)->field('SUM(net_income) as de_income')->find();
+
+        //每天净收入
+
+        $day_income = M('Income')->where($car_where)->field('day,net_income,detail')->select();
+        foreach ($day_income as $k=>$v){
+            $time = strtotime(date('Y-m',$v['day']));
+            if($time == $post['in_month']){
+                $now_day['day'] = $v['day'];
+                $now_day['net_income'] = $v['net_income'];
+                $now_day['detail'] = $v['detail'];
+                $now_days[] = $now_day;
+            }
+        }
+        $data = array(
+            'now_month' => $post['in_month'],
+            'income' => $income,
+            'day_income' => $now_days,
+        );
+
+        var_dump($data);exit;
+        if(!empty($income)){
+            $this->apiResponse('1','成功',$data);
+        }else{
+            $this->apiResponse('0','暂无数据信息');
+        }
     }
 
     /**
