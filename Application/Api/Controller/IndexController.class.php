@@ -61,6 +61,35 @@ class IndexController extends BaseController
     }
 
     /**
+     * 检查更新
+     */
+    public function checkUpdate()
+    {
+        $request = I("");
+
+        $this->checkParam(array(
+            array('version', 'string', '请输入当前版本号'),
+            array('device', 'string', '请输入终端系统'),
+            array('app', 'string', "请输入使用的APP类型")
+        ));
+
+        $data = [];
+        $version = M("Version")->where(["app" => $request['device']])->order("create_time desc")->find();
+
+        if ($request['version'] == $version['version']) {
+            $this->apiResponse(0, "已是最新版本", $data);
+        } else {
+            $download_link = json_decode($version['version_url'], true);
+            $data = [
+                "version_num" => $version['version'],
+                "version_url" => $download_link[$request['app']],
+                "version_log" => $version['update_log']
+            ];
+            $this->apiResponse(1, "找到新版本", $data);
+        }
+    }
+
+    /**
      * 首页
      **/
     public function Msg ()
