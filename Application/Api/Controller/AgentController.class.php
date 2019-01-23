@@ -302,8 +302,15 @@ class AgentController extends BaseController
      *Date:2018/12/25 01:46
      */
     public function agent(){
-        $post = checkAppData();
-        $agent = D('Agent')->where(array('status'=>1))->field('id,nickname,account')->select();
+        $post = checkAppData('token,grade','token-grade');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['grade'] = 2;
+        $agent = $this->getAgentInfo($post['token']);
+//        var_dump($agent);exit;
+        $where['status'] = 1;
+        $where['p_id'] = $agent['id'];
+        $where['grade'] = $post['grade'];
+        $agent = D('Agent')->where($where)->field('id,nickname,account')->select();
         foreach($agent as $k=>$v){
             $car[] = D('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
             foreach($car as $kk=>$vv){
@@ -404,17 +411,21 @@ class AgentController extends BaseController
             $f_car_num = M('CarWasher')->where($f_car)->field('id,agent_id')->select();
             foreach ($f_car_num as $kk1=>$vv1){
                 $f_car_num[$kk1]['p_id'] = $vv['p_id'];
+                foreach ($f_car_num as $kk5=>$vv5){
+                    $fcar_num = $vv5;
+                }
             }
-            $f_car_nums[] = $f_car_num;
-
-        }
-
-//        var_dump($f_car_num);exit;
-        foreach ($f_car_nums as $kk2=>$vv2){
-            foreach ($vv2 as $kk3=>$vv3){
-                $num = $vv3;
+            if(!empty($fcar_num)){
+                $f_car_nums[] = $fcar_num;
             }
         }
+        foreach ($f_car_nums as $kk4=>$vv4){
+            $num = $vv4;
+//            foreach ($num as $kkk1=>$vvv2){
+//                $nums[$kkk1] = $vvv2;
+//            }
+        }
+//        var_dump($num);exit;
         foreach ($agents as $k2=>$v2){
             if(!empty($v2)){
 //                foreach ($v2 as $k3=>$v3){
@@ -424,10 +435,10 @@ class AgentController extends BaseController
                 $agent_num[$k2]['name'] = $v2[0]['nickname'];
                 $agent_num[$k2]['agent_id'] = $v2[0]['agent_id'];
                 $agent_num[$k2]['car_num'] = count($v2);
-                if($num['p_id'] == $v2[0]['agent_id']){
-                    $nums[] = $num;
+                if($v2[0]['agent_id'] == $num['p_id']){
                     $agent_num[$k2]['num'] = count($num);
                 }
+                var_dump($v2[0]['agent_id'] == $num['p_id']);exit;
                 if(empty($v2[0]['id'])){
                     $agent_num[$k2]['car_num'] = $agent_num[$k2]['car_num']-1;
                 }
@@ -440,7 +451,7 @@ class AgentController extends BaseController
         }
 
 //        var_dump($nums);exit;
-        var_dump($f_car_nums);exit;
+        var_dump($num['p_id']);exit;
 
         //
         $where['status'] = array('neq',9);
