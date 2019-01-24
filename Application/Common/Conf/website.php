@@ -9,8 +9,8 @@ return array(
     'SMS' =>  array(
         'sms_type' => 'zhutong',
         'sms_url' => 'http://www.api.zthysms.com/sendSms.do',
-        'sms_key' => 'xeyhy',
-        'sms_secret' => 'pTVuI7',
+        'sms_key' => 'xjxc68hy',
+        'sms_secret' => 'IfGU1A',
         'sms_sign' => 'aa',
     ),
     'APP' =>  array(
@@ -23,8 +23,8 @@ return array(
     ),
     'PUSH' =>  array(
         'push_type' => 'ac',
-        'push_key' => 'asc',
-        'push_secret' => 'asc',
+        'push_key' => '4e80dea3d357d0ee26b873dd',
+        'push_secret' => '290bcbb6f70aa304682261c7',
     ),
     'WXJSAPI' =>  array(
         'wxjsapi_appid' => 'ca',

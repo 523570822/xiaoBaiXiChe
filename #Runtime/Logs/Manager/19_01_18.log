@@ -1,0 +1,233 @@
+[ 2019-01-18T10:11:23+08:00 ] 127.0.0.1 /manager
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-18T10:11:23+08:00 ] 127.0.0.1 /index.php/Manager/Admin/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-18T10:11:23+08:00 ] 127.0.0.1 /index.php/Manager/Index/verifyImage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-18T10:11:28+08:00 ] 127.0.0.1 /index.php/Manager/Admin/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_admin` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`group_id`,`username`,`password`,`salt`,`status` FROM `db_admin` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0220s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_admin_menu` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`router`,`type`,`icon`,`system`,`sort`,`status` FROM `db_admin_menu` WHERE `status` <> 9 ORDER BY sort ASC, id ASC  [ RunTime:0.0130s ]
+
+[ 2019-01-18T10:11:29+08:00 ] 127.0.0.1 /index.php/Manager/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0090s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 230 LIMIT 1   [ RunTime:0.0080s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.051002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.053004s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-18T10:11:30+08:00 ] 127.0.0.1 /index.php/Manager/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-18T10:11:32+08:00 ] 127.0.0.1 /index.php/Manager/Config/thirdConfig.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, null given G:\Littlewhale\Application\Common\Service\ControllerService.class.php 第 45 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given G:\Littlewhale\Application\Common\Service\ControllerService.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: validate G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','三方配置','Manager/Config/thirdConfig','http://www.xjxc.com/index.php/Manager/Config/thirdConfig.html','POST: 
+Cookie:PHPSESSID=0dis6c4179arjgn7p372i9lfc7&ADMUSERNAME=admin','0','1547777492') [ RunTime:0.0700s ]
+SQL: SHOW COLUMNS FROM `db_config` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `key`,`value` FROM `db_config`  [ RunTime:0.0080s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: website G:\Littlewhale\#Runtime\Cache\Manager\7936dc30979e52364b6bbf17a544d63b.php 第 5 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-18T10:11:32+08:00 ] 127.0.0.1 /index.php/Manager/Config/thirdConfig.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, null given G:\Littlewhale\Application\Common\Service\ControllerService.class.php 第 45 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given G:\Littlewhale\Application\Common\Service\ControllerService.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: validate G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','三方配置','Manager/Config/thirdConfig','http://www.xjxc.com/index.php/Manager/Config/thirdConfig.html','POST: 
+Cookie:PHPSESSID=0dis6c4179arjgn7p372i9lfc7&ADMUSERNAME=admin','0','1547777492') [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_config` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `key`,`value` FROM `db_config`  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: website G:\Littlewhale\#Runtime\Cache\Manager\7936dc30979e52364b6bbf17a544d63b.php 第 5 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-18T10:11:36+08:00 ] 127.0.0.1 /index.php/Manager/Config/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, null given G:\Littlewhale\Application\Common\Service\ControllerService.class.php 第 45 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given G:\Littlewhale\Application\Common\Service\ControllerService.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: validate G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','基本配置','Manager/Config/index','http://www.xjxc.com/index.php/Manager/Config/index.html','POST: 
+Cookie:PHPSESSID=0dis6c4179arjgn7p372i9lfc7&ADMUSERNAME=admin','0','1547777496') [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_config` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `key`,`value` FROM `db_config`  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0080s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 251 LIMIT 1   [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: website G:\Littlewhale\#Runtime\Cache\Manager\7fa3d583be6d5c977c8acb6712f97b88.php 第 5 行.
+NOTIC: [8] Undefined variable: row G:\Littlewhale\#Runtime\Cache\Manager\7fa3d583be6d5c977c8acb6712f97b88.php 第 189 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-18T10:11:36+08:00 ] 127.0.0.1 /index.php/Manager/Config/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, null given G:\Littlewhale\Application\Common\Service\ControllerService.class.php 第 45 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given G:\Littlewhale\Application\Common\Service\ControllerService.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: validate G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','基本配置','Manager/Config/index','http://www.xjxc.com/index.php/Manager/Config/index.html','POST: 
+Cookie:PHPSESSID=0dis6c4179arjgn7p372i9lfc7&ADMUSERNAME=admin','0','1547777496') [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_config` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `key`,`value` FROM `db_config`  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0100s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 251 LIMIT 1   [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: website G:\Littlewhale\#Runtime\Cache\Manager\7fa3d583be6d5c977c8acb6712f97b88.php 第 5 行.
+NOTIC: [8] Undefined variable: row G:\Littlewhale\#Runtime\Cache\Manager\7fa3d583be6d5c977c8acb6712f97b88.php 第 189 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

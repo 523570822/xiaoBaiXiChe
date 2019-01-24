@@ -114,6 +114,58 @@ class IndexController extends BaseController
         $this->apiResponse ('1' , '查询成功' , $list1);
     }
 
+    /**
+     * 检验数据的真实性，并且获取解密后的明文.
+     * @param $encryptedData string 加密的用户数据
+     * @param $iv string 与用户数据一同返回的初始向量
+     * @param $data string 解密后的原文
+     * @return int 成功0，失败返回对应的错误码
+     */
+    public function decryptData( $encryptedData, $iv, &$data,$sessionKey,$appid )
+    {
+        if (strlen($sessionKey) != 24) {
+            return "1000";
+        }
+        $aesKey=base64_decode($sessionKey);
+        if (strlen($iv) != 24) {
+            return "error2";
+        }
+        $aesIV=base64_decode($iv);
+        $aesCipher=base64_decode($encryptedData);
+        $result=openssl_decrypt( $aesCipher, "AES-128-CBC", $aesKey, 1, $aesIV);
+        $dataObj=json_decode($result);
+        if( $dataObj  == NULL )
+        {
+            return "aes 解密失败1";
+        }
+        if( $dataObj->watermark->appid != $appid )
+        {
+            return "aes 解密失败2";
+        }
+        $data = $result;
+        return "OK";
+    }
+//手机绑定传session_key
+    public function get_session_key(){
+        $encryptedData=I('post.encryptedData');
+        $iv=I('post.iv');
+        $openid=I('post.openid');
+        $appid='wxf348bbbcc28d7e10';
+        if($openid&&$appid&&$iv&&$encryptedData){
+            $sessionKey=urldecode('2501eb21dd9346f91e9b612b0097b50f');
+            $errCode = $this->decryptData($encryptedData, $iv, $data,$sessionKey,$appid);
+            if ($errCode == "OK") {
+                //获取用户绑定的手机号成功
+                print($data . "\n");
+            } else {
+                print($errCode . "\n");
+            }
+        }else{
+            $this->ajaxReturn(array('code' => 300, 'msg' => '参数缺失'));
+        }
+    }
+
+
 
     public function push_curl ($param = "" , $header = "" , $postUrl = "")
     {
