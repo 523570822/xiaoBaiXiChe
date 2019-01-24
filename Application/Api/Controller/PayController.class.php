@@ -138,6 +138,8 @@ class PayController extends BaseController
         };
         if($cars){
             $this->apiResponse('1','成功',$cars);
+        }else{
+            $this->apiResponse('0','暂无提现方式');
         }
     }
 
