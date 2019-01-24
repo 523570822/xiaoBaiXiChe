@@ -120,13 +120,16 @@ class PayController extends BaseController
      *Date:2019/01/24 11:15
      */
     public function withdrawWay(){
-        $post = checkAppData('token','token');
+        $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
         $agent = $this->getAgentInfo($post['token']);
 
         $where['agent_id'] = $agent['id'];
         $where['status'] = array('neq',9);
-        $car = M('BankCard')->where($where)->field('card_code,card_id')->select();
+        $orders[] = 'sort DESC';
+        $car = M('BankCard')->where($where)->field('card_code,card_id')->order($orders)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach($car as $k=>$v){
             $where_type['id'] = $v['card_id'];
             $where_type['status'] = array('neq',9);
