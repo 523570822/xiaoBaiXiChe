@@ -23,8 +23,8 @@ return array(
     ),
     'PUSH' =>  array(
         'push_type' => 'ac',
-        'push_key' => 'asc',
-        'push_secret' => 'asc',
+        'push_key' => '4e80dea3d357d0ee26b873dd',
+        'push_secret' => '290bcbb6f70aa304682261c7',
     ),
     'WXJSAPI' =>  array(
         'wxjsapi_appid' => 'ca',
