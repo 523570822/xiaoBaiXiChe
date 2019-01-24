@@ -147,10 +147,10 @@ class CarWasherController extends BaseController
      *Date:2019/01/02 10:22
      */
     public function carIncomeInfo(){
-//        $post = checkAppData('token,car_washer_id,day','token-洗车机ID-日期时间戳');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $post['car_washer_id'] = 1;
-        $post['day'] = 'all';
+        $post = checkAppData('token,car_washer_id,day','token-洗车机ID-日期时间戳');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['car_washer_id'] = 1;
+//        $post['day'] = 'all';
         if($post['day'] == 'all'){
             $post['day'] = strtotime(date('Y-m-d'));
         }
@@ -160,14 +160,14 @@ class CarWasherController extends BaseController
             $order = M('CarWasher')->where(array('id'=>$post['car_washer_id'],'agent_id'=>$agent['id']))->field('mc_id,id')->find();
             $order_num = M('Order')->where(array('c_id'=>$order['id'],'o_type'=>1,'status'=>2))->field('orderid as mc_id,pay_money as net_income,pay_time as create_time')->select();
             foreach($order_num as $k=>$v){
-                $time[$k] = $v['create_time'];
+//                $time[$k] = $v['create_time'];
                 $order_num[$k]['car_washer'] = $order['mc_id'];
             }
 
 //        }
-        var_dump($time);exit;
-        if(!empty($income)){
-            $this->apiResponse('1','成功',$income);
+//        var_dump($order_num);exit;
+        if(!empty($order_num)){
+            $this->apiResponse('1','成功',$order_num);
         }else{
             $this->apiResponse('0','暂无收入详情');
         }
