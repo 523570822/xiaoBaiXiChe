@@ -9,8 +9,8 @@ return array(
     'SMS' =>  array(
         'sms_type' => 'zhutong',
         'sms_url' => 'http://www.api.zthysms.com/sendSms.do',
-        'sms_key' => 'xeyhy',
-        'sms_secret' => 'pTVuI7',
+        'sms_key' => 'xjxc68hy',
+        'sms_secret' => 'IfGU1A',
         'sms_sign' => 'aa',
     ),
     'APP' =>  array(
