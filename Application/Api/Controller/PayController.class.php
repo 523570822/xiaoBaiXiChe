@@ -115,6 +115,33 @@ class PayController extends BaseController
     }
 
     /**
+     *提现方式
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/24 11:15
+     */
+    public function withdrawWay(){
+        $post = checkAppData('token','token');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $agent = $this->getAgentInfo($post['token']);
+
+        $where['agent_id'] = $agent['id'];
+        $where['status'] = array('neq',9);
+        $car = M('BankCard')->where($where)->field('card_code,card_id')->select();
+        foreach($car as $k=>$v){
+            $where_type['id'] = $v['card_id'];
+            $where_type['status'] = array('neq',9);
+            $car_type = M('BankType')->where($where_type)->field('bank_name,bank_pic')->find();
+            $bank_pic = getPicPath($car_type['bank_pic']);
+            $cars[$k]['card_code'] = $v['card_code'];
+            $cars[$k]['bank_name'] = $car_type['bank_name'];
+            $cars[$k]['bank_pic'] = $bank_pic;
+        };
+        if($cars){
+            $this->apiResponse('1','成功',$cars);
+        }
+    }
+
+    /**
      *提现提交
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/04 02:01

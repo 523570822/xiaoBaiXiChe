@@ -302,7 +302,7 @@ class AgentController extends BaseController
      *Date:2018/12/25 01:46
      */
     public function agent(){
-        $post = checkAppData('token,grade','token-grade');
+        $post = checkAppData('token,grade','token-加盟商等级');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
 //        $post['grade'] = 2;
         $agent = $this->getAgentInfo($post['token']);
