@@ -328,7 +328,7 @@ class PayController extends BaseController
         if ($request['trade_type']) {
             // 小程序
             $xml_data['appid'] = 'wxf348bbbcc28d7e10'; // APP ID
-            $xml_data['mch_id'] = '1518626231'; // 商户号
+            $xml_data['mch_id'] = '1524895951'; // 商户号
             $xml_data['trade_type'] = 'JSAPI'; // 支付类型
             $xml_data['openid'] = $request['openid']; // JSAPI支付必须参数 openid
         } else {
