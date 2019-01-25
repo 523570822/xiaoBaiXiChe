@@ -32,7 +32,7 @@ class OrderController extends BaseController
         $request = $_REQUEST;
         $rule = array ('id' , 'string' , '请选择洗车门店');
         $this->checkParam ($rule);
-        $car_washer = M ('CarWasher')->where (array ('p_id' => $request['id']))->select ();
+        $car_washer = M ('CarWasherModel.class.php')->where (array ('p_id' => $request['id']))->select ();
         $this->apiResponse ('1' , '洗车机列表' , $car_washer);
     }
 
@@ -105,7 +105,7 @@ class OrderController extends BaseController
                 if ( $request['w_type'] == 1 ) {
                     $rule = array ('mc_id' , 'string' , '请输入洗车机编号');
                     $this->checkParam ($rule);
-                    $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
+                    $car_washer_info = M ('CarWasherModel.class.php')->where (array ('mc_id' => $request['mc_id']))->find ();
                     $this->checkMsgs ($request['mc_id'] , $car_washer_info['mc_id'] , $car_washer_info['status'] , $car_washer_info['type']);
                     $data['m_id'] = $m_id;
                     $data['orderid'] = 'XC' . date ('YmdHis') . rand (1000 , 9999);
@@ -118,7 +118,7 @@ class OrderController extends BaseController
                     $res = M ('Order')->data ($data)->add ();
                     $type['type'] = '2';
                     $XG['mc_id'] = $request['mc_id'];
-                    $yes = M ('CarWasher')->where ($XG)->save ($type);
+                    $yes = M ('CarWasherModel.class.php')->where ($XG)->save ($type);
                     if ( $res && $yes ) {
                         $this->apiResponse ('1' , '下单成功' , array ('orderid' => $data['orderid']));
                     } else {
@@ -128,7 +128,7 @@ class OrderController extends BaseController
                 if ( $request['w_type'] == 2 ) {
                     $rule = array ('mc_id' , 'string' , '请输入洗车机编号');
                     $this->checkParam ($rule);
-                    $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
+                    $car_washer_info = M ('CarWasherModel.class.php')->where (array ('mc_id' => $request['mc_id']))->find ();
                     $this->checkMsgs ($request['mc_id'] , $car_washer_info['mc_id'] , $car_washer_info['status'] , $car_washer_info['type']);
                     $data['m_id'] = $m_id;
                     $data['orderid'] = 'YC' . date ('YmdHis') . rand (1000 , 9999);
@@ -142,7 +142,7 @@ class OrderController extends BaseController
                     $res = M ('Order')->data ($data)->add ();
                     $type['type'] = '3';
                     $XG['mc_id'] = $request['mc_id'];
-                    $yes = M ('CarWasher')->where ($XG)->save ($type);
+                    $yes = M ('CarWasherModel.class.php')->where ($XG)->save ($type);
                     if ( $res && $yes ) {
                         $this->apiResponse ('1' , '预约成功' , array ('orderid' => $data['orderid']));
                     } else {
@@ -228,7 +228,7 @@ class OrderController extends BaseController
         if ( !$order ) {
             $this->apiResponse ('0' , '请输入正确订单ID');
         }
-        $car = D ('CarWasher')->where (array ('id' => $order['c_id']))->field ('*')->find ();
+        $car = D ('CarWasherModel.class.php')->where (array ('id' => $order['c_id']))->field ('*')->find ();
         $shop = D ('Washshop')->where (array ('id' => $car['p_id']))->field ('shop_name')->find ();
         $details = D ('Details')->where (array ('o_id' => $order['id']))->field ('*')->find ();
         $order['shop_name'] = $shop['shop_name'];

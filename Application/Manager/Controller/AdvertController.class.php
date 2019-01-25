@@ -21,7 +21,6 @@ class AdvertController extends BaseController
      */
     public function indexsAdvert() {
         $where = array();
-
         $where['status'] = array('lt',9);
         $param['order'] = 'id  desc';
         $param['page_size'] =15;

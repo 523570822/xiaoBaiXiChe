@@ -11,17 +11,6 @@ namespace Manager\Controller;
 
 class SmsController extends BaseController
 {
-
-
-    /**
-     * 短信管理
-     * User: admin
-     * Date: 2018-08-15 13:19:35
-     */
-    public function index() {
-
-    }
-
     /**
      * 发信记录
      * User: admin
