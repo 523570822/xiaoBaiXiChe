@@ -55,7 +55,6 @@ class WalletController extends BaseController
             $data['title'] = "余额充值";
             $data['o_type'] = '3';
             $data['create_time'] = time ();
-            $data['status'] = 2;
             $data['detail'] = 1;
             $res = M ('Order')->data ($data)->add ();
         }
