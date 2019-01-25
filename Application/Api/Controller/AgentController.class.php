@@ -530,7 +530,8 @@ class AgentController extends BaseController
 
         //每天净收入
 
-        $day_income = M('Income')->where($car_where)->field('day,SUM(net_income) as net_income,SUM(detail) as detail')->group('day')->select();
+        $order[] = 'sort DESC';
+        $day_income = M('Income')->where($car_where)->field('day,SUM(net_income) as net_income,SUM(detail) as detail')->group('day')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach ($day_income as $k=>$v){
             $time = strtotime(date('Y-m',$v['day']));
             if($time == $post['in_month']){
@@ -606,8 +607,8 @@ class AgentController extends BaseController
         $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
 //        $post['in_month'] = 'all';
-//        $post['page'] = 1;
-//        $post['size'] = 10;
+//        $post['page'] = 3;
+//        $post['size'] = 1;
         if($post['in_month'] == 'all'){
             $post['in_month'] = strtotime(date('Y-m'));
         }
@@ -620,7 +621,8 @@ class AgentController extends BaseController
         $commission = $income['de_detail']-$income['de_income'];
 
         //每天提成
-        $day_income = M('Income')->where($car_where)->field('day,SUM(net_income) as net_income,SUM(detail) as detail')->group('day')->select();
+        $order[] = 'sort DESC';
+        $day_income = M('Income')->where($car_where)->field('day,SUM(net_income) as net_income,SUM(detail) as detail')->group('day')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach ($day_income as $k=>$v){
             $time = strtotime(date('Y-m',$v['day']));
             if($time == $post['in_month']){
@@ -635,6 +637,7 @@ class AgentController extends BaseController
             'day_commission' => $now_days,
         );
 
+        var_dump($data);exit;
         if(!empty($income)){
             $this->apiResponse('1','成功',$data);
         }else{
