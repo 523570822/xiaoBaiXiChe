@@ -33,9 +33,12 @@ class CarWasherController extends BaseController
     */
     public function carWasher()
     {
-        $post = checkAppData('token','token');
+        $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
         $agent = $this->getAgentInfo($post['token']);
+        $orders[] = 'id DESC';
         $car_washer = D('CarWasher')->field('id,mc_id')->select();
         foreach($car_washer as $k=>$v){
             $income = D('Income')->where(array('car_washer_id'=>$v['id'],'agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(car_wash) as car_wash,car_washer_id')->group('car_washer_id')->find();
@@ -47,7 +50,7 @@ class CarWasherController extends BaseController
         if(!empty($incomes)){
             $this->apiResponse('1','成功',$incomes);
         }else{
-            $this->apiResponse('0','暂无加盟商信息');
+            $this->apiResponse('0','暂无洗车机信息');
         }
     }
 
@@ -182,4 +185,21 @@ class CarWasherController extends BaseController
         }
     }
 
+    /**
+     *设备详情
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/24 14:49
+     */
+    public function carInfo(){
+//        $post = checkAppData('token,car_id','token-洗车机ID');
+        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post['car_num'] = 'A00001';
+
+        $agent = $this->getAgentInfo($post['token']);
+        $where['agent_id'] = $agent['id'];
+        $where['status'] = array('neq',9);
+        $where['mc_id'] = $post['car_num'];
+        $car_washer = M('CarWasher')->where($where)->field('mc_id,address,status')->find();
+        var_dump($car_washer);exit;
+    }
 }

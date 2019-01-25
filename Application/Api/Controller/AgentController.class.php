@@ -381,12 +381,14 @@ class AgentController extends BaseController
      *Date:2019/01/14 00:41
      */
     public function management(){
-//        $post = checkAppData('page,size','页数-个数');
+        $post = checkAppData('page,size','页数-个数');
 
-        $post['page'] = 1;
-        $post['size'] = 10;
+//        $post['page'] = 2;
+//        $post['size'] = 2;
 
-        $agent = M('Agent')->where(array('grade'=>1,'status'=>1))->field('id,nickname')->select();
+        $order[] = 'sort DESC';
+        $agent = M('Agent')->where(array('grade'=>1,'status'=>1))->field('id,nickname')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        echo M('Agent')->_sql();
         foreach($agent as $k=>$v){
             $wheres['status'][$k] = array('neq',9);
             $wheres['agent_id'] = $v['id'];
@@ -397,7 +399,6 @@ class AgentController extends BaseController
             $car[0]['nickname'] = $v['nickname'];
             $cars[] = $car;
         }
-//        var_dump($cars);exit;
         $f_where['status'] = array('neq',9);
         $f_where['grade'] = array('neq',1);
         $f_agent = M('Agent')->where($f_where)->field('id,p_id')->select();
@@ -405,64 +406,65 @@ class AgentController extends BaseController
             $agents[] = $v1;
         }
         foreach ($f_agent as $kk=>$vv){
-//            $f_agents[] = $vv;
             $f_car['status'] = array('neq',9);
             $f_car['agent_id'] = $vv['id'];
             $f_car_num = M('CarWasher')->where($f_car)->field('id,agent_id')->select();
-            foreach ($f_car_num as $kk1=>$vv1){
-                $f_car_num[$kk1]['p_id'] = $vv['p_id'];
-                foreach ($f_car_num as $kk5=>$vv5){
-                    $fcar_num = $vv5;
+            $f_car_numss[] = $f_car_num;
+            foreach ($f_car_numss as $kk1=>$vv1){
+                foreach ($vv1 as $kk5=>$vv5){
+                    $where_pid['id'] =  $vv5['agent_id'];
+                    $where_pid['status'] =  array('neq',9);
+                    $where_pid['grade'] =  array('neq',1);
+                    $p_id = M('Agent')->where($where_pid)->field('p_id')->find();
+                    $f_car_numss[$kk1][$kk5]['p_id'] = $p_id['p_id'];
                 }
-            }
-            if(!empty($fcar_num)){
-                $f_car_nums[] = $fcar_num;
+                $fcar_nus = $f_car_numss;
             }
         }
-        foreach ($f_car_nums as $kk4=>$vv4){
-            $num = $vv4;
-//            foreach ($num as $kkk1=>$vvv2){
-//                $nums[$kkk1] = $vvv2;
-//            }
-        }
-//        var_dump($num);exit;
         foreach ($agents as $k2=>$v2){
             if(!empty($v2)){
-//                foreach ($v2 as $k3=>$v3){
-//                    $a[$k3] = $v3;
-//                }
-
-                $agent_num[$k2]['name'] = $v2[0]['nickname'];
-                $agent_num[$k2]['agent_id'] = $v2[0]['agent_id'];
-                $agent_num[$k2]['car_num'] = count($v2);
-                if($v2[0]['agent_id'] == $num['p_id']){
-                    $agent_num[$k2]['num'] = count($num);
+                foreach ($fcar_nus as $kk4=>$vv4){
+                    foreach ($vv4 as $key=>$value){
+                        if($value['p_id'] == $v2[0]['agent_id']){
+                            $a['two_agent'] = $value;
+                            $agentNum[$k2]['car_nums'][] = $a['two_agent'];
+                        }
+                    }
                 }
-                var_dump($v2[0]['agent_id'] == $num['p_id']);exit;
-                if(empty($v2[0]['id'])){
-                    $agent_num[$k2]['car_num'] = $agent_num[$k2]['car_num']-1;
-                }
-                $w_total['status'] = array('neq',9);
-                $total = M('CarWasher')->where($w_total)->select();
-                $agent_total = count($total);
-                $agent_num[$k2]['percent'] = $agent_num[$k2]['car_num']/$agent_total*100.."%";
+//                var_dump($agentNum);exit;
 
+                foreach ($agentNum as $key1=>$value1){
+                    foreach ($value1 as $key2=>$value2){
+                        foreach ($value2 as $key3=>$vale3){
+                            $anu = $vale3;
+                        }
+
+                        $agent_num[$k2]['name'] = $v2[0]['nickname'];
+                        $age[$k2]['name'] = $agent_num[$k2]['name'];
+                        $agent_num[$k2]['agent_id'] = $v2[0]['agent_id'];
+                        $agent_num[$k2]['car_num'] = count($v2);
+                        $agent_num[$k2]['car_nums'] = count($value2);
+                        if(empty($v2[0]['id'])){
+                            $agent_num[$k2]['car_num'] = $agent_num[$k2]['car_num']-1;
+                        }
+                        if($v2[0]['agent_id'] != $anu['p_id']){
+                            $agent_num[$k2]['car_nums'] = 0;
+                        }
+                        $age[$k2]['car_num'] = $agent_num[$k2]['car_num']+$agent_num[$k2]['car_nums'];
+
+                        $w_total['status'] = array('neq',9);
+                        $total = M('CarWasher')->where($w_total)->select();
+                        $agent_total = count($total);
+                        $age[$k2]['percent'] = sprintf("%.2f",round($age[$k2]['car_num']/$agent_total,2))*100..'%';
+                    }
+                }
             }
         }
-
-//        var_dump($nums);exit;
-        var_dump($num['p_id']);exit;
-
-        //
-        $where['status'] = array('neq',9);
-        $result = M('CarWasher')->field('agent_id')->where($where)->select();
-        foreach ($result as $k2=>$v2){
-            $a[] = $v2;exit;
-            if(!empty($v2)){
-                $a[] = $v2;
-            }
+        if($age){
+            $this->apiResponse('1','成功',$age);
+        }else{
+            $this->apiResponse('0','暂无更多数据');
         }
-        var_dump($a);exit;
     }
 
     /**
