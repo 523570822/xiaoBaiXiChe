@@ -388,7 +388,6 @@ class AgentController extends BaseController
 
         $order[] = 'sort DESC';
         $agent = M('Agent')->where(array('grade'=>1,'status'=>1))->field('id,nickname')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-        echo M('Agent')->_sql();
         foreach($agent as $k=>$v){
             $wheres['status'][$k] = array('neq',9);
             $wheres['agent_id'] = $v['id'];
