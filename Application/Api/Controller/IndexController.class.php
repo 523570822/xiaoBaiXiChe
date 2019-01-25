@@ -9,73 +9,19 @@
 namespace Api\Controller;
 class IndexController extends BaseController
 {
-    public function index ()
-    {
-        echo 'Hello World!';
-    }
-
-    /**
-     * 获取openid
-     **/
-    public function getOpenid ()
-    {
-        $appid = 'wxf348bbbcc28d7e10';
-        $secret = '2501eb21dd9346f91e9b612b0097b50f';
-        $js_code = $_REQUEST['js_code'];
-        if ( empty($js_code) ) {
-            $this->apiResponse (0 , '缺少code');
-        }
-        $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$secret&js_code=$js_code&grant_type=authorization_code";
-        $openid = file_get_contents ($url);//var_dump($openid);die;
-        $openid = json_decode ($openid);
-        $session_key = $openid->session_key;
-        $openid = $openid->openid;
-
-        $this->apiResponse (1 , '成功' ,array ($openid,$session_key));
-    }
-
-    /**
-     * 微信小程序获取手机号
-     **/
-    public function getPhoneNumber ()
-    {
-        $request = $_REQUEST;
-        $rule = array ('openid' , 'string' , 'openid不能为空');
-        $this->checkParam ($rule);
-        $param['where']['openid'] = $request['openid'];
-        $param['field'] = 'm_id';
-        $param['status'] = array ('neq' , 9);
-        $res = D ('MemberBind')->queryRow ($param['where'] , $param['field']);
-        if ( $res ) {
-            foreach ( $res as $k => $v ) {
-                $resu = D ("Member")->where (array ('id' => $v))->find ();
-            }
-            if ( $resu ) {
-                $this->apiResponse (1 , '请求成功' , array ('account' => $resu['account']));
-            } else {
-                $this->apiResponse (0 , '请求失败');
-            }
-        } else {
-            $this->apiResponse (0 , '请求失败');
-        }
-    }
-
     /**
      * 检查更新
      */
     public function checkUpdate()
     {
         $request = I("");
-
         $this->checkParam(array(
             array('version', 'string', '请输入当前版本号'),
             array('device', 'string', '请输入终端系统'),
             array('app', 'string', "请输入使用的APP类型")
         ));
-
         $data = [];
         $version = M("Version")->where(["app" => $request['device']])->order("create_time desc")->find();
-
         if ($request['version'] == $version['version']) {
             $this->apiResponse(0, "已是最新版本", $data);
         } else {
@@ -114,49 +60,37 @@ class IndexController extends BaseController
         $this->apiResponse ('1' , '查询成功' , $list1);
     }
 
-
     /**
-     * error code 说明.
-     * <ul>
-     *    <li>-41001: encodingAesKey 非法</li>
-     *    <li>-41003: aes 解密失败</li>
-     *    <li>-41004: 解密后得到的buffer非法</li>
-     *    <li>-41005: base64加密失败</li>
-     *    <li>-41016: base64解密失败</li>
-     * </ul>
-     */
-    public static $OK = 0;
-    public static $IllegalAesKey = -41001;
-    public static $IllegalIv = -41002;
-    public static $IllegalBuffer = -41003;
-    public static $DecodeBase64Error = -41004;
-    // 小程序
-    public static $appid = 'wxf348bbbcc28d7e10';  //小程序appid
-    public static $secret = '2501eb21dd9346f91e9b612b0097b50f'; //小程序秘钥
-    public $sessionKey ='';
-    // 获取openId session-key 等
-    public function getopenIds($value='')
+     * 获取openid
+     **/
+    public function getOpenid ()
     {
-        $code = I('post.code');
-        $appid = self::$appid;
-        $secret = self::$secret;
-        $url = 'https://api.weixin.qq.com/sns/jscode2session?appid='. $appid.'&secret='.$secret.'&js_code='.$code.'&grant_type=authorization_code';
-        $result = httpGet($url);
-        $res = json_decode($result);
-        session(['sessionKey'=>$res,'expire'=>7200]);
-        $this->ajaxReturn($res);
+        $appid = 'wxf348bbbcc28d7e10';
+        $secret = '2501eb21dd9346f91e9b612b0097b50f';
+        $js_code = $_REQUEST['js_code'];
+        if ( empty($js_code) ) {
+            $this->apiResponse (0 , '缺少code');
+        }
+        $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$secret&js_code=$js_code&grant_type=authorization_code";
+        $openid = file_get_contents ($url);//var_dump($openid);die;
+        $openid = json_decode ($openid);
+        $session_key = $openid->session_key;
+        $openid = $openid->openid;
+        $this->apiResponse (1 , '成功' ,array ('openid'=>$openid,'session_key'=>$session_key));
     }
 
-    // 获取小程序手机号api 接口，对应下面小程序 js
-    public function getPhoneNumber1($value='')
+    /**
+     * 获取小程序手机号
+     **/
+    public function getPhoneNumber($value='')
     {
         $encryptedData = I('get.encryptedData');
         $iv = I('get.iv');
         $this->sessionKey=I('get.session_key');
-        $res = $this->decryptData($encryptedData, $iv);
-        // $res = json_decode($res);
+        $res = $this->decryptData($encryptedData,$iv);
+//         $res = json_decode($res);
         if($res->phoneNumber){
-            // $res->phoneNumbe 就是手机号可以 写入数据库或者做其他操作
+//             $res->phoneNumbe;
         }
         $this->ajaxReturn(['msg'=>$res,'status'=>'1']); //把手机号返
     }
@@ -187,19 +121,7 @@ class IndexController extends BaseController
         // return self::$OK;
     }
 
-    function httpGet($url) {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 500);
-        // 为保证第三方服务器与微信服务器之间数据传输的安全性，所有微信接口采用https方式调用，必须使用下面2行代码打开ssl安全校验。
-        // 如果在部署过程中代码在此处验证失败，请到 http://curl.haxx.se/ca/cacert.pem 下载新的证书判别文件。
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_URL, $url);
-        $res = curl_exec($curl);
-        curl_close($curl);
-        return $res;
-    }
+
 
 
 
