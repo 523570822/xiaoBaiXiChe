@@ -122,10 +122,6 @@ class IndexController extends BaseController
     }
 
 
-
-
-
-
     public function push_curl ($param = "" , $header = "" , $postUrl = "")
     {
         if ( empty($param) ) {

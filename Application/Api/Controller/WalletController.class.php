@@ -89,7 +89,7 @@ class WalletController extends BaseController
             ->where (array ('m_id' => $m_id,'status'=>2))
             ->where (array ('detail' => array ('neq' , 9)))
             ->where ($where)
-            ->field ('title,pay_money,pay_time')
+            ->field ('title,pay_money,pay_time,detail')
             ->page($request['page'], '10')
             ->select ();
         if (!$order) {
