@@ -42,7 +42,7 @@ class FaultController extends BaseController
         );
         $this->checkParam ($rule);
         if($request['mc_id']){
-            $car_washer_info = M ('CarWasherModel.class.php')->where (array ('mc_id' => $request['mc_id']))->find ();
+            $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
             if ( !$request['mc_id'] = $car_washer_info['mc_id'] ) {
                 $this->apiResponse ('0' , '找不到该机器' , $php_errormsg);
             }
