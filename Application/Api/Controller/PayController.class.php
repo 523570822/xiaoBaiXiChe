@@ -313,7 +313,7 @@ class PayController extends BaseController
         $xml_data = [];
         $xml_data['body'] = "小鲸洗车-订单号-" . $order_info['orderid']; // 商品描述
         $xml_data['out_trade_no'] = $order_info['orderid']; // 订单流水
-        $xml_data['notify_url'] = "http://www.xiaojingxiche.com/index.php/Api/Pay/wXNotify"; // 回调 URL
+        $xml_data['notify_url'] =  C ('API_URL') . "index.php/Api/Pay/wXNotify"; // 回调 URL
         $xml_data['spbill_create_ip'] = $_SERVER['REMOTE_ADDR']; // 终端 IP
 //        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
         $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
@@ -553,19 +553,12 @@ class PayController extends BaseController
         $order_no = $log['out_trade_no'];
         // 获取其他订单信息
         $order_info = json_decode($log['attach'], true);
-
-
-//        $xml = $GLOBALS['HTTP_RAW_POST_DATA'];
-//        $xml_res = $this->xmlToArray ($xml);
-//        $out_trade_no = $xml_res["out_trade_no"];
-//        $trade_no = $xml_res['transaction_id'];
-//        $where['orderid'] = $xml_res["out_trade_no"];
         $order = D ('Order')->where (array ('orderid' => $order_info))->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
         $date['pay_time'] = time ();
         $date['status'] = 2;
         $date['pay_type'] = 1;
-        $date['trade_no'] = $order_info;
+        $date['trade_no'] = $order_no;
         if ( $_REQUEST['o_type'] == 1 ) {//1洗车订单
             $date['detail'] = 0;
             $save = D ("Order")->where (array ('orderid' => $order_info))->save ($date);
