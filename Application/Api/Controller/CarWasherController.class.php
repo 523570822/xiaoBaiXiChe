@@ -193,12 +193,12 @@ class CarWasherController extends BaseController
     public function carInfo(){
         $post = checkAppData('token,car_id','token-洗车机ID');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['car_num'] = 'A00001';
+//        $post['car_id'] = 'A00001';
 
         $agent = $this->getAgentInfo($post['token']);
         $where['agent_id'] = $agent['id'];
         $where['status'] = array('neq',9);
-        $where['mc_id'] = $post['car_num'];
+        $where['mc_id'] = $post['car_id'];
         $car_washer = M('CarWasher')->where($where)->field('mc_id,address,status,electricity,water_volume,foam')->find();
         if($car_washer){
             $this->apiResponse('1','成功',$car_washer);
