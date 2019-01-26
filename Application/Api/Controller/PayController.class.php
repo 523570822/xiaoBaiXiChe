@@ -544,6 +544,12 @@ class PayController extends BaseController
         $xml = file_get_contents("php://input");
         // 读取返回值
         $log = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+
+        $myfile = fopen("./WeChatNotify.txt", "a") or die("Unable to open file!");
+        $txt = json_encode ($log);
+        fwrite($myfile, $txt);
+        fclose($myfile);
+
         // 获取订单流水号
         $order_no = $log['out_trade_no'];
         //获取三方交易流水号
