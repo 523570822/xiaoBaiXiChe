@@ -123,13 +123,18 @@ class AgentController extends BaseController
      *Date:2018/12/19 02:01
      */
     public function income(){
-        $post = checkAppData('token,timeType','token-时间筛选');
-        /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $post['timeType'] = 4; */                 //查询方式  1日  2周  3月   4年
+        $post = checkAppData('token,timeType,page,size','token-时间筛选-页数-个数');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
+//        $post['page'] = 2;
+//        $post['size'] = 10;
+
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
         $agent = $this->getAgentInfo($post['token']);
-        $car_num = D('CarWasher')->where(array("agent_id"=>$agent['id']))->select();
+        $car_where['agent_id'] = $agent['id'];
+        $car_where['status'] = array('neq',9);
+        $car_num = D('CarWasher')->where($car_where)->select();
         //日筛选
         $day = D('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('day,week_star,month,year')->select();
         foreach ($day as $k=>$v){
@@ -152,10 +157,11 @@ class AgentController extends BaseController
         $years = array_unique($year);
         $where['agent_id'] =  $agent['id'];
         if($post['timeType'] == 1) {
-            $where['day'] = strtotime(date('Y-m-d'));
+            $where['day'] = strtotime(date('Y-m-d',1545291552));
             $where['status'] = 1;
 //            var_dump($where['day']);exit;
             $income = D('Income')->where($where)->field("SUM(net_income) as net_income,SUM(car_wash) as car_wash,day as now_day")->group("day")->find();
+
             if(empty($income['now_day'])) {
                 $income['net_income'] = 0;
                 $income['car_wash'] = 0;
@@ -302,15 +308,19 @@ class AgentController extends BaseController
      *Date:2018/12/25 01:46
      */
     public function agent(){
-        $post = checkAppData('token,grade','token-加盟商等级');
+        $post = checkAppData('token,grade,page,size','token-加盟商等级-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
 //        $post['grade'] = 2;
+//        $post['page'] = 3;
+//        $post['size'] = 2;
+
         $agent = $this->getAgentInfo($post['token']);
 //        var_dump($agent);exit;
         $where['status'] = 1;
         $where['p_id'] = $agent['id'];
         $where['grade'] = $post['grade'];
-        $agent = D('Agent')->where($where)->field('id,nickname,account')->select();
+        $order[] = 'sort DESC';
+        $agent = D('Agent')->where($where)->field('id,nickname,account')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach($agent as $k=>$v){
             $car[] = D('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
             foreach($car as $kk=>$vv){
@@ -318,10 +328,11 @@ class AgentController extends BaseController
                 $agent[$k]['car_num'] = $car_num;
             }
         }
+//        var_dump($agent);exit;
         if(!empty($agent)){
             $this->apiResponse('1','成功',$agent);
         }else{
-            $this->apiResponse('1','暂无可查询加盟商');
+            $this->apiResponse('0','暂无可查询加盟商');
         }
     }
 
@@ -560,15 +571,18 @@ class AgentController extends BaseController
      *Date:2019/01/02 10:22
      */
     public function carIncomeInfo(){
-        $post = checkAppData('token,day','token-日期时间戳');
+        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
 //        $post['token'] = '64a516f028e6fb9cdc7f9dc497f5653a';
 //        $post['day'] = 1548000000;
+//        $post['page'] = 2;
+//        $post['size'] = 10;
         /*if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
         }*/
         $agent = $this->getAgentInfo($post['token']);
 
-        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_id')->select();
+        $order[] = 'id ASC';
+        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_id')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
 
         foreach ($car_washer as $k=>$v){
             $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->find();
@@ -591,6 +605,7 @@ class AgentController extends BaseController
                 }
             }
         }
+//        var_dump($cars);exit;
         if(!empty($cars)){
             $this->apiResponse('1','成功',$cars);
         }else{
@@ -637,7 +652,6 @@ class AgentController extends BaseController
             'day_commission' => $now_days,
         );
 
-        var_dump($data);exit;
         if(!empty($income)){
             $this->apiResponse('1','成功',$data);
         }else{
@@ -651,15 +665,18 @@ class AgentController extends BaseController
      *Date:2019/01/22 17:16
      */
     public function carCommInfo(){
-        $post = checkAppData('token,day','token-日期时间戳');
+        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
 //        $post['token'] = '64a516f028e6fb9cdc7f9dc497f5653a';
 //        $post['day'] = 1548000000;
+//        $post['page'] = 1;
+//        $post['size'] = 10;
         /*if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
         }*/
         $agent = $this->getAgentInfo($post['token']);
 
-        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_id')->select();
+        $order[] = 'id ASC';
+        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_id')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
 
         foreach ($car_washer as $k=>$v){
             $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->find();
@@ -685,7 +702,7 @@ class AgentController extends BaseController
         if(!empty($cars)){
             $this->apiResponse('1','成功',$cars);
         }else{
-            $this->apiResponse('0','暂无收入详情');
+            $this->apiResponse('0','暂无详情');
         }
     }
 

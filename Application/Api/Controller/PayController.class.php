@@ -180,10 +180,13 @@ class PayController extends BaseController
      */
     public function withdrawInfo ()
     {
-        $post = checkAppData ('token' , 'token');
+        $post = checkAppData ('token，page,size' , 'token-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['page'] = 2;
+//        $post['size'] = 1;
         $agent = $this->getAgentInfo ($post['token']);
-        $withdraw = M ('Withdraw')->where (array ('agent_id' => $agent['id']))->field ('money,status,create_time')->select ();
+        $order[] = 'sort DESC';
+        $withdraw = M ('Withdraw')->where (array ('agent_id' => $agent['id']))->field ('money,status,create_time')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select ();
         //var_dump($withdraw);exit;
         if ( !empty($withdraw) ) {
             $this->apiResponse ('1' , '成功' , $withdraw);
@@ -655,6 +658,7 @@ class PayController extends BaseController
             $this->apiResponse (0 , '订单信息查询失败');
         }
         $date['detail'] = 2;
+//        $date['pay_time'] = time ();
         $date['pay_time'] = time ();
         $date['status'] = 2;
         $date['pay_type'] = 3;
@@ -670,13 +674,14 @@ class PayController extends BaseController
                 $pay = D ('Member')->where (array ('id' => $m_id))->field ('balance')->Save (array ('balance' => $Member['balance'] - $order['pay_money']));
                 $save = D ("Order")->where (array ('orderid' => $request['orderid']))->save ($date);
 
-                //添加收益表
-//                if($save){
-//                    $find_order = M('Order')->where()->field()->find();
-//                }
-
-
                 if ( $save && $pay ) {
+                    //添加到收益表
+                    $a_where['orderid'] = $request['orderid'];
+                    $a_where['status'] = 2;
+                    $a_where['o_type'] = 1;
+                    $a_order = M('Order')->where($a_where)->field('c_id,pay_money,pay_time')->find();
+
+
                     $this->apiResponse (1 , '支付成功');
                 }
             } elseif ( $_REQUEST['o_type'] == 2 ) {//2小鲸卡购买
