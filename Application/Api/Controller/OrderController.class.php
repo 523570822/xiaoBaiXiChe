@@ -186,22 +186,22 @@ class OrderController extends BaseController
             array ('page' , 'string' , '请输入参数:page') ,
         );
         $this->checkParam ($rule);
-        if ( $request['order_type'] == 0 ) {
-            $where['db_order.status'] = array ('neq' , 9);
-        }
+        $where['db_order.o_type'] = 1;
+        $where['db_order.status'] = array ('neq' , 9);
         if ( $request['order_type'] == 1 ) {
             $where['db_order.status'] = 1;
         }
         if ( $request['order_type'] == 2 ) {
             $where['db_order.status'] = 2;
         }
+        $where['db_order.m_id'] = $m_id;
         $list_info = D ('Order')
-            ->where (array ('db_order.m_id' => $m_id))
             ->where ($where)
-            ->join ("db_car_washer ON db_order.c_id = db_car_washer.id")
+            ->join ("LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id")
             ->field ('db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id')
             ->page ($request['page'] , '10')
             ->select ();
+//        var_dump ($list_info);die;
         foreach ( $list_info as $k => $v ) {
             $m = $list_info[$k]['p_id'];
             $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();
