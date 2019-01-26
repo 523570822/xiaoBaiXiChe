@@ -191,15 +191,19 @@ class CarWasherController extends BaseController
      *Date:2019/01/24 14:49
      */
     public function carInfo(){
-//        $post = checkAppData('token,car_id','token-洗车机ID');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $post['car_num'] = 'A00001';
+        $post = checkAppData('token,car_id','token-洗车机ID');
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['car_num'] = 'A00001';
 
         $agent = $this->getAgentInfo($post['token']);
         $where['agent_id'] = $agent['id'];
         $where['status'] = array('neq',9);
         $where['mc_id'] = $post['car_num'];
-        $car_washer = M('CarWasher')->where($where)->field('mc_id,address,status')->find();
-        var_dump($car_washer);exit;
+        $car_washer = M('CarWasher')->where($where)->field('mc_id,address,status,electricity,water_volume,foam')->find();
+        if($car_washer){
+            $this->apiResponse('1','成功',$car_washer);
+        }else{
+            $this->apiResponse('0','暂无此设备信息');
+        }
     }
 }
