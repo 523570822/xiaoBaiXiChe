@@ -313,7 +313,7 @@ class PayController extends BaseController
         $xml_data = [];
         $xml_data['body'] = "小鲸洗车-订单号-" . $order_info['orderid']; // 商品描述
         $xml_data['out_trade_no'] = $order_info['orderid']; // 订单流水
-        $xml_data['notify_url'] =  C ('API_URL') . "index.php/Api/Pay/wXNotify"; // 回调 URL
+        $xml_data['notify_url'] =  C ('API_URL') . "index.php/Api/Pay/WeChatNotify"; // 回调 URL
         $xml_data['spbill_create_ip'] = $_SERVER['REMOTE_ADDR']; // 终端 IP
 //        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
         $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
@@ -552,16 +552,18 @@ class PayController extends BaseController
         // 获取订单流水号
         $order_no = $log['out_trade_no'];
         // 获取其他订单信息
-        $order_info = json_decode($log['attach'], true);
-        $order = D ('Order')->where (array ('orderid' => $order_info))->find ();
+        //$order_info = json_decode($log['attach'], true);
+        //获取三方交易流水号
+        $info=$log['transaction_id'];
+        $order = D ('Order')->where (array ('orderid' => $order_no))->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
         $date['pay_time'] = time ();
         $date['status'] = 2;
         $date['pay_type'] = 1;
-        $date['trade_no'] = $order_no;
+        $date['trade_no'] = $info;
         if ( $_REQUEST['o_type'] == 1 ) {//1洗车订单
             $date['detail'] = 0;
-            $save = D ("Order")->where (array ('orderid' => $order_info))->save ($date);
+            $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             if ( $save ) {
                 echo "success";
             }
@@ -580,13 +582,13 @@ class PayController extends BaseController
                 D ("CardUser")->add ($where);
             }
             $date['detail'] = 0;
-            $save = D ("Order")->where (array ('orderid' => $order_info))->save ($date);
+            $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             if ( $save ) {
                 echo "success";
             }
         } elseif ( $_REQUEST['o_type'] == 3 ) {//3余额充值
             $date['detail'] = 1;
-            $save = D ("Order")->where (array ('orderid' => $order_info))->save ($date);
+            $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
             if ( $save && $buy ) {
                 echo "success";
