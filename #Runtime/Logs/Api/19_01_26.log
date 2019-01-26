@@ -1,0 +1,519 @@
+[ 2019-01-26T11:59:22+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder?token=d01b85ff25dda8c22186b0ff2f718ca0&order_type=0&page=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548475162 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` INNER JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.status <> 9 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0090s ]
+
+[ 2019-01-26T12:00:29+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 26 行.
+
+[ 2019-01-26T12:01:09+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548475269 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0120s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` INNER JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.status <> 9 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0090s ]
+
+[ 2019-01-26T12:01:49+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548475309 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-26T12:02:14+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548475334 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-26T12:02:20+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548475340 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-01-26T12:02:45+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548475365 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0070s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` INNER JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.status <> 9 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0070s ]
+
+[ 2019-01-26T12:02:55+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548475375 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` INNER JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.status <> 9 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0090s ]
+
+[ 2019-01-26T12:04:03+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548475443 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` INNER JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.status <> 9 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0090s ]
+
+[ 2019-01-26T12:04:35+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548475475 AND `status` <> 0 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.status <> 9 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0100s ]
+
+[ 2019-01-26T12:50:55+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548478255 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.status <> 9 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_washshop` [ RunTime:0.0100s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-26T12:53:45+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548478425 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.o_type = 1 AND db_order.status <> 9 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_washshop` [ RunTime:0.0090s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0070s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-26T12:54:01+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548478441 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.o_type = 1 AND db_order.status = 1 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_washshop` [ RunTime:0.0100s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-01-26T12:54:07+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548478447 AND `status` <> 0 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.o_type = 1 AND db_order.status = 2 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_washshop` [ RunTime:0.0080s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-26T12:57:20+08:00 ] 127.0.0.1 /index.php/Api/Order/myOrder?token=d01b85ff25dda8c22186b0ff2f718ca0&order_type=0&page=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'd01b85ff25dda8c22186b0ff2f718ca0' AND `expired_time` >= 1548478640 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id FROM `db_order` LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id  WHERE db_order.o_type = 1 AND db_order.status <> 9 AND db_order.m_id = '100' LIMIT 0,10   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_washshop` [ RunTime:0.0090s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = null LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-26T16:06:59+08:00 ] 127.0.0.1 /index.php/Api//Pay/WeChatNotify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): token=8cfe637703101313fe03efd973a5785d&amp;order_type=0 G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): ^ G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = null LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 575 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 581 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 600 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004000s ]
+
+[ 2019-01-26T16:07:04+08:00 ] 127.0.0.1 /index.php/Api/Pay/WeChatNotify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001001s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): token=8cfe637703101313fe03efd973a5785d&amp;order_type=0 G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): ^ G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = null LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 575 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 581 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 600 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2019-01-26T16:07:13+08:00 ] 127.0.0.1 /index.php/Api/Pay/WeChatNotify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): token=8cfe637703101313fe03efd973a5785d&amp;order_type=0 G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): ^ G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = null LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 575 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 581 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 600 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-26T16:07:35+08:00 ] 127.0.0.1 /index.php/Api/Pay/WeChatNotify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): token=8cfe637703101313fe03efd973a5785d&amp;order_type=0 G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): ^ G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = null LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 575 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 581 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 600 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-26T16:07:41+08:00 ] 127.0.0.1 /index.php/Api/Pay/WeChatNotify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): token=8cfe637703101313fe03efd973a5785d&amp;order_type=0 G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+NOTIC: [2] simplexml_load_string(): ^ G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 562 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = null LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 575 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 581 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 600 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2019-01-26T16:08:27+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: orderid G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 307 行.
+SQL: SELECT * FROM `db_order` WHERE `orderid` = null LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-01-26T16:08:38+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: orderid G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 307 行.
+SQL: SELECT * FROM `db_order` WHERE `orderid` = null LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-01-26T16:08:43+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: orderid G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 307 行.
+SQL: SELECT * FROM `db_order` WHERE `orderid` = null LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-26T16:08:54+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'CZ201901220932315726' LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+
+[ 2019-01-26T16:08:55+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'CZ201901220932315726' LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+
+[ 2019-01-26T16:11:07+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201901241452316010' LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 356 行.
+
+[ 2019-01-26T16:14:38+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201901241452316010' LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+
+[ 2019-01-26T16:15:11+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201901241452316010' LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+
+[ 2019-01-26T16:19:05+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201901241452316010' LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 356 行.
+
+[ 2019-01-26T16:22:03+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201901241452316010' LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 356 行.
+
+[ 2019-01-26T16:24:55+08:00 ] 127.0.0.1 /index.php/Api/Pay/WeChatNotify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = null LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 583 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 589 行.
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 608 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-01-26T16:26:39+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201901241452316010' LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+
+[ 2019-01-26T16:29:17+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201901241452316010' LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+
+[ 2019-01-26T16:30:19+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201901241452316015' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-01-26T16:30:31+08:00 ] 127.0.0.1 /index.php/Api/Pay/Wechat
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201901241452316015' LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 328 行.
+NOTIC: [8] Undefined index: trade_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 356 行.
+
+[ 2019-01-26T16:48:30+08:00 ] 127.0.0.1 /index.php/Api/Invitation/InvitationDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_article` [ RunTime:0.0090s ]
+SQL: SELECT `id`,`title`,`content` FROM `db_article` WHERE `type` = 5 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-01-26T16:48:47+08:00 ] 127.0.0.1 /index.php/Api/Invitation/InvitationDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_article` [ RunTime:0.0080s ]
+SQL: SELECT `id`,`title`,`content` FROM `db_article` WHERE `type` = 4 AND `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+

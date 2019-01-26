@@ -119,30 +119,31 @@ class PayController extends BaseController
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/24 11:15
      */
-    public function withdrawWay(){
-        $post = checkAppData('token,page,size','token-页数-个数');
+    public function withdrawWay ()
+    {
+        $post = checkAppData ('token,page,size' , 'token-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
 //        $post['page'] = 1;
 //        $post['size'] = 10;
-        $agent = $this->getAgentInfo($post['token']);
+        $agent = $this->getAgentInfo ($post['token']);
 
         $where['agent_id'] = $agent['id'];
-        $where['status'] = array('neq',9);
+        $where['status'] = array ('neq' , 9);
         $orders[] = 'sort DESC';
-        $car = M('BankCard')->where($where)->field('card_code,card_id')->order($orders)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-        foreach($car as $k=>$v){
+        $car = M ('BankCard')->where ($where)->field ('card_code,card_id')->order ($orders)->limit (($post['page'] - 1) * $post['size'] , $post['size'])->select ();
+        foreach ( $car as $k => $v ) {
             $where_type['id'] = $v['card_id'];
-            $where_type['status'] = array('neq',9);
-            $car_type = M('BankType')->where($where_type)->field('bank_name,bank_pic')->find();
-            $bank_pic = getPicPath($car_type['bank_pic']);
+            $where_type['status'] = array ('neq' , 9);
+            $car_type = M ('BankType')->where ($where_type)->field ('bank_name,bank_pic')->find ();
+            $bank_pic = getPicPath ($car_type['bank_pic']);
             $cars[$k]['card_code'] = $v['card_code'];
             $cars[$k]['bank_name'] = $car_type['bank_name'];
             $cars[$k]['bank_pic'] = $bank_pic;
         };
-        if($cars){
-            $this->apiResponse('1','成功',$cars);
-        }else{
-            $this->apiResponse('0','暂无提现方式');
+        if ( $cars ) {
+            $this->apiResponse ('1' , '成功' , $cars);
+        } else {
+            $this->apiResponse ('0' , '暂无提现方式');
         }
     }
 
@@ -285,10 +286,10 @@ class PayController extends BaseController
         }
     }
 
-    public function xmlToArray($xml)
+    public function xmlToArray ($xml)
     {
         //将XML转为array
-        $array_data = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        $array_data = json_decode (json_encode (simplexml_load_string ($xml , 'SimpleXMLElement' , LIBXML_NOCDATA)) , true);
         return $array_data;
     }
 
@@ -300,24 +301,24 @@ class PayController extends BaseController
      * $KEY = 'Zo6YUkc2RGSBpagPBkya4yH9AFL7oR10';
      * $APPSECRET = 'fbd773e0cfb5e2ea14304f042fa917aa' | '9ab5724077031f646f388f1bba29e70b';
      */
-    public function Wechat()
+    public function Wechat ()
     {
-        $request = I("");
+        $request = I ("");
         // 查询订单信息
-        $order_info = M("Order")->where(array('orderid' => $request['orderid']))->find();
-        if (!$order_info) {
-            $this->apiResponse(0, '订单信息查询失败', $request);
+        $order_info = M ("Order")->where (array ('orderid' => $request['orderid']))->find ();
+        if ( !$order_info ) {
+            $this->apiResponse (0 , '订单信息查询失败' , $request);
         }
         /* 统一下单 start */
         $url_unifiedorder = "https://api.mch.weixin.qq.com/pay/unifiedorder"; // 统一下单 URL
         $xml_data = [];
         $xml_data['body'] = "小鲸洗车-订单号-" . $order_info['orderid']; // 商品描述
         $xml_data['out_trade_no'] = $order_info['orderid']; // 订单流水
-        $xml_data['notify_url'] =  C ('API_URL') . "/index.php/Api/Pay/WeChatNotify"; // 回调 URL
+        $xml_data['notify_url'] = C ('API_URL') . "/index.php/Api/Pay/WeChatNotify"; // 回调 URL
         $xml_data['spbill_create_ip'] = $_SERVER['REMOTE_ADDR']; // 终端 IP
         $xml_data['total_fee'] = 1; // 支付金额 单位[分]
 //        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
-        $xml_data['nonce_str'] = $this->getNonceStr(32);
+        $xml_data['nonce_str'] = $this->getNonceStr (32);
         $key = "b2836e3bb4d1c04f567eab868fb99aee"; // 设置的KEY值相同
         // 附加数据
         /*$attach_data = [
@@ -325,7 +326,7 @@ class PayController extends BaseController
         ];
         $xml_data['attach'] = json_encode($attach_data); // 附加数据 JSON
         */
-        if ($request['trade_type']) {// 小程序
+        if ( $request['trade_type'] ) {// 小程序
             $xml_data['appid'] = 'wxf348bbbcc28d7e10'; // APP ID
             $xml_data['mch_id'] = '1524895951'; // 商户号
             $xml_data['trade_type'] = 'JSAPI'; // 支付类型
@@ -335,28 +336,28 @@ class PayController extends BaseController
             $xml_data['mch_id'] = '1521437101';
             $xml_data['trade_type'] = 'APP';
         }
-        ksort($xml_data); // 整理数组顺序
-        $xml_data['sign'] = $this->MakeSign($xml_data, $key); // 生成签名
-        $xml_string = $this->data_to_xml($xml_data); // 生成 XML 格式
-        $unifiedorder_result_xml = $this->postXmlCurl($xml_string, $url_unifiedorder);
-        $unifiedorder_result_array = $this->xml_to_data($unifiedorder_result_xml);
+        ksort ($xml_data); // 整理数组顺序
+        $xml_data['sign'] = $this->MakeSign ($xml_data , $key); // 生成签名
+        $xml_string = $this->data_to_xml ($xml_data); // 生成 XML 格式
+        $unifiedorder_result_xml = $this->postXmlCurl ($xml_string , $url_unifiedorder);
+        $unifiedorder_result_array = $this->xml_to_data ($unifiedorder_result_xml);
         /* 统一下单 end */
         // 捕获统计下单结果
-        if ($unifiedorder_result_array['return_code'] == "FAIL") {
-            $this->apiResponse(0, $unifiedorder_result_array['return_msg']);
-        } elseif ($unifiedorder_result_array['result_code'] == "FAIL") {
-            $this->apiResponse(0, $unifiedorder_result_array['err_code_des']);
+        if ( $unifiedorder_result_array['return_code'] == "FAIL" ) {
+            $this->apiResponse (0 , $unifiedorder_result_array['return_msg']);
+        } elseif ( $unifiedorder_result_array['result_code'] == "FAIL" ) {
+            $this->apiResponse (0 , $unifiedorder_result_array['err_code_des']);
         }
         /* 二次签名 start */
-        $time = '' . time();
-        if ($request['trade_type']) {
+        $time = '' . time ();
+        if ( $request['trade_type'] ) {
             // 小程序 - 签名数据
             $sign_data['appId'] = $unifiedorder_result_array['appid'];
             $sign_data['nonceStr'] = $unifiedorder_result_array['nonce_str'];
             $sign_data['package'] = "prepay_id=" . $unifiedorder_result_array['prepay_id'];
             $sign_data['signType'] = "MD5";
             $sign_data['timeStamp'] = $time;
-            $sign_data['sign'] = $this->MakeSign($sign_data, $key); // 进行签名
+            $sign_data['sign'] = $this->MakeSign ($sign_data , $key); // 进行签名
         } else {
             // APP - 签名数据
             $sign_data['appid'] = $unifiedorder_result_array['appid'];
@@ -365,11 +366,11 @@ class PayController extends BaseController
             $sign_data['package'] = 'Sign=WXPay';
             $sign_data['noncestr'] = $unifiedorder_result_array['nonce_str'];
             $sign_data['timestamp'] = $time;
-            $sign_data['sign'] = $this->MakeSign($sign_data, $key);
+            $sign_data['sign'] = $this->MakeSign ($sign_data , $key);
         }
         /* 二次签名 end */
         // 返回支付调起数据
-        $this->apiResponse(1, "微信支付", $sign_data);
+        $this->apiResponse (1 , "微信支付" , $sign_data);
     }
 
     /**
@@ -378,17 +379,17 @@ class PayController extends BaseController
      * @param string $key
      * @return string 签名
      */
-    public function MakeSign($params, $key)
+    public function MakeSign ($params , $key)
     {
         //按字典序排序数组参数
-        ksort($params);
-        $string = $this->ToUrlParams($params);
+        ksort ($params);
+        $string = $this->ToUrlParams ($params);
         //在string后加入KEY
         $string = $string . "&key=" . $key;
         //MD5加密
-        $string = md5($string);
+        $string = md5 ($string);
         //所有字符转为大写
-        $result = strtoupper($string);
+        $result = strtoupper ($string);
         return $result;
     }
 
@@ -397,25 +398,25 @@ class PayController extends BaseController
      * @param $params
      * @return string
      */
-    public function ToUrlParams($params)
+    public function ToUrlParams ($params)
     {
         $string = '';
-        if (!empty($params)) {
-            $array = array();
-            foreach ($params as $key => $value) {
+        if ( !empty($params) ) {
+            $array = array ();
+            foreach ( $params as $key => $value ) {
                 $array[] = $key . '=' . $value;
             }
-            $string = implode("&", $array);
+            $string = implode ("&" , $array);
         }
         return $string;
     }
 
-    public function getNonceStr($length = 32)
+    public function getNonceStr ($length = 32)
     {
         $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
         $str = "";
-        for ($i = 0; $i < $length; $i++) {
-            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+        for ( $i = 0; $i < $length; $i++ ) {
+            $str .= substr ($chars , mt_rand (0 , strlen ($chars) - 1) , 1);
         }
         return $str;
     }
@@ -429,39 +430,39 @@ class PayController extends BaseController
      * @param int $second url执行超时时间，默认30s
      * @return bool|mixed
      */
-    public function postXmlCurl($xml, $url, $useCert = false, $second = 30)
+    public function postXmlCurl ($xml , $url , $useCert = false , $second = 30)
     {
-        $ch = curl_init();
+        $ch = curl_init ();
         //设置超时
-        curl_setopt($ch, CURLOPT_TIMEOUT, $second);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt ($ch , CURLOPT_TIMEOUT , $second);
+        curl_setopt ($ch , CURLOPT_URL , $url);
+        curl_setopt ($ch , CURLOPT_SSL_VERIFYPEER , FALSE);
+        curl_setopt ($ch , CURLOPT_SSL_VERIFYHOST , 2);
         //设置header
-        curl_setopt($ch, CURLOPT_HEADER, FALSE);
-        curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1);
+        curl_setopt ($ch , CURLOPT_HEADER , FALSE);
+        curl_setopt ($ch , CURLOPT_SSLVERSION , CURL_SSLVERSION_TLSv1);
         //要求结果为字符串且输出到屏幕上
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        if ($useCert == true) {
+        curl_setopt ($ch , CURLOPT_RETURNTRANSFER , TRUE);
+        if ( $useCert == true ) {
             //设置证书
             //使用证书：cert 与 key 分别属于两个.pem文件
-            curl_setopt($ch, CURLOPT_SSLCERTTYPE, 'PEM');
+            curl_setopt ($ch , CURLOPT_SSLCERTTYPE , 'PEM');
             //curl_setopt($ch,CURLOPT_SSLCERT, WxPayConfig::SSLCERT_PATH);
-            curl_setopt($ch, CURLOPT_SSLKEYTYPE, 'PEM');
+            curl_setopt ($ch , CURLOPT_SSLKEYTYPE , 'PEM');
             //curl_setopt($ch,CURLOPT_SSLKEY, WxPayConfig::SSLKEY_PATH);
         }
         //post提交方式
-        curl_setopt($ch, CURLOPT_POST, TRUE);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+        curl_setopt ($ch , CURLOPT_POST , TRUE);
+        curl_setopt ($ch , CURLOPT_POSTFIELDS , $xml);
         //运行curl
-        $data = curl_exec($ch);
+        $data = curl_exec ($ch);
         //返回结果
-        if ($data) {
-            curl_close($ch);
+        if ( $data ) {
+            curl_close ($ch);
             return $data;
         } else {
-            $error = curl_errno($ch);
-            curl_close($ch);
+            $error = curl_errno ($ch);
+            curl_close ($ch);
             return false;
         }
     }
@@ -471,14 +472,14 @@ class PayController extends BaseController
      * @param array $params 参数名称
      * @return string 返回组装的xml
      **/
-    public function data_to_xml($params)
+    public function data_to_xml ($params)
     {
-        if (!is_array($params) || count($params) <= 0) {
+        if ( !is_array ($params) || count ($params) <= 0 ) {
             return false;
         }
         $xml = "<xml>";
-        foreach ($params as $key => $val) {
-            if (is_numeric($val)) {
+        foreach ( $params as $key => $val ) {
+            if ( is_numeric ($val) ) {
                 $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
             } else {
                 $xml .= "<" . $key . "><![CDATA[" . $val . "]]></" . $key . ">";
@@ -493,15 +494,15 @@ class PayController extends BaseController
      * @param string $xml
      * @return bool|array
      */
-    public function xml_to_data($xml)
+    public function xml_to_data ($xml)
     {
-        if (!$xml) {
+        if ( !$xml ) {
             return false;
         }
         //将XML转为array
         //禁止引用外部xml实体
-        libxml_disable_entity_loader(true);
-        $data = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        libxml_disable_entity_loader (true);
+        $data = json_decode (json_encode (simplexml_load_string ($xml , 'SimpleXMLElement' , LIBXML_NOCDATA)) , true);
         return $data;
     }
 
@@ -510,27 +511,27 @@ class PayController extends BaseController
      * @param string $code 服务器输出的错误代码
      * @return string
      */
-    public function error_code($code)
+    public function error_code ($code)
     {
-        $errList = array(
-            'NOAUTH' => '商户未开通此接口权限',
-            'NOTENOUGH' => '用户帐号余额不足',
-            'ORDERNOTEXIST' => '订单号不存在',
-            'ORDERPAID' => '商户订单已支付，无需重复操作',
-            'ORDERCLOSED' => '当前订单已关闭，无法支付',
-            'SYSTEMERROR' => '系统错误!系统超时',
-            'APPID_NOT_EXIST' => '参数中缺少APPID',
-            'MCHID_NOT_EXIST' => '参数中缺少MCHID',
-            'APPID_MCHID_NOT_MATCH' => 'appid和mch_id不匹配',
-            'LACK_PARAMS' => '缺少必要的请求参数',
-            'OUT_TRADE_NO_USED' => '同一笔交易不能多次提交',
-            'SIGNERROR' => '参数签名结果不正确',
-            'XML_FORMAT_ERROR' => 'XML格式错误',
-            'REQUIRE_POST_METHOD' => '未使用post传递参数 ',
-            'POST_DATA_EMPTY' => 'post数据不能为空',
-            'NOT_UTF8' => '未使用指定编码格式',
+        $errList = array (
+            'NOAUTH' => '商户未开通此接口权限' ,
+            'NOTENOUGH' => '用户帐号余额不足' ,
+            'ORDERNOTEXIST' => '订单号不存在' ,
+            'ORDERPAID' => '商户订单已支付，无需重复操作' ,
+            'ORDERCLOSED' => '当前订单已关闭，无法支付' ,
+            'SYSTEMERROR' => '系统错误!系统超时' ,
+            'APPID_NOT_EXIST' => '参数中缺少APPID' ,
+            'MCHID_NOT_EXIST' => '参数中缺少MCHID' ,
+            'APPID_MCHID_NOT_MATCH' => 'appid和mch_id不匹配' ,
+            'LACK_PARAMS' => '缺少必要的请求参数' ,
+            'OUT_TRADE_NO_USED' => '同一笔交易不能多次提交' ,
+            'SIGNERROR' => '参数签名结果不正确' ,
+            'XML_FORMAT_ERROR' => 'XML格式错误' ,
+            'REQUIRE_POST_METHOD' => '未使用post传递参数 ' ,
+            'POST_DATA_EMPTY' => 'post数据不能为空' ,
+            'NOT_UTF8' => '未使用指定编码格式' ,
         );
-        if (array_key_exists($code, $errList)) {
+        if ( array_key_exists ($code , $errList) ) {
             return $errList[$code];
         }
     }
@@ -541,35 +542,34 @@ class PayController extends BaseController
     public function WeChatNotify ()
     {
         // 捕获返回值
-        $xml = file_get_contents("php://input");
+        $xml = file_get_contents ("php://input");
         // 读取返回值
-        $log = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        $log = json_decode (json_encode (simplexml_load_string ($xml , 'SimpleXMLElement' , LIBXML_NOCDATA)) , true);
 
-        $myfile = fopen("./WeChatNotify.txt", "a") or die("Unable to open file!");
+        $myfile = fopen ("./WeChatNotify.txt" , "a") or die("Unable to open file!");
         $txt = json_encode ($log);
-        fwrite($myfile, $txt);
-        fclose($myfile);
+        fwrite ($myfile , $txt);
+        fclose ($myfile);
 
         // 获取订单流水号
         $order_no = $log['out_trade_no'];
         //获取三方交易流水号
-        $info=$log['transaction_id'];
+        $info = $log['transaction_id'];
         // 获取其他订单信息
-        // $order_info = json_decode($log['attach'], true);
-
+        // $order_info = json_decode ($log['attach'] , true);
         $order = D ('Order')->where (array ('orderid' => $order_no))->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
         $date['pay_time'] = time ();
         $date['status'] = 2;
         $date['pay_type'] = 1;
         $date['trade_no'] = $info;
-        if ( $_REQUEST['o_type'] == 1 ) {//1洗车订单
+        if ( $order['o_type'] == 1 ) {//1洗车订单
             $date['detail'] = 0;
             $save = D ("Order")->where (array ('orderid' => $order['orderid']))->save ($date);
             if ( $save ) {
                 echo "success";
             }
-        } elseif ( $_REQUEST['o_type'] == 2 ) {//2小鲸卡购买
+        } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
             $have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
             if ( $have ) {
                 $where['end_time'] = $have['end_time'] + 30 * 24 * 3600;
@@ -588,7 +588,7 @@ class PayController extends BaseController
             if ( $save ) {
                 echo "success";
             }
-        } elseif ( $_REQUEST['o_type'] == 3 ) {//3余额充值
+        } elseif ( $order['o_type'] == 3 ) {//3余额充值
             $date['detail'] = 1;
             $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
