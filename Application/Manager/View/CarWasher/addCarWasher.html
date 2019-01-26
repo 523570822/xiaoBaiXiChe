@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">管理组名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" value="" class="layui-input w300" required>
+                            </div>
+                        </div>
+                        <!--<div class="layui-form-item">-->
+                            <!--<label class="layui-form-label">上级管理组</label>-->
+                            <!--<div class="layui-input-block">-->
+                                <!--<select name="p_id" class="layui-input w300">-->
+                                    <!--<option value="">选择上级管理组</option>-->
+                                    <!--<volist name="group_list" id="item">-->
+                                        <!--<option value="{$item.id}">{$item.name}</option>-->
+                                    <!--</volist>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排序</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="sort" value="0" class="layui-input w300">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="status_1">
+                                    <input type="radio" id="status_1" name="status" value="1" class="layui-input" checked required/>
+                                    启用
+                                </label>
+                                <label class="layui-choose" for="status_2">
+                                    <input type="radio" id="status_2" name="status" value="0" class="layui-input"/>
+                                    禁用
+                                </label>
+                            </div>
+                        </div>
+                        <volist name="menu_list" key="key" id="item">
+                            <if condition="$item['system'] eq 0">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label"><?php echo !$key_1?'菜单权限':''; $key_1 = true;?></label>
+                                <div class="layui-input-block">
+                                    <label class="layui-choose" for="menus_{$item.id}">
+                                        <input type="checkbox" id="menus_{$item.id}" name="menu" value="{$item.id}" class="layui-input checkedAllMenu" required/>
+                                        {$item.name}
+                                    </label>
+                                    <volist name="item['sub_list']" id="sub_item">
+                                        <label class="layui-choose" for="menus_{$sub_item.id}">
+                                            <input type="checkbox" id="menus_{$sub_item.id}" name="menu" value="{$sub_item.id}" class="layui-input checkedParentMenu"/>
+                                            {$sub_item.name}
+                                        </label>
+                                    </volist>
+                                </div>
+                            </div>
+                            </if>
+                        </volist>
+                        <volist name="menu_list" key="key" id="item">
+                            <if condition="$item['system'] eq 1">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label"><?php echo !$key_2?'顶部菜单':''; $key_2 = true;?></label>
+                                    <div class="layui-input-block">
+                                        <label class="layui-choose" for="menus_{$item.id}">
+                                            <input type="checkbox" id="menus_{$item.id}" name="menu" value="{$item.id}" class="layui-input checkedAllMenu" required/>
+                                            {$item.name}
+                                        </label>
+                                        <volist name="item['sub_list']" id="sub_item">
+                                            <label class="layui-choose" for="menus_{$sub_item.id}">
+                                                <input type="checkbox" id="menus_{$sub_item.id}" name="menu" value="{$sub_item.id}" class="layui-input checkedParentMenu"/>
+                                                {$sub_item.name}
+                                            </label>
+                                        </volist>
+                                    </div>
+                                </div>
+                            </if>
+                        </volist>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">确认保存</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // 提交信息
+    function submit() {
+        var data = checkParam();
+        if(!data) return false;
+        doPost('', data, function(res) {
+            showMsg(res.code, res.message, function() {
+                goback();
+            });
+        })
+    }
+    // 菜单全选
+    $('.checkedAllMenu').click(function() {
+        if($(this).is(':checked')) {
+            $(this).parent().parent().find('[name="menu"]').prop('checked', true);
+        }else {
+            $(this).parent().parent().find('[name="menu"]').prop('checked', false);
+        }
+    });
+    // 选中父级菜单
+    $('.checkedParentMenu').click(function() {
+        if($(this).parent().parent().find('.checkedParentMenu[name="menu"]:checked').length>0) {
+            $(this).parent().parent().find('.checkedAllMenu').prop('checked', true);
+        }else {
+            $(this).parent().parent().find('.checkedAllMenu').prop('checked', false);
+        }
+    })
+</script>
+</html>
