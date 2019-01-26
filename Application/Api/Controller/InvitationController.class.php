@@ -18,9 +18,10 @@ class InvitationController extends BaseController
     {
         parent::_initialize();
     }
+
     /**
- * 推广好友首页
- * **/
+     * 推广好友首页
+     * **/
     public function Invitationindex()
     {
         $m_id = $this->checkToken();
@@ -38,7 +39,6 @@ class InvitationController extends BaseController
             ->join("db_member ON db_extension_log.m_id = db_member.id")
             ->field('db_extension_log.id,db_extension_log.create_time,db_member.nickname')
             ->select();
-
         $list = D('CouponBind') ->where('c_type' == 1)->field('db_create_time') ->count();
         if ($list_info) {
             foreach ($list_info as $k => $v) {
@@ -47,6 +47,7 @@ class InvitationController extends BaseController
         }
         $this->apiResponse(1, '请求成功', array("count" => count($list_info), "invite_code" => $invite_code, "myinviter"=>$inviterphone, "couponLiset"=>$list));
     }
+
     /**
      * 推广记录
      * **/
@@ -70,5 +71,16 @@ class InvitationController extends BaseController
             }
         }
         $this->apiResponse(1, '请求成功', array("list" => $list_info));
+    }
+
+    /**
+     *奖励规则
+     **/
+    public function InvitationDetail(){
+        $data = D ("Article")->where (array ('type' => 4 , 'status' => 1 ))->field ('id,title,content')->find();
+        $data['content'] = $this->setAbsoluteUrl($data['content']);
+        $data['content'] =htmlspecialchars_decode($data['content']);
+        $data['content'] = str_replace('img src="', 'img src = "' . C('API_URL'), $data['content']);
+        $this->apiResponse (1,'查询成功',$data);
     }
 }

@@ -147,7 +147,59 @@ class IndexController extends BaseController
         $request = $_REQUEST;//device_manage  runtime_query
         if ( $request['type'] ) {
             if ( $request['type'] == 'device_manage' ) {
-                $param = "{
+//                //json格式数据
+//                $data = '[{"devices": [{
+//
+//                "deviceid": "510042001451373435363337",
+//
+//                "queryitem": {
+//
+//                "service_status": true,
+//
+//                "pressure": true,
+//
+//                "pump1_status": true,
+//
+//                "pump2_status": true,
+//
+//                "valve1_status": true,
+//
+//                "valve2_status": true,
+//
+//                "valve3_status": true,
+//
+//                "level1_status": true,
+//
+//                "level3_status": true,
+//
+//                "clean_water_usage": true,
+//
+//                "foam_usage": true,
+//
+//                "lastfilled_foam_uasge": true,
+//
+//                "vacuum_info": true,
+//
+//                "heater_status": true,
+//
+//                "env_temperature": true,
+//
+//                "device_volt": true,
+//
+//                "device_current": true,
+//
+//                "device_power": true,
+//
+//                "device_energy": true,
+//
+//                "location": true}}]}]';
+////转换成数组
+//                $arr = json_decode($data,true);
+////输出
+//                var_dump($arr);
+
+
+                $param ="{
                             \"devices\": [{
                                 \"deviceid\": \"510042001451373435363337\",
                                 \"setitem\": {

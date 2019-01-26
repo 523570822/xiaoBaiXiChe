@@ -313,26 +313,24 @@ class PayController extends BaseController
         $xml_data = [];
         $xml_data['body'] = "小鲸洗车-订单号-" . $order_info['orderid']; // 商品描述
         $xml_data['out_trade_no'] = $order_info['orderid']; // 订单流水
-        $xml_data['notify_url'] =  C ('API_URL') . "index.php/Api/Pay/WeChatNotify"; // 回调 URL
+        $xml_data['notify_url'] =  C ('API_URL') . "/index.php/Api/Pay/WeChatNotify"; // 回调 URL
         $xml_data['spbill_create_ip'] = $_SERVER['REMOTE_ADDR']; // 终端 IP
-//        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
-        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
+        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
+//        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
         $xml_data['nonce_str'] = $this->getNonceStr(32);
         $key = "b2836e3bb4d1c04f567eab868fb99aee"; // 设置的KEY值相同
         // 附加数据
-        $attach_data = [
+        /*$attach_data = [
             'orderid' => $request['orderid'],
-            'pay_money' => $order_info['pay_money'],
         ];
         $xml_data['attach'] = json_encode($attach_data); // 附加数据 JSON
-        if ($request['trade_type']) {
-            // 小程序
+        */
+        if ($request['trade_type']) {// 小程序
             $xml_data['appid'] = 'wxf348bbbcc28d7e10'; // APP ID
             $xml_data['mch_id'] = '1524895951'; // 商户号
             $xml_data['trade_type'] = 'JSAPI'; // 支付类型
             $xml_data['openid'] = $request['openid']; // JSAPI支付必须参数 openid
-        } else {
-            // APP
+        } else { // APP
             $xml_data['appid'] = 'wx9723d2638af03b5b';
             $xml_data['mch_id'] = '1521437101';
             $xml_data['trade_type'] = 'APP';
@@ -343,14 +341,12 @@ class PayController extends BaseController
         $unifiedorder_result_xml = $this->postXmlCurl($xml_string, $url_unifiedorder);
         $unifiedorder_result_array = $this->xml_to_data($unifiedorder_result_xml);
         /* 统一下单 end */
-
         // 捕获统计下单结果
         if ($unifiedorder_result_array['return_code'] == "FAIL") {
             $this->apiResponse(0, $unifiedorder_result_array['return_msg']);
         } elseif ($unifiedorder_result_array['result_code'] == "FAIL") {
             $this->apiResponse(0, $unifiedorder_result_array['err_code_des']);
         }
-
         /* 二次签名 start */
         $time = '' . time();
         if ($request['trade_type']) {
@@ -372,7 +368,6 @@ class PayController extends BaseController
             $sign_data['sign'] = $this->MakeSign($sign_data, $key);
         }
         /* 二次签名 end */
-
         // 返回支付调起数据
         $this->apiResponse(1, "微信支付", $sign_data);
     }
@@ -551,10 +546,11 @@ class PayController extends BaseController
         $log = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
         // 获取订单流水号
         $order_no = $log['out_trade_no'];
-        // 获取其他订单信息
-        //$order_info = json_decode($log['attach'], true);
         //获取三方交易流水号
         $info=$log['transaction_id'];
+        // 获取其他订单信息
+        // $order_info = json_decode($log['attach'], true);
+
         $order = D ('Order')->where (array ('orderid' => $order_no))->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
         $date['pay_time'] = time ();
@@ -563,7 +559,7 @@ class PayController extends BaseController
         $date['trade_no'] = $info;
         if ( $_REQUEST['o_type'] == 1 ) {//1洗车订单
             $date['detail'] = 0;
-            $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
+            $save = D ("Order")->where (array ('orderid' => $order['orderid']))->save ($date);
             if ( $save ) {
                 echo "success";
             }
