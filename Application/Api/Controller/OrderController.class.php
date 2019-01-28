@@ -304,8 +304,11 @@ class OrderController extends BaseController
         $request = $_REQUEST;
         $order = D ('order')->where (array ('$m_id' => $m_id , 'orderid' => $request['orderid']))->find ();
         if ( $order['subs_time'] ) {
+            $time1 = time();
+            $time2 = $order['subs_time'];
+            $sub = ($time2-$time1);
             $order['is_time']= $order['subs_time'] < time () ?1:0;//1超时 0未超时
         }
-        $this->apiResponse (1,'查询成功',array ('is_time'=>$order['is_time'],'end_time'=>$order['subs_time']));
+        $this->apiResponse (1,'查询成功',array ('is_time'=>$order['is_time'],'end_time'=>$sub));
     }
 }
