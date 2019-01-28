@@ -252,13 +252,13 @@ class PayController extends BaseController
                 $date['status'] = 2;
                 $date['pay_time'] = time ();
                 $date['trade_no'] = $trade_no;
-                if ( $_REQUEST['o_type'] == 1 ) {//1洗车订单
+                if ( $order['o_type'] == 1 ) {//1洗车订单
                     $date['detail'] = 0;
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     if ( $save ) {
                         echo "success";
                     }
-                } elseif ( $_REQUEST['o_type'] == 2 ) {//2小鲸卡购买
+                } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
                     $have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
                     if ( $have ) {
                         $where['end_time'] = $have['end_time'] + 30 * 24 * 3600;
@@ -277,7 +277,7 @@ class PayController extends BaseController
                     if ( $save ) {
                         echo "success";
                     }
-                } elseif ( $_REQUEST['o_type'] == 3 ) {//3余额充值
+                } elseif ( $order['o_type'] == 3 ) {//3余额充值
                     $date['detail'] = 1;
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
@@ -548,12 +548,11 @@ class PayController extends BaseController
         $xml = file_get_contents ("php://input");
         // 读取返回值
         $log = json_decode (json_encode (simplexml_load_string ($xml , 'SimpleXMLElement' , LIBXML_NOCDATA)) , true);
-
-        $myfile = fopen ("./WeChatNotify.txt" , "a") or die("Unable to open file!");
-        $txt = json_encode ($log);
-        fwrite ($myfile , $txt);
-        fclose ($myfile);
-
+        //PHP记录写入文件
+//        $myfile = fopen ("./WeChatNotify.txt" , "a") or die("Unable to open file!");
+//        $txt = json_encode ($log);
+//        fwrite ($myfile , $txt);
+//        fclose ($myfile);
         // 获取订单流水号
         $order_no = $log['out_trade_no'];
         //获取三方交易流水号

@@ -12,26 +12,26 @@ class IndexController extends BaseController
     /**
      * 检查更新
      */
-    public function checkUpdate()
+    public function checkUpdate ()
     {
-        $request = I("");
-        $this->checkParam(array(
-            array('version', 'string', '请输入当前版本号'),
-            array('device', 'string', '请输入终端系统'),
-            array('app', 'string', "请输入使用的APP类型")
+        $request = I ("");
+        $this->checkParam (array (
+            array ('version' , 'string' , '请输入当前版本号') ,
+            array ('device' , 'string' , '请输入终端系统') ,
+            array ('app' , 'string' , "请输入使用的APP类型")
         ));
         $data = [];
-        $version = M("Version")->where(["app" => $request['device']])->order("create_time desc")->find();
-        if ($request['version'] == $version['version']) {
-            $this->apiResponse(0, "已是最新版本", $data);
+        $version = M ("Version")->where (["app" => $request['device']])->order ("create_time desc")->find ();
+        if ( $request['version'] == $version['version'] ) {
+            $this->apiResponse (0 , "已是最新版本" , $data);
         } else {
-            $download_link = json_decode($version['version_url'], true);
+            $download_link = json_decode ($version['version_url'] , true);
             $data = [
-                "version_num" => $version['version'],
-                "version_url" => $download_link[$request['app']],
+                "version_num" => $version['version'] ,
+                "version_url" => $download_link[$request['app']] ,
                 "version_log" => $version['update_log']
             ];
-            $this->apiResponse(1, "找到新版本", $data);
+            $this->apiResponse (1 , "找到新版本" , $data);
         }
     }
 
@@ -76,48 +76,46 @@ class IndexController extends BaseController
         $openid = json_decode ($openid);
         $session_key = $openid->session_key;
         $openid = $openid->openid;
-        $this->apiResponse (1 , '成功' ,array ('openid'=>$openid,'session_key'=>$session_key));
+        $this->apiResponse (1 , '成功' , array ('openid' => $openid , 'session_key' => $session_key));
     }
 
     /**
      * 获取小程序手机号
      **/
-    public function getPhoneNumber($value='')
+    public function getPhoneNumber ($value = '')
     {
-        $encryptedData = I('get.encryptedData');
-        $iv = I('get.iv');
-        $this->sessionKey=I('get.session_key');
-        $res = $this->decryptData($encryptedData,$iv);
+        $encryptedData = I ('get.encryptedData');
+        $iv = I ('get.iv');
+        $this->sessionKey = I ('get.session_key');
+        $res = $this->decryptData ($encryptedData , $iv);
 //         $res = json_decode($res);
-        if($res->phoneNumber){
+        if ( $res->phoneNumber ) {
 //             $res->phoneNumbe;
         }
-        $this->ajaxReturn(['msg'=>$res,'status'=>'1']); //把手机号返
+        $this->ajaxReturn (['msg' => $res , 'status' => '1']); //把手机号返
     }
 
     // 小程序解密
-    public function decryptData($encryptedData, $iv)
+    public function decryptData ($encryptedData , $iv)
     {
-        if (strlen($this->sessionKey) != 24) {
+        if ( strlen ($this->sessionKey) != 24 ) {
             return self::$IllegalAesKey;
         }
-        $aesKey=base64_decode($this->sessionKey);
-        if (strlen($iv) != 24) {
+        $aesKey = base64_decode ($this->sessionKey);
+        if ( strlen ($iv) != 24 ) {
             return self::$IllegalIv;
         }
-        $aesIV=base64_decode($iv);
-        $aesCipher=base64_decode($encryptedData);
-        $result=openssl_decrypt( $aesCipher, "AES-128-CBC", $aesKey, 1, $aesIV);
-        $dataObj=json_decode( $result );
-        if( $dataObj  == NULL )
-        {
+        $aesIV = base64_decode ($iv);
+        $aesCipher = base64_decode ($encryptedData);
+        $result = openssl_decrypt ($aesCipher , "AES-128-CBC" , $aesKey , 1 , $aesIV);
+        $dataObj = json_decode ($result);
+        if ( $dataObj == NULL ) {
             return self::$IllegalBuffer;
         }
-        if( $dataObj->watermark->appid != self::$appid )
-        {
+        if ( $dataObj->watermark->appid != self::$appid ) {
             return self::$IllegalBuffer;
         }
-        return  $dataObj;
+        return $dataObj;
         // return self::$OK;
     }
 
@@ -142,116 +140,89 @@ class IndexController extends BaseController
         return $data;
     }
 
+    public function createJSON ($deviceid, $param_key, $param_array)
+    {
+        $array['devices'] = [];
+        $array['devices'][] = [
+            "deviceid" => $deviceid,
+            $param_key => $param_array
+        ];
+
+        return $array;
+    }
+
     public function send_post ()
     {
         $request = $_REQUEST;//device_manage  runtime_query
         if ( $request['type'] ) {
-            if ( $request['type'] == 'device_manage' ) {
-//                //json格式数据
-//                $data = '[{"devices": [{
-//
-//                "deviceid": "510042001451373435363337",
-//
-//                "queryitem": {
-//
-//                "service_status": true,
-//
-//                "pressure": true,
-//
-//                "pump1_status": true,
-//
-//                "pump2_status": true,
-//
-//                "valve1_status": true,
-//
-//                "valve2_status": true,
-//
-//                "valve3_status": true,
-//
-//                "level1_status": true,
-//
-//                "level3_status": true,
-//
-//                "clean_water_usage": true,
-//
-//                "foam_usage": true,
-//
-//                "lastfilled_foam_uasge": true,
-//
-//                "vacuum_info": true,
-//
-//                "heater_status": true,
-//
-//                "env_temperature": true,
-//
-//                "device_volt": true,
-//
-//                "device_current": true,
-//
-//                "device_power": true,
-//
-//                "device_energy": true,
-//
-//                "location": true}}]}]';
-////转换成数组
-//                $arr = json_decode($data,true);
-////输出
-//                var_dump($arr);
-
-
-                $param ="{
-                            \"devices\": [{
-                                \"deviceid\": \"510042001451373435363337\",
-                                \"setitem\": {
-                                    \"service_status\": 4,
-                                    \"pump1_status\": 3,
-                                    \"pump2_status\": 3,
-                                    \"valve1_status\": 3,
-                                    \"vacuum_status\": 2,
-                                    \"heater_status\": 2,
-                                    \"valid_voltage\":{
-                                                     \"low\": \"190\",
-                                                     \"high\": \"240\"
-                                    },
-                                    \"valid_temperature\":{
-                                                        \"low\": \"5\",
-                                                        \"high\": \"40\"
-                                    }
-                                }
-                            }]
-                        }";
-            } elseif ( $request['type'] == 'runtime_query' ) {
-                $param = "{
-                            \"devices\": [{
-                                \"deviceid\": \"510042001451373435363337\",
-                                \"queryitem\": {
-                                    \"service_status\": true,
-                                    \"pressure\": true,
-                                    \"pump1_status\": true,
-                                    \"pump2_status\": true,
-                                    \"valve1_status\": true,
-                                    \"valve2_status\": true,
-                                    \"valve3_status\": true,
-                                    \"clean_water_usage\": true,
-                                    \"foam_usage\": true,
-                                    \"lastfilled_foam_uasge\": true,
-                                    \"vacuum_info\": true,
-                                    \"heater_status\": true,
-                                    \"env_temperature\": true,
-                                    \"device_volt\": true,
-                                    \"device_current\": true,
-                                    \"device_power\": true,
-                                    \"device_energy\": true,
-                                    \"location\": true
-                                }
-                            }]
-                        }";
+            if ( $request['type'] == 'runtime_query' ) {
+                //json格式数据
+                $arr_param = [
+                    "service_status" => true ,//设备在线状态 service_status≥ 8 在线 service_status<8 设备离线
+                    "pressure" => true ,//请求查询进水压力值
+                    "pump1_status" => true ,//清水泵状态 设备故障≥ 4
+                    "pump2_status" => true ,//泡沫泵状态 设备故障≥ 4
+                    "valve1_status" => true ,//进水阀状态 设备故障≥ 4
+                    "valve2_status" => true ,//清水阀状态 有流量时阀状态为开，无流量时阀状态为关
+                    "valve3_status" => true ,//泡沫液位状态 true 正常 false 液位不足
+                    "level1_status" => true ,//清水液位状态
+                    "level3_status" => true ,//泡沫液位状态
+                    "heater_status" => true ,//加热器状态
+                    "env_temperature" => true ,//当前环境温度
+                    "device_volt" => true ,//当前供电电压
+                    "device_current" => true ,//当前整机电流
+                    "device_power" => true ,//当前整机功耗
+                    "device_energy" => true ,//当前电表读数 设备耗电量 单位 kWh
+                    "clean_water_usage" => true ,//清水累计用量（L）
+                    "clean_water_duration" =>true,//清水累计用时（秒）
+                    "foam_usage" => true ,//泡沫累计用量（L）
+                    "foam_duration"=>true,//泡沫累计用时（秒）
+                    "vacuum_info" => true ,//吸尘器用 设备故障status ≥ 4
+                    // current吸尘器设备的电流值，单位 A lastmaint_uasge 上次维护后的使用时间，单位秒 accumulated_usage 累计使用时间，单位秒
+                    "location" => true//机器坐标 longitud经度 latitud纬度
+                ];
+                $result_array = $this->createJSON ($request['mc_id'], "queryitem", $arr_param);
+            } elseif ( $request['type'] == 'device_manage' ) {
+                //json格式数据  扫码 — 洗车机设置
+                $arr_param = [
+                    "service_status"=> 5,
+                    "pump1_status"=> 3,
+                    "pump2_status"=> 3,
+                    "valve1_status"=> 3,
+                    "vacuum_status"=> 2,
+//                    "heater_status"=> 2,
+//                    "valid_voltage"=> [
+//                        "low"=> "190",
+//                        "high"=> "240"
+//                    ],
+//                    "valid_temperature"=> [
+//                        "low"=> "5",
+//                        "high"=> "40"
+//                    ]
+                ];
+                //预约 — 洗车机设置
+                $arr_param = [
+                    "service_status"=> 6,
+                    "pump1_status"=> 0,
+                    "pump2_status"=> 0,
+                    "valve1_status"=> 0,
+                    "vacuum_status"=> 0,
+                    ];
+                //结算 — 洗车机设置
+                $arr_param = [
+                    "service_status"=> 4,
+                    "pump1_status"=> 0,
+                    "pump2_status"=> 0,
+                    "valve1_status"=> 0,
+//                    "vacuum_status"=> 0,
+                    ];
+                $result_array = $this->createJSON ($request['mc_id'], "setitem", $arr_param);
             }
         } else {
-            $php_errormsg = '查询失败，请传参数---->\'type\'';
+            $php_errormsg = '查询失败，请传参数---->"type"';
             $this->ajaxReturn ($php_errormsg);
         }
-        $response = $this->push_curl ($param , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://guojiulin.gicp.net:18000/car_wash/" . $request['type']);
-        $this->ajaxReturn ($response);
+        $response = $this->push_curl (json_encode ($result_array) , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://guojiulin.gicp.net:18000/car_wash/" . $request['type']);
+        $this->ajaxReturn (json_decode ($response));
     }
 }

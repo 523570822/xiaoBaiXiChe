@@ -113,6 +113,7 @@ class OrderController extends BaseController
                     $data['o_type'] = '1';
                     $data['w_type'] = '1';
                     $data['create_time'] = time ();
+//                    $data['subs_time'] = time ()+(15*60);
                     $data['mc_id'] = $car_washer_info['mc_id'];
                     $data['c_id'] = $car_washer_info['id'];
                     $res = M ('Order')->data ($data)->add ();
@@ -136,7 +137,7 @@ class OrderController extends BaseController
                     $data['o_type'] = '1';
                     $data['w_type'] = '2';
                     $data['create_time'] = time ();
-                    $data['subs_time'] = time ();
+                    $data['subs_time'] = time () + (15 * 60);
                     $data['mc_id'] = $car_washer_info['mc_id'];
                     $data['c_id'] = $car_washer_info['id'];
                     $res = M ('Order')->data ($data)->add ();
@@ -293,4 +294,18 @@ class OrderController extends BaseController
         }
 
     }
+//    /**
+//     * 计时器
+//     */
+//    public function timer ()
+//    {
+//        $m_id = $this->checkToken ();
+//        $this->errorTokenMsg ($m_id);
+//        $request = $_REQUEST;
+//        $order = D ('order')->where (array ('$m_id' => $m_id , 'orderid' => $request['orderid']))->find ();
+//        if ( $order['subs_time'] ) {
+//            $order['is_time']= $order['subs_time'] < time () ?1:0;//1超时 0未超时
+//        }
+//        $this->apiResponse (1,'查询成功',$order['is_time']);
+//    }
 }
