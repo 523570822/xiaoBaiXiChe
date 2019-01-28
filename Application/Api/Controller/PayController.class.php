@@ -640,6 +640,97 @@ class PayController extends BaseController
     }
 
     /**
+     *获取时间
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2018/12/21 18:37
+     */
+    public function weeks()
+    {
+//        $timestamp = time();
+        $timestamp = 1545674199;
+        return [
+            strtotime(date('Y-m-d', strtotime("this week Monday", $timestamp))),
+            strtotime(date('Y-m-d', strtotime("this week Sunday", $timestamp))) + 24 * 3600 - 1,
+            strtotime(date('Y-m', $timestamp)),    //月份
+            strtotime(date('Y', $timestamp).'-1-1'),     //年份
+        ];
+    }
+
+    /**
+     *shi
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/28 09:41
+     */
+    public function tray(){
+
+        $request['orderid'] = 'YC201901211708248281';
+        $a_where['orderid'] = $request['orderid'];
+        $a_where['status'] = 2;
+        $a_where['o_type'] = 1;
+        $a_order = M('Order')->where($a_where)->field('c_id,pay_money,pay_time')->find();
+        $agent_where['id'] = $a_order['c_id'];
+        $car = M('CarWasher')->where($agent_where)->field('agent_id')->find();   //查找代理商id
+        $agent = M('Agent')->where(array('id'=>$car['agent_id']))->field('grade,balance')->find();
+        $income_where['agent_id'] = $car['agent_id'];
+        $income_where['car_washer_id'] = $a_order['c_id'];
+        $income_where['day'] = strtotime(date('Y-m-d', $a_order['pay_time']));
+        $income = M('Income')->where($income_where)->field('detail,net_income,car_wash,day,week_star,week_end,month,year,create_time')->find();
+        if($agent['grade'] == 1){
+            $net_income = $a_order['pay_money'] - $a_order['pay_money']*0.05;
+        }elseif ($agent['grade'] == 2){
+            $net_income = $a_order['pay_money'] - $a_order['pay_money']*0.1;
+        }elseif ($agent['grade'] == 3){
+            $net_income = $a_order['pay_money'] - $a_order['pay_money']*0.15;
+        }
+        if(empty($income)){
+
+            //获取时间戳
+            $timestamp = $a_order['pay_time'];
+            $week_star = strtotime(date('Y-m-d', strtotime("this week Monday", $timestamp)));
+            $week_end = strtotime(date('Y-m-d', strtotime("this week Sunday", $timestamp))) + 24 * 3600 - 1;
+            $month = strtotime(date('Y-m', $timestamp));    //月份
+            $year = strtotime(date('Y', $timestamp).'-1-1');     //年份
+//            var_dump($net_income);exit;
+            $income_add = array(
+                'agent_id' =>$car['agent_id'],
+                'car_washer_id' => $a_order['c_id'],
+                'detail' => $a_order['pay_money'],
+                'net_income' => $net_income,
+                'car_wash' => 1,
+                'day' => $income_where['day'],
+                'week_star' => $week_star,
+                'week_end' => $week_end,
+                'month' => $month,
+                'year' => $year,
+                'create_time' => $a_order['pay_time'],
+            );
+            $income_adds = M('Income')->add($income_add);
+            $agent_save['balance'] = $agent['balance'] + $net_income;
+            $agents = M('Agent')->where(array('id'=>$car['agent_id']))->save($agent_save);
+        }else{
+
+            $income_save = array(
+                'detail' => $income['detail'] + $a_order['pay_money'],
+                'net_income' => $income['net_income'] + $net_income,
+                'car_wash' => $income['car_wash'] + 1,
+                'create_time' => $a_order['pay_time'],
+            );
+            if($income['create_time'] != $a_order['pay_time']){
+                $income_saves = M('Income')->where($income_where)->save($income_save);
+
+                $agent_save['balance'] = $agent['balance'] + $net_income;
+
+                $agents = M('Agent')->where(array('id'=>$car['agent_id']))->save($agent_save);
+            }else{
+                echo 222;
+            }
+
+
+        }
+//        var_dump($income);exit;
+    }
+
+    /**
      * 余额支付
      */
     public function localPay ()
@@ -680,8 +771,56 @@ class PayController extends BaseController
                     $a_where['status'] = 2;
                     $a_where['o_type'] = 1;
                     $a_order = M('Order')->where($a_where)->field('c_id,pay_money,pay_time')->find();
-
-
+                    $agent_where['id'] = $a_order['c_id'];
+                    $car = M('CarWasher')->where($agent_where)->field('agent_id')->find();   //查找代理商id
+                    $agent = M('Agent')->where(array('id'=>$car['agent_id']))->field('grade,balance')->find();
+                    $income_where['agent_id'] = $car['agent_id'];
+                    $income_where['car_washer_id'] = $a_order['c_id'];
+                    $income_where['day'] = strtotime(date('Y-m-d', $a_order['pay_time']));
+                    $income = M('Income')->where($income_where)->field('detail,net_income,car_wash,day,week_star,week_end,month,year,create_time')->find();
+                    if($agent['grade'] == 1){
+                        $net_income = $a_order['pay_money'] - $a_order['pay_money']*0.05;
+                    }elseif ($agent['grade'] == 2){
+                        $net_income = $a_order['pay_money'] - $a_order['pay_money']*0.1;
+                    }elseif ($agent['grade'] == 3){
+                        $net_income = $a_order['pay_money'] - $a_order['pay_money']*0.15;
+                    }
+                    if(empty($income)){
+                        //获取时间戳
+                        $timestamp = $a_order['pay_time'];
+                        $week_star = strtotime(date('Y-m-d', strtotime("this week Monday", $timestamp)));
+                        $week_end = strtotime(date('Y-m-d', strtotime("this week Sunday", $timestamp))) + 24 * 3600 - 1;
+                        $month = strtotime(date('Y-m', $timestamp));    //月份
+                        $year = strtotime(date('Y', $timestamp).'-1-1');     //年份
+                        $income_add = array(
+                            'agent_id' =>$car['agent_id'],
+                            'car_washer_id' => $a_order['c_id'],
+                            'detail' => $a_order['pay_money'],
+                            'net_income' => $net_income,
+                            'car_wash' => 1,
+                            'day' => $income_where['day'],
+                            'week_star' => $week_star,
+                            'week_end' => $week_end,
+                            'month' => $month,
+                            'year' => $year,
+                            'create_time' => $a_order['pay_time'],
+                        );
+                        $income_adds = M('Income')->add($income_add);
+                        $agent_save['balance'] = $agent['balance'] + $net_income;
+                        $agents = M('Agent')->where(array('id'=>$car['agent_id']))->save($agent_save);
+                    }else{
+                        $income_save = array(
+                            'detail' => $income['detail'] + $a_order['pay_money'],
+                            'net_income' => $income['net_income'] + $net_income,
+                            'car_wash' => $income['car_wash'] + 1,
+                            'create_time' => $a_order['pay_time'],
+                        );
+                        if($income['create_time'] != $a_order['pay_time']){
+                            $income_saves = M('Income')->where($income_where)->save($income_save);
+                            $agent_save['balance'] = $agent['balance'] + $net_income;
+                            $agents = M('Agent')->where(array('id'=>$car['agent_id']))->save($agent_save);
+                        }
+                    }
                     $this->apiResponse (1 , '支付成功');
                 }
             } elseif ( $_REQUEST['o_type'] == 2 ) {//2小鲸卡购买
