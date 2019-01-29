@@ -1,0 +1,361 @@
+[ 2019-01-28T17:55:16+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548669316 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281755169648','扫码洗车','1','1','1548669316','52') [ RunTime:0.0160s ]
+NOTIC: [2] Cannot modify header information - headers already sent by (output started at G:\Littlewhale\Application\Api\Controller\BaseController.class.php:248) G:\Littlewhale\ThinkPHP\Library\Think\Controller.class.php 第 216 行.
+
+[ 2019-01-28T17:55:24+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548669324 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281755247584','扫码洗车','1','1','1548669324','52') [ RunTime:0.0150s ]
+NOTIC: [2] Cannot modify header information - headers already sent by (output started at G:\Littlewhale\Application\Api\Controller\BaseController.class.php:248) G:\Littlewhale\ThinkPHP\Library\Think\Controller.class.php 第 216 行.
+
+[ 2019-01-28T17:55:44+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548669343 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281755433524','扫码洗车','1','1','1548669343','52') [ RunTime:0.0130s ]
+
+[ 2019-01-28T17:56:45+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548669405 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281756457439','扫码洗车','1','1','1548669405','52') [ RunTime:0.0160s ]
+
+[ 2019-01-28T17:57:00+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548669420 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281757005938','扫码洗车','1','1','1548669420','52') [ RunTime:0.0580s ]
+
+[ 2019-01-28T17:57:22+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548669438 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281757184248','扫码洗车','1','1','1548669438','52') [ RunTime:0.0160s ]
+
+[ 2019-01-28T18:01:15+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548669671 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0070s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281801142653','扫码洗车','1','1','1548669674','52') [ RunTime:0.0200s ]
+
+[ 2019-01-28T18:02:07+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548669727 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281802073039','扫码洗车','1','1','1548669727','52') [ RunTime:0.0150s ]
+
+[ 2019-01-28T18:08:49+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548670129 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281808491648','扫码洗车','1','1','1548670129','52') [ RunTime:0.0130s ]
+
+[ 2019-01-28T18:09:33+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548670173 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281809339683','扫码洗车','1','1','1548670173','52') [ RunTime:0.0160s ]
+
+[ 2019-01-28T18:09:56+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548670196 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281809563873','扫码洗车','1','1','1548670196','52') [ RunTime:0.0300s ]
+
+[ 2019-01-28T18:10:27+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548670226 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281810271644','扫码洗车','1','1','1548670227','52') [ RunTime:0.0130s ]
+
+[ 2019-01-28T18:10:43+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548670243 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281810439996','扫码洗车','1','1','1548670243','52') [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: queryitem G:\Littlewhale\Application\Api\Controller\OrderController.class.php 第 124 行.
+
+[ 2019-01-28T18:10:46+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548670246 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281810466733','扫码洗车','1','1','1548670246','52') [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: queryitem G:\Littlewhale\Application\Api\Controller\OrderController.class.php 第 124 行.
+
+[ 2019-01-28T18:10:53+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548670253 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281810539154','扫码洗车','1','1','1548670253','52') [ RunTime:0.0140s ]
+
+[ 2019-01-28T18:11:03+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548670263 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281811031850','扫码洗车','1','1','1548670263','52') [ RunTime:0.0140s ]
+
+[ 2019-01-28T18:11:50+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '052f0f5feac59aa763a0b50a7e204a19' AND `expired_time` >= 1548670309 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `m_id` = 91 AND `w_type` = 1 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `orderid`,`m_id`,`id` FROM `db_order` WHERE `o_type` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 91 AND `o_id` = 15 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_id` = '510042001451373435363337' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_order` (`m_id`,`orderid`,`title`,`o_type`,`w_type`,`create_time`,`c_id`) VALUES ('91','XC201901281811493702','扫码洗车','1','1','1548670309','52') [ RunTime:0.0120s ]
+
