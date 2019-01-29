@@ -174,12 +174,18 @@ class BaseController extends ControllerService
      * @param $mode //控制模式
      * @param $arr_param //固定请求格式
      */
-    public function send_post ($type , $mc_id , $mode)
+    public function send_post ($type , $mc_id , $mode = '')
     {
         if ( $type ) {
             if ( $type == 'runtime_query') {
                 $suffix = 'queryitem';
                 $arr_param = [//json格式数据
+                    "clean_water_usage" => true ,//设备在线状态 service_status≥ 8 在线 service_status<8 设备离线
+                    "clean_water_duration" => true ,//请求查询进水压力值
+                    "foam_usage" => true ,//清水泵状态 设备故障≥ 4
+                    "foam_duration" => true ,//泡沫泵状态 设备故障≥ 4
+                    "vacuum_info" => true//进水阀状态 设备故障≥ 4
+                    /*
                     "service_status" => true ,//设备在线状态 service_status≥ 8 在线 service_status<8 设备离线
                     "pressure" => true ,//请求查询进水压力值
                     "pump1_status" => true ,//清水泵状态 设备故障≥ 4
@@ -202,6 +208,7 @@ class BaseController extends ControllerService
                     "vacuum_info" => true ,//吸尘器用 设备故障status ≥ 4
                     // current吸尘器设备的电流值，单位 A lastmaint_uasge 上次维护后的使用时间，单位秒 accumulated_usage 累计使用时间，单位秒
                     "location" => true//机器坐标 longitud经度 latitud纬度
+                    */
                 ];
                 $result_array = $this->createJSON ($mc_id , $suffix , $arr_param);
             } elseif ( $type == 'device_manage' ) {
@@ -245,8 +252,7 @@ class BaseController extends ControllerService
             $php_errormsg = '查询失败，请传参数---->"type"';
             $this->apiResponse (0,$php_errormsg);
         }
-        var_dump ($mc_id,$suffix,$arr_param,$type,$mode);
         $response = $this->push_curl (json_encode ($result_array) , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://guojiulin.gicp.net:18000/car_wash/" . $type);
-        return json_decode ($response);
+        return json_decode ($response, true);
     }
 }
