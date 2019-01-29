@@ -568,7 +568,9 @@ class PayController extends BaseController
         if ( $order['o_type'] == 1 ) {//1洗车订单
             $date['detail'] = 0;
             $save = D ("Order")->where (array ('orderid' => $order['orderid']))->save ($date);
-            if ( $save ) {
+            $type['type'] = 1;
+            $car=D ("CarWasher")->where (array ('id' => $order['c_id']))->save ($type);
+            if ( $save && $car) {
                 echo "success";
             }
         } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
