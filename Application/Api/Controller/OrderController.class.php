@@ -21,6 +21,7 @@ class OrderController extends BaseController
     {
         parent::_initialize ();
     }
+
     /**
      *
      *
@@ -191,7 +192,7 @@ class OrderController extends BaseController
         $list_info = D ('Order')
             ->where ($where)
             ->join ("LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id")
-            ->field ('db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_car_washer.mc_id,db_car_washer.p_id')
+            ->field ('db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_order.is_no,db_car_washer.mc_id,db_car_washer.p_id')
             ->page ($request['page'] , '10')
             ->select ();
 //        var_dump ($list_info);die;
@@ -217,7 +218,7 @@ class OrderController extends BaseController
         $request = $_REQUEST;
         $rule = array ('id' , 'string' , '请选择查看的订单详情');
         $this->checkParam ($rule);
-        $order = D ('Order')->where (array ('id' => $request['id'] , 'o_type' => 1))->field ('id,status,money,pay_money,orderid,pay_type,c_id,is_dis,card_id,coup_id,update_time,create_time,pay_time')->find ();
+        $order = D ('Order')->where (array ('id' => $request['id'] , 'o_type' => 1))->field ('id,status,money,pay_money,orderid,pay_type,c_id,is_dis,card_id,coup_id,update_time,create_time,pay_time,is_no')->find ();
         if ( !$order ) {
             $this->apiResponse ('0' , '请输入正确订单ID');
         }
@@ -286,6 +287,7 @@ class OrderController extends BaseController
         }
 
     }
+
     /**
      * 计时器
      */
