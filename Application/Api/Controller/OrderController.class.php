@@ -111,24 +111,23 @@ class OrderController extends BaseController
         $rule = array ('o_type' , 'string' , '请输入订单类型');
         $this->checkParam ($rule);
         if ( $request['o_type'] == 1 ) {
-            $param['where']['m_id'] = $m_id;
             $param['where']['status'] = 1;
             $param['where']['o_type'] = 1;
-            $param['where']['w_type'] = 1;
-            $check_order = D ('Order')->queryRow ($param['where']);
-            $have = D ('Msg')->where (array ('m_id' => $m_id , 'o_id' => $check_order['id']))->find ();
-            if ( $check_order ) {
+            $check_order = D ('Order')->where (array ('m_id' => $m_id , 'w_type' => 1 , 'o_type' => 1))->queryHave ($param['where']);
+            $pay = D ('Order')->field ('orderid,m_id,id')->queryRow ($param['where']);
+            $have = D ('Msg')->where (array ('m_id' => $pay['m_id'] , 'o_id' => $pay['id']))->find ();
+            if ( $check_order == true ) {
                 if ( !$have ) {
-                    $param['send_type'] = 1;
                     $param['type'] = 2;
-                    $param['o_id'] = $check_order['id'];
-                    $param['m_id'] = $check_order['m_id'];
+                    $param['o_id'] = $pay['id'];
+                    $param['m_id'] = $pay['m_id'];
                     $param['create_time'] = time ();
+                    $param['send_type'] = 1;
                     $param['msg_title'] = '您收到一条订单消息！';
                     $param['msg_content'] = '您有一个订单尚未支付，暂无法洗车';
                     D ('Msg')->add ($param);
                 }
-                $this->apiResponse ('0' , '您有未支付订单' , $check_order);
+                $this->apiResponse ('0' , '您有未支付订单' , $pay);
             } else {
                 $rule = array ('w_type' , 'string' , '请输入洗车类型');
                 $this->checkParam ($rule);
