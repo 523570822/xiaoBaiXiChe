@@ -121,7 +121,7 @@ class IndexController extends BaseController
 
     public function testCronTab ()
     {
-        $myfile = fopen("./testFile.txt", "a") or die("Unable to open file!");
+        $myfile = fopen("./Uploads/testFile.txt", "a") or die("Unable to open file!");
         $txt = "testFile\n";
         fwrite($myfile, $txt);
         fclose($myfile);
