@@ -144,7 +144,7 @@ class MemberController extends BaseController
         $request = $_REQUEST;
         $rule = array(
             array('openid', 'string', '三方登录唯一标识不能为空'),
-            array('type', 'string', '类型错误'),
+            array('type', 'string', '请输入绑定类型'),
         );
         $this->checkParam($rule);
         $param['where']['openid'] = $request['openid'];

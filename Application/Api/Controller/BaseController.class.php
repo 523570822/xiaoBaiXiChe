@@ -11,7 +11,6 @@ use Common\Service\ControllerService;
 
 class BaseController extends ControllerService
 {
-
     public function _initialize() {
         parent::_initialize();
     }
@@ -38,6 +37,7 @@ class BaseController extends ControllerService
              $this->apiResponse('-1','登录失效，请重新登录');
          }
      }
+
     /**
      * 生成token
      */
@@ -60,6 +60,7 @@ class BaseController extends ControllerService
         }
         return $m_info;
     }
+
     /**
      * 推广码绑定
      * invite_code 邀请码 h_id 填写邀请码的用户ID
@@ -81,6 +82,7 @@ class BaseController extends ControllerService
         D('Member')->querySave(array('id'=>$m_info['id']),$data);
 
     }
+
     public function setAbsoluteUrl($content){
         preg_match_all('/src=\"\/?(.*?)\"/',$content,$match);
         foreach($match[1] as $key => $src){
@@ -90,7 +92,6 @@ class BaseController extends ControllerService
         }
         return $content;
     }
-
 
     /**
      *代理商token判断
@@ -121,5 +122,131 @@ class BaseController extends ControllerService
             apiResponse('0','You are temporarily unable to login');
         }
         return $agent;
+    }
+
+    /**
+     *接口请求地址
+     * @param $param
+     * @param $heade
+     * @param $postUrl
+     */
+    public function push_curl ($param = "" , $header = "" , $postUrl = "")
+    {
+        if ( empty($param) ) {
+            return false;
+        }
+        $curlPost = $param;
+        $ch = curl_init ();                                      //初始化curl
+        curl_setopt ($ch , CURLOPT_URL , $postUrl);                 //抓取指定网页
+        curl_setopt ($ch , CURLOPT_HEADER , 0);                    //设置header
+        curl_setopt ($ch , CURLOPT_RETURNTRANSFER , 1);            //要求结果为字符串且输出到屏幕上
+        curl_setopt ($ch , CURLOPT_POST , 1);                      //post提交方式
+        curl_setopt ($ch , CURLOPT_POSTFIELDS , $curlPost);
+        curl_setopt ($ch , CURLOPT_HTTPHEADER , $header);           // 增加 HTTP Header（头）里的字段
+        curl_setopt ($ch , CURLOPT_SSL_VERIFYPEER , FALSE);        // 终止从服务端进行验证
+        curl_setopt ($ch , CURLOPT_SSL_VERIFYHOST , FALSE);
+        $data = curl_exec ($ch);                                 //运行curl
+        curl_close ($ch);
+        return $data;
+    }
+
+    /**
+     *接口请求封装模块
+     * @param $deviceid 洗车机编号
+     * @param $param_key 请求数组字段名
+     * @param $param_array 请求数组内容
+     */
+    public function createJSON ($deviceid, $param_key, $param_array)
+    {
+        $array['devices'] = [];
+        $array['devices'][] = [
+            "deviceid" => $deviceid,
+            $param_key => $param_array
+        ];
+        return $array;
+    }
+
+    /**
+     *请求接口数据
+     * @param $type //runtime_query 实时查询  device_manage 机器控制
+     * @param $mc_id //机器编号
+     * @param $suffix //查询数组
+     * @param $mode //控制模式
+     * @param $arr_param //固定请求格式
+     */
+    public function send_post ($type , $mc_id , $mode = '')
+    {
+        if ( $type ) {
+            if ( $type == 'runtime_query') {
+                $suffix = 'queryitem';
+                $arr_param = [//json格式数据
+                    "service_status" => true ,//设备在线状态 service_status≥ 8 在线 service_status<8 设备离线
+                    "pressure" => true ,//请求查询进水压力值
+                    "pump1_status" => true ,//清水泵状态 设备故障≥ 4
+                    "pump2_status" => true ,//泡沫泵状态 设备故障≥ 4
+                    "valve1_status" => true ,//进水阀状态 设备故障≥ 4
+                    "valve2_status" => true ,//清水阀状态 有流量时阀状态为开，无流量时阀状态为关
+                    "valve3_status" => true ,//泡沫液位状态 true 正常 false 液位不足
+                    "level1_status" => true ,//清水液位状态
+                    "level3_status" => true ,//泡沫液位状态
+//                    "heater_status" => true ,//加热器状态
+                    "env_temperature" => true ,//当前环境温度
+                    "device_volt" => true ,//当前供电电压
+                    "device_current" => true ,//当前整机电流
+                    "device_power" => true ,//当前整机功耗
+                    "device_energy" => true ,//当前电表读数 设备耗电量 单位 kWh
+                    "clean_water_usage" => true ,//清水累计用量（L）
+                    "clean_water_duration" => true ,//清水累计用时（秒）
+                    "foam_usage" => true ,//泡沫累计用量（L）
+                    "foam_duration" => true ,//泡沫累计用时（秒）
+                    "vacuum_info" => true ,//吸尘器用 设备故障status ≥ 4
+                    // current吸尘器设备的电流值，单位 A lastmaint_uasge 上次维护后的使用时间，单位秒 accumulated_usage 累计使用时间，单位秒
+                    "location" => true//机器坐标 longitud经度 latitud纬度
+
+                ];
+                $result_array = $this->createJSON ($mc_id , $suffix , $arr_param);
+            } elseif ( $type == 'device_manage' ) {
+                $suffix = 'setitem';
+                if ( $mode == 1 ) {//json格式数据
+                    $arr_param = [//扫码 — 洗车机设置
+                        "service_status" => 5 ,
+                        "pump1_status" => 3 ,
+                        "pump2_status" => 3 ,
+                        "valve1_status" => 3 ,
+                        "vacuum_status" => 2 ,
+                        "heater_status"=> 2,
+//                        "valid_voltage"=> [
+//                                "low"=> "190",
+//                                "high"=> "240"
+//                        ],
+//                        "valid_temperature"=> [
+//                                "low"=> "5",
+//                                "high"=> "40"
+//                        ]
+                    ];
+                } elseif ( $mode == 2 ) {
+                    $arr_param = [//预约 — 洗车机设置
+                        "service_status" => 6 ,
+                        "pump1_status" => 0 ,
+                        "pump2_status" => 0 ,
+                        "valve1_status" => 0 ,
+                        "vacuum_status" => 0 ,
+                    ];
+                } elseif ( $mode == 3 ) {
+                    $arr_param = [//结算 — 洗车机设置
+                        "service_status" => 4 ,
+                        "pump1_status" => 0 ,
+                        "pump2_status" => 0 ,
+                        "valve1_status" => 0 ,
+                    ];
+                }
+                $result_array = $this->createJSON ($mc_id , $suffix , $arr_param);
+            }
+        } else {
+            $php_errormsg = '查询失败，请传参数---->"type"';
+            $this->apiResponse (0,$php_errormsg);
+        }
+        $response = $this->push_curl (json_encode ($result_array) , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://guojiulin.gicp.net:18000/car_wash/" . $type);
+        return json_decode ($response, true);
     }
 }
