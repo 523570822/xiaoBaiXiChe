@@ -180,12 +180,6 @@ class BaseController extends ControllerService
             if ( $type == 'runtime_query') {
                 $suffix = 'queryitem';
                 $arr_param = [//json格式数据
-                    "clean_water_usage" => true ,//设备在线状态 service_status≥ 8 在线 service_status<8 设备离线
-                    "clean_water_duration" => true ,//请求查询进水压力值
-                    "foam_usage" => true ,//清水泵状态 设备故障≥ 4
-                    "foam_duration" => true ,//泡沫泵状态 设备故障≥ 4
-                    "vacuum_info" => true//进水阀状态 设备故障≥ 4
-                    /*
                     "service_status" => true ,//设备在线状态 service_status≥ 8 在线 service_status<8 设备离线
                     "pressure" => true ,//请求查询进水压力值
                     "pump1_status" => true ,//清水泵状态 设备故障≥ 4
@@ -195,7 +189,7 @@ class BaseController extends ControllerService
                     "valve3_status" => true ,//泡沫液位状态 true 正常 false 液位不足
                     "level1_status" => true ,//清水液位状态
                     "level3_status" => true ,//泡沫液位状态
-                    "heater_status" => true ,//加热器状态
+//                    "heater_status" => true ,//加热器状态
                     "env_temperature" => true ,//当前环境温度
                     "device_volt" => true ,//当前供电电压
                     "device_current" => true ,//当前整机电流
@@ -208,7 +202,7 @@ class BaseController extends ControllerService
                     "vacuum_info" => true ,//吸尘器用 设备故障status ≥ 4
                     // current吸尘器设备的电流值，单位 A lastmaint_uasge 上次维护后的使用时间，单位秒 accumulated_usage 累计使用时间，单位秒
                     "location" => true//机器坐标 longitud经度 latitud纬度
-                    */
+
                 ];
                 $result_array = $this->createJSON ($mc_id , $suffix , $arr_param);
             } elseif ( $type == 'device_manage' ) {
@@ -221,14 +215,14 @@ class BaseController extends ControllerService
                         "valve1_status" => 3 ,
                         "vacuum_status" => 2 ,
                         "heater_status"=> 2,
-                        "valid_voltage"=> [
-                                "low"=> "190",
-                                "high"=> "240"
-                        ],
-                        "valid_temperature"=> [
-                                "low"=> "5",
-                                "high"=> "40"
-                        ]
+//                        "valid_voltage"=> [
+//                                "low"=> "190",
+//                                "high"=> "240"
+//                        ],
+//                        "valid_temperature"=> [
+//                                "low"=> "5",
+//                                "high"=> "40"
+//                        ]
                     ];
                 } elseif ( $mode == 2 ) {
                     $arr_param = [//预约 — 洗车机设置
