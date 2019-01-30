@@ -140,7 +140,8 @@ class OrderController extends BaseController
                         $this->send_post ('device_manage' , $request['mc_id'] , '1');
                         $param['type'] = 2;
                         $param['update_time'] = time ();
-                        $where['m_id']=$request['m_id'];
+                        $where['mc_id'] = $request['mc_id'];
+                        $where['type'] = 3;
                         $add = M ('CarWasher')->where ($where)->save ($param);
                         if ( $add ) {
                             $this->apiResponse (1 , '洗车机已开启');
