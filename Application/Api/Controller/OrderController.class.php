@@ -46,10 +46,7 @@ class OrderController extends BaseController
         $param['m_id'] = $m_id;
         $param['o_id'] = $o_id;
         $param['c_id'] = $c_id;
-        $ok = D ('Details')->add ($param);
-        if ( $ok ) {
-            $this->apiResponse (1 , '洗车机已开启');
-        }
+        D ('Details')->add ($param);
     }
 
     /**
@@ -97,7 +94,7 @@ class OrderController extends BaseController
      * is_no  是否违约//0未违约 1违约
      * detail 是否收入//1收入  2支出
      * invoice 是否开票//0未开票 1已开票
-     * status 订单状态//1待支付 2已完成 3进行中 9取消订单
+     * status 订单状态//1待支付 2已完成 9取消订单
      * pay_type 支付类型//1微信支付 2支付宝支付 3余额支付
      *
      * 机器运作状态 //1正常 2故障 3报警 4不在线 9删除
@@ -111,23 +108,20 @@ class OrderController extends BaseController
         $rule = array ('o_type' , 'string' , '请输入订单类型');
         $this->checkParam ($rule);
         if ( $request['o_type'] == 1 ) {
-            $param['where']['status'] = 1;
-            $param['where']['o_type'] = 1;
-            $check_order = D ('Order')->where (array ('m_id' => $m_id , 'w_type' => 1 , 'o_type' => 1))->queryHave ($param['where']);
-            $pay = D ('Order')->field ('orderid,m_id,id')->queryRow ($param['where']);
-            $have = D ('Msg')->where (array ('m_id' => $pay['m_id'] , 'o_id' => $pay['id']))->find ();
-            if ( $check_order == true ) {
+            $check_order = D ('Order')->where (array ('m_id' => $m_id , 'w_type' => 1 , 'o_type' => 1 , 'status' => 1))->find ();
+            $have = D ('Msg')->where (array ('m_id' => $check_order['m_id'] , 'o_id' => $check_order['id']))->find ();
+            if ( $check_order ) {
                 if ( !$have ) {
                     $param['type'] = 2;
-                    $param['o_id'] = $pay['id'];
-                    $param['m_id'] = $pay['m_id'];
+                    $param['o_id'] = $check_order['id'];
+                    $param['m_id'] = $check_order['m_id'];
                     $param['create_time'] = time ();
                     $param['send_type'] = 1;
                     $param['msg_title'] = '您收到一条订单消息！';
                     $param['msg_content'] = '您有一个订单尚未支付，暂无法洗车';
                     D ('Msg')->add ($param);
                 }
-                $this->apiResponse ('0' , '您有未支付订单' , $pay);
+                $this->apiResponse ('0' , '您有未支付订单' , $check_order);
             } else {
                 $rule = array ('w_type' , 'string' , '请输入洗车类型');
                 $this->checkParam ($rule);
@@ -141,8 +135,8 @@ class OrderController extends BaseController
                         $param['update_time'] = time ();
                         $where['mc_id'] = $request['mc_id'];
                         $where['type'] = 3;
-                        $add = M ('CarWasher')->where ($where)->save ($param);
-                        if ( $add ) {
+                        $save = M ('CarWasher')->where ($where)->save ($param);
+                        if ( $save ) {
                             $this->apiResponse (1 , '洗车机已开启');
                         }
                     }
@@ -153,7 +147,7 @@ class OrderController extends BaseController
                     $data['title'] = "扫码洗车";
                     $data['o_type'] = '1';
                     $data['w_type'] = '1';
-                    $data['status'] = '3';
+                    $data['status'] = '1';
                     $data['create_time'] = time ();
                     $data['mc_id'] = $car_washer_info['mc_id'];
                     $data['c_id'] = $car_washer_info['id'];
@@ -162,8 +156,13 @@ class OrderController extends BaseController
                     $XG['mc_id'] = $request['mc_id'];
                     $yes = M ('CarWasher')->where ($XG)->save ($type);
                     $order = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
-                    $this->send_post ('device_manage' , $request['mc_id'] , '1');
-                    $this->cs ($request['mc_id'] , $order['id'] , $m_id , $order['c_id']);
+                    $open = $this->send_post ('device_manage' , $request['mc_id'] , '1');
+                    $record = $this->cs ($request['mc_id'] , $order['id'] , $m_id , $order['c_id']);
+                    if ( $res && $yes && $open && $record ) {
+                        $this->apiResponse ('1' , '洗车机已开启', array ('orderid' => $data['orderid']));
+                    } else {
+                        $this->apiResponse ('0' , '扫码失败');
+                    }
                 } elseif ( $request['w_type'] == 2 ) {
                     $rule = array ('mc_id' , 'string' , '请输入洗车机编号');
                     $this->checkParam ($rule);
@@ -183,11 +182,11 @@ class OrderController extends BaseController
                     $XG['mc_id'] = $request['mc_id'];
                     $yes = M ('CarWasher')->where ($XG)->save ($type);
                     $this->send_post ('device_manage' , $request['mc_id'] , '2');
-                }
-                if ( $res && $yes ) {
-                    $this->apiResponse ('1' , '下单成功' , array ('orderid' => $data['orderid']));
-                } else {
-                    $this->apiResponse ('0' , '下单失败');
+                    if ( $res && $yes ) {
+                        $this->apiResponse ('1' , '预约成功' , array ('orderid' => $data['orderid']));
+                    } else {
+                        $this->apiResponse ('0' , '预约失败');
+                    }
                 }
             }
         } elseif ( $request['o_type'] == 2 ) {
@@ -213,7 +212,7 @@ class OrderController extends BaseController
     }
 
     /**
-     * 我的订单
+     * 订单列表
      */
     public function myOrder ()
     {
@@ -237,14 +236,14 @@ class OrderController extends BaseController
         $list_info = D ('Order')
             ->where ($where)
             ->join ("LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id")
-            ->field ('db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_order.is_no,db_car_washer.mc_id,db_car_washer.p_id')
+            ->field ('db_order.id,db_order.orderid,db_order.status,db_order.money,db_order.pay_money,db_order.is_no,db_car_washer.mc_id,db_car_washer.p_id,db_car_washer.type')
             ->page ($request['page'] , '10')
             ->select ();
-//        var_dump ($list_info);die;
         foreach ( $list_info as $k => $v ) {
             $m = $list_info[$k]['p_id'];
             $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();
             $list_info[$k]['shop_name'] = $shop['shop_name'];
+            $list_info[$k]['is_use'] = ($list_info[$k]['type'] == 2) ? 0 : 1 ;//0订单正在进行中
         }
         if ( !$list_info ) {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
