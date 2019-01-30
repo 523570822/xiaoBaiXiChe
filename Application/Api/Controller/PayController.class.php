@@ -603,42 +603,22 @@ class PayController extends BaseController
     }
 
     /**
+     * 数据实时请求
+     */
+    public function postLinux (){
+
+    }
+
+    /**
      * 订单结算
      */
     public function settlement ()
     {
-        $m_id = $this->checkToken ();
-        $this->errorTokenMsg ($m_id);
-        $details = D ("Details")->where (array ('m_id' => $m_id , 'status' => 1))->find ();
-        $request = I ('post.');
-        $rule = array (
-            array ('orderid' , 'string' , '订单编号不能为空') ,
-            array ('o_type' , 'string' , '订单类型不能为空') ,
-        );
-        $this->checkParam ($rule);
-        if ( $request['o_type'] == 3 ) {
-            $this->apiResponse (0 , '订单信息查询失败');
-        }
-        $order_info = D ("Order")->where (array ('orderid' => $request['orderid'] , 'o_type' => $request['o_type'] , 'status' => 1))->find ();
-        if ( !$order_info ) {
-            $this->apiResponse (0 , '订单信息查询失败');
-        }
-        if ( $request['c_id'] ) {
-            $rule = array ('c_type' , 'string' , '卡券类型不能为空');
-            $this->checkParam ($rule);
-            $card = D ("VipCard")->where (array ('id' => $request['c_id'] , 'c_type' => $request['c_type'] , 'status' => 1 , 'k_status' => 1))->find ();
-//            var_dump ($card);die;
-            if ( !$card ) {
-                $this->apiResponse (0 , '卡券信息查询失败');
-            }
-        }
-
-        $data['update_time'] = time ();
-        $res = M ('Order')->data ($data)->save ();
-        if ( $res ) {
-            $this->apiResponse (1 , '查询成功' , $order_info);
-        }
+        $order = D ("Order")->where (array ('status'=>1))->select();
+//        $details = D ("Details")->where (array ('m_id' => $m_id ,'o_id'=>$order['id'], 'status' => 1))->find ();
+        var_dump ($order);
     }
+
 
     /**
      *获取时间

@@ -26,6 +26,7 @@ class OrderController extends BaseController
     {
         $o = $this->send_post ('runtime_query' , $mc_id , '');
         foreach ( $o['devices'] as $k => $v ) {
+            $one['status'] = $v['queryitem']['service_status'];
             $one['water_L'] = $v['queryitem']['clean_water_usage'];
             $one['foam_L'] = $v['queryitem']['foam_usage'];
             $one['water_S'] = $v['queryitem']['clean_water_duration'];
@@ -46,6 +47,13 @@ class OrderController extends BaseController
         $param['m_id'] = $m_id;
         $param['o_id'] = $o_id;
         $param['c_id'] = $c_id;
+        if ( $one['status'] = 5 ) {
+            $param['tips'] = 'start';
+            $param['status'] = '1';
+        } elseif ( $one['status'] = 4 ) {
+            $param['tips'] = 'end';
+            $param['status'] = '0';
+        }
         D ('Details')->add ($param);
     }
 
@@ -131,6 +139,10 @@ class OrderController extends BaseController
                     $check_is = M ('Order')->where (array ('mc_id' => $request['mc_id'] , 'm_id' => $m_id , 'w_type' => 2))->find ();
                     if ( $check_is ) {
                         $this->send_post ('device_manage' , $request['mc_id'] , '1');
+                        $check_details = D ('Details')->where (array ('m_id' => $check_is['m_id'] , 'c_id' => $check_is['c_id'] , 'o_id' => $check_is['id'] , 'status' => 1))->find ();
+                        if ( !$check_details ) {
+                            $this->cs ($request['mc_id'] , $check_is['id'] , $m_id , $check_is['c_id']);
+                        }
                         $param['type'] = 2;
                         $param['update_time'] = time ();
                         $where['mc_id'] = $request['mc_id'];
@@ -151,41 +163,61 @@ class OrderController extends BaseController
                     $data['create_time'] = time ();
                     $data['mc_id'] = $car_washer_info['mc_id'];
                     $data['c_id'] = $car_washer_info['id'];
-                    $res = M ('Order')->data ($data)->add ();
                     $type['type'] = '2';
                     $XG['mc_id'] = $request['mc_id'];
-                    $yes = M ('CarWasher')->where ($XG)->save ($type);
-                    $order = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
                     $open = $this->send_post ('device_manage' , $request['mc_id'] , '1');
-                    $record = $this->cs ($request['mc_id'] , $order['id'] , $m_id , $order['c_id']);
-                    if ( $res && $yes && $open && $record ) {
-                        $this->apiResponse ('1' , '洗车机已开启', array ('orderid' => $data['orderid']));
+                    if ( $open ) {
+                        $res = M ('Order')->data ($data)->add ();
+                        $yes = M ('CarWasher')->where ($XG)->save ($type);
+                        if ( $res && $yes ) {
+                            $order = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
+                            $this->cs ($request['mc_id'] , $order['id'] , $m_id , $order['c_id']);
+                            $this->apiResponse ('1' , '洗车机已开启' , array ('orderid' => $data['orderid']));
+                        } else {
+                            $this->apiResponse ('0' , '下单失败');
+                        }
                     } else {
-                        $this->apiResponse ('0' , '扫码失败');
+                        $this->apiResponse ('0' , '开启失败');
                     }
                 } elseif ( $request['w_type'] == 2 ) {
                     $rule = array ('mc_id' , 'string' , '请输入洗车机编号');
                     $this->checkParam ($rule);
-                    $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
-                    $this->checkMsgs ($request['mc_id'] , $car_washer_info['mc_id'] , $car_washer_info['status'] , $car_washer_info['type']);
-                    $data['m_id'] = $m_id;
-                    $data['orderid'] = 'YC' . date ('YmdHis') . rand (1000 , 9999);
-                    $data['title'] = "预约洗车";
-                    $data['o_type'] = '1';
-                    $data['w_type'] = '2';
-                    $data['create_time'] = time ();
-                    $data['subs_time'] = time () + (15 * 60);
-                    $data['mc_id'] = $car_washer_info['mc_id'];
-                    $data['c_id'] = $car_washer_info['id'];
-                    $res = M ('Order')->data ($data)->add ();
-                    $type['type'] = '3';
-                    $XG['mc_id'] = $request['mc_id'];
-                    $yes = M ('CarWasher')->where ($XG)->save ($type);
-                    $this->send_post ('device_manage' , $request['mc_id'] , '2');
-                    if ( $res && $yes ) {
-                        $this->apiResponse ('1' , '预约成功' , array ('orderid' => $data['orderid']));
+                    $check_order = D ('Order')->where (array ('m_id' => $m_id , 'w_type' => 2 , 'o_type' => 1 , 'status' => 1))->find ();
+                    $have = D ('Msg')->where (array ('m_id' => $check_order['m_id'] , 'o_id' => $check_order['id']))->find ();
+                    if ( $check_order ) {
+                        if ( !$have ) {
+                            $param['type'] = 2;
+                            $param['o_id'] = $check_order['id'];
+                            $param['m_id'] = $check_order['m_id'];
+                            $param['create_time'] = time ();
+                            $param['send_type'] = 1;
+                            $param['msg_title'] = '您收到一条订单消息！';
+                            $param['msg_content'] = '您有预约订单未处理，暂无法洗车';
+                            D ('Msg')->add ($param);
+                        }
+                        $this->apiResponse ('0' , '您有预约订单未处理' , $check_order);
                     } else {
-                        $this->apiResponse ('0' , '预约失败');
+                        $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
+                        $this->checkMsgs ($request['mc_id'] , $car_washer_info['mc_id'] , $car_washer_info['status'] , $car_washer_info['type']);
+                        $data['m_id'] = $m_id;
+                        $data['orderid'] = 'YC' . date ('YmdHis') . rand (1000 , 9999);
+                        $data['title'] = "预约洗车";
+                        $data['o_type'] = '1';
+                        $data['w_type'] = '2';
+                        $data['create_time'] = time ();
+                        $data['subs_time'] = time () + (15 * 60);
+                        $data['mc_id'] = $car_washer_info['mc_id'];
+                        $data['c_id'] = $car_washer_info['id'];
+                        $res = M ('Order')->data ($data)->add ();
+                        $type['type'] = '3';
+                        $XG['mc_id'] = $request['mc_id'];
+                        $yes = M ('CarWasher')->where ($XG)->save ($type);
+                        $this->send_post ('device_manage' , $request['mc_id'] , '2');
+                        if ( $res && $yes ) {
+                            $this->apiResponse ('1' , '预约成功' , array ('orderid' => $data['orderid']));
+                        } else {
+                            $this->apiResponse ('0' , '预约失败');
+                        }
                     }
                 }
             }
@@ -243,7 +275,7 @@ class OrderController extends BaseController
             $m = $list_info[$k]['p_id'];
             $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();
             $list_info[$k]['shop_name'] = $shop['shop_name'];
-            $list_info[$k]['is_use'] = ($list_info[$k]['type'] == 2) ? 0 : 1 ;//0订单正在进行中
+            $list_info[$k]['is_use'] = ($list_info[$k]['type'] == 2) ? 0 : 1;//0订单正在进行中
         }
         if ( !$list_info ) {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
@@ -353,6 +385,5 @@ class OrderController extends BaseController
         }
         $this->apiResponse (1 , '查询成功' , array ('is_time' => $order['is_time'] , 'end_time' => $sub));
     }
-
 
 }
