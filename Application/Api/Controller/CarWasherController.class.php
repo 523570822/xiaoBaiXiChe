@@ -209,4 +209,36 @@ class CarWasherController extends BaseController
             $this->apiResponse('0','暂无此设备信息');
         }
     }
+
+    /**
+     *实时状态查询
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/30 14:36
+     */
+    public function realTime(){
+        $where['status'] = array('neq',9);
+        $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
+        foreach ($car as $k=>$v){
+            $cars[$k]['car_num'] = $v['mc_id'];
+            $cars[$k]['id'] = $v['id'];
+            $query = 'runtime_query';
+            //$mana = 'manage';
+            $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
+            //$manage = $this->send_post($mana,$cars[$k]['id'],);
+            foreach ($queryitem[$k] as $kk=>$vv){
+                foreach ($vv as $kk1=>$vv1){
+                    $car_data['lon'] = $vv1['queryitem']['location']['longitude'];
+                    $car_data['lat'] = $vv1['queryitem']['location']['latitude'];
+                    $car_data['electricity'] = $vv1['queryitem']['device_energy'];
+                    $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
+                    $car_data['foam'] = $vv1['queryitem']['foam_usage'];
+                    $car_data['update_time'] = time();
+                }
+                $car_save = M('CarWasher')->where()->save($car_data);
+//                var_dump($car_data);
+//                var_dump($vv1);exit;
+            }
+        }
+
+    }
 }

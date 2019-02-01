@@ -177,7 +177,7 @@ class BaseController extends ControllerService
     public function send_post ($type , $mc_id , $mode = '')
     {
         if ( $type ) {
-            if ( $type == 'runtime_query') {
+            if ( $type == 'runtime_query') {            //实时状态查询
                 $suffix = 'queryitem';
                 $arr_param = [//json格式数据
                     "service_status" => true ,//设备在线状态 service_status≥ 8 在线 service_status<8 设备离线
@@ -205,7 +205,7 @@ class BaseController extends ControllerService
 
                 ];
                 $result_array = $this->createJSON ($mc_id , $suffix , $arr_param);
-            } elseif ( $type == 'device_manage' ) {
+            } elseif ( $type == 'device_manage' ) {                   //设备控制
                 $suffix = 'setitem';
                 if ( $mode == 1 ) {//json格式数据
                     $arr_param = [//扫码 — 洗车机设置
@@ -247,6 +247,7 @@ class BaseController extends ControllerService
             $this->apiResponse (0,$php_errormsg);
         }
         $response = $this->push_curl (json_encode ($result_array) , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://guojiulin.gicp.net:18000/car_wash/" . $type);
+//        var_dump($result_array['devices']);exit;
         return json_decode ($response, true);
     }
 }
