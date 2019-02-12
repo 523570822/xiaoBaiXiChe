@@ -70,13 +70,18 @@ class OrderController extends BaseController
         $msg = '';
         switch ($status) {
             case "2":
-                $msg = '机器故障';
+                $this->apiResponse('2','机器故障');
+//                $msg = '机器故障';
                 break;
             case "3":
-                $msg = '机器报警';
+                $this->apiResponse('2','机器报警');
+
+//                $msg = '机器报警';
                 break;
             case "4":
-                $msg = '机器不在线';
+                $this->apiResponse('3','机器不在线');
+
+//                $msg = '机器不在线';
                 break;
         }
         if ( !empty($msg) ) $this->apiResponse (0 , $msg);
