@@ -74,12 +74,12 @@ class OrderController extends BaseController
 //                $msg = '机器故障';
                 break;
             case "3":
-                $this->apiResponse('2','机器报警');
+                $this->apiResponse('3','机器报警');
 
 //                $msg = '机器报警';
                 break;
             case "4":
-                $this->apiResponse('3','机器不在线');
+                $this->apiResponse('4','机器不在线');
 
 //                $msg = '机器不在线';
                 break;
