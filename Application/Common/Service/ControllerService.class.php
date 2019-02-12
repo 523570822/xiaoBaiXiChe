@@ -67,6 +67,15 @@ class ControllerService extends Controller
         return $Res;
     }
     /**
+     * 生成token
+     */
+    public function createToken(){
+        $arr = md5(time().rand(10000,99999));
+//        $arr['expired_time'] = time()+86400*7;
+        return $arr;
+    }
+
+    /**
      * Api返回数据
      * User: 木
      * Date: 2018/8/2 17:28

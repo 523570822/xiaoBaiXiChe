@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--如果不是必填值 不需要加 required 属性-->
+
+                    <!--上传图片-->
+
+
+                    <!--<div class="layui-form">-->
+
+                        <!--<div class="layui-form-item">-->
+                            <!--<label class="layui-form-label">上传图片</label>-->
+                            <!--<div class="layui-input-block">-->
+                                <!--<button type="button" class="layui-btn" id="uploadBtn"><i class="layui-icon"></i>上传文件</button>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="layui-form-item">-->
+                            <!--<label class="layui-form-label">上传图片</label>-->
+                            <!--<div class="layui-input-block">-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<button type="button" class="layui-btn" id="uploadBtn2"><i class="layui-icon"></i>上传文件</button>-->
+                                <!--</div>-->
+                                <!--<div class="layui-input-inline" id="filename"></div>-->
+                                <!--<if condition="$row['cover']  neq 0">-->
+                                    <!--<div class="layui-input-block img-show">-->
+                                        <!--<div class="img-show-item" id="Upload_cover_1_pre">-->
+                                            <!--<img src="{$row.covers}">-->
+                                            <!--<i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.cover}');"></i>-->
+                                            <!--<input name="cover" value='{$row.cover}' class="layui-input" type="hidden">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</if>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">账号</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" placeholder="请输入代理商账号" lay-verify="required|phone" name="account"  value="{$row['account']}" <if condition="$row['id']">disabled=""</if>>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">账户为代理商手机号</div>
+                    </div>
+                    <if condition="$row['id'] eq null">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" class="layui-input" placeholder="请输入密码" lay-verify="required" name="passwords">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                        </div>
+                        <else />
+                        <input type="hidden" class="layui-input" placeholder="请输入密码" lay-verify="required" name="password" value="{$row['password']}">
+                    </if>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">昵称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" placeholder="请输入用户昵称" name="nickname" value="{$row['nickname']}">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户余额</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" placeholder="" lay-verify="number" name="balance" value="{$row['balance']|default='0'}">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">元</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">父级代理商ID</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" placeholder="" lay-verify="number" name="p_id" value="{$row['p_id']|default='0'}">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">等级</label>
+                        <div class="layui-input-block">
+                            <div class="layui-input-inline">
+                                <select name="grade" class="layui-input w300">
+                                    <option value="1">一级代理商</option>
+                                    <option value="2">二级代理商</option>
+                                    <option value="2">三级代理商</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">一级代理商不用添加父级代理商</div>
+                        </div>
+                    </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">确认保存</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn',
+        // 多文件上传-true 单文件上传-false
+        files: true,
+        // 展示图片
+        showFile: true,
+        // input框的name
+        filedname: 'files'
+    });
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn2',
+        // 多文件上传-true 单文件上传-false
+        files: false,
+        // 展示图片
+//        showFile: '#filename',
+        showFile: 'true',
+        // input框的name
+        fieldName: 'fileaaaa'
+    });
+
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+       var url="";
+        var id = "{$row['id']}";
+        if(id){
+            url = '';
+            data.id = id
+        }else{
+            url = '{:U("Agent/addAgent")}'
+        }
+        if(!data) return false;
+        doPost(url, data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+
+                }
+            });
+        });
+    }
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+
+    //编辑器初始化
+    $(document).ready(function(){
+        KindEditor.ready(function(K){
+            window.editor = K.create('#content',{
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items:[
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough','lineheight', '|',
+                    'image', 'multiimage', '|',
+                    'link', 'baidumap','fullscreen'
+                ],
+                afterBlur:function(){this.sync();}
+            });
+        });
+    });
+</script>
+</body>
+</html>
