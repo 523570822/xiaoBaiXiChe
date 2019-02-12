@@ -87,13 +87,20 @@ class OrderController extends BaseController
         if ( !empty($msg) ) $this->apiResponse (0 , $msg);
         switch ($type) {
             case 2:
-                $msg = '机器正在使用中';
+                $this->apiResponse('5','机器正在使用中');
+
+
+//                $msg = '机器正在使用中';
                 break;
             case 3:
-                $msg = '机器已经被预订';
+                $this->apiResponse('6','机器已经被预订');
+
+//                $msg = '机器已经被预订';
                 break;
             case 4:
-                $msg = '机器暂停使用';
+                $this->apiResponse('7','机器暂停使用');
+
+//                $msg = '机器暂停使用';
                 break;
         }
         if ( !empty($msg) ) $this->apiResponse (0 , $msg);
