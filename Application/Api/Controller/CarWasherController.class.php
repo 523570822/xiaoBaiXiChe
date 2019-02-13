@@ -216,6 +216,7 @@ class CarWasherController extends BaseController
      *Date:2019/01/30 14:36
      */
     public function realTime(){
+
         $where['status'] = array('neq',9);
         $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
         foreach ($car as $k=>$v){
@@ -227,12 +228,17 @@ class CarWasherController extends BaseController
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
             foreach ($queryitem[$k] as $kk=>$vv){
                 foreach ($vv as $kk1=>$vv1){
-                    $car_data['lon'] = $vv1['queryitem']['location']['longitude'];
-                    $car_data['lat'] = $vv1['queryitem']['location']['latitude'];
-                    $car_data['electricity'] = $vv1['queryitem']['device_energy'];
-                    $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
-                    $car_data['foam'] = $vv1['queryitem']['foam_usage'];
-                    $car_data['update_time'] = time();
+//                    $car_data['lon'] = $vv1['queryitem']['location']['longitude'];
+//                    $car_data['lat'] = $vv1['queryitem']['location']['latitude'];
+//                    $car_data['electricity'] = $vv1['queryitem']['device_energy'];
+//                    $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
+//                    $car_data['foam'] = $vv1['queryitem']['foam_usage'];
+                    $car_data['lon'] = 1;
+                    $car_data['lat'] = 2;
+                    $car_data['electricity'] = 3;
+                    $car_data['water_volume'] =4;
+                    $car_data['foam'] = 5;
+                    $car_data['update_time'] = 6;
                 }
                 $car_save = M('CarWasher')->where()->save($car_data);
 //                var_dump($car_data);
