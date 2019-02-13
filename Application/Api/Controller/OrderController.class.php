@@ -66,7 +66,7 @@ class OrderController extends BaseController
      **/
     public function checkMsgs ($mc_id_request , $mc_id_db , $status , $type)
     {
-        if ( $mc_id_request != $mc_id_db ) $this->apiResponse ('0' , '找不到该机器');
+        if ( $mc_id_request != $mc_id_db ) $this->apiResponse ('8' , '找不到该机器');
         $msg = '';
         switch ($status) {
             case "2":
@@ -141,14 +141,17 @@ class OrderController extends BaseController
                     $param['msg_content'] = '您有一个订单尚未支付，暂无法洗车';
                     D ('Msg')->add ($param);
                 }
-                $this->apiResponse ('0' , '您有未支付订单' , $check_order);
+                $this->apiResponse ('9' , '您有未支付订单' , $check_order);
             } else {
                 $rule = array ('w_type' , 'string' , '请输入洗车类型');
                 $this->checkParam ($rule);
                 if ( $request['w_type'] == 1 ) {
                     $rule = array ('mc_id' , 'string' , '请输入洗车机编号');
                     $this->checkParam ($rule);
-                    $check_is = M ('Order')->where (array ('mc_id' => $request['mc_id'] , 'm_id' => $m_id , 'w_type' => 2))->find ();
+                    $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id'],'type'=>3))->find ();
+                    if ( $car_washer_info ) {
+                        $check_is = M ('Order')->where (array ('c_id' => $car_washer_info['id'] , 'm_id' => $m_id , 'w_type' => 2))->find ();
+                    }
                     if ( $check_is ) {
                         $this->send_post ('device_manage' , $request['mc_id'] , '1');
                         $check_details = D ('Details')->where (array ('m_id' => $check_is['m_id'] , 'c_id' => $check_is['c_id'] , 'o_id' => $check_is['id'] , 'status' => 1))->find ();

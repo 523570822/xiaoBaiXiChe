@@ -79,9 +79,20 @@ class FeedbackController extends BaseController {
      **/
     public function centerDetail(){
         $request = I('post.');
-        $rule =array('id','int','请选择反馈原因');
+        $rule =array('id','int','请选择');
         $this->checkParam($rule);
         $data = D ("Article")->where (array ('id'=>$request['id'],'type' => 3 , 'status' => 1 ))->field ('id,title,content')->find();
+        $data['content'] = $this->setAbsoluteUrl($data['content']);
+        $data['content'] =htmlspecialchars_decode($data['content']);
+        $data['content'] = str_replace('img src="', 'img src = "' . C('API_URL'), $data['content']);
+        $this->apiResponse (1,'查询成功',$data);
+    }
+
+    /**
+     *加盟介绍
+     **/
+    public function joining(){
+        $data = D ("Article")->where (array ('type' => 5 , 'status' => 1 ))->field ('id,title,content')->find();
         $data['content'] = $this->setAbsoluteUrl($data['content']);
         $data['content'] =htmlspecialchars_decode($data['content']);
         $data['content'] = str_replace('img src="', 'img src = "' . C('API_URL'), $data['content']);
