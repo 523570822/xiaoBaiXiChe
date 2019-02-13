@@ -133,7 +133,7 @@ class PayController extends BaseController
         $where['agent_id'] = $agent['id'];
         $where['status'] = array ('neq' , 9);
         $orders[] = 'sort DESC';
-        $car = M ('BankCard')->where ($where)->field ('id,card_code,card_id')->order ($orders)->limit (($post['page'] - 1) * $post['size'] , $post['size'])->select ();
+        $car = M ('BankCard')->where ($where)->field ('id,card_code,card_id,tail_number')->order ($orders)->limit (($post['page'] - 1) * $post['size'] , $post['size'])->select ();
         foreach ( $car as $k => $v ) {
             $where_type['id'] = $v['card_id'];
             $where_type['status'] = array ('neq' , 9);
@@ -143,6 +143,7 @@ class PayController extends BaseController
             $cars[$k]['card_code'] = $v['card_code'];
             $cars[$k]['bank_name'] = $car_type['bank_name'];
             $cars[$k]['bank_pic'] = $bank_pic;
+            $cars[$k]['tail_number'] = $v['tail_number'];
         };
         if ( $cars ) {
             $this->apiResponse ('1' , '成功' , $cars);
