@@ -127,6 +127,7 @@ class OrderController extends BaseController
         $request = $_REQUEST;
         $rule = array ('o_type' , 'string' , '请输入订单类型');
         $this->checkParam ($rule);
+
         if ( $request['o_type'] == 1 ) {
             $check_order = D ('Order')->where (array ('m_id' => $m_id , 'w_type' => 1 , 'o_type' => 1 , 'status' => 1))->find ();
             $have = D ('Msg')->where (array ('m_id' => $check_order['m_id'] , 'o_id' => $check_order['id']))->find ();

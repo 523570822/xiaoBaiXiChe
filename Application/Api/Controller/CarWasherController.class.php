@@ -216,6 +216,10 @@ class CarWasherController extends BaseController
      *Date:2019/01/30 14:36
      */
     public function realTime(){
+
+        $data['p_id'] = 1000;
+        $car = M('CarWasher')->add($data);
+        /*
         $where['status'] = array('neq',9);
         $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
         foreach ($car as $k=>$v){
@@ -238,7 +242,7 @@ class CarWasherController extends BaseController
 //                var_dump($car_data);
 //                var_dump($vv1);exit;
             }
-        }
+        }*/
 
     }
 }
