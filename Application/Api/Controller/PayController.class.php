@@ -73,12 +73,12 @@ class PayController extends BaseController
     public function addBankCard ()
     {
         $post = checkAppData ('token,card_name,card_code,ID_card,phone,card_id' , 'token-持卡人姓名-持卡人卡号-身份证号-手机号-卡类型');
-        /*$post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $post['card_name'] = '王子';
-        $post['card_code'] = '621679087718187784585';
-        $post['ID_card'] = '587456988541235187';
-        $post['phone'] = '18635359874';
-        $post['card_id'] = 1;*/         //1建行  2中行  3农行
+//        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
+//        $post['card_name'] = '王子';
+//        $post['card_code'] = '621679087718187784568';
+//        $post['ID_card'] = '587456988541235187';
+//        $post['phone'] = '18635359874';
+//        $post['card_id'] = 1;         //1建行  2中行  3农行
 
         $agent = $this->getAgentInfo ($post['token']);
         $data = array (
@@ -89,22 +89,24 @@ class PayController extends BaseController
             'phone' => $post['phone'] ,
             'card_id' => $post['card_id'] ,
         );
+
+        $card = M ('BankCard')->where (array ('agent_id' => $agent['id']))->find ();
+        $car_way = substr ($post['card_code'] , -4);
+        $car_ways = M ('BankType')->where (array ('id' => $post['card_id']))->field ('bank_name')->find ();
+        $car = substr ($car_ways['bank_name'] , 0) . '储蓄卡   尾号' . $car_way;
+        $data['tail_number'] = $car;
         $agent_id = M ('BankCard')->where (array ('agent_id' => $data['agent_id'] , 'card_code' => $post['card_code']))->find ();
         if ( !empty($agent_id) ) {
             $save = M ('BankCard')->where (array ('agent_id' => $data['agent_id']))->save ($data);
             $this->apiResponse ('1' , '此卡号已绑定');
         }
-        $card = M ('BankCard')->where (array ('agent_id' => $agent['id']))->find ();
-        $car_way = substr ($post['card_code'] , -4);
-        $car_ways = M ('BankType')->where (array ('id' => $post['card_id']))->field ('bank_name')->find ();
-        $car = substr ($car_ways['bank_name'] , 0) . '储蓄卡   尾号' . $car_way;
-        /* if($post['card_id'] = 1){
-             $car = '建设储蓄卡  尾号'.$car_way;
-         }else if($post['card_id'] = 2){
-             $car = '中行储蓄卡  尾号'.$car_way;
-         }else if($post['card_id'] = 3){
-             $car = '农行储蓄卡  尾号'.$car_way;
-         }*/
+//         if($post['card_id'] = 1){
+//             $car = '建设储蓄卡  尾号'.$car_way;
+//         }else if($post['card_id'] = 2){
+//             $car = '中行储蓄卡  尾号'.$car_way;
+//         }else if($post['card_id'] = 3){
+//             $car = '农行储蓄卡  尾号'.$car_way;
+//         }
         if ( empty($card) ) {
             $add = M ('BankCard')->add ($data);
             $this->apiResponse ('1' , '绑定成功' , $car);
@@ -154,9 +156,10 @@ class PayController extends BaseController
      */
     public function getWithdraw ()
     {
-        $post = checkAppData ('token,price' , 'token-提现金额');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post = checkAppData ('token,price,card_id' , 'token-提现金额-银行卡ID');
+//        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
 //        $post['price'] = 500;
+//        $post['card_id'] = 3;
 
         $agent = $this->getAgentInfo ($post['token']);
         $data = array (
@@ -166,6 +169,13 @@ class PayController extends BaseController
             $this->apiResponse ('0' , '对不起,您余额不足');
         }
         $balance = M ('Agent')->where (array ('id' => $agent['id']))->save ($data);
+        $add = array(
+            'agent_id' =>$agent['id'],
+            'money' => $post['price'],
+            'card_id' =>$post['card_id'],
+            'create_time' => time(),
+        );
+        $withdraw = M ('Withdraw')->add ($add);
         if ( !empty($balance) ) {
             $this->apiResponse ('1' , '已提交申请');
         } else {

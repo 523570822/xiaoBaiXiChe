@@ -222,27 +222,27 @@ class CarWasherController extends BaseController
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];
             $cars[$k]['id'] = $v['id'];
+           /* $car_data['lon'] = 1;
+            $car_data['lat'] = 2;
+            $car_data['electricity'] = 3;
+            $car_data['water_volume'] =4;
+            $car_data['foam'] = 5;
+            $car_data['update_time'] = 6;
+            $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);*/
+
             $query = 'runtime_query';
             //$mana = 'manage';
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
             foreach ($queryitem[$k] as $kk=>$vv){
                 foreach ($vv as $kk1=>$vv1){
-//                    $car_data['lon'] = $vv1['queryitem']['location']['longitude'];
-//                    $car_data['lat'] = $vv1['queryitem']['location']['latitude'];
-//                    $car_data['electricity'] = $vv1['queryitem']['device_energy'];
-//                    $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
-//                    $car_data['foam'] = $vv1['queryitem']['foam_usage'];
-                    $car_data['lon'] = 1;
-                    $car_data['lat'] = 2;
-                    $car_data['electricity'] = 3;
-                    $car_data['water_volume'] =4;
-                    $car_data['foam'] = 5;
-                    $car_data['update_time'] = 6;
+                    $car_data['lon'] = $vv1['queryitem']['location']['longitude'];
+                    $car_data['lat'] = $vv1['queryitem']['location']['latitude'];
+                    $car_data['electricity'] = $vv1['queryitem']['device_energy'];
+                    $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
+                    $car_data['foam'] = $vv1['queryitem']['foam_usage'];
                 }
-                $car_save = M('CarWasher')->where()->save($car_data);
-//                var_dump($car_data);
-//                var_dump($vv1);exit;
+                $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
             }
         }
 
