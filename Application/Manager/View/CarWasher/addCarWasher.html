@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<include file="Public/head" />
+<include file="Public/head"/>
 <body>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
@@ -10,33 +10,28 @@
                 <div class="layui-card-body">
                     <div class="layui-form">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">管理组名称</label>
+                            <label class="layui-form-label">洗车机编号</label>
                             <div class="layui-input-block">
-                                <input type="text" name="name" value="" class="layui-input w300" required>
+                                <input type="text" name="mc_id" value="" placeholder="请输入24位洗车机编码" class="layui-input w300" required>
                             </div>
                         </div>
-                        <!--<div class="layui-form-item">-->
-                            <!--<label class="layui-form-label">上级管理组</label>-->
-                            <!--<div class="layui-input-block">-->
-                                <!--<select name="p_id" class="layui-input w300">-->
-                                    <!--<option value="">选择上级管理组</option>-->
-                                    <!--<volist name="group_list" id="item">-->
-                                        <!--<option value="{$item.id}">{$item.name}</option>-->
-                                    <!--</volist>-->
-                                <!--</select>-->
-                            <!--</div>-->
-                        <!--</div>-->
                         <div class="layui-form-item">
-                            <label class="layui-form-label">排序</label>
+                            <label class="layui-form-label">店铺名称</label>
                             <div class="layui-input-block">
-                                <input type="text" name="sort" value="0" class="layui-input w300">
+                                <select name="p_id" class="layui-input w300">
+                                    <option value="">请选择店铺</option>
+                                    <volist name="shop_list" id="item">
+                                        <option value="{$item.id}">{$item.shop_name}</option>
+                                    </volist>
+                                </select>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">状态</label>
                             <div class="layui-input-block">
                                 <label class="layui-choose" for="status_1">
-                                    <input type="radio" id="status_1" name="status" value="1" class="layui-input" checked required/>
+                                    <input type="radio" id="status_1" name="status" value="1" class="layui-input"
+                                           checked required/>
                                     启用
                                 </label>
                                 <label class="layui-choose" for="status_2">
@@ -45,44 +40,73 @@
                                 </label>
                             </div>
                         </div>
-                        <volist name="menu_list" key="key" id="item">
-                            <if condition="$item['system'] eq 0">
-                            <div class="layui-form-item">
-                                <label class="layui-form-label"><?php echo !$key_1?'菜单权限':''; $key_1 = true;?></label>
-                                <div class="layui-input-block">
-                                    <label class="layui-choose" for="menus_{$item.id}">
-                                        <input type="checkbox" id="menus_{$item.id}" name="menu" value="{$item.id}" class="layui-input checkedAllMenu" required/>
-                                        {$item.name}
-                                    </label>
-                                    <volist name="item['sub_list']" id="sub_item">
-                                        <label class="layui-choose" for="menus_{$sub_item.id}">
-                                            <input type="checkbox" id="menus_{$sub_item.id}" name="menu" value="{$sub_item.id}" class="layui-input checkedParentMenu"/>
-                                            {$sub_item.name}
-                                        </label>
+                        <!--<div class="layui-form-item">-->
+                            <!--<label class="layui-form-label">洗车机图片</label>-->
+                            <!--<div class="layui-input-block">-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<button type="button" class="layui-btn"   id="uploadBtn2"><i class="layui-icon"></i>选择图片</button>-->
+                                <!--</div>-->
+                                <!--<div class="layui-input-inline" id="filename"> </div>-->
+                                <!--<if condition="$row['washcar_pic']  neq 0">-->
+                                    <!--<div class="layui-input-block img-show">-->
+                                        <!--<div class="img-show-item" id="Upload_washcar_pic_1_pre">-->
+                                            <!--<img src="{$row.washcar_pic}">-->
+                                            <!--<i class="layui-icon layui-icon-close close" onclick="delFile('Upload_washcar_pic_1', '{$row.washcar_pic}');"></i>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</if>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="layui-form-item">-->
+                            <!--<label class="layui-form-label">排序</label>-->
+                            <!--<div class="layui-input-block">-->
+                                <!--<input type="number" name="sort" value="" placeholder="0"  class="layui-input w300" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">加盟商</label>
+                            <div class="layui-input-block">
+                                <select name="agent_id" class="layui-input w300">
+                                    <option value="">请选择加盟商</option>
+                                    <volist name="list" id="item">
+                                        <option value="{$item.id}">{$item.nickname}</option>
                                     </volist>
-                                </div>
+                                </select>
                             </div>
-                            </if>
-                        </volist>
-                        <volist name="menu_list" key="key" id="item">
-                            <if condition="$item['system'] eq 1">
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label"><?php echo !$key_2?'顶部菜单':''; $key_2 = true;?></label>
-                                    <div class="layui-input-block">
-                                        <label class="layui-choose" for="menus_{$item.id}">
-                                            <input type="checkbox" id="menus_{$item.id}" name="menu" value="{$item.id}" class="layui-input checkedAllMenu" required/>
-                                            {$item.name}
-                                        </label>
-                                        <volist name="item['sub_list']" id="sub_item">
-                                            <label class="layui-choose" for="menus_{$sub_item.id}">
-                                                <input type="checkbox" id="menus_{$sub_item.id}" name="menu" value="{$sub_item.id}" class="layui-input checkedParentMenu"/>
-                                                {$sub_item.name}
-                                            </label>
-                                        </volist>
-                                    </div>
-                                </div>
-                            </if>
-                        </volist>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">经度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lon" value="" placeholder="000.000000000000" class="layui-input w300">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">纬度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lat" value="" placeholder="000.000000000000" class="layui-input w300">
+                            </div>
+                        </div>
+                        <label class="layui-form-label">所在地区</label>
+                        <div class="layui-input-block">
+                            <select name="province" class="layui-input w300" id="province">
+                                <option value="">--请选择省份--</option>
+                                <volist name="province" id="itme">
+                                    <option value="{$itme.id}">{$itme.region_name}</option>
+                                </volist>
+                            </select>
+                            <select name="city" class="layui-input w300" id="city">
+                                <option value="">--请选择城市--</option>
+                            </select>
+                            <select name="area" class="layui-input w300" id="area">
+                                <option value="">--请选择区、县--</option>
+                            </select>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">详细地址</label>
+                            <div class="layui-input-block">
+                                <textarea  name="address" id="address" style="width:59.35%; height:50px; " placeholder="请输入详细地址" class="layui-input w300">{$row.address}</textarea>
+                            </div>
+                        </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
                                 <button class="layui-btn" onclick="goback()">返回</button>
@@ -90,7 +114,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -98,31 +121,108 @@
 </div>
 </body>
 <script>
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn2',
+        // 多文件上传-true 单文件上传-false
+        files: true,
+        // 展示图片
+        showFile: false,
+        // input框的name
+        fieldName: 'washcar_pic'
+    });
     // 提交信息
     function submit() {
         var data = checkParam();
-        if(!data) return false;
-        doPost('', data, function(res) {
-            showMsg(res.code, res.message, function() {
+        if (!data) return false;
+        doPost('', data, function (res) {
+            showMsg(res.code, res.message, function () {
                 goback();
             });
         })
     }
-    // 菜单全选
-    $('.checkedAllMenu').click(function() {
-        if($(this).is(':checked')) {
-            $(this).parent().parent().find('[name="menu"]').prop('checked', true);
-        }else {
-            $(this).parent().parent().find('[name="menu"]').prop('checked', false);
-        }
+    $(function () {
+        $('#province').change(function () {
+            $('#city option[value!=""]').remove();
+            $('#area option[value!=""]').remove();
+            var province = $(this).val();
+            $.ajax({
+                url: "{:U('CarWasher/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: province},
+                success: function (data) {
+                    var html = '<option value="">--请选择城市--</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    $('#city').html(html);
+                }
+            })
+        });
+        $('#city').change(function () {
+            $('#area option[value!=""]').remove();
+            var city = $(this).val();
+            $.ajax({
+                url: "{:U('CarWasher/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: city},
+                success: function (data) {
+                    var html = '<option value="">--请选择地区--</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    $('#area').html(html);
+                }
+            })
+        })
     });
-    // 选中父级菜单
-    $('.checkedParentMenu').click(function() {
-        if($(this).parent().parent().find('.checkedParentMenu[name="menu"]:checked').length>0) {
-            $(this).parent().parent().find('.checkedAllMenu').prop('checked', true);
-        }else {
-            $(this).parent().parent().find('.checkedAllMenu').prop('checked', false);
-        }
-    })
+
+    //编辑器
+    $(document).ready(function(){
+        KindEditor.ready(function(K){
+            window.editor = K.create('#content',{
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items:[
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough','lineheight', '|',
+                    'image', 'multiimage', '|',
+                    'link', 'baidumap','fullscreen'
+                ],
+                afterBlur:function(){this.sync();}
+            });
+        });
+    });
+
+
+    /*
+        描述：上传图片附带删除 再次地方可以加上一个ajax进行提交到后台进行删除
+     * */
+    function removeImg(r){
+        $(r).parent().remove();
+    }
+    /*
+        描述：上传图片附带放大查看处理
+     * */
+    function lookBigImg(b){
+        $(".shadeImg").fadeIn(500);
+        $(".showImg").attr("src",$(b).attr("src"))
+    }
+    /*
+        描述：关闭弹出层
+     * */
+    function closeShade(){
+        $(".shade").fadeOut(500);
+    }
+    /*
+        描述：关闭弹出层
+     * */
+    function closeShadeImg(){
+        $(".shadeImg").fadeOut(500);
+    }
+
 </script>
 </html>

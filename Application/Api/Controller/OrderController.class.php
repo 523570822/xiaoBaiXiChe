@@ -193,7 +193,7 @@ class OrderController extends BaseController
                             $this->apiResponse ('0' , '下单失败');
                         }
                     } else {
-                        $this->apiResponse ('0' , '开启失败');
+                        $this->apiResponse ('10' , '开启失败');
                     }
                 } elseif ( $request['w_type'] == 2 ) {
                     $rule = array ('mc_id' , 'string' , '请输入洗车机编号');

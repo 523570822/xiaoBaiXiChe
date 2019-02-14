@@ -25,8 +25,8 @@
                                        value="{$_REQUEST['mc_id']}">
                             </div>
                             <!--<div class="layui-input-inline">-->
-                                <!--<input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"-->
-                                       <!--value="{$_REQUEST['nickname']}">-->
+                            <!--<input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"-->
+                            <!--value="{$_REQUEST['nickname']}">-->
                             <!--</div>-->
                             <div class="layui-input-inline layui-form">
                                 <select name="type" class="layui-input" style="width: 150px">
@@ -64,15 +64,15 @@
                             </div>
 
                             <!--<div class="layui-input-inline">-->
-                                <!--<input type="text" name="start_time" class="layui-input" id="test1"-->
-                                       <!--value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="注册开始时间">-->
-                                <!--&lt;!&ndash;<input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']} >&ndash;&gt;-->
+                            <!--<input type="text" name="start_time" class="layui-input" id="test1"-->
+                            <!--value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="注册开始时间">-->
+                            <!--&lt;!&ndash;<input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']} >&ndash;&gt;-->
                             <!--</div>-->
                             <!--—-->
                             <!--<div class="layui-input-inline">-->
-                                <!--<input type="text" name="end_time" class="layui-input" id="test2"-->
-                                       <!--value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="注册结束时间">-->
-                                <!--&lt;!&ndash;<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">&ndash;&gt;-->
+                            <!--<input type="text" name="end_time" class="layui-input" id="test2"-->
+                            <!--value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="注册结束时间">-->
+                            <!--&lt;!&ndash;<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">&ndash;&gt;-->
                             <!--</div>-->
                             <button class="layui-btn" type="submit">搜索</button>
                             <button class="layui-btn" type="button" id="button">导出搜索</button>
@@ -125,20 +125,20 @@
                                 <td>{$item.nickname}</td>
                                 <td>
                                     <switch name="item.type">
-                                        <case value="1">空闲中</case>
-                                        <case value="2">使用中</case>
-                                        <case value="3">预订中</case>
-                                        <case value="4">暂停中</case>
-                                        <default />
+                                        <case value="1"><span style="color: darkblue;">空闲中</span></case>
+                                        <case value="2"><span style="color: green;">使用中</span></case>
+                                        <case value="3"><span style="color: lightblue;">预订中</span></case>
+                                        <case value="4"><span style="color: red;">暂停中</span></case>
+                                        <default/>
                                     </switch>
                                 </td>
                                 <td>
                                     <switch name="item.status">
-                                        <case value="1">正常</case>
-                                        <case value="2">故障</case>
-                                        <case value="3">报警</case>
-                                        <case value="4">不在线</case>
-                                        <default />
+                                        <case value="1"><span style="color: green;">正常</span></case>
+                                        <case value="2"><span style="color: orange;">故障</span></case>
+                                        <case value="3"><span style="color: red;">报警</span></case>
+                                        <case value="4"><span style="color: grey;">不在线</span></case>
+                                        <default/>
                                     </switch>
                                 </td>
                                 <!--<td>{$item['create_time']|date='Y-m-d H:i',###}</td>-->
@@ -149,8 +149,8 @@
                                         编辑
                                     </button>
                                     <button class="layui-btn layui-btn-xs layui-btn-warm"
-                                            onclick="confirmOneAction('{:U('CarWasher/lockCarWasher')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">
-                                        {$item['status'] == 1 ? '禁用' : '启用'}
+                                            onclick="confirmOneAction('{:U('CarWasher/lockCarWasher')}', '{$item['status'] == 1 ? '关闭' : '处理'}','{$item.id}')">
+                                        {$item['status'] == 1 ? '关闭' : '处理'}
                                     </button>
                                     <button class="layui-btn layui-btn-xs layui-btn-danger"
                                             onclick="confirmDelAction('{:U('CarWasher/delete',array('model'=>'CarWasher'))}', '删除','{$item.id}')">

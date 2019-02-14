@@ -84,23 +84,56 @@ class CarWasherController extends BaseController
         if(IS_POST) {
             $request = I('post.');
             $rule = array(
-                array('account','phone','用户名必须为手机号格式'),
-                array('password','string','请输入密码'),
-                array('nickname','string','请输入昵称'),
-                array('head_pic','int','请上传头像'),
-                array('email','email','请输入邮箱'),
-                array('sex','int','请选择性别'),
+                array('mc_id','string','洗车机编号'),
+                array('p_id','string','请选择店铺'),
+                array('agent_id','string','请选择加盟商'),
+                array('lon','string','经度'),
+                array('lat','string','纬度'),
+//                array('sort','int','排序'),
+                array('province','string','省份'),
+                array('city','string','城市'),
+                array('address','string','具体地址'),
+                array('area','string','区、县'),
+//                array('washcar_pic','string','机器照片'),
             );
-            $data = $this->checkParam($rule);
-            $where['id'] = $request['id'];
-            $data['update_time'] = time();
-            $res = D('Member')->querySave($where,$data);
-            $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $data);
+            $data = $this->checkParam ($rule);
+            $data['create_time']=time ();
+            $data['washcar_pic']=$request['washcar_pic'];
+            $data['area']=$request['area'];
+            $data['old_address']=$request['address'];
+            $data['sort']=$request['sort'];
+            $res = D('CarWasher')->querySave(["id"=>I('post.id')], $data);
+            $res ?  $this->apiResponse(1, '修改成功') : $this->apiResponse(0,"44444" ,$data);
         }else {
             $id = $_GET['id'];
-            $row = D('Member')->queryRow($id);
-            $row['covers'] = $this->getOnePath($row['head_pic'],0);
+            $row = D('CarWasher')->queryRow($id);
+            $province = D('Region')->select(array('parent_id'=>1,'region_type'=>'1'),'region_name,id');
+            $where = array('status'=>array('neq', 9));
+            $field = 'id, shop_name, status';
+            $shop_list = D('Washshop')->queryList($where, $field);
+            $this->assign('shop_list', $shop_list);
+            $PAP = array('status'=>array('neq', 9));
+            $ARA = 'id, p_id , nickname, status';
+            $list = D('Agent')->queryList($PAP, $ARA);
+            $this->assign('list', $list);
+            $this->assign('province',$province);
             $this->assign('row',$row);
+            //下拉框选择
+            $id = $_GET['id'];//用户id
+            $row = D('CarWasher')->queryRow($id);
+            $province = D('Region')->queryList(array('region_type'=>'1'),'region_name,id');
+            $this->assign('province',$province);
+            $this->assign('row',$row);
+            //显示
+            $row['province'];                                                     //取字段
+            $data = D('Region')->queryRow($row['province']);    /*地区表id，单条查询*/
+            $this->assign('pp',$data);                                      //传字段
+            $row['city'];
+            $fall = D('Region')->queryRow($row['city']);        /*地区表id，单条查询*/
+            $this->assign('city',$fall);                                    //传字段
+            $row['area'];
+            $all = D('Region')->queryRow($row['area']);         /*地区表id，单条查询*/
+            $this->assign('area',$all);                                     //传字段
             $this->display();
         }
     }
@@ -111,15 +144,66 @@ class CarWasherController extends BaseController
      * Date: 2019-01-25 17:32:02
      */
     public function addCarWasher() {
+        if(IS_POST) {
+            $request = I('post.');
+            $rule = array(
+                array('mc_id','string','洗车机编号'),
+                array('p_id','string','请选择店铺'),
+                array('agent_id','string','请选择加盟商'),
+                array('lon','string','经度'),
+                array('lat','string','纬度'),
+                array('sort','int','排序'),
+                array('province','int','省份'),
+                array('city','int','城市'),
+                array('address','string','具体地址'),
+//                array('area','int','区、县'),
+//                array('washcar_pic','string','机器照片'),
+            );
+            $data = $this->checkParam ($rule);
+            $data['create_time']=time ();
+            $data['washcar_pic']=$request['washcar_pic'];
+            $data['area']=$request['area'];
+            $data['old_address']=$request['address'];
+            $res = D('CarWasher')->add ($data);
+            $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $data);
+        }else {
+            $province = D('Region')->select(array('parent_id'=>1,'region_type'=>'1'),'region_name,id');
+            $where = array('status'=>array('neq', 9));
+            $field = 'id, shop_name, status';
+            $shop_list = D('Washshop')->queryList($where, $field);
+            $this->assign('shop_list', $shop_list);
+            $PAP = array('status'=>array('neq', 9));
+            $ARA = 'id, p_id , nickname, status';
+            $list = D('Agent')->queryList($PAP, $ARA);
+            $this->assign('list', $list);
+            $this->assign('province',$province);
+            $this->display();
+        }
+    }
+
+    /**
+     * 禁启洗车机
+     * User: admin
+     * Date: 2019-02-13 11:37:25
+     */
+    public function lockCarWasher() {
+        $id = $this->checkParam(array('id', 'int'));
+        $status = D('CarWasher')->queryField($id, 'status');
+        $data = $status == 1 ? array('status'=>4) : array('status'=>1);
+        $Res = D('CarWasher')->querySave($id, $data);
+        $Res ? $this->apiResponse(1, $status == 1 ? '关闭成功' : '处理成功') : $this->apiResponse(0, $status == 1 ? '关闭失败' : '处理成功');
 
     }
 
-//    /**
-//     * 删除洗车机
-//     * User: admin
-//     * Date: 2019-01-25 17:33:16
-//     */
-//    public function delete() {
-//
-//    }
+    /**
+     * 三级联动
+     * User: admin
+     * Date: 2019-02-13 15:22:46
+     */
+    public function ajaxGetRegion()
+    {
+        $request = I('POST.');
+        $region = D('Region')->queryList(array('parent_id'=>$request['id']),'region_name,id');
+        $this->ajaxReturn($region , 'JSON');
+    }
 }
