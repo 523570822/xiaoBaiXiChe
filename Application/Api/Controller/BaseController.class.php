@@ -209,7 +209,7 @@ class BaseController extends ControllerService
                 $suffix = 'setitem';
                 if ( $mode == 1 ) {//json格式数据
                     $arr_param = [//扫码 — 洗车机设置
-                        "service_status" => 5 ,
+                        "service_status" => 5 ,     //开启
                         "pump1_status" => 3 ,
                         "pump2_status" => 3 ,
                         "valve1_status" => 3 ,
@@ -226,7 +226,7 @@ class BaseController extends ControllerService
                     ];
                 } elseif ( $mode == 2 ) {
                     $arr_param = [//预约 — 洗车机设置
-                        "service_status" => 6 ,
+                        "service_status" => 6 ,       //预约
                         "pump1_status" => 0 ,
                         "pump2_status" => 0 ,
                         "valve1_status" => 0 ,
@@ -234,7 +234,7 @@ class BaseController extends ControllerService
                     ];
                 } elseif ( $mode == 3 ) {
                     $arr_param = [//结算 — 洗车机设置
-                        "service_status" => 4 ,
+                        "service_status" => 4 ,         //结算
                         "pump1_status" => 0 ,
                         "pump2_status" => 0 ,
                         "valve1_status" => 0 ,

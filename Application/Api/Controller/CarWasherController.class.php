@@ -39,7 +39,7 @@ class CarWasherController extends BaseController
 //        $post['size'] = 2;
         $agent = $this->getAgentInfo($post['token']);
         $orders[] = 'id ASC';
-        $car_washer = D('CarWasher')->field('id,mc_id')->order($orders)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $car_washer = D('CarWasher')->field('id,mc_code as mc_id')->order($orders)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach($car_washer as $k=>$v){
             $income = D('Income')->where(array('car_washer_id'=>$v['id'],'agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(car_wash) as car_wash')->group('car_washer_id')->find();
             if(!empty($income)){
@@ -118,9 +118,9 @@ class CarWasherController extends BaseController
 
         if($post['car_num']){        //搜索洗车机编号
             if(!empty($post['car_num'])){
-                $where['mc_id'] = array('Like', "%" . $post['car_num'] . "%");
+                $where['mc_code'] = array('Like', "%" . $post['car_num'] . "%");
             }else{
-                $where['mc_id'] = '';
+                $where['mc_code'] = '';
             }
         }
 
@@ -136,9 +136,9 @@ class CarWasherController extends BaseController
 
         $where['agent_id'] = $agent['id'];
         if ($post['page'] != '') {
-            $result = M('CarWasher')->field('address,mc_id,status')->where($where)->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+            $result = M('CarWasher')->field('address,mc_code as mc_id,status')->where($where)->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         } else {
-            $result = M('CarWasher')->field('address,mc_id,status')->where($where)->order($order)->select();
+            $result = M('CarWasher')->field('address,mc_code as mc_id,status')->where($where)->order($order)->select();
         }
         if($result){
             $this->apiResponse('1','成功',$result);
@@ -165,7 +165,7 @@ class CarWasherController extends BaseController
         $agent = $this->getAgentInfo($post['token']);
 //        $income = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agent_id'=>$agent['id'],'day'=>$post['day']))->field('net_income,create_time')->select();
 //        foreach ($income as $k=>$v){
-        $order = M('CarWasher')->where(array('id'=>$post['car_washer_id'],'agent_id'=>$agent['id']))->field('mc_id,id')->find();
+        $order = M('CarWasher')->where(array('id'=>$post['car_washer_id'],'agent_id'=>$agent['id']))->field('mc_code as mc_id,id')->find();
         $orders[] = 'pay_time DESC';
         $order_num = M('Order')->where(array('c_id'=>$order['id'],'o_type'=>1,'status'=>2))->field('orderid as mc_id,pay_money as net_income,pay_time as create_time')->order($orders)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
             foreach($order_num as $k=>$v){
@@ -201,8 +201,8 @@ class CarWasherController extends BaseController
         $agent = $this->getAgentInfo($post['token']);
         $where['agent_id'] = $agent['id'];
         $where['status'] = array('neq',9);
-        $where['mc_id'] = $post['car_id'];
-        $car_washer = M('CarWasher')->where($where)->field('mc_id,address,status,electricity,water_volume,foam')->find();
+        $where['mc_code'] = $post['car_id'];
+        $car_washer = M('CarWasher')->where($where)->field('mc_code as mc_id,address,status,electricity,water_volume,foam')->find();
         if($car_washer){
             $this->apiResponse('1','成功',$car_washer);
         }else{
@@ -234,6 +234,7 @@ class CarWasherController extends BaseController
             //$mana = 'manage';
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
+            var_dump($queryitem[49]['devices'][0]);
             foreach ($queryitem[$k] as $kk=>$vv){
                 foreach ($vv as $kk1=>$vv1){
                     $car_data['lon'] = $vv1['queryitem']['location']['longitude'];
