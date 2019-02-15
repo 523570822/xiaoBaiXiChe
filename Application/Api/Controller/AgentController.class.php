@@ -670,35 +670,46 @@ class AgentController extends BaseController
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
 //        $post['day'] = 1550073600;
 //        $post['page'] = 1;
-//        $post['size'] = 100;
+//        $post['size'] = 1;
         /*if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
         }*/
         $agent = $this->getAgentInfo($post['token']);
 
         $order[] = 'id ASC';
-        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_code as mc_id')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_code as mc_id')->select();
 
         foreach ($car_washer as $k=>$v){
-            $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->select();
-            foreach ($order_num as $kkk=>$vvv){
-                $time = strtotime(date('Y-m-d',$vvv['pay_time']));
-                if($time == $post['day']){
-                    if(!empty($vvv['orderid'])){
-                        if($agent['grade'] == 1){
-                            $car_washer[$k][$kkk]['net_income'] = $vvv['net_income']*0.05;
-                        }elseif($agent['grade'] == 2){
-                            $car_washer[$k][$kkk]['net_income'] = $vvv['net_income']*0.10;
-                        }elseif($agent['grade'] == 3){
-                            $car_washer[$k][$kkk]['net_income'] = $vvv['net_income']*0.15;
+            $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+            foreach ($order_num as $kkk=>$vvv) {
+                $time = strtotime(date('Y-m-d', $vvv['pay_time']));
+
+                if ($time == $post['day']) {
+                    if (!empty($vvv['orderid'])) {
+                        if ($agent['grade'] == 1) {
+                            $cars[$kkk]['net_income'] = $vvv['net_income'] * 0.05;
+                        } elseif ($agent['grade'] == 2) {
+                            $cars[$kkk]['net_income'] = $vvv['net_income'] * 0.10;
+                        } elseif ($agent['grade'] == 3) {
+                            $cars[$kkk]['net_income'] = $vvv['net_income'] * 0.15;
                         }
-                        $car_washer[$k][$kkk]['create_time'] = $vvv['pay_time'];
-                        $car_washer[$k][$kkk]['mc_id'] = $vvv['orderid'];
-                        $car_washer[$k][$kkk]['car_washer'] = $v['mc_id'];
+                        $cars[$kkk]['create_time'] = $vvv['pay_time'];
+                        $cars[$kkk]['mc_id'] = $vvv['orderid'];
+                        $cars[$kkk]['car_washer'] = $v['mc_id'];
+
+//                        $net_income = $cars[$kkk]['net_income'];
+//                        $create_time = $cars[$kkk]['create_time'];
+//                        $car_washerss = $cars[$kkk]['car_washer'];
                     }
                 }
             }
+
+//            $v['net_income'] = $net_income;
+//            $v['create_time'] = $create_time;
+//            $v['car_washer'] = $car_washerss;
         }
+
+
         if(!empty($cars)){
             $this->apiResponse('1','成功',$cars);
         }else{
