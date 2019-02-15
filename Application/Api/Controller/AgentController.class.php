@@ -686,15 +686,15 @@ class AgentController extends BaseController
                 if($time == $post['day']){
                     if(!empty($vvv['orderid'])){
                         if($agent['grade'] == 1){
-                            $cars[$k][$kkk]['net_income'] = $vvv['net_income']*0.05;
+                            $car_washer[$k][$kkk]['net_income'] = $vvv['net_income']*0.05;
                         }elseif($agent['grade'] == 2){
-                            $cars[$k][$kkk]['net_income'] = $vvv['net_income']*0.10;
+                            $car_washer[$k][$kkk]['net_income'] = $vvv['net_income']*0.10;
                         }elseif($agent['grade'] == 3){
-                            $cars[$k][$kkk]['net_income'] = $vvv['net_income']*0.15;
+                            $car_washer[$k][$kkk]['net_income'] = $vvv['net_income']*0.15;
                         }
-                        $cars[$k][$kkk]['create_time'] = $vvv['pay_time'];
-                        $cars[$k][$kkk]['mc_id'] = $vvv['orderid'];
-                        $cars[$k][$kkk]['car_washer'] = $v['mc_id'];
+                        $car_washer[$k][$kkk]['create_time'] = $vvv['pay_time'];
+                        $car_washer[$k][$kkk]['mc_id'] = $vvv['orderid'];
+                        $car_washer[$k][$kkk]['car_washer'] = $v['mc_id'];
                     }
                 }
             }
