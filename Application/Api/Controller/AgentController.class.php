@@ -582,7 +582,7 @@ class AgentController extends BaseController
         $agent = $this->getAgentInfo($post['token']);
 
         $order[] = 'id ASC';
-        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_id')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_code as mc_id')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
 
         foreach ($car_washer as $k=>$v){
             $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->find();
@@ -667,36 +667,35 @@ class AgentController extends BaseController
      */
     public function carCommInfo(){
         $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-//        $post['token'] = '64a516f028e6fb9cdc7f9dc497f5653a';
-//        $post['day'] = 1548000000;
+//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['day'] = 1550073600;
 //        $post['page'] = 1;
-//        $post['size'] = 10;
+//        $post['size'] = 100;
         /*if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
         }*/
         $agent = $this->getAgentInfo($post['token']);
 
         $order[] = 'id ASC';
-        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_id')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_code as mc_id')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
 
         foreach ($car_washer as $k=>$v){
-            $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->find();
-            $time = strtotime(date('Y-m-d',$order_num['pay_time']));
-
-//            var_dump($time);exit;
-            if($time == $post['day']){
-                if(!empty($order_num['orderid'])){
-                    if($agent['grade'] == 1){
-                        $cars[$k]['net_income'] = $order_num['net_income']*0.05;
-                    }elseif($agent['grade'] == 2){
-                        $cars[$k]['net_income'] = $order_num['net_income']*0.10;
-                    }elseif($agent['grade'] == 3){
-                        $cars[$k]['net_income'] = $order_num['net_income']*0.15;
+            $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->select();
+            foreach ($order_num as $kkk=>$vvv){
+                $time = strtotime(date('Y-m-d',$vvv['pay_time']));
+                if($time == $post['day']){
+                    if(!empty($vvv['orderid'])){
+                        if($agent['grade'] == 1){
+                            $cars[$k][$kkk]['net_income'] = $vvv['net_income']*0.05;
+                        }elseif($agent['grade'] == 2){
+                            $cars[$k][$kkk]['net_income'] = $vvv['net_income']*0.10;
+                        }elseif($agent['grade'] == 3){
+                            $cars[$k][$kkk]['net_income'] = $vvv['net_income']*0.15;
+                        }
+                        $cars[$k][$kkk]['create_time'] = $vvv['pay_time'];
+                        $cars[$k][$kkk]['mc_id'] = $vvv['orderid'];
+                        $cars[$k][$kkk]['car_washer'] = $v['mc_id'];
                     }
-
-                    $cars[$k]['create_time'] = $order_num['pay_time'];
-                    $cars[$k]['mc_id'] = $order_num['orderid'];
-                    $cars[$k]['car_washer'] = $v['mc_id'];
                 }
             }
         }

@@ -222,19 +222,11 @@ class CarWasherController extends BaseController
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];
             $cars[$k]['id'] = $v['id'];
-           /* $car_data['lon'] = 1;
-            $car_data['lat'] = 2;
-            $car_data['electricity'] = 3;
-            $car_data['water_volume'] =4;
-            $car_data['foam'] = 5;
-            $car_data['update_time'] = 6;
-            $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);*/
-
             $query = 'runtime_query';
             //$mana = 'manage';
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
-            var_dump($queryitem[49]['devices'][0]);
+
             foreach ($queryitem[$k] as $kk=>$vv){
                 foreach ($vv as $kk1=>$vv1){
                     $car_data['lon'] = $vv1['queryitem']['location']['longitude'];
@@ -245,7 +237,27 @@ class CarWasherController extends BaseController
                 }
                 $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
             }
+
+
+
         }
 
+    }
+
+    /**
+     *s设备控制
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/02/15 13:05
+     */
+    public function device(){
+        $where['status'] = array('neq',9);
+        $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
+        foreach ($car as $k=>$v) {
+            $cars[$k]['car_num'] = $v['mc_id'];
+            $cars[$k]['id'] = $v['id'];
+            $manage = 'device_manage';
+            $devmanage[$k] = $this->send_post($manage,$cars[$k]['car_num'],1);
+            var_dump($devmanage[49]['devices'][0]);
+        }
     }
 }

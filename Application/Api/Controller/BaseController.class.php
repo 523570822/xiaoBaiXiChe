@@ -210,7 +210,7 @@ class BaseController extends ControllerService
                 if ( $mode == 1 ) {//json格式数据
                     $arr_param = [//扫码 — 洗车机设置
                         "service_status" => 5 ,     //开启
-                        "pump1_status" => 3 ,
+                        "pump1_status" => 1 ,
                         "pump2_status" => 3 ,
                         "valve1_status" => 3 ,
                         "vacuum_status" => 2 ,
