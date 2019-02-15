@@ -78,11 +78,11 @@ class WithdrawController extends BaseController
      */
     public function yesWithdraw() {
         $id = $_POST['id'];
-
         $data['status'] = 2;
         $Res = D('Withdraw')->querySave($id, $data);
-        $Res ? $this->apiResponse(1, $status == 1 ? '禁用成功' : '启用成功') : $this->apiResponse(0, $status == 1 ? '禁用失败' : '启用失败');
-
+        if($Res){
+            $this->apiResponse('1','同意体现');
+        }
     }
 
     /**
@@ -91,6 +91,11 @@ class WithdrawController extends BaseController
      * Date: 2019-02-14 14:54:19
      */
     public function noWithdraw() {
-
+        $id = $_POST['id'];
+        $data['status'] = 3;
+        $Res = D('Withdraw')->querySave($id, $data);
+        if($Res){
+            $this->apiResponse('1','拒绝提现');
+        }
     }
 }

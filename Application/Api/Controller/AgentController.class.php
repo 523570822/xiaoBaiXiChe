@@ -653,7 +653,7 @@ class AgentController extends BaseController
             'day_commission' => $now_days,
         );
 
-        if(!empty($income)){
+        if(!empty($now_days)){
             $this->apiResponse('1','成功',$data);
         }else{
             $this->apiResponse('0','暂无数据信息');
