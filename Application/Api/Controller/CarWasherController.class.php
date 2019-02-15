@@ -153,7 +153,7 @@ class CarWasherController extends BaseController
      *Date:2019/01/02 10:22
      */
     public function carIncomeInfo(){
-        $post = checkAppData('token,car_washer_id,day,page,size','token-日期时间戳-页数-个数');
+        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
 //        $post['day'] = 1550132967;
 //        $post['page'] = 1;
