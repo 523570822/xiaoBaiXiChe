@@ -621,16 +621,16 @@ class AgentController extends BaseController
     public function CommDetail(){
         $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['in_month'] = 'all';
+//        $post['in_month'] = 1543593788;
 //        $post['page'] = 3;
 //        $post['size'] = 1;
-        if($post['in_month'] == 'all'){
-            $post['in_month'] = strtotime(date('Y-m'));
-        }
+//        if($post['in_month'] == 'all'){
+//            $post['in_month'] = strtotime(date('Y-m'));
+//        }
         $agent = $this->getAgentInfo($post['token']);
         $car_where['status'] = array('neq',9);
         $car_where['agent_id'] = array('eq',$agent['id']);
-        $car_where['month'] = $post['in_month'];
+        $car_where['month'] = strtotime(date('Y-m',$post['in_month']));
         //总提成
         $income = M('Income')->where($car_where)->field('SUM(net_income) as de_income,SUM(detail) as de_detail')->find();
         $commission = $income['de_detail']-$income['de_income'];

@@ -77,14 +77,9 @@ class WithdrawController extends BaseController
      * Date: 2019-02-13 16:36:55
      */
     public function yesWithdraw() {
-        $id = $this->checkParam('id', 'int');
-        $status = D('Withdraw')->queryField($id, 'status');
-        echo M('Withdraw')->_sql();
-        var_dump($status);exit;
+        $id = $_POST['id'];
 
-        /*$data = array(
-            'id' =
-        );*/
+        $data['status'] = 2;
         $Res = D('Withdraw')->querySave($id, $data);
         $Res ? $this->apiResponse(1, $status == 1 ? '禁用成功' : '启用成功') : $this->apiResponse(0, $status == 1 ? '禁用失败' : '启用失败');
 
