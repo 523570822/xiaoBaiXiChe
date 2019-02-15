@@ -526,16 +526,16 @@ class AgentController extends BaseController
     public function incomeDetail(){
         $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['in_month'] = 'all';
+//        $post['in_month'] = 1348950453;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
-        if($post['in_month'] == 'all'){
-            $post['in_month'] = strtotime(date('Y-m'));
-        }
+//        if($post['in_month'] == 'all'){
+//            $post['in_month'] = strtotime(date('Y-m'));
+//        }
         $agent = $this->getAgentInfo($post['token']);
         $car_where['status'] = array('neq',9);
         $car_where['agent_id'] = array('eq',$agent['id']);
-        $car_where['month'] = $post['in_month'];
+        $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
         //总净收入
         $income = M('Income')->where($car_where)->field('SUM(net_income) as de_income')->find();
 
@@ -545,7 +545,7 @@ class AgentController extends BaseController
         $day_income = M('Income')->where($car_where)->field('day,SUM(net_income) as net_income,SUM(detail) as detail')->group('day')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach ($day_income as $k=>$v){
             $time = strtotime(date('Y-m',$v['day']));
-            if($time == $post['in_month']){
+            if($time == $car_where['month']){
                 $now_day['day'] = $v['day'];
                 $now_day['net_income'] = $v['net_income'];
                 $now_day['detail'] = $v['detail'];
@@ -553,12 +553,12 @@ class AgentController extends BaseController
             }
         }
         $data = array(
-            'now_month' => $post['in_month'],
+            'now_month' => $car_where['month'],
             'income' => $income,
             'day_income' => $now_days,
         );
 
-        if(!empty($income)){
+        if(!empty($now_days)){
             $this->apiResponse('1','成功',$data);
         }else{
             $this->apiResponse('0','暂无数据信息');
