@@ -153,25 +153,30 @@ class CarWasherController extends BaseController
      *Date:2019/01/02 10:22
      */
     public function carIncomeInfo(){
-        $post = checkAppData('token,car_washer_id,day,page,size','token-洗车机ID-日期时间戳-页数-个数');
+        $post = checkAppData('token,car_washer_id,day,page,size','token-日期时间戳-页数-个数');
 //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['car_washer_id'] = 1;
-//        $post['day'] = 1548000000;
+//        $post['day'] = 1550132967;
 //        $post['page'] = 1;
-//        $post['size'] = 10;
-        if($post['day'] == 'all'){
-            $post['day'] = strtotime(date('Y-m-d'));
-        }
+//        $post['size'] = 1;
+//        if($post['day'] == 'all'){
+//            $post['day'] = strtotime(date('Y-m-d'));
+//        }
+        $day = strtotime(date('Y-m-d',$post['day']));
         $agent = $this->getAgentInfo($post['token']);
 //        $income = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agent_id'=>$agent['id'],'day'=>$post['day']))->field('net_income,create_time')->select();
 //        foreach ($income as $k=>$v){
-        $order = M('CarWasher')->where(array('id'=>$post['car_washer_id'],'agent_id'=>$agent['id']))->field('mc_code as mc_id,id')->find();
-        $orders[] = 'pay_time DESC';
-        $order_num = M('Order')->where(array('c_id'=>$order['id'],'o_type'=>1,'status'=>2))->field('orderid as mc_id,pay_money as net_income,pay_time as create_time')->order($orders)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $order = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('mc_code as mc_id,id')->select();
+        foreach ($order as $kk=>$vv){
+            $orders[] = 'pay_time DESC';
+            $order_num = M('Order')->where(array('c_id'=>$vv['id'],'o_type'=>1,'status'=>2))->field('orderid as mc_id,pay_money as net_income,pay_time as create_time')->order($orders)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+
             foreach($order_num as $k=>$v){
                 $time[$k] = strtotime(date('Y-m-d',$v['create_time']));
-                if($time[$k] == $post['day']){
-                    $order_nums[$k]['car_washer'] = $order['mc_id'];
+
+
+                if($time[$k] == $day){
+
+                    $order_nums[$k]['car_washer'] = $vv['mc_id'];
                     $order_nums[$k]['mc_id'] = $v['mc_id'];
                     $order_nums[$k]['net_income'] = $v['net_income'];
                     $order_nums[$k]['car_washer'] = $v['mc_id'];
@@ -179,8 +184,9 @@ class CarWasherController extends BaseController
             }
 
 //        }
+        }
+
 //        var_dump($v);
-//        var_dump($order_nums);exit;
         if(!empty($order_nums)){
             $this->apiResponse('1','成功',$order_nums);
         }else{
