@@ -71,7 +71,7 @@ class OrderController extends BaseController {
             $request['mc_id'] = $is['mc_id'];
             return $request['mc_id'];
         } else {
-            $this->apiResponse (11 , '请扫描正确二维码');
+            $this->apiResponse ('0', '请扫描正确二维码');
         }
     }
 
@@ -86,43 +86,36 @@ class OrderController extends BaseController {
      * @param $w_type
      **/
     public function checkMsgs ($mc_id_request , $mc_id_db , $status , $type , $where , $m_id , $w_type) {
-        if ( $mc_id_request != $mc_id_db ) $this->apiResponse ('8' , '找不到该机器');
+        if ( $mc_id_request != $mc_id_db ) $this->apiResponse ('0' , '找不到该机器');
         $check_use = M ('CarWasher')->where (array ('mc_code' => $where , 'm_id' => $m_id))->find ();
         $check_is_use = M ('Order')->where (array ('c_id' => $check_use['id'] , 'm_id' => $m_id , 'w_type' => $w_type , 'is_set' => 0 , 'status' => 1))->find ();
         $msg = '';
-        $code = '';
         switch ($status) {
             case "2":
-                $code = '2';
                 $msg = '机器故障';
                 break;
             case "3":
-                $code = '3';
                 $msg = '机器报警';
                 break;
             case "4":
-                $code = '4';
                 $msg = '机器不在线';
                 break;
         }
-        if ( !empty($msg && $code) ) $this->apiResponse ($code , $msg);
+        if ( !empty($msg) ) $this->apiResponse ('0' , $msg);
         switch ($type) {
             case 2:
-                $code = '5';
                 $msg = '机器正在使用中';
                 $data = $check_is_use['orderid'];
                 break;
             case 3:
-                $code = '6';
                 $msg = '机器已经被预订';
                 $data = $check_is_use['orderid'];
                 break;
             case 4:
-                $code = '7';
                 $msg = '机器暂停使用';
                 break;
         }
-        if ( !empty($msg && $code) ) $this->apiResponse ($code , $msg , $data);
+        if ( !empty($msg) ) $this->apiResponse ('0', $msg , $data);
     }
 
     /**
@@ -195,9 +188,9 @@ class OrderController extends BaseController {
         }
         if ( $check_order && $have && !$car_wash ) {
             if ( $w_type == 1 ) {
-                $this->apiResponse ('9' , '您有未支付订单' , $check_order);
+                $this->apiResponse ('0', '您有未支付订单' , $check_order);
             } elseif ( $w_type == 2 ) {
-                $this->apiResponse ('0' , '您有预约订单未处理' , $check_order);
+                $this->apiResponse ('0', '您有预约订单未处理' , $check_order);
             }
         }
     }
@@ -245,7 +238,7 @@ class OrderController extends BaseController {
                     $where['type'] = 3;
                     $save = M ('CarWasher')->where ($where)->save ($param);
                     if ( $save ) {
-                        $this->apiResponse (1 , '洗车机已开启');
+                        $this->apiResponse ('1', '洗车机已开启');
                     }
                 }
 
@@ -265,7 +258,7 @@ class OrderController extends BaseController {
                         $this->apiResponse ('0' , '下单失败');
                     }
                 } else {
-                    $this->apiResponse ('10' , '开启失败');
+                    $this->apiResponse ('0' , '开启失败');
                 }
             } elseif ( $request['w_type'] == 2 ) {
                 $this->checkhave ($m_id , 2 , 3 , $request['mc_code']);
@@ -279,12 +272,12 @@ class OrderController extends BaseController {
                     $yes = M ('CarWasher')->where ($XG)->save ($type);
                     $this->send_post ('device_manage' , $request['mc_id'] , '2');
                     if ( $res && $yes ) {
-                        $this->apiResponse ('1' , '预约成功' , array ('orderid' => $data['orderid']));
+                        $this->apiResponse ('1', '预约成功' , array ('orderid' => $data['orderid']));
                     } else {
                         $this->apiResponse ('0' , '下单失败');
                     }
                 } else {
-                    $this->apiResponse ('0' , '预约失败');
+                    $this->apiResponse ('0', '预约失败');
                 }
             }
         } elseif ( $request['o_type'] == 2 ) {
@@ -295,9 +288,9 @@ class OrderController extends BaseController {
             $data = $this->status ($m_id , 4 , $card);
             $res = M ('Order')->data ($data)->add ();
             if ( $res ) {
-                $this->apiResponse ('1' , '购买成功' , array ('orderid' => $data['orderid']));
+                $this->apiResponse ('1', '购买成功' , array ('orderid' => $data['orderid']));
             } else {
-                $this->apiResponse ('0' , '购买失败');
+                $this->apiResponse ('0', '购买失败');
             }
         }
     }
