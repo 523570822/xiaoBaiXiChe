@@ -86,6 +86,8 @@
                             <th>提现时间</th>
                             <th>提现金额</th>
                             <th>提现卡号</th>
+                            <th>提现银行</th>
+                            <th>持卡人姓名</th>
                             <th>审核状态</th>
                             <th>操作</th>
                         </tr>
@@ -104,6 +106,8 @@
                                 <td>{$item.create_time|date='Y-m-d H:i:s',###}</td>
                                 <td>{$item.money}</td>
                                 <td>{$item.card_code}</td>
+                                <td>{$item.card_type}</td>
+                                <td>{$item.card_name}</td>
                                 <td>
                                     <switch name="item.status">
                                         <case value="1">审核中</case>
