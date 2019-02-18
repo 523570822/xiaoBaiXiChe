@@ -10,9 +10,16 @@
                 <div class="layui-card-body">
                     <div class="layui-form">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">洗车机编号</label>
+                            <label class="layui-form-label">二维码编号</label>
                             <div class="layui-input-block">
                                 <input type="hidden" name="id" value="{:I('get.id')}">
+                                <input type="text" name="mc_code" value="{$row.mc_code}" placeholder="请输入二维码编号"
+                                       class="layui-input w300">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">洗车机编号</label>
+                            <div class="layui-input-block">
                                 <input type="text" name="mc_id" value="{$row.mc_id}" placeholder="请输入24位洗车机编码"
                                        class="layui-input w300" required>
                             </div>
@@ -32,16 +39,44 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">状态</label>
+                            <label class="layui-form-label">运行状态</label>
                             <div class="layui-input-block">
                                 <label class="layui-choose" for="status_1">
-                                    <input type="radio" id="status_1" name="status" value="1" class="layui-input"
-                                           checked required/>
-                                    启用
+                                    <input type="radio" id="status_1" name="status" value="1" class="layui-input" required <if condition="$row['status'] eq 1">checked <elseif condition="empty($row['status'])"/>checked</if>>
+                                    正常
                                 </label>
                                 <label class="layui-choose" for="status_2">
-                                    <input type="radio" id="status_2" name="status" value="0" class="layui-input"/>
-                                    禁用
+                                    <input type="radio" id="status_2" name="status" value="2" class="layui-input"required <if condition="$row['status'] eq 2"> checked</if>>
+                                    故障
+                                </label>
+                                <label class="layui-choose" for="status_3">
+                                    <input type="radio" id="status_3" name="status" value="3" class="layui-input"required <if condition="$row['status'] eq 3"> checked</if>>
+                                    报警
+                                </label>
+                                <label class="layui-choose" for="status_4">
+                                    <input type="radio" id="status_4" name="status" value="4" class="layui-input"required <if condition="$row['status'] eq 4"> checked</if>>
+                                    不在线
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">使用状态</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="type_1">
+                                    <input type="radio" id="type_1" name="type" value="1" class="layui-input" required <if condition="$row['type'] eq 1">checked <elseif condition="empty($row['type'])"/>checked</if>>
+                                    空闲中
+                                </label>
+                                <label class="layui-choose" for="type_2">
+                                    <input type="radio" id="type_2" name="type" value="2" class="layui-input"required <if condition="$row['type'] eq 2"> checked</if>>
+                                    使用中
+                                </label>
+                                <label class="layui-choose" for="type_3">
+                                    <input type="radio" id="type_3" name="type" value="3" class="layui-input"required <if condition="$row['type'] eq 3"> checked</if>>
+                                    预定中
+                                </label>
+                                <label class="layui-choose" for="type_4">
+                                    <input type="radio" id="type_4" name="type" value="4" class="layui-input"required <if condition="$row['type'] eq 4"> checked</if>>
+                                    暂停中
                                 </label>
                             </div>
                         </div>
@@ -77,28 +112,34 @@
                             <label class="layui-form-label">所在地区</label>
                             <div class="layui-input-block">
                                 <select name="province" class="layui-input w300" id="province">
-                                    <if condition="$row['province'] neq 0">
-                                        <option value="">{$pp.region_name}</option>
-                                        <else/>
-                                        <option value="">--请选择省份--</option>
-                                    </if>
+                                    <option value="0">请选择省份</option>
                                     <volist name="province" id="province_item">
-                                        <option value="{$province_item.id}">{$province_item.region_name}</option>
+                                        <option value="{$province_item.id}"
+                                        <if condition="$row['province'] eq $province_item['id']"> selected </if>
+                                        >{$province_item.region_name}</option>
                                     </volist>
                                 </select>
                                 <select name="city" class="layui-input w300" id="city">
-                                    <if condition="$row['city'] eq 0">
-                                        <option value="">--请选择城市--</option>
-                                        <else/>
-                                        <option value="">{$city.region_name}</option>
-                                    </if>
+                                    <empty name="city">
+                                        <option value="0">请选择城市</option>
+                                    <else />
+                                        <volist name="city" id="city_item">
+                                            <option value="{$city_item.id}"
+                                            <if condition="$row['city'] eq $city_item['id']"> selected </if>
+                                            >{$city_item.region_name}</option>
+                                        </volist>
+                                    </empty>
                                 </select>
                                 <select name="area" class="layui-input w300" id="area">
-                                    <if condition="$row['area'] eq 0">
-                                        <option value="">--请选择区、镇--</option>
-                                        <else/>
-                                        <option value="">{$area.region_name}</option>
-                                    </if>
+                                    <empty name="area">
+                                        <option value="0">请选择区、县</option>
+                                    <else />
+                                        <volist name="area" id="area_item">
+                                            <option value="{$area_item.id}"
+                                            <if condition="$row['area'] eq $area_item['id']"> selected </if>
+                                            >{$area_item.region_name}</option>
+                                        </volist>
+                                    </empty>
                                 </select>
                             </div>
                         </div>
@@ -145,7 +186,7 @@
         }else{
             url = '{:U("CarWasher/editCarWasher")}'
         }
-        console.log(data);
+        // console.log(data);
         if(!data) return false;
         doPost(url, data, function(res) {
             showMsg(res.code, res.message, function() {
@@ -170,7 +211,7 @@
                 type: 'post',
                 data: {id: province},
                 success: function (data) {
-                    var html = '<option value="">--请选择城市--</option>';
+                    var html = '<option value="">请选择城市</option>';
                     for (var i in data) {
                         html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
                     }
@@ -186,7 +227,7 @@
                 type: 'post',
                 data: {id: city},
                 success: function (data) {
-                    var html = '<option value="">--请选择地区--</option>';
+                    var html = '<option value="">请选择区、县</option>';
                     for (var i in data) {
                         html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
                     }

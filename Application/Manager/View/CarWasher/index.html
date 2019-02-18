@@ -21,6 +21,10 @@
                         <!--搜索框也可以放这里-->
                         <form class="mab10 mal20 dinline" id="myform" action="{:U('CarWasher/index')}" method="GET">
                             <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入二维码编号" name="mc_code"
+                                       value="{$_REQUEST['mc_code']}">
+                            </div>
+                            <div class="layui-input-inline">
                                 <input type="text" class="layui-input" placeholder="请输入洗车机编号" name="mc_id"
                                        value="{$_REQUEST['mc_id']}">
                             </div>
@@ -102,6 +106,7 @@
                                     </span>
                                 </div>
                             </th>
+                            <th>二维码编号</th>
                             <th>机器编号</th>
                             <th>店铺名</th>
                             <th>加盟商</th>
@@ -120,6 +125,7 @@
                             <tr>
                                 <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
                                 <td>{$item.id}</td>
+                                <td>{$item.mc_code}</td>
                                 <td>{$item.mc_id}</td>
                                 <td>{$item.shop_name}</td>
                                 <td>{$item.nickname}</td>
@@ -155,6 +161,12 @@
                                     <button class="layui-btn layui-btn-xs layui-btn-danger"
                                             onclick="confirmDelAction('{:U('CarWasher/delete',array('model'=>'CarWasher'))}', '删除','{$item.id}')">
                                         删除
+                                    </button>
+                                    <!--<a href="{:U('Member/down',array('mid'=>$row['id']))}" title="下载二维码" class="tip-bottom">-->
+                                    <!--<span class="label label-success">下载二维码</span></a>&nbsp;-->
+                                    <button class="layui-btn layui-btn-xs "
+                                            onclick="jumpUrl('{:U('CarWasher/down', array('id'=>$item['id']))}')">
+                                        二维码下载
                                     </button>
                                 </td>
                             </tr>

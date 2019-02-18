@@ -263,6 +263,7 @@ class PayController extends BaseController
                 $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
                 $date['pay_type'] = 2;
                 $date['status'] = 2;
+                $date['is_set'] = 1;
                 $date['pay_time'] = time ();
                 $date['trade_no'] = $trade_no;
                 if ( $order['o_type'] == 1 ) {//1洗车订单
@@ -576,6 +577,7 @@ class PayController extends BaseController
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
         $date['pay_time'] = time ();
         $date['status'] = 2;
+        $date['is_set'] = 1;
         $date['pay_type'] = 1;
         $date['trade_no'] = $info;
         if ( $order['o_type'] == 1 ) {//1洗车订单
