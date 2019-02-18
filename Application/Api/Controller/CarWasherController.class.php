@@ -233,7 +233,47 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
 
+            var_dump($queryitem[$k]['devices'][0]);
             foreach ($queryitem[$k] as $kk=>$vv){
+                //var_dump($vv[0]['queryitem']);exit;
+                if($vv[0]['queryitem']['service_status'] >= 8){
+
+                    //var_dump($vv[0]['queryitem']['pump1_status']);exit;
+                    if(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump2_status'] >= 4 ) || ($vv[0]['queryitem']['valve1_status'] >= 4) ){
+                        $malf_where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $malf_data = array(
+                            'status' => 2,
+                        );
+                        $malfunction = M('CarWasher')->where($malf_where)->save($malf_data);
+                    }elseif ($vv[0]['queryitem']['level3_status']  == ''){
+                        $alarm_where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $alarm_data = array(
+                            'status' => 3,
+                        );
+                        $alarm = M('CarWasher')->where($alarm_where)->save($alarm_data);
+                    }else{
+                        $where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $data = array(
+                            'status' => 1,
+                        );
+                        $online = M('CarWasher')->where($where)->save($data);
+                    }
+                }elseif ($vv[0]['queryitem']['service_status'] < 8){
+                    $off_where = array(
+                        'mc_id' => $vv[0]['deviceid'],
+                    );
+                    $off_data['status'] = 4;
+                    $offline = M('CarWasher')->where($off_where)->save($off_data);
+                }
+//                elseif(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump1_status'] >= 4)){
+//
+//                }
                 foreach ($vv as $kk1=>$vv1){
                     $car_data['lon'] = $vv1['queryitem']['location']['longitude'];
                     $car_data['lat'] = $vv1['queryitem']['location']['latitude'];
@@ -258,11 +298,16 @@ class CarWasherController extends BaseController
     public function device(){
         $where['status'] = array('neq',9);
         $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
+        $manage = 'runtime_query';
+        $devmanage = $this->send_post($manage,'50003f001451373435363337');
+        var_dump($devmanage);
+        exit;
         foreach ($car as $k=>$v) {
             $cars[$k]['car_num'] = $v['mc_id'];
             $cars[$k]['id'] = $v['id'];
             $manage = 'device_manage';
-            $devmanage[$k] = $this->send_post($manage,$cars[$k]['car_num'],1);
+            $devmanage = $this->send_post($manage,'50003f001451373435363337',1);
+            var_dump($devmanage);
             var_dump($devmanage[49]['devices'][0]);
         }
     }

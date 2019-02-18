@@ -61,10 +61,16 @@ class WithdrawController extends BaseController
             $data['list'][$k]['agent_id']=$v['agent_id'];
             $data['list'][$k]['card_id']=$v['card_id'];
             $date = D('Agent')->where (array ('id'=>$data['list'][$k]['agent_id']))->field ('nickname')->find();
-            $card = D('BankCard')->where (array ('id'=>$data['list'][$k]['card_id']))->field ('card_code')->find();
+            $card = D('BankCard')->where (array ('id'=>$data['list'][$k]['card_id']))->field ('card_code ,card_name,card_id')->find();
+            //$card = D('BankCard')->where (array ('id'=>$data['list'][$k]['card_id']))->field ('card_code ,card_name,card_id')->find();
+            $cards = D('BankType')->where (array ('id'=>$card['card_id']))->field ('bank_name,bank_pic')->find();
+            $data['list'][$k]['card_type'] = $cards['bank_name'];
+            $data['list'][$k]['card_name'] = $card['card_name'];
+            $data['list'][$k]['bank_pic'] = $cards['bank_pic'];
             $data['list'][$k]['nickname']=$date['nickname'];
             $data['list'][$k]['card_code']=$card['card_code'];
         }
+//        var_dump($data);exit;
         $this->assign($data);
         //页数跳转
         $this->assign('url',$this->curPageURL());
