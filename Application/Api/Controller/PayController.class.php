@@ -212,26 +212,20 @@ class PayController extends BaseController
     /**
      * 获取支付宝支付参数
      * 传递参数的方式：post
-     * 需要传递的参数：
      * 订单编号：orderid
-     * 类型：o_type 1洗车订单 2小鲸卡购买 3余额充值
      **/
     public function Alipay ()
     {
         Vendor ('Txunda.Alipay.Alipay');
         $request = I ('post.');
-        $rule = array (
-            array ('orderid' , 'string' , '订单编号不能为空') ,
-            array ('o_type' , 'string' , '订单类型不能为空') ,
-        );
+        $rule = array ('orderid' , 'string' , '订单编号不能为空');
         $this->checkParam ($rule);
-        $order_info = D ("Order")->where (array ('orderid' => $request['orderid'] , 'o_type' => $request['o_type']))->find ();
+        $order_info = D ("Order")->where (array ('orderid' => $request['orderid'] ))->find ();
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
         $url_data = [
             "orderid" => $order_info['orderid'] ,
-            "o_type" => $order_info['o_type'] ,
             "m_id" => $order_info['m_id'] ,
         ];
         $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify?' . http_build_query ($url_data);
@@ -242,9 +236,7 @@ class PayController extends BaseController
         $payObject = new \Alipay($notify_url , $out_trade_no , $total_amount , $signType);
         $pay_string = $payObject->appPay ();
         $result['pay_string'] = $pay_string;
-
         $this->apiResponse (1 , '请求成功' , $result);
-
     }
 
     /**

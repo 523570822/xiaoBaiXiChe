@@ -71,7 +71,7 @@ class OrderController extends BaseController {
             $request['mc_id'] = $is['mc_id'];
             return $request['mc_id'];
         } else {
-            $this->apiResponse ('0', '请扫描正确二维码');
+            $this->apiResponse ('0' , '请扫描正确二维码');
         }
     }
 
@@ -115,7 +115,7 @@ class OrderController extends BaseController {
                 $msg = '机器暂停使用';
                 break;
         }
-        if ( !empty($msg) ) $this->apiResponse ('0', $msg , $data);
+        if ( !empty($msg) ) $this->apiResponse ('0' , $msg , $data);
     }
 
     /**
@@ -178,19 +178,35 @@ class OrderController extends BaseController {
      **/
     public function checkhave ($m_id , $w_type , $type , $mc_code) {
         $car_wash = D ('CarWasher')->where (array ('mc_code' => $mc_code , 'type' => $type , 'status' => 1))->find ();
-        $check_order = D ('Order')->where (array ('m_id' => $m_id , 'w_type' => $w_type , 'o_type' => 1 , 'status' => 1,'is_set'=>0))->find ();
+        $check_order = D ('Order')->where (array ('m_id' => $m_id , 'w_type' => $w_type , 'o_type' => 1 , 'status' => 1 , 'is_set' => 0))->find ();
         $have = D ('Msg')->where (array ('m_id' => $check_order['m_id'] , 'o_id' => $check_order['id'] , 'status' => 1))->find ();
+        //        var_dump ($m_id , $w_type , $type , $mc_code,$car_wash,$check_order,$have);die;
         if ( $check_order ) {
             if ( !$have ) {
                 $param = $this->status ($m_id , 1 , $check_order);
                 D ('Msg')->add ($param);
             }
         }
-        if ( $check_order && $have && !$car_wash ) {
+        if ( $car_wash ) {
             if ( $w_type == 1 ) {
-                $this->apiResponse ('0', '您有未支付订单' , $check_order);
+                $this->apiResponse ('0' , '您有未支付订单' , $check_order);
             } elseif ( $w_type == 2 ) {
-                $this->apiResponse ('0', '您有预约订单未处理' , $check_order);
+                if ( $check_order['subs_time'] < time () ) {
+                    $appsetting = D ('Appsetting')->field ('overtime_money')->find ();
+                    if ( !empty($check_order['pay_money']) ) {
+                        $param['is_no'] = 1;
+                        $param['pay_money'] = $appsetting['overtime_money'];
+                        D ('Order')->where (array ('id' => $check_order['id']))->save ($param);
+//                        var_dump ($car_wash['type']);
+                        if($car_wash['type']=3){
+                            $where['type'] = 1;
+                            D ('CarWasher')->where (array ('mc_code' => $mc_code))->save ($where);
+                            $this->apiResponse ('0' , '您有预约订单已超时' , $check_order);
+                        }
+                    }
+                } else {
+                    $this->apiResponse ('0' , '您有预约订单未处理' , $check_order);
+                }
             }
         }
     }
@@ -218,10 +234,10 @@ class OrderController extends BaseController {
                 array ('mc_code' , 'string' , '请输入洗车机编号') ,
             );
             $this->checkParam ($rule);
-            $this->checkhave ($m_id , 1 , 2 , $request['mc_code']);
             $request['mc_id'] = $this->check_mc_code ($request['mc_code']);
             $all = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
             if ( $request['w_type'] == 1 ) {
+                $this->checkhave ($m_id , 1 , 2 , $request['mc_code']);
                 $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id'] , 'type' => 3))->find ();
                 if ( $car_washer_info ) {
                     $check_is = M ('Order')->where (array ('c_id' => $car_washer_info['id'] , 'm_id' => $m_id , 'w_type' => 2))->find ();
@@ -238,7 +254,7 @@ class OrderController extends BaseController {
                     $where['type'] = 3;
                     $save = M ('CarWasher')->where ($where)->save ($param);
                     if ( $save ) {
-                        $this->apiResponse ('1', '洗车机已开启');
+                        $this->apiResponse ('1' , '洗车机已开启');
                     }
                 }
 
@@ -262,6 +278,7 @@ class OrderController extends BaseController {
                 }
             } elseif ( $request['w_type'] == 2 ) {
                 $this->checkhave ($m_id , 2 , 3 , $request['mc_code']);
+                //                var_dump ($request['mc_id'] , $all['mc_id'] , $all['status'] , $all['type'] , $request['mc_code'] , $m_id);die;
                 $this->checkMsgs ($request['mc_id'] , $all['mc_id'] , $all['status'] , $all['type'] , $request['mc_code'] , $m_id , 2);
                 $bespoke = $this->send_post ('device_manage' , $request['mc_id'] , '2');
                 if ( $bespoke ) {
@@ -272,12 +289,12 @@ class OrderController extends BaseController {
                     $yes = M ('CarWasher')->where ($XG)->save ($type);
                     $this->send_post ('device_manage' , $request['mc_id'] , '2');
                     if ( $res && $yes ) {
-                        $this->apiResponse ('1', '预约成功' , array ('orderid' => $data['orderid']));
+                        $this->apiResponse ('1' , '预约成功' , array ('orderid' => $data['orderid']));
                     } else {
                         $this->apiResponse ('0' , '下单失败');
                     }
                 } else {
-                    $this->apiResponse ('0', '预约失败');
+                    $this->apiResponse ('0' , '预约失败');
                 }
             }
         } elseif ( $request['o_type'] == 2 ) {
@@ -288,9 +305,9 @@ class OrderController extends BaseController {
             $data = $this->status ($m_id , 4 , $card);
             $res = M ('Order')->data ($data)->add ();
             if ( $res ) {
-                $this->apiResponse ('1', '购买成功' , array ('orderid' => $data['orderid']));
+                $this->apiResponse ('1' , '购买成功' , array ('orderid' => $data['orderid']));
             } else {
-                $this->apiResponse ('0', '购买失败');
+                $this->apiResponse ('0' , '购买失败');
             }
         }
     }
