@@ -19,15 +19,7 @@ class PushController extends BaseController
      * Date: 2018-08-15 13:20:28
      */
     public function index() {
-
+       echo '正在开发中...';
     }
 
-    /**
-     * 推送记录
-     * User: admin
-     * Date: 2018-08-15 16:29:41
-     */
-    public function index() {
-
-    }
 }

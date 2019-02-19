@@ -11,8 +11,20 @@ namespace Manager\Controller;
 
 class AdvertController extends BaseController
 {
-
-
+    /**
+     * 广告列表
+     * User: admin
+     * Date: 2018-08-18 13:50:04
+     */
+    public function index() {
+        $where = array();
+        $where['status'] = array('lt',9);
+        $param['order'] = 'sort desc , id  desc';
+        $param['page_size'] =15;
+        $data = D('Advert')->queryList($where, '*',$param);
+        $this->assign($data);
+        $this->display('index');
+    }
 
     /**
      * 广告位列表
@@ -26,23 +38,9 @@ class AdvertController extends BaseController
         $param['page_size'] =15;
         $data = D('AdvertPosition')->queryList($where, '*',$param);
         $this->assign($data);
-    $this->display('indexsAdvert');
+        $this->display('indexsAdvert');
     }
-    /**
-     * 广告列表
-     * User: admin
-     * Date: 2018-08-18 13:50:04
-     */
-    public function index() {
-        $where = array();
 
-        $where['status'] = array('lt',9);
-        $param['order'] = 'sort desc , id  desc';
-        $param['page_size'] =15;
-        $data = D('Advert')->queryList($where, '*',$param);
-        $this->assign($data);
-        $this->display('index');
-    }
     /**
      * 新增广告
      * User:jiajia
@@ -50,7 +48,6 @@ class AdvertController extends BaseController
      */
     public function addAdvert(){
         if(IS_POST) {
-
             $rule = array(
                 array('position_id', 'notnull'),
                 array('name', 'notnull'),
@@ -58,54 +55,14 @@ class AdvertController extends BaseController
                 array('file_id', 'notnull'),
                 array('type', 'notnull'),
                 array('value', 'notnull'),
-
             );
             $data = $this->checkParam($rule);
             $Res = D('Advert') ->add($data);
             $Res ? $this->apiResponse(1, '新增广告成功') : $this->apiResponse(0, '新增广告失败');
-
         }else {
             $position = D('AdvertPosition')->where(array('status' => 1, 'p_id' => 0))->select();
             $this->assign('cate', $position);
-
             $this->display();
-        }
-    }
-
-    /**
-     * 编辑广告
-     * User: admin
-     * Date: 2018-08-22 08:45:02
-     */
-
-    public function editAdvert(){
-        if(IS_POST) {
-
-            $rule = array(
-                array('position_id', 'notnull'),
-                array('id', 'notnull'),
-                array('name', 'notnull'),
-                array('sort', 'notnull'),
-                array('file_id', 'notnull'),
-                array('type', 'notnull'),
-                array('value', 'notnull'),
-
-            );
-            $data = $this->checkParam($rule);
-            $id=$data['id'];
-            $Res = D('Advert')->where(array('id'=>$id))->save($data);
-            $Res ? $this->apiResponse(1, '编辑广告成功') : $this->apiResponse(0, '编辑广告失败');
-
-        }else {
-
-            $id= I('id');
-            $web = D('Advert')->where(array('id'=>$id))->find();
-            $web['file_ids']=$this->getOnePath($web['file_id'],0);//第二位放默认图
-            $web['position_id']=   D('AdvertPosition')->where(array('position_id' => $web['position_id']))->find();
-            $position = D('AdvertPosition')->where(array('status' => 1, 'p_id' => 0))->select();
-            $this->assign('cate', $position);
-            $this->assign('row',$web);
-            $this->display('addAdvert');
         }
     }
 
@@ -131,6 +88,37 @@ class AdvertController extends BaseController
         }
     }
 
+    /**
+     * 编辑广告
+     * User: admin
+     * Date: 2018-08-22 08:45:02
+     */
+    public function editAdvert(){
+        if(IS_POST) {
+            $rule = array(
+                array('position_id', 'notnull'),
+                array('id', 'notnull'),
+                array('name', 'notnull'),
+                array('sort', 'notnull'),
+                array('file_id', 'notnull'),
+                array('type', 'notnull'),
+                array('value', 'notnull'),
+            );
+            $data = $this->checkParam($rule);
+            $id=$data['id'];
+            $Res = D('Advert')->where(array('id'=>$id))->save($data);
+            $Res ? $this->apiResponse(1, '编辑广告成功') : $this->apiResponse(0, '编辑广告失败');
+        }else {
+            $id= I('id');
+            $web = D('Advert')->where(array('id'=>$id))->find();
+            $web['file_ids']=$this->getOnePath($web['file_id'],0);//第二位放默认图
+            $web['position_id']=   D('AdvertPosition')->where(array('position_id' => $web['position_id']))->find();
+            $position = D('AdvertPosition')->where(array('status' => 1, 'p_id' => 0))->select();
+            $this->assign('cate', $position);
+            $this->assign('row',$web);
+            $this->display('addAdvert');
+        }
+    }
 
     /**
      * 编辑广告位

@@ -35,6 +35,35 @@
                                     </volist>
                                 </select>
                             </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">APP显示类</label>
+                                <div class="layui-input-block">
+                                    <label class="layui-choose" for="type_1">
+                                        <input type="radio" id="type_1" name="type" value="1" class="layui-input" required <if condition="$row['type'] eq 1">checked <elseif condition="empty($row['type'])"/>checked</if>>
+                                        发票规则
+                                    </label>
+                                    <label class="layui-choose" for="type_2">
+                                        <input type="radio" id="type_2" name="type" value="2" class="layui-input"required <if condition="$row['type'] eq 2"> checked</if>>
+                                        购卡须知
+                                    </label>
+                                    <label class="layui-choose" for="type_3">
+                                        <input type="radio" id="type_3" name="type" value="3" class="layui-input"required <if condition="$row['type'] eq 3"> checked</if>>
+                                        用户指南
+                                    </label>
+                                    <label class="layui-choose" for="type_4">
+                                        <input type="radio" id="type_4" name="type" value="4" class="layui-input"required <if condition="$row['type'] eq 4"> checked</if>>
+                                        奖励规则
+                                    </label>
+                                    <label class="layui-choose" for="type_5">
+                                        <input type="radio" id="type_5" name="type" value="5" class="layui-input"required <if condition="$row['type'] eq 5"> checked</if>>
+                                        加盟介绍
+                                    </label>
+                                    <label class="layui-choose" for="type_6">
+                                        <input type="radio" id="type_6" name="type" value="6" class="layui-input"required <if condition="$row['type'] eq 6"> checked</if>>
+                                        文章
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">文章封面</label>

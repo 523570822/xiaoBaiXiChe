@@ -9,13 +9,11 @@
                 <!--菜单名称-->
                 <div class="layui-card-header">{$title}</div>
                 <div class="layui-card-body">
-
                     <!--顶部按钮-->
                     <div class="mab10">
                         <a href="{:U('Advert/AddAdvertposition')}" class="layui-btn layui-btn-normal layui-btn-radius">添加广告位</a>
                        <!-- <button class="layui-btn layui-btn-warm layui-btn-radius" >锁定</button>
                         <button class="layui-btn layui-btn-danger layui-btn-radius" onclick="confirmAllAction('{:U('AdminMenu/delMenu')}', '删除')">删除</button>-->
-
                     </div>
                     <!--列表-->
                     <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
@@ -36,13 +34,12 @@
                             <tr>
                                 <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
                                 <td>{$item.id}</td>
-
                                 <td>{$item.name}</td>
                                   <td>{$item['status'] == 1 ? '启用' : '禁用'}</td>
                                 <td>
                                     <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('Advert/editAdvertposition', array('id'=>$item['id'], 'system'=>0))}')">编辑</button>
                                     <button class="layui-btn layui-btn-xs layui-btn-warm" onclick="confirmOneAction('{:U('Advert/lockAdvertposition')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">{$item['status'] == 1 ? '禁用' : '启用'}</button>
-                                    <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="confirmOneAction('{:U('Advert/delAdvertpositionu')}', '删除','{$item.id}')">删除</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="confirmOneAction('{:U('Advert/delAdvertposition')}', '删除','{$item.id}')">删除</button>
                                 </td>
                             </tr>
                         </volist>

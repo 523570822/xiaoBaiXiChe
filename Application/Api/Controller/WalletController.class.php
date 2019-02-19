@@ -35,7 +35,6 @@ class WalletController extends BaseController
         $this->apiResponse ('1' , '金额' , $recharge_table);
     }
 
-
     /**
      *余额充值下单
      **/
