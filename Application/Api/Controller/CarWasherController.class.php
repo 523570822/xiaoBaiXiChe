@@ -223,8 +223,8 @@ class CarWasherController extends BaseController
      */
     public function realTime(){
         $where['status'] = array('neq',9);
+        //$where['mc_id'] = '510042001451373435363337';
         $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
-//        var_dump($car);exit;
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];
             $cars[$k]['id'] = $v['id'];
@@ -233,9 +233,7 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
 
-//            var_dump($queryitem[$k]['devices'][0]);
             if(!empty($queryitem[$k])){
-//                var_dump($queryitem[$k]['devices'][0]);
                 foreach ($queryitem[$k] as $kk=>$vv){
 
                     if($vv[0]['queryitem']['service_status'] >= 8){            //判断洗车机状态   1在线   2故障   3报警   4不在线
@@ -285,10 +283,7 @@ class CarWasherController extends BaseController
                     $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
                 }
             }
-
-
-
-
+            
         }
 
     }
