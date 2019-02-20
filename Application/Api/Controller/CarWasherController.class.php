@@ -283,7 +283,7 @@ class CarWasherController extends BaseController
                     $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
                 }
             }
-            
+
         }
 
     }
