@@ -106,7 +106,7 @@ class BaseController extends ControllerService
             apiResponse('-1','please login again');
         }
         if ($type == 'info') {
-            $agent = D('Agent')->findAgent(array('token'=>$token),'id,account,token,nickname,grade,balance,salt,password,grade');
+            $agent = D('Agent')->findAgent(array('token'=>$token),'id,account,token,nickname,balance,salt,password,grade');
         } elseif ($type == 'field') {
             $agent = D('Agent')->findAgent(array('token'=>$token),$field);
         } else {
@@ -123,6 +123,37 @@ class BaseController extends ControllerService
         }
         return $agent;
     }
+
+    /**
+     *用户token判断
+     * @param $token
+     * @param string $type
+     * @param string $field
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/02/18 17:04
+     */
+    /*public function getMemberInfo($token,$type='info',$field = ''){
+        if(empty($token)){
+            apiResponse('-1','please login again');
+        }
+        if ($type == 'info') {
+            $agent = D('Member')->findAgent(array('token'=>$token),'id,account,token,nickname,tel,realname,salt,password,');
+        } elseif ($type == 'field') {
+            $agent = D('Agent')->findAgent(array('token'=>$token),$field);
+        } else {
+            $agent = D('Agent')->findAgent(array('token'=>$token),'id,password,salt');
+        }
+        if(!$agent){
+            apiResponse('0','Your account has been dropped. Please log in again.');
+        }
+        if($agent['status'] == 9){
+            apiResponse('0','User information has been deleted');
+        }
+        if($agent['status'] == 2){
+            apiResponse('0','You are temporarily unable to login');
+        }
+        return $agent;
+    }*/
 
     /**
      *接口请求地址
