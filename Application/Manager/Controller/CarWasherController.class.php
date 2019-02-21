@@ -197,8 +197,29 @@ class CarWasherController extends BaseController {
         $status = D ('CarWasher')->queryField ($id , 'status');
         $data = $status == 1 ? array ('status' => 4) : array ('status' => 1);
         $Res = D ('CarWasher')->querySave ($id , $data);
-        $Res ? $this->apiResponse (1 , $status == 1 ? '关闭成功' : '处理成功') : $this->apiResponse (0 , $status == 1 ? '关闭失败' : '处理成功');
+        $Res ? $this->apiResponse (1 , $status == 1 ? '处理成功' : '处理成功') : $this->apiResponse (0 , $status == 1 ? '关闭成功' : '关闭失败');
+    }
 
+    /**
+     * 恢复操作
+     * User: admin
+     * Date: 2019-02-20 12:00:40
+     */
+    public function recoveryCarWasher() {
+        $this->checkParam(array('ids','array','请选择至少一条'));
+        $request  = I('Request.');
+        //判断是数组ID还是字符ID
+        if(is_array($request['ids'])) {
+            //数组ID
+            $where['id'] = array('in',$request['ids']);
+        } elseif (is_numeric($request['ids'])) {
+            //数字ID
+            $where['id'] = $request['ids'];
+        }
+        $type = D ('CarWasher')->select($where['id'] , 'type');
+        $data = $type == 1 ? array ('type' => 4) : array ('type' => 1);
+        $Res = D($request['model'])->where($where)->data($data)->save();
+        $Res ? $this->apiResponse (1 , $type == 1 ? '恢复成功' : '恢复成功') : $this->apiResponse (0 , $type == 1 ? '恢复成功' : '该机器已为空闲状态');
     }
 
     /**
@@ -229,4 +250,5 @@ class CarWasherController extends BaseController {
         header ('Content-Disposition:attachment; filename="二维码编号：' . $nickname . '.png"');
         echo $file;
     }
+
 }

@@ -85,8 +85,4 @@ class BaseController extends ControllerService
         $Res = D($request['model'])->where($where)->data($data)->save();
         $Res ? $this->apiResponse(1, '删除成功') : $this->apiResponse(0, '删除失败');
     }
-
-
-
-
 }

@@ -116,7 +116,6 @@
                     $data[$key][$ck]=iconv("UTF-8", "GBK//ignore", $cv);
                 }
                 $data[$key]=implode("\t", $data[$key]);
-
             }
             echo implode("\n",$data);
         }

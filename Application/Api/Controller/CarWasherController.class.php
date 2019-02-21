@@ -289,7 +289,7 @@ class CarWasherController extends BaseController
     }
 
     /**
-     *s设备控制
+     *设备控制
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/02/15 13:05
      */
