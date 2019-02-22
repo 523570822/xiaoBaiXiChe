@@ -457,7 +457,7 @@ class OrderController extends BaseController {
      */
     public function settlement(){
 //        $post = checkAppData('token,order_id','token-订单ID');
-        $post['token'] = 'acd7b05cb333c3c6b142938c22a0e4ff';
+        $post['token'] = 'f91403bcaa2b57a15b315b073b4e3e6a';
         $post['order_id'] = 59;
 
         $where['token'] = $post['token'];
@@ -471,7 +471,14 @@ class OrderController extends BaseController {
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
 
+        var_dump($details);
 
+        var_dump($send_post['devices'][0]);exit;
+        //判断机器使用状态
+        if($send_post['devices'][0]['queryitem'] != $details){}
+
+
+        exit;
         //正式    洗车机使用前设备秒数读取
         if(($send_post['devices'][0]['queryitem']['service_status'] == 5) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 2) && ($send_post['devices'][0]['queryitem']['pump2_statu'] == 2) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 2)){
             $start_data['washing_start_time'] = $send_post['devices'][0]['queryitem']['clean_water_duration'];
@@ -554,17 +561,14 @@ class OrderController extends BaseController {
         $price = M('Appsetting')->where(array('id'=>1))->find();
         $wash_fen = round($details['washing']/60,2);
         if($wash_fen > 0 && $wash_fen<0.5){
-            echo 111;
             $wash_fen = 0.50;
         }
         $foam_fen = round($details['foam']/60,2);
         if($foam_fen > 0 && $foam_fen<0.5){
-            echo 222;
             $foam_fen = 0.50;
         }
         $cleaner_fen = round($details['cleaner']/60,2);
         if($cleaner_fen > 0 && $cleaner_fen<0.5){
-            echo 333;
             $cleaner_fen = 0.50;
         }
 
@@ -583,8 +587,20 @@ class OrderController extends BaseController {
         );
 
         if(!empty($data_money)){
-            $this->apiResponse('1','成功',$data_money);
+            $send = $this->send_post('runtime_query',$car['mc_id'],3);
+            if($send){
+                $this->apiResponse('1','成功',$data_money);
+            }
         }
+    }
+
+    /**
+     *立即支付
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/02/21 13:19
+     */
+    public function  Pay(){
+        $post = checkAppData();
     }
 
 }
