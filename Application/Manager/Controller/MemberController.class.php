@@ -182,24 +182,31 @@ class MemberController extends BaseController
             $param['order'] = $sort[0].' '.$sort[1];
 //            $parameter['sort_order'] = I('request.sort_order');
         }
+
         $where['status'] = array('lt',9);
+        $where['order'] = 'id asc';
        // $param['page_size'] = 15;
-        $data = D('Member')->queryList($where,'*',$param);
+        $data = D('Member')->queryList($where,'id,account,nickname,sex,create_time');
+        foreach ($data as $k=>$v){
+            $data[$k]['sex']=$data[$k]['sex']=1?'男':'';
+            $data[$k]['sex']=$data[$k]['sex']=2?'女':'';
+            $data[$k]['sex']=$data[$k]['sex']=3?'保密':'';
+            $data[$k]['create_time']=date ('Y-m-d H:i:s',$data[$k]['create_time']);
+        }
         if(empty($data)){
-            $this->apiResponse("0","暂无筛选数据");
+            $this->display ('index');
         }
 
         //把对应的数据放到数组中
         foreach($data as $key =>$val){
             $data[$key]['account']= $val['account'];
             $data[$key]['nickname']= $val['nickname'];
-            $data[$key]['degree']= $val['degree'];
+            $data[$key]['sex']= $val['sex'];
         }
         //下面方法第一个数组，是需要的数据数组
         //第二个数组是excel的第一行标题,如果为空则没有标题
         //第三个是下载的文件名，现在用的是当前导出日期
-         exportexcel($data,array(' 手机号 ','姓名','用户等级'),date('Y-m-d',NOW_TIME));
-
+         exportexcel($data,array('id','账号','昵称','性别','注册时间'),date('Y-m-d',NOW_TIME));
     }
 
 
