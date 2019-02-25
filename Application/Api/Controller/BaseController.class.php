@@ -233,7 +233,6 @@ class BaseController extends ControllerService
                     "vacuum_info" => true ,//吸尘器用 设备故障status ≥ 4
                     // current吸尘器设备的电流值，单位 A lastmaint_uasge 上次维护后的使用时间，单位秒 accumulated_usage 累计使用时间，单位秒
                     "location" => true//机器坐标 longitud经度 latitud纬度
-
                 ];
                 $result_array = $this->createJSON ($mc_id , $suffix , $arr_param);
             } elseif ( $type == 'device_manage' ) {                   //设备控制
@@ -246,14 +245,6 @@ class BaseController extends ControllerService
                         "valve1_status" => 3 ,
                         "vacuum_status" => 2 ,
                         "heater_status"=> 2,
-//                        "valid_voltage"=> [
-//                                "low"=> "190",
-//                                "high"=> "240"
-//                        ],
-//                        "valid_temperature"=> [
-//                                "low"=> "5",
-//                                "high"=> "40"
-//                        ]
                     ];
                 } elseif ( $mode == 2 ) {
                     $arr_param = [//预约 — 洗车机设置
@@ -278,7 +269,6 @@ class BaseController extends ControllerService
             $this->apiResponse (0,$php_errormsg);
         }
         $response = $this->push_curl (json_encode ($result_array) , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://guojiulin.gicp.net:18000/car_wash/" . $type);
-//        var_dump($result_array['devices']);exit;
         return json_decode ($response, true);
     }
 }

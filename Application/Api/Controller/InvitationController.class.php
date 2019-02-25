@@ -9,78 +9,74 @@
 namespace Api\Controller;
 
 
-class InvitationController extends BaseController
-{
+class InvitationController extends BaseController {
     /**
      * 初始化方法
      */
-    public function _initialize()
-    {
-        parent::_initialize();
+    public function _initialize () {
+        parent::_initialize ();
     }
 
     /**
      * 推广好友首页
      * **/
-    public function Invitationindex()
-    {
-        $m_id = $this->checkToken();
-        $this->errorTokenMsg($m_id);
+    public function Invitationindex () {
+        $m_id = $this->checkToken ();
+        $this->errorTokenMsg ($m_id);
         $param['where']['id'] = $m_id;
         $param['field'] = '*';
-        $member_info = D('Member')->queryRow($param['where'], $param['field']);
+        $member_info = D ('Member')->queryRow ($param['where'] , $param['field']);
         $data['integral'] = $member_info['integral'];
         $invite_code = $member_info['invite_code'];
         $param['where']['id'] = $member_info['parent_id'];
-        $member = D('Member')->queryRow($param['where']);
-        $inviterphone=$member['account'];
-        $list_info = D('ExtensionLog')
-            ->where(array('db_extension_log.m_id' => $m_id))
-            ->join("db_member ON db_extension_log.m_id = db_member.id")
-            ->field('db_extension_log.id,db_extension_log.create_time,db_member.nickname')
-            ->select();
-        $list = D('CouponBind') ->where('c_type' == 1)->field('db_create_time') ->count();
-        if ($list_info) {
-            foreach ($list_info as $k => $v) {
-                $list_info[$k]['create_time'] = date('Y/m/d', $v['create_time']);
+        $member = D ('Member')->queryRow ($param['where']);
+        $inviterphone = $member['account'];
+        $list_info = D ('CouponLog')
+            ->where (array ('db_coupon_log.m_id' => $m_id))
+            ->join ("db_member ON db_coupon_log.s_id = db_member.id")
+            ->field ('db_coupon_log.id,db_coupon_log.create_time,db_member.nickname')
+            ->select ();
+        $list = D ('CouponBind')->where (array ('m_id' => $m_id , 'type' => 1))->field ('create_time')->count ();
+        if ( $list_info ) {
+            foreach ( $list_info as $k => $v ) {
+                $list_info[$k]['create_time'] = date ('Y/m/d' , $v['create_time']);
             }
         }
-        $this->apiResponse(1, '请求成功', array("count" => count($list_info), "invite_code" => $invite_code, "myinviter"=>$inviterphone, "couponLiset"=>$list));
+        $this->apiResponse (1 , '请求成功' , array ("count" => count ($list_info) , "invite_code" => $invite_code , "myinviter" => $inviterphone , "couponLiset" => $list));
     }
 
     /**
      * 推广记录
      * **/
-    public function Invitationdetails()
-    {
-        $m_id = $this->checkToken();
-        $this->errorTokenMsg($m_id);
+    public function Invitationdetails () {
+        $m_id = $this->checkToken ();
+        $this->errorTokenMsg ($m_id);
         $param['where']['id'] = $m_id;
         $param['field'] = '*';
-        $member_info = D('Member')->queryRow($param['where'], $param['field']);
+        $member_info = D ('Member')->queryRow ($param['where'] , $param['field']);
         $data['integral'] = $member_info['integral'];
         $param['where']['id'] = $member_info['parent_id'];
-        $list_info = D('ExtensionLog')
-            ->where(array('db_extension_log.m_id' => $m_id))
-            ->join("db_member ON db_extension_log.m_id = db_member.id")
-            ->field('db_extension_log.id,db_extension_log.create_time,db_member.nickname')
-            ->select();
-        if ($list_info) {//被邀请的好友
-            foreach ($list_info as $k => $v) {
-                $list_info[$k]['create_time'] = date('Y/m/d', $v['create_time']);
+        $list_info = D ('CouponLog')
+            ->where (array ('db_coupon_log.m_id' => $m_id))
+            ->join ("db_member ON db_coupon_log.s_id = db_member.id")
+            ->field ('db_coupon_log.id,db_coupon_log.create_time,db_member.nickname')
+            ->select ();
+        if ( $list_info ) {//被邀请的好友
+            foreach ( $list_info as $k => $v ) {
+                $list_info[$k]['create_time'] = date ('Y/m/d' , $v['create_time']);
             }
         }
-        $this->apiResponse(1, '请求成功', array("list" => $list_info));
+        $this->apiResponse (1 , '请求成功' , array ("list" => $list_info));
     }
 
     /**
      *奖励规则
      **/
-    public function InvitationDetail(){
-        $data = D ("Article")->where (array ('type' => 4 , 'status' => 1 ))->field ('id,title,content')->find();
-        $data['content'] = $this->setAbsoluteUrl($data['content']);
-        $data['content'] =htmlspecialchars_decode($data['content']);
-        $data['content'] = str_replace('img src="', 'img src = "' . C('API_URL'), $data['content']);
-        $this->apiResponse (1,'查询成功',$data);
+    public function InvitationDetail () {
+        $data = D ("Article")->where (array ('type' => 4 , 'status' => 1))->field ('id,title,content')->find ();
+        $data['content'] = $this->setAbsoluteUrl ($data['content']);
+        $data['content'] = htmlspecialchars_decode ($data['content']);
+        $data['content'] = str_replace ('img src="' , 'img src = "' . C ('API_URL') , $data['content']);
+        $this->apiResponse (1 , '查询成功' , $data);
     }
 }

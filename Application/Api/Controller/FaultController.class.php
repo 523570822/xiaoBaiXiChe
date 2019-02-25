@@ -36,15 +36,17 @@ class FaultController extends BaseController
         $this->errorTokenMsg ($m_id);
         $request = I ('post.');
         $rule = array (
-            array('mc_id','string','请输入机器编码'),
+            array('mc_code','string','请输入机器编码'),
             array ('pro_id' , 'string' , '请选择反馈原因') ,
             array ('content' , 'string' , '请输入反馈内容') ,
         );
         $this->checkParam ($rule);
+        $is = M ('CarWasher')->where (array ('mc_code' => $request['mc_code']))->field ('*')->find ();
+        $request['mc_id'] = $is['mc_id'];
         if($request['mc_id']){
             $car_washer_info = M ('CarWasher')->where (array ('mc_id' => $request['mc_id']))->find ();
             if ( !$request['mc_id'] = $car_washer_info['mc_id'] ) {
-                $this->apiResponse ('0' , '找不到该机器' , $php_errormsg);
+                $this->apiResponse ('0' , '找不到该机器');
             }
         }
         if(!empty($_FILES['pic_id']['name'])){
@@ -52,18 +54,19 @@ class FaultController extends BaseController
             foreach ($res as $key=>$value) {
                 $pic[$key] = $value['id'];
             }
-            $request['pic_id'] = implode(',',$pic);
+            $where['pic_id'] = implode(',',$pic);
         }
         $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
-        $request['contact'] = $member_info ['account'];
-        $request['m_id'] = $m_id;
-        $request['content'] = $request['content'];
-        $request['create_time'] = time ();
-        $add = D ('Fault')->add ($request);
-        if ( empty($add) ) {
-            $this->apiResponse ('0' , '提交失败');
-        } else {
+        $where['contact'] = $member_info ['account'];
+        $where['m_id'] = $m_id;
+        $where['content'] = $request['content'];
+        $where['create_time'] = time ();
+        $where['mc_id'] = $request['mc_id'];
+        $add = D ('Fault')->add ($where);
+        if ( $add ) {
             $this->apiResponse ('1' , '提交成功');
+        } else {
+            $this->apiResponse ('0' , '提交失败');
         }
     }
 }

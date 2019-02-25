@@ -21,7 +21,7 @@ class InvoiceController extends BaseController
         $rule = array ('o_type' , 'string' , "请选择开票订单类型");
         $this->checkParam ($rule);
         unset($param);
-        $page = (I ("p")) ? I ("p") : 1;
+        $page = (I ("page")) ? I ("page") : 1;
         $param['where']['m_id'] = $m_id;
         $param['where']['status'] = 2;
         $param['where']['invoice'] = 0;

@@ -59,21 +59,30 @@ class CouponController extends BaseController
     {
         $request = $_REQUEST;
         $rule = array (
-            array ('nums' , 'int' , '数量'),
-            array ('code_length' , 'int' , '长度'),
-            array ('prefix' , 'string' , '前缀'),
+            array ('title' , 'string' , '批次名称'),
+            array ('price' , 'int' , '批次价格'),
             array ('data' , 'int' , '有效期天数'),
-            array ('id' , 'int' , '批次ID'),
+            array ('nums' , 'int' , '批次数量'),
+            array ('code_length' , 'int' , '批次长度'),
+            array ('prefix' , 'string' , '批次前缀'),
+            array ('remark' , 'string' , '批次备注'),
             );
         $this->checkParam ($rule);
+        $date['title']=$request['title'];
+        $date['num']=$request['nums'];
+        $date['price']=$request['price'];
+        $date['remark']=$request['remark'];
+        $date['create_time']=time ();
+        $date['start_time']=time ();
+        $date['end_time']=time ()+($request['data']*24*3600);
+        $batch=D ('Batch')->add ($date);
         $code=$this->generateCode($request['nums'],'',$request['code_length'],$request['prefix']);
         foreach ($code as $k => $v) {
             $one= $code[$k];
-            $data = [['exchange'=>$one,'is_activation'=>0,'creator_time'=>time (),'end_time'=>time ()+($request['data']*24*3600),'b_id'=>$request['id']]];
+            $data = [['exchange'=>$one,'is_activation'=>0,'create_time'=>time (),'end_time'=>time ()+($request['data']*24*3600),'b_id'=>$batch['id']]];
             M ('RedeemCode')->addAll($data);
         }
         $this->apiResponse (1,'添加成功',count ($one));
-
     }
 
     /**

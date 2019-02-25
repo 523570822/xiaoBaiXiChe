@@ -229,53 +229,78 @@ class PayController extends BaseController {
     /**
      * 支付宝回调
      */
+        /*{
+        "alipay_trade_app_pay_response": {
+        "code": "10000",
+        "msg": "Success",
+        "app_id": "2018121362529699",
+        "auth_app_id": "2018121362529699",
+        "charset": "UTF-8",
+        "timestamp": "2019-02-21 14:06:17",
+        "out_trade_no": "CZ201902211406078781",
+        "total_amount": "0.01",
+        "trade_no": "2019022122001411431019116813",
+        "seller_id": "2088331663516484"
+        },
+        "sign": "NEiE1IDhbaOw+w7VT6HrclIIKNRx0x/AkXUKe0mzKbfjikxMDwG1b5pYTKm2k2dV4CO2uvxEAa8G/ww0NHc60d119LBkMgYW6t3kMT0PjLLZME1ABDwLVE0RauxP+l/LBsW7nLXkeSotzBWOTvWRUAWeOpWs3Q9o7GmDLI3hoFHROiiHOz2SX38+NmOVIh/YxdyLjGGIpK7D7NIUjmVCknWMuOt6DgFQCkq9iqbYIWI4Yb1Zgr6ePCM61QYIIOlwGIY3SiKTJoULhZCnVHTMp5nIQUUOy8cRLcDg9WikFahg+7QDToFy/L87FjvcbG4RELIr9m4IRJE7znu5HJ/eHg==",
+            "sign_type": "RSA2"
+          }*/
     public function AlipayNotify () {
-        Vendor ('Txunda.Alipay.Notify');
-        $notify = new \Notify();
-        if ( $notify->rsaCheck () ) {
-            $out_trade_no = $_REQUEST['out_trade_no'];
-            $trade_status = $_REQUEST['trade_status'];
-            $trade_no = $_REQUEST['trade_no'];
-            if ( $trade_status == 'TRADE_SUCCESS' ) {
-                $order = D ('Order')->where (array ('orderid' => $out_trade_no))->find ();
-                $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
-                $date['pay_type'] = 2;
-                $date['status'] = 2;
-                $date['is_set'] = 1;
-                $date['pay_time'] = time ();
-                $date['trade_no'] = $trade_no;
-                if ( $order['o_type'] == 1 ) {//1洗车订单
-                    $date['detail'] = 0;
-                    $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
-                    if ( $save ) {
-                        echo "success";
-                    }
-                } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
-                    $have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
-                    if ( $have ) {
-                        $where['end_time'] = $have['end_time'] + 30 * 24 * 3600;
-                        $where['update_time'] = time ();
-                        D ("CardUser")->where (array ('m_id' => $order['m_id']))->save ($where);
-                    } else {
-                        $where['end_time'] = time () + 30 * 24 * 3600;
-                        $where['create_time'] = time ();
-                        $where['stare_time'] = time ();
-                        $where['l_id'] = $order['card_id'];
-                        $where['m_id'] = $order['m_id'];
-                        D ("CardUser")->add ($where);
-                    }
-                    $date['detail'] = 0;
-                    $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
-                    if ( $save ) {
-                        echo "success";
-                    }
-                } elseif ( $order['o_type'] == 3 ) {//3余额充值
-                    $date['detail'] = 1;
-                    $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
-                    $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
-                    if ( $save && $buy ) {
-                        echo "success";
-                    }
+        Vendor('Txunda.Alipay.Notify');
+        Vendor("Txunda.Alipay.aop.request.AlipayTradeAppPayRequest");
+        Vendor("Txunda.Alipay.aop.AopClient");
+        $post_data = I("");
+        $aop = new \AopClient;
+        $aop->alipayrsaPublicKey = \AlipayConfig::alipayrsaPublicKey;
+//        $flag = $aop->rsaCheckV1($post_data, NULL, "RSA2");
+//        $notify = new \Notify();
+//        if ( $notify->rsaCheck () ) {
+//            $out_trade_no = $_REQUEST['out_trade_no'];
+//            $trade_status = $_REQUEST['trade_status'];
+//            $trade_no = $_REQUEST['trade_no'];
+//           $out_trade_no = "CZ201902191701556570";
+//           $trade_status = "TRADE_SUCCESS";
+//           $trade_no = "2019022122001411431019116813";
+//        }
+        if ( $post_data['trade_status'] == 'TRADE_SUCCESS' ) {
+            $order = D ('Order')->where (array ('orderid' => $post_data['out_trade_no']))->find ();
+            $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
+            $date['pay_type'] = 2;
+            $date['status'] = 2;
+            $date['is_set'] = 1;
+            $date['pay_time'] = time ();
+            $date['trade_no'] = $post_data['trade_no'];
+            if ( $order['o_type'] == 1 ) {//1洗车订单
+                $date['detail'] = 0;
+                $save = D ("Order")->where (array ('orderid' => $post_data['out_trade_no']))->save ($date);
+                if ( $save ) {
+                    echo "success";
+                }
+            } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
+                $have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
+                if ( $have ) {
+                    $where['end_time'] = $have['end_time'] + 30 * 24 * 3600;
+                    $where['update_time'] = time ();
+                    D ("CardUser")->where (array ('m_id' => $order['m_id']))->save ($where);
+                } else {
+                    $where['end_time'] = time () + 30 * 24 * 3600;
+                    $where['create_time'] = time ();
+                    $where['stare_time'] = time ();
+                    $where['l_id'] = $order['card_id'];
+                    $where['m_id'] = $order['m_id'];
+                    D ("CardUser")->add ($where);
+                }
+                $date['detail'] = 0;
+                $save = D ("Order")->where (array ('orderid' => $post_data['out_trade_no']))->save ($date);
+                if ( $save ) {
+                    echo "success";
+                }
+            } elseif ( $order['o_type'] == 3 ) {//3余额充值
+                $date['detail'] = 1;
+                $save = D ("Order")->where (array ('orderid' => $post_data['out_trade_no']))->save ($date);
+                $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
+                if ( $save && $buy ) {
+                    echo "success";
                 }
             }
         }
@@ -549,11 +574,8 @@ class PayController extends BaseController {
         $date['pay_type'] = 1;
         $date['trade_no'] = $info;
         if ( $order['o_type'] == 1 ) {//1洗车订单
-            $date['detail'] = 0;
-            $save = D ("Order")->where (array ('orderid' => $order['orderid']))->save ($date);
-            $type['type'] = 1;
-            $car = D ("CarWasher")->where (array ('id' => $order['c_id']))->save ($type);
-            if ( $save && $car ) {
+            $save = D ("Order")->where (array ('orderid' => $order['orderid']))->save (array ( 'detail' => 0));
+            if ( $save ) {
                 echo "success";
             }
         } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
