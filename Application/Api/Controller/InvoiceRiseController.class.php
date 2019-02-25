@@ -45,7 +45,7 @@ class InvoiceRiseController extends BaseController
     {
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
-        $page = (I ("p")) ? I ("p") : 1;
+        $page = (I ("page")) ? I ("page") : 1;
         $param['where']['m_id'] = $m_id;
         $param['where']['status'] = 1;
         $order_info = D ('InvoiceRise')
