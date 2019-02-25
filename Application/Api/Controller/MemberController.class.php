@@ -291,11 +291,7 @@ class MemberController extends BaseController
     {
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
-        unset($param);
-        $param['where']['id'] = $m_id;
-        $param['where']['status'] = array('neq', 9);
-        $param['field'] = 'id as m_id,account,tel,nickname,head_pic,sex,degree';
-        $member_info = D('Member')->queryRow($param['where'], $param['field']);
+        $member_info = D('Member')->where (array ('id'=>$m_id,'status' => 1))->field ('id as m_id,head_pic,nickname,tel,degree')->find();
         $member_info['head_pic'] =  C('API_URL') .$this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
         $this->apiResponse('1', '请求成功', $member_info);
     }
@@ -448,12 +444,11 @@ class MemberController extends BaseController
     {
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
-        $param['where']['id'] = $m_id;
-        $param['field'] = 'id as m_id,account,tel,head_pic,sex,nickname,password,realname';
-        $member = D('Member')->queryRow($param['where'], $param['field']);
-        D('Member')->where (array ('id'=>$m_id))->save(array ('tel'=>$member['account']));
-        $member_info = D('Member')->queryRow($param['where'], $param['field']);
-        $member_info['head_pic'] = C('API_URL') . $this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
+        $member_info = D('Member')->where (array ('id'=>$m_id,'status' => 1))->field ('id as m_id,head_pic,nickname,realname,sex,tel,account')->find();
+        if(empty($member_info['tel'])){
+            D('Member')->where (array ('id'=>$m_id))->save(array ('tel'=>$member_info['account']));
+        }
+        $member_info['head_pic'] =  C('API_URL') .$this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
         $member_info['is_password'] = $member_info['password'] ? '1' : '0';
         unset($member_info['password']);
         $this->apiResponse('1', '请求成功', $member_info);

@@ -244,7 +244,7 @@ class BaseController extends ControllerService
                         "pump2_status" => 3 ,
                         "valve1_status" => 3 ,
                         "vacuum_status" => 2 ,
-                        "heater_status"=> 2,
+                        "heater_status" => 2 ,
                     ];
                 } elseif ( $mode == 2 ) {
                     $arr_param = [//预约 — 洗车机设置
