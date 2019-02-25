@@ -681,8 +681,8 @@ class OrderController extends BaseController {
      *Date:2019/02/22 18:21
      */
     public function proMethod(){
-        $post = checkAppData('token','token');
-//        $post['token'] = '98930613a6782aced0a49ce2cda06f4e';
+//        $post = checkAppData('token','token');
+        $post['token'] = 'ba185544043e439f861943a7416102f3';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
@@ -721,7 +721,11 @@ class OrderController extends BaseController {
                 );
                 $this->apiResponse('1','没有优惠方式',$data);
             }
-            $this->apiResponse('1','成功',$coupon_lists);
+            $data = array(
+                'card' => $card_lists,
+                'coupon' => $coupon_lists,
+            );
+            $this->apiResponse('1','成功',$data);
         }
 
     }
