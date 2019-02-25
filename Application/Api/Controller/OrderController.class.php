@@ -614,19 +614,14 @@ class OrderController extends BaseController {
      *Date:2019/02/21 13:19
      */
     public function  Pay(){
-//        $post = checkAppData('token,orderID,washing,foam,cleaner,method,methodID','token-订单ID,水枪清洗时间,泡沫清洗时间,吸尘器使用时间,优惠方式,优惠卡ID');
-
-
-        $post['token'] = 'ba185544043e439f861943a7416102f3';
-        $post['orderID'] = 59;
-        $post['washing'] = 14;
-        $post['foam'] = 1;
-        $post['cleaner'] = 357;
-        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
-        $post['methodID'] = 29;    //折扣卡ID
-
-
-
+        $post = checkAppData('token,orderID,washing,foam,cleaner,method,methodID','token-订单ID,水枪清洗时间,泡沫清洗时间,吸尘器使用时间,优惠方式,优惠卡ID');
+//        $post['token'] = 'ba185544043e439f861943a7416102f3';
+//        $post['orderID'] = 59;
+//        $post['washing'] = 14;
+//        $post['foam'] = 1;
+//        $post['cleaner'] = 357;
+//        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
+//        $post['methodID'] = 29;    //折扣卡ID
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $d_where = array(
@@ -686,8 +681,8 @@ class OrderController extends BaseController {
      *Date:2019/02/22 18:21
      */
     public function proMethod(){
-//        $post = checkAppData('token','token');
-        $post['token'] = '98930613a6782aced0a49ce2cda06f4e';
+        $post = checkAppData('token','token');
+//        $post['token'] = '98930613a6782aced0a49ce2cda06f4e';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
