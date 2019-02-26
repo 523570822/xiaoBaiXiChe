@@ -137,11 +137,7 @@ class OrderController extends BaseController {
         } elseif ( $status == 2 ) {
             $data['m_id'] = $m_id;
             $data['mc_id'] = $where['mc_id'];
-
-
             $data['c_id'] = $where['id'];
-
-
             $data['orderid'] = 'XC' . date ('YmdHis') . rand (1000 , 9999);
             $data['title'] = "扫码洗车";
             $data['o_type'] = '1';
@@ -264,12 +260,17 @@ class OrderController extends BaseController {
 
                 $this->checkMsgs ($request['mc_id'] , $all['mc_id'] , $all['status'] , $all['type'] , $request['mc_code'] , $m_id , 1);
                 $open = $this->send_post ('device_manage' , $request['mc_id'] , '1');
+
+                var_dump($open);exit;
                 if ( $open ) {
+                    echo 111;exit;
+
                     $data = $this->status ($m_id , 2 , $all);
                     $res = M ('Order')->data ($data)->add ();
                     $XG['mc_id'] = $request['mc_id'];
                     $type['type'] = '2';
                     $yes = M ('CarWasher')->where ($XG)->save ($type);
+
                     if ( $res && $yes ) {
                         $order = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
                         $this->cs ($request['mc_id'] , $order['id'] , $m_id , $order['c_id']);
