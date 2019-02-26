@@ -614,9 +614,9 @@ class OrderController extends BaseController {
      *Date:2019/02/21 13:19
      */
     public function  Pay(){
-        $post = checkAppData('token,orderID,washing,foam,cleaner,method,methodID','token-订单ID,水枪清洗时间,泡沫清洗时间,吸尘器使用时间,优惠方式,优惠卡ID');
+        $post = checkAppData('token,order_id,washing,foam,cleaner,method,methodID','token-订单ID,水枪清洗时间,泡沫清洗时间,吸尘器使用时间,优惠方式,优惠卡ID');
 //        $post['token'] = 'ba185544043e439f861943a7416102f3';
-//        $post['orderID'] = 59;
+//        $post['order_id'] = 59;
 //        $post['washing'] = 14;
 //        $post['foam'] = 1;
 //        $post['cleaner'] = 357;
@@ -625,7 +625,7 @@ class OrderController extends BaseController {
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $d_where = array(
-            'o_id'=>$post['orderID'],
+            'o_id'=>$post['order_id'],
             'm_id'=>$member['id'],
             'status'=>0
         );
