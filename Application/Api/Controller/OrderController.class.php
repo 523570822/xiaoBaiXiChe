@@ -313,6 +313,7 @@ class OrderController extends BaseController {
         } elseif ( $w_type !== '1' ) {
             $this->apiResponse ('0' , '洗车类型错误');
         }
+
         //检查订单
         $this->checkhave ($m_id , $w_type , $mc_code);
         //检查机器
