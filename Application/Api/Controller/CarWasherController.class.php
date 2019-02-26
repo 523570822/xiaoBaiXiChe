@@ -236,33 +236,32 @@ class CarWasherController extends BaseController
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
 
+                    if($vv[0]['queryitem']['service_status'] == 13){            //机器使用状态   13使用中   14预定中   12结算   8空闲中
+                        $using_where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $using_data = array(
+                            'type' => 2,
+                        );
+                        $using = M('CarWasher')->where($using_where)->save($using_data);
+                    }elseif ($vv[0]['queryitem']['service_status'] == 14){
+                        $doom_where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $doom_data = array(
+                            'type' => 3,
+                        );
+                        $doom = M('CarWasher')->where($doom_where)->save($doom_data);
+                    } elseif ($vv[0]['queryitem']['service_status'] <= 8){
+                        $idle_where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $idle_data = array(
+                            'type' => 1,
+                        );
+                        $idle = M('CarWasher')->where($idle_where)->save($idle_data);
+                    }
                     if($vv[0]['queryitem']['service_status'] >= 8){            //判断洗车机状态   1在线   2故障   3报警   4不在线
-
-                        if($vv[0]['queryitem']['service_status'] == 13){            //机器使用状态   13使用中   14预定中   12结算   8空闲中
-                            $using_where = array(
-                                'mc_id' => $vv[0]['deviceid'],
-                            );
-                            $using_data = array(
-                                'type' => 2,
-                            );
-                            $using = M('CarWasher')->where($using_where)->save($using_data);
-                        }elseif ($vv[0]['queryitem']['service_status'] == 14){
-                            $doom_where = array(
-                                'mc_id' => $vv[0]['deviceid'],
-                            );
-                            $doom_data = array(
-                                'type' => 3,
-                            );
-                            $doom = M('CarWasher')->where($doom_where)->save($doom_data);
-                        } elseif ($vv[0]['queryitem']['service_status'] == 8){
-                            $idle_where = array(
-                                'mc_id' => $vv[0]['deviceid'],
-                            );
-                            $idle_data = array(
-                                'type' => 1,
-                            );
-                            $idle = M('CarWasher')->where($idle_where)->save($idle_data);
-                        }
 //                        var_dump($vv[0]['queryitem']['pump1_status']);exit;
                         if(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump2_status'] >= 4 ) || ($vv[0]['queryitem']['valve1_status'] >= 4) ){   //三个值有一个值>=4就代表故障
                             $malf_where = array(
