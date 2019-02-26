@@ -223,7 +223,7 @@ class CarWasherController extends BaseController
      */
     public function realTime(){
         $where['status'] = array('neq',9);
-        //$where['mc_id'] = '510042001451373435363337';
+//        $where['mc_id'] = '510042001451373435363337';
         $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];
@@ -232,14 +232,39 @@ class CarWasherController extends BaseController
             //$mana = 'manage';
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
-
+//            var_dump($queryitem[$k]['devices'][0]);exit;
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
 
                     if($vv[0]['queryitem']['service_status'] >= 8){            //判断洗车机状态   1在线   2故障   3报警   4不在线
 
+                        if($vv[0]['queryitem']['service_status'] == 13){            //机器使用状态   13使用中   14预定中   12结算   8空闲中
+                            $using_where = array(
+                                'mc_id' => $vv[0]['deviceid'],
+                            );
+                            $using_data = array(
+                                'type' => 2,
+                            );
+                            $using = M('CarWasher')->where($using_where)->save($using_data);
+                        }elseif ($vv[0]['queryitem']['service_status'] == 14){
+                            $doom_where = array(
+                                'mc_id' => $vv[0]['deviceid'],
+                            );
+                            $doom_data = array(
+                                'type' => 3,
+                            );
+                            $doom = M('CarWasher')->where($doom_where)->save($doom_data);
+                        } elseif ($vv[0]['queryitem']['service_status'] == 8){
+                            $idle_where = array(
+                                'mc_id' => $vv[0]['deviceid'],
+                            );
+                            $idle_data = array(
+                                'type' => 1,
+                            );
+                            $idle = M('CarWasher')->where($idle_where)->save($idle_data);
+                        }
 //                        var_dump($vv[0]['queryitem']['pump1_status']);exit;
-                        if(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump2_status'] >= 4 ) || ($vv[0]['queryitem']['valve1_status'] >= 4) ){
+                        if(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump2_status'] >= 4 ) || ($vv[0]['queryitem']['valve1_status'] >= 4) ){   //三个值有一个值>=4就代表故障
                             $malf_where = array(
                                 'mc_id' => $vv[0]['deviceid'],
                             );
@@ -247,7 +272,7 @@ class CarWasherController extends BaseController
                                 'status' => 2,
                             );
                             $malfunction = M('CarWasher')->where($malf_where)->save($malf_data);
-                        }elseif ($vv[0]['queryitem']['level3_status']  == 188888/*false*/ || $vv[0]['queryitem']['pump1_status'] == 2|| $vv[0]['queryitem']['pump2_status'] == 2){
+                        }elseif ($vv[0]['queryitem']['level3_status']  == 188888/*false*/ || $vv[0]['queryitem']['pump1_status'] == 2|| $vv[0]['queryitem']['pump2_status'] == 2){                  //三个状态判断液位不足
                             $alarm_where = array(
                                 'mc_id' => $vv[0]['deviceid'],
                             );
@@ -255,7 +280,7 @@ class CarWasherController extends BaseController
                                 'status' => 3,
                             );
                             $alarm = M('CarWasher')->where($alarm_where)->save($alarm_data);
-                        }else{
+                        }else{                                                //判断正常
                             $where = array(
                                 'mc_id' => $vv[0]['deviceid'],
                             );
@@ -264,8 +289,7 @@ class CarWasherController extends BaseController
                             );
                             $online = M('CarWasher')->where($where)->save($data);
                         }
-                    }elseif ($vv[0]['queryitem']['service_status'] < 8){
-//                        echo 333;exit;
+                    }elseif ($vv[0]['queryitem']['service_status'] < 8){   //<8掉线
 
                         $off_where = array(
                             'mc_id' => $vv[0]['deviceid'],
@@ -283,9 +307,7 @@ class CarWasherController extends BaseController
                     $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
                 }
             }
-
         }
-
     }
 
     /**
@@ -293,20 +315,20 @@ class CarWasherController extends BaseController
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/02/15 13:05
      */
-    public function device(){
-        $where['status'] = array('neq',9);
-        $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
-        $manage = 'runtime_query';
-        $devmanage = $this->send_post($manage,'50003f001451373435363337');
-        var_dump($devmanage);
-        exit;
-        foreach ($car as $k=>$v) {
-            $cars[$k]['car_num'] = $v['mc_id'];
-            $cars[$k]['id'] = $v['id'];
-            $manage = 'device_manage';
-            $devmanage = $this->send_post($manage,'50003f001451373435363337',1);
-            var_dump($devmanage);
-            var_dump($devmanage[49]['devices'][0]);
-        }
-    }
+//    public function device(){
+//        $where['status'] = array('neq',9);
+//        $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
+//        $manage = 'runtime_query';
+//        $devmanage = $this->send_post($manage,'50003f001451373435363337');
+//        var_dump($devmanage);
+//        exit;
+//        foreach ($car as $k=>$v) {
+//            $cars[$k]['car_num'] = $v['mc_id'];
+//            $cars[$k]['id'] = $v['id'];
+//            $manage = 'device_manage';
+//            $devmanage = $this->send_post($manage,'50003f001451373435363337',1);
+//            var_dump($devmanage);
+//            var_dump($devmanage[49]['devices'][0]);
+//        }
+//    }
 }
