@@ -137,7 +137,7 @@ class OrderController extends BaseController {
         } elseif ( $status == 2 ) {
             $data['m_id'] = $m_id;
             $data['mc_id'] = $where['mc_id'];
-            $data['c_id'] = $where['id'];
+            //$data['c_id'] = $where['id'];
             $data['orderid'] = 'XC' . date ('YmdHis') . rand (1000 , 9999);
             $data['title'] = "扫码洗车";
             $data['o_type'] = '1';
@@ -456,10 +456,10 @@ class OrderController extends BaseController {
      *Date:2019/02/18 15:52
      */
     public function settlement(){
-//        $post = checkAppData('token,order_id,switch','token-订单ID-开关');
-        $post['token'] = '98930613a6782aced0a49ce2cda06f4e';
-        $post['order_id'] = 59;
-        $post['switch'] = 0;
+        $post = checkAppData('token,order_id,switch','token-订单ID-开关');
+//        $post['token'] = '98930613a6782aced0a49ce2cda06f4e';
+//        $post['order_id'] = 59;
+//        $post['switch'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -681,8 +681,8 @@ class OrderController extends BaseController {
      *Date:2019/02/22 18:21
      */
     public function proMethod(){
-//        $post = checkAppData('token','token');
-        $post['token'] = 'ba185544043e439f861943a7416102f3';
+        $post = checkAppData('token','token');
+//        $post['token'] = 'ba185544043e439f861943a7416102f3';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
