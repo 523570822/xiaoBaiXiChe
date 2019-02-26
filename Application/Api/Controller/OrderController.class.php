@@ -466,6 +466,9 @@ class OrderController extends BaseController {
 //        $post['switch'] = 0;
 
         $where['token'] = $post['token'];
+
+
+        
         $member = M('Member')->where($where)->find();
         $d_where = array(
             'o_id'=>$post['order_id'],
