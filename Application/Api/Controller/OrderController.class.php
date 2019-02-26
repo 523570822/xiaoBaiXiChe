@@ -460,10 +460,10 @@ class OrderController extends BaseController {
      *Date:2019/02/18 15:52
      */
     public function settlement(){
-//        $post = checkAppData('token,order_id,switch','token-订单ID-开关');
-        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
-        $post['order_id'] = 59;
-        $post['switch'] = 0;
+        $post = checkAppData('token,order_id,switch','token-订单ID-开关');
+//        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
+//        $post['order_id'] = 59;
+//        $post['switch'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -623,7 +623,7 @@ class OrderController extends BaseController {
      */
     public function  Pay(){
         $post = checkAppData('token,order_id,washing,foam,cleaner,method,methodID','token-订单ID,水枪清洗时间,泡沫清洗时间,吸尘器使用时间,优惠方式,优惠卡ID');
-//        $post['token'] = 'ba185544043e439f861943a7416102f3';
+//        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
 //        $post['order_id'] = 59;
 //        $post['washing'] = 14;
 //        $post['foam'] = 1;
@@ -638,49 +638,57 @@ class OrderController extends BaseController {
             'status'=>0
         );
         $details = M('Details')->where($d_where)->find();
-        $price = M('Appsetting')->where(array('id'=>1))->find();
+        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
+        $send_post = $this->send_post('runtime_query',$car['mc_id']);
+//        var_dump($send_post['devices'][0]['queryitem']);exit;
+        if($send_post['devices'][0]['queryitem']['service_status'] == 12){
+            $price = M('Appsetting')->where(array('id'=>1))->find();
 //        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
 //        $send_post = $this->send_post('device_manage',$car['mc_id'],3);
-        $wash_money =  round($details['washing'] * $price['washing_money'],2);    //水枪金额
+            $wash_money =  round($details['washing'] * $price['washing_money'],2);    //水枪金额
 
-        $foam_money = round($details['foam'] * $price['foam_money'],2); //泡沫枪金额
+            $foam_money = round($details['foam'] * $price['foam_money'],2); //泡沫枪金额
 
-        $cleaner_money = round($details['cleaner'] * $price['cleaner_money'],2); //吸尘器金额
+            $cleaner_money = round($details['cleaner'] * $price['cleaner_money'],2); //吸尘器金额
 
-        $all_money = $wash_money + $foam_money + $cleaner_money;  //总金额
+            $all_money = $wash_money + $foam_money + $cleaner_money;  //总金额
 
-        if($post['method'] == 1){
-            $card_list = M ('CardUser')->where (array ('db_card_user.id' => $post['methodID'], 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->find ();
-            $price = round($all_money * $card_list['rebate'],2);
-            $method = $card_list['name'] . '会员' . ($card_list['rebate'] * 10) . '折';
-        }elseif ($post['method'] == 2){
-            $coupon_list = M ('CouponBind')->where (array ('db_coupon_bind.id' =>$post['methodID'],'db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 1))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id')->find ();
-            $price = round($all_money - $coupon_list['price'],2);
-            $method = $coupon_list['title'] . $coupon_list['price'] . '元';
-        }elseif ($post['method'] == 3){
-            $price = $all_money;
-            $method = '暂无使用优惠方式';
+            if($post['method'] == 1){
+                $card_list = M ('CardUser')->where (array ('db_card_user.id' => $post['methodID'], 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->find ();
+                $price = round($all_money * $card_list['rebate'],2);
+                $method = $card_list['name'] . '会员' . ($card_list['rebate'] * 10) . '折';
+            }elseif ($post['method'] == 2){
+                $coupon_list = M ('CouponBind')->where (array ('db_coupon_bind.id' =>$post['methodID'],'db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 1))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id')->find ();
+                $price = round($all_money - $coupon_list['price'],2);
+                $method = $coupon_list['title'] . $coupon_list['price'] . '元';
+            }elseif ($post['method'] == 3){
+                $price = $all_money;
+                $method = '暂无使用优惠方式';
+            }
+
+
+            $data = array(
+                'time' =>array(
+                    'wash' =>$post['washing'],
+                    'foam' =>$post['foam'],
+                    'cleaner' =>$post['cleaner'],
+                ),
+                'now_price' =>array(
+                    'wash_price' =>$wash_money,
+                    'foam_price' =>$foam_money,
+                    'cleaner_price' =>$cleaner_money
+                ),
+                'all_price' =>$all_money,
+                'method' => $method,
+                'real_price' =>$price,
+            );
+            if(!empty($data)){
+                $this->apiResponse('1','成功',$data);
+            }
+        }else{
+            $this->apiResponse('0','该订单未结算');
         }
 
-
-        $data = array(
-            'time' =>array(
-                'wash' =>$post['washing'],
-                'foam' =>$post['foam'],
-                'cleaner' =>$post['cleaner'],
-            ),
-            'now_price' =>array(
-                'wash_price' =>$wash_money,
-                'foam_price' =>$foam_money,
-                'cleaner_price' =>$cleaner_money
-            ),
-            'all_price' =>$all_money,
-            'method' => $method,
-            'real_price' =>$price,
-        );
-        if(!empty($data)){
-            $this->apiResponse('1','成功',$data);
-        }
     }
 
     /**
