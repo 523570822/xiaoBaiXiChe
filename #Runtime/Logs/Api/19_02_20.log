@@ -1,0 +1,1133 @@
+[ 2019-02-20T13:45:12+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `status` = 1  [ RunTime:0.0110s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-02-20T13:46:53+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641613 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `status` = 1  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: id G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 627 行.
+SQL: SELECT * FROM `db_details` WHERE `m_id` = 1 AND `o_id` = null AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2019-02-20T13:48:25+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641705 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: id G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 627 行.
+SQL: SELECT * FROM `db_details` WHERE `m_id` = 1 AND `o_id` = null AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2019-02-20T13:48:48+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641728 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: id G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 627 行.
+SQL: SELECT * FROM `db_details` WHERE `m_id` = 1 AND `o_id` = null AND `status` = 1 LIMIT 1   [ RunTime:0.0140s ]
+
+[ 2019-02-20T13:49:03+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641743 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: id G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 627 行.
+SQL: SELECT * FROM `db_details` WHERE `m_id` = 1 AND `o_id` = null AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T13:49:20+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641760 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_details` WHERE `m_id` = 1 AND `o_id` = 88 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T13:49:35+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641775 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_details` WHERE `m_id` = 1 AND `o_id` = 88 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-02-20T13:51:34+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641894 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_details` WHERE `m_id` = 1 AND `id` = 44 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T13:52:04+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641924 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_details` WHERE `m_id` = 1 AND `id` = 43 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T13:52:50+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641970 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+SQL: SELECT `washing`,`foam`,`cleaner` FROM `db_details` WHERE `m_id` = 1 AND `id` = 43 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T13:53:16+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550641996 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+SQL: SELECT `washing`,`foam`,`cleaner` FROM `db_details` WHERE `m_id` = 1 AND `id` = 43 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-02-20T13:53:32+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550642011 AND `status` <> 0 LIMIT 1   [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0080s ]
+SQL: SELECT `washing`,`foam`,`cleaner` FROM `db_details` WHERE `m_id` = 1 AND `id` = 43 AND `status` = 1 LIMIT 1   [ RunTime:0.0060s ]
+
+[ 2019-02-20T14:13:06+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643185 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'MK201902191031403493' AND `status` = 1 LIMIT 1   [ RunTime:0.0120s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 773 行.
+SQL: SHOW COLUMNS FROM `db_card_user` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_card_user` WHERE `m_id` = 1  [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_card_user` WHERE `m_id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: INSERT INTO `db_card_user` (`end_time`,`create_time`,`stare_time`,`l_id`,`m_id`) VALUES ('1553235186','1550643186','1550643186','1','1') [ RunTime:0.0170s ]
+NOTIC: [8] Undefined index: l_id G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 868 行.
+SQL: UPDATE `db_member` SET `balance`='9450' WHERE `id` = 1 [ RunTime:0.0230s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550643186',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201413064520' WHERE `orderid` = 'MK201902191031403493' [ RunTime:0.0160s ]
+
+[ 2019-02-20T14:14:29+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643269 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+SQL: SELECT `washing`,`foam`,`cleaner` FROM `db_details` WHERE `m_id` = 1 AND `id` = 43 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-02-20T14:14:33+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643273 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0110s ]
+SQL: SELECT `washing`,`foam`,`cleaner` FROM `db_details` WHERE `m_id` = 1 AND `id` = 43 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:14:56+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643295 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'YC201902181638278069' AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 773 行.
+SQL: UPDATE `db_member` SET `balance`='9440' WHERE `id` = 1 [ RunTime:0.0080s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550643296',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201414567822' WHERE `orderid` = 'YC201902181638278069' [ RunTime:0.0160s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT `c_id`,`pay_money`,`pay_time` FROM `db_order` WHERE `orderid` = 'YC201902181638278069' AND `status` = 2 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT `agent_id` FROM `db_car_washer` WHERE `id` = 11 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0090s ]
+SQL: SELECT `grade`,`balance` FROM `db_agent` WHERE `id` = 11 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0090s ]
+SQL: SELECT `detail`,`net_income`,`car_wash`,`day`,`week_star`,`week_end`,`month`,`year`,`create_time` FROM `db_income` WHERE `agent_id` = 11 AND `car_washer_id` = 11 AND `day` = 1550592000 LIMIT 1   [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_income` (`agent_id`,`car_washer_id`,`detail`,`net_income`,`car_wash`,`day`,`week_star`,`week_end`,`month`,`year`,`create_time`) VALUES ('11','11','10.00','8.5','1','1550592000','1550419200','1551023999','1548950400','1546272000','1550643296') [ RunTime:0.0150s ]
+SQL: UPDATE `db_agent` SET `balance`='8.5' WHERE `id` = 11 [ RunTime:0.0130s ]
+
+[ 2019-02-20T14:15:04+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643304 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+SQL: SELECT `washing`,`foam`,`cleaner` FROM `db_details` WHERE `m_id` = 1 AND `id` = 43 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:15:48+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643348 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `status` = 1 LIMIT 1   [ RunTime:0.0130s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 773 行.
+NOTIC: [8] Undefined variable: save G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 871 行.
+
+[ 2019-02-20T14:16:48+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643408 AND `status` <> 0 LIMIT 1   [ RunTime:0.0180s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0090s ]
+SQL: SELECT `washing`,`foam`,`cleaner` FROM `db_details` WHERE `m_id` = 1 AND `id` = 43 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:20:14+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643614 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Db\Driver.class.php 第 504 行.
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 AND (  ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 AND (  ) LIMIT 1  
+
+[ 2019-02-20T14:20:46+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643646 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0120s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 773 行.
+NOTIC: [8] Undefined variable: save G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 871 行.
+
+[ 2019-02-20T14:21:32+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643692 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined variable: where G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 759 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined variable: where G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 760 行.
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 774 行.
+NOTIC: [8] Undefined variable: save G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 872 行.
+
+[ 2019-02-20T14:21:34+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643694 AND `status` <> 0 LIMIT 1   [ RunTime:0.0120s ]
+NOTIC: [8] Undefined variable: where G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 759 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined variable: where G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 760 行.
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 774 行.
+NOTIC: [8] Undefined variable: save G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 872 行.
+
+[ 2019-02-20T14:24:05+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643845 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 774 行.
+NOTIC: [8] Undefined variable: save G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 872 行.
+
+[ 2019-02-20T14:24:30+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643870 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0120s ]
+
+[ 2019-02-20T14:25:37+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550643937 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:28:17+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644097 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:29:34+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644174 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-20T14:30:14+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644214 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `orderid` = 'CZ201902191618385902' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:31:35+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644295 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0120s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0120s ]
+
+[ 2019-02-20T14:31:38+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644297 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.2210s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:31:42+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644302 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-20T14:32:07+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644327 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'CZ201902191618385902' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:32:26+08:00 ] 127.0.0.1 /index.php/Api/pay/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644346 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 1 AND `is_set` = 0 AND `status` = 1  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0090s ]
+SQL: SELECT `washing`,`foam`,`cleaner` FROM `db_details` WHERE `m_id` = 1 AND `id` = 43 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:33:58+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644438 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902141629277959' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:34:11+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644451 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902141629277959' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 778 行.
+SQL: UPDATE `db_member` SET `balance`='9440' WHERE `id` = 1 [ RunTime:0.0070s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550644451',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201434111934' WHERE `orderid` = 'XC201902141629277959' [ RunTime:0.0140s ]
+
+[ 2019-02-20T14:34:16+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644456 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902141629277959' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-20T14:35:01+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644501 AND `status` <> 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151351025619' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:35:19+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644519 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151351025619' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 778 行.
+SQL: UPDATE `db_member` SET `balance`='9440' WHERE `id` = 1 [ RunTime:0.0090s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550644519',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201435194596' WHERE `orderid` = 'XC201902151351025619' [ RunTime:0.0170s ]
+
+[ 2019-02-20T14:38:13+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644693 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151352294616' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 778 行.
+SQL: UPDATE `db_member` SET `balance`='9440' WHERE `id` = 1 [ RunTime:0.0100s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550644693',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201438133830' WHERE `orderid` = 'XC201902151352294616' [ RunTime:0.0150s ]
+
+[ 2019-02-20T14:39:30+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644770 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151356424860' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 778 行.
+SQL: UPDATE `db_member` SET `balance`='9440' WHERE `id` = 1 [ RunTime:0.0080s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550644770',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201439303383' WHERE `orderid` = 'XC201902151356424860' [ RunTime:0.0150s ]
+
+[ 2019-02-20T14:41:11+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644871 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151356424860' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-20T14:41:14+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644874 AND `status` <> 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151356424860' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:41:43+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550644903 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182085' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 778 行.
+SQL: UPDATE `db_member` SET `balance`='9440' WHERE `id` = 1 [ RunTime:0.0090s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550644903',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201441434596' WHERE `orderid` = 'XC201902151401182085' [ RunTime:0.0160s ]
+
+[ 2019-02-20T14:43:22+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645002 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182086' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 778 行.
+SQL: UPDATE `db_member` SET `balance`='9440' WHERE `id` = 1 [ RunTime:0.0090s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550645002',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201443227316' WHERE `orderid` = 'XC201902151401182086' [ RunTime:0.0150s ]
+
+[ 2019-02-20T14:45:20+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645120 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182087' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: o_type G:\Littlewhale\Application\Api\Controller\PayController.class.php 第 778 行.
+SQL: UPDATE `db_member` SET `balance`='9440' WHERE `id` = 1 [ RunTime:0.0090s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550645120',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201445201526' WHERE `orderid` = 'XC201902151401182087' [ RunTime:0.0160s ]
+
+[ 2019-02-20T14:47:12+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645232 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182088' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:47:26+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645246 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182088' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:47:28+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645248 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182088' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:47:29+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645249 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182088' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0120s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-20T14:47:58+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645278 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182088' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: UPDATE `db_member` SET `balance`='9430' WHERE `id` = 1 [ RunTime:0.0100s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550645278',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201447581544' WHERE `orderid` = 'XC201902151401182088' [ RunTime:0.0160s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT `c_id`,`pay_money`,`pay_time` FROM `db_order` WHERE `orderid` = 'XC201902151401182088' AND `status` = 2 AND `o_type` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT `agent_id` FROM `db_car_washer` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0090s ]
+SQL: SELECT `grade`,`balance` FROM `db_agent` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0090s ]
+SQL: SELECT `detail`,`net_income`,`car_wash`,`day`,`week_star`,`week_end`,`month`,`year`,`create_time` FROM `db_income` WHERE `agent_id` = 1 AND `car_washer_id` = 1 AND `day` = 1550592000 LIMIT 1   [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_income` (`agent_id`,`car_washer_id`,`detail`,`net_income`,`car_wash`,`day`,`week_star`,`week_end`,`month`,`year`,`create_time`) VALUES ('1','1','10.00','9.5','1','1550592000','1550419200','1551023999','1548950400','1546272000','1550645278') [ RunTime:0.0180s ]
+SQL: UPDATE `db_agent` SET `balance`='9.5' WHERE `id` = 1 [ RunTime:0.0310s ]
+
+[ 2019-02-20T14:48:33+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645313 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182089' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: UPDATE `db_member` SET `balance`='9430' WHERE `id` = 1 [ RunTime:0.0080s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550645313',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201448337758' WHERE `orderid` = 'XC201902151401182089' [ RunTime:0.0160s ]
+
+[ 2019-02-20T14:48:59+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645339 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182089' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:50:35+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645435 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182089' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:52:28+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645548 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182071' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: UPDATE `db_member` SET `balance`='9430' WHERE `id` = 1 [ RunTime:0.0090s ]
+SQL: UPDATE `db_order` SET `detail`='2',`pay_time`='1550645548',`is_set`='1',`status`='2',`pay_type`='3',`trade_no`='YZF4200000201902201452282084' WHERE `orderid` = 'XC201902151401182071' [ RunTime:0.0180s ]
+
+[ 2019-02-20T14:54:15+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645655 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182072' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:54:24+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645664 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182072' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = null LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:55:08+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645708 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182072' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-02-20T14:56:19+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645779 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182072' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:56:22+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645782 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182072' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:57:22+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645842 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182072' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:57:51+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645870 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182072' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T14:58:15+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645894 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182072' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T14:58:21+08:00 ] 127.0.0.1 /index.php/Api/pay/localPay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' AND `expired_time` >= 1550645900 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `o_type` <> 3 AND `m_id` = 1 AND `orderid` = 'XC201902151401182072' AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T15:34:50+08:00 ] 127.0.0.1 /index.php/Api/pay/Alipay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902151401182072' LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-20T15:48:11+08:00 ] 127.0.0.1 /index.php/Api/pay/Alipay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902151401182072' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-02-20T17:51:53+08:00 ] 127.0.0.1 /index.php/Api/pay/Alipay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-02-20T17:52:01+08:00 ] 127.0.0.1 /index.php/Api/pay/Alipay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902151401182073' AND `o_type` = 1 LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-20T17:54:16+08:00 ] 127.0.0.1 /index.php/Api/pay/Alipay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902151401182073' AND `o_type` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T18:37:14+08:00 ] 127.0.0.1 /index.php/Api/pay/Alipay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902151401182073' LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-02-20T18:48:07+08:00 ] 127.0.0.1 /index.php/Api/pay/Alipay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902151401182073' LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T18:49:39+08:00 ] 127.0.0.1 /index.php/Api/pay/Alipay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902151401182073' LIMIT 1   [ RunTime:0.2150s ]
+
+[ 2019-02-20T18:50:15+08:00 ] 127.0.0.1 /index.php/Api/pay/Alipay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902151401182073' LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-20T18:50:54+08:00 ] 127.0.0.1 /index.php/Api/Wallet/balance
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '49b11d7e3dde70acb2c4d4033f34e675' AND `expired_time` >= 1550659854 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T18:56:11+08:00 ] 127.0.0.1 /index.php/Api/order/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_details` WHERE `o_id` = 59 AND `m_id` = 1 AND `status` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: UPDATE `db_details` SET `foam_end_time`='6',`foam`='90' WHERE `o_id` = 59 AND `m_id` = 1 AND `status` = 0 AND `id` = 43 [ RunTime:0.0160s ]
+SQL: UPDATE `db_details` SET `cleaner_end_time`='2784',`cleaner`='24996' WHERE `o_id` = 59 AND `m_id` = 1 AND `status` = 0 AND `id` = 43 [ RunTime:0.0140s ]
+SQL: SHOW COLUMNS FROM `db_appsetting` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_appsetting` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-20T18:56:59+08:00 ] 127.0.0.1 /index.php/Api/order/settlement
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_member` WHERE `token` = 'acd7b05cb333c3c6b142938c22a0e4ff' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_details` WHERE `o_id` = 59 AND `m_id` = 1 AND `status` = 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: UPDATE `db_details` SET `foam_end_time`='6',`foam`='95' WHERE `o_id` = 59 AND `m_id` = 1 AND `status` = 0 AND `id` = 43 [ RunTime:0.0150s ]
+SQL: UPDATE `db_details` SET `cleaner_end_time`='2784',`cleaner`='26780' WHERE `o_id` = 59 AND `m_id` = 1 AND `status` = 0 AND `id` = 43 [ RunTime:0.0160s ]
+SQL: SHOW COLUMNS FROM `db_appsetting` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_appsetting` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+

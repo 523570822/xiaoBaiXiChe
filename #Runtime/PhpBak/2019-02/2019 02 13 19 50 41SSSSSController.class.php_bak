@@ -1,0 +1,15 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: 权限控制自动生成 By admin
+ * Date: 2019-02-13
+ * Time: 19:50:41
+ */
+
+namespace Manager\Controller;
+
+
+class SSSSSController extends BaseController
+{
+
+}

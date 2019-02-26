@@ -1,0 +1,987 @@
+[ 2019-02-25T09:25:49+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.013001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551057949 AND `status` <> 0 LIMIT 1   [ RunTime:0.0190s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-25T09:27:00+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551058020 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-25T09:27:03+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551058022 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.4470s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-25T09:27:24+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551058043 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_order` (`m_id`,`c_id`,`orderid`,`title`,`o_type`,`w_type`,`status`,`create_time`) VALUES ('2','1','XC201902250927235807','扫码洗车','1','1','1','1551058043') [ RunTime:0.0150s ]
+SQL: UPDATE `db_car_washer` SET `type`='2' WHERE `mc_id` = '510042001451373435363337' [ RunTime:0.0140s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902250927235807' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_details` (`washing_start_time`,`foam_start_time`,`cleaner_start_time`,`m_id`,`o_id`,`c_id`) VALUES ('141','6','2784','2','228','1') [ RunTime:0.0150s ]
+
+[ 2019-02-25T09:32:10+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551058330 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-25T09:32:27+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551058346 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_order` (`m_id`,`c_id`,`orderid`,`title`,`o_type`,`w_type`,`status`,`create_time`) VALUES ('2','1','XC201902250932261920','扫码洗车','1','1','1','1551058346') [ RunTime:0.0160s ]
+SQL: UPDATE `db_car_washer` SET `type`='2' WHERE `mc_id` = '510042001451373435363337' [ RunTime:0.0140s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902250932261920' LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-25T09:34:37+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551058477 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0140s ]
+
+[ 2019-02-25T09:34:51+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.4510s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551058490 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_order` (`m_id`,`c_id`,`orderid`,`title`,`o_type`,`w_type`,`status`,`create_time`) VALUES ('2','1','XC201902250934517524','扫码洗车','1','1','1','1551058491') [ RunTime:0.0170s ]
+SQL: UPDATE `db_car_washer` SET `type`='2' WHERE `mc_id` = '510042001451373435363337' [ RunTime:0.0260s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902250934517524' LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-25T09:46:18+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551059178 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-25T09:46:48+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551059208 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0130s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0130s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: INSERT INTO `db_order` (`m_id`,`c_id`,`orderid`,`title`,`o_type`,`w_type`,`status`,`create_time`) VALUES ('2','1','XC201902250946487881','扫码洗车','1','1','1','1551059208') [ RunTime:0.0150s ]
+SQL: UPDATE `db_car_washer` SET `type`='2' WHERE `mc_id` = '510042001451373435363337' [ RunTime:0.0140s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902250946487881' LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-25T09:47:52+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551059271 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_order` (`m_id`,`c_id`,`orderid`,`title`,`o_type`,`w_type`,`status`,`create_time`) VALUES ('2','1','XC201902250947511889','扫码洗车','1','1','1','1551059271') [ RunTime:0.0280s ]
+SQL: UPDATE `db_car_washer` SET `type`='2' WHERE `mc_id` = '510042001451373435363337' [ RunTime:0.0170s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902250947511889' LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-25T09:48:52+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551059332 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-25T09:49:05+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551059344 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: INSERT INTO `db_order` (`m_id`,`c_id`,`orderid`,`title`,`o_type`,`w_type`,`status`,`create_time`) VALUES ('2','1','XC201902250949045763','扫码洗车','1','1','1','1551059344') [ RunTime:0.0210s ]
+SQL: UPDATE `db_car_washer` SET `type`='2' WHERE `mc_id` = '510042001451373435363337' [ RunTime:0.0140s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902250949045763' LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\Application\Api\Controller\OrderController.class.php 第 32 行.
+NOTIC: [8] Undefined variable: one G:\Littlewhale\Application\Api\Controller\OrderController.class.php 第 48 行.
+
+[ 2019-02-25T09:49:34+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551059373 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_order` (`m_id`,`c_id`,`orderid`,`title`,`o_type`,`w_type`,`status`,`create_time`) VALUES ('2','1','XC201902250949339982','扫码洗车','1','1','1','1551059373') [ RunTime:0.0200s ]
+SQL: UPDATE `db_car_washer` SET `type`='2' WHERE `mc_id` = '510042001451373435363337' [ RunTime:0.0160s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902250949339982' LIMIT 1   [ RunTime:0.0120s ]
+
+[ 2019-02-25T11:18:49+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551064729 AND `status` <> 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0070s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-25T11:19:05+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551064744 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_order` (`m_id`,`c_id`,`orderid`,`title`,`o_type`,`w_type`,`status`,`create_time`) VALUES ('2','1','XC201902251119047145','扫码洗车','1','1','1','1551064744') [ RunTime:0.0290s ]
+SQL: UPDATE `db_car_washer` SET `type`='2' WHERE `mc_id` = '510042001451373435363337' [ RunTime:0.0180s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902251119047145' LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+SQL: INSERT INTO `db_details` (`m_id`,`o_id`,`c_id`,`tips`,`status`,`washing_start_time`,`foam_start_time`,`cleaner_start_time`) VALUES ('2','235','1','start','1','141','6','2784') [ RunTime:0.0150s ]
+
+[ 2019-02-25T11:20:15+08:00 ] 127.0.0.1 /index.php/Api/order/placingOrder?o_type&w_type&mc_code
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '11376cd232f789352ab8b10ef4949be8' AND `expired_time` >= 1551064813 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `db_order` WHERE `m_id` = 2 AND `w_type` = 1 AND `o_type` = 1 AND `status` = 1 AND `is_set` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_msg` WHERE `m_id` = 2 AND `o_id` = 211 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_car_washer` WHERE `mc_code` = 'A00001' LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `db_order` WHERE `c_id` = 1 AND `m_id` = 2 AND `w_type` = 1 AND `is_set` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: INSERT INTO `db_order` (`m_id`,`c_id`,`orderid`,`title`,`o_type`,`w_type`,`status`,`create_time`) VALUES ('2','1','XC201902251120145960','扫码洗车','1','1','1','1551064814') [ RunTime:0.0170s ]
+SQL: UPDATE `db_car_washer` SET `type`='2' WHERE `mc_id` = '510042001451373435363337' [ RunTime:0.0160s ]
+SQL: SELECT * FROM `db_order` WHERE `orderid` = 'XC201902251120145960' LIMIT 1   [ RunTime:0.0120s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0100s ]
+SQL: INSERT INTO `db_details` (`m_id`,`o_id`,`c_id`,`tips`,`status`,`washing_start_time`,`foam_start_time`,`cleaner_start_time`) VALUES ('2','236','1','start','1','141','6','2784') [ RunTime:0.0160s ]
+
+[ 2019-02-25T13:31:26+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_redeem_code` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('aK46qX','0','1551072686','1552800686','2') [ RunTime:0.0130s ]
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('a63ygC','0','1551072686','1552800686','2') [ RunTime:0.0130s ]
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('adIRLg','0','1551072686','1552800686','2') [ RunTime:0.0120s ]
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('aOE6zq','0','1551072686','1552800686','2') [ RunTime:0.0150s ]
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('auLp99','0','1551072686','1552800686','2') [ RunTime:0.0130s ]
+
+[ 2019-02-25T13:37:43+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_redeem_code` [ RunTime:0.0150s ]
+SQL: INSERT INTO `db_redeem_code` () VALUES () [ RunTime:0.0160s ]
+SQL: INSERT INTO `db_redeem_code` () VALUES () [ RunTime:0.0150s ]
+SQL: INSERT INTO `db_redeem_code` () VALUES () [ RunTime:0.0150s ]
+SQL: INSERT INTO `db_redeem_code` () VALUES () [ RunTime:0.0160s ]
+SQL: INSERT INTO `db_redeem_code` () VALUES () [ RunTime:0.0200s ]
+
+[ 2019-02-25T14:01:06+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-02-25T14:01:54+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_batch` [ RunTime:0.0100s ]
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [8] Undefined offset: 0 G:\Littlewhale\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 115 行.
+
+[ 2019-02-25T14:02:13+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_batch` [ RunTime:0.0080s ]
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [8] Undefined offset: 0 G:\Littlewhale\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 115 行.
+
+[ 2019-02-25T14:03:51+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_batch` [ RunTime:0.0100s ]
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [2] Invalid argument supplied for foreach() G:\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+NOTIC: [8] Undefined offset: 0 G:\Littlewhale\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 115 行.
+SQL: SHOW COLUMNS FROM `db_redeem_code` [ RunTime:0.0090s ]
+ERR: 1048:Column 'b_id' cannot be null
+ [ SQL语句 ] : INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('P','0','1551074631','1552802631',NULL)
+ERR: 1048:Column 'b_id' cannot be null
+ [ SQL语句 ] : INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('P','0','1551074631','1552802631',NULL)
+
+[ 2019-02-25T14:04:28+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_batch` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_batch` (`title`,`price`,`start_time`,`end_time`) VALUES ('2','50','1551074668','1552802668') [ RunTime:0.0170s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 81 行.
+SQL: SHOW COLUMNS FROM `db_redeem_code` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('c','0','1551074668','1552802668','3') [ RunTime:0.0140s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 81 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('3','0','1551074668','1552802668','3') [ RunTime:0.0140s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 81 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('F','0','1551074668','1552802668','3') [ RunTime:0.0130s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 81 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('1','0','1551074668','1552802668','3') [ RunTime:0.0160s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 81 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('C','0','1551074668','1552802668','3') [ RunTime:0.0130s ]
+
+[ 2019-02-25T14:06:25+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_batch` [ RunTime:0.0080s ]
+SQL: INSERT INTO `db_batch` (`title`,`num`,`price`,`start_time`,`end_time`) VALUES ('beizhu','5','5','1551074785','1551938785') [ RunTime:0.0190s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 80 行.
+SQL: SHOW COLUMNS FROM `db_redeem_code` [ RunTime:0.0090s ]
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('u','0','1551074785','1551938785','4') [ RunTime:0.0140s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 80 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('b','0','1551074785','1551938785','4') [ RunTime:0.0140s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 80 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('R','0','1551074785','1551938785','4') [ RunTime:0.0150s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 80 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('C','0','1551074785','1551938785','4') [ RunTime:0.0140s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 80 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`creator_time`,`end_time`,`b_id`) VALUES ('s','0','1551074785','1551938785','4') [ RunTime:0.0120s ]
+
+[ 2019-02-25T14:12:09+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-02-25T14:12:39+08:00 ] 127.0.0.1 /index.php/Api/coupon/couponCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given G:\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_batch` [ RunTime:0.0110s ]
+SQL: INSERT INTO `db_batch` (`title`,`num`,`price`,`remark`,`create_time`,`start_time`,`end_time`) VALUES ('代金券','5','100','备注','1551075159','1551075159','1559715159') [ RunTime:0.0180s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 82 行.
+SQL: SHOW COLUMNS FROM `db_redeem_code` [ RunTime:0.0110s ]
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`create_time`,`end_time`,`b_id`) VALUES ('aL','0','1551075159','1559715159','5') [ RunTime:0.0150s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 82 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`create_time`,`end_time`,`b_id`) VALUES ('aN','0','1551075159','1559715159','5') [ RunTime:0.0140s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 82 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`create_time`,`end_time`,`b_id`) VALUES ('aX','0','1551075159','1559715159','5') [ RunTime:0.0140s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 82 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`create_time`,`end_time`,`b_id`) VALUES ('a9','0','1551075159','1559715159','5') [ RunTime:0.0140s ]
+NOTIC: [2] Illegal string offset 'id' G:\Littlewhale\Application\Api\Controller\CouponController.class.php 第 82 行.
+SQL: INSERT INTO `db_redeem_code` (`exchange`,`is_activation`,`create_time`,`end_time`,`b_id`) VALUES ('an','0','1551075159','1559715159','5') [ RunTime:0.0160s ]
+
+[ 2019-02-25T14:23:32+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: token G:\Littlewhale\Application\Api\Controller\BaseController.class.php 第 25 行.
+
+[ 2019-02-25T14:24:26+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551075866 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_extension_log` [ RunTime:0.0100s ]
+SQL: SELECT db_extension_log.id,db_extension_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_extension_log.m_id = db_member.id  WHERE db_extension_log.m_id = '1'  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_coupon_bind` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon_bind` WHERE `m_id` = 1 AND `type` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-25T14:27:30+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551076050 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_extension_log` [ RunTime:0.0090s ]
+SQL: SELECT db_extension_log.id,db_extension_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_extension_log.m_id = db_member.id  WHERE db_extension_log.m_id = '1'  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_coupon_bind` [ RunTime:0.0090s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon_bind` WHERE `m_id` = 1 AND `type` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-25T14:28:00+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex?=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551076080 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_extension_log` [ RunTime:0.0100s ]
+SQL: SELECT db_extension_log.id,db_extension_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_extension_log.m_id = db_member.id  WHERE db_extension_log.m_id = '1'  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_coupon_bind` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon_bind` WHERE `m_id` = 1 AND `type` = 1 LIMIT 1   [ RunTime:0.0100s ]
+
+[ 2019-02-25T14:33:28+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationdetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551076408 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_extension_log` [ RunTime:0.0100s ]
+SQL: SELECT db_extension_log.id,db_extension_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_extension_log.s_id = db_member.id  WHERE db_extension_log.m_id = '1'  [ RunTime:0.0110s ]
+
+[ 2019-02-25T14:36:02+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationdetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551076562 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0140s ]
+SQL: SHOW COLUMNS FROM `db_extension_log` [ RunTime:0.0090s ]
+SQL: SELECT db_extension_log.id,db_extension_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_extension_log.s_id = db_member.id  WHERE db_extension_log.m_id = '1'  [ RunTime:0.0090s ]
+
+[ 2019-02-25T14:36:31+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationdetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551076591 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_extension_log` [ RunTime:0.0090s ]
+SQL: SELECT db_extension_log.id,db_extension_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_extension_log.s_id = db_member.id  WHERE db_extension_log.m_id = '1'  [ RunTime:0.0090s ]
+
+[ 2019-02-25T14:36:43+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationdetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551076603 AND `status` <> 0 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_extension_log` [ RunTime:0.0110s ]
+SQL: SELECT db_extension_log.id,db_extension_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_extension_log.s_id = db_member.id  WHERE db_extension_log.m_id = '1'  [ RunTime:0.0100s ]
+
+[ 2019-02-25T14:37:03+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationdetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551076623 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_extension_log` [ RunTime:0.0100s ]
+SQL: SELECT db_extension_log.id,db_extension_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_extension_log.s_id = db_member.id  WHERE db_extension_log.m_id = '1'  [ RunTime:0.0080s ]
+
+[ 2019-02-25T14:42:22+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationdetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0150s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551076941 AND `status` <> 0 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_extension_log` [ RunTime:0.0130s ]
+ERR: 1054:Unknown column 'db_coupon_log.id' in 'field list'
+ [ SQL语句 ] : SELECT db_coupon_log.id,db_coupon_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_coupon_log.s_id = db_member.id  WHERE db_coupon_log.m_id = '1' 
+ERR: 1054:Unknown column 'db_coupon_log.id' in 'field list'
+ [ SQL语句 ] : SELECT db_coupon_log.id,db_coupon_log.create_time,db_member.nickname FROM `db_extension_log` INNER JOIN db_member ON db_coupon_log.s_id = db_member.id  WHERE db_coupon_log.m_id = '1' 
+
+[ 2019-02-25T14:43:14+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationdetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551076994 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_coupon_log` [ RunTime:0.0110s ]
+SQL: SELECT db_coupon_log.id,db_coupon_log.create_time,db_member.nickname FROM `db_coupon_log` INNER JOIN db_member ON db_coupon_log.s_id = db_member.id  WHERE db_coupon_log.m_id = '1'  [ RunTime:0.0100s ]
+
+[ 2019-02-25T14:45:07+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationdetails
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551077107 AND `status` <> 0 LIMIT 1   [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_coupon_log` [ RunTime:0.2170s ]
+SQL: SELECT db_coupon_log.id,db_coupon_log.create_time,db_member.nickname FROM `db_coupon_log` INNER JOIN db_member ON db_coupon_log.s_id = db_member.id  WHERE db_coupon_log.m_id = '1'  [ RunTime:0.0090s ]
+
+[ 2019-02-25T14:46:50+08:00 ] 127.0.0.1 /index.php/Api/Invitation/Invitationindex
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551077210 AND `status` <> 0 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: field_filter G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_coupon_log` [ RunTime:0.0110s ]
+SQL: SELECT db_coupon_log.id,db_coupon_log.create_time,db_member.nickname FROM `db_coupon_log` INNER JOIN db_member ON db_coupon_log.s_id = db_member.id  WHERE db_coupon_log.m_id = '1'  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_coupon_bind` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_coupon_bind` WHERE `m_id` = 1 AND `type` = 1 LIMIT 1   [ RunTime:0.0110s ]
+
+[ 2019-02-25T16:44:00+08:00 ] 127.0.0.1 /index.php/Api/member/memberCenter
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '98930613a6782aced0a49ce2cda06f4e' AND `expired_time` >= 1551084240 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-25T16:44:58+08:00 ] 127.0.0.1 /index.php/Api/member/memberCenter
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '761a5e984b7fdb0cff8b687ed6dab696' AND `expired_time` >= 1551084298 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0120s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 298 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-25T16:49:05+08:00 ] 127.0.0.1 /index.php/Api/member/memberBaseData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '761a5e984b7fdb0cff8b687ed6dab696' AND `expired_time` >= 1551084545 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 1 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0090s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 298 LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-02-25T16:52:24+08:00 ] 127.0.0.1 /index.php/Api/member/memberBaseData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'a0a0e56b948dbbfd4118fb56d3a3f235' AND `expired_time` >= 1551084743 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT * FROM `db_member` WHERE `id` = 3 AND `status` = 1 LIMIT 1   [ RunTime:0.0090s ]
+SQL: UPDATE `db_member` SET `tel`='15122052164' WHERE `id` = 3 [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0090s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-02-25T16:59:43+08:00 ] 127.0.0.1 /index.php/Api/member/memberCenter
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'a0a0e56b948dbbfd4118fb56d3a3f235' AND `expired_time` >= 1551085182 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+
+[ 2019-02-25T17:00:45+08:00 ] 127.0.0.1 /index.php/Api/member/memberCenter
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '4bcae9e0527cae94e50db3ada37a780e' AND `expired_time` >= 1551085245 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT id as m_id,`head_pic`,`nickname`,`tel`,`degree` FROM `db_member` WHERE `id` = 3 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0100s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0070s ]
+
+[ 2019-02-25T17:03:36+08:00 ] 127.0.0.1 /index.php/Api/member/memberBaseData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '4bcae9e0527cae94e50db3ada37a780e' AND `expired_time` >= 1551085416 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT id as m_id,`head_pic`,`nickname`,`realname`,`sex`,`tel`,`` FROM `db_member` WHERE `id` = 3 AND `status` = 1 LIMIT 1  
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT id as m_id,`head_pic`,`nickname`,`realname`,`sex`,`tel`,`` FROM `db_member` WHERE `id` = 3 AND `status` = 1 LIMIT 1  
+
+[ 2019-02-25T17:04:21+08:00 ] 127.0.0.1 /index.php/Api/member/memberBaseData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '4bcae9e0527cae94e50db3ada37a780e' AND `expired_time` >= 1551085461 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT id as m_id,`head_pic`,`nickname`,`realname`,`sex`,`tel`,`` FROM `db_member` WHERE `id` = 3 AND `status` = 1 LIMIT 1  
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT id as m_id,`head_pic`,`nickname`,`realname`,`sex`,`tel`,`` FROM `db_member` WHERE `id` = 3 AND `status` = 1 LIMIT 1  
+
+[ 2019-02-25T17:04:46+08:00 ] 127.0.0.1 /index.php/Api/member/memberBaseData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '4bcae9e0527cae94e50db3ada37a780e' AND `expired_time` >= 1551085486 AND `status` <> 0 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT id as m_id,`head_pic`,`nickname`,`realname`,`sex`,`tel` FROM `db_member` WHERE `id` = 3 AND `status` = 1 LIMIT 1   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0090s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: password G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 452 行.
+
+[ 2019-02-25T17:06:02+08:00 ] 127.0.0.1 /index.php/Api/member/memberBaseData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0150s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '25bf820e016e809870422f2784bc073c' AND `expired_time` >= 1551085562 AND `status` <> 0 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT id as m_id,`head_pic`,`nickname`,`realname`,`sex`,`tel` FROM `db_member` WHERE `id` = 5 AND `status` = 1 LIMIT 1   [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: account G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 449 行.
+SQL: UPDATE `db_member` SET `tel`=NULL WHERE `id` = 5 [ RunTime:0.0150s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0140s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: password G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 452 行.
+
+[ 2019-02-25T17:07:08+08:00 ] 127.0.0.1 /index.php/Api/member/memberBaseData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '25bf820e016e809870422f2784bc073c' AND `expired_time` >= 1551085628 AND `status` <> 0 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT id as m_id,`head_pic`,`nickname`,`realname`,`sex`,`tel`,`account` FROM `db_member` WHERE `id` = 5 AND `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: UPDATE `db_member` SET `tel`='18756756532' WHERE `id` = 5 [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0100s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: password G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 452 行.
+
+[ 2019-02-25T17:07:25+08:00 ] 127.0.0.1 /index.php/Api/member/memberBaseData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '93d8a2965e4a7091878a0d6aed08f67c' AND `expired_time` >= 1551085645 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT id as m_id,`head_pic`,`nickname`,`realname`,`sex`,`tel`,`account` FROM `db_member` WHERE `id` = 121 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: UPDATE `db_member` SET `tel`='17320239690' WHERE `id` = 121 [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0110s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: password G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 452 行.
+
+[ 2019-02-25T17:07:41+08:00 ] 127.0.0.1 /index.php/Api/member/memberBaseData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: fetchSql G:\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '309570b2be0c45d47e0b0f29b567907c' AND `expired_time` >= 1551085661 AND `status` <> 0 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT id as m_id,`head_pic`,`nickname`,`realname`,`sex`,`tel`,`account` FROM `db_member` WHERE `id` = 122 AND `status` = 1 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0100s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 299 LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined index: password G:\Littlewhale\Application\Api\Controller\MemberController.class.php 第 452 行.
+
