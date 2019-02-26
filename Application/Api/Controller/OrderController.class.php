@@ -137,7 +137,11 @@ class OrderController extends BaseController {
         } elseif ( $status == 2 ) {
             $data['m_id'] = $m_id;
             $data['mc_id'] = $where['mc_id'];
-            //$data['c_id'] = $where['id'];
+
+
+            $data['c_id'] = $where['id'];
+
+
             $data['orderid'] = 'XC' . date ('YmdHis') . rand (1000 , 9999);
             $data['title'] = "扫码洗车";
             $data['o_type'] = '1';

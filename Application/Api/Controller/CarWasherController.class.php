@@ -233,7 +233,7 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
 
-            //var_dump($queryitem[$k]['devices']['0']);exit;
+            var_dump($queryitem[$k]['devices']['0']);exit;
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
 
@@ -248,7 +248,7 @@ class CarWasherController extends BaseController
                                 'status' => 2,
                             );
                             $malfunction = M('CarWasher')->where($malf_where)->save($malf_data);
-                        }elseif ($vv[0]['queryitem']['level3_status']  == false){
+                        }elseif ($vv[0]['queryitem']['level3_status']  == false || $vv[0]['queryitem']['pump1_status'] == 2|| $vv[0]['queryitem']['pump2_status'] == 2){
                             $alarm_where = array(
                                 'mc_id' => $vv[0]['deviceid'],
                             );
