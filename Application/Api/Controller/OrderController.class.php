@@ -568,10 +568,10 @@ class OrderController extends BaseController {
      *Date:2019/02/18 15:52
      */
     public function settlement(){
-//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
-        $post['orderid'] = 59;
-        $post['off_on'] = 0;
+        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+//        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
+//        $post['orderid'] = 'YC201902181514553019';
+//        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -732,9 +732,9 @@ class OrderController extends BaseController {
      *Date:2019/02/21 13:19
      */
     public function  Pay(){
-        $post = checkAppData('token,order_id,washing,foam,cleaner,method,methodID','token-订单ID,水枪清洗时间,泡沫清洗时间,吸尘器使用时间,优惠方式,优惠卡ID');
+        $post = checkAppData('token,orderid,washing,foam,cleaner,method,methodID','token-订单ID,水枪清洗时间,泡沫清洗时间,吸尘器使用时间,优惠方式,优惠卡ID');
 //        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
-//        $post['orderid'] = 59;
+//        $post['orderid'] = YC201902181514553019;
 //        $post['washing'] = 14;
 //        $post['foam'] = 1;
 //        $post['cleaner'] = 357;
