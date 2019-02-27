@@ -762,6 +762,7 @@ class OrderController extends BaseController {
 //        $post['cleaner'] = 357;
 //        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
 //        $post['methodID'] = 29;    //折扣卡ID
+        
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
 
@@ -773,12 +774,11 @@ class OrderController extends BaseController {
         $d_where = array(
             'o_id'=>$order_f['id'],
             'm_id'=>$member['id'],
-            'status'=>0
+            'status'=> 1
         );
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
-//        var_dump($send_post['devices'][0]['queryitem']);exit;
         if($send_post['devices'][0]['queryitem']['service_status'] == 12){
             $price = M('Appsetting')->where(array('id'=>1))->find();
 //        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
@@ -803,8 +803,6 @@ class OrderController extends BaseController {
                 $price = $all_money;
                 $method = '暂无使用优惠方式';
             }
-
-
             $data = array(
                 'time' =>array(
                     'wash' =>$post['washing'],
