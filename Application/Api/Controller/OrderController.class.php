@@ -762,7 +762,7 @@ class OrderController extends BaseController {
 //        $post['cleaner'] = 357;
 //        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
 //        $post['methodID'] = 29;    //折扣卡ID
-//        $where['token'] = $post['token'];
+        $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
 
         $order_w = array(
