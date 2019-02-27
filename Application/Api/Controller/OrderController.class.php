@@ -568,15 +568,12 @@ class OrderController extends BaseController {
      *Date:2019/02/18 15:52
      */
     public function settlement(){
-        $post = checkAppData('token,order_id,switch','token-订单ID-开关');
+        $post = checkAppData('token,order_id,off_on','token-订单ID-开关');
 //        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
 //        $post['order_id'] = 59;
-//        $post['switch'] = 0;
+//        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
-
-
-        
         $member = M('Member')->where($where)->find();
         $d_where = array(
             'o_id'=>$post['order_id'],
@@ -587,10 +584,9 @@ class OrderController extends BaseController {
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
 
-
-        var_dump($send_post['devices'][0]);
+//        var_dump($send_post['devices'][0]);
         //判断机器使用状态
-        if($send_post['devices'][0]['queryitem']['service_status'] == 13){
+        if($send_post['devices'][0]['queryitem']['service_status'] < 13){     //当机器service_status =13的时候,洗车机开启
             if(round($send_post['devices'][0]['queryitem']['clean_water_duration']) != $details['washing_end_time']){
                 $indication = 1;
             }elseif(round($send_post['devices'][0]['queryitem']['foam_duration']) != $details['foam_end_time']){
@@ -654,7 +650,6 @@ class OrderController extends BaseController {
             //水枪使用时间
             if(($send_post['devices'][0]['queryitem']['service_status'] == 8) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 0) ){
 
-                echo 'shuiqiang';
                 $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
                 $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] + $details['washing'];
 
@@ -665,7 +660,6 @@ class OrderController extends BaseController {
             }
             //泡沫枪使用时间
             if (($send_post['devices'][0]['queryitem']['service_status'] == 12) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 4) ){
-                echo 'paomo';
                 $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
                 $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] + $details['foam'];
 
@@ -676,7 +670,6 @@ class OrderController extends BaseController {
             }
             //吸尘器使用时间
             if (($send_post['devices'][0]['queryitem']['service_status'] == 12) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 2)){
-                echo 'xichengqi';
                 $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
                 $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'] + $details['cleaner'];
 
@@ -706,7 +699,7 @@ class OrderController extends BaseController {
 
             $cleaner_money = round($details['cleaner'] * $price['cleaner_money'],2);
             $data_money = array(
-                'indication' => $indication,
+                'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
                 'washing' =>floor($wash_fen),
                 'foam'=>floor($foam_fen),
                 'cleaner'=>floor($cleaner_fen),
@@ -714,11 +707,11 @@ class OrderController extends BaseController {
             );
 
             if(!empty($data_money)){
-                if($post['switch'] == 0){
-                    $this->apiResponse('1','成功',$data_money);
-                }elseif($post['switch'] == 1){
+                if($post['off_on'] == 0){
+                    $this->apiResponse('1','查询成功',$data_money);
+                }elseif($post['off_on'] == 1){
                     $send_post = $this->send_post('device_manage',$car['mc_id'],3);
-                    $this->apiResponse('1','成功',$data_money);
+                    $this->apiResponse('1','结算成功',$data_money);
                 }
             }
         }else{
