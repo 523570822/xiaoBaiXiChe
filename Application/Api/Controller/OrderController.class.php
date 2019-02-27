@@ -755,7 +755,7 @@ class OrderController extends BaseController {
      */
     public function  Pay(){
         $post = checkAppData('token,orderid,washing,foam,cleaner,method,methodID','token-订单ID-水枪清洗时间-泡沫清洗时间-吸尘器使用时间-优惠方式-优惠卡ID');
-        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
+//        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
 //        $post['orderid'] = 'YC201902181514553019';
 //        $post['washing'] = 14;
 //        $post['foam'] = 1;
