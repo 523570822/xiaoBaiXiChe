@@ -742,7 +742,7 @@ class OrderController extends BaseController {
         //请求物联网接口,获取数据
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
         //判断洗车机状态
-        if($send_post['devices'][0]['queryitem']['service_status'] == 8){    //正确填12
+        if($send_post['devices'][0]['queryitem']['service_status'] == 12){    //正确填12
             $price = M('Appsetting')->where(array('id'=>1))->find();
 //        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
 //        $send_post = $this->send_post('device_manage',$car['mc_id'],3);
@@ -801,8 +801,8 @@ class OrderController extends BaseController {
      *Date:2019/02/22 18:21
      */
     public function proMethod(){
-        $post = checkAppData('token','token');
-//        $post['token'] = 'ba185544043e439f861943a7416102f3';
+//        $post = checkAppData('token','token');
+        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
@@ -847,7 +847,9 @@ class OrderController extends BaseController {
             );
             $this->apiResponse('1','成功',$data);
         }
-
     }
+
+    /**/
+    //public function
 
 }
