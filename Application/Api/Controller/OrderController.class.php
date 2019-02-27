@@ -576,20 +576,26 @@ class OrderController extends BaseController {
      *Date:2019/02/18 15:52
      */
     public function settlement(){
-//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
-        $post['orderid'] = 'YC201902181514553019';
-        $post['off_on'] = 0;
+        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+//        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
+//        $post['orderid'] = 'YC201902181514553019';
+//        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
+        $o_where = array(
+            'm_id' =>$member['id'],
+            'orderid' =>$post['orderid'],
+        );
+        $order = M('Order')->where($o_where)->find();
         $d_where = array(
-            'orderid'=>$post['orderid'],
+            'o_id'=>$order['id'],
             'm_id'=>$member['id'],
         );
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
+        var_dump($details);exit;
         if(!empty($details)){
 
             if($details['status'] == 1){
@@ -812,7 +818,7 @@ class OrderController extends BaseController {
             );
             if(!empty($data)){
 
-                
+
                 $this->apiResponse('1','成功',$data);
             }
         }else{
