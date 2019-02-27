@@ -30,10 +30,6 @@
                                 <input type="text" class="layui-input" placeholder="请输入洗车机编号" name="mc_id"
                                        value="{$_REQUEST['mc_id']}">
                             </div>
-                            <!--<div class="layui-input-inline">-->
-                            <!--<input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"-->
-                            <!--value="{$_REQUEST['nickname']}">-->
-                            <!--</div>-->
                             <div class="layui-input-inline layui-form">
                                 <select name="type" class="layui-input" style="width: 150px">
                                     <option value="">使用状态</option>
@@ -48,7 +44,6 @@
                                     >预订中</option>
                                 </select>
                             </div>
-
                             <div class="layui-input-inline layui-form">
                                 <select name="status" class="layui-input" style="width: 150px">
                                     <option value="">运行状态</option>
@@ -66,20 +61,7 @@
                                     >不在线</option>
                                 </select>
                             </div>
-
-                            <!--<div class="layui-input-inline">-->
-                            <!--<input type="text" name="start_time" class="layui-input" id="test1"-->
-                            <!--value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="注册开始时间">-->
-                            <!--&lt;!&ndash;<input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']} >&ndash;&gt;-->
-                            <!--</div>-->
-                            <!--—-->
-                            <!--<div class="layui-input-inline">-->
-                            <!--<input type="text" name="end_time" class="layui-input" id="test2"-->
-                            <!--value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="注册结束时间">-->
-                            <!--&lt;!&ndash;<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">&ndash;&gt;-->
-                            <!--</div>-->
                             <button class="layui-btn" type="submit">搜索</button>
-                            <!--<button class="layui-btn" type="button" id="button">导出搜索</button>-->
                             <a href="{:U('CarWasher/index')}" class="layui-btn layui-btn-primary">重置</a>
                         </form>
                         <script>
@@ -108,6 +90,9 @@
                             </th>
                             <th>二维码编号</th>
                             <th>机器编号</th>
+                            <th>水枪价格</th>
+                            <th>泡沫价格</th>
+                            <th>吸尘器价格</th>
                             <th>店铺名</th>
                             <th>加盟商</th>
                             <th>使用状态</th>
@@ -127,6 +112,9 @@
                                 <td>{$item.id}</td>
                                 <td>{$item.mc_code}</td>
                                 <td>{$item.mc_id}</td>
+                                <td>{$item.washing_money}(元/分钟)</td>
+                                <td>{$item.foam_money}(元/分钟)</td>
+                                <td>{$item.cleaner_money}(元/分钟)</td>
                                 <td>{$item.shop_name}</td>
                                 <td>{$item.nickname}</td>
                                 <td>
@@ -147,8 +135,6 @@
                                         <default/>
                                     </switch>
                                 </td>
-                                <!--<td>{$item['create_time']|date='Y-m-d H:i',###}</td>-->
-                                <!--<td>{$item['status'] == 1 ? '启用' : '禁用'}</td>-->
                                 <td>
                                     <button class="layui-btn layui-btn-xs layui-btn-normal"
                                             onclick="jumpUrl('{:U('CarWasher/editCarWasher', array('id'=>$item['id'], 'system'=>0))}')">
@@ -162,8 +148,6 @@
                                             onclick="confirmDelAction('{:U('CarWasher/delete',array('model'=>'CarWasher'))}', '删除','{$item.id}')">
                                         删除
                                     </button>
-                                    <!--<a href="{:U('Member/down',array('mid'=>$row['id']))}" title="下载二维码" class="tip-bottom">-->
-                                    <!--<span class="label label-success">下载二维码</span></a>&nbsp;-->
                                     <button class="layui-btn layui-btn-xs "
                                             onclick="jumpUrl('{:U('CarWasher/down', array('id'=>$item['id']))}')">
                                         二维码下载

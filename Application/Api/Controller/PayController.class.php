@@ -215,7 +215,12 @@ class PayController extends BaseController {
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
-        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify';
+        $url_data = [
+            "methods" => $request['methods'] ,
+            "methods_id" => $request['methods_id'] ,
+        ];
+        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify?' . http_build_query ($url_data);
+        //        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify';
         // 生成支付字符串
         $out_trade_no = $order_info['orderid'];
         $total_amount = 0.01;//$order_info['pay_money'];
@@ -229,39 +234,13 @@ class PayController extends BaseController {
     /**
      * 支付宝回调
      */
-        /*{
-        "alipay_trade_app_pay_response": {
-        "code": "10000",
-        "msg": "Success",
-        "app_id": "2018121362529699",
-        "auth_app_id": "2018121362529699",
-        "charset": "UTF-8",
-        "timestamp": "2019-02-21 14:06:17",
-        "out_trade_no": "CZ201902211406078781",
-        "total_amount": "0.01",
-        "trade_no": "2019022122001411431019116813",
-        "seller_id": "2088331663516484"
-        },
-        "sign": "NEiE1IDhbaOw+w7VT6HrclIIKNRx0x/AkXUKe0mzKbfjikxMDwG1b5pYTKm2k2dV4CO2uvxEAa8G/ww0NHc60d119LBkMgYW6t3kMT0PjLLZME1ABDwLVE0RauxP+l/LBsW7nLXkeSotzBWOTvWRUAWeOpWs3Q9o7GmDLI3hoFHROiiHOz2SX38+NmOVIh/YxdyLjGGIpK7D7NIUjmVCknWMuOt6DgFQCkq9iqbYIWI4Yb1Zgr6ePCM61QYIIOlwGIY3SiKTJoULhZCnVHTMp5nIQUUOy8cRLcDg9WikFahg+7QDToFy/L87FjvcbG4RELIr9m4IRJE7znu5HJ/eHg==",
-            "sign_type": "RSA2"
-          }*/
     public function AlipayNotify () {
-        Vendor('Txunda.Alipay.Notify');
-        Vendor("Txunda.Alipay.aop.request.AlipayTradeAppPayRequest");
-        Vendor("Txunda.Alipay.aop.AopClient");
-        $post_data = I("");
+        Vendor ('Txunda.Alipay.Notify');
+        Vendor ("Txunda.Alipay.aop.request.AlipayTradeAppPayRequest");
+        Vendor ("Txunda.Alipay.aop.AopClient");
+        $post_data = I ("");
         $aop = new \AopClient;
         $aop->alipayrsaPublicKey = \AlipayConfig::alipayrsaPublicKey;
-//        $flag = $aop->rsaCheckV1($post_data, NULL, "RSA2");
-//        $notify = new \Notify();
-//        if ( $notify->rsaCheck () ) {
-//            $out_trade_no = $_REQUEST['out_trade_no'];
-//            $trade_status = $_REQUEST['trade_status'];
-//            $trade_no = $_REQUEST['trade_no'];
-//           $out_trade_no = "CZ201902191701556570";
-//           $trade_status = "TRADE_SUCCESS";
-//           $trade_no = "2019022122001411431019116813";
-//        }
         if ( $post_data['trade_status'] == 'TRADE_SUCCESS' ) {
             $order = D ('Order')->where (array ('orderid' => $post_data['out_trade_no']))->find ();
             $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
@@ -271,6 +250,21 @@ class PayController extends BaseController {
             $date['pay_time'] = time ();
             $date['trade_no'] = $post_data['trade_no'];
             if ( $order['o_type'] == 1 ) {//1洗车订单
+                if ( $post_data['methods'] == '1' ) {
+                    $cards = M ("CardUser")->where (['id' => $post_data['methods_id']])->field ('l_id')->find ();
+                    $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
+                    $date['is_dis'] = '1';
+                    $date['card_id'] = $post_data['methods_id'];
+                    $date['allowance'] = $card['rebate'];
+                } elseif ( $post_data['methods'] == '2' ) {
+                    $coup = M ("CouponsBind")->where (['id' => $post_data['methods_id']])->field ('money')->find ();
+                    M ("CouponsBind")->where (['id' => $post_data['methods_id']])->save (['is_use' => '1']);
+                    $date['is_dis'] = '1';
+                    $date['coup_id'] = $post_data['methods_id'];
+                    $date['allowance'] = $coup['money'];
+                } elseif ( $post_data['methods'] == '3' ) {
+                    $date['is_dis'] = '0';
+                }
                 $date['detail'] = 0;
                 $save = D ("Order")->where (array ('orderid' => $post_data['out_trade_no']))->save ($date);
                 if ( $save ) {
@@ -339,11 +333,12 @@ class PayController extends BaseController {
         $xml_data['nonce_str'] = $this->getNonceStr (32);
         $key = "b2836e3bb4d1c04f567eab868fb99aee"; // 设置的KEY值相同
         // 附加数据
-        /*$attach_data = [
-            'orderid' => $request['orderid'],
+        $attach_data = [
+            "methods" => $request['methods'] ,
+            "methods_id" => $request['methods_id'] ,
         ];
-        $xml_data['attach'] = json_encode($attach_data); // 附加数据 JSON
-        */
+        $xml_data['attach'] = json_encode ($attach_data); // 附加数据 JSON
+
         if ( $request['trade_type'] ) {// 小程序
             $xml_data['appid'] = 'wxf348bbbcc28d7e10'; // APP ID
             $xml_data['mch_id'] = '1524895951'; // 商户号
@@ -564,8 +559,8 @@ class PayController extends BaseController {
         $order_no = $log['out_trade_no'];
         //获取三方交易流水号
         $info = $log['transaction_id'];
-        // 获取其他订单信息
-        // $order_info = json_decode ($log['attach'] , true);
+        //获取其他订单信息
+        $order_info = json_decode ($log['attach'] , true);
         $order = D ('Order')->where (array ('orderid' => $order_no))->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
         $date['pay_time'] = time ();
@@ -574,7 +569,23 @@ class PayController extends BaseController {
         $date['pay_type'] = 1;
         $date['trade_no'] = $info;
         if ( $order['o_type'] == 1 ) {//1洗车订单
-            $save = D ("Order")->where (array ('orderid' => $order['orderid']))->save (array ( 'detail' => 0));
+            if ( $order_info['methods'] == '1' ) {
+                $cards = M ("CardUser")->where (['id' => $order_info['methods_id']])->field ('l_id')->find ();
+                $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
+                $date['is_dis'] = '1';
+                $date['card_id'] = $order_info['methods_id'];
+                $date['allowance'] = $card['rebate'];
+            } elseif ( $order_info['methods'] == '2' ) {
+                M ("CouponsBind")->where (['id' => $order_info['methods_id']])->save (['is_use' => '1']);
+                $coup = M ("CouponsBind")->where (['id' => $order_info['methods_id']])->field ('money')->find ();
+                $date['is_dis'] = '1';
+                $date['coup_id'] = $order_info['methods_id'];
+                $date['allowance'] = $coup['money'];
+            } elseif ( $order_info['methods'] == '3' ) {
+                $date['is_dis'] = '0';
+            }
+            $date['detail'] = '0';
+            $save = D ("Order")->where (array ('orderid' => $order['orderid']))->save ($date);
             if ( $save ) {
                 echo "success";
             }
@@ -615,67 +626,6 @@ class PayController extends BaseController {
     }
 
     /**
-     * 订单结算
-     */
-    public function settlement () {
-        $m_id = $this->checkToken ();
-        $this->errorTokenMsg ($m_id);
-        $order = D ("Order")->where (array ('m_id' => $m_id , 'is_set' => 0 , 'status' => 1))->select ();
-        $details = D ("Details")->where (array ('m_id' => $m_id , 'id' => 43 , 'status' => 1))->field ('washing,foam,cleaner')->find ();
-        var_dump ($order);
-        die;
-        //        $m_id = $this->checkToken ();
-        //        $this->errorTokenMsg ($m_id);
-        //        $request = $_REQUEST;
-        //        $rule = array ('id' , 'string' , '请选择查看的订单详情');
-        //        $this->checkParam ($rule);
-        //        $order = D ('Order')->where (array ('id' => $request['id'] , 'o_type' => 1))->field ('id,status,money,pay_money,orderid,pay_type,c_id,is_dis,card_id,coup_id,update_time,create_time,pay_time,is_no,is_set')->find ();
-        //        if ( !$order ) {
-        //            $this->apiResponse ('0' , '请输入正确订单ID');
-        //        }
-        //        $car = D ('CarWasher')->where (array ('id' => $order['c_id']))->field ('*')->find ();
-        //        $shop = D ('Washshop')->where (array ('id' => $car['p_id']))->field ('shop_name')->find ();
-        //        $details = D ('Details')->where (array ('o_id' => $order['id']))->field ('*')->find ();
-        //        $order['shop_name'] = $shop['shop_name'];
-        //        $order['lon'] = $car['lon'];
-        //        $order['lat'] = $car['lat'];
-        //        $order['mc_id'] = $car['mc_code'];
-        //        $order['address'] = $car['address'];
-        //        $order['washing'] = $details['washing'] . '(min)';
-        //        $order['foam'] = $details['foam'] . '(min)';
-        //        $order['cleaner'] = $details['cleaner'] . '(min)';
-        //        $appsetting = D ('Appsetting')->find ();
-        //        $order['washing_money'] = $details['washing'] * $appsetting['washing_money'];
-        //        $order['foam_money'] = $details['foam'] * $appsetting['foam_money'];
-        //        $order['cleaner_money'] = $details['cleaner'] * $appsetting['cleaner_money'];
-        //        if ( $order['is_dis'] == 0 ) {//无优惠
-        //            $this->apiResponse ('1' , '查询成功' , $order);
-        //        }
-        //        if ( $order['is_dis'] == 1 ) {//有优惠
-        //            if ( $order['card_id'] ) {//小鲸卡
-        //                $m_id = $this->checkToken ();
-        //                $this->errorTokenMsg ($m_id);
-        //                $list = D ('CardUser')->where (array ('db_card_user.id' => $order['card_id'] , 'db_card_user.m_id' => $m_id , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate')->select ();
-        //                foreach ( $list as $key => $value ) {
-        //                    $card = $list[$key]['name'] . '会员' . ($list[$key]['rebate'] * 10) . '折';
-        //                    $order['discount'] = $card;
-        //                    $this->apiResponse ('1' , '查询成功' , $order);
-        //                }
-        //            }
-        //            if ( $order['coup_id'] ) {//现金抵用券
-        //                $m_id = $this->checkToken ();
-        //                $this->errorTokenMsg ($m_id);
-        //                $list = D ('CouponBind')->where (array ('db_coupon_bind.id' => $order['coup_id'] , 'db_coupon_bind.m_id' => $m_id , 'is_bind' => 1))->join ("db_batch ON db_coupon_bind.b_id = db_batch.id")->field ('db_batch.title,db_batch.price')->select ();
-        //                foreach ( $list as $key => $value ) {
-        //                    $card = $list[$key]['title'] . $list[$key]['price'] . '元';
-        //                    $order['discount'] = $card;
-        //                    $this->apiResponse ('1' , '查询成功' , $order);
-        //                }
-        //            }
-        //        }
-    }
-
-    /**
      *获取时间
      *user:jiaming.wang  459681469@qq.com
      *Date:2018/12/21 18:37
@@ -690,81 +640,6 @@ class PayController extends BaseController {
             strtotime (date ('Y' , $timestamp) . '-1-1') ,     //年份
         ];
     }
-
-    /**
-     *shi
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/28 09:41
-     */
-    public function tray () {
-
-        $request['orderid'] = 'YC201901211708248281';
-        $a_where['orderid'] = $request['orderid'];
-        $a_where['status'] = 2;
-        $a_where['o_type'] = 1;
-        $a_order = M ('Order')->where ($a_where)->field ('c_id,pay_money,pay_time')->find ();
-        $agent_where['id'] = $a_order['c_id'];
-        $car = M ('CarWasher')->where ($agent_where)->field ('agent_id')->find ();   //查找代理商id
-        $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance')->find ();
-        $income_where['agent_id'] = $car['agent_id'];
-        $income_where['car_washer_id'] = $a_order['c_id'];
-        $income_where['day'] = strtotime (date ('Y-m-d' , $a_order['pay_time']));
-        $income = M ('Income')->where ($income_where)->field ('detail,net_income,car_wash,day,week_star,week_end,month,year,create_time')->find ();
-        if ( $agent['grade'] == 1 ) {
-            $net_income = $a_order['pay_money'] - $a_order['pay_money'] * 0.05;
-        } elseif ( $agent['grade'] == 2 ) {
-            $net_income = $a_order['pay_money'] - $a_order['pay_money'] * 0.1;
-        } elseif ( $agent['grade'] == 3 ) {
-            $net_income = $a_order['pay_money'] - $a_order['pay_money'] * 0.15;
-        }
-        if ( empty($income) ) {
-
-            //获取时间戳
-            $timestamp = $a_order['pay_time'];
-            $week_star = strtotime (date ('Y-m-d' , strtotime ("this week Monday" , $timestamp)));
-            $week_end = strtotime (date ('Y-m-d' , strtotime ("this week Sunday" , $timestamp))) + 24 * 3600 - 1;
-            $month = strtotime (date ('Y-m' , $timestamp));    //月份
-            $year = strtotime (date ('Y' , $timestamp) . '-1-1');     //年份
-            //            var_dump($net_income);exit;
-            $income_add = array (
-                'agent_id' => $car['agent_id'] ,
-                'car_washer_id' => $a_order['c_id'] ,
-                'detail' => $a_order['pay_money'] ,
-                'net_income' => $net_income ,
-                'car_wash' => 1 ,
-                'day' => $income_where['day'] ,
-                'week_star' => $week_star ,
-                'week_end' => $week_end ,
-                'month' => $month ,
-                'year' => $year ,
-                'create_time' => $a_order['pay_time'] ,
-            );
-            $income_adds = M ('Income')->add ($income_add);
-            $agent_save['balance'] = $agent['balance'] + $net_income;
-            $agents = M ('Agent')->where (array ('id' => $car['agent_id']))->save ($agent_save);
-        } else {
-
-            $income_save = array (
-                'detail' => $income['detail'] + $a_order['pay_money'] ,
-                'net_income' => $income['net_income'] + $net_income ,
-                'car_wash' => $income['car_wash'] + 1 ,
-                'create_time' => $a_order['pay_time'] ,
-            );
-            if ( $income['create_time'] != $a_order['pay_time'] ) {
-                $income_saves = M ('Income')->where ($income_where)->save ($income_save);
-
-                $agent_save['balance'] = $agent['balance'] + $net_income;
-
-                $agents = M ('Agent')->where (array ('id' => $car['agent_id']))->save ($agent_save);
-            } else {
-                echo 222;
-            }
-
-
-        }
-        //        var_dump($income);exit;
-    }
-
     /**
      * 余额支付
      */
@@ -774,11 +649,11 @@ class PayController extends BaseController {
         $request = I ('post.');
         $rule = array ('orderid' , 'string' , '订单编号不能为空');
         $this->checkParam ($rule);
-        $where['o_type']=array ('neq',3);
-        $where['m_id']=$m_id;
-        $where['orderid']=$request['orderid'];
-        $where['is_set']=0;
-        $where['status']=1;
+        $where['o_type'] = array ('neq' , 3);
+        $where['m_id'] = $m_id;
+        $where['orderid'] = $request['orderid'];
+        $where['is_set'] = 0;
+        $where['status'] = 1;
         $order = D ("Order")->where ($where)->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
         if ( !$order ) {
@@ -793,11 +668,26 @@ class PayController extends BaseController {
         if ( $Member['balance'] < $order['pay_money'] ) {
             $this->apiResponse (0 , '您的余额不足，请充值');
         }
-        if($order['pay_money']==0.00){
-            $this->apiResponse (0 , '数据异常','');
+        if ( $order['pay_money'] == 0.00 ) {
+            $this->apiResponse (0 , '数据异常' , '');
         }
         if ( $order['o_type'] ) {
             if ( $order['o_type'] == 1 ) {//1洗车订单
+                if ( $request['methods'] == '1' ) {
+                    $cards = M ("CardUser")->where (['id' => $request['methods_id']])->field ('l_id')->find ();
+                    $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
+                    $date['is_dis'] = '1';
+                    $date['card_id'] = $request['methods_id'];
+                    $date['allowance'] = $card['rebate'];
+                } elseif ( $request['methods'] == '2' ) {
+                    M ("CouponsBind")->where (['id' => $request['methods_id']])->save (['is_use' => '1']);
+                    $coup = M ("CouponsBind")->where (['id' => $request['methods_id']])->field ('money')->find ();
+                    $date['is_dis'] = '1';
+                    $date['coup_id'] = $request['methods_id'];
+                    $date['allowance'] = $coup['money'];
+                } elseif ( $request['methods'] == '3' ) {
+                    $date['is_dis'] = '0';
+                }
                 $pay = D ('Member')->where (array ('id' => $m_id))->field ('balance')->save (array ('balance' => $Member['balance'] - $order['pay_money']));
                 $save = D ("Order")->where (array ('orderid' => $request['orderid']))->save ($date);
                 if ( $save && $pay ) {
@@ -893,7 +783,7 @@ class PayController extends BaseController {
             }
             if ( $save && $pay && $card ) {
                 $this->apiResponse (1 , '支付成功');
-            }else{
+            } else {
                 $this->apiResponse (0 , '支付失败');
             }
         }
