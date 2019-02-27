@@ -595,7 +595,6 @@ class OrderController extends BaseController {
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
-        var_dump($details);exit;
         if(!empty($details)){
 
             if($details['status'] == 1){
