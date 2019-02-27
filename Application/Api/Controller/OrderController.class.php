@@ -763,7 +763,7 @@ class OrderController extends BaseController {
 //        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
 //        $post['methodID'] = 29;    //折扣卡ID
 //        $where['token'] = $post['token'];
-//        $member = M('Member')->where($where)->find();
+        $member = M('Member')->where($where)->find();
 
         $order_w = array(
             'orderid' =>$post['orderid'],
