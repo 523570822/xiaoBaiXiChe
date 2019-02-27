@@ -754,18 +754,24 @@ class OrderController extends BaseController {
      *Date:2019/02/21 13:19
      */
     public function  Pay(){
-//        $post = checkAppData('token,orderid,washing,foam,cleaner,method,methodID','token-订单ID-水枪清洗时间-泡沫清洗时间-吸尘器使用时间-优惠方式-优惠卡ID');
+        $post = checkAppData('token,orderid,washing,foam,cleaner,method,methodID','token-订单ID-水枪清洗时间-泡沫清洗时间-吸尘器使用时间-优惠方式-优惠卡ID');
         $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
-        $post['orderid'] = YC201902181514553019;
-        $post['washing'] = 14;
-        $post['foam'] = 1;
-        $post['cleaner'] = 357;
-        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
-        $post['methodID'] = 29;    //折扣卡ID
-        $where['token'] = $post['token'];
-        $member = M('Member')->where($where)->find();
+//        $post['orderid'] = 'YC201902181514553019';
+//        $post['washing'] = 14;
+//        $post['foam'] = 1;
+//        $post['cleaner'] = 357;
+//        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
+//        $post['methodID'] = 29;    //折扣卡ID
+//        $where['token'] = $post['token'];
+//        $member = M('Member')->where($where)->find();
+
+        $order_w = array(
+            'orderid' =>$post['orderid'],
+            'm_id' => $member['id']
+        );
+        $order_f = M('Order')->where($order_w)->find();
         $d_where = array(
-            'orderid'=>$post['orderid'],
+            'o_id'=>$order_f['id'],
             'm_id'=>$member['id'],
             'status'=>0
         );
@@ -815,9 +821,33 @@ class OrderController extends BaseController {
                 'real_price' =>$price,
             );
             if(!empty($data)){
-
-
-                $this->apiResponse('1','成功',$data);
+                //查找条件
+                $sa_where = array(
+                    'm_id' => $member['id'],
+                    'orderid' => $post['orderid'],
+                );
+                //存储数据
+                $sa_data = array(
+                    'detail' =>2,
+                    'pay_time' => time(),
+                    'status' => 2,
+                    'money' => $all_money,
+                    'pay_money' => $price,
+                    'is_set' => 1,
+                );
+                if($post['method'] == 1 ){          //传 1 或者  2的时候  有优惠
+                    $sa_data['is_dis'] = 1;
+                    $sa_data['card_id'] = $post['methodID'];
+                }elseif($post['method'] == 2){          //传 1 或者  2的时候  有优惠
+                    $sa_data['is_dis'] = 1;
+                    $sa_data['coup_id'] = $post['methodID'];
+                } else{
+                    $sa_data['is_dis'] = 0;
+                    $sa_data['card_id'] = 0;
+                    $sa_data['coup_id'] = 0;
+                }
+                //echo M('Order')->_sql();
+                $this->apiResponse('1','支付成功',$data);
             }
         }else{
             $this->apiResponse('0','该订单未结算');
