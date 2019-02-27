@@ -576,10 +576,10 @@ class OrderController extends BaseController {
      *Date:2019/02/18 15:52
      */
     public function settlement(){
-//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
-        $post['orderid'] = 'YC201902181514553019';
-        $post['off_on'] = 0;
+        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+//        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
+//        $post['orderid'] = 'YC201902181514553019';
+//        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
