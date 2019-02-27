@@ -751,7 +751,7 @@ class OrderController extends BaseController {
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
 //        var_dump($send_post['devices'][0]['queryitem']);exit;
-        if($send_post['devices'][0]['queryitem']['service_status'] == 12){
+        if($send_post['devices'][0]['queryitem']['service_status'] < 12){
             $price = M('Appsetting')->where(array('id'=>1))->find();
 //        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
 //        $send_post = $this->send_post('device_manage',$car['mc_id'],3);
