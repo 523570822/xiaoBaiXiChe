@@ -568,15 +568,15 @@ class OrderController extends BaseController {
      *Date:2019/02/18 15:52
      */
     public function settlement(){
-        $post = checkAppData('token,order_id,off_on','token-订单ID-开关');
-//        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
-//        $post['order_id'] = 59;
-//        $post['off_on'] = 0;
+//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
+        $post['orderid'] = 59;
+        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $d_where = array(
-            'o_id'=>$post['order_id'],
+            'orderid'=>$post['orderid'],
             'm_id'=>$member['id'],
             'status'=>0
         );
@@ -638,7 +638,7 @@ class OrderController extends BaseController {
 //        }
 
             //测试
-            if($send_post['devices'][0]['queryitem']['service_status'] == 8){
+            if($send_post['devices'][0]['queryitem']['service_status'] == 8){  //将之前洗车机使用时间读取存到数据库
 
                 $start_data['washing_start_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
                 $start_data['foam_start_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
@@ -647,37 +647,43 @@ class OrderController extends BaseController {
                 $d_where['id'] = $details['id'];
                 $start = M('Details')->where($d_where)->save($start_data);
             }
+            $f_where['id'] = $details['id'];
+            $f_where['status'] = 0;
+
+            $f_details = M('Details')->where($f_where)->find();
+//            var_dump($f_details);exit;
             //水枪使用时间
             if(($send_post['devices'][0]['queryitem']['service_status'] == 8) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 0) ){
+                if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
+                    $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
+                    $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] + $details['washing'];
 
-                $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-                $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] + $details['washing'];
+                    $d_where['status'] = 0;
+                    $d_where['id'] = $details['id'];
 
-                $d_where['status'] = 0;
-                $d_where['id'] = $details['id'];
-
-                $w_start = M('Details')->where($d_where)->save($w_end_data);
+                    $w_start = M('Details')->where($d_where)->save($w_end_data);
+                }
             }
             //泡沫枪使用时间
             if (($send_post['devices'][0]['queryitem']['service_status'] == 12) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 4) ){
-                $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-                $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] + $details['foam'];
-
-                $d_where['status'] = 0;
-                $d_where['id'] = $details['id'];
-
-                $f_start = M('Details')->where($d_where)->save($f_end_data);
+                if($send_post['devices'][0]['queryitem']['foam_duration'] != $f_details['foam_end_time']){
+                    $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
+                    $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] + $details['foam'];
+                    $d_where['status'] = 0;
+                    $d_where['id'] = $details['id'];
+                    $f_start = M('Details')->where($d_where)->save($f_end_data);
+                }
             }
             //吸尘器使用时间
             if (($send_post['devices'][0]['queryitem']['service_status'] == 12) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 2)){
-                $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
-                $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'] + $details['cleaner'];
-
-                $d_where['status'] = 0;
-                $d_where['id'] = $details['id'];
-                $c_start = M('Details')->where($d_where)->save($c_end_data);
+                if($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] != $f_details['cleaner_end_time']){
+                    $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
+                    $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'] + $details['cleaner'];
+                    $d_where['status'] = 0;
+                    $d_where['id'] = $details['id'];
+                    $c_start = M('Details')->where($d_where)->save($c_end_data);
+                }
             }
-
             $price = M('Appsetting')->where(array('id'=>1))->find();
             $wash_fen = round($details['washing']/60,2);
 //        if($wash_fen > 0 && $wash_fen<0.5){
@@ -728,7 +734,7 @@ class OrderController extends BaseController {
     public function  Pay(){
         $post = checkAppData('token,order_id,washing,foam,cleaner,method,methodID','token-订单ID,水枪清洗时间,泡沫清洗时间,吸尘器使用时间,优惠方式,优惠卡ID');
 //        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
-//        $post['order_id'] = 59;
+//        $post['orderid'] = 59;
 //        $post['washing'] = 14;
 //        $post['foam'] = 1;
 //        $post['cleaner'] = 357;
@@ -737,7 +743,7 @@ class OrderController extends BaseController {
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $d_where = array(
-            'o_id'=>$post['order_id'],
+            'orderid'=>$post['orderid'],
             'm_id'=>$member['id'],
             'status'=>0
         );
