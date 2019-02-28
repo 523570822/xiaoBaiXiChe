@@ -26,6 +26,7 @@ class OrderController extends BaseController {
      * @param $o_id
      * @param $m_id
      * @param $c_id
+     * @param $model
      **/
     public function receive ($mc_id , $o_id , $m_id , $c_id , $model) {
         $o = $this->send_post ('runtime_query' , $mc_id , '');
@@ -94,6 +95,7 @@ class OrderController extends BaseController {
     /**
      *二维码编号查询数据封装
      * @param $mc_code //二维码编号
+     * @param $mode
      **/
     public function check_mc_code ($mc_code , $mode) {
         if ( $mc_code ) {
@@ -122,11 +124,8 @@ class OrderController extends BaseController {
 
     /**
      *消息提示封装
-     * @param $mc_id_request
-     * @param $mc_id_db
-     * @param $status
-     * @param $type
-     * @param $where
+     * @param $mc_id
+     * @param $mc_code
      * @param $m_id
      * @param $w_type
      **/
@@ -180,8 +179,11 @@ class OrderController extends BaseController {
 
     /**
      *条件封装
-     * @param $m_id
      * @param $status
+     * @param $m_id
+     * @param $mc_id
+     * @param $c_id
+     * @param $o_id
      * @param $where
      **/
     public function status ($status , $m_id = '' , $mc_id = '' , $c_id = '' , $o_id = '' , $where = '') {
@@ -235,7 +237,6 @@ class OrderController extends BaseController {
      *订单检查封装
      * @param $m_id
      * @param $w_type
-     * @param $type
      * @param $mc_code
      **/
     public function checkhave ($m_id , $w_type , $mc_code) {
