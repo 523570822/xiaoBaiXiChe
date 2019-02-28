@@ -182,7 +182,7 @@ class BaseController extends ControllerService
     }
 
     /**
-     *接口请求封装模块
+     * 接口请求封装模块
      * @param $deviceid 洗车机编号
      * @param $param_key 请求数组字段名
      * @param $param_array 请求数组内容

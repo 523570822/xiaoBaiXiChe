@@ -801,8 +801,8 @@ class OrderController extends BaseController {
      *Date:2019/02/22 18:21
      */
     public function proMethod(){
-//        $post = checkAppData('token','token');
-        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
+        $post = checkAppData('token','token');
+//        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
@@ -849,7 +849,37 @@ class OrderController extends BaseController {
         }
     }
 
-    /**/
-    //public function
+    /**
+     *设备结算
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/02/27 17:41
+     */
+    public function account(){
+//        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
+        $post['deviceid'] = 0;
+        $post['event'] = 0;
+        $post['clean_usage'] = 0;
+        $post['clean_duration'] =0 ;
+        $post['foam_usage'] =0 ;
+        $post['foam_duration'] =0 ;
+        $post['vacuum_usage'] = 0;
+
+        $data = array(
+            'devices' => array(
+                'deviceid' =>$post['deviceid'],
+                'event' => $post['event'],
+                'settlement_info' => array(
+                    'clean_usage' => $post['clean_usage'],                     //清水用量
+                    'clean_duration' => $post['clean_duration'],                  //清水使用时间
+                    'foam_usage' => $post['foam_usage'],                       //泡沫用量
+                    'foam_duration' => $post['foam_duration'],                    //泡沫使用时间
+                    'vacuum_usage' => $post['vacuum_usage'],                     //吸尘器使用时间
+                ),
+            ),
+        );
+        if($data){
+            $this->apiResponse('1','成功',$data);
+        }
+    }
 
 }
