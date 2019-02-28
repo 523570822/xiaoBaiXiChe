@@ -25,9 +25,13 @@ class OrderController extends BaseController
         }
         //按用户账号查找
         if(!empty($_REQUEST['account'])){
-            $account_where['db_member.account'] = array('LIKE',I('request.account')."%");
+            $account_where['account'] = array('LIKE',I('request.account')."%");
             $data = D('Member')->where ($account_where)->getField("id", true);
             $where["m_id"] = ["in", implode ($data, ',')];
+            if (empty($data))
+            {
+                $this->display();
+            }
         }
         //订单类型查找
         if ( !empty($_REQUEST['o_type']) ) {
