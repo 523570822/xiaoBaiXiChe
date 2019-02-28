@@ -12,25 +12,18 @@
                     <!--顶部按钮-->
                     <div class="mab10">
                         <input type="hidden" id="url" value="{$url}">
-                        <!--<a href="{:U('Order/addOrder')}" class="layui-btn layui-btn-normal layui-btn-radius"></a>-->
-                        <!--<button class="layui-btn layui-btn-warm layui-btn-radius">锁定</button>-->
-                        <!--<button class="layui-btn layui-btn-danger layui-btn-radius"-->
-                                <!--onclick="confirmAllAction('{:U('Order/delete',array('model'=>'Order'))}', '删除')">-->
-                            <!--删除-->
-                        <!--</button>-->
-                        <!--搜索框也可以放这里-->
-                        <form class="mab10 mal20 dinline" id="myform" action="{:U('Order/index')}" method="POST">
+                        <form class="mab10 mal20 dinline" id="myform" action="{:U('Order/index')}" method="GET">
                             <div class="layui-input-inline">
                                 <input type="text" class="layui-input" placeholder="请输入订单编号" name="orderid"
                                        value="{$_REQUEST['orderid']}">
                             </div>
-                            <!--<div class="layui-input-inline">-->
-                            <!--<input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"-->
-                            <!--value="{$_REQUEST['nickname']}">-->
-                            <!--</div>-->
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入用户账号" name="account"
+                                       value="{$_REQUEST['account']}">
+                            </div>
                             <div class="layui-input-inline layui-form">
                                 <select name="status" class="layui-input" style="width: 150px">
-                                    <option value="">状态</option>
+                                    <option value="">支付状态</option>
                                     <option value="1"
                                     <if condition="$_REQUEST['status'] eq 1">selected=true</if>
                                     >待支付</option>
@@ -53,20 +46,7 @@
                                     >余额充值</option>
                                 </select>
                             </div>
-
-                            <!--<div class="layui-input-inline">-->
-                            <!--<input type="text" name="start_time" class="layui-input" id="test1"-->
-                            <!--value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="注册开始时间">-->
-                            <!--&lt;!&ndash;<input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']} >&ndash;&gt;-->
-                            <!--</div>-->
-                            <!--—-->
-                            <!--<div class="layui-input-inline">-->
-                            <!--<input type="text" name="end_time" class="layui-input" id="test2"-->
-                            <!--value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="注册结束时间">-->
-                            <!--&lt;!&ndash;<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">&ndash;&gt;-->
-                            <!--</div>-->
                             <button class="layui-btn" type="submit">搜索</button>
-                            <button class="layui-btn" type="button" id="button">导出搜索</button>
                             <a href="{:U('Order/index')}" class="layui-btn layui-btn-primary">重置</a>
                         </form>
                         <script>
@@ -94,9 +74,13 @@
                                 </div>
                             </th>
                             <th>订单编号</th>
+                            <th>流水号</th>
+                            <th>预付金额</th>
+                            <th>实际金额</th>
                             <th>用户账号</th>
                             <th>订单类型</th>
                             <th>订单状态</th>
+                            <th>付款时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -111,39 +95,47 @@
                                 <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
                                 <td>{$item.id}</td>
                                 <td>{$item.orderid}</td>
+                                <td>
+                                    <switch name="item.status">
+                                        <case value="1"><span style="color: red;">待支付</span></case>
+                                        <case value="2">{$item.trade_no}</case>
+                                        <default/>
+                                    </switch>
+                                </td>
+                                <td>{$item.money}(元)</td>
+                                <td>
+                                    <switch name="item.status">
+                                        <case value="1"><span style="color: red;">待支付</span></case>
+                                        <case value="2">{$item.pay_money}(元)</case>
+                                        <default/>
+                                    </switch>
+                                </td>
                                 <td>{$item.account}</td>
                                 <td>
                                     <switch name="item.o_type">
                                         <case value="1">洗车订单</case>
                                         <case value="2">小鲸卡购买</case>
                                         <case value="3">余额充值</case>
-                                        <default />
+                                        <default/>
                                     </switch>
                                 </td>
                                 <td>
                                     <switch name="item.status">
-                                        <case value="1">待支付</case>
-                                        <case value="2">已完成</case>
-                                        <default />
+                                        <case value="1"><span style="color: red;">待支付</span></case>
+                                        <case value="2"><span style="color: green;">已完成</span></case>
+                                        <default/>
                                     </switch>
                                 </td>
-                                <!--<td>{$item['create_time']|date='Y-m-d H:i',###}</td>-->
-                                <!--<td>{$item['status'] == 1 ? '启用' : '禁用'}</td>-->
                                 <td>
-                                    <!--<button class="layui-btn layui-btn-xs layui-btn-normal"-->
-                                            <!--onclick="jumpUrl('{:U('Order/editOrder', array('id'=>$item['id'], 'system'=>0))}')">-->
-                                        <!--编辑-->
-                                    <!--</button>-->
-                                    <!--<button class="layui-btn layui-btn-xs layui-btn-warm"-->
-                                            <!--onclick="confirmOneAction('{:U('Order/lockOrder')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">-->
-                                        <!--{$item['status'] == 1 ? '禁用' : '启用'}-->
-                                    <!--</button>-->
-                                    <!--<button class="layui-btn layui-btn-xs layui-btn-danger"-->
-                                            <!--onclick="confirmDelAction('{:U('Order/delete',array('model'=>'Order'))}', '删除','{$item.id}')">-->
-                                        <!--删除-->
-                                    <!--</button>-->
+                                    <switch name="item.status">
+                                        <case value="1"><span style="color: red;">待支付</span></case>
+                                        <case value="2">{$item['pay_time']|date='Y-m-d H:i',###}</case>
+                                        <default/>
+                                    </switch>
+                                </td>
+                                <td>
                                     <button class="layui-btn layui-btn-xs layui-btn-normal"
-                                    onclick="jumpUrl('{:U('Order/infoOrder', array('id'=>$item['id'], 'system'=>0))}')">
+                                            onclick="jumpUrl('{:U('Order/infoOrder', array('id'=>$item['id'], 'system'=>0))}')">
                                         查看
                                     </button>
                                 </td>

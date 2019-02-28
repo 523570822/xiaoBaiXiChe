@@ -89,6 +89,9 @@ class CarWasherController extends BaseController {
             $rule = array (
                 array ('mc_code' , 'string' , '二维码编号') ,
                 array ('mc_id' , 'string' , '洗车机编号') ,
+                array ('washing_money' , 'string' , '水枪价格￥/min') ,
+                array ('foam_money' , 'string' , '泡沫价格￥/min') ,
+                array ('cleaner_money' , 'string' , '吸尘器价格￥/min') ,
                 array ('p_id' , 'string' , '请选择店铺') ,
                 array ('agent_id' , 'string' , '请选择加盟商') ,
                 array ('lon' , 'string' , '经度') ,
@@ -152,6 +155,9 @@ class CarWasherController extends BaseController {
             $rule = array (
                 array ('mc_code' , 'string' , '二维码编号') ,
                 array ('mc_id' , 'string' , '洗车机编号') ,
+                array ('washing_money' , 'string' , '水枪价格￥/min') ,
+                array ('foam_money' , 'string' , '泡沫价格￥/min') ,
+                array ('cleaner_money' , 'string' , '吸尘器价格￥/min') ,
                 array ('p_id' , 'string' , '请选择店铺') ,
                 array ('agent_id' , 'string' , '请选择加盟商') ,
                 array ('lon' , 'string' , '经度') ,
