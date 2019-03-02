@@ -230,6 +230,7 @@ class BaseController extends ControllerService
                     "clean_water_duration" => true ,//清水累计用时（秒）
                     "foam_usage" => true ,//泡沫累计用量（L）
                     "foam_duration" => true ,//泡沫累计用时（秒）
+                    'level2_status' => true, //清水状态
                     "vacuum_info" => true ,//吸尘器用 设备故障status ≥ 4
                     // current吸尘器设备的电流值，单位 A lastmaint_uasge 上次维护后的使用时间，单位秒 accumulated_usage 累计使用时间，单位秒
                     "location" => true//机器坐标 longitud经度 latitud纬度

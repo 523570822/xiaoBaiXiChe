@@ -693,6 +693,10 @@ class OrderController extends BaseController {
                             'status'  => 1,
                         );
                         $detailss = M('Details')->where($d_where)->save($d_save);
+                        $o_save = array(
+                            'is_set' => 1,
+                        );
+                        $o_order = M('Order')->where($o_where)->save($o_save);
                         $this->apiResponse('1','结算成功',$data_money);
                     }
                 }
@@ -716,6 +720,10 @@ class OrderController extends BaseController {
                     'status'  => 1,
                 );
                 $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
+                $o_save = array(
+                    'is_set' => 1,
+                );
+                $o_order = M('Order')->where($o_where)->save($o_save);
                 $this->apiResponse('1','结算成功',$data_money);
             } else{
                 $this->apiResponse('0','请先开启设备');
