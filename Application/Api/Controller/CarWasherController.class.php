@@ -232,7 +232,7 @@ class CarWasherController extends BaseController
             //$mana = 'manage';
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
-            var_dump($queryitem[$k]['devices'][0]);exit;
+//            var_dump($queryitem[$k]['devices'][0]);exit;
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
                     if($vv[0]['queryitem']['service_status'] == 13 || $vv[0]['queryitem']['service_status'] == 12){            //机器使用状态   13使用中   14预定中   12结算   8空闲中
