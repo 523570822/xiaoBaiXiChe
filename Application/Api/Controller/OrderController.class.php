@@ -879,20 +879,38 @@ class OrderController extends BaseController {
     }
 
     /**
-     *设备结算
+     *设备按钮结算
      *user:jiaming.wang  459681469@qq.com
-     *Date:2019/02/27 17:41
+     *Date:2019/03/02 11:14
      */
-    public function account(){
-//        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
-        $post['deviceid'] = 0;
-        $post['event'] = 0;
+    public function Button(){
+        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
+        $post['deviceid'] = 510042001451373435363337;
+        $post['event'] = 1;
         $post['clean_usage'] = 0;
         $post['clean_duration'] =0 ;
         $post['foam_usage'] =0 ;
         $post['foam_duration'] =0 ;
         $post['vacuum_usage'] = 0;
+        if($post['event'] == 1){
+            $send_post = $this->send_post('device_manage',$post['deviceid'],3);
+        }
+    }
 
+    /**
+     *设备结算
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/02/27 17:41
+     */
+    public function account(){
+        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
+//        $post['deviceid'] = 510042001451373435363337;
+//        $post['event'] = 1;
+//        $post['clean_usage'] = 0;
+//        $post['clean_duration'] =0 ;
+//        $post['foam_usage'] =0 ;
+//        $post['foam_duration'] =0 ;
+//        $post['vacuum_usage'] = 0;
         $data = array(
             'devices' => array(
                 'deviceid' =>$post['deviceid'],
