@@ -181,9 +181,9 @@ class MemberController extends BaseController
             $member_info['token'] = $token_arr['token'];
             $member_info['expired_time'] = $token_arr['expired_time'];
             $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
-            $member_info['bind_id'] = $bind_info['id'];
-
-            $member_info['account'] = '';
+//            $member_info['bind_id'] = $bind_info['id'];
+//
+//            $member_info['account'] = '';
 
             $this->apiResponse('1', '登录成功', $member_info);
         } else {
