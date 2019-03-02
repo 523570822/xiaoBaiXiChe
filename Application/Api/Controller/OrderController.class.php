@@ -340,7 +340,7 @@ class OrderController extends BaseController {
         $this->receive ($mc_id , $o_id , $m_id , $c_id , '5');
         //返回数据
         if ( $res && $yes ) {
-            $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('ID' => $o_id , 'Orderid' => $data['orderid']));
+            $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('ID' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
         }
@@ -894,6 +894,11 @@ class OrderController extends BaseController {
         $post['vacuum_usage'] = 0;
         if($post['event'] == 1){
             $send_post = $this->send_post('device_manage',$post['deviceid'],3);
+            if($send_post){
+                $this->apiResponse(1,'result','OK');
+            }else{
+                $this->apiResponse(0,'result','FAILED');
+            }
         }
     }
 
