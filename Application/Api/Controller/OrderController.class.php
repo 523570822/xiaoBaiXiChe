@@ -597,7 +597,7 @@ class OrderController extends BaseController {
         );
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-        $send_post = $this->send_post('runtime_query',$car['mc_id']);
+        $send_post = $this->send_post('runtime_query',$car['mc_id']);       //查询洗车机状态
         if(!empty($details)){
             if($details['status'] == 1){
                 $this->apiResponse('0','此订单已结算,无法进行洗车操作');
@@ -605,6 +605,10 @@ class OrderController extends BaseController {
 //        var_dump($send_post['devices'][0]);
             //判断机器使用状态
             if($send_post['devices'][0]['queryitem']['service_status'] == 13){     //当机器service_status =13的时候,洗车机开启
+                $car_start_save = array(
+                    'type' => 2,
+                );
+                $car_start = M('CarWasher')->where(array('id'=>$details['c_id']))->save($car_start_save);
                 if(round($send_post['devices'][0]['queryitem']['clean_water_duration']) != $details['washing_end_time']){
                     $indication = 1;
                 }elseif(round($send_post['devices'][0]['queryitem']['foam_duration']) != $details['foam_end_time']){
@@ -623,7 +627,7 @@ class OrderController extends BaseController {
                     $d_where['id'] = $details['id'];
                     $start = M('Details')->where($d_where)->save($start_data);
                 }
-                //测试
+                //测试        //
                 if($send_post['devices'][0]['queryitem']['service_status'] == 8){  //将之前洗车机使用时间读取存到数据库
 
                     $start_data['washing_start_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
@@ -681,20 +685,21 @@ class OrderController extends BaseController {
                     'washing' =>floor($wash_fen),
                     'foam'=>floor($foam_fen),
                     'cleaner'=>floor($cleaner_fen),
-                    'all_money' =>$wash_money+$foam_money+$cleaner_money
+                    'all_money' =>$wash_money+$foam_money+$cleaner_money,
+                    'off_on' => $post['off_on'],
                 );
 
                 if(!empty($data_money)){
                     if($post['off_on'] == 0){
                         $this->apiResponse('1','查询成功',$data_money);
                     }elseif($post['off_on'] == 1){
-                        $send_post = $this->send_post('device_manage',$car['mc_id'],3);
+                        $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
                         $d_save = array(
                             'status'  => 1,
                         );
                         $detailss = M('Details')->where($d_where)->save($d_save);
                         $o_save = array(
-                            'is_set' => 1,
+                            'button' => 1,
                         );
                         $o_order = M('Order')->where($o_where)->save($o_save);
                         $this->apiResponse('1','结算成功',$data_money);
@@ -713,7 +718,8 @@ class OrderController extends BaseController {
                     'washing' =>floor($wash_fen),             //水枪使用时间
                     'foam'=>floor($foam_fen),                   //泡沫使用时间
                     'cleaner'=>floor($cleaner_fen),             //吸尘器使用时间
-                    'all_money' =>$wash_money+$foam_money+$cleaner_money       //总金额
+                    'all_money' =>$wash_money+$foam_money+$cleaner_money,       //总金额
+                    'off_on' => $post['off_on'],
                 );
                 $post['off_on'] = 1;
                 $d_save = array(
@@ -721,7 +727,7 @@ class OrderController extends BaseController {
                 );
                 $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                 $o_save = array(
-                    'is_set' => 1,
+                    'button' => 1,
                 );
                 $o_order = M('Order')->where($o_where)->save($o_save);
                 $this->apiResponse('1','结算成功',$data_money);
@@ -884,16 +890,27 @@ class OrderController extends BaseController {
      *Date:2019/03/02 11:14
      */
     public function Button(){
-        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
-        $post['deviceid'] = 510042001451373435363337;
+        //$post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
+        $post['deviceid'] = '510042001451373435363337';
         $post['event'] = 1;
         $post['clean_usage'] = 0;
         $post['clean_duration'] =0 ;
         $post['foam_usage'] =0 ;
         $post['foam_duration'] =0 ;
         $post['vacuum_usage'] = 0;
+        $car = M('CarWasher')->where(array('mc_id'=>$post['deviceid']))->find();
+        $order = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->find();
         if($post['event'] == 1){
             $send_post = $this->send_post('device_manage',$post['deviceid'],3);
+            $d_save = array(
+                'washing' => $post['clean_duration'],
+                'foam' => $post['foam_duration'],
+                'cleaner' => $post['vacuum_usage'],
+                'status' => 1,
+            );
+            $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
+
+
             if($send_post){
                 $this->apiResponse(1,'result','OK');
             }else{

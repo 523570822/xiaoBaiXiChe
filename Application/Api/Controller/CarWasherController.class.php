@@ -243,7 +243,7 @@ class CarWasherController extends BaseController
                             'type' => 2,
                         );
                         $using = M('CarWasher')->where($using_where)->save($using_data);
-                    }elseif ($vv[0]['queryitem']['service_status'] == 14){
+                    }elseif ($vv[0]['queryitem']['service_status'] == 14){     //洗车机预约状态
                         $doom_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
@@ -251,7 +251,7 @@ class CarWasherController extends BaseController
                             'type' => 3,
                         );
                         $doom = M('CarWasher')->where($doom_where)->save($doom_data);
-                    } elseif ($vv[0]['queryitem']['service_status'] <= 8){
+                    } elseif ($vv[0]['queryitem']['service_status'] == 8){              //洗车机不在线
                         $idle_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
