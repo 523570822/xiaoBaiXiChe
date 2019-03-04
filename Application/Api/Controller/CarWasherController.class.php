@@ -169,20 +169,15 @@ class CarWasherController extends BaseController
         foreach ($order as $kk=>$vv){
             $orders[] = 'pay_time DESC';
             $order_num = M('Order')->where(array('c_id'=>$vv['id'],'o_type'=>1,'status'=>2))->field('orderid as mc_id,pay_money as net_income,pay_time as create_time')->order($orders)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-
             foreach($order_num as $k=>$v){
                 $time[$k] = strtotime(date('Y-m-d',$v['create_time']));
-
-
                 if($time[$k] == $day){
-
                     $order_nums[$k]['car_washer'] = $vv['mc_id'];
                     $order_nums[$k]['mc_id'] = $v['mc_id'];
                     $order_nums[$k]['net_income'] = $v['net_income'];
                     $order_nums[$k]['car_washer'] = $v['mc_id'];
                 }
             }
-
 //        }
         }
 
@@ -222,9 +217,8 @@ class CarWasherController extends BaseController
      *Date:2019/01/30 14:36
      */
     public function realTime(){
-        exit;
         $where['status'] = array('neq',9);
-        $where['mc_id'] = '50003f001451373435363337';
+//        $where['mc_id'] = '50003f001451373435363337';
         $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];
@@ -232,6 +226,7 @@ class CarWasherController extends BaseController
             $query = 'runtime_query';
             //$mana = 'manage';
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
+
             //$manage = $this->send_post($mana,$cars[$k]['id'],);
 //            var_dump($queryitem[$k]['devices'][0]);exit;
             if(!empty($queryitem[$k])){
@@ -256,10 +251,10 @@ class CarWasherController extends BaseController
                         $idle_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
+                      $idle = M('CarWasher')->where($idle_where)->save($idle_data);
                         $idle_data = array(
                             'type' => 1,
                         );
-                        $idle = M('CarWasher')->where($idle_where)->save($idle_data);
                     }
 //                    if($vv[0]['queryitem']['service_status'] >= 8){
 //                        var_dump($vv[0]['queryitem']['pump1_status']);exit;
@@ -268,14 +263,15 @@ class CarWasherController extends BaseController
                         $malf_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
+                        echo 222;
                         $malf_data = array(
                             'status' => 2,
                         );
                         $malfunction = M('CarWasher')->where($malf_where)->save($malf_data);
                     }else if (/*$vv[0]['queryitem']['level3_status']  == 0|| */$vv[0]['queryitem']['level2_status']  == 0 ||$vv[0]['queryitem']['pump1_status'] == 2|| $vv[0]['queryitem']['pump2_status'] == 2){                  //三个状态判断液位不足
 
-                        var_dump($vv[0]);exit;
-                        echo 111;exit;
+//                        var_dump($vv[0]);exit;
+                        echo 111;
                         $alarm_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
@@ -306,9 +302,12 @@ class CarWasherController extends BaseController
                         $car_data['foam'] = $vv1['queryitem']['foam_usage'];
                     }
                     $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
+                    echo M('CarWasher')->_sql();
                 }
+
             }
         }
+
     }
 
     /**
