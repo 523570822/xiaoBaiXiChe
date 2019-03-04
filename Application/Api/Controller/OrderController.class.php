@@ -581,9 +581,9 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '2cd9559683f90bc9816dd83b024cf9bd';
-//        $post['orderid'] = 'YC201902181514553019';
-//        $post['off_on'] = 0;
+//        $post['token'] = '88e83b5fd5b8e3d74010515c9a36a41d';
+//        $post['orderid'] = 'XC201903041455215144';
+//        $post['off_on'] = 1;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -600,6 +600,8 @@ class OrderController extends BaseController {
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $send_post = $this->send_post('runtime_query',$car['mc_id']);       //查询洗车机状态
+
+
         if(!empty($details)){
             if($details['status'] == 1){
                 $this->apiResponse('0','此订单已结算,无法进行洗车操作');
@@ -648,7 +650,7 @@ class OrderController extends BaseController {
                 if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ){
                     if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
                         $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] + $details['washing'];
+                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'];
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
                         $w_start = M('Details')->where($d_where)->save($w_end_data);
@@ -658,7 +660,7 @@ class OrderController extends BaseController {
                 if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 3) ){
                     if($send_post['devices'][0]['queryitem']['foam_duration'] != $f_details['foam_end_time']){
                         $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] + $details['foam'];
+                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'];
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
                         $f_start = M('Details')->where($d_where)->save($f_end_data);
@@ -668,7 +670,7 @@ class OrderController extends BaseController {
                 if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 2)){
                     if($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] != $f_details['cleaner_end_time']){
                         $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
-                        $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'] + $details['cleaner'];
+                        $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'];
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
                         $c_start = M('Details')->where($d_where)->save($c_end_data);
@@ -748,8 +750,8 @@ class OrderController extends BaseController {
      */
     public function  Pay(){
         $post = checkAppData('token,orderid,washing,foam,cleaner,method,methodID','token-订单ID-水枪清洗时间-泡沫清洗时间-吸尘器使用时间-优惠方式-优惠卡ID');
-//        $post['token'] = '84dbd964879262d4cdf0142876099aee';
-//        $post['orderid'] = 'YC201902181514553019';
+//        $post['token'] = '88e83b5fd5b8e3d74010515c9a36a41d';
+//        $post['orderid'] = 'XC201903041455215144';
 //        $post['washing'] = 14;
 //        $post['foam'] = 1;
 //        $post['cleaner'] = 357;
@@ -779,6 +781,7 @@ class OrderController extends BaseController {
         //请求物联网接口,获取数据
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
         //判断洗车机状态
+//        var_dump($send_post['devices'][0]['queryitem']['service_status']);exit;
         if($send_post['devices'][0]['queryitem']['service_status'] == 12){    //正确填12
             $price = M('Appsetting')->where(array('id'=>1))->find();
 //        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
