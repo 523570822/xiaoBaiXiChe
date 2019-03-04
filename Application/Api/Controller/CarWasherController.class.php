@@ -222,8 +222,9 @@ class CarWasherController extends BaseController
      *Date:2019/01/30 14:36
      */
     public function realTime(){
+        exit;
         $where['status'] = array('neq',9);
-//        $where['mc_id'] = '510042001451373435363337';
+        $where['mc_id'] = '50003f001451373435363337';
         $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];
@@ -272,6 +273,9 @@ class CarWasherController extends BaseController
                         );
                         $malfunction = M('CarWasher')->where($malf_where)->save($malf_data);
                     }else if (/*$vv[0]['queryitem']['level3_status']  == 0|| */$vv[0]['queryitem']['level2_status']  == 0 ||$vv[0]['queryitem']['pump1_status'] == 2|| $vv[0]['queryitem']['pump2_status'] == 2){                  //三个状态判断液位不足
+
+                        var_dump($vv[0]);exit;
+                        echo 111;exit;
                         $alarm_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
