@@ -18,6 +18,10 @@
                                        value="{$_REQUEST['orderid']}">
                             </div>
                             <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入流水号" name="trade_no"
+                                       value="{$_REQUEST['trade_no']}">
+                            </div>
+                            <div class="layui-input-inline">
                                 <input type="text" class="layui-input" placeholder="请输入用户账号" name="account"
                                        value="{$_REQUEST['account']}">
                             </div>
@@ -30,6 +34,20 @@
                                     <option value="2"
                                     <if condition="$_REQUEST['status'] eq 2">selected=true</if>
                                     >已完成</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline layui-form">
+                                <select name="pay_type" class="layui-input" style="width: 150px">
+                                    <option value="">支付方式</option>
+                                    <option value="1"
+                                    <if condition="$_REQUEST['pay_type'] eq 1">selected=true</if>
+                                    >微信</option>
+                                    <option value="2"
+                                    <if condition="$_REQUEST['pay_type'] eq 2">selected=true</if>
+                                    >支付宝</option>
+                                    <option value="3"
+                                    <if condition="$_REQUEST['pay_type'] eq 3">selected=true</if>
+                                    >余额</option>
                                 </select>
                             </div>
                             <div class="layui-input-inline layui-form">
@@ -80,6 +98,7 @@
                             <th>用户账号</th>
                             <th>订单类型</th>
                             <th>订单状态</th>
+                            <th>支付方式</th>
                             <th>付款时间</th>
                             <th>操作</th>
                         </tr>
@@ -123,6 +142,20 @@
                                     <switch name="item.status">
                                         <case value="1"><span style="color: red;">待支付</span></case>
                                         <case value="2"><span style="color: green;">已完成</span></case>
+                                        <default/>
+                                    </switch>
+                                </td>
+                                <td>
+                                    <switch name="item.status">
+                                        <case value="1"><span style="color: red;">待支付</span></case>
+                                        <case value="2">
+                                            <switch name="item.pay_type">
+                                                <case value="1"><span style="color: green;">微信</span></case>
+                                                <case value="2"><span style="color: blue;">支付宝</span></case>
+                                                <case value="3"><span style="color: black;">余额</span></case>
+                                                <default/>
+                                            </switch>
+                                        </case>
                                         <default/>
                                     </switch>
                                 </td>

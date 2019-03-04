@@ -23,6 +23,10 @@ class OrderController extends BaseController
         if(!empty($_REQUEST['orderid'])){
             $where['orderid'] = array('LIKE',"%".I('request.orderid')."%");
         }
+        //按流水号查找
+        if(!empty($_REQUEST['trade_no'])){
+            $where['trade_no'] = array('LIKE',"%".I('request.trade_no')."%");
+        }
         //按用户账号查找
         if(!empty($_REQUEST['account'])){
             $account_where['account'] = array('LIKE',I('request.account')."%");
@@ -36,6 +40,10 @@ class OrderController extends BaseController
         //订单类型查找
         if ( !empty($_REQUEST['o_type']) ) {
             $where['o_type'] = I ('request.o_type');
+        }
+        //支付方式类型查找
+        if ( !empty($_REQUEST['pay_type']) ) {
+            $where['pay_type'] = I ('request.pay_type');
         }
         //按订单状态查找
         if ( !empty($_REQUEST['status']) ) {

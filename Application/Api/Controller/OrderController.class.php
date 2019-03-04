@@ -60,7 +60,7 @@ class OrderController extends BaseController {
             $param['o_id'] = $o_id;
             $param['c_id'] = $c_id;
             $param['tips'] = 'start';
-            $param['status'] = '1';
+//            $param['status'] = '1';
             $param['washing_start_time'] = $one['water_S'];
             $param['foam_start_time'] = $one['foam_S'];
             $param['cleaner_start_time'] = $one['vacuum_S'];
@@ -102,6 +102,8 @@ class OrderController extends BaseController {
             $is = M ('CarWasher')->where (array ('mc_code' => $mc_code))->field ('*')->find ();
             $check['mc_id'] = $is['mc_id'];
             $check['id'] = $is['id'];
+            $check['type'] = $is['type'];
+            $check['status'] = $is['status'];
             if ( $mode == '0' ) {
                 return $is;
             }

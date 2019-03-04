@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head"/>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">店铺名称</label>
+                            <div class="layui-input-block">
+                                <input type="hidden" name="id" value="{:I('get.id')}">
+                                <input type="text" name="shop_name" value="{$row.shop_name}" placeholder="请输入店铺名称"
+                                       class="layui-input w300">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">联系电话</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="shop_phone" value="{$row.shop_phone}" placeholder="请输入联系电话"
+                                       class="layui-input w300" required>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">营业时间</label>
+                            <div class="layui-input-block">
+                                <span style="margin-right: 5px;">周</span><input type="text"  name="startime" value="{$row['startime']}" class="layui-input" style="width: 50px; display: inline-block;">
+                                <span class="help-block">&nbsp;——至——&nbsp;</span>
+                                <span style="margin-right: 3px;">周</span><input   type="text"  name="endtime" value="{$row['endtime']}"class="layui-input" style="width: 50px; display: inline-block;">
+                                <span class="help-block"style="margin-left: 23px;">【 选填 1-至-7&nbsp;&nbsp;&nbsp;(阿拉伯数字)】</span>
+                            </div>
+                            <div class="layui-input-block">
+                                <span style="margin-right: 5px;">早</span><input type="text"  name="mtime" value="{$row['mtime']}" class="layui-input" style="width: 50px; display: inline-block;"> :00
+                                <span class="help-block">&nbsp;—至—&nbsp;&nbsp;</span>
+                                <span style="margin-right:4px;">晚</span><input   type="text"  name="etime" value="{$row['etime']}" class="layui-input" style="width: 50px; display: inline-block;"> :00
+                                <span class="help-block">【 选填 0-至-24  (时间规则)】</span>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">运行状态</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="status_1">
+                                    <input type="radio" id="status_1" name="status" value="1" class="layui-input"
+                                           required
+                                    <if condition="$row['status'] eq 1">checked
+                                        <elseif condition="empty($row['status'])"/>
+                                        checked
+                                    </if>
+                                    >
+                                    正常
+                                </label>
+                                <label class="layui-choose" for="status_2">
+                                    <input type="radio" id="status_2" name="status" value="2" class="layui-input"
+                                           required
+                                    <if condition="$row['status'] eq 2"> checked</if>
+                                    >
+                                    歇业
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">经度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lon" value="{$row.lon}" placeholder="000.000000000000"
+                                       class="layui-input w300">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">纬度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lat" value="{$row.lat}" placeholder="000.000000000000"
+                                       class="layui-input w300">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">店铺机图片</label>
+                            <if condition="$row['env_pic']  neq 0">
+                                <div class="layui-input-block img-show">
+                                    <div class="img-show-item" id="Upload_cover_1_pre">
+                                        <img src="{$row.covers}">
+                                        <i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.env_pic}');"></i>
+                                    </div>
+                                </div>
+                            </if>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <input type="hidden" name="env_pic" value="{$row['env_pic']}" class="layui-input">
+                                    <button type="button" class="layui-btn"   id="uploadBtn2"><i class="layui-icon"></i>选择图片</button>
+                                </div>
+                                <div class="layui-input-inline" id="filename"></div>
+                            </div>
+                        </div>
+                        <div class="layui-form-province">
+                            <label class="layui-form-label">所在地区</label>
+                            <div class="layui-input-block">
+                                <select name="province" class="layui-input w300" id="province">
+                                    <option value="0">请选择省份</option>
+                                    <volist name="province" id="province_item">
+                                        <option value="{$province_item.id}"
+                                        <if condition="$row['province'] eq $province_item['id']"> selected</if>
+                                        >{$province_item.region_name}</option>
+                                    </volist>
+                                </select>
+                                <select name="city" class="layui-input w300" id="city">
+                                    <empty name="city">
+                                        <option value="0">请选择城市</option>
+                                        <else/>
+                                        <volist name="city" id="city_item">
+                                            <option value="{$city_item.id}"
+                                            <if condition="$row['city'] eq $city_item['id']"> selected</if>
+                                            >{$city_item.region_name}</option>
+                                        </volist>
+                                    </empty>
+                                </select>
+                                <select name="area" class="layui-input w300" id="area">
+                                    <empty name="area">
+                                        <option value="0">请选择区、县</option>
+                                        <else/>
+                                        <volist name="area" id="area_item">
+                                            <option value="{$area_item.id}"
+                                            <if condition="$row['area'] eq $area_item['id']"> selected</if>
+                                            >{$area_item.region_name}</option>
+                                        </volist>
+                                    </empty>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">详细地址</label>
+                            <div class="layui-input-block">
+                                <textarea name="address" id="address" style="width:59.35%; height:50px; "
+                                          placeholder="请输入详细地址" class="layui-input w300">{$row.address}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">确认修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn2',
+        // 多文件上传-true 单文件上传-false
+        files: false,
+        // 展示图片
+//        showFile: '#filename',
+        showFile: 'true',
+        // input框的name
+        fieldName: 'env_pic'
+    });
+
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        var id = "{$row['id']}";
+        if (id) {
+            url = '{:U("Washshop/editWashshop")}';
+            data.id = id
+        } else {
+            url = '{:U("Washshop/addWashshop")}'
+        }
+        // console.log(data);
+        if (!data) return false;
+        doPost(url, data, function (res) {
+            showMsg(res.code, res.message, function () {
+                if (res.code == 1) {
+                    goback();
+                }
+            });
+        });
+    }
+
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+    $(function () {
+        $('#province').change(function () {
+            $('#city option[value!=""]').remove();
+            $('#area option[value!=""]').remove();
+            var province = $(this).val();
+            $.ajax({
+                url: "{:U('Washshop/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: province},
+                success: function (data) {
+                    var html = '<option value="">请选择城市</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    $('#city').html(html);
+                }
+            })
+        });
+        $('#city').change(function () {
+            $('#area option[value!=""]').remove();
+            var city = $(this).val();
+            $.ajax({
+                url: "{:U('Washshop/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: city},
+                success: function (data) {
+                    var html = '<option value="">请选择区、县</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    $('#area').html(html);
+                }
+            })
+        })
+    });
+    //编辑器
+    $(document).ready(function () {
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#content', {
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items: [
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', 'lineheight', '|',
+                    'image', 'multiimage', '|',
+                    'link', 'baidumap', 'fullscreen'
+                ],
+                afterBlur: function () {
+                    this.sync();
+                }
+            });
+        });
+    });
+
+    /*
+        描述：上传图片附带删除 再次地方可以加上一个ajax进行提交到后台进行删除
+     * */
+    function removeImg(r) {
+        $(r).parent().remove();
+    }
+
+    /*
+        描述：上传图片附带放大查看处理
+     * */
+    function lookBigImg(b) {
+        $(".shadeImg").fadeIn(500);
+        $(".showImg").attr("src", $(b).attr("src"))
+    }
+
+    /*
+        描述：关闭弹出层
+     * */
+    function closeShade() {
+        $(".shade").fadeOut(500);
+    }
+
+    /*
+        描述：关闭弹出层
+     * */
+    function closeShadeImg() {
+        $(".shadeImg").fadeOut(500);
+    }
+</script>
+</html>

@@ -1,318 +1,159 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>layuiAdmin 主页示例模板二</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/style/admin.css" media="all">
+ <!--saved from url=(0160)http://www.17sucai.com/preview/1240142/2018-07-23/%E8%AE%BE%E5%A4%87%E7%8E%AF%E5%A2%83%E7%9B%91%E6%B5%8B%E5%B9%B3%E5%8F%B0%E5%A4%A7%E6%95%B0%E6%8D%AE/index.html-->
+<html lang="en" style="font-size: 100px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="__PUBLIC__/layuiadmin/one/index.css">
+    <title>设备环境监测平台大数据</title>
+    <script src="__PUBLIC__/layuiadmin/one/jquery-2.2.1.min.js"></script>
+    <script src="__PUBLIC__/layuiadmin/one/rem.js"></script>
+    <script src="__PUBLIC__/layuiadmin/one/echarts.min.js"></script>
+    <script src="__PUBLIC__/layuiadmin/one/guangxi.js"></script>
+    <script src="__PUBLIC__/layuiadmin/one/index.js"></script>
 </head>
 <body>
-<div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    访问量
-                    <span class="layui-badge layui-bg-blue layuiadmin-badge">周</span>
-                </div>
-                <div class="layui-card-body layuiadmin-card-list">
-                    <p class="layuiadmin-big-font">9,999,666</p>
-                    <p>
-                        总计访问量
-                        <span class="layuiadmin-span-color">88万 <i class="layui-inline layui-icon layui-icon-flag"></i></span>
-                    </p>
-                </div>
+<div class="t_container">
+    <header class="t_header">
+        <span>设备环境监测平台</span>
+    </header>
+    <main class="t_main">
+        <div class="t_left_box">
+            <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
+            <div class="t_mbox t_rbox">
+                <i></i>
+                <span>本月订单数</span>
+                <h2>18000</h2>
+            </div>
+            <div class="t_mbox t_gbox">
+                <i></i>
+                <span>本月新增会员</span>
+                <h2>1000</h2>
+            </div>
+            <div class="t_mbox t_ybox">
+                <i></i>
+                <span>一次消费会员</span>
+                <h2>600</h2>
+            </div>
+            <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
+        </div>
+        <div class="t_center_box">
+            <div class="t_top_box">
+                <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
+                <ul class="t_nav">
+                    <li>
+                        <span>设备数</span>
+                        <h1>500</h1>
+                        <i></i>
+                    </li>
+                    <li>
+                        <span>上月设备增加数</span>
+                        <h1>30</h1>
+                        <i></i>
+                    </li>
+                    <li>
+                        <span>增值率</span>
+                        <h1>75%</h1>
+                    </li>
+                </ul>
+                <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
+            </div>
+            <div class="t_bottom_box">
+                <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
+                <div id="chart_3" class="echart" style="width: 100%; height: 3.6rem; -webkit-tap-highlight-color: transparent; user-select: none;" _echarts_instance_="ec_1551350273665"><div style="position: relative; overflow: hidden; width: 682px; height: 360px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="682" height="360" style="position: absolute; left: 0px; top: 0px; width: 682px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas><canvas data-zr-dom-id="zr_1" width="682" height="360" style="position: absolute; left: 0px; top: 0px; width: 682px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas><canvas data-zr-dom-id="zr_6" width="682" height="360" style="position: absolute; left: 0px; top: 0px; width: 682px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
+                <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
             </div>
         </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    下载
-                    <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span>
+        <div class="t_right_box">
+            <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
+            <div id="chart_4" class="echart" style="width: 50%; height: 4.6rem; position: absolute; -webkit-tap-highlight-color: transparent; user-select: none;" _echarts_instance_="ec_1551350273666"><div style="position: relative; overflow: hidden; width: 390px; height: 460px; padding: 0px; margin: 0px; border-width: 0px; cursor: pointer;"><canvas data-zr-dom-id="zr_0" width="390" height="460" style="position: absolute; left: 0px; top: 0px; width: 390px; height: 460px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
+            <header class="t_b_h">
+                <span>开关次数</span>
+                <img src="__PUBLIC__/layuiadmin/one/end.png">
+                <h3>15<span>次</span></h3>
+            </header>
+            <main class="t_b_m">
+                <img src="__PUBLIC__/layuiadmin/one/map.png" alt="">
+                <div class="t_b_box">
+                    <span>溫度</span>
+                    <i></i>
+                    <h2>23℃</h2>
                 </div>
-                <div class="layui-card-body layuiadmin-card-list">
-                    <p class="layuiadmin-big-font">33,555</p>
-                    <p>
-                        新下载
-                        <span class="layuiadmin-span-color">10% <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                    </p>
+                <div class="t_b_box1">
+                    <span>湿度</span>
+                    <i></i>
+                    <h2>56RH</h2>
                 </div>
-            </div>
+                <div class="t_b_box2">
+                    <span>信号</span>
+                    <i></i>
+                    <h2>-90dBm</h2>
+                </div>
+                <div class="t_b_box3">
+                    <span>光线</span>
+                    <i></i>
+                    <h2>250LX</h2>
+                </div>
+            </main>
+            <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
         </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    收入
-                    <span class="layui-badge layui-bg-green layuiadmin-badge">年</span>
-                </div>
-                <div class="layui-card-body layuiadmin-card-list">
-
-                    <p class="layuiadmin-big-font">999,666</p>
-                    <p>
-                        总收入
-                        <span class="layuiadmin-span-color">*** <i class="layui-inline layui-icon layui-icon-dollar"></i></span>
-                    </p>
-                </div>
-            </div>
+        <div class="b_left_box">
+            <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
+            <div id="chart_2" class="echart" style="width: 100%; height: 3.6rem; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1551350273664"><div style="position: relative; overflow: hidden; width: 590px; height: 360px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="590" height="360" style="position: absolute; left: 0px; top: 0px; width: 590px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
+            <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
         </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    活跃用户
-                    <span class="layui-badge layui-bg-orange layuiadmin-badge">月</span>
-                </div>
-                <div class="layui-card-body layuiadmin-card-list">
-
-                    <p class="layuiadmin-big-font">66,666</p>
-                    <p>
-                        最近一个月
-                        <span class="layuiadmin-span-color">15% <i class="layui-inline layui-icon layui-icon-user"></i></span>
-                    </p>
-                </div>
-            </div>
+        <div class="b_center_box">
+            <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
+            <div id="chart_1" class="echart" style="width: 100%; height: 3.6rem; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1551350273663"><div style="position: relative; overflow: hidden; width: 600px; height: 360px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="600" height="360" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
+            <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
         </div>
-        <div class="layui-col-sm12">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    访问量
-                    <div class="layui-btn-group layuiadmin-btn-group">
-                        <a href="javascript:;" class="layui-btn layui-btn-primary layui-btn-xs">去年</a>
-                        <a href="javascript:;" class="layui-btn layui-btn-primary layui-btn-xs">今年</a>
-                    </div>
-                </div>
-                <div class="layui-card-body">
-                    <div class="layui-row">
-                        <div class="layui-col-sm8">
-                            <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-pagetwo">
-                                <div carousel-item id="LAY-index-pagetwo">
-                                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="layui-col-sm4">
-                            <div class="layuiadmin-card-list">
-                                <p class="layuiadmin-normal-font">月访问数</p>
-                                <span>同上期增长</span>
-                                <div class="layui-progress layui-progress-big" lay-showPercent="yes">
-                                    <div class="layui-progress-bar" lay-percent="30%"></div>
-                                </div>
-                            </div>
-                            <div class="layuiadmin-card-list">
-                                <p class="layuiadmin-normal-font">月下载数</p>
-                                <span>同上期增长</span>
-                                <div class="layui-progress layui-progress-big" lay-showPercent="yes">
-                                    <div class="layui-progress-bar" lay-percent="20%"></div>
-                                </div>
-                            </div>
-                            <div class="layuiadmin-card-list">
-                                <p class="layuiadmin-normal-font">月收入</p>
-                                <span>同上期增长</span>
-                                <div class="layui-progress layui-progress-big" lay-showPercent="yes">
-                                    <div class="layui-progress-bar" lay-percent="25%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="b_right_box">
+            <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
+            <h1 class="t_title">设备维保数据查看</h1>
+            <table class="t_table">
+                <thead>
+                <tr>
+                    <th>维护时间</th>
+                    <th>维保人</th>
+                    <th>维保电话</th>
+                    <th>更换水量</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>2019-02-06</td>
+                    <td>赵志超</td>
+                    <td>1000000000</td>
+                    <td>1000ml</td>
+                </tr>
+                <tr>
+                    <td>2018-02-06</td>
+                    <td>张伟</td>
+                    <td>13111345462</td>
+                    <td>1000ml</td>
+                </tr>
+                <tr>
+                    <td>2018-02-06</td>
+                    <td>张伟</td>
+                    <td>13111345462</td>
+                    <td>1000ml</td>
+                </tr>
+                <tr>
+                    <td>2018-02-06</td>
+                    <td>张伟</td>
+                    <td>13111345462</td>
+                    <td>1000ml</td>
+                </tr>
+                <tr>
+                    <td>2018-02-06</td>
+                    <td>张伟</td>
+                    <td>13111345462</td>
+                    <td>1000ml</td>
+                </tr>
+                </tbody>
+            </table>
+            <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
         </div>
-        <!--<div class="layui-col-sm4">-->
-            <!--<div class="layui-card">-->
-                <!--<div class="layui-card-header">用户留言</div>-->
-                <!--<div class="layui-card-body">-->
-                    <!--<ul class="layuiadmin-card-status layuiadmin-home2-usernote">-->
-                        <!--<li>-->
-                            <!--<h3>贤心</h3>-->
-                            <!--<p>作为 layui 官方推出的后台模板，从初版的饱受争议，到后续的埋头丰富，逐步占据了国内后台系统应用的主要市场。</p>-->
-                            <!--<span>5月30日 00:00</span>-->
-                            <!--<a href="javascript:;" layadmin-event="replyNote" data-id="7" class="layui-btn layui-btn-xs layuiadmin-reply">回复</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<h3>诸葛亮</h3>-->
-                            <!--<p>皓首匹夫！苍髯老贼！你枉活九十有六，一生未立寸功，只会摇唇鼓舌！助曹为虐！一条断脊之犬，还敢在我军阵前狺狺狂吠，我从未见过有如此厚颜无耻之人！</p>-->
-                            <!--<span>5月02日 00:00</span>-->
-                            <!--<a href="javascript:;" layadmin-event="replyNote" data-id="5" class="layui-btn layui-btn-xs layuiadmin-reply">回复</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<h3>胡歌</h3>-->
-                            <!--<p>你以为只要长得漂亮就有男生喜欢？你以为只要有了钱漂亮妹子就自己贴上来了？你以为学霸就能找到好工作？我告诉你吧，这些都是真的！</p>-->
-                            <!--<span>5月11日 00:00</span>-->
-                            <!--<a href="javascript:;" layadmin-event="replyNote" data-id="6" class="layui-btn layui-btn-xs layuiadmin-reply">回复</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<h3>杜甫</h3>-->
-                            <!--<p>人才虽高，不务学问，不能致圣。刘向十日画一水，五日画一石。</p>-->
-                            <!--<span>4月11日 00:00</span>-->
-                            <!--<a href="javascript:;" layadmin-event="replyNote" data-id="2" class="layui-btn layui-btn-xs layuiadmin-reply">回复</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<h3>鲁迅</h3>-->
-                            <!--<p>路本是无所谓有和无的，走的人多了，就没路了。。</p>-->
-                            <!--<span>4月28日 00:00</span>-->
-                            <!--<a href="javascript:;" layadmin-event="replyNote" data-id="4" class="layui-btn layui-btn-xs layuiadmin-reply">回复</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<h3>张爱玲</h3>-->
-                            <!--<p>于千万人之中遇到你所要遇到的人，于千万年之中，时间的无涯的荒野中，没有早一步，也没有晚一步，刚巧赶上了，那也没有别的话好说，唯有轻轻的问一声：“噢，原来你也在这里？”</p>-->
-                            <!--<span>4月11日 00:00</span>-->
-                            <!--<a href="javascript:;" layadmin-event="replyNote" data-id="1" class="layui-btn layui-btn-xs layuiadmin-reply">回复</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="layui-col-sm8">-->
-            <!--<div class="layui-row layui-col-space15">-->
-                <!--<div class="layui-col-sm6">-->
-                    <!--<div class="layui-card">-->
-                        <!--<div class="layui-card-header">本周活跃用户列表</div>-->
-                        <!--<div class="layui-card-body">-->
-                            <!--<table class="layui-table layuiadmin-page-table" lay-skin="line">-->
-                                <!--<thead>-->
-                                <!--<tr>-->
-                                    <!--<th>用户名</th>-->
-                                    <!--<th>最后登录时间</th>-->
-                                    <!--<th>状态</th>-->
-                                    <!--<th>获得赞</th>-->
-                                <!--</tr>-->
-                                <!--</thead>-->
-                                <!--<tbody>-->
-                                <!--<tr>-->
-                                    <!--<td><span class="first">胡歌</span></td>-->
-                                    <!--<td><i class="layui-icon layui-icon-log"> 11:20</i></td>-->
-                                    <!--<td><span>在线</span></td>-->
-                                    <!--<td>22 <i class="layui-icon layui-icon-praise"></i></td>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td><span class="second">彭于晏</span></td>-->
-                                    <!--<td><i class="layui-icon layui-icon-log"> 10:40</i></td>-->
-                                    <!--<td><span>在线</span></td>-->
-                                    <!--<td>21 <i class="layui-icon layui-icon-praise"></i></td>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td><span class="third">靳东</span></td>-->
-                                    <!--<td><i class="layui-icon layui-icon-log"> 01:30</i></td>-->
-                                    <!--<td><i>离线</i></td>-->
-                                    <!--<td>66 <i class="layui-icon layui-icon-praise"></i></td>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td>吴尊</td>-->
-                                    <!--<td><i class="layui-icon layui-icon-log"> 21:18</i></td>-->
-                                    <!--<td><i>离线</i></td>-->
-                                    <!--<td>45 <i class="layui-icon layui-icon-praise"></i></td>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td>许上进</td>-->
-                                    <!--<td><i class="layui-icon layui-icon-log"> 09:30</i></td>-->
-                                    <!--<td><span>在线</span></td>-->
-                                    <!--<td>21 <i class="layui-icon layui-icon-praise"></i></td>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td>小蚊子</td>-->
-                                    <!--<td><i class="layui-icon layui-icon-log"> 21:18</i></td>-->
-                                    <!--<td><i>在线</i></td>-->
-                                    <!--<td>45 <i class="layui-icon layui-icon-praise"></i></td>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td>贤心</td>-->
-                                    <!--<td><i class="layui-icon layui-icon-log"> 09:30</i></td>-->
-                                    <!--<td><span>在线</span></td>-->
-                                    <!--<td>21 <i class="layui-icon layui-icon-praise"></i></td>-->
-                                <!--</tr>-->
-                                <!--</tbody>-->
-                            <!--</table>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="layui-col-sm6">-->
-                    <!--<div class="layui-card">-->
-                        <!--<div class="layui-card-header">项目进展</div>-->
-                        <!--<div class="layui-card-body">-->
-                            <!--<div class="layui-tab-content">-->
-                                <!--<div class="layui-tab-item layui-show">-->
-                                    <!--<table id="LAY-index-prograss"></table>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="layui-col-sm12">-->
-                    <!--<div class="layui-card">-->
-                        <!--<div class="layui-card-header">用户全国分布</div>-->
-                        <!--<div class="layui-card-body">-->
-                            <!--<div class="layui-row layui-col-space15">-->
-                                <!--<div class="layui-col-sm4">-->
-                                    <!--<table class="layui-table layuiadmin-page-table" lay-skin="line">-->
-                                        <!--<thead>-->
-                                        <!--<tr>-->
-                                            <!--<th>排名</th>-->
-                                            <!--<th>地区</th>-->
-                                            <!--<th>人数</th>-->
-                                        <!--</tr>-->
-                                        <!--</thead>-->
-                                        <!--<tbody>-->
-                                        <!--<tr>-->
-                                            <!--<td>1</td>-->
-                                            <!--<td>浙江</td>-->
-                                            <!--<td>62310</td>-->
-                                        <!--</tr>-->
-                                        <!--<tr>-->
-                                            <!--<td>2</td>-->
-                                            <!--<td>上海</td>-->
-                                            <!--<td>59190</td>-->
-                                        <!--</tr>-->
-                                        <!--<tr>-->
-                                            <!--<td>3</td>-->
-                                            <!--<td>广东</td>-->
-                                            <!--<td>55891</td>-->
-                                        <!--</tr>-->
-                                        <!--<tr>-->
-                                            <!--<td>4</td>-->
-                                            <!--<td>北京</td>-->
-                                            <!--<td>51919</td>-->
-                                        <!--</tr>-->
-                                        <!--<tr>-->
-                                            <!--<td>5</td>-->
-                                            <!--<td>山东</td>-->
-                                            <!--<td>39231</td>-->
-                                        <!--</tr>-->
-                                        <!--<tr>-->
-                                            <!--<td>6</td>-->
-                                            <!--<td>湖北</td>-->
-                                            <!--<td>37109</td>-->
-                                        <!--</tr>-->
-                                        <!--</tbody>-->
-                                    <!--</table>-->
-                                <!--</div>-->
-                                <!--<div class="layui-col-sm8">-->
-
-                                    <!--<div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-pagethree">-->
-                                        <!--<div carousel-item id="LAY-index-pagethree">-->
-                                            <!--<div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-    </div>
+    </main>
 </div>
-</div>
-<script src="__PUBLIC__/layuiadmin/layui/layui.js"></script>
-<script>
-    layui.config({
-        base: '__PUBLIC__/layuiadmin/' //静态资源所在路径
-    }).extend({
-        index: 'lib/index' //主入口模块
-    }).use(['index', 'sample']);
-</script>
-</body>
-</html>
+
+</body></html>

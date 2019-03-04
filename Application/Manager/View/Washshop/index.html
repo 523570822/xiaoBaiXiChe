@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head"/>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <!--顶部按钮-->
+                    <div class="mab10">
+                        <input type="hidden" id="url" value="{$url}">
+                        <a href="{:U('Washshop/addWashshop')}"
+                           class="layui-btn layui-btn-normal layui-btn-radius">添加店铺</a>
+                        <!--搜索框也可以放这里-->
+                        <form class="mab10 mal20 dinline" id="myform" action="{:U('Washshop/index')}" method="GET">
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入店铺名称" name="shop_name"
+                                       value="{$_REQUEST['shop_name']}">
+                            </div>
+                            <div class="layui-input-inline layui-form">
+                                <select name="status" class="layui-input" style="width: 150px">
+                                    <option value="">营业状态</option>
+                                    <option value="1"
+                                    <if condition="$_REQUEST['status'] eq 1">selected=true</if>
+                                    >正常</option>
+                                    <option value="2"
+                                    <if condition="$_REQUEST['status'] eq 2">selected=true</if>
+                                    >歇业</option>
+                                </select>
+                            </div>
+                            <button class="layui-btn" type="submit">搜索</button>
+                        </form>
+                        <script>
+                            $(function () {
+                                $("#button").click(function () {
+                                    var newUrl = "{:U('Washshop/exportWashshop')}";    //设置新提交地址
+                                    $("#myform").attr('action', newUrl);    //通过jquery为action属性赋值
+                                    $("#myform").submit();    //提交ID为myform的表单
+                                })
+                            })
+                        </script>
+                    </div>
+                    <!--列表-->
+                    <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                        <thead>
+                        <tr>
+                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                            <th>
+                                <div class="">
+                                    <span>ID</span>
+                                    <span id="id-sort" lay-sort="">
+                                        <i class="" value="id" sort="asc"></i>
+                                        <i class="" value="id" sort="desc"></i>
+                                    </span>
+                                </div>
+                            </th>
+                            <th>店铺名称</th>
+                            <th>联系电话</th>
+                            <th>营业状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr>
+                                <td colspan="12" style="text-align: center;">暂无数据</td>
+                            </tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                <td>{$item.id}</td>
+                                <td>{$item.shop_name}</td>
+                                <td>{$item.shop_phone}</td>
+                                <td>
+                                    <switch name="item.status">
+                                        <case value="1"><span style="color: green;">正常</span></case>
+                                        <case value="2"><span style="color: orange;">歇业</span></case>
+                                        <default/>
+                                    </switch>
+                                </td>
+                                <td>
+                                    <button class="layui-btn layui-btn-xs layui-btn-normal"
+                                            onclick="jumpUrl('{:U('Washshop/editWashshop', array('id'=>$item['id'], 'system'=>0))}')">
+                                        编辑
+                                    </button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-warm"
+                                            onclick="confirmOneAction('{:U('Washshop/lockWashshop')}', '{$item['status'] == 1 ? '关闭' : '处理'}','{$item.id}')">
+                                        {$item['status'] == 1 ? '关闭' : '处理'}
+                                    </button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-danger"
+                                            onclick="confirmDelAction('{:U('Washshop/delete',array('model'=>'Washshop'))}', '删除','{$item.id}')">
+                                        删除
+                                    </button>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <!--分页-->
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 排序方法
+    var sort_order = "{$_GET['sort_order']}"
+    if (sort_order) {
+        var sort_arr = sort_order.split("-");
+        $('#' + sort_arr[0] + '-sort').attr('lay-sort', sort_arr[1])
+    }
+    //排序
+    $('.layui-edge').on('click', function () {
+        var url = $('#url').val();
+        var sort_type = $(this).attr('value');
+        var sort_key = $(this).attr('sort');
+        // 分为有其他搜索参数类型和无搜索参数类型 拼接URL了地址 这里我以有结束时间为例。
+        // 有搜索参数
+        if (url.indexOf('&end_time') == -1) {
+            if (url.indexOf('/sort_order/') == -1) {
+                url = url + '/sort_order/' + sort_type + '-' + sort_key;
+            } else {
+                url = url.replace('/sort_order/' + sort_order, '/sort_order/' + sort_type + '-' + sort_key);
+            }
+        } else {
+            // 没有搜索参数
+            if (url.indexOf('&sort_order=') == -1) {
+                url = url + '&sort_order=' + sort_type + '-' + sort_key;
+            } else {
+                url = url.replace('&sort_order=' + sort_order, '&sort_order=' + sort_type + '-' + sort_key);
+            }
+        }
+        window.location.href = url;
+    });
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test2' //指定元素
+    });
+</script>
+</body>
+</html>
