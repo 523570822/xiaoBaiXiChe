@@ -305,6 +305,7 @@ class OrderController extends BaseController {
         $request = I ('post.');
         $rules = array ('mc_code' , 'string' , '请输入洗车机编号');
         $this->checkParam ($rules);
+        //var_dump($request['mc_code']);die;
         $this->checkisToken ($m_id,$request['mc_code']);
         $rule = array (
             array ('o_type' , 'string' , '请输入订单类型') ,
@@ -345,8 +346,8 @@ class OrderController extends BaseController {
             //语音播放
             $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
 
-            $vsend_post = $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
-            
+            $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
+
             $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('ID' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
