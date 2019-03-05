@@ -590,6 +590,7 @@ class OrderController extends BaseController {
         $o_where = array(
             'm_id' =>$member['id'],
             'orderid' =>$post['orderid'],
+            //'button' =>0,   //还未结算
         );
         $order = M('Order')->where($o_where)->find();
         $d_where = array(
@@ -762,12 +763,13 @@ class OrderController extends BaseController {
         $member = M('Member')->where($where)->find();
         $order_w = array(
             'orderid' =>$post['orderid'],
-            'm_id' => $member['id']
+            'm_id' => $member['id'],
+            'button' =>1,
         );
         //查询订单信息
         $order_f = M('Order')->where($order_w)->find();
         if(empty($order_f)){
-            $this->apiResponse('0','暂无该订单信息');
+            $this->apiResponse('0','暂无该订单信息或订单未结算');
         }
         $d_where = array(
             'o_id'=>$order_f['id'],
@@ -914,7 +916,11 @@ class OrderController extends BaseController {
                 'status' => 1,
             );
             $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
+            $o_save = array(
+                'button' => 1,
+            );
 
+            $orders = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->save($o_save);
 
             if($send_post){
                 $this->apiResponse(1,'result','OK');
@@ -929,31 +935,37 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/02/27 17:41
      */
-    public function account(){
-        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
-//        $post['deviceid'] = 510042001451373435363337;
-//        $post['event'] = 1;
-//        $post['clean_usage'] = 0;
-//        $post['clean_duration'] =0 ;
-//        $post['foam_usage'] =0 ;
-//        $post['foam_duration'] =0 ;
-//        $post['vacuum_usage'] = 0;
-        $data = array(
-            'devices' => array(
-                'deviceid' =>$post['deviceid'],
-                'event' => $post['event'],
-                'settlement_info' => array(
-                    'clean_usage' => $post['clean_usage'],                     //清水用量
-                    'clean_duration' => $post['clean_duration'],                  //清水使用时间
-                    'foam_usage' => $post['foam_usage'],                       //泡沫用量
-                    'foam_duration' => $post['foam_duration'],                    //泡沫使用时间
-                    'vacuum_usage' => $post['vacuum_usage'],                     //吸尘器使用时间
-                ),
-            ),
-        );
-        if($data){
-            $this->apiResponse('1','成功',$data);
-        }
+//    public function account(){
+//        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
+////        $post['deviceid'] = 510042001451373435363337;
+////        $post['event'] = 1;
+////        $post['clean_usage'] = 0;
+////        $post['clean_duration'] =0 ;
+////        $post['foam_usage'] =0 ;
+////        $post['foam_duration'] =0 ;
+////        $post['vacuum_usage'] = 0;
+//        $data = array(
+//            'devices' => array(
+//                'deviceid' =>$post['deviceid'],
+//                'event' => $post['event'],
+//                'settlement_info' => array(
+//                    'clean_usage' => $post['clean_usage'],                     //清水用量
+//                    'clean_duration' => $post['clean_duration'],                  //清水使用时间
+//                    'foam_usage' => $post['foam_usage'],                       //泡沫用量
+//                    'foam_duration' => $post['foam_duration'],                    //泡沫使用时间
+//                    'vacuum_usage' => $post['vacuum_usage'],                     //吸尘器使用时间
+//                ),
+//            ),
+//        );
+//        if($data){
+//            $this->apiResponse('1','成功',$data);
+//        }
+  //  }
+
+    /**/
+    public function a(){
+        echo 111;
+        $this->send_post('device_manage','50003f001451373435363337',5);
     }
 
 }

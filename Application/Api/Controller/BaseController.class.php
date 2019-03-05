@@ -270,6 +270,18 @@ class BaseController extends ControllerService
                         "valve1_status" => 0 ,
                     ];
                 }
+//                elseif ( $mode == 5 ) {
+//                    $arr_param = 'devices';
+//                    $arr_param= [
+//                        "deviceid" => "50003f001451373435363337",
+//                        "setitem" => array(
+//                            "ttsplay" => array(
+//                                "playtype" => "1",
+//                                "content" => "谢吉发谢吉发谢吉发谢吉发"
+//                            )
+//                        )
+//                    ];
+//                }
                 $result_array = $this->createJSON ($mc_id , $suffix , $arr_param);
             }
         } else {

@@ -251,10 +251,11 @@ class CarWasherController extends BaseController
                         $idle_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
-                      $idle = M('CarWasher')->where($idle_where)->save($idle_data);
                         $idle_data = array(
                             'type' => 1,
                         );
+                        $idle = M('CarWasher')->where($idle_where)->save($idle_data);
+
                     }
 //                    if($vv[0]['queryitem']['service_status'] >= 8){
 //                        var_dump($vv[0]['queryitem']['pump1_status']);exit;
@@ -263,7 +264,6 @@ class CarWasherController extends BaseController
                         $malf_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
-                        echo 222;
                         $malf_data = array(
                             'status' => 2,
                         );
@@ -271,7 +271,6 @@ class CarWasherController extends BaseController
                     }else if (/*$vv[0]['queryitem']['level3_status']  == 0|| */$vv[0]['queryitem']['level2_status']  == 0 ||$vv[0]['queryitem']['pump1_status'] == 2|| $vv[0]['queryitem']['pump2_status'] == 2){                  //三个状态判断液位不足
 
 //                        var_dump($vv[0]);exit;
-                        echo 111;
                         $alarm_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
@@ -300,6 +299,8 @@ class CarWasherController extends BaseController
                         $car_data['electricity'] = $vv1['queryitem']['device_energy'];
                         $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
                         $car_data['foam'] = $vv1['queryitem']['foam_usage'];
+                        $car_data['update_time'] = time();
+
                     }
                     $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
                     echo M('CarWasher')->_sql();
