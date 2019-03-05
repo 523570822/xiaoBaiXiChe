@@ -218,7 +218,7 @@ class CarWasherController extends BaseController
      */
     public function realTime(){
         $where['status'] = array('neq',9);
-//        $where['mc_id'] = '50003f001451373435363337';
+        $where['mc_id'] = '50003f001451373435363337';
         $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];
@@ -231,7 +231,7 @@ class CarWasherController extends BaseController
 //            var_dump($queryitem[$k]['devices'][0]);exit;
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
-                    if($vv[0]['queryitem']['service_status'] == 13 || $vv[0]['queryitem']['service_status'] == 12){            //机器使用状态   13使用中   14预定中   12结算   8空闲中
+                    if($vv[0]['queryitem']['service_status'] == 13 ){            //机器使用状态   13使用中   14预定中   12结算   8空闲中
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
@@ -247,7 +247,7 @@ class CarWasherController extends BaseController
                             'type' => 3,
                         );
                         $doom = M('CarWasher')->where($doom_where)->save($doom_data);
-                    } elseif ($vv[0]['queryitem']['service_status'] == 8){              //洗车机不在线
+                    } elseif ($vv[0]['queryitem']['service_status'] <= 8 || $vv[0]['queryitem']['service_status'] == 12){              //洗车机不在线
                         $idle_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
