@@ -593,8 +593,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '88e83b5fd5b8e3d74010515c9a36a41d';
-//        $post['orderid'] = 'XC201903041455215144';
+//        $post['token'] = 'cbbd2563ea8e79dab27a8115dd8bf08f';
+//        $post['orderid'] = 'XC201903051630518217';
 //        $post['off_on'] = 1;
 
         $where['token'] = $post['token'];
@@ -719,6 +719,9 @@ class OrderController extends BaseController {
                             'button' => 1,
                         );
                         $o_order = M('Order')->where($o_where)->save($o_save);
+                        //语音播报
+                        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                        $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                         $this->apiResponse('1','结算成功',$data_money);
                     }
                 }
@@ -747,6 +750,9 @@ class OrderController extends BaseController {
                     'button' => 1,
                 );
                 $o_order = M('Order')->where($o_where)->save($o_save);
+                //语音播报
+                $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 $this->apiResponse('1','结算成功',$data_money);
             } else{
                 $this->apiResponse('0','请先开启设备');
@@ -981,7 +987,8 @@ class OrderController extends BaseController {
      */
     public function a(){
 
-        //$this->send_post('device_manage','50003f001451373435363337',5,0,'你在干什么');
+        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+        var_dump($voice);exit;
     }
 
 }
