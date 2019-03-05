@@ -395,13 +395,19 @@ class OrderController extends BaseController {
             //语音播放
             $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
 
-
+            $vsend_post = $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
 
             $this->apiResponse ('1' , '下单成功,洗车机已预订' , array ('ID' => $o_id , 'Orderid' => $data['orderid']));
         } else {
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
         }
     }
+
+    /**/
+//    public function b(){
+//        $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
+//        var_dump($voice);exit;
+//    }
 
     /**
      * 小鲸卡购买

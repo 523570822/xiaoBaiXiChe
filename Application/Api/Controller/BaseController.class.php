@@ -269,14 +269,12 @@ class BaseController extends ControllerService
                         "pump2_status" => 0 ,
                         "valve1_status" => 0 ,
                     ];
-
                 } elseif ( $mode == 5 ) {      //语音播放请求
                     $arr_param= [
                         "ttsplay" => array(
                             "playtype" => $playtype,
                             "content" => $content,
                         )
-
                     ];
                 }
                 $result_array = $this->createJSON ($mc_id , $suffix , $arr_param,$playtype,$content);
