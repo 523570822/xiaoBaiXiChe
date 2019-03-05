@@ -205,7 +205,7 @@ class BaseController extends ControllerService
      * @param $mode //控制模式
      * @param $arr_param //固定请求格式
      */
-    public function send_post ($type , $mc_id , $mode = '')
+    public function send_post ($type , $mc_id , $mode = '',$playtype, $content)
     {
         if ( $type ) {
             if ( $type == 'runtime_query') {            //实时状态查询
@@ -269,27 +269,17 @@ class BaseController extends ControllerService
                         "pump2_status" => 0 ,
                         "valve1_status" => 0 ,
                     ];
-                } elseif ( $mode == 7 ) {
-                    $arr_param = [
-                        "ttsplay"=> [
-                            "playtype"=> "1",
-                            "content"=> "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz"
-                        ]
+
+                } elseif ( $mode == 5 ) {      //语音播放请求
+                    $arr_param= [
+                        "ttsplay" => array(
+                            "playtype" => $playtype,
+                            "content" => $content,
+                        )
+
                     ];
                 }
-//                elseif ( $mode == 5 ) {
-//                    $arr_param = 'devices';
-//                    $arr_param= [
-//                        "deviceid" => "50003f001451373435363337",
-//                        "setitem" => array(
-//                            "ttsplay" => array(
-//                                "playtype" => "1",
-//                                "content" => "谢吉发谢吉发谢吉发谢吉发"
-//                            )
-//                        )
-//                    ];
-//                }
-                $result_array = $this->createJSON ($mc_id , $suffix , $arr_param);
+                $result_array = $this->createJSON ($mc_id , $suffix , $arr_param,$playtype,$content);
             }
         }else {
             $php_errormsg = '查询失败，请传参数---->"type"';

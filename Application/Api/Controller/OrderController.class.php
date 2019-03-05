@@ -19,9 +19,7 @@ class OrderController extends BaseController {
     public function _initialize () {
         parent::_initialize ();
     }
-    public function text(){
-        $this->send_post ('device_manage' , '50003f001451373435363337' , '7');
-    }
+
     /**
      *查询接收、储存
      * @param $mc_id
@@ -394,6 +392,11 @@ class OrderController extends BaseController {
         $this->receive ($mc_id , $o_id , $m_id , $c_id , '6');
         //返回数据
         if ( $res && $yes ) {
+            //语音播放
+            $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
+
+
+
             $this->apiResponse ('1' , '下单成功,洗车机已预订' , array ('ID' => $o_id , 'Orderid' => $data['orderid']));
         } else {
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
@@ -964,10 +967,14 @@ class OrderController extends BaseController {
 //        }
   //  }
 
-    /**/
+    /**
+     *语音播放
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/03/05 14:32
+     */
     public function a(){
-        echo 111;
-        $this->send_post('device_manage','50003f001451373435363337',5);
+
+        //$this->send_post('device_manage','50003f001451373435363337',5,0,'你在干什么');
     }
 
 }
