@@ -29,7 +29,7 @@ class OrderController extends BaseController {
      * @param $model
      **/
     public function receive ($mc_id , $o_id , $m_id , $c_id , $model) {
-        $o = $this->send_post ('runtime_query' , $mc_id , '');
+        $o = $this->send_post ('runtime_query' , $mc_id );
         foreach ( $o['devices'] as $k => $v ) {
             $one['status'] = $v['queryitem']['service_status'];//服务状态
             $one['water_L'] = $v['queryitem']['clean_water_usage'];//清水使用状态
@@ -48,7 +48,7 @@ class OrderController extends BaseController {
         }
         if ( $model == '6' ) {
             $bespeak = $this->send_post ('device_manage' , $mc_id , '2');
-            $o = $this->send_post ('runtime_query' , $mc_id , '');
+            $o = $this->send_post ('runtime_query' , $mc_id);
             foreach ( $o['devices'] as $k => $v ) {
                 $one['status'] = $v['queryitem']['service_status'];//服务状态
                 }
@@ -66,7 +66,7 @@ class OrderController extends BaseController {
             $param['cleaner_start_time'] = $one['vacuum_S'];
             $open = $this->send_post ('device_manage' , $mc_id , '1');
             $add = D ('Details')->add ($param);
-            $o = $this->send_post ('runtime_query' , $mc_id , '');
+            $o = $this->send_post ('runtime_query' , $mc_id );
             foreach ( $o['devices'] as $k => $v ) {
                 $one['status'] = $v['queryitem']['service_status'];//服务状态
             }
@@ -188,7 +188,7 @@ class OrderController extends BaseController {
      * @param $o_id
      * @param $where
      **/
-    public function status ($status , $m_id = '' , $mc_id = '' , $c_id = '' , $o_id = '' , $where = '') {
+    public function status ($status , $m_id = '' , $mc_id = '' , $c_id = '' , $o_id = '' , $card = '') {
         if ( $status == '1' ) {//您收到一条订单消息
             $date['type'] = '2';
             $date['o_id'] = $o_id;
@@ -223,9 +223,9 @@ class OrderController extends BaseController {
             return $data;
         } elseif ( $status == '4' ) {//小鲸卡购买
             $data['m_id'] = $m_id;
-            $data['pay_money'] = $where['card_price'];
-            $data['allowance'] = $where['rebate'];
-            $data['card_id'] = $where['id'];
+            $data['pay_money'] = $card['card_price'];
+            $data['allowance'] = $card['rebate'];
+            $data['card_id'] = $card['id'];
             $data['orderid'] = 'MK' . date ('YmdHis') . rand (1000 , 9999);
             $data['title'] = "小鲸卡购买";
             $data['o_type'] = '2';
@@ -331,7 +331,7 @@ class OrderController extends BaseController {
         //检查机器
         $this->checkMsgs ($mc_id , $mc_code , $m_id , $w_type);
         //添加订单
-        $data = $this->status ('2' , $m_id , $mc_id , $c_id , '' , '');
+        $data = $this->status ('2' , $m_id , $mc_id , $c_id );
         $res = M ('Order')->add ($data);
         //查询订单ID
         $find = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
@@ -381,7 +381,7 @@ class OrderController extends BaseController {
         //检查机器
         $this->checkMsgs ($mc_id , $mc_code , $m_id , $w_type);
         //添加订单
-        $data = $this->status ('3' , $m_id , $mc_id , $c_id , '' , '');
+        $data = $this->status ('3' , $m_id , $mc_id , $c_id );
         $res = M ('Order')->add ($data);
         //查询订单ID
         $find = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();

@@ -205,7 +205,7 @@ class BaseController extends ControllerService
      * @param $mode //控制模式
      * @param $arr_param //固定请求格式
      */
-    public function send_post ($type , $mc_id , $mode = '',$playtype, $content)
+    public function send_post ($type , $mc_id , $mode = '',$playtype='', $content='')
     {
         if ( $type ) {
             if ( $type == 'runtime_query') {            //实时状态查询
