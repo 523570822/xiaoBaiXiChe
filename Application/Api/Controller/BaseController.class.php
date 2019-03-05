@@ -269,6 +269,13 @@ class BaseController extends ControllerService
                         "pump2_status" => 0 ,
                         "valve1_status" => 0 ,
                     ];
+                } elseif ( $mode == 7 ) {
+                    $arr_param = [
+                        "ttsplay"=> [
+                            "playtype"=> "1",
+                            "content"=> "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz"
+                        ]
+                    ];
                 }
 //                elseif ( $mode == 5 ) {
 //                    $arr_param = 'devices';
@@ -284,7 +291,7 @@ class BaseController extends ControllerService
 //                }
                 $result_array = $this->createJSON ($mc_id , $suffix , $arr_param);
             }
-        } else {
+        }else {
             $php_errormsg = '查询失败，请传参数---->"type"';
             $this->apiResponse (0,$php_errormsg);
         }

@@ -49,6 +49,13 @@ class FaultController extends BaseController
                 $this->apiResponse ('0' , '找不到该机器');
             }
         }
+        if(!empty($_FILES['pic_id']['name'])){
+            $res = api('UploadPic/upload', array(array('save_path' => 'Fault')));
+            foreach ($res as $key=>$value) {
+                $pic[$key] = $value['id'];
+            }
+            $where['pic_id'] = implode(',',$pic);
+        }
         $member_info = M ('Member')->where (array ('id' => $m_id))->find ();
         $where['contact'] = $member_info ['account'];
         $where['m_id'] = $m_id;
@@ -83,25 +90,6 @@ class FaultController extends BaseController
         } else {
             $this->apiResponse ('0' , '提交失败');
         }
-
-        if (!empty($_FILES['head_pic']['name'])) { //头像
-            $res = uploadimg($_FILES, CONTROLLER_NAME);
-            $data['head_pic'] = $res['save_id'];
-        }
-        if ($request['head_pic_id']) {
-            $data['head_pic'] = $request['head_pic_id'];
-        }
-        $where['id'] = $m_id;
-        $res = D('Member')->querySave($where, $data);
-        if ($res) {
-            $this->apiResponse('1', '上传头像成功');
-        } else {
-            $this->apiResponse('0', '上传头像失败');
-        }
-
-
-
-
     }
 
 }

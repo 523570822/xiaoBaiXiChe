@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
 <include file="Public/head"/>
+<style>
+    .layui-icon-alipay {
+        display: inline-block;
+        width: 23px;
+        height: 23px;
+        background: url("__PUBLIC__/zfb.ico") no-repeat;
+        background-size:100% 100%;
+        position: relative;
+        top: 5px;
+    }
+</style>
 <body>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
@@ -14,52 +25,61 @@
                             <label class="layui-form-label">订单编号</label>
                             <div class="layui-input-block">
                                 <blockquote class="layui-elem-quote">{$row.orderid}</blockquote>
-                                <!--<blockquote class="layui-elem-quote layui-quote-nm">{$row.orderid}</blockquote>-->
-                                <!--<input type="text" name="input" value="{$row.orderid}" placeholder=""-->
-                                <!--class="layui-input w300" disabled required>$row['pay_time'] neq 0"-->
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">流水号</label>
                             <div class="layui-input-block">
-
-
-                                <!--<if condition="$row['trade_no'] eq 0">-->
-                                    <!--<blockquote class="layui-elem-quote">{$row.trade_no}</blockquote>-->
-                                <!--</if>-->
-                                <!--<elseif condition="$row['trade_no'] neq 0">-->
-                                    <!--<blockquote class="layui-elem-quote layui-quote-nm">待支付</blockquote>-->
-                                <!--</elseif>-->
-
-                                <input type="text" name="input" value="{$row.trade_no}" placeholder="待支付"
-                                class="layui-input w300" disabled required>
+                                <notempty name="row.trade_no">
+                                    <blockquote class="layui-elem-quote">{$row.trade_no}</blockquote>
+                                    <else/>
+                                    <blockquote class="layui-elem-quote layui-quote-nm">待支付</blockquote>
+                                </notempty>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">用户账号</label>
                             <div class="layui-input-block">
-                                <input type="text" name="input" value="{$account.account}" placeholder=""
-                                       class="layui-input w300" disabled required>
+                                <blockquote class="layui-elem-quote">{$account.account}</blockquote>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">订单类型</label>
                             <div class="layui-input-block">
-                                <input type="text" name="input" value="{$row.title}" placeholder=""
-                                       class="layui-input w300" disabled required>
+                                <blockquote class="layui-elem-quote">{$row.title}</blockquote>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">预付金额</label>
                             <div class="layui-input-block">
-                                <input type="text" name="input" value="{$row.money}(元)" placeholder="预付金额"
-                                       class="layui-input" style="width: 100px; display: inline-block;" disabled>
-                                <label class="layui-form"> <span
-                                        style="margin-left: 26px;margin-right: 10px;">实际金额</span></label>
-                                <input type="text" name="input" value="{$row.pay_money}(元)" placeholder="实际金额"
-                                       class="layui-input" style="width: 100px; display: inline-block;" disabled>
+                                <blockquote class="layui-elem-quote">{$row.money}(元)</blockquote>
                             </div>
                         </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">预付金额</label>
+                            <div class="layui-input-block">
+                                <blockquote class="layui-elem-quote">{$row.pay_money}(元)</blockquote>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">创建时间</label>
+                            <div class="layui-input-block">
+                                <blockquote class="layui-elem-quote">{$row.create_time|date='Y-m-d H:i',###}
+                                </blockquote>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">付款时间</label>
+                            <div class="layui-input-block">
+                                <notempty name="row.pay_time">
+                                    <blockquote class="layui-elem-quote">{$row.pay_time|date='Y-m-d H:i',###}
+                                    </blockquote>
+                                    <else/>
+                                    <blockquote class="layui-elem-quote layui-quote-nm">待支付</blockquote>
+                                </notempty>
+                            </div>
+                        </div>
+                        <hr class="layui-bg-green">
                         <div class="layui-form-item">
                             <label class="layui-form-label">订单状态</label>
                             <div class="layui-input-block">
@@ -103,6 +123,7 @@
                                                disabled required
                                         <if condition="$row['pay_type'] eq 1"> checked</if>
                                         >
+                                        <i class="layui-icon layui-icon-login-wechat" style="font-size: 20px; color: green;"></i>
                                         <span style="color: green;">微信</span>
                                     </label>
                                     <label class="layui-choose" for="radio2">
@@ -110,35 +131,19 @@
                                                disabled required
                                         <if condition="$row['pay_type'] eq 2"> checked</if>
                                         >
-                                        <span style="color: green;">支付宝</span>
+                                        <span class="layui-icon-alipay"></span>
+                                        <span style="color:deepskyblue;">支付宝</span>
                                     </label>
                                     <label class="layui-choose" for="radio3">
                                         <input type="radio" id="radio3" name="pay_type" value="3" class="layui-input"
                                                disabled required
                                         <if condition="$row['pay_type'] eq 3"> checked</if>
                                         >
-                                        <span style="color: green;">余额</span>
+                                        <i class="layui-icon layui-icon-rmb" style="font-size: 20px; color: black;"></i>
+                                        <span style="color: black;">余额</span>
                                     </label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">创建时间</label>
-                            <input type="text" name="input"
-                                   value="{$row.create_time|date='Y-m-d H:i',###}"
-                                   placeholder="" class="layui-input"
-                                   style="width: 130px; display: inline-block;"
-                                   disabled>
-                            <label class="layui-form"> <span
-                                    style="margin-left: 20px;margin-right: 10px;">付款时间</span></label>
-                            <if condition="$row['pay_time'] neq 0">
-                                <input type="text" name="input" value="{$row.pay_time|date='Y-m-d H:i',###}"
-                                       placeholder="" class="layui-input"
-                                       style="width: 130px; display: inline-block;" disabled>
-                                <else/>
-                                <input type="text" name="input" value="待支付" placeholder="待支付" class="layui-input"
-                                       style="width: 130px; display: inline-block;" disabled>
-                            </if>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
@@ -151,77 +156,5 @@
         </div>
     </div>
 </div>
-<script>
-    // 上传文件初始化
-    new UploadFile({
-        element: '#uploadBtn',
-        // 多文件上传-true 单文件上传-false
-        files: true,
-        // 展示图片
-        showFile: true,
-        // input框的name
-        filedname: 'files'
-    });
-    // 上传文件初始化
-    new UploadFile({
-        element: '#uploadBtn2',
-        // 多文件上传-true 单文件上传-false
-        files: false,
-        // 展示图片
-//        showFile: '#filename',
-        showFile: 'true',
-        // input框的name
-        fieldName: 'fileaaaa'
-    });
-
-    // 提交信息
-    function submit() {
-        // 检查参数
-        var data = checkParam();
-        var url = "";
-        var id = "{$row['id']}";
-        if (id) {
-            url = '';
-            data.id = id
-        } else {
-            url = '{:U("RedBag/addRedBag")}'
-        }
-        if (!data) return false;
-        doPost(url, data, function (res) {
-            showMsg(res.code, res.message, function () {
-                if (res.code == 1) {
-
-                }
-            });
-        });
-    }
-
-    // 时间选择初始化
-    laydate.render({
-        elem: '#test1' //指定元素
-    });
-
-    //编辑器初始化
-    $(document).ready(function () {
-        KindEditor.ready(function (K) {
-            window.editor = K.create('#content', {
-                cssData: 'body {font-size: 15px; font-color:#000}',
-                items: [
-                    'source', '|',
-                    'undo', 'redo', '|',
-                    'indent', 'outdent', '|',
-                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
-                    'formatblock', 'fontname', 'fontsize', '|',
-                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', 'lineheight', '|',
-                    'image', 'multiimage', '|',
-                    'link', 'baidumap', 'fullscreen'
-                ],
-                afterBlur: function () {
-                    this.sync();
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>

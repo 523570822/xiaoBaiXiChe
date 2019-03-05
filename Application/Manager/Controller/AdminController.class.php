@@ -25,7 +25,6 @@ class AdminController extends BaseController
         $this->display();
     }
 
-
     /**
      * 管理员登陆
      * User: 木
@@ -115,10 +114,27 @@ class AdminController extends BaseController
      * Date: 2018-08-15 09:59:30
      */
     public function editAdmin() {
-
+        if(IS_POST) {
+            $rule = array(
+                array('group_id', 'int>0', '请选择管理员分组'),
+                array('username', 'string>0', '请输入管理员用户名'),
+                array('password', 'string>0', '请输入管理员密码'),
+                array('status', 'int=1', '请选择管理员状态'),
+            );
+            $data = $this->checkParam($rule);
+            $data['salt'] = NoticeStr(6);
+            $data['password'] = CreatePassword($data['password'], $data['salt']);
+            $data['add_time'] = time();
+            $res = D('Admin')->saveRow($data);
+            $res ? $this->apiResponse(1, '修改管理员成功') : $this->apiResponse(1, '修改管理员失败');
+        }else {
+            $where = array('p_id'=>0, 'status'=>array('neq', 9));
+            $field = 'id, p_id, name, status';
+            $group_list = D('AdminGroup')->queryList($where, $field);
+            $this->assign('group_list', $group_list);
+            $this->display('addAdmin');
+        }
     }
-
-
 
     /**
      * 修改密码

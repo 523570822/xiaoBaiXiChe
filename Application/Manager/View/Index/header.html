@@ -1,4 +1,10 @@
 <!-- 头部区域 -->
+
+
+
+
+
+
 <ul class="layui-nav layui-layout-left">
     <li class="layui-nav-item layadmin-flexible" lay-unselect>
         <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
@@ -39,10 +45,11 @@
 <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
     <li class="layui-nav-item" lay-unselect style="margin-right: 30px;">
         <a href="javascript:;">
-            <cite><i class="layui-icon layui-icon-user"></i> 管理员: {$userInfo.username}</cite>
+            <cite><i class="layui-icon layui-icon-user"></i>管理员: {$userInfo.username}</cite>
         </a>
         <dl class="layui-nav-child">
-            <!--<dd><a lay-href="{:U('Admin/info')}">基本资料</a></dd>-->
+            <!--<dd><a lay-href="{:U('Admin/editAdmin')}">基本资料<span class="layui-badge-dot"></span></a></dd>-->
+            <!--<dd><a href="{:U('Index/welcome')}">控制台<span class="layui-badge">10</span></a></dd>-->
             <dd><a lay-href="{:U('Admin/editPwd')}">修改密码</a></dd>
             <hr>
             <dd onclick="jumpUrl( '{:U('Admin/logout')}')" style="text-align: center;cursor:pointer;"><a>退出</a></dd>

@@ -64,6 +64,17 @@
                                     >余额充值</option>
                                 </select>
                             </div>
+                            <div class="layui-input-inline layui-form">
+                                <select name="pay_type" class="layui-input" style="width: 150px">
+                                    <option value="">支付方式</option>
+                                    <option value="1"
+                                    <if condition="$_REQUEST['pay_type'] eq 1">selected=true</if>
+                                    >微信</option>
+                                    <option value="2"
+                                    <if condition="$_REQUEST['pay_type'] eq 2">selected=true</if>
+                                    >支付宝</option>
+                                </select>
+                            </div>
                             <button class="layui-btn" type="submit">搜索</button>
                             <a href="{:U('Order/index')}" class="layui-btn layui-btn-primary">重置</a>
                         </form>
@@ -78,30 +89,39 @@
                         </script>
                     </div>
                     <!--列表-->
-                    <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                    <!--<table class="layui-table" cellspacing="0" cellpadding="0" border="0">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                    <!--<th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>-->
+                    <!--<th>-->
+                    <!--<div class="">-->
+                    <!--<span>ID</span>-->
+                    <!--<span id="id-sort" lay-sort="">-->
+                    <!--<i class="" value="id" sort="asc"></i>-->
+                    <!--<i class="" value="id" sort="desc"></i>-->
+                    <!--</span>-->
+                    <!--</div>-->
+                    <!--</th>-->
+                    <table class="layui-table" lay-even lay-skin="line" lay-size="">
+                        <colgroup>
+                            <col width="30">
+                            <col width="200">
+                            <col>
+                        </colgroup>
                         <thead>
-                        <tr>
-                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
-                            <th>
-                                <div class="">
-                                    <span>ID</span>
-                                    <span id="id-sort" lay-sort="">
-                                        <i class="" value="id" sort="asc"></i>
-                                        <i class="" value="id" sort="desc"></i>
-                                    </span>
-                                </div>
-                            </th>
-                            <th>订单编号</th>
-                            <th>流水号</th>
-                            <th>预付金额</th>
-                            <th>实际金额</th>
-                            <th>用户账号</th>
-                            <th>订单类型</th>
-                            <th>订单状态</th>
-                            <th>支付方式</th>
-                            <th>付款时间</th>
-                            <th>操作</th>
-                        </tr>
+                        <th>ID</th>
+                        <th>订单编号</th>
+                        <th>流水号</th>
+                        <th>预付金额</th>
+                        <th>实际金额</th>
+                        <th>用户账号</th>
+                        <th>订单类型</th>
+                        <th>订单状态</th>
+                        <th>支付方式</th>
+                        <th>付款时间</th>
+                        <th>发票记录</th>
+                        <th>操作</th>
+                        <!--</tr>-->
                         </thead>
                         <tbody>
                         <empty name="list">
@@ -111,7 +131,7 @@
                         </empty>
                         <volist name="list" id="item">
                             <tr>
-                                <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                <!--<td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>-->
                                 <td>{$item.id}</td>
                                 <td>{$item.orderid}</td>
                                 <td>
@@ -151,7 +171,7 @@
                                         <case value="2">
                                             <switch name="item.pay_type">
                                                 <case value="1"><span style="color: green;">微信</span></case>
-                                                <case value="2"><span style="color: blue;">支付宝</span></case>
+                                                <case value="2"><span style="color: deepskyblue;">支付宝</span></case>
                                                 <case value="3"><span style="color: black;">余额</span></case>
                                                 <default/>
                                             </switch>
@@ -167,7 +187,14 @@
                                     </switch>
                                 </td>
                                 <td>
-                                    <button class="layui-btn layui-btn-xs layui-btn-normal"
+                                    <switch name="item.invoice">
+                                        <case value="0"><span style="color: orange;">未开票</span></case>
+                                        <case value="1"><span style="color: green;">已开票</span></case>
+                                        <default/>
+                                    </switch>
+                                </td>
+                                <td>
+                                    <button class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal"
                                             onclick="jumpUrl('{:U('Order/infoOrder', array('id'=>$item['id'], 'system'=>0))}')">
                                         查看
                                     </button>

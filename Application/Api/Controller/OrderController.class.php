@@ -19,7 +19,9 @@ class OrderController extends BaseController {
     public function _initialize () {
         parent::_initialize ();
     }
-
+    public function text(){
+        $this->send_post ('device_manage' , '50003f001451373435363337' , '7');
+    }
     /**
      *查询接收、储存
      * @param $mc_id
