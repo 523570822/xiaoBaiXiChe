@@ -342,6 +342,11 @@ class OrderController extends BaseController {
         $this->receive ($mc_id , $o_id , $m_id , $c_id , '5');
         //返回数据
         if ( $res && $yes ) {
+            //语音播放
+            $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
+
+            $vsend_post = $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
+            
             $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('ID' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
@@ -392,11 +397,6 @@ class OrderController extends BaseController {
         $this->receive ($mc_id , $o_id , $m_id , $c_id , '6');
         //返回数据
         if ( $res && $yes ) {
-            //语音播放
-            $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
-
-            $vsend_post = $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
-
             $this->apiResponse ('1' , '下单成功,洗车机已预订' , array ('ID' => $o_id , 'Orderid' => $data['orderid']));
         } else {
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
