@@ -218,7 +218,7 @@ class CarWasherController extends BaseController
      */
     public function realTime(){
         $where['status'] = array('neq',9);
-        $where['mc_id'] = '50003f001451373435363337';
+//        $where['mc_id'] = '50003f001451373435363337';
         $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];

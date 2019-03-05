@@ -263,8 +263,8 @@ class BaseController extends ControllerService
                         "valve1_status" => 0 ,
                     ];
                 } elseif ( $mode == 4 ) {
-                    $arr_param = [//结算 — 洗车机设置
-                        "service_status" => 0 ,         //结算
+                    $arr_param = [//恢复状态 — 洗车机设置
+                        "service_status" => 0 ,         //恢复状态
                         "pump1_status" => 0 ,
                         "pump2_status" => 0 ,
                         "valve1_status" => 0 ,
