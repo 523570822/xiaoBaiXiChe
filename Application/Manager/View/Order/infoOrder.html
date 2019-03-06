@@ -7,7 +7,7 @@
         width: 23px;
         height: 23px;
         background: url("__PUBLIC__/zfb.ico") no-repeat;
-        background-size:100% 100%;
+        background-size: 100% 100%;
         position: relative;
         top: 5px;
     }
@@ -81,7 +81,7 @@
                         </div>
                         <hr class="layui-bg-green">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">订单状态</label>
+                            <label class="layui-form-label">订单状态：</label>
                             <div class="layui-input-block">
                                 <div class="layui-input-inline">
                                     <label class="layui-choose" for="radio_1">
@@ -91,25 +91,37 @@
                                             <elseif condition="empty($row['status'])"/>
                                             checked
                                         </if>
-                                        >
-                                        <span style="color: red;">待支付</span>
+                                        ><span style="color: red;">待支付</span>
                                     </label>
                                     <label class="layui-choose" for="radio_2">
                                         <input type="radio" id="radio_2" name="status" value="2" class="layui-input"
                                                disabled required
                                         <if condition="$row['status'] eq 2"> checked</if>
-                                        >
-                                        <span style="color: green;">已完成</span>
+                                        ><span style="color: green;">已完成</span>
                                     </label>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">支付方式</label>
-                            <div class="layui-input-block">
+                                <label class="layui-form-label">发票状态：</label>
                                 <div class="layui-input-inline">
-                                    <label class="layui-choose" for="radio0">
-                                        <input type="radio" id="radio0" name="pay_type" value="0" checked
+                                    <label class="layui-choose" for="radio">
+                                        <input type="radio" id="radio" name="invoice" value="0" checked
+                                               class="layui-input" disabled required
+                                        <if condition="$row['invoice'] eq 0">checked
+                                            <elseif condition="empty($row['invoice'])"/>
+                                            checked
+                                        </if>
+                                        ><span style="color: orange;">未开票</span>
+                                    </label>
+                                    <label class="layui-choose" for="radio.">
+                                        <input type="radio" id="radio." name="invoice" value="1" class="layui-input"
+                                               disabled required
+                                        <if condition="$row['invoice'] eq 1">checked</if>
+                                        ><span style="color: green;">已开票</span>
+                                    </label>
+                                </div>
+                                <label class="layui-form-label">支付方式：</label>
+                                <div class="layui-input-inline">
+                                    <label class="layui-choose" for="radio00">
+                                        <input type="radio" id="radio00" name="pay_type" value="0" checked
                                                class="layui-input" disabled required
                                         <if condition="$row['pay_type'] eq 0">checked
                                             <elseif condition="empty($row['pay_type'])"/>
@@ -118,24 +130,25 @@
                                         >
                                         <span style="color: red;">待支付</span>
                                     </label>
-                                    <label class="layui-choose" for="radio1">
-                                        <input type="radio" id="radio1" name="pay_type" value="1" class="layui-input"
+                                    <label class="layui-choose" for="radio11">
+                                        <input type="radio" id="radio11" name="pay_type" value="1" class="layui-input"
                                                disabled required
                                         <if condition="$row['pay_type'] eq 1"> checked</if>
                                         >
-                                        <i class="layui-icon layui-icon-login-wechat" style="font-size: 20px; color: green;"></i>
+                                        <i class="layui-icon layui-icon-login-wechat"
+                                           style="font-size: 20px; color: green;"></i>
                                         <span style="color: green;">微信</span>
                                     </label>
-                                    <label class="layui-choose" for="radio2">
-                                        <input type="radio" id="radio2" name="pay_type" value="2" class="layui-input"
+                                    <label class="layui-choose" for="radio22">
+                                        <input type="radio" id="radio22" name="pay_type" value="2" class="layui-input"
                                                disabled required
                                         <if condition="$row['pay_type'] eq 2"> checked</if>
                                         >
                                         <span class="layui-icon-alipay"></span>
                                         <span style="color:deepskyblue;">支付宝</span>
                                     </label>
-                                    <label class="layui-choose" for="radio3">
-                                        <input type="radio" id="radio3" name="pay_type" value="3" class="layui-input"
+                                    <label class="layui-choose" for="radio33">
+                                        <input type="radio" id="radio33" name="pay_type" value="3" class="layui-input"
                                                disabled required
                                         <if condition="$row['pay_type'] eq 3"> checked</if>
                                         >
@@ -143,11 +156,11 @@
                                         <span style="color: black;">余额</span>
                                     </label>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button class="layui-btn" onclick="goback()">返回</button>
+
+                                    <div class="layui-input-block">
+                                       <button style="margin-left: 460px;" class="layui-btn" onclick="goback()"> <span style="margin-right: 40px;margin-left: 40px;">返回</span></button>
+                                    </div>
+
                             </div>
                         </div>
                     </div>

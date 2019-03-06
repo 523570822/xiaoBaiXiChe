@@ -6,6 +6,7 @@ class IntegralController extends BaseController {
     public function index(){
         $this->display('integral');//download
     }
+    //https://www.xiaojingxiche.com/Integral/integral?m_id=1 分享链接
     function integral(){
         $m_id=$_REQUEST['m_id'];
         $param['field'] = 'id as m_id,account,nickname,head_pic,degree,invite_code';
@@ -13,7 +14,6 @@ class IntegralController extends BaseController {
         if(!$member_info) {
             $member_info['invite_code']="0";
         }
-
         $this->assign('code',$member_info['invite_code']);
         $this->display('integral');
     }

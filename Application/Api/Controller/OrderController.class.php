@@ -208,6 +208,7 @@ class OrderController extends BaseController {
             $data['w_type'] = '1';
             $data['status'] = '1';
             $data['create_time'] = time ();
+            $data['start_time'] = time ();
             return $data;
         } elseif ( $status == '3' ) {//预约洗车
             $data['m_id'] = $m_id;
@@ -501,7 +502,7 @@ class OrderController extends BaseController {
         $request = $_REQUEST;
         $rule = array ('id' , 'string' , '请选择查看的订单详情');
         $this->checkParam ($rule);
-        $order = D ('Order')->where (array ('id' => $request['id'] , 'o_type' => 1))->field ('id,status,money,pay_money,orderid,pay_type,c_id,is_dis,card_id,coup_id,update_time,create_time,pay_time,is_no,is_set')->find ();
+        $order = D ('Order')->where (array ('id' => $request['id'] , 'o_type' => 1))->find ();
         if ( !$order ) {
             $this->apiResponse ('0' , '请输入正确订单ID');
         }
@@ -516,10 +517,9 @@ class OrderController extends BaseController {
         $order['washing'] = $details['washing'] . '(min)';
         $order['foam'] = $details['foam'] . '(min)';
         $order['cleaner'] = $details['cleaner'] . '(min)';
-        $appsetting = D ('Appsetting')->find ();
-        $order['washing_money'] = $details['washing'] * $appsetting['washing_money'];
-        $order['foam_money'] = $details['foam'] * $appsetting['foam_money'];
-        $order['cleaner_money'] = $details['cleaner'] * $appsetting['cleaner_money'];
+        $order['washing_money'] = $details['washing'] * $car['washing_money'];
+        $order['foam_money'] = $details['foam'] * $car['foam_money'];
+        $order['cleaner_money'] = $details['cleaner'] * $car['cleaner_money'];
         if ( $order['is_dis'] == 0 ) {//无优惠
             $this->apiResponse ('1' , '查询成功' , $order);
         }

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head"/>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <!--顶部按钮-->
+                    <div class="mab10">
+                        <input type="hidden" id="url" value="{$url}">
+                        <!--搜索框也可以放这里-->
+                        <form class="mab10 mal20 dinline" id="myform" action="{:U('BankCard/index')}" method="GET">
+                            <div class="layui-input-inline" style="width: 150px;">
+                                <input type="text" class="layui-input" placeholder="持卡人姓名" name="card_name"
+                                       value="{$_REQUEST['card_name']}">
+                            </div>
+                            <div class="layui-input-inline" style="width: 300px;">
+                                <input type="text" class="layui-input" placeholder="银行账户" name="card_code"
+                                       value="{$_REQUEST['card_code']}">
+                            </div>
+                            <div class="layui-input-inline" style="width: 300px;">
+                                <input type="text" class="layui-input" placeholder="身份证号" name="ID_card"
+                                       value="{$_REQUEST['ID_card']}">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="开户手机号" name="phone"
+                                       value="{$_REQUEST['phone']}">
+                            </div>
+                            <button class="layui-btn" type="submit">搜索</button>
+                            <a href="{:U('BankCard/index')}" class="layui-btn layui-btn-primary">重置</a>
+                        </form>
+                        <script>
+                            $(function () {
+                                $("#button").click(function () {
+                                    var newUrl = "{:U('BankCard/exportBankCard')}";    //设置新提交地址
+                                    $("#myform").attr('action', newUrl);    //通过jquery为action属性赋值
+                                    $("#myform").submit();    //提交ID为myform的表单
+                                })
+                            })
+                        </script>
+                    </div>
+                    <!--列表-->
+                    <table class="layui-table" lay-even lay-skin="line" lay-size="">
+                        <colgroup>
+                            <col width="30">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <th>ID</th>
+                        <th>代理商姓名</th>
+                        <th>持卡人姓名</th>
+                        <th>银行账户</th>
+                        <th>开户银行</th>
+                        <th>身份证号</th>
+                        <th>开户手机号</th>
+                        <th>备注</th>
+                        <th>上传时间</th>
+                        <th>信息状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr>
+                                <td colspan="12" style="text-align: center;">暂无数据</td>
+                            </tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td>{$item.id}</td>
+                                <td>{$item.nickname}</td>
+                                <td>{$item.card_name}</td>
+                                <td>{$item.card_code}</td>
+                                <td>{$item.bank_name}</td>
+                                <td>{$item.id_card}</td>
+                                <td>{$item.phone}</td>
+                                <td>{$item.tail_number}</td>
+                                <td>{$item['create_time']|date='Y-m-d H:i',###}</td>
+                                <td>{$item['status'] == 1 ? '启用' : '禁用'}</td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <!--分页-->
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 排序方法
+    var sort_order = "{$_GET['sort_order']}"
+    if (sort_order) {
+        var sort_arr = sort_order.split("-");
+        $('#' + sort_arr[0] + '-sort').attr('lay-sort', sort_arr[1])
+    }
+    //排序
+    $('.layui-edge').on('click', function () {
+        var url = $('#url').val();
+        var sort_type = $(this).attr('value');
+        var sort_key = $(this).attr('sort');
+        // 分为有其他搜索参数类型和无搜索参数类型 拼接URL了地址 这里我以有结束时间为例。
+        // 有搜索参数
+        if (url.indexOf('&end_time') == -1) {
+            if (url.indexOf('/sort_order/') == -1) {
+                url = url + '/sort_order/' + sort_type + '-' + sort_key;
+            } else {
+                url = url.replace('/sort_order/' + sort_order, '/sort_order/' + sort_type + '-' + sort_key);
+            }
+        } else {
+            // 没有搜索参数
+            if (url.indexOf('&sort_order=') == -1) {
+                url = url + '&sort_order=' + sort_type + '-' + sort_key;
+            } else {
+                url = url.replace('&sort_order=' + sort_order, '&sort_order=' + sort_type + '-' + sort_key);
+            }
+        }
+        window.location.href = url;
+    });
+</script>
+</body>
+</html>
