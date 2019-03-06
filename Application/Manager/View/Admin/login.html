@@ -74,6 +74,7 @@
         data.verify_code = $('#verify_code').val();
         data.remember = $('#remember').val();
         doPost('{:U("Admin/login")}', data, function(res) {
+            console.log(res);
             showMsg(res.code, res.message, function() {
                 if(res.code == 1) {
                     location.href = '{:U("Index/index")}';

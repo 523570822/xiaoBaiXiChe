@@ -345,11 +345,15 @@ class OrderController extends BaseController {
         if ( $res && $yes ) {
             //语音播放
             $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
-
             $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
-
             $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('ID' => $o_id , 'orderid' => $data['orderid']));
         } else {
+            $car = M('CarWasher')->where(array('mc_id'=>$mc_id))->find();
+            if($car['status'] == 2 || $car['status'] == 3  || $car['status'] == 4){
+                $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
+
+                $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
+            }
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
         }
     }
@@ -768,12 +772,10 @@ class OrderController extends BaseController {
      *Date:2019/02/21 13:19
      */
     public function  Pay(){
-        $post = checkAppData('token,orderid,washing,foam,cleaner,method,methodID','token-订单ID-水枪清洗时间-泡沫清洗时间-吸尘器使用时间-优惠方式-优惠卡ID');
-//        $post['token'] = '88e83b5fd5b8e3d74010515c9a36a41d';
+        $post = checkAppData('token,orderid,method,methodID','token-订单ID-优惠方式-优惠卡ID');
+//        $post['token'] = 'cbbd2563ea8e79dab27a8115dd8bf08f';
 //        $post['orderid'] = 'XC201903041455215144';
-//        $post['washing'] = 14;
-//        $post['foam'] = 1;
-//        $post['cleaner'] = 357;
+
 //        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
 //        $post['methodID'] = 29;    //折扣卡ID
 
@@ -801,6 +803,9 @@ class OrderController extends BaseController {
         //请求物联网接口,获取数据
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
         //判断洗车机状态
+        $wash_fen = round($details['washing']/60,2);
+        $foam_fen = round($details['foam']/60,2);
+        $cleaner_fen = round($details['cleaner']/60,2);
 //        var_dump($send_post['devices'][0]['queryitem']['service_status']);exit;
         if($send_post['devices'][0]['queryitem']['service_status'] == 12){    //正确填12
             $price = M('Appsetting')->where(array('id'=>1))->find();
@@ -828,9 +833,9 @@ class OrderController extends BaseController {
             //返回的数据
             $data = array(
                 'time' =>array(
-                    'wash' =>$post['washing'],
-                    'foam' =>$post['foam'],
-                    'cleaner' =>$post['cleaner'],
+                    'wash' =>$wash_fen,
+                    'foam' =>$foam_fen,
+                    'cleaner' =>$cleaner_fen,
                 ),
                 'now_price' =>array(
                     'wash_price' =>$wash_money,
