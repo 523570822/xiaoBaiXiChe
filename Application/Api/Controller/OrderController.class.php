@@ -585,8 +585,6 @@ class OrderController extends BaseController {
                 $pmae['is_no'] = 1;
                 $pmae['button'] = 1;
                 D ('Order')->where (array ('m_id' => $m_id , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->save ($pmae);
-                $where['status']=1;
-                D ('Details')->where (array ('m_id' => $m_id , 'o_id' => $order['id'] ))->save ($where);
             }
         }
         $this->apiResponse (1 , '查询成功' , array ('is_time' => $order['is_time'] , 'end_time' => $sub));
