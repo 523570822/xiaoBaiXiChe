@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <!--如果不是必填值 不需要加 required 属性-->
+                    <!--上传图片-->
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">银行名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入银行名称" lay-verify="required|phone" name="bank_name"  value="{$row['bank_name']}" <if condition="$row['id']">disabled=""</if>>
+                            </div>
+                            <!--<div class="layui-form-mid layui-word-aux">账户为用户手机号</div>-->
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">银行图标</label>
+                            <if condition="$row['bank_pic']  neq 0">
+                                <div class="layui-input-block img-show">
+                                    <div class="img-show-item" id="Upload_cover_1_pre">
+                                        <img src="{$row.covers}">
+                                        <i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.bank_pic}');"></i>
+                                    </div>
+                                </div>
+                            </if>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <button type="button" class="layui-btn"   id="uploadBtn2"><i class="layui-icon"></i>选择图片</button>
+                                </div>
+                                <div class="layui-input-inline" id="filename"></div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="radio_0">
+                                    <input type="radio" id="radio_0" name="status" value="0" class="layui-input" required <if condition="$row['status'] eq 0">checked <elseif condition="empty($row['status'])"/>checked</if>>
+                                    禁用
+                                </label>
+                                <label class="layui-choose" for="radio_1">
+                                    <input type="radio" id="radio_1" name="status" value="1" class="layui-input" required <if condition="$row['status'] eq 1"> checked</if>>
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">确认保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn2',
+        // 多文件上传-true 单文件上传-false
+        files: false,
+        // 展示图片
+//        showFile: '#filename',
+        showFile: 'true',
+        // input框的name
+        fieldName: 'bank_pic'
+    });
+
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        var id = "{$row['id']}";
+        if(id){
+            url = '';
+            data.id = id
+        }else{
+            url = '{:U("Member/addMember")}'
+        }
+        console.log(data);
+        if(!data) return false;
+        doPost(url, data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+                    goback();
+                }
+            });
+        });
+    }
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+
+    //编辑器初始化
+    $(document).ready(function(){
+        KindEditor.ready(function(K){
+            window.editor = K.create('#content',{
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items:[
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough','lineheight', '|',
+                    'image', 'multiimage', '|',
+                    'link', 'baidumap','fullscreen'
+                ],
+                afterBlur:function(){this.sync();}
+            });
+        });
+    });
+</script>
+</body>
+</html>

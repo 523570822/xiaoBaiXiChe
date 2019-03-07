@@ -7,6 +7,7 @@ class IntegralController extends BaseController {
         $this->display('integral');//download
     }
     //https://www.xiaojingxiche.com/Integral/integral?m_id=1 分享链接
+    //https://www.xiaojingxiche.com/Integral/download 下载链接
     function integral(){
         $m_id=$_REQUEST['m_id'];
         $param['field'] = 'id as m_id,account,nickname,head_pic,degree,invite_code';

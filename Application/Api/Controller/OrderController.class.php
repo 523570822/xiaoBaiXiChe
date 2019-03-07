@@ -260,10 +260,10 @@ class OrderController extends BaseController {
                     if ( $order['pay_money']=='0.00' ) {
                         D ('Order')->where (array ('id' => $order['id']))->save (array ('pay_money' => $appsetting['overtime_money'] , 'is_no' => '1'));
                         D ('CarWasher')->where (array ('mc_code' => $mc_code))->save (array ('type' => '1'));
-                        $this->apiResponse ('0' , '您有预约订单已超时' , array ('ID' => $order['id'] , 'Orderid' => $order['orderid']));
+                        $this->apiResponse ('0' , '您有预约订单已超时' , array ('id' => $order['id'] , 'orderid' => $order['orderid']));
                     }
                 } else {
-                    $this->apiResponse ('0' , '您有预约订单未处理' , array ('ID' => $order['id'] , 'Orderid' => $order['orderid']));
+                    $this->apiResponse ('0' , '您有预约订单未处理' , array ('id' => $order['id'] , 'orderid' => $order['orderid']));
                 }
             }
         }
@@ -287,7 +287,7 @@ class OrderController extends BaseController {
                 $this->receive ($CarWasher['mc_id'] , $Order['id'] , $m_id , $CarWasher['id'] , '5');
                 //返回数据
                 if ( $res && $yes ) {
-                    $this->apiResponse ('1' , '已开启洗车机' , array ('ID' => $Order['id'] , 'Orderid' => $Order['orderid']));
+                    $this->apiResponse ('1' , '已开启洗车机' , array ('id' => $Order['id'] , 'orderid' => $Order['orderid']));
                 } else {
                     $this->apiResponse ('0' , '开启失败,请重试' , 'The order failed, please try again');
                 }
@@ -347,7 +347,7 @@ class OrderController extends BaseController {
             //语音播放
             $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
             $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
-            $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('ID' => $o_id , 'orderid' => $data['orderid']));
+            $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('id' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $car = M('CarWasher')->where(array('mc_id'=>$mc_id))->find();
             if($car['status'] == 2 || $car['status'] == 3  || $car['status'] == 4){
@@ -403,7 +403,7 @@ class OrderController extends BaseController {
         $this->receive ($mc_id , $o_id , $m_id , $c_id , '6');
         //返回数据
         if ( $res && $yes ) {
-            $this->apiResponse ('1' , '下单成功,洗车机已预订' , array ('ID' => $o_id , 'Orderid' => $data['orderid']));
+            $this->apiResponse ('1' , '下单成功,洗车机已预订' , array ('id' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
         }
@@ -447,7 +447,7 @@ class OrderController extends BaseController {
         $find = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
         $o_id = $find['id'];
         if ( $res ) {
-            $this->apiResponse ('1' , '下单成功' , array ('ID' => $o_id , 'Orderid' => $data['orderid']));
+            $this->apiResponse ('1' , '下单成功' , array ('id' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $this->apiResponse ('0' , '下单失败,请重试','The order failed, please try again');
         }
