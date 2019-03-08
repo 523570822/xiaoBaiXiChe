@@ -775,7 +775,7 @@ class OrderController extends BaseController {
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 $this->apiResponse('1','结算成功',$data_money);
-            } else{
+            } else if($send_post['devices'][0]['queryitem']['service_status'] <= 8){
                 $this->apiResponse('0','请先开启设备');
             }
         }else{
