@@ -88,6 +88,7 @@ class BankTypeController extends BaseController {
             $this->display ('infoBankType');
         }
     }
+
     /**
      * 锁定控制
      * User: admin
