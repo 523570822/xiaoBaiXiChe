@@ -15,7 +15,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">银行名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" placeholder="请输入银行名称" lay-verify="required|phone" name="bank_name"  value="{$row['bank_name']}" <if condition="$row['id']">disabled=""</if>>
+                                <input type="text" class="layui-input" placeholder="请输入银行名称" lay-verify="required" name="bank_name"  value="{$row['bank_name']}" <if condition="$row['id']">disabled=""</if>>
                             </div>
                             <!--<div class="layui-form-mid layui-word-aux">账户为用户手机号</div>-->
                         </div>
@@ -83,7 +83,7 @@
             url = '';
             data.id = id
         }else{
-            url = '{:U("Member/addMember")}'
+            url = '{:U("BankType/addBankType")}'
         }
         console.log(data);
         if(!data) return false;

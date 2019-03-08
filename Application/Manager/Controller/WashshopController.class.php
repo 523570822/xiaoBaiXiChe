@@ -73,14 +73,14 @@ class WashshopController extends BaseController {
         } else {
             $id = $_GET['id'];
             $row = D ('Washshop')->queryRow ($id);
-            $row['covers'] = C ('API_URL') . $this->getOnePath($row['env_pic'],C ('API_URL') . '/Uploads/Member/default.png');
+            $row['covers'] =$this->getOnePath($row['env_pic']);
             $province = D ('Region')->select (array ('parent_id' => 1 , 'region_type' => '1') , 'region_name,id');
             $this->assign ('province' , $province);
             $this->assign ('row' , $row);
             //下拉框选择
             $id = $_GET['id'];//用户id
             $row = D ('Washshop')->queryRow ($id);
-            $row['covers'] = C ('API_URL') . $this->getOnePath($row['env_pic'],C ('API_URL') . '/Uploads/Member/default.png');
+            $row['covers'] =$this->getOnePath($row['env_pic']);
             $province = D ('Region')->queryList (array ('region_type' => '1') , 'region_name,id');
             $this->assign ('province' , $province);
             $this->assign ('row' , $row);

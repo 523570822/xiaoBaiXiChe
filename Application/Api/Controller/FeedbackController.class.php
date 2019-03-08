@@ -57,7 +57,7 @@ class FeedbackController extends BaseController {
      **/
     public function aboutUs(){
         $aboutus_info = C('APP');
-        $picture['app_logo'] = C ('API_URL') . $this->getOnePath ($aboutus_info['app_logo'] , C ('API_URL') . '/Uploads/Member/default.png');
+        $picture['app_logo'] = $this->getOnePath ($aboutus_info['app_logo']);
         $this->apiResponse('1','查询成功',array ('app_logo'=>$picture['app_logo'],'app_name'=>$aboutus_info['app_name'],'app_version'=>$aboutus_info['app_version'],'app_intro'=>$aboutus_info['app_intro']));
     }
 

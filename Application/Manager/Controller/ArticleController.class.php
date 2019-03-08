@@ -89,7 +89,7 @@ class ArticleController extends BaseController {
             $this->assign ('cate' , $a_cate);
             $id = I ('id');
             $web = D ('Article')->where (array ('id' => $id))->find ();
-            $web['covers'] = $this->getOnePath ($web['cover'] , 0);//第二位放默认图
+            $web['covers'] = $this->getOnePath ($web['cover']);//第二位放默认图
             $web['cates'] = D ('Article_cate')->where (array ('status' => 1 , 'id' => $web['cate_id']))->find ();
             $this->assign ('row' , $web);
             $this->display ('updateArt');

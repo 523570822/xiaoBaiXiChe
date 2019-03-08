@@ -177,7 +177,7 @@ class MemberController extends BaseController
             //创建并更新token
             $token_arr = createToken();
             D('Member')->where(array('id' => $member_info['m_id']))->save(array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
-            $member_info['head_pic'] = C('API_URL') . $this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
+            $member_info['head_pic'] =$this->getOnePath($member_info['head_pic']);
             $member_info['token'] = $token_arr['token'];
             $member_info['expired_time'] = $token_arr['expired_time'];
             $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
@@ -247,7 +247,7 @@ class MemberController extends BaseController
         //创建并更新token
         $token_arr = createToken();
         D('Member')->querySave(array('id' => $member_info['m_id']), array('token' => $token_arr['token'], 'expired_time' => $token_arr['expired_time']));
-        $member_info['head_pic'] =  C('API_URL') .$this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
+        $member_info['head_pic'] =$this->getOnePath($member_info['head_pic']);
         $member_info['token'] = $token_arr['token'];
         $member_info['expired_time'] = $token_arr['expired_time'];
         $member_info['no_read_msg'] = D('Msg')->isHaveMsg($member_info['m_id']);
@@ -297,7 +297,7 @@ class MemberController extends BaseController
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $member_info = D('Member')->where (array ('id'=>$m_id,'status' => 1))->field ('id as m_id,head_pic,nickname,tel,degree')->find();
-        $member_info['head_pic'] =  C('API_URL') .$this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
+        $member_info['head_pic'] =$this->getOnePath($member_info['head_pic']);
         $this->apiResponse('1', '请求成功', $member_info);
     }
 
@@ -453,7 +453,7 @@ class MemberController extends BaseController
         if(empty($member_info['tel'])){
             D('Member')->where (array ('id'=>$m_id))->save(array ('tel'=>$member_info['account']));
         }
-        $member_info['head_pic'] =  C('API_URL') .$this->getOnePath($member_info['head_pic'], '/Uploads/Member/default.png');
+        $member_info['head_pic'] =$this->getOnePath($member_info['head_pic']);
         $member_info['is_password'] = $member_info['password'] ? '1' : '0';
         unset($member_info['password']);
         $this->apiResponse('1', '请求成功', $member_info);

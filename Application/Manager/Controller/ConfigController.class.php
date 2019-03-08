@@ -52,7 +52,7 @@ class ConfigController extends ControllerService
             foreach($data as $item) {
                 $config[$item['key']] = $item['value'];
             }
-            $config['app_logos'] = $this->getOnePath($config['app_logo'],0);
+            $config['app_logos'] = $this->getOnePath($config['app_logo']);
             $this->assign('config', $config);
             $this->display();
         }

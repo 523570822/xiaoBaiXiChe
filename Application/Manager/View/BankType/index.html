@@ -17,12 +17,8 @@
                         <!--搜索框也可以放这里-->
                         <form class="mab10 mal20 dinline" id="myform" action="{:U('BankType/index')}" method="GET">
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" placeholder="请输入代理商账号" name="account"
-                                       value="{$_REQUEST['account']}">
-                            </div>
-                            <div class="layui-input-inline">
-                                <input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"
-                                       value="{$_REQUEST['nickname']}">
+                                <input type="text" class="layui-input" placeholder="请输入银行名称" name="bank_name"
+                                       value="{$_REQUEST['bank_name']}">
                             </div>
                             <div class="layui-input-inline layui-form">
                                 <select name="status" class="layui-input" style="width: 150px">
@@ -94,7 +90,7 @@
                                         编辑
                                     </button>
                                     <button class="layui-btn layui-btn-xs layui-btn-warm"
-                                            onclick="confirmOneAction('{:U('BankType/resumeBankType')}', '{$item['status'] == 1 ? '' : '启用'}','{$item.id}')">
+                                            onclick="confirmOneAction('{:U('BankType/lockBankType')}', '{$item['status'] == 1 ? '' : '启用'}','{$item.id}')">
                                         {$item['status'] == 1 ? '禁用' : '启用'}
                                     </button>
                                     <button class="layui-btn layui-btn-xs layui-btn-danger"

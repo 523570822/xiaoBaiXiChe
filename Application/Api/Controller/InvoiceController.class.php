@@ -141,7 +141,7 @@ class InvoiceController extends BaseController
         $rule = array ('o_id' , 'string' , "请输入订单编号");
         $this->checkParam ($rule);
         $data = D ("Invoice")->where (array ('o_id' => $request['o_id']))->field ('*')->find ();
-        $picture['picture_id'] = C ('API_URL') . $this->getOnePath ($data['picture_id'] , C ('API_URL') . '/Uploads/Member/default.png');
+        $picture['picture_id'] = $this->getOnePath ($data['picture_id'] );
         $this->apiResponse (1 , '请求成功' , array ("Picture_id" => $picture['picture_id']));
     }
 

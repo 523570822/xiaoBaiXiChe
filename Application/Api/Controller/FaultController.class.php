@@ -38,26 +38,45 @@ class FaultController extends BaseController {
             array ('content' , 'string' , '请输入反馈内容') ,
         );
         $this->checkParam ($rule);
-        if(empty($request['content'])){
+        if ( empty($request['content']) ) {
             $this->apiResponse ('0' , '反馈内容不能为空');
-        }else{
+        } else {
             $where['content'] = $request['content'];
         }
         $is = M ('CarWasher')->where (array ('mc_code' => $request['mc_code']))->field ('*')->find ();
         if ( $is ) {
             $request['mc_id'] = $is['mc_id'];
             $where['mc_id'] = $request['mc_id'];
-        }else{
+        } else {
             $this->apiResponse ('0' , '找不到该机器');
         }
-        if ( empty($_FILES['pic_id']['name']) ) {
-            $this->apiResponse (0 , '请上传问题机器故障照片');
-        } elseif ( !empty($_FILES['pic_id']['name']) ) {
+        if ( $request['type'] ) {
+            $file = $_FILES['pic_id']['name'];
+            if ( $file ) {
+                foreach ( $file as $key => $value ) {
+                    $info = $file->move ('Uploads/Weixin/');
+                    if ( $info ) {
+                        $file = $info->getSaveName ();
+                        $array = array ('name' => $file , 'savepath' => $info , 'path' => $info);
+                        M ('File')->add ($array);
+                    }
+                }
+            }
             $res = api ('UploadPic/upload' , array (array ('save_path' => 'Fault')));
             foreach ( $res as $key => $value ) {
                 $pic[$key] = $value['id'];
             }
             $where['pic_id'] = implode (',' , $pic);
+        } else {
+            if ( empty($_FILES['pic_id']['name']) ) {
+                $this->apiResponse (0 , '请上传问题机器故障照片');
+            } elseif ( !empty($_FILES['pic_id']['name']) ) {
+                $res = api ('UploadPic/upload' , array (array ('save_path' => 'Fault')));
+                foreach ( $res as $key => $value ) {
+                    $pic[$key] = $value['id'];
+                }
+                $where['pic_id'] = implode (',' , $pic);
+            }
         }
         $where['pro_id'] = $request['pro_id'];
         $where['m_id'] = $m_id;

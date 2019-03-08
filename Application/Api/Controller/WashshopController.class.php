@@ -57,7 +57,7 @@ class WashshopController extends BaseController
                 } else {
                     $shopList[$k]['workstatus'] = '0';
                 }
-                $shopList[$k]['shop_pic'] = $this->getOnePath ($shopList[$k]['shop_pic'] , C ('API_URL') . '/Uploads/Member/default.png');
+                $shopList[$k]['shop_pic'] = $this->getOnePath ($shopList[$k]['shop_pic'] );
             }
         }
         $m_id = $this->checkToken ();
@@ -96,7 +96,7 @@ class WashshopController extends BaseController
         $shopDetail['distance'] = round ($shopDetail['distance'] / 1000 , 2) . 'Km';// '距离我' .;
         $show = explode ("," , $shopDetail['env_pic']);
         foreach ( $show as $key => &$v ) {//var_dump($key);die;
-            $v = $this->getOnePath ($v , C ('API_URL') . '/Uploads/Member/default.png');
+            $v = $this->getOnePath ($v);
             $new[$key]['env'] = $v;
         }
         $desc = 'id desc';
@@ -163,7 +163,7 @@ class WashshopController extends BaseController
         }
         $shopDetail['mtime'] = $shopDetail['mtime'] . ":00";
         $shopDetail['etime'] = $shopDetail['etime'] . ":00";
-        $shopDetail['shop_pic'] = $this->getOnePath ($shopDetail['shop_pic'] , C ('API_URL') . '/Uploads/Member/default.png');
+        $shopDetail['shop_pic'] = $this->getOnePath ($shopDetail['shop_pic'] );
         $shopDetail['env_pic'] = $new;
         //zsl 增加详情
         $data['status'] = array ('neq' , 9);

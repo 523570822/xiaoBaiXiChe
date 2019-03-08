@@ -9,13 +9,9 @@ class BankTypeController extends BaseController {
      */
     public function index () {
         $where = array ();
-        //账号查找
-        if ( !empty($_REQUEST['account']) ) {
-            $where['account'] = array ('LIKE' , "%" . I ('request.account') . "%");
-        }
-        //昵称查找
-        if ( !empty($_REQUEST['nickname']) ) {
-            $where['nickname'] = array ('LIKE' , "%" . I ('request.nickname') . "%");
+        //名称查找
+        if ( !empty($_REQUEST['bank_name']) ) {
+            $where['bank_name'] = array ('LIKE' , "%" . I ('request.bank_name') . "%");
         }
         //使用状态查找
         if ( !empty($_REQUEST['status']) ) {
@@ -64,7 +60,7 @@ class BankTypeController extends BaseController {
             $data['create_time'] = time();
             $data['update_time'] = time();
             $data['sort'] = '9999';
-            $res = D('Member')->addRow($data);
+            $res = D('BankType')->addRow($data);
             $res ?  $this->apiResponse(1, '添加成功') : $this->apiResponse(0,'添加失败');
         }else {
             $this->display ('infoBankType');
@@ -87,9 +83,22 @@ class BankTypeController extends BaseController {
         } else {
             $id = $_GET['id'];
             $row = D ('BankType')->queryRow ($id);
-            $row['covers'] = C('API_URL').$this->getOnePath ($row['head_pic'] , 0);
+            $row['covers'] = $this->getOnePath ($row['head_pic']);
             $this->assign ('row' , $row);
             $this->display ('infoBankType');
         }
+    }
+    /**
+     * 锁定控制
+     * User: admin
+     * Date: 2019-03-07 17:58:10
+     */
+    public function lockBankType() {
+        $id = $this->checkParam(array('id', 'int'));
+        $status = D('BankType')->queryField($id, 'status');
+        $data = $status == 1 ? array('status'=>0) : array('status'=>1);
+        $Res = D('BankType')->querySave($id, $data);
+        $Res ? $this->apiResponse(1, $status == 1 ? '禁用成功' : '启用成功') : $this->apiResponse(0, $status == 1 ? '禁用失败' : '启用失败');
+
     }
 }

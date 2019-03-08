@@ -111,7 +111,7 @@ class AdvertController extends BaseController
         }else {
             $id= I('id');
             $web = D('Advert')->where(array('id'=>$id))->find();
-            $web['file_ids']=$this->getOnePath($web['file_id'],0);//第二位放默认图
+            $web['file_ids']=$this->getOnePath($web['file_id']);//第二位放默认图
             $web['position_id']=   D('AdvertPosition')->where(array('position_id' => $web['position_id']))->find();
             $position = D('AdvertPosition')->where(array('status' => 1, 'p_id' => 0))->select();
             $this->assign('cate', $position);

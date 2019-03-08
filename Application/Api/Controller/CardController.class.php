@@ -57,7 +57,7 @@ class CardController extends BaseController
         $request = $_REQUEST;
         $wallet = D ('LittlewhaleCard')->where ((array ('status' => 1)))->field ('*') ->page($request['page'], '10')->select ();
         foreach ($wallet as $k => $v) {
-            $wallet[$k]['card_pic'] =C ('API_URL') . $this->getOnePath ($wallet[$k]['card_pic'] ,'/Uploads/Member/default.png');
+            $wallet[$k]['card_pic'] =$this->getOnePath ($wallet[$k]['card_pic']);
             $wallet[$k]['rebate'] = $wallet[$k]['rebate']*10;
         }
         if (!$wallet) {

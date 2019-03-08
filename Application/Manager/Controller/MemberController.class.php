@@ -110,7 +110,7 @@ class MemberController extends BaseController
         }else {
             $id = $_GET['id'];
             $row = D('Member')->queryRow($id);
-            $row['covers'] = $this->getOnePath($row['head_pic'],0);
+            $row['covers'] = $this->getOnePath($row['head_pic']);
             $this->assign('row',$row);
             $this->display();
         }

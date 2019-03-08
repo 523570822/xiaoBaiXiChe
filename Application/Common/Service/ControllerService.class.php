@@ -210,8 +210,8 @@ class ControllerService extends Controller
      * @param string $default_path
      * @return string
      */
-    final protected  function getOnePath($id,$default_path = ''){
+    final protected  function getOnePath($id,$default_path = '/Uploads/Member/defult.png'){
         $path = M('File')->where(array('id'=>$id))->getField('path');
-        return $path?$path:$default_path;
+        return $path?C('API_URL').$path:C('API_URL').$default_path;
     }
 }
