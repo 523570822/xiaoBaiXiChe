@@ -14,7 +14,7 @@ return array(
         'sms_sign' => '',
     ),
     'APP' =>  array(
-        'app_logo' => '352',
+        'app_logo' => '18',
         'app_name' => '小鲸洗车',
         'app_version' => 'V1.0.0',
         'app_intro' => 'Copyright © 2019-2020    

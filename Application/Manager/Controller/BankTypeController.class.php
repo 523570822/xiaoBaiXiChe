@@ -83,7 +83,7 @@ class BankTypeController extends BaseController {
         } else {
             $id = $_GET['id'];
             $row = D ('BankType')->queryRow ($id);
-            $row['covers'] = $this->getOnePath ($row['head_pic']);
+            $row['covers'] = $this->getOnePath ($row['bank_pic']);
             $this->assign ('row' , $row);
             $this->display ('infoBankType');
         }

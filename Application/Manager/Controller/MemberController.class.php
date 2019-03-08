@@ -104,7 +104,6 @@ class MemberController extends BaseController
             );
             $data = $this->checkParam($rule);
             $where['id'] = $request['id'];
-            $where['head_pic'] = $request['head_pic'];
             $data['update_time'] = time();
             $res = D('Member')->querySave($where,$data);
             $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $data);
