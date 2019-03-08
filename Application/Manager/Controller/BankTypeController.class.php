@@ -50,19 +50,19 @@ class BankTypeController extends BaseController {
     }
 
     public function addBankType () {
-        if(IS_POST) {
-            $rule = array(
+        if ( IS_POST ) {
+            $rule = array (
                 array ('bank_name' , 'string' , '请输入银行名称') ,
                 array ('bank_pic' , 'int' , '请上传银行图标') ,
                 array ('status' , 'int' , '请选择状态') ,
             );
-            $data = $this->checkParam($rule);
-            $data['create_time'] = time();
-            $data['update_time'] = time();
+            $data = $this->checkParam ($rule);
+            $data['create_time'] = time ();
+            $data['update_time'] = time ();
             $data['sort'] = '9999';
-            $res = D('BankType')->addRow($data);
-            $res ?  $this->apiResponse(1, '添加成功') : $this->apiResponse(0,'添加失败');
-        }else {
+            $res = D ('BankType')->addRow ($data);
+            $res ? $this->apiResponse (1 , '添加成功') : $this->apiResponse (0 , '添加失败');
+        } else {
             $this->display ('infoBankType');
         }
     }
@@ -77,7 +77,6 @@ class BankTypeController extends BaseController {
             );
             $data = $this->checkParam ($rule);
             $where['id'] = $request['id'];
-            $where['bank_pic'] = $request['bank_pic'];
             $data['update_time'] = time ();
             $res = D ('BankType')->querySave ($where , $data);
             $res ? $this->apiResponse (1 , '修改成功') : $this->apiResponse (0 , '修改失败');
@@ -90,18 +89,17 @@ class BankTypeController extends BaseController {
         }
     }
 
-
     /**
      * 锁定控制
      * User: admin
      * Date: 2019-03-07 17:58:10
      */
-    public function lockBankType() {
-        $id = $this->checkParam(array('id', 'int'));
-        $status = D('BankType')->queryField($id, 'status');
-        $data = $status == 1 ? array('status'=>0) : array('status'=>1);
-        $Res = D('BankType')->querySave($id, $data);
-        $Res ? $this->apiResponse(1, $status == 1 ? '禁用成功' : '启用成功') : $this->apiResponse(0, $status == 1 ? '禁用失败' : '启用失败');
+    public function lockBankType () {
+        $id = $this->checkParam (array ('id' , 'int'));
+        $status = D ('BankType')->queryField ($id , 'status');
+        $data = $status == 1 ? array ('status' => 0) : array ('status' => 1);
+        $Res = D ('BankType')->querySave ($id , $data);
+        $Res ? $this->apiResponse (1 , $status == 1 ? '禁用成功' : '启用成功') : $this->apiResponse (0 , $status == 1 ? '禁用失败' : '启用失败');
 
     }
 }
