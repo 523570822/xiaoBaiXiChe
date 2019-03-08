@@ -869,6 +869,17 @@ class OrderController extends BaseController {
                 //查找条件
                 //echo M('Order')->_sql();
                 $stop = $this->send_post('device_manage',$car['mc_id'],4);
+
+                $sa_where = array(
+                    'orderid' =>$post['orderid'],
+                    'm_id' => $member['id'],
+                    'button' =>1,
+                );
+                $sa_data = array(
+                    'money' => $all_money,
+                    'pay_money' => $price
+                );
+                $sa_order = M('Order')->where($sa_where)->save($sa_data);
                 $this->apiResponse('1','查询成功',$data);
             }
         }else{
