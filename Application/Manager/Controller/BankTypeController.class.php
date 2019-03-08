@@ -72,7 +72,7 @@ class BankTypeController extends BaseController {
             $request = I ('post.');
             $rule = array (
                 array ('bank_name' , 'string' , '请输入银行名称') ,
-//                array ('bank_pic' , 'int' , '请上传银行图标') ,
+                array ('bank_pic' , 'int' , '请上传银行图标') ,
                 array ('status' , 'int' , '请选择状态') ,
             );
             $data = $this->checkParam ($rule);
@@ -89,6 +89,7 @@ class BankTypeController extends BaseController {
             $this->display ('infoBankType');
         }
     }
+
 
     /**
      * 锁定控制

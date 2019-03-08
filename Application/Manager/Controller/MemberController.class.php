@@ -98,7 +98,7 @@ class MemberController extends BaseController
                 array('account','phone','用户名必须为手机号格式'),
                 array('password','string','请输入密码'),
                 array('nickname','string','请输入昵称'),
-//                array('head_pic','int','请上传头像'),
+                array('head_pic','int','请上传头像'),
                 array('email','email','请输入邮箱'),
                 array('sex','int','请选择性别'),
             );
