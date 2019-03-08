@@ -41,7 +41,7 @@ class BankTypeController extends BaseController {
         $param['page_size'] = 15;
         $data = D ('BankType')->queryList ($where , '*' , $param);
         foreach ( $data['list'] as $k => $v ) {
-            $data['list'][$k]['bank_pic'] = C ('API_URL') . $this->getOnePath ($data['list'][$k]['bank_pic']);
+            $data['list'][$k]['bank_pic'] = $this->getOnePath ($data['list'][$k]['bank_pic']);
         }
         $this->assign ($data);
         //页数跳转
@@ -72,11 +72,12 @@ class BankTypeController extends BaseController {
             $request = I ('post.');
             $rule = array (
                 array ('bank_name' , 'string' , '请输入银行名称') ,
-                array ('bank_pic' , 'int' , '请上传银行图标') ,
+//                array ('bank_pic' , 'int' , '请上传银行图标') ,
                 array ('status' , 'int' , '请选择状态') ,
             );
             $data = $this->checkParam ($rule);
             $where['id'] = $request['id'];
+            $where['bank_pic'] = $request['bank_pic'];
             $data['update_time'] = time ();
             $res = D ('BankType')->querySave ($where , $data);
             $res ? $this->apiResponse (1 , '修改成功') : $this->apiResponse (0 , '修改失败');
