@@ -683,7 +683,7 @@ class OrderController extends BaseController {
                 if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ){
                     if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
                         $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'];
+                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] - 1;
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
                         $w_start = M('Details')->where($d_where)->save($w_end_data);
@@ -693,7 +693,7 @@ class OrderController extends BaseController {
                 if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 3) ){
                     if($send_post['devices'][0]['queryitem']['foam_duration'] != $f_details['foam_end_time']){
                         $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'];
+                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] - 1;
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
                         $f_start = M('Details')->where($d_where)->save($f_end_data);
@@ -775,7 +775,7 @@ class OrderController extends BaseController {
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 $this->apiResponse('1','结算成功',$data_money);
-            } else if($send_post['devices'][0]['queryitem']['service_status'] <= 8){
+            } else if($send_post['devices'][0]['queryitem']['service_status'] < 8){
                 $this->apiResponse('0','请先开启设备');
             }
         }else{

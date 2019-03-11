@@ -294,18 +294,15 @@ class CarWasherController extends BaseController
                         $offline = M('CarWasher')->where($off_where)->save($off_data);
                     }
                     foreach ($vv as $kk1=>$vv1){
-                        $car_data['lon'] = $vv1['queryitem']['location']['longitude'];
-                        $car_data['lat'] = $vv1['queryitem']['location']['latitude'];
+                        //$car_data['lon'] = $vv1['queryitem']['location']['longitude'];
+                        //$car_data['lat'] = $vv1['queryitem']['location']['latitude'];
                         $car_data['electricity'] = $vv1['queryitem']['device_energy'];
                         $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
                         $car_data['foam'] = $vv1['queryitem']['foam_usage'];
                         $car_data['update_time'] = time();
-
                     }
                     $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
-                    echo M('CarWasher')->_sql();
                 }
-
             }
         }
 
