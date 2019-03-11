@@ -300,12 +300,9 @@ class CarWasherController extends BaseController
                         $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
                         $car_data['foam'] = $vv1['queryitem']['foam_usage'];
                         $car_data['update_time'] = time();
-
                     }
                     $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
-                    echo M('CarWasher')->_sql();
                 }
-
             }
         }
 
