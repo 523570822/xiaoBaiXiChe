@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<include file="Public/head" />
+<include file="Public/head"/>
 <body>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
@@ -9,49 +9,89 @@
                 <!--菜单名称-->
                 <div class="layui-card-header">{$title}</div>
                 <div class="layui-card-body">
-                        <table class="layui-table" >
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>意见反馈内容</th>
-                                    <th>反馈时间</th>
-                                    <th>处理状态</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <empty name="list">
-                                    <tr><td colspan="12" style="text-align: center;">暂无数据</td></tr>
-                                </empty>
-                                <volist name="list" id="db_feedback">
-                                    <tr>
-                                        <td>{$db_feedback.id}</td>
-                                        <td>{$db_feedback.content}</td>
-                                        <td>{$db_feedback['create_time']|date="Y/m/d",###}</td>
-                                        <td>{$db_feedback['status'] == 1 ? '未处理' : '已处理'}</td>
-                                        <td>
-                                            <if condition="$db_feedback['status'] eq 1"  >
-                                                <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="confirmOneAction('{:U('Feedback/saveFeedback')}','{$db_feedback['status'] == 1 ? '未处理' : '已处理'}','{$db_feedback.id}')">{$db_feedback['status'] == 1 ? '处理' : ''}</button>
-                                            <else/>
-                                            </if>
-                                        </td>
-                                    </tr>
-                                </volist>
-                            </tbody>
-                        </table>
+                    <!--顶部按钮-->
+                    <div class="mab10">
+                        <input type="hidden" id="url" value="{$url}">
+                        <!--搜索框也可以放这里-->
+                        <form class="mab10 mal20 dinline" id="myform" action="{:U('Feedback/index')}" method="GET">
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"
+                                       value="{$_REQUEST['nickname']}">
+                            </div>
+                            <div class="layui-input-inline layui-form">
+                                <select name="status" class="layui-input" style="width: 150px">
+                                    <option value="">反馈状态</option>
+                                    <option value="1"
+                                    <if condition="$_REQUEST['status'] eq 1">selected=true</if>
+                                    >已处理</option>
+                                    <option value="2"
+                                    <if condition="$_REQUEST['status'] eq 2">selected=true</if>
+                                    >未处理</option>
+                                </select>
+                            </div>
 
-                    <!--分页-->
-                    {$page}
-                </div>
+                            <button class="layui-btn" type="submit">搜索</button>
+                            <a href="{:U('Feedback/index')}" class="layui-btn layui-btn-primary">重置</a>
+                        </form>
+                        <script>
+                            $(function () {
+                                $("#button").click(function () {
+                                    var newUrl = "{:U('Feedback/exportFeedback')}";    //设置新提交地址
+                                    $("#myform").attr('action', newUrl);    //通过jquery为action属性赋值
+                                    $("#myform").submit();    //提交ID为myform的表单
+                                })
+                            })
+                        </script>
+                    </div>
+                <table class="layui-table" lay-even lay-skin="line" lay-size="">
+                    <colgroup>
+                        <col width="30">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <th>ID</th>
+                    <th>用户昵称</th>
+                    <th>反馈内容</th>
+                    <th>内容详情</th>
+                    <th>反馈时间</th>
+                    <th>处理状态</th>
+                    <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <empty name="list">
+                        <tr>
+                            <td colspan="12" style="text-align: center;">暂无数据</td>
+                        </tr>
+                    </empty>
+                    <volist name="list" id="db_feedback">
+                        <tr>
+                            <td>{$db_feedback.id}</td>
+                            <td>{$db_feedback.nickname}</td>
+                            <td>{$db_feedback.content}</td>
+                            <td>{$db_feedback.contents}</td>
+                            <td>{$db_feedback['create_time']|date="Y/m/d",###}</td>
+                            <td>{$db_feedback['status'] == 1 ? '未处理' : '已处理'}</td>
+                            <td>
+                                <if condition="$db_feedback['status'] eq 1">
+                                    <button class="layui-btn layui-btn-xs layui-btn-normal"
+                                            onclick="confirmOneAction('{:U('Feedback/saveFeedback')}','{$db_feedback['status'] == 1 ? '未处理' : '已处理'}','{$db_feedback.id}')">
+                                        {$db_feedback['status'] == 1 ? '处理' : ''}
+                                    </button>
+                                    <else/>
+                                </if>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                <!--分页-->
+                {$page}
             </div>
         </div>
     </div>
 </div>
-<script>
-    // 时间选择初始化
-    laydate.render({
-        elem: '#test1' //指定元素
-    });
-</script>
+</div>
 </body>
 </html>

@@ -252,7 +252,7 @@ class OrderController extends BaseController {
                 D ('Msg')->add ($param);
             }
             if ( $w_type == '1' ) {
-                $this->apiResponse ('0' , '您有付订单待处理' , array ('ID' => $order['id'] , 'Orderid' => $order['orderid']));
+                $this->apiResponse ('0' , '您有付订单待处理' , array ('id' => $order['id'] , 'orderid' => $order['orderid']));
             } elseif ( $w_type == '2' ) {
                 if ( $order['subs_time'] < time () ) {
                     $appsetting = D ('Appsetting')->field ('overtime_money')->find ();
