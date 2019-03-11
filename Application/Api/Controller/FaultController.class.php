@@ -51,22 +51,7 @@ class FaultController extends BaseController {
             $this->apiResponse ('0' , '找不到该机器');
         }
         if ( $request['type'] ) {
-            $file = $_FILES['pic_id']['name'];
-            if ( $file ) {
-                foreach ( $file as $key => $value ) {
-                    $info = $file->move ('Uploads/Weixin/');
-                    if ( $info ) {
-                        $file = $info->getSaveName ();
-                        $array = array ('name' => $file , 'savepath' => $info , 'path' => $info);
-                        M ('File')->add ($array);
-                    }
-                }
-            }
-            $res = api ('UploadPic/upload' , array (array ('save_path' => 'Fault')));
-            foreach ( $res as $key => $value ) {
-                $pic[$key] = $value['id'];
-            }
-            $where['pic_id'] = implode (',' , $pic);
+            $this->apiResponse (0,$_FILES['file']);
         } else {
             if ( empty($_FILES['pic_id']['name']) ) {
                 $this->apiResponse (0 , '请上传问题机器故障照片');
