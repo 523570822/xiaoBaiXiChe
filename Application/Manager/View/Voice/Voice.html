@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head"/>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">语音类型</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="voice_type_1">
+                                    <input type="radio" id="voice_type_1" name="voice_type" value="1"
+                                           class="layui-input" required
+                                    <if condition="$row['voice_type'] eq 1">checked
+                                        <elseif condition="empty($row['voice_type'])"/>
+                                        checked
+                                    </if>
+                                    >
+                                    扫码成功
+                                </label>
+                                <label class="layui-choose" for="voice_type_2">
+                                    <input type="radio" id="voice_type_2" name="voice_type" value="2"
+                                           class="layui-input" required
+                                    <if condition="$row['voice_type'] eq 2"> checked</if>
+                                    >
+                                    结算按钮
+                                </label>
+                                <label class="layui-choose" for="voice_type_3">
+                                    <input type="radio" id="voice_type_3" name="voice_type" value="3"
+                                           class="layui-input" required
+                                    <if condition="$row['voice_type'] eq 3"> checked</if>
+                                    >
+                                    扫码失败
+                                </label>
+                                <label class="layui-choose" for="voice_type_4">
+                                    <input type="radio" id="voice_type_4" name="voice_type" value="4"
+                                           class="layui-input" required
+                                    <if condition="$row['voice_type'] eq 4">checked</if>
+                                    >
+                                    闲置8分
+                                </label>
+                                <label class="layui-choose" for="voice_type_5">
+                                    <input type="radio" id="voice_type_5" name="voice_type" value="5"
+                                           class="layui-input" required
+                                    <if condition="$row['voice_type'] eq 5"> checked</if>
+                                    >
+                                    闲置10分
+                                </label>
+                                <label class="layui-choose" for="voice_type_6">
+                                    <input type="radio" id="voice_type_6" name="voice_type" value="6"
+                                           class="layui-input" required
+                                    <if condition="$row['voice_type'] eq 6"> checked</if>
+                                    >
+                                    洗车超时
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">播报内容</label>
+                            <div class="layui-input-block">
+                                <textarea name="content" style="width:36.3%; height:100px; "
+                                          placeholder="请输入播报内容" class="layui-input w300">{$row.content}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">语音状态</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="status_0">
+                                    <input type="radio" id="status_0" name="status" value="0" class="layui-input"
+                                           required
+                                    <if condition="$row['status'] eq 0">checked
+                                        <elseif condition="empty($row['status'])"/>
+                                        checked
+                                    </if>
+                                    >
+                                    <span style="color: red;">关闭</span>
+                                </label>
+                                <label class="layui-choose" for="status_1">
+                                    <input type="radio" id="status_1" name="status" value="1" class="layui-input"
+                                           required
+                                    <if condition="$row['status'] eq 1"> checked</if>
+                                    >
+                                    <span style="color: green;">启用</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">确认修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        var id = "{$row['id']}";
+        if (id) {
+            url = '';
+            data.id = id
+        } else {
+            url = '{:U("Voice/editVoice")}'
+        }
+        // console.log(data);
+        if (!data) return false;
+        doPost(url, data, function (res) {
+            showMsg(res.code, res.message, function () {
+                if (res.code == 1) {
+                    goback();
+                }
+            });
+        });
+    }
+
+    $(function () {
+        $('#province').change(function () {
+            $('#city option[value!=""]').remove();
+            $('#area option[value!=""]').remove();
+            var province = $(this).val();
+            $.ajax({
+                url: "{:U('Voice/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: province},
+                success: function (data) {
+                    var html = '<option value="">请选择城市</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    $('#city').html(html);
+                }
+            })
+        });
+        $('#city').change(function () {
+            $('#area option[value!=""]').remove();
+            var city = $(this).val();
+            $.ajax({
+                url: "{:U('Voice/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: city},
+                success: function (data) {
+                    var html = '<option value="">请选择区、县</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    $('#area').html(html);
+                }
+            })
+        })
+    });
+    //编辑器
+    $(document).ready(function () {
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#content', {
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items: [
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', 'lineheight', '|',
+                    'image', 'multiimage', '|',
+                    'link', 'baidumap', 'fullscreen'
+                ],
+                afterBlur: function () {
+                    this.sync();
+                }
+            });
+        });
+    });
+</script>
+</html>

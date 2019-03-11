@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head"/>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <!--顶部按钮-->
+                    <div class="mab10">
+                        <input type="hidden" id="url" value="{$url}">
+                        <a href="{:U('Voice/addVoice')}" class="layui-btn layui-btn-normal layui-btn-radius">添加语音</a>
+                        <!--搜索框也可以放这里-->
+                        <form class="mab10 mal20 dinline" id="myform" action="{:U('Voice/index')}" method="GET">
+                            <div class="layui-input-inline layui-form">
+                                <select name="voice_type" class="layui-input" style="width: 150px">
+                                    <option value="">语音播报类型</option>
+                                    <option value="1"
+                                    <if condition="$_REQUEST['voice_type'] eq 1">selected=true</if>
+                                    >扫码成功</option>
+                                    <option value="2"
+                                    <if condition="$_REQUEST['voice_type'] eq 2">selected=true</if>
+                                    >结算按钮</option>
+                                    <option value="3"
+                                    <if condition="$_REQUEST['voice_type'] eq 3">selected=true</if>
+                                    >扫码失败</option>
+                                    <option value="4"
+                                    <if condition="$_REQUEST['voice_type'] eq 4">selected=true</if>
+                                    >闲置8分</option>
+                                    <option value="5"
+                                    <if condition="$_REQUEST['voice_type'] eq 5">selected=true</if>
+                                    >闲置10分</option>
+                                    <option value="6"
+                                    <if condition="$_REQUEST['voice_type'] eq 6">selected=true</if>
+                                    >洗车超时</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline layui-form">
+                                <select name="status" class="layui-input" style="width: 150px">
+                                    <option value="">状态</option>
+                                    <option value="1"
+                                    <if condition="$_REQUEST['status'] eq 1">selected=true</if>
+                                    >关闭</option>
+                                    <option value="2"
+                                    <if condition="$_REQUEST['status'] eq 2">selected=true</if>
+                                    >启用</option>
+                                </select>
+                            </div>
+                            <button class="layui-btn" type="submit">搜索</button>
+                            <a href="{:U('Voice/index')}" class="layui-btn layui-btn-primary">重置</a>
+                        </form>
+                        <script>
+                            $(function () {
+                                $("#button").click(function () {
+                                    var newUrl = "{:U('Voice/exportVoice')}";    //设置新提交地址
+                                    $("#myform").attr('action', newUrl);    //通过jquery为action属性赋值
+                                    $("#myform").submit();    //提交ID为myform的表单
+                                })
+                            })
+                        </script>
+                    </div>
+                    <!--列表-->
+                    <table class="layui-table" lay-even lay-skin="line" lay-size="">
+                        <colgroup>
+                            <col width="30">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <th>ID</th>
+                        <th>语音类型</th>
+                        <th>播报内容</th>
+                        <th>语音状态</th>
+                        <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr>
+                                <td colspan="12" style="text-align: center;">暂无数据</td>
+                            </tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td>{$item.id}</td>
+                                <td>
+                                    <switch name="item.voice_type">
+                                        <case value="1"><span style="color: green;">扫码成功</span></case>
+                                        <case value="2"><span style="color: black;">结算按钮</span></case>
+                                        <case value="3"><span style="color: red;">扫码失败</span></case>
+                                        <case value="4"><span style="color: orange;">闲置8分</span></case>
+                                        <case value="5"><span style="color: darkorchid;">闲置10分</span></case>
+                                        <case value="6"><span style="color: blue;">洗车超时</span></case>
+                                        <default/>
+                                    </switch>
+                                </td>
+                                <td>{$item.content}</td>
+                                <td>
+                                    <switch name="item.status">
+                                        <case value="0"><span style="color: red;">关闭</span></case>
+                                        <case value="1"><span style="color: green;">启用</span></case>
+                                        <default/>
+                                    </switch>
+                                </td>
+                                <td>
+                                    <button class="layui-btn layui-btn-xs layui-btn-normal"
+                                            onclick="jumpUrl('{:U('Voice/editVoice', array('id'=>$item['id'], 'system'=>0))}')">
+                                        编辑
+                                    </button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-warm"
+                                            onclick="confirmOneAction('{:U('Voice/lockVoice')}', '{$item['status'] == 1 ? '关闭' : '启用'}','{$item.id}')">
+                                        {$item['status'] == 1 ? '关闭' : '启用'}
+                                    </button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-danger"
+                                            onclick="confirmDelAction('{:U('Voice/delete',array('model'=>'Voice'))}', '删除','{$item.id}')">
+                                        删除
+                                    </button>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 排序方法
+    var sort_order = "{$_GET['sort_order']}"
+    if (sort_order) {
+        var sort_arr = sort_order.split("-");
+        $('#' + sort_arr[0] + '-sort').attr('lay-sort', sort_arr[1])
+    }
+    //排序
+    $('.layui-edge').on('click', function () {
+        var url = $('#url').val();
+        var sort_type = $(this).attr('value');
+        var sort_key = $(this).attr('sort');
+        // 分为有其他搜索参数类型和无搜索参数类型 拼接URL了地址 这里我以有结束时间为例。
+        // 有搜索参数
+        if (url.indexOf('&end_time') == -1) {
+            if (url.indexOf('/sort_order/') == -1) {
+                url = url + '/sort_order/' + sort_type + '-' + sort_key;
+            } else {
+                url = url.replace('/sort_order/' + sort_order, '/sort_order/' + sort_type + '-' + sort_key);
+            }
+        } else {
+            // 没有搜索参数
+            if (url.indexOf('&sort_order=') == -1) {
+                url = url + '&sort_order=' + sort_type + '-' + sort_key;
+            } else {
+                url = url.replace('&sort_order=' + sort_order, '&sort_order=' + sort_type + '-' + sort_key);
+            }
+        }
+        window.location.href = url;
+    });
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test2' //指定元素
+    });
+</script>
+</body>
+</html>
