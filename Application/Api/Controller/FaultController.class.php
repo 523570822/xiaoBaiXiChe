@@ -95,6 +95,10 @@ class FaultController extends BaseController {
         }
     }
     public function upload(){
-        $this->apiResponse ($_FILES);
+        $res = api ('UploadPic/upload' , array (array ('save_path' => 'Fault')));
+        foreach ( $res as $key => $value ) {
+           $this->apiResponse (1,'请求成功',$value['id']);
+        }
+
     }
 }
