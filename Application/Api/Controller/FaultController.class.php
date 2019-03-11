@@ -51,7 +51,7 @@ class FaultController extends BaseController {
             $this->apiResponse ('0' , '找不到该机器');
         }
         if ( $request['type'] ) {
-            $this->apiResponse (0,$_FILES['file']);
+            $this->apiResponse (0,$_FILES);
         } else {
             if ( empty($_FILES['pic_id']['name']) ) {
                 $this->apiResponse (0 , '请上传问题机器故障照片');
