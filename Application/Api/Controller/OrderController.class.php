@@ -683,7 +683,7 @@ class OrderController extends BaseController {
                 if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ){
                     if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
                         $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] - 1;
+                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] ;
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
                         $w_start = M('Details')->where($d_where)->save($w_end_data);
@@ -693,7 +693,7 @@ class OrderController extends BaseController {
                 if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 3) ){
                     if($send_post['devices'][0]['queryitem']['foam_duration'] != $f_details['foam_end_time']){
                         $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] - 1;
+                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] ;
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
                         $f_start = M('Details')->where($d_where)->save($f_end_data);
