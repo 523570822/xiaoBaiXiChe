@@ -476,9 +476,9 @@ class OrderController extends BaseController {
         $list_info = D ('Order')
             ->where ($where)
             ->join ("LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id")
-            ->field ('db_order.id,db_order.orderid,db_order.status,db_order.w_type,db_order.money,db_order.pay_money,db_order.is_no,is_set,db_car_washer.mc_code as mc_id ,db_car_washer.p_id,db_car_washer.type')
+            ->field ('db_order.id,db_order.orderid,db_order.status,db_order.create_time,db_order.w_type,db_order.money,db_order.pay_money,db_order.is_no,is_set,db_car_washer.mc_code as mc_id ,db_car_washer.p_id,db_car_washer.type')
             ->page ($request['page'] , '10')
-            ->select ();
+            ->select ( ['id'=>'db_order.id asc','order' =>'db_order.create_time desc']);
         foreach ( $list_info as $k => $v ) {
             $m = $list_info[$k]['p_id'];
             $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();

@@ -48,7 +48,7 @@ class UploadPicApi {
         if(is_array($info)) {
             foreach ($info as $key => &$value) {
                 //处理图片路径 在模板里的url路径
-                $value['path'] = substr(C('PICTURE_UPLOAD.rootPath'), 1).'Uploads/'.$value['savepath'].$value['savename'];
+                $value['path'] = substr(C('PICTURE_UPLOAD.rootPath'), 1).'/Uploads/'.$value['savepath'].$value['savename'];
                 //绝对路径
                 $value['abs_url'] = empty($_SERVER['REQUEST_SCHEME']) ? 'http' . '://' . $_SERVER['HTTP_HOST'] . $value['path'] : $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $value['path'];
 
