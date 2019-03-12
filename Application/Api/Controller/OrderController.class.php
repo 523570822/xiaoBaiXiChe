@@ -473,12 +473,16 @@ class OrderController extends BaseController {
             $where['db_order.status'] = 2;
         }
         $where['db_order.m_id'] = $m_id;
+        $order [] = 'create_time DESC';
         $list_info = D ('Order')
             ->where ($where)
             ->join ("LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id")
             ->field ('db_order.id,db_order.orderid,db_order.status,db_order.create_time,db_order.w_type,db_order.money,db_order.pay_money,db_order.is_no,is_set,db_car_washer.mc_code as mc_id ,db_car_washer.p_id,db_car_washer.type')
+            ->order($order)
             ->page ($request['page'] , '10')
             ->select ( ['id'=>'db_order.id asc','order' =>'db_order.create_time desc']);
+//        echo D('Order')->_sql();
+//        var_dump($list_info);exit;
         foreach ( $list_info as $k => $v ) {
             $m = $list_info[$k]['p_id'];
             $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();
@@ -786,10 +790,10 @@ class OrderController extends BaseController {
             } else if($send_post['devices'][0]['queryitem']['service_status'] < 8){
                 $this->apiResponse('0','设备不在线');
             }else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
-                $this->apiResponse('0','请下订单');
+                $this->apiResponse('0','当前洗车机尚未开启');
             }
         }else{
-            $this->apiResponse('0','暂无查询此订单');
+            $this->apiResponse('0','请先扫码下单');
         }
     }
 
