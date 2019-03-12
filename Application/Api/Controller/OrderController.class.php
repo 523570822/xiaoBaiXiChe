@@ -612,7 +612,7 @@ class OrderController extends BaseController {
      *Date:2019/02/18 15:52
      */
     public function settlement(){
-        $post = checkAppData('token,orderid,off_on','token-订单ID开关');
+        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
 //        $post['token'] = '836b5983da1f22cccf927be3fd909799';
 //        $post['orderid'] = 'XC201903111821106659';
 //        $post['off_on'] = 0;
