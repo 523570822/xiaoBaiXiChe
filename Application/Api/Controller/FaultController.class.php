@@ -51,7 +51,7 @@ class FaultController extends BaseController {
             $this->apiResponse ('0' , '找不到该机器');
         }
         if ( $request['type'] ) {
-            $this->apiResponse (0,$_FILES);
+            $where['pic_id'] = $request['pic_id'];
         } else {
             if ( empty($_FILES['pic_id']['name']) ) {
                 $this->apiResponse (0 , '请上传问题机器故障照片');
@@ -76,23 +76,10 @@ class FaultController extends BaseController {
         }
     }
 
-    /**
-     *机器故障图片上传测试
-     **/
-    public function faultPicture () {
-        if ( !empty($_FILES['pic_id']['name']) ) {
-            $res = api ('UploadPic/upload' , array (array ('save_path' => 'Fault')));
-            foreach ( $res as $key => $value ) {
-                $pic[$key] = $value['id'];
-            }
-            $where['pic_id'] = implode (',' , $pic);
-        }
-        $add = D ('Fault')->add ($where);
-        if ( $add ) {
-            $this->apiResponse ('1' , '提交成功');
-        } else {
-            $this->apiResponse ('0' , '提交失败');
+    public function upload () {
+        $res = api ('UploadPic/upload' , array (array ('save_path' => 'Fault')));
+        foreach ( $res as $key => $value ) {
+            $this->apiResponse (1 , '请求成功' , $value['id']);
         }
     }
-
 }
