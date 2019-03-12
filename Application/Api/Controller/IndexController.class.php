@@ -7,13 +7,11 @@
  */
 
 namespace Api\Controller;
-class IndexController extends BaseController
-{
+class IndexController extends BaseController {
     /**
      * 检查更新
      */
-    public function checkUpdate ()
-    {
+    public function checkUpdate () {
         $request = I ("");
         $this->checkParam (array (
             array ('version' , 'string' , '请输入当前版本号') ,
@@ -38,8 +36,7 @@ class IndexController extends BaseController
     /**
      * 首页
      **/
-    public function Msg ()
-    {
+    public function Msg () {
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
         $param['where']['status'] = 1;
@@ -54,9 +51,6 @@ class IndexController extends BaseController
             $res = M ('MsgReadLog')->where (array ('m_id' => $m_id , 'msg_id' => $list['id']))->find ();
             $list1['is_read'] = $res ? 0 : 1;//0已读 1未读
         }
-        $ress=M ('Order')->where (array ('m_id' => $m_id,'o_type'=>'1','w_type'=>'2','status'=>'1','is_set'=>'0','button'=>'0'))->find ();
-        $list1['id']=$ress['id'];
-        $list1['orderid']=$ress['orderid'];
         //有无订单未支付
         $is_pay = D ('Order')->where ($param['where'])->find ();
         $list1['is_pay'] = $is_pay ? 1 : 0;//0订单已支付 1订单待付
@@ -66,8 +60,7 @@ class IndexController extends BaseController
     /**
      * 获取openid
      **/
-    public function getOpenid ()
-    {
+    public function getOpenid () {
         $appid = 'wxf348bbbcc28d7e10';
         $secret = '2501eb21dd9346f91e9b612b0097b50f';
         $js_code = $_REQUEST['js_code'];
@@ -82,25 +75,35 @@ class IndexController extends BaseController
         $this->apiResponse (1 , '成功' , array ('openid' => $openid , 'session_key' => $session_key));
     }
 
+    // 小程序获取预约订单号
+    public function BookingOrderNumber () {
+        $request = I ("");
+        $rule = array ('openid' , 'string' , '请输入openid');
+        $this->checkParam ($rule);
+        $open_id = M ('MemberBind')->where (array ('openid' => $request['openid']))->find ();
+        $res = M ('Order')->where (array ('m_id' => $open_id['m_id'] , 'o_type' => '1' , 'w_type' => '2' , 'status' => '1' , 'is_set' => '0' , 'button' => '0'))->find ();
+        $ress['id']=$res['id'];
+        $ress['orderid']=$res['orderid'];
+        $this->apiResponse (1 , '成功' , $ress);
+    }
+
     /**
      * 获取小程序手机号
      **/
-    public function getPhoneNumber ($value = '')
-    {
+    public function getPhoneNumber ($value = '') {
         $encryptedData = I ('get.encryptedData');
         $iv = I ('get.iv');
         $this->sessionKey = I ('get.session_key');
         $res = $this->decryptData ($encryptedData , $iv);
-//         $res = json_decode($res);
+        //         $res = json_decode($res);
         if ( $res->phoneNumber ) {
-//             $res->phoneNumbe;
+            //             $res->phoneNumbe;
         }
         $this->ajaxReturn (['msg' => $res , 'status' => '1']); //把手机号返
     }
 
     // 小程序解密
-    public function decryptData ($encryptedData , $iv)
-    {
+    public function decryptData ($encryptedData , $iv) {
         if ( strlen ($this->sessionKey) != 24 ) {
             return self::$IllegalAesKey;
         }
@@ -122,13 +125,12 @@ class IndexController extends BaseController
         // return self::$OK;
     }
 
-//    public function testCronTab ()
-//    {
-//        $myfile = fopen("./Uploads/testFile.txt", "a") or die("Unable to open file!");
-//        $txt = "testFile\n";
-//        fwrite($myfile, $txt);
-//        fclose($myfile);
-//    }
-//
-
+    //    public function testCronTab ()
+    //    {
+    //        $myfile = fopen("./Uploads/testFile.txt", "a") or die("Unable to open file!");
+    //        $txt = "testFile\n";
+    //        fwrite($myfile, $txt);
+    //        fclose($myfile);
+    //    }
+    //
 }

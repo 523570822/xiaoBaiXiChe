@@ -29,7 +29,7 @@ class OrderController extends BaseController {
      * @param $model
      **/
     public function receive ($mc_id , $o_id , $m_id , $c_id , $model) {
-        $o = $this->send_post ('runtime_query' , $mc_id );
+        $o = $this->send_post ('runtime_query' , $mc_id);
         foreach ( $o['devices'] as $k => $v ) {
             $one['status'] = $v['queryitem']['service_status'];//服务状态
             $one['water_L'] = $v['queryitem']['clean_water_usage'];//清水使用状态
@@ -52,7 +52,7 @@ class OrderController extends BaseController {
             foreach ( $o['devices'] as $k => $v ) {
                 $one['status'] = $v['queryitem']['service_status'];//服务状态
             }
-            if ( !$bespeak && $one['status'] !='14') {
+            if ( !$bespeak && $one['status'] != '14' ) {
                 $this->apiResponse ('0' , '预约失败');
             }
         } elseif ( $model == '5' ) {
@@ -60,17 +60,17 @@ class OrderController extends BaseController {
             $param['o_id'] = $o_id;
             $param['c_id'] = $c_id;
             $param['tips'] = 'start';
-//            $param['status'] = '1';
+            //            $param['status'] = '1';
             $param['washing_start_time'] = $one['water_S'];
             $param['foam_start_time'] = $one['foam_S'];
             $param['cleaner_start_time'] = $one['vacuum_S'];
             $open = $this->send_post ('device_manage' , $mc_id , '1');
             $add = D ('Details')->add ($param);
-            $o = $this->send_post ('runtime_query' , $mc_id );
+            $o = $this->send_post ('runtime_query' , $mc_id);
             foreach ( $o['devices'] as $k => $v ) {
                 $one['status'] = $v['queryitem']['service_status'];//服务状态
             }
-            if ( !$add && !$open && $one['status'] !='13' ) {
+            if ( !$add && !$open && $one['status'] != '13' ) {
                 $this->apiResponse ('0' , '开启失败');
             }
         } elseif ( $model == '4' ) {
@@ -256,8 +256,8 @@ class OrderController extends BaseController {
             } elseif ( $w_type == '2' ) {
                 if ( $order['subs_time'] < time () ) {
                     $appsetting = D ('Appsetting')->field ('overtime_money')->find ();
-//                    var_dump ($order['id'],$order['pay_money']);die;
-                    if ( $order['pay_money']=='0.00' ) {
+                    //                    var_dump ($order['id'],$order['pay_money']);die;
+                    if ( $order['pay_money'] == '0.00' ) {
                         D ('Order')->where (array ('id' => $order['id']))->save (array ('pay_money' => $appsetting['overtime_money'] , 'is_no' => '1'));
                         D ('CarWasher')->where (array ('mc_code' => $mc_code))->save (array ('type' => '1'));
                         $this->apiResponse ('0' , '您有预约订单已超时' , array ('id' => $order['id'] , 'orderid' => $order['orderid']));
@@ -277,12 +277,12 @@ class OrderController extends BaseController {
     public function checkisToken ($m_id , $mc_code) {
         $CarWasher = D ('CarWasher')->where (array ('mc_code' => $mc_code))->find ();
         if ( $CarWasher['type'] == '3' ) {
-            $Order = D ('Order')->where (array ('c_id' => $CarWasher['id'] , 'o_type' => '1' , 'w_type' => '2' , 'status' => '1' , 'is_no' => '0' , 'is_set' => '0'))->find();
+            $Order = D ('Order')->where (array ('c_id' => $CarWasher['id'] , 'o_type' => '1' , 'w_type' => '2' , 'status' => '1' , 'is_no' => '0' , 'is_set' => '0'))->find ();
             if ( $Order['m_id'] == $m_id ) {
-                $this->checkhave($m_id ,'2' , $mc_code);
+                $this->checkhave ($m_id , '2' , $mc_code);
                 //变更机器 预订中->使用中
                 $yes = M ('CarWasher')->where (array ('mc_code' => $mc_code))->save (array ('type' => '2'));
-                $res = M ('Order')->where (array ('id'=>$Order['id']))->save (array ('create_time' => time ()));
+                $res = M ('Order')->where (array ('id' => $Order['id']))->save (array ('create_time' => time ()));
                 //控制机器
                 $this->receive ($CarWasher['mc_id'] , $Order['id'] , $m_id , $CarWasher['id'] , '5');
                 //返回数据
@@ -307,7 +307,7 @@ class OrderController extends BaseController {
         $rules = array ('mc_code' , 'string' , '请输入洗车机编号');
         $this->checkParam ($rules);
         //var_dump($request['mc_code']);die;
-        $this->checkisToken ($m_id,$request['mc_code']);
+        $this->checkisToken ($m_id , $request['mc_code']);
         $rule = array (
             array ('o_type' , 'string' , '请输入订单类型') ,
             array ('w_type' , 'string' , '请输入洗车类型') ,
@@ -333,7 +333,7 @@ class OrderController extends BaseController {
         //检查机器
         $this->checkMsgs ($mc_id , $mc_code , $m_id , $w_type);
         //添加订单
-        $data = $this->status ('2' , $m_id , $mc_id , $c_id );
+        $data = $this->status ('2' , $m_id , $mc_id , $c_id);
         $res = M ('Order')->add ($data);
         //查询订单ID
         $find = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
@@ -345,14 +345,14 @@ class OrderController extends BaseController {
         //返回数据
         if ( $res && $yes ) {
             //语音播放
-            $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
-            $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
+            $voice = M ('Voice')->where (array ('voice_type' => 1 , 'status' => 1))->find ();
+            $this->send_post ('device_manage' , $mc_id , 5 , 1 , $voice['content']);
             $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('id' => $o_id , 'orderid' => $data['orderid']));
         } else {
-            $car = M('CarWasher')->where(array('mc_id'=>$mc_id))->find();
-            if($car['status'] == 2 || $car['status'] == 3  || $car['status'] == 4){    //机器停用中扫码使用播放语音
-                $voice = M('Voice')->where(array('voice_type'=>3,'status'=>1))->find();
-                $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
+            $car = M ('CarWasher')->where (array ('mc_id' => $mc_id))->find ();
+            if ( $car['status'] == 2 || $car['status'] == 3 || $car['status'] == 4 ) {    //机器停用中扫码使用播放语音
+                $voice = M ('Voice')->where (array ('voice_type' => 3 , 'status' => 1))->find ();
+                $this->send_post ('device_manage' , $mc_id , 5 , 1 , $voice['content']);
             }
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
         }
@@ -391,7 +391,7 @@ class OrderController extends BaseController {
         //检查机器
         $this->checkMsgs ($mc_id , $mc_code , $m_id , $w_type);
         //添加订单
-        $data = $this->status ('3' , $m_id , $mc_id , $c_id );
+        $data = $this->status ('3' , $m_id , $mc_id , $c_id);
         $res = M ('Order')->add ($data);
         //查询订单ID
         $find = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
@@ -409,10 +409,10 @@ class OrderController extends BaseController {
     }
 
     /**/
-//    public function b(){
-//        $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
-//        var_dump($voice);exit;
-//    }
+    //    public function b(){
+    //        $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
+    //        var_dump($voice);exit;
+    //    }
 
     /**
      * 小鲸卡购买
@@ -434,7 +434,7 @@ class OrderController extends BaseController {
         //检查数据
         if ( $o_type !== '2' ) {
             $this->apiResponse ('0' , '订单类型错误');
-        }elseif (empty($id)){
+        } elseif ( empty($id) ) {
             $this->apiResponse ('0' , '小鲸卡为空');
         }
         //查询卡表
@@ -448,7 +448,7 @@ class OrderController extends BaseController {
         if ( $res ) {
             $this->apiResponse ('1' , '下单成功' , array ('id' => $o_id , 'orderid' => $data['orderid']));
         } else {
-            $this->apiResponse ('0' , '下单失败,请重试','The order failed, please try again');
+            $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
         }
     }
 
@@ -478,7 +478,7 @@ class OrderController extends BaseController {
             ->join ("LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id")
             ->field ('db_order.id,db_order.orderid,db_order.status,db_order.create_time,db_order.w_type,db_order.money,db_order.pay_money,db_order.is_no,is_set,db_car_washer.mc_code as mc_id ,db_car_washer.p_id,db_car_washer.type')
             ->page ($request['page'] , '10')
-            ->select ( ['id'=>'db_order.id asc','order' =>'db_order.create_time desc']);
+            ->select (['id' => 'db_order.id asc' , 'order' => 'db_order.create_time desc']);
         foreach ( $list_info as $k => $v ) {
             $m = $list_info[$k]['p_id'];
             $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();
@@ -572,35 +572,39 @@ class OrderController extends BaseController {
      * 计时器
      */
     public function timer () {
-        $m_id = $this->checkToken ();
-        $this->errorTokenMsg ($m_id);
-        $request = $_REQUEST;
-        $order = D ('Order')->where (array ('m_id' => $m_id , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->find ();
+        $request = I ("");
+        $rule = array (
+            array ('openid' , 'string' , '请输入openid') ,
+            array ('orderid' , 'string' , '请输入订单编号') ,
+        );
+        $this->checkParam ($rule);
+        $open_id = D ('MemberBind')->where (array ('openid' => $request['openid']))->find ();
+        $order = D ('Order')->where (array ('m_id' => $open_id['m_id'] , 'orderid' => $request['orderid'] , 'o_type' => '1' , 'w_type' => '2'))->find ();
         if ( $order['subs_time'] ) {
             $time1 = time ();
             $time2 = $order['subs_time'];
             $sub = ($time2 - $time1);
             $order['is_time'] = $order['subs_time'] < time () ? 1 : 0;//1超时 0未超时
-            if ( $order['is_time'] == 1 ) {
-                $pmae['is_no'] = 1;
-                $pmae['button'] = 1;
-                D ('Order')->where (array ('m_id' => $m_id , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->save ($pmae);
+            if ( $order['is_time'] == '1' ) {
+                $pmae['is_no'] = '1';
+                $pmae['button'] = '1';
+                D ('Order')->where (array ('m_id' => $open_id['m_id'] , 'orderid' => $request['orderid'] , 'o_type' => '1' , 'w_type' => '1'))->save ($pmae);
             }
         }
-        $this->apiResponse (1 , '查询成功' , array ('is_time' => $order['is_time'] , 'end_time' => $sub));
+        $this->apiResponse ('1' , '查询成功' , array ('is_time' => $order['is_time'] , 'end_time' => $sub));
     }
 
     /**
      *定时超时查询
      */
-    public function overtime(){
-        $order=D ('Order')->where (array ('status'=>1,'is_no'=>0,'is_set'=>0,'button'=>0,'o_type' => 1 , 'w_type' => 2))->select();
-        foreach ($order as $k=>$v){
-            $notime=time();
-            if($notime > $v['subs_time']){
+    public function overtime () {
+        $order = D ('Order')->where (array ('status' => 1 , 'is_no' => 0 , 'is_set' => 0 , 'button' => 0 , 'o_type' => 1 , 'w_type' => 2))->select ();
+        foreach ( $order as $k => $v ) {
+            $notime = time ();
+            if ( $notime > $v['subs_time'] ) {
                 $pmae['is_no'] = 1;
                 $pmae['button'] = 1;
-                D ('Order')->where (array ('id'=>$v['id']))->save ($pmae);
+                D ('Order')->where (array ('id' => $v['id']))->save ($pmae);
             }
         }
     }
@@ -611,184 +615,200 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/02/18 15:52
      */
-    public function settlement(){
-        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '836b5983da1f22cccf927be3fd909799';
-//        $post['orderid'] = 'XC201903111821106659';
-//        $post['off_on'] = 0;
+    public function settlement () {
+        $post = checkAppData ('token,orderid,off_on' , 'token-订单ID-开关');
+        //        $post['token'] = '836b5983da1f22cccf927be3fd909799';
+        //        $post['orderid'] = 'XC201903111821106659';
+        //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
-        $member = M('Member')->where($where)->find();
-        $o_where = array(
-            'm_id' =>$member['id'],
-            'orderid' =>$post['orderid'],
+        $member = M ('Member')->where ($where)->find ();
+        $o_where = array (
+            'm_id' => $member['id'] ,
+            'orderid' => $post['orderid'] ,
             //'button' =>0,   //还未结算
         );
-        $order = M('Order')->where($o_where)->find();
-        $d_where = array(
-            'o_id'=>$order['id'],
-            'm_id'=>$member['id'],
-            'status'=> 0,     //0代表未完成   订单还没结束
+        $order = M ('Order')->where ($o_where)->find ();
+        $d_where = array (
+            'o_id' => $order['id'] ,
+            'm_id' => $member['id'] ,
+            'status' => 0 ,     //0代表未完成   订单还没结束
         );
-        $details = M('Details')->where($d_where)->find();
-        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-//        $send_post = $this->send_post('runtime_query',$car['mc_id']);       //查询洗车机状态
-        $send_post = $this->send_post('runtime_query',$car['mc_id']);       //查询洗车机状态
-        //各设备使用时间
-        if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
-            $wash_fen = intval($details['washing']/60).'分';
-            $wash_miao = $details['washing'] % 60 . '秒';
-            $wash_time = $wash_fen . $wash_miao;                //水枪时间
-            $foam_fen = intval($details['foam']/60).'分';
-            $foam_miao = $details['foam'] % 60 . '秒';
-            $foam_time = $foam_fen . $foam_miao;                  //泡沫枪时间
-            $cleaner_fen = intval($details['cleaner']/60).'分';
-            $cleaner_miao = $details['cleaner'] % 60 . '秒';
-            $cleaner_time = $cleaner_fen . $cleaner_miao;          //吸尘器时间
-        }else if($details['washing'] < 60 || $details['foam'] < 60 || $details['cleaner'] < 60){
-            $wash_time = 0 . '分' . $details['washing'] . '秒';    //水枪时间
-            $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
-            $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
-        }
-        //判断订单
-        if(!empty($details)){
-            if($details['status'] == 1){
-                $this->apiResponse('0','此订单已结算,无法进行洗车操作');
+        $details = M ('Details')->where ($d_where)->find ();
+        $car = M ('CarWasher')->where (array ('id' => $details['c_id']))->find ();
+        $send_post = $this->send_post ('runtime_query' , $car['mc_id']);       //查询洗车机状态
+
+
+        if ( !empty($details) ) {
+            if ( $details['status'] == 1 ) {
+                $this->apiResponse ('0' , '此订单已结算,无法进行洗车操作');
             }
-//        var_dump($send_post['devices'][0]);
+            //        var_dump($send_post['devices'][0]);
             //判断机器使用状态
-            if($send_post['devices'][0]['queryitem']['service_status'] == 13){     //当机器service_status =13的时候,洗车机开启
-                $car_start_save = array(
-                    'type' => 2,
+            if ( $send_post['devices'][0]['queryitem']['service_status'] == 13 ) {     //当机器service_status =13的时候,洗车机开启
+                $car_start_save = array (
+                    'type' => 2 ,
                 );
-                $car_start = M('CarWasher')->where(array('id'=>$details['c_id']))->save($car_start_save);
-                if(round($send_post['devices'][0]['queryitem']['clean_water_duration']) != $details['washing_end_time']){
+                $car_start = M ('CarWasher')->where (array ('id' => $details['c_id']))->save ($car_start_save);
+                if ( round ($send_post['devices'][0]['queryitem']['clean_water_duration']) != $details['washing_end_time'] ) {
                     $indication = 1;
-                }elseif(round($send_post['devices'][0]['queryitem']['foam_duration']) != $details['foam_end_time']){
+                } elseif ( round ($send_post['devices'][0]['queryitem']['foam_duration']) != $details['foam_end_time'] ) {
                     $indication = 2;
-                }elseif(round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']) != $details['cleaner_end_time']){
+                } elseif ( round ($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']) != $details['cleaner_end_time'] ) {
                     $indication = 3;
-                }else{
+                } else {
                     $indication = 0;
                 }
                 //正式    洗车机使用前设备秒数读取
-//                if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) && ($send_post['devices'][0]['queryitem']['pump2_statu'] == 3) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 2)){
-//                    $start_data['washing_start_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-////                    $start_data['foam_start_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-////                    $start_data['cleaner_start_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
-//                    $d_where['status'] = 0;
-//                    $d_where['id'] = $details['id'];
-//                    $start = M('Details')->where($d_where)->save($start_data);
-//                }
+                //                if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) && ($send_post['devices'][0]['queryitem']['pump2_statu'] == 3) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 2)){
+                //                    $start_data['washing_start_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
+                ////                    $start_data['foam_start_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
+                ////                    $start_data['cleaner_start_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
+                //                    $d_where['status'] = 0;
+                //                    $d_where['id'] = $details['id'];
+                //                    $start = M('Details')->where($d_where)->save($start_data);
+                //                }
 
                 $f_where['id'] = $details['id'];
                 $f_where['status'] = 0;
-                $f_details = M('Details')->where($f_where)->find();
-//            var_dump($f_details);exit;
+                $f_details = M ('Details')->where ($f_where)->find ();
+                //            var_dump($f_details);exit;
                 //水枪使用时间
-                if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ){
-                    if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
-                        $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] -1;
-                        if($w_end_data['washing'] < 0 ){    //为-1就等于0
+                if ( ($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ) {
+                    if ( $send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time'] ) {
+                        $w_end_data['washing_end_time'] = round ($send_post['devices'][0]['queryitem']['clean_water_duration']);
+                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] - 1;
+                        if ( $w_end_data['washing'] < 0 ) {    //为-1就等于0
                             $w_end_data['washing'] = 0;
                         }
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
-                        $w_start = M('Details')->where($d_where)->save($w_end_data);
+                        $w_start = M ('Details')->where ($d_where)->save ($w_end_data);
                     }
                 }
                 //泡沫枪使用时间
-                if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 3) ){
-                    if($send_post['devices'][0]['queryitem']['foam_duration'] != $f_details['foam_end_time']){
-                        $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] -1;
-                        if($f_end_data['foam'] < 0 ){    //为-1就等于0
+                if ( ($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 3) ) {
+                    if ( $send_post['devices'][0]['queryitem']['foam_duration'] != $f_details['foam_end_time'] ) {
+                        $f_end_data['foam_end_time'] = round ($send_post['devices'][0]['queryitem']['foam_duration']);
+                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] - 1;
+                        if ( $f_end_data['foam'] < 0 ) {    //为-1就等于0
                             $f_end_data['foam'] = 0;
                         }
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
-                        $f_start = M('Details')->where($d_where)->save($f_end_data);
+                        $f_start = M ('Details')->where ($d_where)->save ($f_end_data);
                     }
                 }
                 //吸尘器使用时间
-                if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 2)){
-                    if($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] != $f_details['cleaner_end_time']){
-                        $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
+                if ( ($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 2) ) {
+                    if ( $send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] != $f_details['cleaner_end_time'] ) {
+                        $c_end_data['cleaner_end_time'] = round ($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
                         $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'];
-                        if($c_end_data['cleaner'] < 0 ){    //为-1就等于0
+                        if ( $c_end_data['cleaner'] < 0 ) {    //为-1就等于0
                             $c_end_data['cleaner'] = 0;
                         }
                         $d_where['status'] = 0;
                         $d_where['id'] = $details['id'];
-                        $c_start = M('Details')->where($d_where)->save($c_end_data);
+                        $c_start = M ('Details')->where ($d_where)->save ($c_end_data);
                     }
                 }
+                //各设备使用时间
+                if ( $details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner'] >= 60 ) {
+                    $wash_fen = intval ($details['washing'] / 60) . '分';
+                    $wash_miao = $details['washing'] % 60 . '秒';
+                    $wash_time = $wash_fen . $wash_miao;                //水枪时间
+                    $foam_fen = intval ($details['foam'] / 60) . '分';
+                    $foam_miao = $details['foam'] % 60 . '秒';
+                    $foam_time = $foam_fen . $foam_miao;                  //泡沫枪时间
+                    $cleaner_fen = intval ($details['cleaner'] / 60) . '分';
+                    $cleaner_miao = $details['cleaner'] % 60 . '秒';
+                    $cleaner_time = $cleaner_fen . $cleaner_miao;          //吸尘器时间
+                } else if ( $details['washing'] < 60 || $details['foam'] < 60 || $details['cleaner'] < 60 ) {
+                    $wash_time = 0 . '分' . $details['washing'] . '秒';    //水枪时间
+                    $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
+                    $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
+                }
                 //价格
-                $wash_money =  round($details['washing'] * $car['washing_money'],2);
-                $foam_money = round($details['foam'] * $car['foam_money'],2);
-                $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
-                $data_money = array(
-                    'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
-                    'washing' =>$wash_time,
-                    'foam'=>$foam_time,
-                    'cleaner'=>$cleaner_time,
-                    'all_money' =>$wash_money+$foam_money+$cleaner_money,
-                    'off_on' => $post['off_on'],
+                $wash_money = round ($details['washing'] * $car['washing_money'] , 2);
+                $foam_money = round ($details['foam'] * $car['foam_money'] , 2);
+                $cleaner_money = round ($details['cleaner'] * $car['cleaner_money'] , 2);
+                $data_money = array (
+                    'indication' => $indication ,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
+                    'washing' => $wash_time ,
+                    'foam' => $foam_time ,
+                    'cleaner' => $cleaner_time ,
+                    'all_money' => $wash_money + $foam_money + $cleaner_money ,
+                    'off_on' => $post['off_on'] ,
                 );
-                //检查洗车机继续使用还是结算
-                if(!empty($data_money)){
-                    if($post['off_on'] == 0){
-                        $this->apiResponse('1','查询成功',$data_money);
-                    }elseif($post['off_on'] == 1){
-                        $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
-                        $d_save = array(
-                            'status'  => 1,
+
+
+                if ( !empty($data_money) ) {
+                    if ( $post['off_on'] == 0 ) {
+                        $this->apiResponse ('1' , '查询成功' , $data_money);
+                    } elseif ( $post['off_on'] == 1 ) {
+                        $send_post = $this->send_post ('device_manage' , $car['mc_id'] , 3);   //结算
+                        $d_save = array (
+                            'status' => 1 ,
                         );
-                        $detailss = M('Details')->where($d_where)->save($d_save);
-                        $o_save = array(
-                            'button' => 1,
-                            'money' => $data_money['all_money'],
+                        $detailss = M ('Details')->where ($d_where)->save ($d_save);
+                        $o_save = array (
+                            'button' => 1 ,
                         );
-                        $o_order = M('Order')->where($o_where)->save($o_save);
+                        $o_order = M ('Order')->where ($o_where)->save ($o_save);
                         //语音播报
-                        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-                        $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
-                        $this->apiResponse('1','结算成功',$data_money);
+                        $voice = M ('Voice')->where (array ('voice_type' => 2 , 'status' => 1))->find ();
+                        $this->send_post ('device_manage' , $car['mc_id'] , 5 , 1 , $voice['content']);
+                        $this->apiResponse ('1' , '结算成功' , $data_money);
                     }
                 }
-            }else if($send_post['devices'][0]['queryitem']['service_status'] == 12){   //12代表机器结算   结算跳转到立即支付页
+            } else if ( $send_post['devices'][0]['queryitem']['service_status'] == 12 ) {   //12代表机器结算   结算跳转到立即支付页
+                //各设备使用时间
+                if ( $details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner'] >= 60 ) {
+                    $wash_fen = intval ($details['washing'] / 60) . '分';
+                    $wash_miao = $details['washing'] % 60 . '秒';
+                    $wash_time = $wash_fen . $wash_miao;                //水枪时间
+                    $foam_fen = intval ($details['foam'] / 60) . '分';
+                    $foam_miao = $details['foam'] % 60 . '秒';
+                    $foam_time = $foam_fen . $foam_miao;                  //泡沫枪时间
+                    $cleaner_fen = intval ($details['cleaner'] / 60) . '分';
+                    $cleaner_miao = $details['cleaner'] % 60 . '秒';
+                    $cleaner_time = $cleaner_fen . $cleaner_miao;          //吸尘器时间
+                } else if ( $details['washing'] < 60 || $details['foam'] < 60 || $details['cleaner'] < 60 ) {
+                    $wash_time = 0 . '分' . $details['washing'] . '秒';    //水枪时间
+                    $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
+                    $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
+                }
                 //价格
-                $wash_money =  round($details['washing'] * $car['washing_money'],2);
-                $foam_money = round($details['foam'] * $car['foam_money'],2);
-                $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
-                $data_money = array(
-                    'washing' =>$wash_time,             //水枪使用时间
-                    'foam'=>$foam_time,                   //泡沫使用时间
-                    'cleaner'=>$cleaner_time,             //吸尘器使用时间
-                    'all_money' =>$wash_money+$foam_money+$cleaner_money,       //总金额
-                    'off_on' => $post['off_on'],
+                $wash_money = round ($details['washing'] * $car['washing_money'] , 2);
+                $foam_money = round ($details['foam'] * $car['foam_money'] , 2);
+                $cleaner_money = round ($details['cleaner'] * $car['cleaner_money'] , 2);
+                $data_money = array (
+                    'washing' => $wash_time ,             //水枪使用时间
+                    'foam' => $foam_time ,                   //泡沫使用时间
+                    'cleaner' => $cleaner_time ,             //吸尘器使用时间
+                    'all_money' => $wash_money + $foam_money + $cleaner_money ,       //总金额
+                    'off_on' => $post['off_on'] ,
                 );
                 $post['off_on'] = 1;
-                $d_save = array(
-                    'status'  => 1,
+                $d_save = array (
+                    'status' => 1 ,
                 );
-                $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
-                $o_save = array(
-                    'button' => 1,
+                $detailsss = M ('Details')->where ($d_where)->save ($d_save);    //洗车数据详情表状态改为1,订单结束
+                $o_save = array (
+                    'button' => 1 ,
                 );
-                $o_order = M('Order')->where($o_where)->save($o_save);
+                $o_order = M ('Order')->where ($o_where)->save ($o_save);
                 //语音播报
-                $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-                $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
-                $this->apiResponse('1','结算成功',$data_money);
-            } else if($send_post['devices'][0]['queryitem']['service_status'] < 8){
-                $this->apiResponse('0','设备不在线');
-            }else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
-                $this->apiResponse('0','请先下订单');
+                $voice = M ('Voice')->where (array ('voice_type' => 2 , 'status' => 1))->find ();
+                $this->send_post ('device_manage' , $car['mc_id'] , 5 , 1 , $voice['content']);
+                $this->apiResponse ('1' , '结算成功' , $data_money);
+            } else if ( $send_post['devices'][0]['queryitem']['service_status'] < 8 ) {
+                $this->apiResponse ('0' , '设备不在线');
+            } else if ( $send_post['devices'][0]['queryitem']['service_status'] == 8 ) {
+                $this->apiResponse ('0' , '请下订单');
             }
-        }else{
-            $this->apiResponse('0','暂无查询此订单');
+        } else {
+            $this->apiResponse ('0' , '暂无查询此订单');
         }
     }
 
@@ -797,98 +817,98 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/02/21 13:19
      */
-    public function  Pay(){
-        $post = checkAppData('token,orderid,method,methodID','token-订单ID-优惠方式-优惠卡ID');
-//        $post['token'] = 'cbbd2563ea8e79dab27a8115dd8bf08f';
-//        $post['orderid'] = 'XC201903041455215144';
+    public function Pay () {
+        $post = checkAppData ('token,orderid,method,methodID' , 'token-订单ID-优惠方式-优惠卡ID');
+        //        $post['token'] = 'cbbd2563ea8e79dab27a8115dd8bf08f';
+        //        $post['orderid'] = 'XC201903041455215144';
 
-//        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
-//        $post['methodID'] = 29;    //折扣卡ID
+        //        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
+        //        $post['methodID'] = 29;    //折扣卡ID
 
         $where['token'] = $post['token'];
-        $member = M('Member')->where($where)->find();
-        $order_w = array(
-            'orderid' =>$post['orderid'],
-            'm_id' => $member['id'],
-            'button' =>1,
+        $member = M ('Member')->where ($where)->find ();
+        $order_w = array (
+            'orderid' => $post['orderid'] ,
+            'm_id' => $member['id'] ,
+            'button' => 1 ,
         );
         //查询订单信息
-        $order_f = M('Order')->where($order_w)->find();
-        if(empty($order_f)){
-            $this->apiResponse('0','暂无该订单信息或订单未结算');
+        $order_f = M ('Order')->where ($order_w)->find ();
+        if ( empty($order_f) ) {
+            $this->apiResponse ('0' , '暂无该订单信息或订单未结算');
         }
-        $d_where = array(
-            'o_id'=>$order_f['id'],
-            'm_id'=>$member['id'],
-            'status'=> 1
+        $d_where = array (
+            'o_id' => $order_f['id'] ,
+            'm_id' => $member['id'] ,
+            'status' => 1
         );
         //查询洗车数据详情
-        $details = M('Details')->where($d_where)->find();
+        $details = M ('Details')->where ($d_where)->find ();
         //查询洗车机列表
-        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
+        $car = M ('CarWasher')->where (array ('id' => $details['c_id']))->find ();
         //请求物联网接口,获取数据
-        $send_post = $this->send_post('runtime_query',$car['mc_id']);
+        $send_post = $this->send_post ('runtime_query' , $car['mc_id']);
         //判断洗车机状态
-        $wash_fen = round($details['washing']/60,2);
-        $foam_fen = round($details['foam']/60,2);
-        $cleaner_fen = round($details['cleaner']/60,2);
-//        var_dump($send_post['devices'][0]['queryitem']['service_status']);exit;
-        if($send_post['devices'][0]['queryitem']['service_status'] == 12){    //结算
-            $price = M('Appsetting')->where(array('id'=>1))->find();
-//        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-//        $send_post = $this->send_post('device_manage',$car['mc_id'],3);
+        $wash_fen = round ($details['washing'] / 60 , 2);
+        $foam_fen = round ($details['foam'] / 60 , 2);
+        $cleaner_fen = round ($details['cleaner'] / 60 , 2);
+        //        var_dump($send_post['devices'][0]['queryitem']['service_status']);exit;
+        if ( $send_post['devices'][0]['queryitem']['service_status'] == 12 ) {    //结算
+            $price = M ('Appsetting')->where (array ('id' => 1))->find ();
+            //        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
+            //        $send_post = $this->send_post('device_manage',$car['mc_id'],3);
 
-            $wash_money =  round($details['washing'] * $car['washing_money'],2);    //水枪金额
-            $foam_money = round($details['foam'] * $car['foam_money'],2); //泡沫枪金额
-            $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2); //吸尘器金额
+            $wash_money = round ($details['washing'] * $car['washing_money'] , 2);    //水枪金额
+            $foam_money = round ($details['foam'] * $car['foam_money'] , 2); //泡沫枪金额
+            $cleaner_money = round ($details['cleaner'] * $car['cleaner_money'] , 2); //吸尘器金额
             $all_money = $wash_money + $foam_money + $cleaner_money;  //总金额
 
             //判断是否有优惠方式
-            if($post['method'] == 1){
-                $card_list = M ('CardUser')->where (array ('db_card_user.id' => $post['methodID'], 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->find ();
-                $price = round($all_money * $card_list['rebate'],2);
+            if ( $post['method'] == 1 ) {
+                $card_list = M ('CardUser')->where (array ('db_card_user.id' => $post['methodID'] , 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->find ();
+                $price = round ($all_money * $card_list['rebate'] , 2);
                 $method = $card_list['name'] . '会员' . ($card_list['rebate'] * 10) . '折';
-            }elseif ($post['method'] == 2){
-                $coupon_list = M ('CouponBind')->where (array ('db_coupon_bind.id' =>$post['methodID'],'db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 1))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id')->find ();
-                $price = round($all_money - $coupon_list['price'],2);
+            } elseif ( $post['method'] == 2 ) {
+                $coupon_list = M ('CouponBind')->where (array ('db_coupon_bind.id' => $post['methodID'] , 'db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 1))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id')->find ();
+                $price = round ($all_money - $coupon_list['price'] , 2);
                 $method = $coupon_list['title'] . $coupon_list['price'] . '元';
-            }elseif ($post['method'] == 3){
+            } elseif ( $post['method'] == 3 ) {
                 $price = $all_money;
                 $method = '暂无使用优惠方式';
             }
             //返回的数据
-            $data = array(
-                'time' =>array(
-                    'wash' =>$wash_fen,
-                    'foam' =>$foam_fen,
-                    'cleaner' =>$cleaner_fen,
-                ),
-                'now_price' =>array(
-                    'wash_price' =>$wash_money,
-                    'foam_price' =>$foam_money,
-                    'cleaner_price' =>$cleaner_money
-                ),
-                'all_price' =>$all_money,
-                'method' => $method,
-                'real_price' =>$price,
-                'methods' =>$post['method'],
-                'methods_id' =>$post['methodID'],
+            $data = array (
+                'time' => array (
+                    'wash' => $wash_fen ,
+                    'foam' => $foam_fen ,
+                    'cleaner' => $cleaner_fen ,
+                ) ,
+                'now_price' => array (
+                    'wash_price' => $wash_money ,
+                    'foam_price' => $foam_money ,
+                    'cleaner_price' => $cleaner_money
+                ) ,
+                'all_price' => $all_money ,
+                'method' => $method ,
+                'real_price' => $price ,
+                'methods' => $post['method'] ,
+                'methods_id' => $post['methodID'] ,
             );
-            if(!empty($data)){
+            if ( !empty($data) ) {
                 //查找条件
                 //echo M('Order')->_sql();
-                $stop = $this->send_post('device_manage',$car['mc_id'],4);
-                $sa_where = array(
-                    'orderid' =>$post['orderid'],
-                    'm_id' => $member['id'],
-                    'button' =>1,
+                $stop = $this->send_post ('device_manage' , $car['mc_id'] , 4);
+                $sa_where = array (
+                    'orderid' => $post['orderid'] ,
+                    'm_id' => $member['id'] ,
+                    'button' => 1 ,
                 );
-                $sa_data = array(
-                    'money' => $all_money,
+                $sa_data = array (
+                    'money' => $all_money ,
                     'pay_money' => $price
                 );
-                $sa_order = M('Order')->where($sa_where)->save($sa_data);
-                $this->apiResponse('1','查询成功',$data);
+                $sa_order = M ('Order')->where ($sa_where)->save ($sa_data);
+                $this->apiResponse ('1' , '查询成功' , $data);
             }
         }
     }
@@ -898,12 +918,12 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/02/22 18:21
      */
-    public function proMethod(){
-        $post = checkAppData('token','token');
-//        $post['token'] = 'cce9c86617d3d51ce98a7e018978f3f8';
+    public function proMethod () {
+        $post = checkAppData ('token' , 'token');
+        //        $post['token'] = 'cce9c86617d3d51ce98a7e018978f3f8';
         $where['token'] = $post['token'];
-        $member = M('Member')->where($where)->find();
-        $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
+        $member = M ('Member')->where ($where)->find ();
+        $card_list = M ('CardUser')->where (array ('db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
 
         foreach ( $card_list as $key => $value ) {
             $c_card = $card_list[$key]['name'] . '会员' . ($card_list[$key]['rebate'] * 10) . '折';
@@ -920,33 +940,33 @@ class OrderController extends BaseController {
         }
 
 
-        if(!empty($member)){
-            if(empty($card_lists) && !empty($coupon_lists)){
-                $data = array(
-                    'card' => 0,
-                    'coupon' => $coupon_lists,
+        if ( !empty($member) ) {
+            if ( empty($card_lists) && !empty($coupon_lists) ) {
+                $data = array (
+                    'card' => 0 ,
+                    'coupon' => $coupon_lists ,
                 );
-                $this->apiResponse('1','暂无会员卡',$data);
+                $this->apiResponse ('1' , '暂无会员卡' , $data);
             }
-            if(empty($coupon_lists) && !empty($card_lists)){
-                $data = array(
-                    'card' => $card_lists,
-                    'coupon' => 0,
+            if ( empty($coupon_lists) && !empty($card_lists) ) {
+                $data = array (
+                    'card' => $card_lists ,
+                    'coupon' => 0 ,
                 );
-                $this->apiResponse('1','暂无折扣卡',$data);
+                $this->apiResponse ('1' , '暂无折扣卡' , $data);
             }
-            if(empty($coupon_lists) && empty($card_lists)){
-                $data = array(
-                    'card' => 0,
-                    'coupon' => 0,
+            if ( empty($coupon_lists) && empty($card_lists) ) {
+                $data = array (
+                    'card' => 0 ,
+                    'coupon' => 0 ,
                 );
-                $this->apiResponse('1','没有优惠方式',$data);
+                $this->apiResponse ('1' , '没有优惠方式' , $data);
             }
-            $data = array(
-                'card' => $card_lists,
-                'coupon' => $coupon_lists,
+            $data = array (
+                'card' => $card_lists ,
+                'coupon' => $coupon_lists ,
             );
-            $this->apiResponse('1','成功',$data);
+            $this->apiResponse ('1' , '成功' , $data);
         }
     }
 
@@ -955,34 +975,34 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/03/02 11:14
      */
-    public function button(){
-        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
-//        $post['deviceid'] = '510042001451373435363337';
-//        $post['event'] = 1;
-//        $post['clean_usage'] = 0;
-//        $post['clean_duration'] =0 ;
-//        $post['foam_usage'] =0 ;
-//        $post['foam_duration'] =0 ;
-//        $post['vacuum_usage'] = 0;
-        $car = M('CarWasher')->where(array('mc_id'=>$post['deviceid']))->find();
-        $order = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->find();
-        if($post['event'] == 1){
-            $send_post = $this->send_post('device_manage',$post['deviceid'],3);
-            $d_save = array(
-                'washing' => $post['clean_duration'],
-                'foam' => $post['foam_duration'],
-                'cleaner' => $post['vacuum_usage'],
-                'status' => 1,
+    public function button () {
+        $post = checkAppData ('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage' , '洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
+        //        $post['deviceid'] = '510042001451373435363337';
+        //        $post['event'] = 1;
+        //        $post['clean_usage'] = 0;
+        //        $post['clean_duration'] =0 ;
+        //        $post['foam_usage'] =0 ;
+        //        $post['foam_duration'] =0 ;
+        //        $post['vacuum_usage'] = 0;
+        $car = M ('CarWasher')->where (array ('mc_id' => $post['deviceid']))->find ();
+        $order = M ('Order')->where (array ('c_id' => $car['id'] , 'button' => 0))->find ();
+        if ( $post['event'] == 1 ) {
+            $send_post = $this->send_post ('device_manage' , $post['deviceid'] , 3);
+            $d_save = array (
+                'washing' => $post['clean_duration'] ,
+                'foam' => $post['foam_duration'] ,
+                'cleaner' => $post['vacuum_usage'] ,
+                'status' => 1 ,
             );
-            $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
-            $o_save = array(
-                'button' => 1,
+            $detail = M ('Details')->where (array ('c_id' => $car['id'] , 'o_id' => $order['id'] , 'status' => 0))->save ($d_save);
+            $o_save = array (
+                'button' => 1 ,
             );
-            $orders = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->save($o_save);
-            if($send_post){
-                $this->apiResponse(1,'result','OK');
-            }else{
-                $this->apiResponse(0,'result','FAILED');
+            $orders = M ('Order')->where (array ('c_id' => $car['id'] , 'button' => 0))->save ($o_save);
+            if ( $send_post ) {
+                $this->apiResponse (1 , 'result' , 'OK');
+            } else {
+                $this->apiResponse (0 , 'result' , 'FAILED');
             }
         }
     }
@@ -992,31 +1012,31 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/02/27 17:41
      */
-//    public function account(){
-//        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
-////        $post['deviceid'] = 510042001451373435363337;
-////        $post['event'] = 1;
-////        $post['clean_usage'] = 0;
-////        $post['clean_duration'] =0 ;
-////        $post['foam_usage'] =0 ;
-////        $post['foam_duration'] =0 ;
-////        $post['vacuum_usage'] = 0;
-//        $data = array(
-//            'devices' => array(
-//                'deviceid' =>$post['deviceid'],
-//                'event' => $post['event'],
-//                'settlement_info' => array(
-//                    'clean_usage' => $post['clean_usage'],                     //清水用量
-//                    'clean_duration' => $post['clean_duration'],                  //清水使用时间
-//                    'foam_usage' => $post['foam_usage'],                       //泡沫用量
-//                    'foam_duration' => $post['foam_duration'],                    //泡沫使用时间
-//                    'vacuum_usage' => $post['vacuum_usage'],                     //吸尘器使用时间
-//                ),
-//            ),
-//        );
-//        if($data){
-//            $this->apiResponse('1','成功',$data);
-//        }
+    //    public function account(){
+    //        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
+    ////        $post['deviceid'] = 510042001451373435363337;
+    ////        $post['event'] = 1;
+    ////        $post['clean_usage'] = 0;
+    ////        $post['clean_duration'] =0 ;
+    ////        $post['foam_usage'] =0 ;
+    ////        $post['foam_duration'] =0 ;
+    ////        $post['vacuum_usage'] = 0;
+    //        $data = array(
+    //            'devices' => array(
+    //                'deviceid' =>$post['deviceid'],
+    //                'event' => $post['event'],
+    //                'settlement_info' => array(
+    //                    'clean_usage' => $post['clean_usage'],                     //清水用量
+    //                    'clean_duration' => $post['clean_duration'],                  //清水使用时间
+    //                    'foam_usage' => $post['foam_usage'],                       //泡沫用量
+    //                    'foam_duration' => $post['foam_duration'],                    //泡沫使用时间
+    //                    'vacuum_usage' => $post['vacuum_usage'],                     //吸尘器使用时间
+    //                ),
+    //            ),
+    //        );
+    //        if($data){
+    //            $this->apiResponse('1','成功',$data);
+    //        }
     //  }
 
     /**
@@ -1024,10 +1044,10 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/03/05 14:32
      */
-//    public function a(){
-//
-//        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-//        var_dump($voice);exit;
-//    }
+    //    public function a(){
+    //
+    //        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+    //        var_dump($voice);exit;
+    //    }
 
 }
