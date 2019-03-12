@@ -579,19 +579,19 @@ class OrderController extends BaseController {
         );
         $this->checkParam ($rule);
         $open_id = D ('MemberBind')->where (array ('openid' => $request['openid']))->find ();
-        $order = D ('Order')->where (array ('m_id' => $open_id['m_id'] , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->find ();
+        $order = D ('Order')->where (array ('m_id' => $open_id['m_id'] , 'orderid' => $request['orderid'] , 'o_type' => '1' , 'w_type' => '2'))->find ();
         if ( $order['subs_time'] ) {
             $time1 = time ();
             $time2 = $order['subs_time'];
             $sub = ($time2 - $time1);
             $order['is_time'] = $order['subs_time'] < time () ? 1 : 0;//1超时 0未超时
-            if ( $order['is_time'] == 1 ) {
-                $pmae['is_no'] = 1;
-                $pmae['button'] = 1;
-                D ('Order')->where (array ('m_id' => $open_id['m_id'] , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->save ($pmae);
+            if ( $order['is_time'] == '1' ) {
+                $pmae['is_no'] = '1';
+                $pmae['button'] = '1';
+                D ('Order')->where (array ('m_id' => $open_id['m_id'] , 'orderid' => $request['orderid'] , 'o_type' => '1' , 'w_type' => '1'))->save ($pmae);
             }
         }
-        $this->apiResponse (1 , '查询成功' , array ('is_time' => $order['is_time'] , 'end_time' => $sub));
+        $this->apiResponse ('1' , '查询成功' , array ('is_time' => $order['is_time'] , 'end_time' => $sub));
     }
 
     /**
