@@ -54,6 +54,9 @@ class IndexController extends BaseController
             $res = M ('MsgReadLog')->where (array ('m_id' => $m_id , 'msg_id' => $list['id']))->find ();
             $list1['is_read'] = $res ? 0 : 1;//0已读 1未读
         }
+        $ress=M ('Order')->where (array ('m_id' => $m_id,'o_type'=>'1','w_type'=>'2','status'=>'1','is_set'=>'0','button'=>'0'))->find ();
+        $list1['id']=$ress['id'];
+        $list1['orderid']=$ress['orderid'];
         //有无订单未支付
         $is_pay = D ('Order')->where ($param['where'])->find ();
         $list1['is_pay'] = $is_pay ? 1 : 0;//0订单已支付 1订单待付
