@@ -824,7 +824,7 @@ class OrderController extends BaseController {
         $foam_fen = round($details['foam']/60,2);
         $cleaner_fen = round($details['cleaner']/60,2);
 //        var_dump($send_post['devices'][0]['queryitem']['service_status']);exit;
-        if($send_post['devices'][0]['queryitem']['service_status'] == 12){    //正确填12
+        if($send_post['devices'][0]['queryitem']['service_status'] == 12){    //结算
             $price = M('Appsetting')->where(array('id'=>1))->find();
 //        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
 //        $send_post = $this->send_post('device_manage',$car['mc_id'],3);
@@ -869,7 +869,6 @@ class OrderController extends BaseController {
                 //查找条件
                 //echo M('Order')->_sql();
                 $stop = $this->send_post('device_manage',$car['mc_id'],4);
-
                 $sa_where = array(
                     'orderid' =>$post['orderid'],
                     'm_id' => $member['id'],
@@ -882,10 +881,7 @@ class OrderController extends BaseController {
                 $sa_order = M('Order')->where($sa_where)->save($sa_data);
                 $this->apiResponse('1','查询成功',$data);
             }
-        }else{
-            $this->apiResponse('0','暂无信息');
         }
-
     }
 
     /**
@@ -950,7 +946,7 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/03/02 11:14
      */
-    public function Button(){
+    public function button(){
         $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
 //        $post['deviceid'] = '510042001451373435363337';
 //        $post['event'] = 1;

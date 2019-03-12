@@ -217,7 +217,8 @@ class WashshopController extends BaseController
             $this->apiResponse ('0' , '缺少坐标参数');
         }
         $wh3 = '(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(' . $lat . '-lat)/360),2)+COS(3.1415926535898*' . $lat . '/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(' . $lon . '-lon)/360),2))))*1000';
-        $washcar = M ('CarWasher')->where (array ('status' => 1))->field ('id,p_id,lon,lat,address,mc_code as mc_id ,status,type,' . $wh3 . ' as distance')->order ('distance ASC')->select ();
+        $where['status'] = array('neq','9');
+        $washcar = M ('CarWasher')->where ($where)->field ('id,p_id,lon,lat,address,mc_code as mc_id ,status,type,' . $wh3 . ' as distance')->order ('distance ASC')->select ();
         if ( $washcar ) {
             foreach ( $washcar as $k => $v ) {
                 if ( $lat == "" ) {
