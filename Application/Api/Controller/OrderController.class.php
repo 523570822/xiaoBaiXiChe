@@ -262,9 +262,10 @@ class OrderController extends BaseController {
                         D ('CarWasher')->where (array ('mc_code' => $mc_code))->save (array ('type' => '1'));
                         $this->apiResponse ('0' , '您有预约订单已超时' , array ('id' => $order['id'] , 'orderid' => $order['orderid']));
                     }
-                } else {
-                    $this->apiResponse ('0' , '您有预约订单未处理' , array ('id' => $order['id'] , 'orderid' => $order['orderid']));
                 }
+//                else {
+//                    $this->apiResponse ('0' , '您有预约订单未处理' , array ('id' => $order['id'] , 'orderid' => $order['orderid']));
+//                }
             }
         }
     }
