@@ -376,12 +376,16 @@ class OrderController extends BaseController {
             array ('w_type' , 'string' , '请输入洗车类型') ,
             array ('mc_code' , 'string' , '请输入洗车机编号') ,
         );
-        echo 111;exit;
         $this->checkParam ($rule);
+        $f_order = M('Order')->where(array('m_id'=>$m_id,'w_type'=>2,'status'=>1))->find();
+        if($f_order){
+            $this->apiResponse('0','您还有预约订单未结算');
+        }
         //重定义名称
         $o_type = $request['o_type'];
         $w_type = $request['w_type'];
         $mc_code = $request['mc_code'];
+
         //转换数据
         $mc_id = $this->check_mc_code ($mc_code , '1');
         $c_id = $this->check_mc_code ($mc_code , '2');
