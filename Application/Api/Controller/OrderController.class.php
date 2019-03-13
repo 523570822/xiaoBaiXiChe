@@ -279,6 +279,7 @@ class OrderController extends BaseController {
         $CarWasher = D ('CarWasher')->where (array ('mc_code' => $mc_code))->find ();
         if ( $CarWasher['type'] == '3' ) {
             $Order = D ('Order')->where (array ('c_id' => $CarWasher['id'] , 'o_type' => '1' , 'w_type' => '2' , 'status' => '1' , 'is_no' => '0' , 'is_set' => '0'))->find();
+
             if ( $Order['m_id'] == $m_id ) {
                 $this->checkhave($m_id ,'2' , $mc_code);
                 //变更机器 预订中->使用中
@@ -292,6 +293,8 @@ class OrderController extends BaseController {
                 } else {
                     $this->apiResponse ('0' , '开启失败,请重试' , 'The order failed, please try again');
                 }
+            }else if($Order['m_id'] != $m_id ){
+                $this->apiResponse('0','该洗车机以别人预约');
             }
         }
     }
@@ -594,12 +597,14 @@ class OrderController extends BaseController {
     public function overtime(){
 
         $order=D ('Order')->where (array ('status'=>1,'is_no'=>0,'is_set'=>0,'button'=>0,'o_type' => 1 , 'w_type' => 2))->select();
+        $money = M('Appsetting')->where(array('id'=>1))->find();
         foreach ($order as $k=>$v){
             $notime=time();
             $order[$k]['c_id']=$v['c_id'];
             if($notime > $v['subs_time']){
                 $pmae['is_no'] = 1;
                 $pmae['button'] = 1;
+                $pmae['pay_money'] = $money['overtime_money'];
                 $where['type'] = 1;
                 D ('Order')->where (array ('id'=>$v['id']))->save ($pmae);
                 D ('CarWasher')->where (array ('id'=> $order[$k]['c_id']))->save ($where);
