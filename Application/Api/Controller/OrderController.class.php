@@ -568,10 +568,11 @@ class OrderController extends BaseController {
      * 计时器
      */
     public function timer () {
-        $m_id = $this->checkToken ();
-        $this->errorTokenMsg ($m_id);
-        $request = $_REQUEST;
-        $order = D ('Order')->where (array ('m_id' => $m_id , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->find ();
+        $request = I ("");
+        $rule = array ('openid' , 'string' , '请输入openid');
+        $this->checkParam ($rule);
+        $open_id = M ('MemberBind')->where (array ('openid' => $request['openid']))->find ();
+        $order = D ('Order')->where (array ('m_id' => $open_id['m_id'] , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->find ();
         if ( $order['subs_time'] ) {
             $time1 = time ();
             $time2 = $order['subs_time'];
@@ -580,7 +581,7 @@ class OrderController extends BaseController {
             if ( $order['is_time'] == 1 ) {
                 $pmae['is_no'] = 1;
                 $pmae['button'] = 1;
-                D ('Order')->where (array ('m_id' => $m_id , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->save ($pmae);
+                D ('Order')->where (array ('m_id' =>  $open_id['m_id'] , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->save ($pmae);
             }
         }
         $this->apiResponse (1 , '查询成功' , array ('is_time' => $order['is_time'] , 'end_time' => $sub));
