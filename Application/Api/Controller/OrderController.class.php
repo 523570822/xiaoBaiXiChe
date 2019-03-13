@@ -591,13 +591,17 @@ class OrderController extends BaseController {
      *定时超时查询
      */
     public function overtime(){
+
         $order=D ('Order')->where (array ('status'=>1,'is_no'=>0,'is_set'=>0,'button'=>0,'o_type' => 1 , 'w_type' => 2))->select();
         foreach ($order as $k=>$v){
             $notime=time();
+            $order[$k]['c_id']=$v['c_id'];
             if($notime > $v['subs_time']){
                 $pmae['is_no'] = 1;
                 $pmae['button'] = 1;
+                $where['type'] = 1;
                 D ('Order')->where (array ('id'=>$v['id']))->save ($pmae);
+                D ('CarWasher')->where (array ('id'=> $order[$k]['c_id']))->save ($where);
             }
         }
     }
