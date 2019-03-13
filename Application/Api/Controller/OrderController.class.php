@@ -408,12 +408,6 @@ class OrderController extends BaseController {
         }
     }
 
-    /**/
-//    public function b(){
-//        $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
-//        var_dump($voice);exit;
-//    }
-
     /**
      * 小鲸卡购买
      **/
@@ -802,10 +796,10 @@ class OrderController extends BaseController {
      */
     public function  Pay(){
         $post = checkAppData('token,orderid,method,methodID','token-订单ID-优惠方式-优惠卡ID');
-//        $post['token'] = 'cbbd2563ea8e79dab27a8115dd8bf08f';
-//        $post['orderid'] = 'XC201903041455215144';
-//        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
-//        $post['methodID'] = 29;    //折扣卡ID
+//        $post['token'] = '927384a463de478a166367a4f8e493fe';
+//        $post['orderid'] = 'XC201903111525178851';
+//        $post['method'] = 3;     //1代表折扣卡    2代表抵用券   3无优惠方式
+//        $post['methodID'] = 0;    //折扣卡ID
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -835,7 +829,8 @@ class OrderController extends BaseController {
         $foam_fen = round($details['foam']/60,2);
         $cleaner_fen = round($details['cleaner']/60,2);
 //        var_dump($send_post['devices'][0]['queryitem']['service_status']);exit;
-        if($send_post['devices'][0]['queryitem']['service_status'] == 12){    //结算
+//        if($send_post['devices'][0]['queryitem']['service_status'] != 13){    //结算
+
             $price = M('Appsetting')->where(array('id'=>1))->find();
 //        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
 //        $send_post = $this->send_post('device_manage',$car['mc_id'],3);
@@ -892,7 +887,7 @@ class OrderController extends BaseController {
                 $sa_order = M('Order')->where($sa_where)->save($sa_data);
                 $this->apiResponse('1','查询成功',$data);
             }
-        }
+//        }
     }
 
     /**
