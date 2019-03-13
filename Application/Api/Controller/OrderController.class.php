@@ -376,6 +376,7 @@ class OrderController extends BaseController {
             array ('w_type' , 'string' , '请输入洗车类型') ,
             array ('mc_code' , 'string' , '请输入洗车机编号') ,
         );
+        echo 111;exit;
         $this->checkParam ($rule);
         //重定义名称
         $o_type = $request['o_type'];
@@ -608,6 +609,11 @@ class OrderController extends BaseController {
                 $where['type'] = 1;
                 D ('Order')->where (array ('id'=>$v['id']))->save ($pmae);
                 D ('CarWasher')->where (array ('id'=> $order[$k]['c_id']))->save ($where);
+                $car = M('CarWasher')->where(array('id'=> $order[$k]['c_id']))->find();
+                $send_post = $this->send_post('device_manage',$car['mc_id'],3);
+                //语音播报
+                $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
             }
         }
     }
