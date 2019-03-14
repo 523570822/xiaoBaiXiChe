@@ -294,7 +294,7 @@ class OrderController extends BaseController {
                     $this->apiResponse ('0' , '开启失败,请重试' , 'The order failed, please try again');
                 }
             }else if($Order['m_id'] != $m_id ){
-                $this->apiResponse('0','该洗车机以别人预约');
+                $this->apiResponse('0','该洗车机已被人预约');
             }
         }
     }
@@ -317,6 +317,11 @@ class OrderController extends BaseController {
             array ('w_type' , 'string' , '请输入洗车类型') ,
             //            array ('mc_code' , 'string' , '请输入洗车机编号') ,
         );
+        //查找未支付的订单
+        $find_order = M('Order')->where(array('m_id'=>$m_id))->find();
+        if($find_order['status'] == 1){
+            $this->apiResponse('0','您还有未支付的订单');
+        }
         $this->checkParam ($rule);
         //重定义名称
         $o_type = $request['o_type'];
@@ -377,9 +382,15 @@ class OrderController extends BaseController {
             array ('mc_code' , 'string' , '请输入洗车机编号') ,
         );
         $this->checkParam ($rule);
+        //查找为完成的预约订单
         $f_order = M('Order')->where(array('m_id'=>$m_id,'w_type'=>2,'status'=>1))->find();
         if($f_order){
             $this->apiResponse('0','您还有预约订单未结算');
+        }
+        //查找未支付的订单
+        $find_order = M('Order')->where(array('m_id'=>$m_id))->find();
+        if($find_order['status'] == 1){
+            $this->apiResponse('0','您还有未支付的订单');
         }
         //重定义名称
         $o_type = $request['o_type'];
