@@ -55,7 +55,7 @@
                                 <!--<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">-->
                             </div>
                             <button class="layui-btn" type="submit">搜索</button>
-                            <!--<button class="layui-btn" type="button" id="button">导出搜索</button>-->
+                            <button class="layui-btn" type="button" id="button">导出搜索</button>
                             <a href="{:U('withdraw/index')}" class="layui-btn layui-btn-primary">重置</a>
                         </form>
                         <script>
@@ -193,7 +193,6 @@
     laydate.render({
         elem: '#test2' //指定元素
     });
-
     //成功或失败
     $(".change_status").on('click',function () {
         var ids = $(this).data('id');

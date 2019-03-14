@@ -143,70 +143,55 @@ class MemberController extends BaseController
 
 
     /**
-     * 导出用户
+     * 导出搜索
      * User: admin
-     * Date: 2018-08-25 17:19:41
+     * Date: 2019-03-14 11:37:53
      */
-    public function exportMember() {
-        $where = array();
-        $parameter = array();
-        //账号查找
-        if(!empty($_REQUEST['account'])){
-            $where['account'] = array('LIKE',"%".I('request.account')."%");
-            $parameter['account'] = I('request.account');
-        }
-        //昵称查找
-        if(!empty($_REQUEST['nickname'])){
-            $where['nickname'] = array('LIKE',"%".I('request.nickname')."%");
-            $parameter['nickname'] = I('request.nickname');
-        }
-        //性别查找
-        if(!empty($_REQUEST['sex'])){
-            $where['sex'] = I('request.sex');
-            $parameter['sex'] = I('request.sex');
+    public function export () {
+        $where = array ();
+        if ( $_REQUEST['bank_user'] ) {
+            $where['bank_user'] = array ('LIKE' , '%' . $_REQUEST['bank_user'] . '%');
         }
 
-        //注册时间查找
-        if(!empty($_REQUEST['start_time']) && !empty($_REQUEST['end_time'])){
-            $where['create_time'] =array('between',array(strtotime($_REQUEST['start_time']),strtotime($_REQUEST['end_time'])+86400));
-        }elseif(!empty($_REQUEST['start_time'])){
-            $where['create_time'] = array('egt',strtotime($_REQUEST['start_time']));
-        }elseif(!empty($_REQUEST['end_time'])){
-            $where['create_time'] = array('elt',strtotime($_REQUEST['end_time'])+86399);
+        if ( isset($_REQUEST['status']) ) {
+            $where['status'] = $_REQUEST['status'];
+        } else {
+            $where['status'] = array ('lt' , 9);
         }
-
         //排序
-        $param['order'] = 'sort desc , create_time desc';
-        if(!empty($_REQUEST['sort_order'])){
-            $sort = explode('-',$_REQUEST['sort_order']);
-            $param['order'] = $sort[0].' '.$sort[1];
-//            $parameter['sort_order'] = I('request.sort_order');
-        }
+        $where['status'] = array ('lt' , 9);
 
-        $where['status'] = array('lt',9);
-        $where['order'] = 'id asc';
-       // $param['page_size'] = 15;
-        $data = D('Member')->queryList($where,'id,account,nickname,sex,create_time');
-        foreach ($data as $k=>$v){
-            $data[$k]['sex']=$data[$k]['sex']=1?'男':'';
-            $data[$k]['sex']=$data[$k]['sex']=2?'女':'';
-            $data[$k]['sex']=$data[$k]['sex']=3?'保密':'';
-            $data[$k]['create_time']=date ('Y-m-d H:i:s',$data[$k]['create_time']);
+        $param['order'] = 'create_time desc , id  desc';
+        //        $param['page_size'] = 15;
+        if ( !empty($_REQUEST['sort_order']) ) {
+            $sort = explode ('-' , $_REQUEST['sort_order']);
+            $param['order'] = $sort[0] . ' ' . $sort[1];
         }
-        if(empty($data)){
+        $data = D ('BalanceWithdraw')->queryList ($where , 'bank_num,bank_name ,bank_user ,bank_phone,bank_idcard,money,money_true,poundage, create_time, status' , $param);
+        if ( empty($data) ) {
             $this->display ('index');
         }
 
         //把对应的数据放到数组中
-        foreach($data as $key =>$val){
-            $data[$key]['account']= $val['account'];
-            $data[$key]['nickname']= $val['nickname'];
-            $data[$key]['sex']= $val['sex'];
+        foreach ( $data as $key => $val ) {
+            if ( $data[$key]['status'] == '0' ) {
+                $data[$key]['status'] = '审核中';
+            } elseif ( $data[$key]['status'] == '1' ) {
+                $data[$key]['status'] = '提现成功';
+            } elseif ( $data[$key]['status'] == '2' ) {
+                $data[$key]['status'] = '提现失败';
+            }
+            $data[$key]['create_time'] = date ('Y-m-d H:i:s' , $data[$key]['create_time']);
+            foreach ( $val as $key_1 => $val_1 ) {
+                $data[$key][$key_1] = $data[$key][$key_1] . " ";
+            }
         }
         //下面方法第一个数组，是需要的数据数组
         //第二个数组是excel的第一行标题,如果为空则没有标题
         //第三个是下载的文件名，现在用的是当前导出日期
-         exportexcel($data,array('id','账号','昵称','性别','注册时间'),date('Y-m-d',NOW_TIME));
+        $header = array ('银行卡账号' , '银行卡名称' , '银行卡持卡人' , '银行卡预留手机号' , '持卡人身份证号' , '提现金额' , '实际转账金额' , '手续费' , '创建时间' , '状态');
+        $indexKey = array ('bank_num' , 'bank_name' , 'bank_user' , 'bank_phone' , 'bank_idcard' , 'money' , 'money_true' , 'poundage' , 'create_time' , 'status');
+        exportExcels ($data , $indexKey , $header , date ('用户提现表'.'Y-m-d' , NOW_TIME));
     }
 
 

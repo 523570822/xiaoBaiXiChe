@@ -18,16 +18,13 @@ class CarWasherController extends BaseController {
      */
     public function index () {
         $where = array ();
-        $parameter = array ();
         //二维码编号查找
         if ( !empty($_REQUEST['mc_code']) ) {
             $where['mc_code'] = array ('LIKE' , "%" . I ('request.mc_code') . "%");
-            $parameter['mc_code'] = I ('request.mc_code');
         }
         //洗车机编号查找
         if ( !empty($_REQUEST['mc_id']) ) {
             $where['mc_id'] = array ('LIKE' , "%" . I ('request.mc_id') . "%");
-            $parameter['mc_id'] = I ('request.mc_id');
         }
         //        //昵称查找
         //        if(!empty($_REQUEST['nickname'])){
@@ -37,12 +34,10 @@ class CarWasherController extends BaseController {
         //使用状态查找
         if ( !empty($_REQUEST['type']) ) {
             $where['type'] = I ('request.type');
-            $parameter['type'] = I ('request.type');
         }
         //运行状态查找
         if ( !empty($_REQUEST['status']) ) {
             $where['status'] = I ('request.status');
-            $parameter['status'] = I ('request.status');
         }
         //        //注册时间查找
         //        if(!empty($_REQUEST['start_time']) && !empty($_REQUEST['end_time'])){

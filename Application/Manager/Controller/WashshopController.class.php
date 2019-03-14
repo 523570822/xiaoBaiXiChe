@@ -25,7 +25,6 @@ class WashshopController extends BaseController {
         //运行状态查找
         if ( !empty($_REQUEST['status']) ) {
             $where['status'] = I ('request.status');
-            $parameter['status'] = I ('request.status');
         }
         if ( !$_REQUEST['status'] ) {
             $where['status'] = array ('lt' , 9);
