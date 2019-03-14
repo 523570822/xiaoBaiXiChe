@@ -390,9 +390,12 @@ class OrderController extends BaseController {
             $this->apiResponse('0','您还有预约订单未结算');
         }
         //查找未支付的订单
-        $find_order = M('Order')->where(array('m_id'=>$m_id))->find();
-        if($find_order['status'] == 1){
-            $this->apiResponse('0','您还有未支付的订单');
+        $find_order = M('Order')->where(array('m_id'=>$m_id))->select();
+        foreach ($find_order as $fk=>$fv){
+            if($fv['status'] == 1){
+                echo 11;
+                $this->apiResponse('0','您还有未支付的订单');
+            }
         }
         //重定义名称
         $o_type = $request['o_type'];
