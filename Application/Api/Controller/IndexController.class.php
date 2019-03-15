@@ -82,8 +82,8 @@ class IndexController extends BaseController {
         $this->checkParam ($rule);
         $open_id = M ('MemberBind')->where (array ('openid' => $request['openid']))->find ();
         $res = M ('Order')->where (array ('m_id' => $open_id['m_id'] , 'o_type' => '1' , 'w_type' => '2' , 'status' => '1' , 'is_set' => '0' , 'button' => '0'))->find ();
-        $ress['id']=$res['id'];
-        $ress['orderid']=$res['orderid'];
+        $ress['id'] = $res['id'];
+        $ress['orderid'] = $res['orderid'];
         $this->apiResponse (1 , '成功' , $ress);
     }
 
@@ -125,12 +125,10 @@ class IndexController extends BaseController {
         // return self::$OK;
     }
 
-    //    public function testCronTab ()
-    //    {
-    //        $myfile = fopen("./Uploads/testFile.txt", "a") or die("Unable to open file!");
-    //        $txt = "testFile\n";
-    //        fwrite($myfile, $txt);
-    //        fclose($myfile);
-    //    }
-    //
+    public function testCronTab ($txt) {
+        $myfile = fopen ("./Uploads/testFile.txt" , "a") or die("Unable to open file!");
+        // $txt = "testFile\n";
+        fwrite ($myfile , $txt);
+        fclose ($myfile);
+    }
 }

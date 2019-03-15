@@ -215,7 +215,11 @@ class PayController extends BaseController {
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
-        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify/methods/'.$request['methods'] .'/methods_id/'.$request['methods_id'] ;
+        $url_data = [
+            "methods" => $request['methods'] ,
+            "methods_id" => $request['methods_id'] ,
+        ];
+        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify?' . http_build_query ($url_data);
         //        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify';
         // 生成支付字符串
         $out_trade_no = $order_info['orderid'];
@@ -235,8 +239,10 @@ class PayController extends BaseController {
         Vendor ("Txunda.Alipay.aop.request.AlipayTradeAppPayRequest");
         Vendor ("Txunda.Alipay.aop.AopClient");
         $post_data = I ("");
-        $aop = new \AopClient;
-        $aop->alipayrsaPublicKey = \AlipayConfig::alipayrsaPublicKey;
+        $index = new IndexController();
+        $index->testCronTab (json_encode ($post_data));
+//        $aop = new \AopClient;
+//        $aop->alipayrsaPublicKey = \AlipayConfig::alipayrsaPublicKey;
         if ( $post_data['trade_status'] == 'TRADE_SUCCESS' ) {
             $order = D ('Order')->where (array ('orderid' => $post_data['out_trade_no']))->find ();
             $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
