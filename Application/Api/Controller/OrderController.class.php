@@ -391,9 +391,7 @@ class OrderController extends BaseController {
         }
         //查找未支付的订单
         $find_order = M('Order')->where(array('m_id'=>$m_id))->select();
-        echo 123;
         foreach ($find_order as $fk=>$fv){
-            var_dump($fv['id']);
             if($fv['status'] == 1){
                 $this->apiResponse('0','您还有未支付的订单');
             }
