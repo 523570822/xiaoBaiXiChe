@@ -236,6 +236,7 @@ class PayController extends BaseController {
         $post_data = I ("");
         $index = new IndexController();
         $index->testCronTab (json_encode ($post_data));
+
 //        $aop = new \AopClient;
 //        $aop->alipayrsaPublicKey = \AlipayConfig::alipayrsaPublicKey;
         if ( $post_data['trade_status'] == 'TRADE_SUCCESS' ) {
