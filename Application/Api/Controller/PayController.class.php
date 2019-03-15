@@ -239,8 +239,10 @@ class PayController extends BaseController {
         Vendor ("Txunda.Alipay.aop.request.AlipayTradeAppPayRequest");
         Vendor ("Txunda.Alipay.aop.AopClient");
         $post_data = I ("");
-        $aop = new \AopClient;
-        $aop->alipayrsaPublicKey = \AlipayConfig::alipayrsaPublicKey;
+        $index = new IndexController();
+        $index->testCronTab (json_encode ($post_data));
+//        $aop = new \AopClient;
+//        $aop->alipayrsaPublicKey = \AlipayConfig::alipayrsaPublicKey;
         if ( $post_data['trade_status'] == 'TRADE_SUCCESS' ) {
             $order = D ('Order')->where (array ('orderid' => $post_data['out_trade_no']))->find ();
             $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
