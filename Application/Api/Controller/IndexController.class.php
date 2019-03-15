@@ -131,4 +131,13 @@ class IndexController extends BaseController {
         fwrite ($myfile , $txt);
         fclose ($myfile);
     }
+
+    public function test () {
+        $url_data = [
+            "methods" => 'methods',
+            "methods_id" => 'methods_id',
+        ];
+        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify?' . http_build_query ($url_data);
+        $this->ajaxReturn ($notify_url);
+    }
 }
