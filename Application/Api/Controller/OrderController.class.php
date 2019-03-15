@@ -789,9 +789,9 @@ class OrderController extends BaseController {
 //                        var_dump($data_moneys);
                         //结算存储时间
                         $a = $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                        if($a){
-                            echo 'haha';exit;
-                        }
+//                        if($a){
+//                            echo 'haha';exit;
+//                        }
                         $this->apiResponse('1','查询成功',$data_moneys);
                     }elseif($post['off_on'] == 1){
                         $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
@@ -814,9 +814,9 @@ class OrderController extends BaseController {
                         $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
                         //结算存储时间
                         $a = $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                        if($a){
-                            echo 'heihei';exit;
-                        }
+//                        if($a){
+//                            echo 'heihei';exit;
+//                        }
                         $this->apiResponse('1','结算成功',$data_moneys);
                     }
                 }
