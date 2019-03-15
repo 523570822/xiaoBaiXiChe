@@ -613,8 +613,9 @@ class OrderController extends BaseController {
                 }
             }
             $this->apiResponse (1 , '查询成功' , array ('is_time' => $order['is_time'] , 'end_time' => $sub));
-        }else{
-            $this->apiResponse (1 , '查询成功' );
+        }
+        else{
+            $this->apiResponse (1 , '查询成功' ,0);
         }
 
     }
