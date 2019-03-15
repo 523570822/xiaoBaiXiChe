@@ -239,14 +239,7 @@ class CarWasherController extends BaseController
                             'type' => 2,
                         );
                         $using = M('CarWasher')->where($using_where)->save($using_data);
-                    }elseif ($vv[0]['queryitem']['service_status'] == 14){     //洗车机预约状态
-                        $doom_where = array(
-                            'mc_id' => $vv[0]['deviceid'],
-                        );
-                        $doom_data = array(
-                            'type' => 3,
-                        );
-                        $doom = M('CarWasher')->where($doom_where)->save($doom_data);
+                    
                     } elseif ($vv[0]['queryitem']['service_status'] <= 8 || $vv[0]['queryitem']['service_status'] == 12){              //洗车机不在线
                         $idle_where = array(
                             'mc_id' => $vv[0]['deviceid'],
@@ -303,28 +296,6 @@ class CarWasherController extends BaseController
                 }
             }
         }
-
     }
 
-    /**
-     *设备控制
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/02/15 13:05
-     */
-//    public function device(){
-//        $where['status'] = array('neq',9);
-//        $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
-//        $manage = 'runtime_query';
-//        $devmanage = $this->send_post($manage,'50003f001451373435363337');
-//        var_dump($devmanage);
-//        exit;
-//        foreach ($car as $k=>$v) {
-//            $cars[$k]['car_num'] = $v['mc_id'];
-//            $cars[$k]['id'] = $v['id'];
-//            $manage = 'device_manage';
-//            $devmanage = $this->send_post($manage,'50003f001451373435363337',1);
-//            var_dump($devmanage);
-//            var_dump($devmanage[49]['devices'][0]);
-//        }
-//    }
 }
