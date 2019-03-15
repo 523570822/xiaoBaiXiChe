@@ -286,4 +286,157 @@ class BaseController extends ControllerService
         $response = $this->push_curl (json_encode ($result_array) , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://guojiulin.gicp.net:18000/car_wash/" . $type);
         return json_decode ($response, true);
     }
+
+    /**
+     *洗车机结算
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/03/14 15:02
+     */
+    public function details($m_id,$orderid,$indication,$mc_id){
+        $send_post = $this->send_post('runtime_query',$mc_id);       //查询洗车机状态
+
+        $d_where = array(
+            'o_id'=>$orderid,
+            'm_id'=>$m_id,
+            'status'=> 0,     //0代表未完成   订单还没结束
+        );
+
+        $details = M('Details')->where($d_where)->find();
+        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
+
+        $wash_money =  round($details['washing'] * $car['washing_money'],2);
+        $foam_money = round($details['foam'] * $car['foam_money'],2);
+        $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
+
+        if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
+            $wash_fen = intval($details['washing']/60).'分';
+            $wash_miao = $details['washing'] % 60 . '秒';
+            $wash_time = $wash_fen . $wash_miao;                //水枪时间
+            $foam_fen = intval($details['foam']/60).'分';
+            $foam_miao = $details['foam'] % 60 . '秒';
+            $foam_time = $foam_fen . $foam_miao;                  //泡沫枪时间
+            $cleaner_fen = intval($details['cleaner']/60).'分';
+            $cleaner_miao = $details['cleaner'] % 60 . '秒';
+            $cleaner_time = $cleaner_fen . $cleaner_miao;          //吸尘器时间
+        }else if($details['washing'] < 60 || $details['foam'] < 60 || $details['cleaner'] < 60){
+            $wash_time = 0 . '分' . $details['washing'] . '秒';    //水枪时间
+            $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
+            $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
+        }
+        $data_money = array(
+            'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
+            'washing' =>$wash_time,
+            'foam'=>$foam_time,
+            'cleaner'=>$cleaner_time,
+            'all_money' =>$wash_money+$foam_money+$cleaner_money,
+            'off_on' => 1,
+        );
+//        var_dump($details);exit;
+        return $data_money;
+    }
+
+    /**
+     *洗车机未结算
+     * @param $m_id     //用户ID
+     * @param $orderid      //订单ID
+     * @param $indication     //使用状态
+     * @param $mc_id          //洗车机编号
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/03/14 18:30
+     */
+    public function onDetails($m_id,$orderid,$indication,$mc_id){
+        $send_post = $this->send_post('runtime_query',$mc_id);       //查询洗车机状态
+        $d_where = array(
+            'o_id'=>$orderid,
+            'm_id'=>$m_id,
+            'status'=> 0,     //0代表未完成   订单还没结束
+        );
+
+        $details = M('Details')->where($d_where)->find();
+        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
+
+        $wash_money =  round($details['washing'] * $car['washing_money'],2);
+        $foam_money = round($details['foam'] * $car['foam_money'],2);
+        $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
+
+        if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
+            $wash_fen = intval($details['washing']/60).'分';
+            $wash_miao = $details['washing'] % 60 . '秒';
+            $wash_time = $wash_fen . $wash_miao;                //水枪时间
+            $foam_fen = intval($details['foam']/60).'分';
+            $foam_miao = $details['foam'] % 60 . '秒';
+            $foam_time = $foam_fen . $foam_miao;                  //泡沫枪时间
+            $cleaner_fen = intval($details['cleaner']/60).'分';
+            $cleaner_miao = $details['cleaner'] % 60 . '秒';
+            $cleaner_time = $cleaner_fen . $cleaner_miao;          //吸尘器时间
+        }else if($details['washing'] < 60 || $details['foam'] < 60 || $details['cleaner'] < 60){
+            $wash_time = 0 . '分' . $details['washing'] . '秒';    //水枪时间
+            $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
+            $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
+        }
+        $data_money = array(
+            'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
+            'washing' =>$wash_time,
+            'foam'=>$foam_time,
+            'cleaner'=>$cleaner_time,
+            'all_money' =>$wash_money+$foam_money+$cleaner_money,
+            'off_on' => 0,
+        );
+//        var_dump($details);exit;
+        return $data_money;
+    }
+
+    /**
+     *洗车使用时间
+     * @param $mc_id    //洗车机编号
+     * @param $o_id     //订单ID
+     * @param $m_id     //用户ID
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/03/15 11:07
+     */
+    public function carWasherTime($mc_id,$o_id,$m_id){
+        $send_post = $this->send_post('runtime_query',$mc_id);       //查询洗车机状态
+        $d_where = array(
+            'o_id'=>$o_id,
+            'm_id'=>$m_id,
+        );
+        $details = M('Details')->where($d_where)->find();
+
+        //水枪使用时间
+        $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
+        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] -1;
+        if($w_end_data['washing'] < 0 ){    //为-1就等于0
+            $w_end_data['washing'] = 0;
+        }
+        $d_where['status'] = 0;
+        $d_where['id'] = $details['id'];
+        $w_start = M('Details')->where($d_where)->save($w_end_data);
+
+
+        //泡沫枪使用时间
+        $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
+        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] -1;
+        if($f_end_data['foam'] < 0 ){    //为-1就等于0
+            $f_end_data['foam'] = 0;
+        }
+        $d_where['status'] = 0;
+        $d_where['id'] = $details['id'];
+        $f_start = M('Details')->where($d_where)->save($f_end_data);
+
+        //吸尘器使用时间
+        $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
+        $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'];
+        if($c_end_data['cleaner'] < 0 ){    //为-1就等于0
+            $c_end_data['cleaner'] = 0;
+        }
+        $d_where['status'] = 0;
+        $d_where['id'] = $details['id'];
+        $c_start = M('Details')->where($d_where)->save($c_end_data);
+        return 'OK';
+    }
+
+    /**/
+    public function amount(){
+
+    }
 }
