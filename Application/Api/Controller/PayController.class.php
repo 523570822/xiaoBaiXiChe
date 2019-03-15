@@ -215,11 +215,7 @@ class PayController extends BaseController {
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
-        $url_data = [
-            "methods" => $request['methods'] ,
-            "methods_id" => $request['methods_id'] ,
-        ];
-        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify?' . http_build_query ($url_data);
+        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify/methods/'.$request['methods'] .'/methods_id/'.$request['methods_id'] ;
         //        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify';
         // 生成支付字符串
         $out_trade_no = $order_info['orderid'];
