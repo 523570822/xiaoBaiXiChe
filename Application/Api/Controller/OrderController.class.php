@@ -324,6 +324,8 @@ class OrderController extends BaseController {
 //            $this->apiResponse('0','您还有未支付的订单');
 //        }
 //        echo 111;exit;
+
+
         $this->checkParam ($rule);
         //重定义名称
         $o_type = $request['o_type'];
@@ -333,6 +335,13 @@ class OrderController extends BaseController {
         $mc_id = $this->check_mc_code ($mc_code , '1');
         $c_id = $this->check_mc_code ($mc_code , '2');
         //检查数据
+        $x_car = M('CarWasher')->where(array('mc_code'=>$mc_code))->find();
+        if($x_car['type'] == 3){
+            $x_order = M('Order')->where(array('c_id'=>$x_car['id'],'button'=>0,'is_no'=>0))->find();
+            if($x_order['m_id'] != $m_id){
+                $this->apiResponse('0','机器已经被预订，请尝试其他机器');
+            }
+        }
         if ( $o_type !== '1' ) {
             $this->apiResponse ('0' , '订单类型错误');
         } elseif ( $w_type !== '1' ) {
