@@ -16,7 +16,7 @@ class Verification
         $vc = get_vc(6, 2);//获取验证码
         if ($sms_info) {
             //有发信记录
-            if ($sms_info['create_time'] > strtotime(date('Y-m-d')) && $sms_info['create_time'] < strtotime(date('Y-m-d 23:59:59')) && intval($sms_info['times']) % 3 == 0) {
+            if ($sms_info['create_time'] > strtotime(date('Y-m-d')) && $sms_info['create_time'] < strtotime(date('Y-m-d 23:59:59')) && intval($sms_info['times']) % 10 == 0) {
                 return array('error' => '今天已达最大发送次数');
             } else {
                 //次数未达到上限，判断如果上一次发送验证码的时间是今天，次数+1，否则次数设置为1；
