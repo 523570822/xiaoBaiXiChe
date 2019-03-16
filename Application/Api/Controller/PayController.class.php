@@ -233,7 +233,7 @@ class PayController extends BaseController {
         Vendor ('Txunda.Alipay.Notify');
         Vendor ("Txunda.Alipay.aop.request.AlipayTradeAppPayRequest");
         Vendor ("Txunda.Alipay.aop.AopClient");
-        $post_data = I ("");
+        $post_data = I ("request.");
         $index = new IndexController();
         $index->testCronTab (json_encode ($post_data));
 
