@@ -239,8 +239,8 @@ class PayController extends BaseController {
 //            $pay_money = $request['total_amount']; //钱
             $order_no = $request['trade_no']; //支付宝流水号
             if ( $trade_status == 'TRADE_SUCCESS' ) {
-                $index = new IndexController();
-                $index->testCronTab (json_encode ($request));
+//                $index = new IndexController();
+//                $index->testCronTab (json_encode ($request));
                 $order = D ('Order')->where (array ('orderid' => $out_trade_no))->find ();
                 $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
                 $date['pay_type'] = 2;
