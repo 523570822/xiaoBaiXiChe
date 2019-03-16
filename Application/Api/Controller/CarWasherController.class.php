@@ -231,32 +231,32 @@ class CarWasherController extends BaseController
 //            var_dump($queryitem[$k]['devices'][0]);exit;
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
-                    if($vv[0]['queryitem']['service_status'] == 13 ){            //机器使用状态   13使用中   14预定中   12结算   8空闲中
-                        $using_where = array(
-                            'mc_id' => $vv[0]['deviceid'],
-                        );
-                        $using_data = array(
-                            'type' => 2,
-                        );
-                        $using = M('CarWasher')->where($using_where)->save($using_data);
-                    }elseif ($vv[0]['queryitem']['service_status'] == 14){     //洗车机预约状态
-                        $doom_where = array(
-                            'mc_id' => $vv[0]['deviceid'],
-                        );
-                        $doom_data = array(
-                            'type' => 3,
-                        );
-                        $doom = M('CarWasher')->where($doom_where)->save($doom_data);
-                    } elseif ($vv[0]['queryitem']['service_status'] <= 8 || $vv[0]['queryitem']['service_status'] == 12){              //洗车机不在线
-                        $idle_where = array(
-                            'mc_id' => $vv[0]['deviceid'],
-                        );
-                        $idle_data = array(
-                            'type' => 1,
-                        );
-                        $idle = M('CarWasher')->where($idle_where)->save($idle_data);
-
-                    }
+//                    if($vv[0]['queryitem']['service_status'] == 13 ){            //机器使用状态   13使用中   14预定中   12结算   8空闲中
+//                        $using_where = array(
+//                            'mc_id' => $vv[0]['deviceid'],
+//                        );
+//                        $using_data = array(
+//                            'type' => 2,
+//                        );
+//                        $using = M('CarWasher')->where($using_where)->save($using_data);
+//                    }elseif ($vv[0]['queryitem']['service_status'] == 14){     //洗车机预约状态
+//                        $doom_where = array(
+//                            'mc_id' => $vv[0]['deviceid'],
+//                        );
+//                        $doom_data = array(
+//                            'type' => 3,
+//                        );
+//                        $doom = M('CarWasher')->where($doom_where)->save($doom_data);
+//                    } elseif ($vv[0]['queryitem']['service_status'] <= 8 || $vv[0]['queryitem']['service_status'] == 12){              //洗车机不在线
+//                        $idle_where = array(
+//                            'mc_id' => $vv[0]['deviceid'],
+//                        );
+//                        $idle_data = array(
+//                            'type' => 1,
+//                        );
+//                        $idle = M('CarWasher')->where($idle_where)->save($idle_data);
+//
+//                    }
 //                    if($vv[0]['queryitem']['service_status'] >= 8){
 //                        var_dump($vv[0]['queryitem']['pump1_status']);exit;
                         //判断洗车机状态   1在线   2故障   3报警   4不在线
