@@ -215,7 +215,7 @@ class PayController extends BaseController {
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
-        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify';
+        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify/methods/' . $request['methods'] . '/methods_id/' . $request['methods_id'];
         // 生成支付字符串
         $out_trade_no = $order_info['orderid'];
         $total_amount = 0.01;//$order_info['pay_money'];
@@ -230,95 +230,90 @@ class PayController extends BaseController {
      * 支付宝回调
      */
     public function AlipayNotify () {
-        Vendor('Txunda.Alipay.Notify');
         $request = I ("request.");
+        Vendor ('Txunda.Alipay.Notify');
         $notify = new \Notify();
-        if ($notify->rsaCheck()) {
+        if ( $notify->rsaCheck () ) {
             $out_trade_no = $request['out_trade_no']; //本地订单号
             $trade_status = $request['trade_status'];
-            $pay_money = $request['total_amount']; //钱
-            $order_nums = $request['trade_no']; //支付宝流水号
-            if ($trade_status == 'TRADE_SUCCESS') {
+//            $pay_money = $request['total_amount']; //钱
+            $order_no = $request['trade_no']; //支付宝流水号
+            if ( $trade_status == 'TRADE_SUCCESS' ) {
                 $index = new IndexController();
-                $res = $index->testCronTab (json_encode ($request));
-                echo 'success';
+                $index->testCronTab (json_encode ($request));
+                $order = D ('Order')->where (array ('orderid' => $out_trade_no))->find ();
+                $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
+                $date['pay_type'] = 2;
+                $date['status'] = 2;
+                $date['is_set'] = 1;
+                $date['pay_time'] = time ();
+                $date['trade_no'] = $order_no;
+                if ( $order['o_type'] == 1 ) {//1洗车订单
+                    if ( $request['methods'] == '1' ) {
+                        $cards = M ("CardUser")->where (['id' => $request['methods_id']])->field ('l_id')->find ();
+                        $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
+                        $date['is_dis'] = '1';
+                        $date['card_id'] = $request['methods_id'];
+                        $date['allowance'] = $card['rebate'];
+                    } elseif ( $request['methods'] == '2' ) {
+                        $coup = M ("CouponsBind")->where (['id' => $request['methods_id']])->field ('money')->find ();
+                        M ("CouponsBind")->where (['id' => $request['methods_id']])->save (['is_use' => '1']);
+                        $date['is_dis'] = '1';
+                        $date['coup_id'] = $request['methods_id'];
+                        $date['allowance'] = $coup['money'];
+                    } elseif ( $request['methods'] == '3' ) {
+                        $date['is_dis'] = '0';
+                    }
+                    $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
+                    if ( $save ) {
+                        echo "success";
+                    }
+                } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
+                    $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
+                    $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
+                    if ( $is_have ) {
+                        if ( $have['l_id'] == $order['card_id'] ) {
+                            if ( $have['end_time'] < time () ) {
+                                $off['end_time'] = time () + (30 * 24 * 3600);
+                            } else {
+                                $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
+                            }
+                            $off['update_time'] = time ();
+                            $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $order['m_id'] , 'l_id' => $order['card_id']))->save ($off);
+                        } elseif ( $have['l_id'] !== $order['card_id'] ) {
+                            $on['end_time'] = time () + (30 * 24 * 3600);
+                            $on['create_time'] = time ();
+                            $on['stare_time'] = time ();
+                            $on['l_id'] = $order['card_id'];
+                            $on['m_id'] = $order['m_id'];
+                            $card = D ("CardUser")->add ($on);
+                        }
+                    } elseif ( !$is_have ) {
+                        $on['end_time'] = time () + (30 * 24 * 3600);
+                        $on['create_time'] = time ();
+                        $on['stare_time'] = time ();
+                        $on['l_id'] = $order['card_id'];
+                        $on['m_id'] = $order['m_id'];
+                        $card = D ("CardUser")->add ($on);
+                    }
+                    $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $have['l_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
+                    $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
+                    if ( $save && $pay && $card ) {
+                        echo "success";
+                    }
+                } elseif ( $order['o_type'] == 3 ) {//3余额充值
+                    $date['detail'] = 1;
+                    $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
+                    $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
+                    if ( $save && $buy ) {
+                        echo "success";
+                    }
+                }
             }
+            echo 'success';
         }
-
-
-//        $aop = new \AopClient;
-//        $aop->alipayrsaPublicKey = \AlipayConfig::alipayrsaPublicKey;
-//        if ( $post_data['trade_status'] == 'TRADE_SUCCESS' ) {
-//            $order = D ('Order')->where (array ('orderid' => $post_data['out_trade_no']))->find ();
-//            $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
-//            $date['pay_type'] = 2;
-//            $date['status'] = 2;
-//            $date['is_set'] = 1;
-//            $date['pay_time'] = time ();
-//            $date['trade_no'] = $post_data['trade_no'];
-//            if ( $order['o_type'] == 1 ) {//1洗车订单
-////                if ( $post_data['methods'] == '1' ) {
-////                    $cards = M ("CardUser")->where (['id' => $post_data['methods_id']])->field ('l_id')->find ();
-////                    $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
-////                    $date['is_dis'] = '1';
-////                    $date['card_id'] = $post_data['methods_id'];
-////                    $date['allowance'] = $card['rebate'];
-////                } elseif ( $post_data['methods'] == '2' ) {
-////                    $coup = M ("CouponsBind")->where (['id' => $post_data['methods_id']])->field ('money')->find ();
-////                    M ("CouponsBind")->where (['id' => $post_data['methods_id']])->save (['is_use' => '1']);
-////                    $date['is_dis'] = '1';
-////                    $date['coup_id'] = $post_data['methods_id'];
-////                    $date['allowance'] = $coup['money'];
-////                } elseif ( $post_data['methods'] == '3' ) {
-////                    $date['is_dis'] = '0';
-////                }
-//                $save = D ("Order")->where (array ('orderid' => $post_data['out_trade_no']))->save ($date);
-//                if ( $save ) {
-//                    echo "success";
-//                }
-//            } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
-//                $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
-//                $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
-//                if ( $is_have ) {
-//                    if ( $have['l_id'] == $order['card_id'] ) {
-//                        if ( $have['end_time'] < time () ) {
-//                            $off['end_time'] = time () + (30 * 24 * 3600);
-//                        } else {
-//                            $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
-//                        }
-//                        $off['update_time'] = time ();
-//                        $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $order['m_id'] , 'l_id' => $order['card_id']))->save ($off);
-//                    } elseif ( $have['l_id'] !== $order['card_id'] ) {
-//                        $on['end_time'] = time () + (30 * 24 * 3600);
-//                        $on['create_time'] = time ();
-//                        $on['stare_time'] = time ();
-//                        $on['l_id'] = $order['card_id'];
-//                        $on['m_id'] = $order['m_id'];
-//                        $card = D ("CardUser")->add ($on);
-//                    }
-//                } elseif ( !$is_have ) {
-//                    $on['end_time'] = time () + (30 * 24 * 3600);
-//                    $on['create_time'] = time ();
-//                    $on['stare_time'] = time ();
-//                    $on['l_id'] = $order['card_id'];
-//                    $on['m_id'] = $order['m_id'];
-//                    $card = D ("CardUser")->add ($on);
-//                }
-//                $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $have['l_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
-//                $save = D ("Order")->where (array ('orderid' => $post_data['out_trade_no']))->save ($date);
-//                if ( $save && $pay && $card ) {
-//                    echo "success";
-//                }
-//            } elseif ( $order['o_type'] == 3 ) {//3余额充值
-//                $date['detail'] = 1;
-//                $save = D ("Order")->where (array ('orderid' => $post_data['out_trade_no']))->save ($date);
-//                $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
-//                if ( $save && $buy ) {
-//                    echo "success";
-//                }
-//            }
-//        }
     }
+
 
     public function xmlToArray ($xml) {
         //将XML转为array
