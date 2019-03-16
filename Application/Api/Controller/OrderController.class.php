@@ -821,16 +821,16 @@ class OrderController extends BaseController {
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         //费用为0,自动结算
-                        $order_zero = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0))->find();
-                        if(!empty($order_zero)){
-                            $order_pay_save = array(
-                                'status' =>2,
-                                'pay_time' => time(),
-                                'is_set'=>1
-                            );
-                            $order_pay = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0,'status'=>1))->save($order_pay_save);
-                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-                        }
+//                        $order_zero = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0))->find();
+//                        if(!empty($order_zero)){
+//                            $order_pay_save = array(
+//                                'status' =>2,
+//                                'pay_time' => time(),
+//                                'is_set'=>1
+//                            );
+//                            $order_pay = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0,'status'=>1))->save($order_pay_save);
+//                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+//                        }
                         $this->apiResponse('1','结算成功',$data_moneys);
                     }
                 }
@@ -862,17 +862,6 @@ class OrderController extends BaseController {
                 $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
                 //结算存储时间
                 $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                //费用为0,自动结算
-                $order_zero = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0))->find();
-                if(!empty($order_zero)){
-                    $order_pay_save = array(
-                        'status' =>2,
-                        'pay_time' => time(),
-                        'is_set'=>1
-                    );
-                    $order_pay = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0,'status'=>1))->save($order_pay_save);
-                    $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-                }
                 $this->apiResponse('1','结算成功',$data_moneys);
             } else if($send_post['devices'][0]['queryitem']['service_status'] < 8){
                 $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
@@ -888,18 +877,7 @@ class OrderController extends BaseController {
                 $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
                 //结算存储时间
                 $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                //费用为0,自动结算
-                $order_zero = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0))->find();
-                if(!empty($order_zero)){
-                    $order_pay_save = array(
-                        'status' =>2,
-                        'pay_time' => time(),
-                        'is_set'=>1
-                    );
-                    $order_pay = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0,'status'=>1))->save($order_pay_save);
-                    $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-                }
-                $this->apiResponse('1','结算成功',$data_moneys);
+                $this->apiResponse('1','该设备已掉线,已为您自动结算',$data_moneys);
             }else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
                 $this->apiResponse('0','当前洗车机尚未开启');
             }
