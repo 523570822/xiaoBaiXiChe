@@ -629,21 +629,27 @@ class OrderController extends BaseController {
             $notime=time();
             $order[$k]['c_id']=$v['c_id'];
             if(empty($details)){
+                var_dump($v);
                 if($notime > $v['subs_time']){
-                    if($v['status'] == 1){
+                    if($v['status'] == 1) {
                         $pmae['is_no'] = 1;
                         $pmae['button'] = 1;
                         $pmae['pay_money'] = $money['overtime_money'];
-                        D ('Order')->where (array ('id'=>$v['id']))->save ($pmae);
+                        D('Order')->where(array('id' => $v['id']))->save($pmae);
+                        $car = M('CarWasher')->where(array('id' => $order[$k]['c_id']))->find();
+                        //结算
+                        $send_post = $this->send_post('device_manage', $car['mc_id'], 3);
+                        $where['type'] = 1;
+                        D('CarWasher')->where(array('id' => $order[$k]['c_id']))->save($where);
+
+                        //语音播报
+                        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                        $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                     }
-                    $where['type'] = 1;
-                    D ('CarWasher')->where (array ('id'=> $order[$k]['c_id']))->save ($where);
-                    $car = M('CarWasher')->where(array('id'=> $order[$k]['c_id']))->find();
-                    $send_post = $this->send_post('device_manage',$car['mc_id'],3);
-                    //语音播报
-                    $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-                    $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 }
+            }else{
+
+                $this->apiResponse('1','您已开始洗车,预约已完成');
             }
         }
     }
