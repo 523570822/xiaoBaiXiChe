@@ -598,6 +598,7 @@ class OrderController extends BaseController {
         $open_id = M ('MemberBind')->where (array ('openid' => $request['openid']))->find ();
         $order = D ('Order')->where (array ('m_id' => $open_id['m_id'] , 'orderid' => $request['orderid'] , 'o_type' => 1 , 'w_type' => 2))->find ();
         $details = M('Details')->where(array('o_id'=>$order['id']))->find();   //查询是否下单
+
         if(empty($details)){
             if ( $order['subs_time'] ) {
                 $time1 = time ();
