@@ -215,12 +215,7 @@ class PayController extends BaseController {
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
-        $url_data = [
-            "methods" => $request['methods'] ,
-            "methods_id" => $request['methods_id'] ,
-        ];
-        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify?' . http_build_query ($url_data);
-        //        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify';
+        $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify';
         // 生成支付字符串
         $out_trade_no = $order_info['orderid'];
         $total_amount = 0.01;//$order_info['pay_money'];
@@ -241,6 +236,7 @@ class PayController extends BaseController {
         $post_data = I ("");
         $index = new IndexController();
         $index->testCronTab (json_encode ($post_data));
+
 //        $aop = new \AopClient;
 //        $aop->alipayrsaPublicKey = \AlipayConfig::alipayrsaPublicKey;
         if ( $post_data['trade_status'] == 'TRADE_SUCCESS' ) {
@@ -252,21 +248,21 @@ class PayController extends BaseController {
             $date['pay_time'] = time ();
             $date['trade_no'] = $post_data['trade_no'];
             if ( $order['o_type'] == 1 ) {//1洗车订单
-                if ( $post_data['methods'] == '1' ) {
-                    $cards = M ("CardUser")->where (['id' => $post_data['methods_id']])->field ('l_id')->find ();
-                    $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
-                    $date['is_dis'] = '1';
-                    $date['card_id'] = $post_data['methods_id'];
-                    $date['allowance'] = $card['rebate'];
-                } elseif ( $post_data['methods'] == '2' ) {
-                    $coup = M ("CouponsBind")->where (['id' => $post_data['methods_id']])->field ('money')->find ();
-                    M ("CouponsBind")->where (['id' => $post_data['methods_id']])->save (['is_use' => '1']);
-                    $date['is_dis'] = '1';
-                    $date['coup_id'] = $post_data['methods_id'];
-                    $date['allowance'] = $coup['money'];
-                } elseif ( $post_data['methods'] == '3' ) {
-                    $date['is_dis'] = '0';
-                }
+//                if ( $post_data['methods'] == '1' ) {
+//                    $cards = M ("CardUser")->where (['id' => $post_data['methods_id']])->field ('l_id')->find ();
+//                    $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
+//                    $date['is_dis'] = '1';
+//                    $date['card_id'] = $post_data['methods_id'];
+//                    $date['allowance'] = $card['rebate'];
+//                } elseif ( $post_data['methods'] == '2' ) {
+//                    $coup = M ("CouponsBind")->where (['id' => $post_data['methods_id']])->field ('money')->find ();
+//                    M ("CouponsBind")->where (['id' => $post_data['methods_id']])->save (['is_use' => '1']);
+//                    $date['is_dis'] = '1';
+//                    $date['coup_id'] = $post_data['methods_id'];
+//                    $date['allowance'] = $coup['money'];
+//                } elseif ( $post_data['methods'] == '3' ) {
+//                    $date['is_dis'] = '0';
+//                }
                 $save = D ("Order")->where (array ('orderid' => $post_data['out_trade_no']))->save ($date);
                 if ( $save ) {
                     echo "success";
