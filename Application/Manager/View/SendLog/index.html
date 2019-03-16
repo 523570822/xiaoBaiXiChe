@@ -8,13 +8,10 @@
             <div class="layui-card">
                 <div class="layui-card-header">{$title}</div>
                 <div class="layui-card-body">
-                        <form class="mab10 mal20 dinline" action="{:U('Member/index')}" method="GET">
-                        </form>
-                    </div>
                     <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
                         <thead>
                         <tr>
-                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                            <!--<th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>-->
                             <th>发信记录ID</th>
                             <th>接收者号</th>
                             <th>发送内容</th>
@@ -29,7 +26,7 @@
                         </empty>
                         <volist name="list" id="SendLog">
                             <tr>
-                                <td><input type="checkbox" name="ids" value="{$SendLog.id}" class="layui-input"></td>
+                                <!--<td><input type="checkbox" name="ids" value="{$SendLog.id}" class="layui-input"></td>-->
                                 <td>{$SendLog.id}</td>
                                 <td >{$SendLog.receiver}</td>
                                 <td>{$SendLog.content}</td>
