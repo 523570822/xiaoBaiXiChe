@@ -12,56 +12,43 @@
                     <!--顶部按钮-->
                     <div class="mab10">
                         <input type="hidden" id="url" value="{$url}">
-                        <!--<a href="{:U('withdraw/addwithdraw')}" class="layui-btn layui-btn-normal layui-btn-radius">添加代理商</a>-->
-                        <!--<button class="layui-btn layui-btn-warm layui-btn-radius">锁定</button>-->
-                        <!--<button class="layui-btn layui-btn-danger layui-btn-radius"-->
-                                <!--onclick="confirmAllAction('{:U('withdraw/delete',array('model'=>'withdraw'))}', '删除')">-->
-                            <!--删除-->
-                        <!--</button>-->
                         <!--搜索框也可以放这里-->
-                        <form class="mab10 mal20 dinline" id="myform" action="{:U('withdraw/index')}" method="GET">
-                            <!--<div class="layui-input-inline">-->
-                                <!--<input type="text" class="layui-input" placeholder="请输入代理商账号" name="account"-->
-                                       <!--value="{$_REQUEST['account']}">-->
-                            <!--</div>-->
-                            <!--<div class="layui-input-inline">-->
-                                <!--<input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"-->
-                                       <!--value="{$_REQUEST['nickname']}">-->
-                            <!--</div>-->
-                            <!--<div class="layui-input-inline layui-form">-->
-                                <!--<select name="grade" class="layui-input" style="width: 150px">-->
-                                    <!--<option value="">等级</option>-->
-                                    <!--<option value="1"-->
-                                    <!--<if condition="$_REQUEST['grade'] eq 1">selected=true</if>-->
-                                    <!--&gt;一级</option>-->
-                                    <!--<option value="2"-->
-                                    <!--<if condition="$_REQUEST['grade'] eq 2">selected=true</if>-->
-                                    <!--&gt;二级</option>-->
-                                    <!--<option value="3"-->
-                                    <!--<if condition="$_REQUEST['grade'] eq 3">selected=true</if>-->
-                                    <!--&gt;三级</option>-->
-                                <!--</select>-->
-                            <!--</div>-->
-
+                        <form class="mab10 mal20 dinline" id="myform" action="{:U('Withdraw/index')}" method="GET">
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入持卡人姓名" name="card_name"
+                                       value="{$_REQUEST['card_name']}">
+                            </div>
+                            <div class="layui-input-inline layui-form">
+                                <select name="status" class="layui-input" style="width: 150px">
+                                    <option value="">提现状态</option>
+                                    <option value="1"
+                                    <if condition="$_REQUEST['status'] eq 1">selected=true</if>
+                                    >审核中</option>
+                                    <option value="2"
+                                    <if condition="$_REQUEST['status'] eq 2">selected=true</if>
+                                    >提现成功</option>
+                                    <option value="3"
+                                    <if condition="$_REQUEST['status'] eq 3">selected=true</if>
+                                    >提现失败</option>
+                                </select>
+                            </div>
                             <div class="layui-input-inline">
                                 <input type="text" name="start_time" class="layui-input" id="test1"
                                        value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="开始时间">
-                                <!--<input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']} >-->
                             </div>
                             —
                             <div class="layui-input-inline">
                                 <input type="text" name="end_time" class="layui-input" id="test2"
                                        value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="结束时间">
-                                <!--<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">-->
                             </div>
                             <button class="layui-btn" type="submit">搜索</button>
                             <button class="layui-btn" type="button" id="button">导出搜索</button>
-                            <a href="{:U('withdraw/index')}" class="layui-btn layui-btn-primary">重置</a>
+                            <a href="{:U('Withdraw/index')}" class="layui-btn layui-btn-primary">重置</a>
                         </form>
                         <script>
                             $(function () {
                                 $("#button").click(function () {
-                                    var newUrl = "{:U('withdraw/exportwithdraw')}";    //设置新提交地址
+                                    var newUrl = "{:U('Withdraw/exportWithdraw')}";    //设置新提交地址
                                     $("#myform").attr('action', newUrl);    //通过jquery为action属性赋值
                                     $("#myform").submit();    //提交ID为myform的表单
                                 })
@@ -82,13 +69,13 @@
                                     </span>
                                 </div>
                             </th>
-                            <th>昵称</th>
-                            <th>提现时间</th>
+                            <th>代理商昵称</th>
                             <th>提现金额</th>
                             <th>提现卡号</th>
                             <th>提现银行</th>
                             <th>持卡人姓名</th>
                             <th>审核状态</th>
+                            <th>创建时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -103,8 +90,7 @@
                                 <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
                                 <td>{$item.id}</td>
                                 <td>{$item.nickname}</td>
-                                <td>{$item.create_time|date='Y-m-d H:i:s',###}</td>
-                                <td>{$item.money}</td>
+                                <td>￥{$item.money}</td>
                                 <td>{$item.card_code}</td>
                                 <td>{$item.card_type}</td>
                                 <td>{$item.card_name}</td>
@@ -113,36 +99,25 @@
                                         <case value="1">审核中</case>
                                         <case value="2">提现成功</case>
                                         <case value="3">提现失败</case>
-                                        <default />
+                                        <default/>
                                     </switch>
                                 </td>
-                                <!--<td>{$item['create_time']|date='Y-m-d H:i',###}</td>-->
-                                <!--<td>{$item['status'] == 1 ? '启用' : '禁用'}</td>-->
+                                <td>{$item.create_time|date='Y-m-d H:i:s',###}</td>
                                 <td>
-                                    <!--<button class="layui-btn layui-btn-xs layui-btn-normal"
-                                            onclick="jumpUrl('{:U('withdraw/editwithdraw', array('id'=>$item['id'], 'system'=>0))}')">
-                                        编辑
-                                    </button>-->
-                                    <!--<button class="layui-btn layui-btn-xs layui-btn-warm"-->
-                                            <!--onclick="confirmOneAction('{:U('Withdraw/resumeWithdraw')}', '{$item['status'] == 1 ? '' : '启用'}','{$item.id}')">-->
-                                        <!--{$item['status'] == 1 ? '禁用' : '启用'}-->
-                                    <!--</button>-->
                                     <if condition="$item['status'] eq 1">
-                                        <button data-id="{$item['id']}" data-key="2" class="layui-btn layui-btn-xs layui-btn-warm"
+                                        <button data-id="{$item['id']}" data-key="2"
+                                                class="layui-btn layui-btn-xs layui-btn-warm"
                                                 onclick="confirmOneAction('{:U('Withdraw/yesWithdraw')}', '{$item['status'] == 1 ? '' : '启用'}','{$item.id}')">
                                             同意提现
                                         </button>
                                     </if>
                                     <if condition="$item['status'] eq 1">
-                                        <button data-id="{$item['id']}" data-key="3" class="layui-btn layui-btn-xs layui-btn-warm "
-                                            onclick="confirmOneAction('{:U('Withdraw/noWithdraw')}', '{$item['status'] == 1 ? '' : '拒绝提现'}','{$item.id}')">
+                                        <button data-id="{$item['id']}" data-key="3"
+                                                class="layui-btn layui-btn-xs layui-btn-warm "
+                                                onclick="confirmOneAction('{:U('Withdraw/noWithdraw')}', '{$item['status'] == 1 ? '' : '拒绝提现'}','{$item.id}')">
                                             拒绝提现
                                         </button>
                                     </if>
-                                    <!--<button class="layui-btn layui-btn-xs layui-btn-danger"-->
-                                            <!--onclick="confirmDelAction('{:U('Withdraw/delete',array('model'=>'Withdraw'))}', '删除','{$item.id}')">-->
-                                        <!--删除-->
-                                    <!--</button>-->
                                 </td>
                             </tr>
                         </volist>
@@ -194,16 +169,16 @@
         elem: '#test2' //指定元素
     });
     //成功或失败
-    $(".change_status").on('click',function () {
+    $(".change_status").on('click', function () {
         var ids = $(this).data('id');
-        var model='Withdraw';
-        var status=$(this).data('key');
+        var model = 'Withdraw';
+        var status = $(this).data('key');
         $.ajax({
-            type:'POST',
-            data:{ids:ids,model:model,status:status},
-            url:'{:U("Withdraw/resumeWithdraw")}',
-            success:function(data) {
-                if (data.code == 1){
+            type: 'POST',
+            data: {ids: ids, model: model, status: status},
+            url: '{:U("Withdraw/resumeWithdraw")}',
+            success: function (data) {
+                if (data.code == 1) {
                     if (status == 2) {
                         layer.msg('提现成功');
                     }
@@ -212,7 +187,7 @@
                     }
                     setTimeout(function () {
                         location.href = '{:U("Withdraw/index")}';
-                    },'1000');
+                    }, '1000');
                 } else {
                     layer.msg(data.message);
                     return false;

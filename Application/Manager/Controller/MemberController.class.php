@@ -19,21 +19,17 @@ class MemberController extends BaseController
      */
     public function index() {
         $where = array();
-        $parameter = array();
         //账号查找
         if(!empty($_REQUEST['account'])){
             $where['account'] = array('LIKE',"%".I('request.account')."%");
-            $parameter['account'] = I('request.account');
         }
         //昵称查找
         if(!empty($_REQUEST['nickname'])){
             $where['nickname'] = array('LIKE',"%".I('request.nickname')."%");
-            $parameter['nickname'] = I('request.nickname');
         }
         //性别查找
         if(!empty($_REQUEST['sex'])){
             $where['sex'] = I('request.sex');
-            $parameter['sex'] = I('request.sex');
         }
 
         //注册时间查找
