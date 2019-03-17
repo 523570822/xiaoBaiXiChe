@@ -672,8 +672,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '74b396717fa48c3fd185b4737009d5b9';
-//        $post['orderid'] = 'XC201903171738273282';
+//        $post['token'] = 'dca40ae8f2ca904100b8371af9b29581';
+//        $post['orderid'] = 'XC201903171758532348';
 //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
@@ -809,10 +809,10 @@ class OrderController extends BaseController {
                             //结算存储时间
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                             //检查订单费用是否为0
-                            $zero = $this->payZero($member['id'],$order['id']);
-                            if($zero == 1){
-                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-                            }
+//                            $zero = $this->payZero($member['id'],$order['id']);
+//                            if($zero == 1){
+//                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+//                            }
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             $this->apiResponse('1','已为您自动结算',$data_moneys);
@@ -834,10 +834,10 @@ class OrderController extends BaseController {
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
 
                             //检查订单费用是否为0
-                            $zero = $this->payZero($member['id'],$order['id']);
-                            if($zero == 1){
-                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-                            }
+//                            $zero = $this->payZero($member['id'],$order['id']);
+//                            if($zero == 1){
+//                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+//                            }
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
 
