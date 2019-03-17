@@ -811,9 +811,10 @@ class OrderController extends BaseController {
 //                    $this->apiResponse('1','未产生洗车费用,已为您自动结算');
 //                }
                 $this->apiResponse('1','该设备已掉线,已为您自动结算',$data_moneys);
-            }else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
-                $this->apiResponse('0','当前洗车机尚未开启');
             }
+//            else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
+//                $this->apiResponse('0','当前洗车机尚未开启');
+//            }
 
             //判断机器使用状态
             if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
