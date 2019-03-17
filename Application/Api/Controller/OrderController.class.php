@@ -672,8 +672,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = 'f609d5257edd160da1846f5c16961ea8';
-//        $post['orderid'] = 'XC201903171721224689';
+//        $post['token'] = '74b396717fa48c3fd185b4737009d5b9';
+//        $post['orderid'] = 'XC201903171738273282';
 //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
@@ -736,15 +736,13 @@ class OrderController extends BaseController {
                 'off_on' => $post['off_on'],
             );
 
-//        var_dump($send_post['devices'][0]);
-
-
             //判断机器使用状态
             if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
+
                 $f_where['id'] = $details['id'];
                 $f_where['status'] = 0;
                 $f_details = M('Details')->where($f_where)->find();
-//            var_dump($f_details);exit;
+
                 //水枪使用时间
                 if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ){
                     if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
@@ -785,6 +783,7 @@ class OrderController extends BaseController {
                     }
                 }
 
+
                 //检查洗车机继续使用还是结算
                 if(!empty($data_money)){
                     if($post['off_on'] == 0){
@@ -810,14 +809,14 @@ class OrderController extends BaseController {
                             //结算存储时间
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                             //检查订单费用是否为0
-//                $zero = $this->payZero($member['id'],$order['id']);
-//                if($zero == 1){
-//                    $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-//                }
+                            $zero = $this->payZero($member['id'],$order['id']);
+                            if($zero == 1){
+                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                            }
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             $this->apiResponse('1','已为您自动结算',$data_moneys);
-                        } else if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4){   //12代表机器结算   结算跳转到立即支付页
+                        } else if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4){   //12代表机器结算   结算跳转到立即支付页
                             $d_save = array(
                                 'status'  => 1,
                             );
@@ -835,10 +834,10 @@ class OrderController extends BaseController {
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
 
                             //检查订单费用是否为0
-//                $zero = $this->payZero($member['id'],$order['id']);
-//                if($zero == 1){
-//                    $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-//                }
+                            $zero = $this->payZero($member['id'],$order['id']);
+                            if($zero == 1){
+                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                            }
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
 
@@ -868,7 +867,6 @@ class OrderController extends BaseController {
                         } else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
                             $this->apiResponse('0','当前洗车机尚未开启');
                         }
-
                         $this->apiResponse('1','查询成功',$data_moneys);
                     }elseif($post['off_on'] == 1){
                         $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
