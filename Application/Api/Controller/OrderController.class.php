@@ -1065,7 +1065,7 @@ class OrderController extends BaseController {
      *Date:2019/03/02 11:14
      */
     public function button(){
-        $post = checkAppData('deviceid,event,clean_usage,clean_duration,foam_usage,foam_duration,vacuum_usage','洗车机编号-事件-清水用量-清水使用时间-泡沫用量-泡沫使用时间-吸尘器使用时间');
+        $post = checkAppData('deviceid,event','洗车机编号-事件');
 //        $post['deviceid'] = '510042001451373435363337';
 //        $post['event'] = 1;
 //        $post['clean_usage'] = 0;
@@ -1078,20 +1078,20 @@ class OrderController extends BaseController {
         if($post['event'] == 1){
             $send_post = $this->send_post('device_manage',$post['deviceid'],3);
             $d_save = array(
-                'washing' => $post['clean_duration'],
-                'foam' => $post['foam_duration'],
-                'cleaner' => $post['vacuum_usage'],
+//                'washing' => $post['clean_duration'],
+//                'foam' => $post['foam_duration'],
+//                'cleaner' => $post['vacuum_usage'],
                 'status' => 1,
             );
             $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
-            $wash_money =  round($d_save['washing'] * $car['washing_money'],2);
-            $foam_money = round($d_save['foam'] * $car['foam_money'],2);
-            $cleaner_money = round($d_save['cleaner'] * $car['cleaner_money'],2);
-            $o_save = array(
-                'button' => 1,
-                'money' => $wash_money + $foam_money + $cleaner_money,
-            );
-            $orders = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->save($o_save);
+//            $wash_money =  round($d_save['washing'] * $car['washing_money'],2);
+//            $foam_money = round($d_save['foam'] * $car['foam_money'],2);
+//            $cleaner_money = round($d_save['cleaner'] * $car['cleaner_money'],2);
+//            $o_save = array(
+//                'button' => 1,
+//                'money' => $wash_money + $foam_money + $cleaner_money,
+//            );
+//            $orders = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->save($o_save);
             if($send_post){
                 $this->apiResponse(1,'result','OK');
             }else{
