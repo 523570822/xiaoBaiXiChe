@@ -42,6 +42,9 @@
                                     <option value="3"
                                     <if condition="$_REQUEST['type'] eq 3">selected=true</if>
                                     >预订中</option>
+                                    <option value="4"
+                                    <if condition="$_REQUEST['type'] eq 4">selected=true</if>
+                                    >故障中</option>
                                 </select>
                             </div>
                             <div class="layui-input-inline layui-form">
@@ -122,7 +125,7 @@
                                         <case value="1"><span style="color: darkblue;">空闲中</span></case>
                                         <case value="2"><span style="color: green;">使用中</span></case>
                                         <case value="3"><span style="color: lightblue;">预订中</span></case>
-                                        <case value="4"><span style="color: red;">暂停中</span></case>
+                                        <case value="4"><span style="color: red;">故障中</span></case>
                                         <default/>
                                     </switch>
                                 </td>
