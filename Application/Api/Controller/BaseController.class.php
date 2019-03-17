@@ -436,6 +436,7 @@ class BaseController extends ControllerService
     }
 
     /**
+     * 费用为0 自动删除订单
      * @param $m_id    //用户ID
      * @param $o_id    //订单ID
      *user:jiaming.wang  459681469@qq.com
@@ -451,7 +452,7 @@ class BaseController extends ControllerService
                 'is_set'=>1
             );
             $order_pay = M('Order')->where(array('m_id'=>$m_id,'o_id'=>$o_id,'pay_money'=>0,'status'=>1))->save($order_pay_save);
-            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+            return 1;
         }
     }
 

@@ -841,6 +841,11 @@ class OrderController extends BaseController {
 //                            $order_pay = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0,'status'=>1))->save($order_pay_save);
 //                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
 //                        }
+                        //检查订单费用是否为0
+                        $zero = $this->payZero($member['id'],$order['id']);
+                        if($zero == 1){
+                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                        }
                         //结算洗车机状态为1空闲
                         $this->typeOne($details['c_id']);
                         $this->apiResponse('1','结算成功',$data_moneys);
@@ -862,6 +867,11 @@ class OrderController extends BaseController {
                 $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
                 //结算存储时间
                 $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+                //检查订单费用是否为0
+                $zero = $this->payZero($member['id'],$order['id']);
+                if($zero == 1){
+                    $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                }
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 $this->apiResponse('1','设备故障,已为您自动结算',$data_moneys);
@@ -893,6 +903,12 @@ class OrderController extends BaseController {
                 $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
                 //结算存储时间
                 $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+
+                //检查订单费用是否为0
+                $zero = $this->payZero($member['id'],$order['id']);
+                if($zero == 1){
+                    $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                }
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
 
@@ -913,6 +929,11 @@ class OrderController extends BaseController {
                 $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
+                //检查订单费用是否为0
+                $zero = $this->payZero($member['id'],$order['id']);
+                if($zero == 1){
+                    $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                }
                 $this->apiResponse('1','该设备已掉线,已为您自动结算',$data_moneys);
             }else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
                 $this->apiResponse('0','当前洗车机尚未开启');
