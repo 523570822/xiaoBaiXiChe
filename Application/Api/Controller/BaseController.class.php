@@ -455,4 +455,15 @@ class BaseController extends ControllerService
             $this->apiResponse('1','未产生洗车费用,已为您自动结算');
         }
     }
+
+    /**
+     *洗车机状态空闲
+     * @param $c_id //洗车机ID
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/03/17 11:14
+     */
+    public function typeOne($c_id){
+        $save['type'] = 1;
+        $order = M('CarWasher')->where(array('id'=>$c_id))->save($save);
+    }
 }
