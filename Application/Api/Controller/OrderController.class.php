@@ -672,8 +672,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '4308168924069169809c40e029774c3f';
-//        $post['orderid'] = 'XC201903141715301446';
+//        $post['token'] = '1bc619b3484bb996a0e36195da45a143';
+//        $post['orderid'] = 'XC201903171630143838';
 //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
@@ -737,121 +737,9 @@ class OrderController extends BaseController {
             );
 
 //        var_dump($send_post['devices'][0]);
-            //判断机器使用状态
-            if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
-//                $car_start_save = array(
-//                    'type' => 2,
-//                );
-//                $car_start = M('CarWasher')->where(array('id'=>$details['c_id']))->save($car_start_save);
 
-                //正式    洗车机使用前设备秒数读取
-//                if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) && ($send_post['devices'][0]['queryitem']['pump2_statu'] == 3) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 2)){
-//                    $start_data['washing_start_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-////                    $start_data['foam_start_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-////                    $start_data['cleaner_start_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
-//                    $d_where['status'] = 0;
-//                    $d_where['id'] = $details['id'];
-//                    $start = M('Details')->where($d_where)->save($start_data);
-//                }
-
-                $f_where['id'] = $details['id'];
-                $f_where['status'] = 0;
-                $f_details = M('Details')->where($f_where)->find();
-//            var_dump($f_details);exit;
-                //水枪使用时间
-                if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ){
-                    if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
-                        $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] -5;
-                        if($w_end_data['washing'] < 0 ){    //为-1就等于0
-                            $w_end_data['washing'] = 0;
-                        }
-                        $d_where['status'] = 0;
-                        $d_where['id'] = $details['id'];
-                        $w_start = M('Details')->where($d_where)->save($w_end_data);
-                    }
-                }
-                //泡沫枪使用时间
-                if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 3) ){
-                    if($send_post['devices'][0]['queryitem']['foam_duration'] != $f_details['foam_end_time']){
-                        $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] -5;
-                        if($f_end_data['foam'] < 0 ){    //为-1就等于0
-                            $f_end_data['foam'] = 0;
-                        }
-                        $d_where['status'] = 0;
-                        $d_where['id'] = $details['id'];
-                        $f_start = M('Details')->where($d_where)->save($f_end_data);
-                    }
-                }
-                //吸尘器使用时间
-                if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 3)){
-                    if($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] != $f_details['cleaner_end_time']){
-                        $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
-                        $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'] - 5;
-                        if($c_end_data['cleaner'] < 0 ){    //为-1就等于0
-                            $c_end_data['cleaner'] = 0;
-                        }
-                        $d_where['status'] = 0;
-                        $d_where['id'] = $details['id'];
-                        $c_start = M('Details')->where($d_where)->save($c_end_data);
-                    }
-                }
-
-                //检查洗车机继续使用还是结算
-                if(!empty($data_money)){
-                    if($post['off_on'] == 0){
-                        $data_moneys = $this->onDetails($member['id'],$order['id'],$indication);
-//                        var_dump($data_moneys);
-                        //结算存储时间
-                        $a = $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-//                        if($a){
-//                            echo 'haha';exit;
-//                        }
-                        $this->apiResponse('1','查询成功',$data_moneys);
-                    }elseif($post['off_on'] == 1){
-                        $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
-                        $d_save = array(
-                            'status'  => 1,
-                        );
-                        $detailss = M('Details')->where($d_where)->save($d_save);
-                        $o_save = array(
-                            'button' => 1,
-                            'money' => $data_money['all_money'],
-                        );
-                        //费用为0
-//                        if($o_save['money'] == 0){
-//                            $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
-//                        }
-                        $o_order = M('Order')->where($o_where)->save($o_save);
-                        //语音播报
-                        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-                        $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
-                        $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
-                        //结算存储时间
-                        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                        //费用为0,自动结算
-//                        $order_zero = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0))->find();
-//                        if(!empty($order_zero)){
-//                            $order_pay_save = array(
-//                                'status' =>2,
-//                                'pay_time' => time(),
-//                                'is_set'=>1
-//                            );
-//                            $order_pay = M('Order')->where(array('m_id'=>$member['id'],'o_id'=>$order['id'],'pay_money'=>0,'status'=>1))->save($order_pay_save);
-//                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-//                        }
-                        //检查订单费用是否为0
-                        $zero = $this->payZero($member['id'],$order['id']);
-                        if($zero == 1){
-                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-                        }
-                        //结算洗车机状态为1空闲
-                        $this->typeOne($details['c_id']);
-                        $this->apiResponse('1','结算成功',$data_moneys);
-                    }
-                }
-            }else if($send_post['devices'][0]['queryitem']['service_status'] == 12){
+            //根据洗车机判断
+            if($send_post['devices'][0]['queryitem']['service_status'] == 12){
                 $d_save = array(
                     'status'  => 1,
                 );
@@ -874,20 +762,8 @@ class OrderController extends BaseController {
                 }
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
-                $this->apiResponse('1','设备故障,已为您自动结算',$data_moneys);
+                $this->apiResponse('1','已为您自动结算',$data_moneys);
             } else if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4){   //12代表机器结算   结算跳转到立即支付页
-                //价格
-//                $wash_money =  round($details['washing'] * $car['washing_money'],2);
-//                $foam_money = round($details['foam'] * $car['foam_money'],2);
-//                $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
-//                $data_money = array(
-//                    'washing' =>$wash_time,             //水枪使用时间
-//                    'foam'=>$foam_time,                   //泡沫使用时间
-//                    'cleaner'=>$cleaner_time,             //吸尘器使用时间
-//                    'all_money' =>$wash_money+$foam_money+$cleaner_money,       //总金额
-//                    'off_on' => $post['off_on'],
-//                );
-//                $data_money['off_on'] = 1;
                 $d_save = array(
                     'status'  => 1,
                 );
@@ -937,6 +813,92 @@ class OrderController extends BaseController {
                 $this->apiResponse('1','该设备已掉线,已为您自动结算',$data_moneys);
             }else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
                 $this->apiResponse('0','当前洗车机尚未开启');
+            }
+
+            //判断机器使用状态
+            if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
+                $f_where['id'] = $details['id'];
+                $f_where['status'] = 0;
+                $f_details = M('Details')->where($f_where)->find();
+//            var_dump($f_details);exit;
+                //水枪使用时间
+                if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ){
+                    if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
+                        $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
+                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'];
+                        if($w_end_data['washing'] < 0 ){    //为-1就等于0
+                            $w_end_data['washing'] = 0;
+                        }
+                        $d_where['status'] = 0;
+                        $d_where['id'] = $details['id'];
+                        $w_start = M('Details')->where($d_where)->save($w_end_data);
+                    }
+                }
+                //泡沫枪使用时间
+                if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 3) ){
+                    if($send_post['devices'][0]['queryitem']['foam_duration'] != $f_details['foam_end_time']){
+                        $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
+                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'];
+                        if($f_end_data['foam'] < 0 ){    //为-1就等于0
+                            $f_end_data['foam'] = 0;
+                        }
+                        $d_where['status'] = 0;
+                        $d_where['id'] = $details['id'];
+                        $f_start = M('Details')->where($d_where)->save($f_end_data);
+                    }
+                }
+                //吸尘器使用时间
+                if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 3)){
+                    if($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] != $f_details['cleaner_end_time']){
+                        $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
+                        $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'];
+                        if($c_end_data['cleaner'] < 0 ){    //为-1就等于0
+                            $c_end_data['cleaner'] = 0;
+                        }
+                        $d_where['status'] = 0;
+                        $d_where['id'] = $details['id'];
+                        $c_start = M('Details')->where($d_where)->save($c_end_data);
+                    }
+                }
+
+                //检查洗车机继续使用还是结算
+                if(!empty($data_money)){
+                    if($post['off_on'] == 0){
+                        $data_moneys = $this->onDetails($member['id'],$order['id'],$indication,$post['orderid']);
+//                        var_dump($data_moneys);
+                        //结算存储时间
+                        $a = $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+//                        if($a){
+//                            echo 'haha';exit;
+//                        }
+                        $this->apiResponse('1','查询成功',$data_moneys);
+                    }elseif($post['off_on'] == 1){
+                        $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
+                        $d_save = array(
+                            'status'  => 1,
+                        );
+                        $detailss = M('Details')->where($d_where)->save($d_save);
+                        $o_save = array(
+                            'button' => 1,
+                            'money' => $data_money['all_money'],
+                        );
+                        $o_order = M('Order')->where($o_where)->save($o_save);
+                        //语音播报
+                        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                        $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                        $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
+                        //结算存储时间
+                        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+                        //检查订单费用是否为0
+                        $zero = $this->payZero($member['id'],$order['id']);
+                        if($zero == 1){
+                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                        }
+                        //结算洗车机状态为1空闲
+                        $this->typeOne($details['c_id']);
+                        $this->apiResponse('1','结算成功',$data_moneys);
+                    }
+                }
             }
         }else{
             $this->apiResponse('0','请先扫码或手动输入下单');
