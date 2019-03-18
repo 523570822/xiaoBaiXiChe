@@ -233,7 +233,7 @@ class WashshopController extends BaseController
                 } elseif($washcar[$k]['type'] == '3') {
                     $washcar[$k]['is_yy'] = '预约中';
                 }else{
-                    $washcar[$k]['is_yy'] = '暂停使用';
+                    $washcar[$k]['is_yy'] = '故障中';
                 }
             }
         }
