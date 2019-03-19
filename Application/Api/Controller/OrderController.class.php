@@ -918,7 +918,8 @@ class OrderController extends BaseController {
                     }
                 }
             }else if($car['type'] == 4){
-                if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
+                if($send_post['devices'][0]['queryitem']['service_status'] <= 8) {
+
                     $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
                     $d_save = array(
                         'status' => 1,
