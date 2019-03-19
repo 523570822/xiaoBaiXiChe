@@ -331,13 +331,15 @@ class OrderController extends BaseController {
         $o_type = $request['o_type'];
         $w_type = $request['w_type'];
         $mc_code = $request['mc_code'];
-        $find_car = M('CarWasher')->where(array('$mc_code'=>$mc_code))->find();
+        $find_car = M('CarWasher')->where(array('mc_code'=>$mc_code))->find();
         //type 2使用中   4故障中
         if($find_car['type'] == 2){
             $this->apiResponse('0','洗车机正在使用中');
-        }elseif($find_car['type'] == 3){
+        }
+        if($find_car['type'] == 3){
             $this->apiResponse('0','洗车机正在预定中');
-        }elseif($find_car['type'] == 4){
+        }
+        if($find_car['type'] == 4){
             $this->apiResponse('0','洗车机故障中');
         }
         //转换数据
