@@ -217,7 +217,8 @@ class WashshopController extends BaseController
             $this->apiResponse ('0' , '缺少坐标参数');
         }
         $wh3 = '(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(' . $lat . '-lat)/360),2)+COS(3.1415926535898*' . $lat . '/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(' . $lon . '-lon)/360),2))))*1000';
-        $washcar = M ('CarWasher')->where (array ('status' => 1))->field ('id,p_id,lon,lat,address,mc_code as mc_id ,status,type,' . $wh3 . ' as distance')->order ('distance ASC')->select ();
+        $washer_where['status'] = array('neq',9);
+        $washcar = M ('CarWasher')->where ($washer_where)->field ('id,p_id,lon,lat,address,mc_code as mc_id ,status,type,' . $wh3 . ' as distance')->order ('distance ASC')->select ();
         if ( $washcar ) {
             foreach ( $washcar as $k => $v ) {
                 if ( $lat == "" ) {
@@ -227,12 +228,12 @@ class WashshopController extends BaseController
                 $name = D ('Washshop')->where (array ('id' => $washcar[$k]['p_id']))->field ('shop_name')->find ();
                 $washcar[$k]['shop_name'] = $name['shop_name'];
                 if ( $washcar[$k]['type'] == '1' ) {
-                    $washcar[$k]['is_yy'] = '预约洗车';
+                    $washcar[$k]['is_yy'] = '闲置中';
                 } elseif ( $washcar[$k]['type'] == '2' ) {
                     $washcar[$k]['is_yy'] = '使用中';
                 } elseif($washcar[$k]['type'] == '3') {
                     $washcar[$k]['is_yy'] = '预约中';
-                }else{
+                }elseif($washcar[$k]['type'] == '4'){
                     $washcar[$k]['is_yy'] = '故障中';
                 }
             }
