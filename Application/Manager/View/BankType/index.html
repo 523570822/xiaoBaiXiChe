@@ -149,33 +149,6 @@
         elem: '#test2' //指定元素
     });
 
-    //成功或失败
-    $(".change_status").on('click', function () {
-        var ids = $(this).data('id');
-        var model = 'BankType';
-        var status = $(this).data('key');
-        $.ajax({
-            type: 'POST',
-            data: {ids: ids, model: model, status: status},
-            url: '{:U("BankType/resumeBankType")}',
-            success: function (data) {
-                if (data.code == 1) {
-                    if (status == 2) {
-                        layer.msg('提现成功');
-                    }
-                    if (status == 3) {
-                        layer.msg('拒绝提现');
-                    }
-                    setTimeout(function () {
-                        location.href = '{:U("BankType/index")}';
-                    }, '1000');
-                } else {
-                    layer.msg(data.message);
-                    return false;
-                }
-            }
-        });
-    })
 </script>
 </body>
 </html>

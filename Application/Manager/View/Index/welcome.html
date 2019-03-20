@@ -1,38 +1,40 @@
 <!DOCTYPE html>
- <!--saved from url=(0160)http://www.17sucai.com/preview/1240142/2018-07-23/%E8%AE%BE%E5%A4%87%E7%8E%AF%E5%A2%83%E7%9B%91%E6%B5%8B%E5%B9%B3%E5%8F%B0%E5%A4%A7%E6%95%B0%E6%8D%AE/index.html-->
-<html lang="en" style="font-size: 100px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--saved from url=(0160)http://www.17sucai.com/preview/1240142/2018-07-23/%E8%AE%BE%E5%A4%87%E7%8E%AF%E5%A2%83%E7%9B%91%E6%B5%8B%E5%B9%B3%E5%8F%B0%E5%A4%A7%E6%95%B0%E6%8D%AE/index.html-->
+<html lang="en" style="font-size: 100px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="__PUBLIC__/layuiadmin/one/index.css">
-    <title>设备环境监测平台大数据</title>
+    <title>{$title}</title>
     <script src="__PUBLIC__/layuiadmin/one/jquery-2.2.1.min.js"></script>
     <script src="__PUBLIC__/layuiadmin/one/rem.js"></script>
     <script src="__PUBLIC__/layuiadmin/one/echarts.min.js"></script>
-    <script src="__PUBLIC__/layuiadmin/one/guangxi.js"></script>
+    <script src="__PUBLIC__/layuiadmin/one/china.js"></script>
     <script src="__PUBLIC__/layuiadmin/one/index.js"></script>
 </head>
 <body>
 <div class="t_container">
     <header class="t_header">
-        <span>设备环境监测平台</span>
+        <span>小鲸洗车机监测平台</span>
     </header>
     <main class="t_main">
         <div class="t_left_box">
             <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
             <div class="t_mbox t_rbox">
                 <i></i>
-                <span>本月订单数</span>
-                <h2>18000</h2>
+                <span>总订单数</span>
+                <h2>{$orderNum}</h2>
             </div>
             <div class="t_mbox t_gbox">
                 <i></i>
-                <span>本月新增会员</span>
-                <h2>1000</h2>
+                <span>全部用户</span>
+                <h2>{$allNum}</h2>
             </div>
             <div class="t_mbox t_ybox">
                 <i></i>
-                <span>一次消费会员</span>
-                <h2>600</h2>
+                <span>本月收入</span>
+                <h2>{$money}</h2>
             </div>
             <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
         </div>
@@ -42,68 +44,102 @@
                 <ul class="t_nav">
                     <li>
                         <span>设备数</span>
-                        <h1>500</h1>
+                        <h1>{$carWasherNum}</h1>
                         <i></i>
                     </li>
                     <li>
                         <span>上月设备增加数</span>
-                        <h1>30</h1>
+                        <h1>{$carWasher}</h1>
                         <i></i>
                     </li>
                     <li>
-                        <span>增值率</span>
-                        <h1>75%</h1>
+                        <span>增长率</span>
+                        <h1>{$growthRate}</h1>
                     </li>
                 </ul>
                 <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
             </div>
             <div class="t_bottom_box">
                 <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
-                <div id="chart_3" class="echart" style="width: 100%; height: 3.6rem; -webkit-tap-highlight-color: transparent; user-select: none;" _echarts_instance_="ec_1551350273665"><div style="position: relative; overflow: hidden; width: 682px; height: 360px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="682" height="360" style="position: absolute; left: 0px; top: 0px; width: 682px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas><canvas data-zr-dom-id="zr_1" width="682" height="360" style="position: absolute; left: 0px; top: 0px; width: 682px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas><canvas data-zr-dom-id="zr_6" width="682" height="360" style="position: absolute; left: 0px; top: 0px; width: 682px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
+                <div id="chart_3" class="echart"
+                     style="width: 100%; height: 3.6rem; -webkit-tap-highlight-color: transparent; user-select: none;"
+                     _echarts_instance_="ec_1551350273665">
+                    <div style="position: relative; overflow: hidden; width: 682px; height: 360px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;">
+                        <canvas data-zr-dom-id="zr_0" width="682" height="360"
+                                style="position: absolute; left: 0px; top: 0px; width: 682px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                        <canvas data-zr-dom-id="zr_1" width="682" height="360"
+                                style="position: absolute; left: 0px; top: 0px; width: 682px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                        <canvas data-zr-dom-id="zr_6" width="682" height="360"
+                                style="position: absolute; left: 0px; top: 0px; width: 682px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                    </div>
+                </div>
                 <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
             </div>
         </div>
         <div class="t_right_box">
             <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
-            <div id="chart_4" class="echart" style="width: 50%; height: 4.6rem; position: absolute; -webkit-tap-highlight-color: transparent; user-select: none;" _echarts_instance_="ec_1551350273666"><div style="position: relative; overflow: hidden; width: 390px; height: 460px; padding: 0px; margin: 0px; border-width: 0px; cursor: pointer;"><canvas data-zr-dom-id="zr_0" width="390" height="460" style="position: absolute; left: 0px; top: 0px; width: 390px; height: 460px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
+            <div id="chart_4" class="echart"
+                 style="width: 50%; height: 4.6rem; position: absolute; -webkit-tap-highlight-color: transparent; user-select: none;"
+                 _echarts_instance_="ec_1551350273666">
+                <div style="position: relative; overflow: hidden; width: 390px; height: 460px; padding: 0px; margin: 0px; border-width: 0px; cursor: pointer;">
+                    <canvas data-zr-dom-id="zr_0" width="390" height="460"
+                            style="position: absolute; left: 0px; top: 0px; width: 390px; height: 460px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                </div>
+            </div>
             <header class="t_b_h">
                 <span>开关次数</span>
                 <img src="__PUBLIC__/layuiadmin/one/end.png">
-                <h3>15<span>次</span></h3>
+                <h3>{$switch}<span>次</span></h3>
             </header>
             <main class="t_b_m">
                 <img src="__PUBLIC__/layuiadmin/one/map.png" alt="">
                 <div class="t_b_box">
-                    <span>溫度</span>
-                    <i></i>
-                    <h2>23℃</h2>
-                </div>
-                <div class="t_b_box1">
                     <span>湿度</span>
                     <i></i>
-                    <h2>56RH</h2>
+                    <h2>{$humidity}</h2>
+                </div>
+                <div class="t_b_box1">
+                    <span>溫度</span>
+                    <i></i>
+                    <h2>{$temperature}</h2>
                 </div>
                 <div class="t_b_box2">
-                    <span>信号</span>
+                    <span>PM2.5</span>
                     <i></i>
-                    <h2>-90dBm</h2>
+                    <h2>{$pm25}</h2>
                 </div>
                 <div class="t_b_box3">
-                    <span>光线</span>
+                    <span>日落时</span>
                     <i></i>
-                    <h2>250LX</h2>
+                    <h2>{$sunset}</h2>
                 </div>
             </main>
             <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
         </div>
         <div class="b_left_box">
             <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
-            <div id="chart_2" class="echart" style="width: 100%; height: 3.6rem; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1551350273664"><div style="position: relative; overflow: hidden; width: 590px; height: 360px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="590" height="360" style="position: absolute; left: 0px; top: 0px; width: 590px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
+            <div id="chart_2" class="echart"
+                 style="width: 100%; height: 3.6rem; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;"
+                 _echarts_instance_="ec_1551350273664">
+                <div style="position: relative; overflow: hidden; width: 590px; height: 360px; padding: 0px; margin: 0px; border-width: 0px;">
+                    <canvas data-zr-dom-id="zr_0" width="590" height="360"
+                            style="position: absolute; left: 0px; top: 0px; width: 590px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                </div>
+                <div></div>
+            </div>
             <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
         </div>
         <div class="b_center_box">
             <img class="t_l_line" src="__PUBLIC__/layuiadmin/one/left_line.png" alt="">
-            <div id="chart_1" class="echart" style="width: 100%; height: 3.6rem; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1551350273663"><div style="position: relative; overflow: hidden; width: 600px; height: 360px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="600" height="360" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
+            <div id="chart_1" class="echart"
+                 style="width: 100%; height: 3.6rem; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;"
+                 _echarts_instance_="ec_1551350273663">
+                <div style="position: relative; overflow: hidden; width: 600px; height: 360px; padding: 0px; margin: 0px; border-width: 0px;">
+                    <canvas data-zr-dom-id="zr_0" width="600" height="360"
+                            style="position: absolute; left: 0px; top: 0px; width: 600px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                </div>
+                <div></div>
+            </div>
             <img class="t_r_line" src="__PUBLIC__/layuiadmin/one/right_line.png" alt="">
         </div>
         <div class="b_right_box">
@@ -112,42 +148,45 @@
             <table class="t_table">
                 <thead>
                 <tr>
+                    <th>机器编号</th>
                     <th>维护时间</th>
                     <th>维保人</th>
                     <th>维保电话</th>
-                    <th>更换水量</th>
                 </tr>
                 </thead>
                 <tbody>
+                <!--<volist>-->
+                   <!-- name="" id=""-->
+                    <tr>
+                        <td>510042001451373435363337</td>
+                        <td>{$wxsj}</td>
+                        <td>王守仁</td>
+                        <td>15122052164</td>
+                    </tr>
+                <!--</volist>-->
                 <tr>
-                    <td>2019-02-06</td>
-                    <td>赵志超</td>
-                    <td>1000000000</td>
-                    <td>1000ml</td>
+                    <td>510042001451373435363337</td>
+                    <td>{$wxsj}</td>
+                    <td>王守仁</td>
+                    <td>15122052164</td>
                 </tr>
                 <tr>
-                    <td>2018-02-06</td>
-                    <td>张伟</td>
-                    <td>13111345462</td>
-                    <td>1000ml</td>
+                    <td>510042001451373435363337</td>
+                    <td>{$wxsj}</td>
+                    <td>王守仁</td>
+                    <td>15122052164</td>
                 </tr>
                 <tr>
-                    <td>2018-02-06</td>
-                    <td>张伟</td>
-                    <td>13111345462</td>
-                    <td>1000ml</td>
+                    <td>510042001451373435363337</td>
+                    <td>{$wxsj}</td>
+                    <td>王守仁</td>
+                    <td>15122052164</td>
                 </tr>
                 <tr>
-                    <td>2018-02-06</td>
-                    <td>张伟</td>
-                    <td>13111345462</td>
-                    <td>1000ml</td>
-                </tr>
-                <tr>
-                    <td>2018-02-06</td>
-                    <td>张伟</td>
-                    <td>13111345462</td>
-                    <td>1000ml</td>
+                    <td>510042001451373435363337</td>
+                    <td>{$wxsj}</td>
+                    <td>王守仁</td>
+                    <td>15122052164</td>
                 </tr>
                 </tbody>
             </table>
@@ -156,4 +195,5 @@
     </main>
 </div>
 
-</body></html>
+</body>
+</html>

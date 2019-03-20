@@ -100,6 +100,5 @@ class BankTypeController extends BaseController {
         $data = $status == 1 ? array ('status' => 0) : array ('status' => 1);
         $Res = D ('BankType')->querySave ($id , $data);
         $Res ? $this->apiResponse (1 , $status == 1 ? '禁用成功' : '启用成功') : $this->apiResponse (0 , $status == 1 ? '禁用失败' : '启用失败');
-
     }
 }
