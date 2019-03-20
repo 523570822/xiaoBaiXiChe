@@ -135,10 +135,37 @@ class IndexController extends BaseController {
 
     public function test () {
         $url_data = [
-            "methods" => 'methods',
-            "methods_id" => 'methods_id',
+            "methods" => 'methods' ,
+            "methods_id" => 'methods_id' ,
         ];
         $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify?' . http_build_query ($url_data);
         $this->ajaxReturn ($notify_url);
+    }
+
+    public function ajax_test () {
+        $res = M ('CarWasher')->where (['status' => 1])->count ();
+        $where['status'] = array ('neq' , 1);
+        $ress = M ('CarWasher')->where ($where)->count ();;
+        $this->ajaxReturn (
+            [
+                'one' => [
+                    [
+                        "value" => $ress , "name" => "故障"
+                    ] ,
+                    [
+                        "value" => $res , "name" => "正常" , "selected" => true
+                    ]
+                ] ,
+                'two' => [
+
+                ] ,
+                'three' => [
+
+                ] ,
+                'four' => [
+
+                ]
+            ]
+        );
     }
 }
