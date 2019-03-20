@@ -283,7 +283,7 @@ class BaseController extends ControllerService
             $php_errormsg = '查询失败，请传参数---->"type"';
             $this->apiResponse (0,$php_errormsg);
         }
-        $response = $this->push_curl (json_encode ($result_array) , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://guojiulin.gicp.net:18000/car_wash/" . $type);
+        $response = $this->push_curl (json_encode ($result_array) , ["Content-Type" => "Content-Type:application/x-www-form-urlencoded"] , "http://washer.xiaojingxiche.com:18000/car_wash/" . $type);
         return json_decode ($response, true);
     }
 
