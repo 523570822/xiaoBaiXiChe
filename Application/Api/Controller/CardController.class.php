@@ -75,7 +75,7 @@ class CardController extends BaseController
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
         $list_info = D ('CardUser')
-            ->where (array ('db_card_user.m_id' => $m_id,array ('db_card_user.status' => array ('neq' , 9))))
+            ->where (array ('db_card_user.m_id' => $m_id,'db_card_user.status' => 1))
             ->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")
             ->field ('db_card_user.id,db_card_user.l_id,db_card_user.end_time,db_littlewhale_card.name,db_littlewhale_card.rebate')
             ->find ();
