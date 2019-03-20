@@ -765,11 +765,9 @@ class OrderController extends BaseController {
 
             //判断机器使用状态
             if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
-
                 $f_where['id'] = $details['id'];
                 $f_where['status'] = 0;
                 $f_details = M('Details')->where($f_where)->find();
-
                 //水枪使用时间
                 if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ){
                     if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
@@ -1163,40 +1161,23 @@ class OrderController extends BaseController {
         $json = file_get_contents("php://input");
         $array = (array)json_decode(strip_tags($json,true));
         $post = $array['devices'][0];
-
-//        $post['deviceid'] = '510042001451373435363337';
-//        $post['event'] = 1;
-//        $post['clean_usage'] = 0;
-//        $post['clean_duration'] =0 ;
-//        $post['foam_usage'] =0 ;
-//        $post['foam_duration'] =0 ;
-//        $post['vacuum_usage'] =
-//        $devices['devices'] = [];
         $array['devices'][0] = [
             "deviceid" => $post->deviceid,
 			"event" => $post->event,
 	    ];
         $car = M('CarWasher')->where(array('mc_id'=>$post->deviceid))->find();
-        $order = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->find();
+        $order = M('Order')->where(array('c_id'=>$car['id'],'button'=>0,'o_type'=>1))->order('id DESC')->find();
         if($post->event == 1){
             $send_post = $this->send_post('device_manage',$post->event,3);
             $d_save = array(
-//                'washing' => $post['clean_duration'],
-//                'foam' => $post['foam_duration'],
-//                'cleaner' => $post['vacuum_usage'],
                 'status' => 1,
             );
+            $o_save = array(
+                'button' =>1,
+            );
             $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
-//            $wash_money =  round($d_save['washing'] * $car['washing_money'],2);
-//            $foam_money = round($d_save['foam'] * $car['foam_money'],2);
-//            $cleaner_money = round($d_save['cleaner'] * $car['cleaner_money'],2);
-//            $o_save = array(
-//                'button' => 1,
-//                'money' => $wash_money + $foam_money + $cleaner_money,
-//                'pay_money' =>$data_money['all_money'],
-
-//            );
-//            $orders = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->save($o_save);
+            //这台洗车机的全部订单都结算
+            $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($o_save);
             if($send_post){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
@@ -1211,22 +1192,13 @@ class OrderController extends BaseController {
             //结算
             $send_post = $this->send_post('device_manage',$post->event,3);
             $d_save = array(
-//                'washing' => $post['clean_duration'],
-//                'foam' => $post['foam_duration'],
-//                'cleaner' => $post['vacuum_usage'],
                 'status' => 1,
             );
             $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
-//            $wash_money =  round($d_save['washing'] * $car['washing_money'],2);
-//            $foam_money = round($d_save['foam'] * $car['foam_money'],2);
-//            $cleaner_money = round($d_save['cleaner'] * $car['cleaner_money'],2);
-//            $o_save = array(
-//                'button' => 1,
-//                'money' => $wash_money + $foam_money + $cleaner_money,
-//                'pay_money' =>$data_money['all_money'],
-
-//            );
-//            $orders = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->save($o_save);
+            $q_save = array(
+                'button' =>  1
+            );
+            $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($q_save);
             if($send_post){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
@@ -1252,22 +1224,14 @@ class OrderController extends BaseController {
             //结算
             $send_post = $this->send_post('device_manage',$post->event,3);
             $d_save = array(
-//                'washing' => $post['clean_duration'],
-//                'foam' => $post['foam_duration'],
-//                'cleaner' => $post['vacuum_usage'],
                 'status' => 1,
             );
             $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
-//            $wash_money =  round($d_save['washing'] * $car['washing_money'],2);
-//            $foam_money = round($d_save['foam'] * $car['foam_money'],2);
-//            $cleaner_money = round($d_save['cleaner'] * $car['cleaner_money'],2);
-//            $o_save = array(
-//                'button' => 1,
-//                'money' => $wash_money + $foam_money + $cleaner_money,
-//                'pay_money' =>$data_money['all_money'],
-
-//            );
-//            $orders = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->save($o_save);
+            //这台洗车机的全部订单都结算
+            $t_save = array(
+                'button' =>  1
+            );
+            $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($t_save);
             if($send_post){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>5,'status'=>1))->find();
@@ -1282,22 +1246,14 @@ class OrderController extends BaseController {
             //结算
             $send_post = $this->send_post('device_manage',$post->event,3);
             $d_save = array(
-//                'washing' => $post['clean_duration'],
-//                'foam' => $post['foam_duration'],
-//                'cleaner' => $post['vacuum_usage'],
                 'status' => 1,
             );
             $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
-//            $wash_money =  round($d_save['washing'] * $car['washing_money'],2);
-//            $foam_money = round($d_save['foam'] * $car['foam_money'],2);
-//            $cleaner_money = round($d_save['cleaner'] * $car['cleaner_money'],2);
-//            $o_save = array(
-//                'button' => 1,
-//                'money' => $wash_money + $foam_money + $cleaner_money,
-//                'pay_money' =>$data_money['all_money'],
-
-//            );
-//            $orders = M('Order')->where(array('c_id'=>$car['id'],'button'=>0))->save($o_save);
+            //这台洗车机的全部订单都统一结算
+            $a_save = array(
+                'button' =>  1
+            );
+            $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($a_save);
             if($send_post){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>6,'status'=>1))->find();
