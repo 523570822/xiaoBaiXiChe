@@ -764,6 +764,7 @@ class OrderController extends BaseController {
         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
 
         if($order['button'] ==1){
+            echo 123;
             //检查订单费用是否为0
             $zero = $this->payZero($member['id'],$order['id']);
             if($zero == 1){
@@ -774,6 +775,7 @@ class OrderController extends BaseController {
 
         //判断订单
         if(!empty($details)){
+            echo 456;
             if($details['status'] == 1){
                 $this->apiResponse('0','此订单已结算,无法进行洗车操作');
             }
@@ -802,6 +804,7 @@ class OrderController extends BaseController {
 
             //判断机器使用状态
             if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
+                echo 7515;
                 $f_where['id'] = $details['id'];
                 $f_where['status'] = 0;
                 $f_details = M('Details')->where($f_where)->find();
@@ -848,12 +851,14 @@ class OrderController extends BaseController {
 
                 //检查洗车机继续使用还是结算
                 if(!empty($data_money)){
+                    echo 85545;
                     if($post['off_on'] == 0){
                         $data_moneyss = $this->onDetails($member['id'],$order['id'],$indication,$post['orderid']);
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
 
                         if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
+                            echo 8784582;
                             $d_save = array(
                                 'status'  => 1,
                             );
@@ -881,7 +886,7 @@ class OrderController extends BaseController {
                             }
                             $this->apiResponse('1','结算成功',$data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
-//                            echo 122;exit;
+                            echo 122;
                             $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
                             $d_save = array(
                                 'status' => 1,
@@ -909,7 +914,7 @@ class OrderController extends BaseController {
                         }
                         $this->apiResponse('1','查询成功',$data_moneyss);
                     }elseif($post['off_on'] == 1){
-//                        echo 4444;exit;
+                        echo 4444;
                         $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
                         $d_save = array(
                             'status'  => 1,
@@ -938,6 +943,7 @@ class OrderController extends BaseController {
                     }
                 }
             }else if($car['type'] == 4){
+                echo 852369;
                 if($send_post['devices'][0]['queryitem']['service_status'] <= 8) {
 //                    echo 123;exit;
                     $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
@@ -963,7 +969,7 @@ class OrderController extends BaseController {
                     }
                     $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
                 }else if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
-//                    echo 111;exit;
+                    echo 118541;
                     $d_save = array(
                         'status'  => 1,
                     );
@@ -1182,7 +1188,7 @@ class OrderController extends BaseController {
         $details = M('Details')->where(array('o_id'=>$order['id']))->find();
 
         if($post->event == 1){
-//            echo 741;exit;
+            echo 74178;
             $send_post = $this->send_post('device_manage',$post->event,3);
             $d_save = array(
                 'status' => 1,
