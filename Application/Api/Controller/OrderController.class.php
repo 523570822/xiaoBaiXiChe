@@ -719,9 +719,9 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '4f2de16251f538d14084c968a9c17239';
-//        $post['orderid'] = 'XC201903211001544495';
-//        $post['off_on'] = 1;
+//        $post['token'] = 'b19aa3787b6395d02e00704ab1f57278';
+//        $post['orderid'] = 'XC201903211019154679';
+//        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -1048,7 +1048,7 @@ class OrderController extends BaseController {
             $cleaner_time = $cleaner_fen . $cleaner_miao;          //吸尘器时间
         }else if($details['washing'] < 60 || $details['foam'] < 60 || $details['cleaner'] < 60){
             $wash_time = 0 . '分' . $details['washing'] . '秒';    //水枪时间
-            var_dump($details);
+//            var_dump($details);
             $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
             $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
         }
