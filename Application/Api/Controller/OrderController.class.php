@@ -718,17 +718,17 @@ class OrderController extends BaseController {
      * 02/18 15:52
      */
     public function settlement(){
-        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '7c0dc09a6d8d0a218ecfe575a64254e4';
-//        $post['orderid'] = 'XC201903210941303458';
-//        $post['off_on'] = 0;
+//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+        $post['token'] = '4f2de16251f538d14084c968a9c17239';
+        $post['orderid'] = 'XC201903211001544495';
+        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $o_where = array(
             'm_id' =>$member['id'],
             'orderid' =>$post['orderid'],
-            'button' =>0,   //还未结算
+//            'button' =>0,   //还未结算
         );
         $order = M('Order')->where($o_where)->find();
         $d_where = array(
@@ -755,10 +755,12 @@ class OrderController extends BaseController {
             $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
             $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
         }
+
         //订单结算自动跳转
-        $data_moneys = $this->onDetails($member['id'],$order['id'],0,$post['orderid']);
+        $data_moneys = $this->details($member['id'],$order['id'],0,$post['orderid']);
         //结算存储时间
         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+
         if($order['button'] ==1){
             $this->apiResponse('1','结算成功',$data_moneys);
         }
@@ -840,12 +842,10 @@ class OrderController extends BaseController {
                 //检查洗车机继续使用还是结算
                 if(!empty($data_money)){
                     if($post['off_on'] == 0){
-                        $data_moneys = $this->onDetails($member['id'],$order['id'],$indication,$post['orderid']);
+                        $data_moneyss = $this->onDetails($member['id'],$order['id'],$indication,$post['orderid']);
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                        if($order['button'] ==1){
-                            $this->apiResponse('1','结算成功',$data_moneys);
-                        }
+
                         if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
 //                            echo '789';exit;
                             $d_save = array(
@@ -901,7 +901,7 @@ class OrderController extends BaseController {
                         } else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
                             $this->apiResponse('0','当前洗车机尚未开启');
                         }
-                        $this->apiResponse('1','查询成功',$data_moneys);
+                        $this->apiResponse('1','查询成功',$data_moneyss);
                     }elseif($post['off_on'] == 1){
 //                        echo 4444;exit;
                         $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算

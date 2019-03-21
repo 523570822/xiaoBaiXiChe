@@ -298,7 +298,7 @@ class BaseController extends ControllerService
         $d_where = array(
             'o_id'=>$orderid,
             'm_id'=>$m_id,
-            'status'=> 0,     //0代表未完成   订单还没结束
+//            'status'=> 0,     //0代表未完成   订单还没结束
         );
 
         $details = M('Details')->where($d_where)->find();
@@ -349,7 +349,7 @@ class BaseController extends ControllerService
         $d_where = array(
             'o_id'=>$orderid,
             'm_id'=>$m_id,
-            'status'=> 0,     //0代表未完成   订单还没结束
+//            'status'=> 0,     //0代表未完成   订单还没结束
         );
 
         $details = M('Details')->where($d_where)->find();
