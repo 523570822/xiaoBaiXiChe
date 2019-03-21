@@ -835,6 +835,9 @@ class OrderController extends BaseController {
                         $data_moneys = $this->onDetails($member['id'],$order['id'],$indication,$post['orderid']);
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+                        if($order['button'] ==1){
+                            $this->apiResponse('1','结算成功',$data_moneys);
+                        }
                         if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
 //                            echo '789';exit;
                             $d_save = array(
