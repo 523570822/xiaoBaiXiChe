@@ -719,8 +719,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = 'dca40ae8f2ca904100b8371af9b29581';
-//        $post['orderid'] = 'XC201903171758532348';
+//        $post['token'] = '7c0dc09a6d8d0a218ecfe575a64254e4';
+//        $post['orderid'] = 'XC201903210941303458';
 //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
@@ -755,6 +755,14 @@ class OrderController extends BaseController {
             $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
             $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
         }
+        //订单结算自动跳转
+        $data_moneys = $this->onDetails($member['id'],$order['id'],0,$post['orderid']);
+        //结算存储时间
+        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+        if($order['button'] ==1){
+            $this->apiResponse('1','结算成功',$data_moneys);
+        }
+
         //判断订单
         if(!empty($details)){
             if($details['status'] == 1){
