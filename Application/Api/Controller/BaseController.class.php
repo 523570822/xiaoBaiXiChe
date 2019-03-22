@@ -444,8 +444,8 @@ class BaseController extends ControllerService
      */
     public function payZero($m_id,$o_id){
         //费用为0,自动结算
-        $order_zero = M('Order')->where(array('m_id'=>$m_id,'o_id'=>$o_id,'pay_money'=>0,'money'=>0,'status'=>1,'button'=>1))->find();
-        if(!empty($order_zero)){
+        $order_zero = M('Order')->where(array('m_id'=>$m_id,'o_id'=>$o_id))->find();
+        if($order_zero['pay_money'] == 0 && $order_zero['money'] == 0 && $order_zero['status'] == 1 && $order_zero['button'] == 1){
             $order_pay_save = array(
                 'status' =>9,
                 'pay_time' => time(),
