@@ -374,6 +374,15 @@ class BaseController extends ControllerService
             $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
             $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
         }
+        if($details['washing'] < 2){
+            $wash_time = 0 . '分' . 0 . '秒';    //水枪时间
+        }
+        if($details['foam'] < 2){
+            $foam_time = 0 . '分' . 0 . '秒';    //水枪时间
+        }
+        if($details['cleaner'] < 1){
+            $cleaner_time = 0 . '分' . 0 . '秒';    //水枪时间
+        }
         $data_money = array(
             'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
             'washing' =>$wash_time,
