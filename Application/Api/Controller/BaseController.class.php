@@ -456,7 +456,7 @@ class BaseController extends ControllerService
         $order_zero = M('Order')->where(array('m_id'=>$m_id,'id'=>$o_id))->find();
         if($order_zero['pay_money'] == 0 && $order_zero['money'] == 0 && $order_zero['status'] == 1 && $order_zero['button'] == 1){
             $order_pay_save = array(
-                'status' =>2,
+                'status' =>9,
                 'pay_time' => time(),
                 'is_set'=>1
             );
