@@ -12,33 +12,29 @@
                     <!--顶部按钮-->
                     <div class="mab10">
                         <input type="hidden" id="url" value="{$url}">
-                        <a href="{:U('Coupon/addCoupon')}" class="layui-btn layui-btn-normal layui-btn-radius">添加用户</a>
-                        <button class="layui-btn layui-btn-warm layui-btn-radius">锁定</button>
+                        <!--<a href="{:U('Coupon/addCoupon')}" class="layui-btn layui-btn-normal layui-btn-radius">添加用户</a>-->
                         <button class="layui-btn layui-btn-danger layui-btn-radius"
                                 onclick="confirmAllAction('{:U('Coupon/delete',array('model'=>'Coupon'))}', '删除')">删除
                         </button>
                         <!--搜索框也可以放这里-->
                         <form class="mab10 mal20 dinline" id="myform" action="{:U('Coupon/index')}" method="GET">
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" placeholder="请输入账号" name="account"
-                                       value="{$_REQUEST['account']}">
-                            </div>
-                            <div class="layui-input-inline">
                                 <input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"
                                        value="{$_REQUEST['nickname']}">
                             </div>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入批次" name="title"
+                                       value="{$_REQUEST['title']}">
+                            </div>
                             <div class="layui-input-inline layui-form">
-                                <select name="sex" class="layui-input" style="width: 150px">
-                                    <option value="">请选择性别</option>
+                                <select name="is_use" class="layui-input" style="width: 150px">
+                                    <option value="">请选择状态</option>
                                     <option value="1"
                                     <if condition="$_REQUEST['sex'] eq 1">selected=true</if>
-                                    >男</option>
+                                    >未使用</option>
                                     <option value="2"
                                     <if condition="$_REQUEST['sex'] eq 2">selected=true</if>
-                                    >女</option>
-                                    <option value="3"
-                                    <if condition="$_REQUEST['sex'] eq 3">selected=true</if>
-                                    >保密</option>
+                                    >已使用</option>
                                 </select>
                             </div>
                             <div class="layui-input-inline">
@@ -53,7 +49,7 @@
                                 <!--<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">-->
                             </div>
                             <button class="layui-btn" type="submit">搜索</button>
-                            <button class="layui-btn" type="button" id="button">导出搜索</button>
+                            <!--<button class="layui-btn" type="button" id="button">导出搜索</button>-->
                             <a href="{:U('Coupon/index')}" class="layui-btn layui-btn-primary">重置</a>
                         </form>
                         <script>
@@ -84,8 +80,8 @@
                             <th>批次</th>
                             <th>抵用金额</th>
                             <th>来源说明</th>
-                            <th>绑定状态</th>
-                            <th>卡券类型</th>
+                            <!--<th>绑定状态</th>-->
+                            <!--<th>卡券类型</th>-->
                             <th>创建时间</th>
                             <th>过期时间</th>
                             <th>使用状态</th>
@@ -106,20 +102,18 @@
                                 <td>{$item.title}</td>
                                 <td>{$item.money}</td>
                                 <td>{$item.comes}</td>
-                                <td>{$item['is_bind'] == 0 ? '未绑定' : '已绑定'}</td>
-                                <td>{$item['type'] == 1 ? '邀请赠送券' : '活动代金券'}</td>
+                                <!--<td>{$item['is_bind'] == 0 ? '未绑定' : '已绑定'}</td>-->
+                                <!--<td>{$item['type'] == 1 ? '邀请赠送券' : '活动代金券'}</td>-->
                                 <td>{$item['create_time']|date='Y-m-d H:i',###}</td>
                                 <td>{$item['end_time']|date='Y-m-d H:i',###}</td>
-                                <td>{$item['is_use'] == 0 ? '未使用' : '已使用'}</td>
+                                <td> <switch name="item.is_use">
+                                    <case value="0"><span style="color: red">未使用</span></case>
+                                    <case value="1"><span style="color: green">已使用</span></case>
+                                    <!--<case value="2">提现失败</case>-->
+                                    <default/>
+                                </switch></td>
+                                <!--<td>{$item['is_use'] == 0 ? '未使用' : '已使用'}</td>-->
                                 <td>
-                                    <button class="layui-btn layui-btn-xs layui-btn-normal"
-                                            onclick="jumpUrl('{:U('Coupon/editCoupon', array('id'=>$item['id'], 'system'=>0))}')">
-                                        编辑
-                                    </button>
-                                    <button class="layui-btn layui-btn-xs layui-btn-warm"
-                                            onclick="confirmOneAction('{:U('Coupon/lockCoupon')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">
-                                        {$item['status'] == 1 ? '禁用' : '启用'}
-                                    </button>
                                     <button class="layui-btn layui-btn-xs layui-btn-danger"
                                             onclick="confirmDelAction('{:U('Coupon/delete',array('model'=>'Coupon'))}', '删除','{$item.id}')">
                                         删除
