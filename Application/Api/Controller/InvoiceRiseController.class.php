@@ -74,7 +74,9 @@ class InvoiceRiseController extends BaseController {
         $where['id'] = $request['id'];
         $where['m_id'] = $m_id;
         $where['status'] = 1;
-        $data = D ('InvoiceRise')->where ($where)->select ();
+        $data = D ('InvoiceRise')->where ($where)->find ();
+       $data['is_default']=$data['default'];
+       unset($data['default']);
         $this->apiResponse (1 , "查询成功" , $data);
     }
 
