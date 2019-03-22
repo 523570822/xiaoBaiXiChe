@@ -96,11 +96,13 @@ class InvoiceController extends BaseController
     {
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
+        $page = (I ("page")) ? I ("page") : 1;
         $invoice_list = M ('Invoice')
             ->where (array ('m_id' => $m_id))
             ->where (array ('status' => array ('neq' , 9)))
             ->field ('o_id,money,content,type,create_time')
             ->order ('update_time asc')
+            ->page ($page , 15)
             ->select ();
         foreach ( $invoice_list as $key => $v ) {
             $invoice_list[$key]['create_time'] = date ("Y/m/d H:i" , $v['create_time']);

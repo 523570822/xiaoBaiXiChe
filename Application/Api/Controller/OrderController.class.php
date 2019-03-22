@@ -1204,6 +1204,8 @@ class OrderController extends BaseController {
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
+                //检查订单费用是否为0
+                $zero = $this->payZero($order['m_id'],$order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1228,6 +1230,8 @@ class OrderController extends BaseController {
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
+                //检查订单费用是否为0
+                $zero = $this->payZero($order['m_id'],$order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1265,6 +1269,8 @@ class OrderController extends BaseController {
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
+                //检查订单费用是否为0
+                $zero = $this->payZero($order['m_id'],$order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1290,6 +1296,8 @@ class OrderController extends BaseController {
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
+                //检查订单费用是否为0
+                $zero = $this->payZero($order['m_id'],$order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
