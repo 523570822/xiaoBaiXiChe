@@ -63,18 +63,32 @@ class InvoiceRiseController extends BaseController {
     }
 
     /**
-     * 编辑发票抬头
+     * 查看发票抬头详情
      **/
-    public function invoiceRiseDetails () {
-        $request = I ("");
+    public function invoiceDetails () {
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
+        $request = I('post.');
         $rule = array ('id' , 'int' , "请选择发票抬头");
         $this->checkParam ($rule);
         $where['id'] = $request['id'];
         $where['m_id'] = $m_id;
         $where['status'] = 1;
         $data = D ('InvoiceRise')->where ($where)->select ();
+        $this->apiResponse (1 , "查询成功" , $data);
+    }
+
+    /**
+     * 编辑发票抬头
+     **/
+    public function invoiceRiseDetails () {
+        $m_id = $this->checkToken ();
+        $this->errorTokenMsg ($m_id);
+        $request = I ("post.");
+        $rule = array ('id' , 'int' , "请选择发票抬头");
+        $this->checkParam ($rule);
+        $where['id'] = $request['id'];
+        $where['m_id'] = $m_id;
         if ( $request['ti_num'] ) {
             if ( strlen ($request['ti_num']) < 18 ) {
                 $this->apiResponse (0 , "请输入正确的纳税人识别号");
@@ -89,6 +103,7 @@ class InvoiceRiseController extends BaseController {
             $data = D ('InvoiceRise')->where ($where)->select ();
         } else {
             $message = "查询成功";
+            $data = D ('InvoiceRise')->where ($where)->select ();
         }
         $this->apiResponse (1 , $message , $data);
     }
