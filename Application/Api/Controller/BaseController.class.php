@@ -460,7 +460,7 @@ class BaseController extends ControllerService
                 'pay_time' => time(),
                 'is_set'=>1
             );
-            $order_pay = M('Order')->where(array('m_id'=>$m_id,'o_id'=>$o_id,'pay_money'=>0,'status'=>1))->save($order_pay_save);
+            $order_pay = M('Order')->where(array('m_id'=>$m_id,'o_id'=>$o_id))->save($order_pay_save);
             return 1;
         }
     }
