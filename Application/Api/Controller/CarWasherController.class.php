@@ -231,7 +231,7 @@ class CarWasherController extends BaseController
 //            var_dump($queryitem[$k]['devices'][0]);exit;
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
-                    if($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
+                    if($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
@@ -277,7 +277,7 @@ class CarWasherController extends BaseController
                             'status' => 2,
                         );
                         $malfunction = M('CarWasher')->where($malf_where)->save($malf_data);
-                    }else if ($vv[0]['queryitem']['level2_status']  == 0 ){                  //三个状态判断液位不足
+                    }else if ($vv[0]['queryitem']['level2_status']  == 0 || $vv[0]['queryitem']['level1_status']  == 0){                  //三个状态判断液位不足
                         $alarm_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
