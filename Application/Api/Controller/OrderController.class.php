@@ -766,10 +766,10 @@ class OrderController extends BaseController {
         if($order['button'] ==1){
 //            echo 123;
             //检查订单费用是否为0
-//            $zero = $this->payZero($member['id'],$order['id']);
-//            if($zero == 1){
-//                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-//            }
+            $zero = $this->payZero($member['id'],$order['id']);
+            if($zero == 1){
+                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+            }
             $this->apiResponse('1','结算成功',$data_moneys);
         }
 
@@ -880,10 +880,10 @@ class OrderController extends BaseController {
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             //检查订单费用是否为0
-//                            $zero = $this->payZero($member['id'],$order['id']);
-//                            if($zero == 1){
-//                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-//                            }
+                            $zero = $this->payZero($member['id'],$order['id']);
+                            if($zero == 1){
+                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                            }
                             $this->apiResponse('1','结算成功',$data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
 //                            echo 122;
@@ -904,10 +904,10 @@ class OrderController extends BaseController {
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             //检查订单费用是否为0
-//                            $zero = $this->payZero($member['id'],$order['id']);
-//                            if($zero == 1){
-//                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-//                            }
+                            $zero = $this->payZero($member['id'],$order['id']);
+                            if($zero == 1){
+                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                            }
                             $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
                             $this->apiResponse('0','当前洗车机尚未开启');
@@ -935,10 +935,10 @@ class OrderController extends BaseController {
                         //检查订单费用是否为0
                         $zero = $this->payZero($member['id'],$order['id']);
                         //结算洗车机状态为1空闲
-//                        $this->typeOne($details['c_id']);
-//                        if($zero == 1){
-//                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-//                        }
+                        $this->typeOne($details['c_id']);
+                        if($zero == 1){
+                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                        }
                         $this->apiResponse('1','结算成功',$data_moneys);
                     }
                 }
@@ -963,10 +963,10 @@ class OrderController extends BaseController {
                     //结算洗车机状态为1空闲
                     $this->typeOne($details['c_id']);
                     //检查订单费用是否为0
-//                    $zero = $this->payZero($member['id'],$order['id']);
-//                    if($zero == 1){
-//                        $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-//                    }
+                    $zero = $this->payZero($member['id'],$order['id']);
+                    if($zero == 1){
+                        $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                    }
                     $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
                 }else if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
 //                    echo 118541;
@@ -989,10 +989,10 @@ class OrderController extends BaseController {
                     //结算洗车机状态为1空闲
                     $this->typeOne($details['c_id']);
                     //检查订单费用是否为0
-//                    $zero = $this->payZero($member['id'],$order['id']);
-//                    if($zero == 1){
-//                        $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-//                    }
+                    $zero = $this->payZero($member['id'],$order['id']);
+                    if($zero == 1){
+                        $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                    }
                     $this->apiResponse('1','结算成功',$data_moneys);
                 }
             }
@@ -1205,7 +1205,7 @@ class OrderController extends BaseController {
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
-//                $zero = $this->payZero($order['m_id'],$order['id']);
+                $zero = $this->payZero($order['m_id'],$order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1231,7 +1231,7 @@ class OrderController extends BaseController {
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
-//                $zero = $this->payZero($order['m_id'],$order['id']);
+                $zero = $this->payZero($order['m_id'],$order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1270,7 +1270,7 @@ class OrderController extends BaseController {
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
-//                $zero = $this->payZero($order['m_id'],$order['id']);
+                $zero = $this->payZero($order['m_id'],$order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1297,7 +1297,7 @@ class OrderController extends BaseController {
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
-//                $zero = $this->payZero($order['m_id'],$order['id']);
+                $zero = $this->payZero($order['m_id'],$order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
