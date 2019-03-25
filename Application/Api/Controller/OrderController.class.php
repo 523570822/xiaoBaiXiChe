@@ -1144,7 +1144,7 @@ class OrderController extends BaseController {
         if(!empty($member)){
             if(empty($card_lists) && !empty($coupon_lists)){
                 $data = array(
-                    'card' => 0,
+                    'card' => [],
                     'coupon' => $coupon_lists,
                 );
                 $this->apiResponse('1','暂无会员卡',$data);
@@ -1152,14 +1152,14 @@ class OrderController extends BaseController {
             if(empty($coupon_lists) && !empty($card_lists)){
                 $data = array(
                     'card' => $card_lists,
-                    'coupon' => 0,
+                    'coupon' => [],
                 );
                 $this->apiResponse('1','暂无折扣卡',$data);
             }
             if(empty($coupon_lists) && empty($card_lists)){
                 $data = array(
-                    'card' => 0,
-                    'coupon' => 0,
+                    'card' => [],
+                    'coupon' => [],
                 );
                 $this->apiResponse('1','没有优惠方式',$data);
             }
@@ -1205,6 +1205,10 @@ class OrderController extends BaseController {
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                //存储金额
+                $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
+                //结算存储时间
+                $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
@@ -1231,6 +1235,10 @@ class OrderController extends BaseController {
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                //存储金额
+                $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
+                //结算存储时间
+                $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
@@ -1247,6 +1255,10 @@ class OrderController extends BaseController {
             $voice = M('Voice')->where(array('voice_type'=>4,'status'=>1))->find();
             $seccess = $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
             if($seccess){
+                //存储金额
+                $data_moneys = $this->onDetails($order['m_id'],$order['id'],0,$car['mc_id']);
+                //结算存储时间
+                $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1270,6 +1282,13 @@ class OrderController extends BaseController {
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>5,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                //存储金额
+                $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
+                //结算存储时间
+                $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
+
+
+
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
@@ -1297,6 +1316,10 @@ class OrderController extends BaseController {
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>6,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                //存储金额
+                $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
+                //结算存储时间
+                $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0

@@ -185,7 +185,7 @@ class PayController extends BaseController {
      *Date:2019/01/04 17:26
      */
     public function withdrawInfo () {
-        $post = checkAppData ('token，page,size' , 'token-页数-个数');
+        $post = checkAppData ('token,page,size', 'token-页数-个数');
         //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
         //        $post['page'] = 2;
         //        $post['size'] = 1;
