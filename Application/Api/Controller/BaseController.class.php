@@ -352,12 +352,10 @@ class BaseController extends ControllerService
 //            'status'=> 0,     //0代表未完成   订单还没结束
         );
 
+
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
 
-        $wash_money =  round($details['washing'] * $car['washing_money'],2);
-        $foam_money = round($details['foam'] * $car['foam_money'],2);
-        $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
 
         if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
             $wash_fen = intval($details['washing']/60).'分';
@@ -375,14 +373,20 @@ class BaseController extends ControllerService
             $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
         }
         if($details['washing'] < 2){
+            $details['washing'] = 0;
             $wash_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
         if($details['foam'] < 2){
+            $details['foam'] = 0;
             $foam_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
         if($details['cleaner'] < 1){
+            $details['cleaner'] = 0;
             $cleaner_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
+        $wash_money =  round($details['washing'] * $car['washing_money'],2);
+        $foam_money = round($details['foam'] * $car['foam_money'],2);
+        $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
         $data_money = array(
             'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
             'washing' =>$wash_time,
@@ -391,7 +395,7 @@ class BaseController extends ControllerService
             'all_money' =>$wash_money+$foam_money+$cleaner_money,
             'off_on' => 0,
         );
-//        var_dump($details);exit;
+//        var_dump($foam_money);exit;
         return $data_money;
     }
 

@@ -719,8 +719,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = 'cae81e16698108dcd6f597b01b4c1601';
-//        $post['orderid'] = 'XC201903221830423532';
+//        $post['token'] = '671a82606b735586199c92e6736a037f';
+//        $post['orderid'] = 'XC201903261408378460';
 //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
@@ -853,6 +853,7 @@ class OrderController extends BaseController {
                     'money' => $data_moneyss['all_money'],
                     'pay_money' => $data_moneyss['all_money'],
                 );
+//                var_dump($data_moneyss);exit;
                 $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
                 //检查洗车机继续使用还是结算
                 if(!empty($data_money)){
@@ -915,6 +916,7 @@ class OrderController extends BaseController {
                         } else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
                             $this->apiResponse('0','当前洗车机尚未开启');
                         }
+//                        var_dump($data_moneyss);exit;
                         $this->apiResponse('1','查询成功',$data_moneyss);
                     }elseif($post['off_on'] == 1){
 //                        echo 4444;
