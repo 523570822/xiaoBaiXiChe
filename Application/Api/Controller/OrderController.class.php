@@ -1179,7 +1179,6 @@ class OrderController extends BaseController {
      *Date:2019/03/02 11:14
      */
     public function button(){
-        echo 111;
 //        $post = checkAppData('deviceid,event','洗车机编号-事件');
         $json = file_get_contents("php://input");
         $array = (array)json_decode(strip_tags($json,true));
@@ -1236,7 +1235,7 @@ class OrderController extends BaseController {
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($q_save);
             if($send_post){
                 //语音播报
-                $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                $voice = M('Voice')->where(array('voice_type'=>7,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
