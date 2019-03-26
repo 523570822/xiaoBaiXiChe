@@ -1179,6 +1179,7 @@ class OrderController extends BaseController {
      *Date:2019/03/02 11:14
      */
     public function button(){
+        echo 111;
 //        $post = checkAppData('deviceid,event','洗车机编号-事件');
         $json = file_get_contents("php://input");
         $array = (array)json_decode(strip_tags($json,true));
