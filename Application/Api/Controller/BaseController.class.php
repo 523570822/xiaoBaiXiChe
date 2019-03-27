@@ -355,8 +355,7 @@ class BaseController extends ControllerService
 
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-
-
+        //时间显示
         if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
             $wash_fen = intval($details['washing']/60).'分';
             $wash_miao = $details['washing'] % 60 . '秒';
@@ -372,6 +371,7 @@ class BaseController extends ControllerService
             $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
             $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
         }
+        //去除多余时间
         if($details['washing'] < 2){
             $details['washing'] = 0;
             $wash_time = 0 . '分' . 0 . '秒';    //水枪时间
@@ -417,8 +417,8 @@ class BaseController extends ControllerService
 
         //水枪使用时间
         $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] -1;
-        if($w_end_data['washing'] < 0 ){    //为-1就等于0
+        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] ;
+        if(($w_end_data['washing_end_time'] - $details['washing_start_time']) < 2 ){    //为-1就等于0
             $w_end_data['washing'] = 0;
         }
         $d_where['status'] = 0;
@@ -428,8 +428,8 @@ class BaseController extends ControllerService
 
         //泡沫枪使用时间
         $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'] -1;
-        if($f_end_data['foam'] < 0 ){    //为-1就等于0
+        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'];
+        if(($f_end_data['foam_end_time'] - $details['foam_start_time']) < 2 ){    //为-1就等于0
             $f_end_data['foam'] = 0;
         }
         $d_where['status'] = 0;
@@ -439,7 +439,7 @@ class BaseController extends ControllerService
         //吸尘器使用时间
         $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
         $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'];
-        if($c_end_data['cleaner'] < 0 ){    //为-1就等于0
+        if(($c_end_data['cleaner_end_time'] - $details['cleaner_start_time']) < 2 ){    //为-1就等于0
             $c_end_data['cleaner'] = 0;
         }
         $d_where['status'] = 0;

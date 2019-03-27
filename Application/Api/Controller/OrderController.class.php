@@ -757,6 +757,18 @@ class OrderController extends BaseController {
             $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
             $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
         }
+        if($details['washing'] < 2){
+            $details['washing'] = 0;
+            $wash_time = 0 . '分' . 0 . '秒';    //水枪时间
+        }
+        if($details['foam'] < 2){
+            $details['foam'] = 0;
+            $foam_time = 0 . '分' . 0 . '秒';    //水枪时间
+        }
+        if($details['cleaner'] < 1){
+            $details['cleaner'] = 0;
+            $cleaner_time = 0 . '分' . 0 . '秒';    //水枪时间
+        }
 
         //订单结算自动跳转
         $data_moneys = $this->details($member['id'],$order['id'],0,$post['orderid']);
@@ -1235,7 +1247,7 @@ class OrderController extends BaseController {
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($q_save);
             if($send_post){
                 //语音播报
-                $voice = M('Voice')->where(array('voice_type'=>7,'status'=>1))->find();
+                $voice = M('Voice')->where(array('voice_type'=>7 ,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
