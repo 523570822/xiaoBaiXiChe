@@ -721,10 +721,10 @@ class OrderController extends BaseController {
      * 02/18 15:52
      */
     public function settlement(){
-        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '94c5af820a5651bb399ac99b393f24bc';
-//        $post['orderid'] = 'XC201903281026017407';
-//        $post['off_on'] = 0;
+//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+        $post['token'] = '94c5af820a5651bb399ac99b393f24bc';
+        $post['orderid'] = 'XC201903281716035071';
+        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -774,7 +774,7 @@ class OrderController extends BaseController {
         }
 
         //订单结算自动跳转
-        $data_moneys = $this->details($member['id'],$order['id'],0,$post['orderid']);
+        $data_moneys = $this->details($member['id'],$order['id'],0,$car['mc_id']);
         //结算存储时间
         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
 
@@ -971,6 +971,7 @@ class OrderController extends BaseController {
                 if($zero == 1){
                     $this->apiResponse('1','未产生洗车费用,已为您自动结算');
                 }
+
                 $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
                 $this->apiResponse('1','结算成功',$data_moneys);
             }
@@ -1185,9 +1186,6 @@ class OrderController extends BaseController {
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
                 //结算存储时间
-                var_dump($car['mc_id']);
-                var_dump($order['id']);
-                var_dump($order['m_id']);exit;
                 $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
@@ -1216,6 +1214,7 @@ class OrderController extends BaseController {
                 $voice = M('Voice')->where(array('voice_type'=>7 ,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 //存储金额
+//                echo 123;exit;
                 $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
                 //结算存储时间
                 $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);

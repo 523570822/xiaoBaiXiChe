@@ -365,7 +365,6 @@ class BaseController extends ControllerService
             'all_money' =>$wash_money+$foam_money+$cleaner_money,
             'off_on' => 1,
         );
-//        var_dump($details);exit;
         return $data_money;
     }
 
@@ -451,7 +450,7 @@ class BaseController extends ControllerService
             'all_money' =>$wash_money+$foam_money+$cleaner_money,
             'off_on' => 0,
         );
-//        var_dump($foam_money);exit;
+//        var_dump($data_money);exit;
         return $data_money;
     }
 
@@ -473,6 +472,7 @@ class BaseController extends ControllerService
         $washing = round($send_post['devices'][0]['queryitem']['clean_water_duration'] - $details['washing_start_time']);
         $foam = round($send_post['devices'][0]['queryitem']['foam_duration'] - $details['foam_start_time']);
         $cleaner = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] - $details['cleaner_start_time']);
+
 
         //存储结束时间
         $s_save = array(
