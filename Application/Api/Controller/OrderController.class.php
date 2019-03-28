@@ -883,8 +883,8 @@ class OrderController extends BaseController {
                             $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                             $o_save = array(
                                 'button' => 1,
-                                'money' =>$data_money['all_money'],
-                                'pay_money' =>$data_money['all_money'],
+                                'money' =>$data_moneyss['all_money'],
+                                'pay_money' =>$data_moneyss['all_money'],
                             );
                             $o_order = M('Order')->where($o_where)->save($o_save);
                             //语音播报
@@ -911,8 +911,8 @@ class OrderController extends BaseController {
                             $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                             $o_save = array(
                                 'button' => 1,
-                                'money' => $data_money['all_money'],
-                                'pay_money' =>$data_money['all_money'],
+                                'money' => $data_moneyss['all_money'],
+                                'pay_money' =>$data_moneyss['all_money'],
                             );
                             $o_order = M('Order')->where($o_where)->save($o_save);
                             $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
@@ -939,8 +939,8 @@ class OrderController extends BaseController {
                         $detailss = M('Details')->where($d_where)->save($d_save);
                         $o_save = array(
                             'button' => 1,
-                            'money' => $data_money['all_money'],
-                            'pay_money' =>$data_money['all_money'],
+                            'money' => $data_moneyss['all_money'],
+                            'pay_money' =>$data_moneyss['all_money'],
                         );
                         $o_order = M('Order')->where($o_where)->save($o_save);
                         //语音播报
