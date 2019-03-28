@@ -785,6 +785,7 @@ class OrderController extends BaseController {
             if($zero == 1){
                 $this->apiResponse('1','未产生洗车费用,已为您自动结算');
             }
+            echo 12345;exit;
             $this->apiResponse('1','结算成功',$data_moneys);
         }
 
@@ -901,6 +902,8 @@ class OrderController extends BaseController {
                             if($zero == 1){
                                 $this->apiResponse('1','未产生洗车费用,已为您自动结算');
                             }
+                            echo 789;exit;
+
                             $this->apiResponse('1','结算成功',$data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
 //                            echo 122;
@@ -956,6 +959,8 @@ class OrderController extends BaseController {
                         if($zero == 1){
                             $this->apiResponse('1','未产生洗车费用,已为您自动结算');
                         }
+                        echo 2345;exit;
+
                         $this->apiResponse('1','结算成功',$data_moneys);
                     }
                 }
@@ -970,6 +975,8 @@ class OrderController extends BaseController {
                 }
 
                 $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
+                echo 8556;exit;
+
                 $this->apiResponse('1','结算成功',$data_moneys);
             }
         }else{
