@@ -297,7 +297,7 @@ class BaseController extends ControllerService
         $d_where = array(
             'o_id'=>$orderid,
             'm_id'=>$m_id,
-//            'status'=> 0,     //0代表未完成   订单还没结束
+            'status'=> 1,     //0代表未完成   订单还没结束
         );
 
         $details = M('Details')->where($d_where)->find();
@@ -352,6 +352,7 @@ class BaseController extends ControllerService
             'id' =>$orderid,
             'm_id' => $m_id,
         );
+//        var_dump($wash_money);exit;
         $sa_order = array(
             'money' => $wash_money+$foam_money+$cleaner_money,
             'pay_money' => $wash_money+$foam_money+$cleaner_money,
@@ -382,7 +383,7 @@ class BaseController extends ControllerService
         $d_where = array(
             'o_id'=>$orderid,
             'm_id'=>$m_id,
-//            'status'=> 0,     //0代表未完成   订单还没结束
+            'status'=> 0,     //0代表未完成   订单还没结束
         );
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
