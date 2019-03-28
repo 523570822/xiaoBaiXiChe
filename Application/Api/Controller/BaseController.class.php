@@ -366,7 +366,6 @@ class BaseController extends ControllerService
             'all_money' =>$wash_money+$foam_money+$cleaner_money,
             'off_on' => 1,
         );
-        var_dump($data_money);exit;
         return $data_money;
     }
 
