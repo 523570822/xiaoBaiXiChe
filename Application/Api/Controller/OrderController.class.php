@@ -252,7 +252,7 @@ class OrderController extends BaseController {
                 D ('Msg')->add ($param);
             }
             if ( $w_type == '1' ) {
-                $this->apiResponse ('0' , '您有付订单待处理' , array ('id' => $order['id'] , 'orderid' => $order['orderid']));
+                $this->apiResponse ('0' , '您有未付订单待处理' , array ('id' => $order['id'] , 'orderid' => $order['orderid']));
             } elseif ( $w_type == '2' ) {
                 if ( $order['subs_time'] < time () ) {
                     $appsetting = D ('Appsetting')->field ('overtime_money')->find ();
@@ -721,10 +721,10 @@ class OrderController extends BaseController {
      * 02/18 15:52
      */
     public function settlement(){
-//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-        $post['token'] = '94c5af820a5651bb399ac99b393f24bc';
-        $post['orderid'] = 'XC201903281026017407';
-        $post['off_on'] = 0;
+        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+//        $post['token'] = '94c5af820a5651bb399ac99b393f24bc';
+//        $post['orderid'] = 'XC201903281026017407';
+//        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
