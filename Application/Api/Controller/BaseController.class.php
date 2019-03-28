@@ -302,14 +302,17 @@ class BaseController extends ControllerService
 
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-        $washing = $send_post['devices'][0]['queryitem']['clean_water_duration'] - $details['washing_start_time'];
-        $foam = $send_post['devices'][0]['queryitem']['foam_duration'] - $details['foam_start_time'];
-        $cleaner = $send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] - $details['cleaner_start_time'];
+        $washing = round($send_post['devices'][0]['queryitem']['clean_water_duration']) - $details['washing_start_time'];
+        $foam = round($send_post['devices'][0]['queryitem']['foam_duration']) - $details['foam_start_time'];
+        $cleaner = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']) - $details['cleaner_start_time'];
         //存储结束时间
         $s_save = array(
-            'washing_end_time' =>$send_post['devices'][0]['queryitem']['clean_water_duration'],
-            'foam_end_time' =>$send_post['devices'][0]['queryitem']['foam_duration'],
-            'cleaner_end_time' =>$send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'],
+            'washing_end_time' =>round($send_post['devices'][0]['queryitem']['clean_water_duration']),
+            'foam_end_time' =>round($send_post['devices'][0]['queryitem']['foam_duration']),
+            'cleaner_end_time' =>round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']),
+            'washing' => $washing,
+            'foam' => $foam,
+            'cleaner' => $cleaner,
         );
         $s_details = M('Details')->where($d_where)->save($s_save);
         $wash_money =  round($washing * $car['washing_money'],2);
@@ -384,14 +387,14 @@ class BaseController extends ControllerService
         );
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-        $washing = $send_post['devices'][0]['queryitem']['clean_water_duration'] - $details['washing_start_time'];
-        $foam = $send_post['devices'][0]['queryitem']['foam_duration'] - $details['foam_start_time'];
-        $cleaner = $send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] - $details['cleaner_start_time'];
+        $washing = round($send_post['devices'][0]['queryitem']['clean_water_duration']) - $details['washing_start_time'];
+        $foam = round($send_post['devices'][0]['queryitem']['foam_duration']) - $details['foam_start_time'];
+        $cleaner = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']) - $details['cleaner_start_time'];
        //存储结束时间
         $s_save = array(
-            'washing_end_time' =>$send_post['devices'][0]['queryitem']['clean_water_duration'],
-            'foam_end_time' =>$send_post['devices'][0]['queryitem']['foam_duration'],
-            'cleaner_end_time' =>$send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'],
+            'washing_end_time' =>round($send_post['devices'][0]['queryitem']['clean_water_duration']),
+            'foam_end_time' =>round($send_post['devices'][0]['queryitem']['foam_duration']),
+            'cleaner_end_time' =>round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']),
             'washing' => $washing,
             'foam' => $foam,
             'cleaner' => $cleaner,
@@ -467,11 +470,18 @@ class BaseController extends ControllerService
             'm_id'=>$m_id,
         );
         $details = M('Details')->where($d_where)->find();
+        $washing = round($send_post['devices'][0]['queryitem']['clean_water_duration'] - $details['washing_start_time']);
+        $foam = round($send_post['devices'][0]['queryitem']['foam_duration'] - $details['foam_start_time']);
+        $cleaner = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] - $details['cleaner_start_time']);
+
         //存储结束时间
         $s_save = array(
-            'washing_end_time' =>$send_post['devices'][0]['queryitem']['clean_water_duration'],
-            'foam_end_time' =>$send_post['devices'][0]['queryitem']['foam_duration'],
-            'cleaner_end_time' =>$send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'],
+            'washing_end_time' =>round($send_post['devices'][0]['queryitem']['clean_water_duration']),
+            'foam_end_time' =>round($send_post['devices'][0]['queryitem']['foam_duration']),
+            'cleaner_end_time' =>round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']),
+            'washing' => $washing,
+            'foam' => $foam,
+            'cleaner' => $cleaner,
         );
         $s_details = M('Details')->where($d_where)->save($s_save);
 
