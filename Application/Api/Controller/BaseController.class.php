@@ -294,8 +294,6 @@ class BaseController extends ControllerService
      */
     public function details($m_id,$orderid,$indication,$mc_id){
         $send_post = $this->send_post('runtime_query',$mc_id);       //查询洗车机状态
-        var_dump($mc_id);;
-        var_dump($send_post);exit;
         $d_where = array(
             'o_id'=>$orderid,
             'm_id'=>$m_id,
@@ -367,7 +365,6 @@ class BaseController extends ControllerService
             'all_money' =>$wash_money+$foam_money+$cleaner_money,
             'off_on' => 1,
         );
-        var_dump($data_money);exit;
         return $data_money;
     }
 
