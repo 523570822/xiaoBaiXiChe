@@ -294,7 +294,6 @@ class BaseController extends ControllerService
      */
     public function details($m_id,$orderid,$indication,$mc_id){
         $send_post = $this->send_post('runtime_query',$mc_id);       //查询洗车机状态
-
         $d_where = array(
             'o_id'=>$orderid,
             'm_id'=>$m_id,
@@ -304,6 +303,13 @@ class BaseController extends ControllerService
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
 
+        //存储结束时间
+        $s_save = array(
+            'washing_end_time' =>$send_post['devices'][0]['queryitem']['clean_water_duration'],
+            'foam_end_time' =>$send_post['devices'][0]['queryitem']['foam_duration'],
+            'cleaner_end_time' =>$send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'],
+        );
+        $s_details = M('Details')->where($d_where)->save($s_save);
         $wash_money =  round($details['washing'] * $car['washing_money'],2);
         $foam_money = round($details['foam'] * $car['foam_money'],2);
         $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
@@ -351,10 +357,16 @@ class BaseController extends ControllerService
             'm_id'=>$m_id,
 //            'status'=> 0,     //0代表未完成   订单还没结束
         );
-
-
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
+       //存储结束时间
+        $s_save = array(
+            'washing_end_time' =>$send_post['devices'][0]['queryitem']['clean_water_duration'],
+            'foam_end_time' =>$send_post['devices'][0]['queryitem']['foam_duration'],
+            'cleaner_end_time' =>$send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'],
+        );
+        $s_details = M('Details')->where($d_where)->save($s_save);
+
         //时间显示
         if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
             $wash_fen = intval($details['washing']/60).'分';
@@ -414,6 +426,13 @@ class BaseController extends ControllerService
             'm_id'=>$m_id,
         );
         $details = M('Details')->where($d_where)->find();
+        //存储结束时间
+        $s_save = array(
+            'washing_end_time' =>$send_post['devices'][0]['queryitem']['clean_water_duration'],
+            'foam_end_time' =>$send_post['devices'][0]['queryitem']['foam_duration'],
+            'cleaner_end_time' =>$send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'],
+        );
+        $s_details = M('Details')->where($d_where)->save($s_save);
 
         //水枪使用时间
         $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);

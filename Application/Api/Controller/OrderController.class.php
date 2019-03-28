@@ -340,6 +340,9 @@ class OrderController extends BaseController {
             $this->apiResponse('0','洗车机正在预定中');
         }
         if($find_car['type'] == 4){
+            //语音播报
+            $voice = M('Voice')->where(array('voice_type'=>3,'status'=>1))->find();
+            $this->send_post('device_manage',$find_car['mc_id'],5,1,$voice['content']);
             $this->apiResponse('0','洗车机故障中');
         }
         //转换数据
@@ -719,8 +722,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '671a82606b735586199c92e6736a037f';
-//        $post['orderid'] = 'XC201903261408378460';
+//        $post['token'] = '54b937935a1db5ad2f6e02deb6da6aa4';
+//        $post['orderid'] = 'XC201903271151119859';
 //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
@@ -731,7 +734,6 @@ class OrderController extends BaseController {
 //            'button' =>0,   //还未结算
         );
         $order = M('Order')->where($o_where)->find();
-
         $d_where = array(
             'o_id'=>$order['id'],
             'm_id'=>$member['id'],
@@ -739,6 +741,7 @@ class OrderController extends BaseController {
         );
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
+
         $send_post = $this->send_post('runtime_query',$car['mc_id']);       //查询洗车机状态
 
         //各设备使用时间
@@ -787,6 +790,7 @@ class OrderController extends BaseController {
 
         //判断订单
         if(!empty($details)){
+
 //            echo 456;
             if($details['status'] == 1){
                 $this->apiResponse('0','此订单已结算,无法进行洗车操作');
@@ -816,7 +820,6 @@ class OrderController extends BaseController {
 
             //判断机器使用状态
             if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
-//                echo 7515;
                 $f_where['id'] = $details['id'];
                 $f_where['status'] = 0;
                 $f_details = M('Details')->where($f_where)->find();
@@ -888,6 +891,7 @@ class OrderController extends BaseController {
                             //语音播报
                             $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                             $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                            //洗车机结算
                             $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
                             //结算存储时间
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
