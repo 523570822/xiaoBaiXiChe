@@ -302,7 +302,9 @@ class BaseController extends ControllerService
 
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-
+        $washing = $send_post['devices'][0]['queryitem']['clean_water_duration'] - $details['washing_start_time'];
+        $foam = $send_post['devices'][0]['queryitem']['foam_duration'] - $details['foam_start_time'];
+        $cleaner = $send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] - $details['cleaner_start_time'];
         //存储结束时间
         $s_save = array(
             'washing_end_time' =>$send_post['devices'][0]['queryitem']['clean_water_duration'],
@@ -310,25 +312,48 @@ class BaseController extends ControllerService
             'cleaner_end_time' =>$send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'],
         );
         $s_details = M('Details')->where($d_where)->save($s_save);
-        $wash_money =  round($details['washing'] * $car['washing_money'],2);
-        $foam_money = round($details['foam'] * $car['foam_money'],2);
-        $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
+        $wash_money =  round($washing * $car['washing_money'],2);
+        $foam_money = round($foam * $car['foam_money'],2);
+        $cleaner_money = round($cleaner * $car['cleaner_money'],2);
 
-        if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
-            $wash_fen = intval($details['washing']/60).'分';
-            $wash_miao = $details['washing'] % 60 . '秒';
+        if($washing >= 60 || $foam >= 60 || $cleaner>=60){
+            $wash_fen = intval($washing/60).'分';
+            $wash_miao = $washing % 60 . '秒';
             $wash_time = $wash_fen . $wash_miao;                //水枪时间
-            $foam_fen = intval($details['foam']/60).'分';
-            $foam_miao = $details['foam'] % 60 . '秒';
+            $foam_fen = intval($foam/60).'分';
+            $foam_miao = $foam % 60 . '秒';
             $foam_time = $foam_fen . $foam_miao;                  //泡沫枪时间
-            $cleaner_fen = intval($details['cleaner']/60).'分';
-            $cleaner_miao = $details['cleaner'] % 60 . '秒';
+            $cleaner_fen = intval($cleaner/60).'分';
+            $cleaner_miao = $cleaner % 60 . '秒';
             $cleaner_time = $cleaner_fen . $cleaner_miao;          //吸尘器时间
-        }else if($details['washing'] < 60 || $details['foam'] < 60 || $details['cleaner'] < 60){
-            $wash_time = 0 . '分' . $details['washing'] . '秒';    //水枪时间
-            $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
-            $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
+        }else if($washing < 60 || $foam < 60 || $cleaner < 60){
+            $wash_time = 0 . '分' . $washing . '秒';    //水枪时间
+            $foam_time = 0 . '分' . $foam . '秒';     //泡沫枪时间
+            $cleaner_time = 0 . '分' . $cleaner . '秒';   //吸尘器时间
         }
+        //去除多余时间
+        if($washing < 2){
+            $washing = 0;
+            $wash_time = 0 . '分' . 0 . '秒';    //水枪时间
+        }
+        if($foam < 2){
+            $foam = 0;
+            $foam_time = 0 . '分' . 0 . '秒';    //水枪时间
+        }
+        if($cleaner < 1){
+            $cleaner = 0;
+            $cleaner_time = 0 . '分' . 0 . '秒';    //水枪时间
+        }
+        //订单金额添加
+        $o_where = array(
+            'id' =>$orderid,
+            'm_id' => $m_id,
+        );
+        $sa_order = array(
+            'money' => $wash_money+$foam_money+$cleaner_money,
+            'pay_money' => $wash_money+$foam_money+$cleaner_money,
+        );
+        $f_order = M('Order')->where($o_where)->save($sa_order);
         $data_money = array(
             'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
             'washing' =>$wash_time,
@@ -359,46 +384,62 @@ class BaseController extends ControllerService
         );
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
+        $washing = $send_post['devices'][0]['queryitem']['clean_water_duration'] - $details['washing_start_time'];
+        $foam = $send_post['devices'][0]['queryitem']['foam_duration'] - $details['foam_start_time'];
+        $cleaner = $send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] - $details['cleaner_start_time'];
        //存储结束时间
         $s_save = array(
             'washing_end_time' =>$send_post['devices'][0]['queryitem']['clean_water_duration'],
             'foam_end_time' =>$send_post['devices'][0]['queryitem']['foam_duration'],
             'cleaner_end_time' =>$send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'],
+            'washing' => $washing,
+            'foam' => $foam,
+            'cleaner' => $cleaner,
         );
         $s_details = M('Details')->where($d_where)->save($s_save);
 
         //时间显示
-        if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
-            $wash_fen = intval($details['washing']/60).'分';
-            $wash_miao = $details['washing'] % 60 . '秒';
+        if($washing >= 60 || $foam >= 60 || $cleaner>=60){
+            $wash_fen = intval($washing/60).'分';
+            $wash_miao = $washing % 60 . '秒';
             $wash_time = $wash_fen . $wash_miao;                //水枪时间
-            $foam_fen = intval($details['foam']/60).'分';
-            $foam_miao = $details['foam'] % 60 . '秒';
+            $foam_fen = intval($foam/60).'分';
+            $foam_miao = $foam % 60 . '秒';
             $foam_time = $foam_fen . $foam_miao;                  //泡沫枪时间
-            $cleaner_fen = intval($details['cleaner']/60).'分';
-            $cleaner_miao = $details['cleaner'] % 60 . '秒';
+            $cleaner_fen = intval($cleaner/60).'分';
+            $cleaner_miao = $cleaner % 60 . '秒';
             $cleaner_time = $cleaner_fen . $cleaner_miao;          //吸尘器时间
-        }else if($details['washing'] < 60 || $details['foam'] < 60 || $details['cleaner'] < 60){
-            $wash_time = 0 . '分' . $details['washing'] . '秒';    //水枪时间
-            $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
-            $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
+        }else if($washing < 60 || $foam < 60 || $cleaner < 60){
+            $wash_time = 0 . '分' . $washing . '秒';    //水枪时间
+            $foam_time = 0 . '分' . $foam . '秒';     //泡沫枪时间
+            $cleaner_time = 0 . '分' . $cleaner . '秒';   //吸尘器时间
         }
         //去除多余时间
-        if($details['washing'] < 2){
-            $details['washing'] = 0;
+        if($washing < 2){
+            $washing = 0;
             $wash_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
-        if($details['foam'] < 2){
-            $details['foam'] = 0;
+        if($foam < 2){
+            $foam = 0;
             $foam_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
-        if($details['cleaner'] < 1){
-            $details['cleaner'] = 0;
+        if($cleaner < 1){
+            $cleaner = 0;
             $cleaner_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
-        $wash_money =  round($details['washing'] * $car['washing_money'],2);
-        $foam_money = round($details['foam'] * $car['foam_money'],2);
-        $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
+        $wash_money =  round($washing * $car['washing_money'],2);
+        $foam_money = round($foam * $car['foam_money'],2);
+        $cleaner_money = round($cleaner * $car['cleaner_money'],2);
+        //订单金额添加
+        $o_where = array(
+            'id' =>$orderid,
+            'm_id' => $m_id,
+        );
+        $sa_order = array(
+            'money' => $wash_money+$foam_money+$cleaner_money,
+            'pay_money' => $wash_money+$foam_money+$cleaner_money,
+        );
+        $f_order = M('Order')->where($o_where)->save($sa_order);
         $data_money = array(
             'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
             'washing' =>$wash_time,
@@ -443,7 +484,6 @@ class BaseController extends ControllerService
         $d_where['status'] = 0;
         $d_where['id'] = $details['id'];
         $w_start = M('Details')->where($d_where)->save($w_end_data);
-
 
         //泡沫枪使用时间
         $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
