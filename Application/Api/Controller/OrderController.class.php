@@ -722,8 +722,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '94c5af820a5651bb399ac99b393f24bc';
-//        $post['orderid'] = 'XC201903281716035071';
+//        $post['token'] = '05674c4b027b4461180b0c19a522d29b';
+//        $post['orderid'] = 'XC201903281759416037';
 //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
@@ -869,7 +869,8 @@ class OrderController extends BaseController {
 //                var_dump($data_moneyss);exit;
                 $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
                 //检查洗车机继续使用还是结算
-                if(!empty($data_money)){
+                if(!empty($details)){
+
 //                    echo 85545;
                     if($post['off_on'] == 0){
                         //结算存储时间
