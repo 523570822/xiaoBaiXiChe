@@ -492,7 +492,7 @@ class MemberController extends BaseController
         $res = D('Member')->querySave($where, $data);
         if ($res) {
             $this->apiResponse('1', '修改个人资料成功');
-        } 
+        }
     }
 
     /**
