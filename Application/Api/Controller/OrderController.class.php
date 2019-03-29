@@ -741,7 +741,6 @@ class OrderController extends BaseController {
         );
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-
         $send_post = $this->send_post('runtime_query',$car['mc_id']);       //查询洗车机状态
 
         //各设备使用时间
@@ -807,14 +806,14 @@ class OrderController extends BaseController {
             $wash_money =  round($details['washing'] * $car['washing_money'],2);
             $foam_money = round($details['foam'] * $car['foam_money'],2);
             $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
-            $data_money = array(
-                'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
-                'washing' =>$wash_time,
-                'foam'=>$foam_time,
-                'cleaner'=>$cleaner_time,
-                'all_money' =>$wash_money+$foam_money+$cleaner_money,
-                'off_on' => $post['off_on'],
-            );
+//            $data_money = array(
+//                'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
+//                'washing' =>$wash_time,
+//                'foam'=>$foam_time,
+//                'cleaner'=>$cleaner_time,
+//                'all_money' =>$wash_money+$foam_money+$cleaner_money,
+//                'off_on' => $post['off_on'],
+//            );
 
             //判断机器使用状态
             if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
@@ -869,7 +868,7 @@ class OrderController extends BaseController {
 //                var_dump($data_moneyss);exit;
                 $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
                 //检查洗车机继续使用还是结算
-                if(!empty($data_money)){
+                if(!empty($member)){
 //                    echo 85545;
                     if($post['off_on'] == 0){
                         //结算存储时间
@@ -882,8 +881,8 @@ class OrderController extends BaseController {
                             $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                             $o_save = array(
                                 'button' => 1,
-                                'money' =>$data_money['all_money'],
-                                'pay_money' =>$data_money['all_money'],
+//                                'money' =>$data_money['all_money'],
+//                                'pay_money' =>$data_money['all_money'],
                             );
                             $o_order = M('Order')->where($o_where)->save($o_save);
                             //语音播报
@@ -911,8 +910,8 @@ class OrderController extends BaseController {
                             $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                             $o_save = array(
                                 'button' => 1,
-                                'money' => $data_money['all_money'],
-                                'pay_money' =>$data_money['all_money'],
+//                                'money' => $data_money['all_money'],
+//                                'pay_money' =>$data_money['all_money'],
                             );
                             $o_order = M('Order')->where($o_where)->save($o_save);
                             $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
@@ -939,8 +938,8 @@ class OrderController extends BaseController {
                         $detailss = M('Details')->where($d_where)->save($d_save);
                         $o_save = array(
                             'button' => 1,
-                            'money' => $data_money['all_money'],
-                            'pay_money' =>$data_money['all_money'],
+//                            'money' => $data_money['all_money'],
+//                            'pay_money' =>$data_money['all_money'],
                         );
                         $o_order = M('Order')->where($o_where)->save($o_save);
                         //语音播报
@@ -970,8 +969,8 @@ class OrderController extends BaseController {
                     $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                     $o_save = array(
                         'button' => 1,
-                        'money' => $data_money['all_money'],
-                        'pay_money' =>$data_money['all_money'],
+//                        'money' => $data_money['all_money'],
+//                        'pay_money' =>$data_money['all_money'],
                     );
                     $o_order = M('Order')->where($o_where)->save($o_save);
                     $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
@@ -993,8 +992,8 @@ class OrderController extends BaseController {
                     $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                     $o_save = array(
                         'button' => 1,
-                        'money' =>$data_money['all_money'],
-                        'pay_money' =>$data_money['all_money'],
+//                        'money' =>$data_money['all_money'],
+//                        'pay_money' =>$data_money['all_money'],
                     );
                     $o_order = M('Order')->where($o_where)->save($o_save);
                     //语音播报
