@@ -280,7 +280,7 @@ class PayController extends BaseController {
                             }
                             $off['update_time'] = time ();
                             $off['l_id'] = $order['card_id'];
-                            $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $order['m_id'] ))->save ($off);
+                            $card = D ("CardUser")->where (array ('m_id' => $order['m_id'] ))->save ($off);
                         }
 //                        elseif ( $have['l_id'] !== $order['card_id'] ) {
 //                            $on['end_time'] = time () + (30 * 24 * 3600);
@@ -617,7 +617,7 @@ class PayController extends BaseController {
                     }
                     $off['l_id'] = $order['card_id'];
                     $off['update_time'] = time ();
-                    $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $order['m_id']))->save ($off);
+                    $card = D ("CardUser")->where (array ('m_id' => $order['m_id']))->save ($off);
                 }
 //                elseif ( $have['l_id'] !== $order['card_id'] ) {
 //                    $on['end_time'] = time () + (30 * 24 * 3600);
@@ -793,7 +793,7 @@ class PayController extends BaseController {
                         }
                         $off['update_time'] = time ();
                         $off['l_id'] = $order['card_id'];
-                        $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $m_id))->save ($off);
+                        $card = D ("CardUser")->where (array ('m_id' => $m_id))->save ($off);
                     }
 //                    elseif ( $have['l_id'] !== $order['card_id'] ) {
 //                        $on['end_time'] = time () + (30 * 24 * 3600);
