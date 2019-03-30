@@ -721,10 +721,10 @@ class OrderController extends BaseController {
      * 02/18 15:52
      */
     public function settlement(){
-        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '3a428162838bd9ae6517da9fd64123b0';
-//        $post['orderid'] = 'XC201903301129506838';
-//        $post['off_on'] = 0;
+//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+        $post['token'] = 'fd7170b948be0ba3a65433ccb2b6ba45';
+        $post['orderid'] = 'XC201903301145133757';
+        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -742,8 +742,13 @@ class OrderController extends BaseController {
             'button' =>1,   //结算
         );
         $k_order = M('Order')->where($k_where)->find();
+        $sw_where = array(
+            'm_id' =>$member['id'],
+            'orderid' =>$post['orderid'],
+        );
+        $sw_order = M('Order')->where($sw_where)->find();
         $d_where = array(
-            'o_id'=>M('Order')->where(array('m_id' =>$member['id'],'orderid' =>$post['orderid'],))->find(),
+            'o_id'=> $sw_order['id'],
             'm_id'=>$member['id'],
 //            'status'=> 0,     //0代表未完成   订单还没结束
         );
