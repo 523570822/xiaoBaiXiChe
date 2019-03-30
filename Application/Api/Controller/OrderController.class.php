@@ -804,9 +804,7 @@ class OrderController extends BaseController {
 
         //判断订单
         if(!empty($details)){
-            if($details['status'] == 1){
-                $this->apiResponse('0','此订单已结算,无法进行洗车操作');
-            }
+
             //判断使用哪个设备
             if(round($send_post['devices'][0]['queryitem']['clean_water_duration']) != $details['washing_end_time']){
                 $indication = 1;
@@ -947,7 +945,9 @@ class OrderController extends BaseController {
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                             $this->apiResponse('1','查询成功',$data_moneyss);
                         }
-
+                        if($details['status'] == 1){
+                            $this->apiResponse('0','此订单已结算,无法进行洗车操作');
+                        }
                     }elseif($post['off_on'] == 1){
                         $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
                         $d_save = array(
