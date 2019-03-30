@@ -721,10 +721,10 @@ class OrderController extends BaseController {
      * 02/18 15:52
      */
     public function settlement(){
-//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-        $post['token'] = '80904b25772372b32cb4cda228d0ed8a';
-        $post['orderid'] = 'XC201903301039132246';
-        $post['off_on'] = 0;
+        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+//        $post['token'] = '3a428162838bd9ae6517da9fd64123b0';
+//        $post['orderid'] = 'XC201903301129506838';
+//        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -784,7 +784,6 @@ class OrderController extends BaseController {
 
         //订单结算自动跳转
         $data_moneys = $this->details($member['id'],$order['id'],0,$car['mc_id']);
-        var_dump($data_moneys);exit;
         //结算存储时间
         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
 

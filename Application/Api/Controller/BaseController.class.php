@@ -300,7 +300,7 @@ class BaseController extends ControllerService
             'status'=> 1,     //0代表未完成   订单还没结束
         );
 
-        $details = M('Details')->where($d_where)->order(array(''))->find();
+        $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $washing = round($send_post['devices'][0]['queryitem']['clean_water_duration']) - $details['washing_start_time'];
         $foam = round($send_post['devices'][0]['queryitem']['foam_duration']) - $details['foam_start_time'];
