@@ -743,7 +743,7 @@ class OrderController extends BaseController {
         );
         $k_order = M('Order')->where($k_where)->find();
         $d_where = array(
-            'o_id'=>$order['id'],
+            'o_id'=>M('Order')->where(array('m_id' =>$member['id'],'orderid' =>$post['orderid'],))->find(),
             'm_id'=>$member['id'],
 //            'status'=> 0,     //0代表未完成   订单还没结束
         );
