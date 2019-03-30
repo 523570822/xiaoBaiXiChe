@@ -299,6 +299,12 @@ class CarWasherController extends BaseController
                         );
                         $off_data['status'] = 4;
                         $offline = M('CarWasher')->where($off_where)->save($off_data);
+                    } elseif ($vv[0]['queryitem']['level3_status'] == 0){   //=0泡沫不足
+                        $off_where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $off_data['status'] = 5;
+                        $offline = M('CarWasher')->where($off_where)->save($off_data);
                     }
                     foreach ($vv as $kk1=>$vv1){
                         //$car_data['lon'] = $vv1['queryitem']['location']['longitude'];

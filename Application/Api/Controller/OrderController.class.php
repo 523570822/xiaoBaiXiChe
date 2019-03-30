@@ -818,9 +818,9 @@ class OrderController extends BaseController {
                 $indication = 0;
             }
             //价格
-            $wash_money =  round($details['washing'] * $car['washing_money'],2);
-            $foam_money = round($details['foam'] * $car['foam_money'],2);
-            $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
+//            $wash_money =  round($details['washing'] * $car['washing_money'],2);
+//            $foam_money = round($details['foam'] * $car['foam_money'],2);
+//            $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
 //            $data_money = array(
 //                'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
 //                'washing' =>$wash_time,
@@ -835,46 +835,6 @@ class OrderController extends BaseController {
                 $f_where['id'] = $details['id'];
                 $f_where['status'] = 0;
                 $f_details = M('Details')->where($f_where)->find();
-//                //水枪使用时间
-//                if(($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump1_status'] == 3) ){
-//                    if($send_post['devices'][0]['queryitem']['clean_water_duration'] != $f_details['washing_end_time']){
-//                        $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-//                        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'];
-//                        if($w_end_data['washing'] < 0 ){    //为-1就等于0
-//                            $w_end_data['washing'] = 0;
-//                        }
-//                        $d_where['status'] = 0;
-//                        $d_where['id'] = $details['id'];
-//                        $w_start = M('Details')->where($d_where)->save($w_end_data);
-//                    }
-//                }
-//                //泡沫枪使用时间
-//                if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['pump2_status'] == 3) ){
-//                    if($send_post['devices'][0]['queryitem']['foam_duration'] != $f_details['foam_end_time']){
-//                        $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-//                        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'];
-//                        if($f_end_data['foam'] < 0 ){    //为-1就等于0
-//                            $f_end_data['foam'] = 0;
-//                        }
-//                        $d_where['status'] = 0;
-//                        $d_where['id'] = $details['id'];
-//                        $f_start = M('Details')->where($d_where)->save($f_end_data);
-//                    }
-//                }
-//                //吸尘器使用时间
-//                if (($send_post['devices'][0]['queryitem']['service_status'] == 13) && ($send_post['devices'][0]['queryitem']['vacuum_info']['status'] == 3)){
-//                    if($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage'] != $f_details['cleaner_end_time']){
-//                        $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
-//                        $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'];
-//                        if($c_end_data['cleaner'] < 0 ){    //为-1就等于0
-//                            $c_end_data['cleaner'] = 0;
-//                        }
-//                        $d_where['status'] = 0;
-//                        $d_where['id'] = $details['id'];
-//                        $c_start = M('Details')->where($d_where)->save($c_end_data);
-//                    }
-//                }
-
                 $data_moneyss = $this->onDetails($member['id'],$order['id'],$indication,$car['mc_id']);
                 $c_save = array(
                     'money' => $data_moneyss['all_money'],
@@ -977,9 +937,7 @@ class OrderController extends BaseController {
                     }
                 }
             } else if($car['type'] == 4){
-//                echo 852369;
                 if($send_post['devices'][0]['queryitem']['service_status'] <= 8) {
-//                    echo 123;exit;
                     $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
                     $d_save = array(
                         'status' => 1,
@@ -987,8 +945,6 @@ class OrderController extends BaseController {
                     $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                     $o_save = array(
                         'button' => 1,
-//                        'money' => $data_money['all_money'],
-//                        'pay_money' =>$data_money['all_money'],
                     );
                     $o_order = M('Order')->where($o_where)->save($o_save);
                     $data_moneys = $this->details($member['id'], $k_order['id'], $indication, $car['mc_id']);
@@ -1003,15 +959,12 @@ class OrderController extends BaseController {
                     }
                     $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
                 }else if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
-//                    echo 118541;
                     $d_save = array(
                         'status'  => 1,
                     );
                     $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                     $o_save = array(
                         'button' => 1,
-//                        'money' =>$data_money['all_money'],
-//                        'pay_money' =>$data_money['all_money'],
                     );
                     $o_order = M('Order')->where($o_where)->save($o_save);
                     //语音播报
