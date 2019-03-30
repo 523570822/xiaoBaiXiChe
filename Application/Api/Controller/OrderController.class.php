@@ -794,7 +794,6 @@ class OrderController extends BaseController {
             if($zero == 1){
                 $this->apiResponse('1','未产生洗车费用,已为您自动结算');
             }
-            echo 11;
             $this->apiResponse('1','结算成功',$data_moneys);
         }
 
