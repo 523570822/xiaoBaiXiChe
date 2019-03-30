@@ -890,8 +890,8 @@ class OrderController extends BaseController {
                             $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                             $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                             $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
-//                            //结算存储时间
-//                            $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+                            //结算存储时间
+                            $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
 
 
                             //结算洗车机状态为1空闲
@@ -916,8 +916,8 @@ class OrderController extends BaseController {
                             );
                             $o_order = M('Order')->where($o_where)->save($o_save);
                             $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
-//                            //结算存储时间
-//                            $this->carWasherTime($car['mc_id'], $order['id'], $member['id']);
+                            //结算存储时间
+                            $this->carWasherTime($car['mc_id'], $order['id'], $member['id']);
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             //检查订单费用是否为0
