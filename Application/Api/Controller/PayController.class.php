@@ -269,7 +269,7 @@ class PayController extends BaseController {
                         echo "success";
                     }
                 } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
-                    $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
+                    $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
                     $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
                     if ( $is_have ) {
                         if ( $have['l_id'] == $order['card_id'] ) {
@@ -606,7 +606,7 @@ class PayController extends BaseController {
                 echo "success";
             }
         } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
-            $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
+            $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id'] ))->find ();
             $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
             if ( $is_have ) {
                 if ( $have['l_id'] == $order['card_id'] ) {
@@ -782,7 +782,7 @@ class PayController extends BaseController {
                     $this->apiResponse (1 , '支付成功');
                 }
             } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
-                $is_have = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => $order['card_id']))->find ();
+                $is_have = D ("CardUser")->where (array ('m_id' => $m_id ))->find ();
                 $have = D ("CardUser")->where (array ('m_id' => $m_id  ,'l_id' => $order['card_id']))->find ();
                 if ( $is_have ) {
                     if ( $have['l_id'] == $order['card_id'] ) {

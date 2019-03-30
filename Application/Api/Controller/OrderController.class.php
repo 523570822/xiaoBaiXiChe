@@ -789,24 +789,24 @@ class OrderController extends BaseController {
         }
 
         //判断订单
-        if(!empty($details)){
-            if($details['status'] == 1){
-                $this->apiResponse('0','此订单已结算,无法进行洗车操作');
+        if(!empty($details)) {
+            if ($details['status'] == 1) {
+                $this->apiResponse('0', '此订单已结算,无法进行洗车操作');
             }
             //判断使用哪个设备
-            if(round($send_post['devices'][0]['queryitem']['clean_water_duration']) != $details['washing_end_time']){
+            if (round($send_post['devices'][0]['queryitem']['clean_water_duration']) != $details['washing_end_time']) {
                 $indication = 1;
-            }elseif(round($send_post['devices'][0]['queryitem']['foam_duration']) != $details['foam_end_time']){
+            } elseif (round($send_post['devices'][0]['queryitem']['foam_duration']) != $details['foam_end_time']) {
                 $indication = 2;
-            }elseif(round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']) != $details['cleaner_end_time']){
+            } elseif (round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']) != $details['cleaner_end_time']) {
                 $indication = 3;
-            }else{
+            } else {
                 $indication = 0;
             }
             //价格
-            $wash_money =  round($details['washing'] * $car['washing_money'],2);
-            $foam_money = round($details['foam'] * $car['foam_money'],2);
-            $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2);
+            $wash_money = round($details['washing'] * $car['washing_money'], 2);
+            $foam_money = round($details['foam'] * $car['foam_money'], 2);
+            $cleaner_money = round($details['cleaner'] * $car['cleaner_money'], 2);
 //            $data_money = array(
 //                'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
 //                'washing' =>$wash_time,
@@ -817,7 +817,7 @@ class OrderController extends BaseController {
 //            );
 
             //判断机器使用状态
-            if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
+            if ($car['type'] == 2) {     //当机器service_status =13的时候,洗车机开启
                 $f_where['id'] = $details['id'];
                 $f_where['status'] = 0;
                 $f_details = M('Details')->where($f_where)->find();
@@ -861,23 +861,23 @@ class OrderController extends BaseController {
 //                    }
 //                }
 
-                $data_moneyss = $this->onDetails($member['id'],$order['id'],$indication,$post['orderid']);
+                $data_moneyss = $this->onDetails($member['id'], $order['id'], $indication, $post['orderid']);
                 $c_save = array(
                     'money' => $data_moneyss['all_money'],
                     'pay_money' => $data_moneyss['all_money'],
                 );
 //                var_dump($data_moneyss);exit;
-                $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
+                $c_order = M('Order')->where(array('orderid' => $post['orderid']))->save($c_save);
                 //检查洗车机继续使用还是结算
-                if(!empty($member)){
+                if (!empty($member)) {
 //                    echo 85545;
-                    if($post['off_on'] == 0){
+                    if ($post['off_on'] == 0) {
                         //结算存储时间
-                        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                        if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
+                        $this->carWasherTime($car['mc_id'], $order['id'], $member['id']);
+                        if ($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0) {   //12代表机器结算   结算跳转到立即支付页
 //                            echo 8784582;
                             $d_save = array(
-                                'status'  => 1,
+                                'status' => 1,
                             );
                             $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                             $o_save = array(
@@ -887,22 +887,22 @@ class OrderController extends BaseController {
                             );
                             $o_order = M('Order')->where($o_where)->save($o_save);
                             //语音播报
-                            $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-                            $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
-                            $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
+                            $voice = M('Voice')->where(array('voice_type' => 2, 'status' => 1))->find();
+                            $this->send_post('device_manage', $car['mc_id'], 5, 1, $voice['content']);
+                            $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
                             //结算存储时间
-                            $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+                            $this->carWasherTime($car['mc_id'], $order['id'], $member['id']);
 
 
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             //检查订单费用是否为0
-                            $zero = $this->payZero($member['id'],$order['id']);
-                            if($zero == 1){
-                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                            $zero = $this->payZero($member['id'], $order['id']);
+                            if ($zero == 1) {
+                                $this->apiResponse('1', '未产生洗车费用,已为您自动结算');
                             }
-                            $this->apiResponse('1','结算成功',$data_moneys);
-                        } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
+                            $this->apiResponse('1', '结算成功', $data_moneys);
+                        } else if ($send_post['devices'][0]['queryitem']['service_status'] < 8) {
 //                            echo 122;
                             $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
                             $d_save = array(
@@ -921,20 +921,20 @@ class OrderController extends BaseController {
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             //检查订单费用是否为0
-                            $zero = $this->payZero($member['id'],$order['id']);
-                            if($zero == 1){
-                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                            $zero = $this->payZero($member['id'], $order['id']);
+                            if ($zero == 1) {
+                                $this->apiResponse('1', '未产生洗车费用,已为您自动结算');
                             }
                             $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
-                        } else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
-                            $this->apiResponse('0','当前洗车机尚未开启');
+                        } else if ($send_post['devices'][0]['queryitem']['service_status'] == 8) {
+                            $this->apiResponse('0', '当前洗车机尚未开启');
                         }
 //                        var_dump($data_moneyss);exit;
-                        $this->apiResponse('1','查询成功',$data_moneyss);
-                    }elseif($post['off_on'] == 1){
-                        $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
+                        $this->apiResponse('1', '查询成功', $data_moneyss);
+                    } elseif ($post['off_on'] == 1) {
+                        $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
                         $d_save = array(
-                            'status'  => 1,
+                            'status' => 1,
                         );
                         $detailss = M('Details')->where($d_where)->save($d_save);
                         $o_save = array(
@@ -944,75 +944,77 @@ class OrderController extends BaseController {
                         );
                         $o_order = M('Order')->where($o_where)->save($o_save);
                         //语音播报
-                        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-                        $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
-                        $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
+                        $voice = M('Voice')->where(array('voice_type' => 2, 'status' => 1))->find();
+                        $this->send_post('device_manage', $car['mc_id'], 5, 1, $voice['content']);
+                        $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
                         //结算存储时间
-                        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+                        $this->carWasherTime($car['mc_id'], $order['id'], $member['id']);
                         //检查订单费用是否为0
-                        $zero = $this->payZero($member['id'],$order['id']);
+                        $zero = $this->payZero($member['id'], $order['id']);
                         //结算洗车机状态为1空闲
                         $this->typeOne($details['c_id']);
-                        if($zero == 1){
-                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                        if ($zero == 1) {
+                            $this->apiResponse('1', '未产生洗车费用,已为您自动结算');
                         }
-                        $this->apiResponse('1','结算成功',$data_moneys);
+                        $this->apiResponse('1', '结算成功', $data_moneys);
                     }
-                }
-            }else if($car['type'] == 4){
-//                echo 852369;
-                if($send_post['devices'][0]['queryitem']['service_status'] <= 8) {
-//                    echo 123;exit;
-                    $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
-                    $d_save = array(
-                        'status' => 1,
-                    );
-                    $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
-                    $o_save = array(
-                        'button' => 1,
-//                        'money' => $data_money['all_money'],
-//                        'pay_money' =>$data_money['all_money'],
-                    );
-                    $o_order = M('Order')->where($o_where)->save($o_save);
-                    $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
-                    //结算存储时间
-                    $this->carWasherTime($car['mc_id'], $order['id'], $member['id']);
-                    //结算洗车机状态为1空闲
-                    $this->typeOne($details['c_id']);
-                    //检查订单费用是否为0
-                    $zero = $this->payZero($member['id'],$order['id']);
-                    if($zero == 1){
-                        $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-                    }
-                    $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
-                }else if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
-//                    echo 118541;
-                    $d_save = array(
-                        'status'  => 1,
-                    );
-                    $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
-                    $o_save = array(
-                        'button' => 1,
-//                        'money' =>$data_money['all_money'],
-//                        'pay_money' =>$data_money['all_money'],
-                    );
-                    $o_order = M('Order')->where($o_where)->save($o_save);
-                    //语音播报
-                    $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-                    $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
-                    $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
-                    //结算存储时间
-                    $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                    //结算洗车机状态为1空闲
-                    $this->typeOne($details['c_id']);
-                    //检查订单费用是否为0
-                    $zero = $this->payZero($member['id'],$order['id']);
-                    if($zero == 1){
-                        $this->apiResponse('1','未产生洗车费用,已为您自动结算');
-                    }
-                    $this->apiResponse('1','结算成功',$data_moneys);
                 }
             }
+//            else if($car['type'] == 4){
+////                echo 852369;
+//                if($send_post['devices'][0]['queryitem']['service_status'] <= 8) {
+////                    echo 123;exit;
+//                    $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
+//                    $d_save = array(
+//                        'status' => 1,
+//                    );
+//                    $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
+//                    $o_save = array(
+//                        'button' => 1,
+////                        'money' => $data_money['all_money'],
+////                        'pay_money' =>$data_money['all_money'],
+//                    );
+//                    $o_order = M('Order')->where($o_where)->save($o_save);
+//                    $data_moneys = $this->details($member['id'], $order['id'], $indication, $car['mc_id']);
+//                    //结算存储时间
+//                    $this->carWasherTime($car['mc_id'], $order['id'], $member['id']);
+//                    //结算洗车机状态为1空闲
+//                    $this->typeOne($details['c_id']);
+//                    //检查订单费用是否为0
+//                    $zero = $this->payZero($member['id'],$order['id']);
+//                    if($zero == 1){
+//                        $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+//                    }
+//                    $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
+//                }else if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
+////                    echo 118541;
+//                    $d_save = array(
+//                        'status'  => 1,
+//                    );
+//                    $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
+//                    $o_save = array(
+//                        'button' => 1,
+////                        'money' =>$data_money['all_money'],
+////                        'pay_money' =>$data_money['all_money'],
+//                    );
+//                    $o_order = M('Order')->where($o_where)->save($o_save);
+//                    //语音播报
+//                    $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+//                    $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+//                    $data_moneys = $this->details($member['id'],$order['id'],$indication,$car['mc_id']);
+//                    //结算存储时间
+//                    $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+//                    //结算洗车机状态为1空闲
+//                    $this->typeOne($details['c_id']);
+//                    //检查订单费用是否为0
+//                    $zero = $this->payZero($member['id'],$order['id']);
+//                    if($zero == 1){
+//                        $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+//                    }
+//                    $this->apiResponse('1','结算成功',$data_moneys);
+//                }
+
+//            }
         }else{
             $this->apiResponse('0','请先扫码或手动输入下单');
         }
@@ -1224,7 +1226,7 @@ class OrderController extends BaseController {
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
                 //结算存储时间
-                $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
+                $a = $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0

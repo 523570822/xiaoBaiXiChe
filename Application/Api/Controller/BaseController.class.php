@@ -442,7 +442,7 @@ class BaseController extends ControllerService
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/03/15 11:07
      */
-    public function carWasherTime($mc_id,$o_id,$m_id){
+    public function carWasherTime($mc_id,$o_id,$m_id=''){
         $send_post = $this->send_post('runtime_query',$mc_id);       //查询洗车机状态
         $d_where = array(
             'o_id'=>$o_id,
