@@ -232,7 +232,17 @@ class CarWasherController extends BaseController
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
-                    if($find_order['status']){}
+                    if($find_order['status'] == 1){
+                        if($vv[0]['queryitem']['level3_status'] == 1 || $vv[0]['queryitem']['level2_status'] == 1 || $vv[0]['queryitem']['level1_status'] == 1 ||  $vv[0]['queryitem']['service_status'] >= 8){
+                            $using_where = array(
+                                'mc_id' => $vv[0]['deviceid'],
+                            );
+                            $using_data = array(
+                                'type' => 1,
+                            );
+                            $using = M('CarWasher')->where($using_where)->save($using_data);
+                        }
+                    }
                     if($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
