@@ -430,7 +430,7 @@ class MemberController extends BaseController
             $this->apiResponse('0', '请再次输入密码');
         }
         if (!empty($request['old_password']) && !empty($request['password'])) {
-            if ($request['old_password'] != $request['password']) {
+            if ($request['old_password'] == $request['password']) {
                 $this->apiResponse('0', '新旧密码一致，请重试');
             }
         }
