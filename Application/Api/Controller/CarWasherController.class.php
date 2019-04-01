@@ -223,6 +223,7 @@ class CarWasherController extends BaseController
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];
             $cars[$k]['id'] = $v['id'];
+
             $query = 'runtime_query';
             //$mana = 'manage';
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
@@ -233,7 +234,7 @@ class CarWasherController extends BaseController
                 foreach ($queryitem[$k] as $kk=>$vv){
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
                     if($find_order['status'] == 1){
-                        if($vv[0]['queryitem']['level3_status'] == 1 || $vv[0]['queryitem']['level2_status'] == 1 || $vv[0]['queryitem']['level1_status'] == 1 ||  $vv[0]['queryitem']['service_status'] >= 8){
+                        if($vv[0]['queryitem']['level3_status'] == 1 && $vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 &&  $vv[0]['queryitem']['service_status'] >= 8){
                             $using_where = array(
                                 'mc_id' => $vv[0]['deviceid'],
                             );
@@ -280,6 +281,7 @@ class CarWasherController extends BaseController
 //                    }
 //                    if($vv[0]['queryitem']['service_status'] >= 8){
 //                        var_dump($vv[0]['queryitem']['pump1_status']);exit;
+
                         //判断洗车机状态   1在线   2故障   3报警   4不在线
                     if(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump2_status'] >= 4 ) || ($vv[0]['queryitem']['valve1_status'] >= 4) ){   //三个值有一个值>=4就代表故障
                         $malf_where = array(
@@ -297,14 +299,6 @@ class CarWasherController extends BaseController
                             'status' => 3,
                         );
                         $alarm = M('CarWasher')->where($alarm_where)->save($alarm_data);
-                    }else if($vv[0]['queryitem']['service_status'] >= 8){                                                //判断正常
-                        $where = array(
-                            'mc_id' => $vv[0]['deviceid'],
-                        );
-                        $data = array(
-                            'status' => 1,
-                        );
-                        $online = M('CarWasher')->where($where)->save($data);
                     }elseif ($vv[0]['queryitem']['service_status'] < 8){   //<8掉线
                         $off_where = array(
                             'mc_id' => $vv[0]['deviceid'],
@@ -317,6 +311,14 @@ class CarWasherController extends BaseController
                         );
                         $off_data['status'] = 5;
                         $offline = M('CarWasher')->where($off_where)->save($off_data);
+                    }else if($vv[0]['queryitem']['service_status'] >= 8){                                                //判断正常
+                        $where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $data = array(
+                            'status' => 1,
+                        );
+                        $online = M('CarWasher')->where($where)->save($data);
                     }
                     foreach ($vv as $kk1=>$vv1){
                         //$car_data['lon'] = $vv1['queryitem']['location']['longitude'];
