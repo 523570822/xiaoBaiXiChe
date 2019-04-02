@@ -1232,8 +1232,8 @@ class OrderController extends BaseController {
                 $data_moneys = $this->details($order['m_id'],$k_order['id'],0,$car['mc_id']);
                 //结算存储时间
                 $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
-                //结算洗车机状态为1空闲
-                $this->typeOne($details['c_id']);
+                //结算洗车机状态为4故障
+                $this->typeFour($details['c_id']);
                 //检查订单费用是否为0
                 $zero = $this->payZero($order['m_id'],$order['id']);
                 $this->apiResponse(1,'result','OK');
@@ -1279,9 +1279,6 @@ class OrderController extends BaseController {
                 $data_moneys = $this->details($order['m_id'],$order['id'],0,$car['mc_id']);
                 //结算存储时间
                 $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
-
-
-
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0

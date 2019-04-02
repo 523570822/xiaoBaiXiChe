@@ -540,4 +540,10 @@ class BaseController extends ControllerService
         $save['type'] = 1;
         $order = M('CarWasher')->where(array('id'=>$c_id))->save($save);
     }
+
+    //洗车机故障
+    public function typeFour($c_id){
+        $save['type'] = 4;
+        $order = M('CarWasher')->where(array('id'=>$c_id))->save($save);
+    }
 }
