@@ -296,7 +296,7 @@ class PayController extends BaseController {
                         $on['m_id'] = $order['m_id'];
                         $card = D ("CardUser")->add ($on);
                     }
-                    $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
+                    $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id']));
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     if ( $save && $pay && $card ) {
                         echo "success";
@@ -632,7 +632,7 @@ class PayController extends BaseController {
                 $on['m_id'] = $order['m_id'];
                 $card = D ("CardUser")->add ($on);
             }
-            $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
+            $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id']));
             $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             if ( $save && $pay && $card ) {
                 echo "success";
