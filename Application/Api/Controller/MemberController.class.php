@@ -56,7 +56,7 @@ class MemberController extends BaseController
             $this->checkShareCodeBefore($share_from_code);
         }
         //邀请码
-        if ($request['invite_code'] == '') {
+        if ($request['invite_code'] == '' || $request['invite_code'] == null) {
             $request['parent_id'] = 0;
         } else {
             $mem = M("member")->where(array('invite_code' => $request['invite_code']))->field("id")->find();
