@@ -313,7 +313,6 @@ class MemberController extends BaseController
             $member_info['degree'] = 0;
         }
         $member_info['head_pic'] =$this->getOnePath($member_info['head_pic']);
-        dump($member_info);
         $this->apiResponse('1', '请求成功', $member_info);
     }
 
