@@ -456,7 +456,7 @@ class BaseController extends ControllerService
             'foam'=>$foam_time,
             'cleaner'=>$cleaner_time,
             'all_money' =>$wash_money+$foam_money+$cleaner_money,
-            'off_on' => 1,
+            'off_on' => 0,
         );
         return $data_money;
     }
