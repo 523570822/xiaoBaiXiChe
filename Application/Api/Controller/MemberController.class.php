@@ -297,7 +297,7 @@ class MemberController extends BaseController
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $card = M('CardUser')->where(array('m_id'=>$m_id))->find();
-        $member_info = D('Member')->where (array ('id'=>$m_id,'status' => 1))->field ('id as m_id,head_pic,nickname,tel,degree')->find();
+        $member_info = D('Member')->where (array ('id'=>$m_id,'status' => 1))->field ('id as m_id,head_pic,nickname,account as tel,degree')->find();
         if(!empty($card)){
             $time = time();
             if($card['end_time'] > $time){
@@ -313,6 +313,7 @@ class MemberController extends BaseController
             $member_info['degree'] = 0;
         }
         $member_info['head_pic'] =$this->getOnePath($member_info['head_pic']);
+        dump($member_info);
         $this->apiResponse('1', '请求成功', $member_info);
     }
 

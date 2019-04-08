@@ -31,7 +31,7 @@ class SmsModel extends ModelService{
         $send = api('System/sendMsg',array($mobile,$unique_code,array('vc'=>$vc)));
         if ($sms_info) {
             //有发信记录
-            if ($sms_info['create_time'] > strtotime(date('Y-m-d')) && $sms_info['create_time'] < strtotime(date('Y-m-d 23:59:59')) && intval($sms_info['times']) % 20 == 0) {
+            if ($sms_info['create_time'] > strtotime(date('Y-m-d')) && $sms_info['create_time'] < strtotime(date('Y-m-d 23:59:59')) && intval($sms_info['times']) % 10 == 0) {
                 return array('error' => '你今天获取验证码次数已达到上限');
             } else {
                 //次数未达到上限，判断如果上一次发送验证码的时间是今天，次数+1，否则次数设置为1；
