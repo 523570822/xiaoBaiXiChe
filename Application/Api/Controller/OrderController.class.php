@@ -1225,12 +1225,13 @@ class OrderController extends BaseController {
         foreach ( $coupon_list1 as $k1 => $v1 ) {
             $time = time();
             if($v1['end_time'] > $time){
-                $o_card =$v1['comes'] . $v1['money'] . '元';
-                $coupon_list2[$k1]['discount'] = $o_card;
-                $coupon_list2[$k1]['end_time'] = $v1['end_time'];
-                $coupon_list2[$k1]['id'] = $v1['id'];
-            }
+                $v1['discount'] =$v1['comes'] . $v1['money'] . '元';
+                $coupon_list3['discount'] = $v1['discount'];
+                $coupon_list3['end_time'] = $v1['end_time'];
+                $coupon_list3['id'] = $v1['id'];
+                $coupon_list2[] = $coupon_list3;
 
+            }
         }
         if(!empty($member)){
             if(empty($card_lists) && !empty($coupon_list2)){
