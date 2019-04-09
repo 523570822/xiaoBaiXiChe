@@ -70,8 +70,7 @@ class CardController extends BaseController
     /**
      *我的小鲸卡
      **/
-    public function myCard ()
-    {
+    public function myCard (){
         $m_id = $this->checkToken ();
         $this->errorTokenMsg ($m_id);
         $list_info = D ('CardUser')

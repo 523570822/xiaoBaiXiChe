@@ -1000,7 +1000,6 @@ class OrderController extends BaseController {
                 $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
                 //检查洗车机继续使用还是结算
                 if(!empty($member)){
-//                    echo 85545;
                     if($post['off_on'] == 0){
                         //结算存储时间
                         $b = $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
@@ -1012,8 +1011,7 @@ class OrderController extends BaseController {
                             $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
                             $o_save = array(
                                 'button' => 1,
-//                                'money' =>$data_money['all_money'],
-//                                'pay_money' =>$data_money['all_money'],
+
                             );
                             $o_order = M('Order')->where($o_where)->save($o_save);
                             //语音播报
@@ -1060,7 +1058,6 @@ class OrderController extends BaseController {
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                             $this->apiResponse('1','查询成功',$data_moneyss);
                         }
-
                     }elseif($post['off_on'] == 1){
                         $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
                         $d_save = array(
@@ -1212,7 +1209,7 @@ class OrderController extends BaseController {
      */
     public function proMethod(){
         $post = checkAppData('token','token');
-//        $post['token'] = 'cce9c86617d3d51ce98a7e018978f3f8';
+//        $post['token'] = '034f6770251275376124e06a478728b6';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
@@ -1223,18 +1220,20 @@ class OrderController extends BaseController {
             $card_lists[$key]['id'] = $value['id'];
         }
 
-        $coupon_list = M ('CouponBind')->where (array ('db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 1))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id,db_coupon_bind.end_time')->select ();
-        foreach ( $coupon_list as $k1 => $v1 ) {
-            $o_card = $coupon_list[$k1]['title'] . $coupon_list[$k1]['price'] . '元';
-            $coupon_lists[$k1]['discount'] = $o_card;
-            $coupon_lists[$k1]['end_time'] = $v1['end_time'];
-            $coupon_lists[$k1]['id'] = $v1['id'];
+//        $coupon_list1 = M ('CouponBind')->where (array ('db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 2))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id,db_coupon_bind.end_time')->select ();
+        $coupon_list1 = M ('CouponBind')->where (array ('m_id' => $member['id'] , 'is_bind' => 1))->field ('id,end_time,type,money,comes')->order('create_time DESC')->select ();
+        foreach ( $coupon_list1 as $k1 => $v1 ) {
+            $o_card =$v1['comes'] . $v1['money'] . '元';
+            $coupon_list1[$k1]['discount'] = $o_card;
+            $coupon_list1[$k1]['end_time'] = $v1['end_time'];
+            $coupon_list1[$k1]['id'] = $v1['id'];
         }
+
         if(!empty($member)){
-            if(empty($card_lists) && !empty($coupon_lists)){
+            if(!empty($card_lists) && !empty($coupon_list1)){
                 $data = array(
                     'card' => [],
-                    'coupon' => $coupon_lists,
+                    'coupon' => $coupon_list1,
                 );
                 $this->apiResponse('1','暂无会员卡',$data);
             }
