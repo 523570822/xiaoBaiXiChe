@@ -1209,7 +1209,7 @@ class OrderController extends BaseController {
      */
     public function proMethod(){
         $post = checkAppData('token','token');
-//        $post['token'] = '034f6770251275376124e06a478728b6';
+//        $post['token'] = '1d9edcf343210f243a313d37f159a18c';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
@@ -1223,28 +1223,31 @@ class OrderController extends BaseController {
 //        $coupon_list1 = M ('CouponBind')->where (array ('db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 2))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id,db_coupon_bind.end_time')->select ();
         $coupon_list1 = M ('CouponBind')->where (array ('m_id' => $member['id'] , 'is_bind' => 1))->field ('id,end_time,type,money,comes')->order('create_time DESC')->select ();
         foreach ( $coupon_list1 as $k1 => $v1 ) {
-            $o_card =$v1['comes'] . $v1['money'] . '元';
-            $coupon_list1[$k1]['discount'] = $o_card;
-            $coupon_list1[$k1]['end_time'] = $v1['end_time'];
-            $coupon_list1[$k1]['id'] = $v1['id'];
-        }
+            $time = time();
+            if($v1['end_time'] > $time){
+                $o_card =$v1['comes'] . $v1['money'] . '元';
+                $coupon_list2[$k1]['discount'] = $o_card;
+                $coupon_list2[$k1]['end_time'] = $v1['end_time'];
+                $coupon_list2[$k1]['id'] = $v1['id'];
+            }
 
+        }
         if(!empty($member)){
-            if(!empty($card_lists) && !empty($coupon_list1)){
+            if(empty($card_lists) && !empty($coupon_list2)){
                 $data = array(
                     'card' => [],
-                    'coupon' => $coupon_list1,
+                    'coupon' => $coupon_list2,
                 );
                 $this->apiResponse('1','暂无会员卡',$data);
             }
-            if(empty($coupon_lists) && !empty($card_lists)){
+            if(empty($coupon_list2) && !empty($card_lists)){
                 $data = array(
                     'card' => $card_lists,
                     'coupon' => [],
                 );
                 $this->apiResponse('1','暂无折扣卡',$data);
             }
-            if(empty($coupon_lists) && empty($card_lists)){
+            if(empty($coupon_list2) && empty($card_lists)){
                 $data = array(
                     'card' => [],
                     'coupon' => [],
@@ -1253,7 +1256,7 @@ class OrderController extends BaseController {
             }
             $data = array(
                 'card' => $card_lists,
-                'coupon' => $coupon_lists,
+                'coupon' => $coupon_list2,
             );
             $this->apiResponse('1','成功',$data);
         }
