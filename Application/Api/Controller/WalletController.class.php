@@ -55,7 +55,7 @@ class WalletController extends BaseController
             $data['o_type'] = '3';
             $data['create_time'] = time ();
             $data['detail'] = 1;
-            $res = M ('Order')->data ($data)->add ();
+            $res = M ('Order')->add ($data);
         }
         if ( $res ) {
             $this->apiResponse ('1' , '下单成功' , array ('orderid' => $data['orderid']));
