@@ -305,9 +305,6 @@ class BaseController extends ControllerService
         $washing = round($send_post['devices'][0]['queryitem']['clean_water_duration']) - $details['washing_start_time'];
         $foam = round($send_post['devices'][0]['queryitem']['foam_duration']) - $details['foam_start_time'];
         $cleaner = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']) - $details['cleaner_start_time'];
-
-
-
         if($washing >= 60 || $foam >= 60 || $cleaner>=60){
             $wash_fen = intval($washing/60).'分';
             $wash_miao = $washing % 60 . '秒';
