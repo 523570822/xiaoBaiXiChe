@@ -903,7 +903,7 @@ class OrderController extends BaseController {
                         }else{
                             //结算存储时间
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                            $this->apiResponse('0','当前洗车机尚未开启');
+                            $this->apiResponse('1','查询成功',$data_moneyss);
                         }
 
                     }elseif($post['off_on'] == 1){
