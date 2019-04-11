@@ -1219,7 +1219,7 @@ class OrderController extends BaseController {
 //        $post['token'] = 'c5c947eb6c11ae1ad43a405597fb7c3e';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
-        $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
+        $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => 1,'db_card_user.is_open' => 1))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
 
         foreach ( $card_list as $key => $value ) {
             $c_card = $card_list[$key]['name'] . '会员' . ($card_list[$key]['rebate'] * 10) . '折';

@@ -211,6 +211,7 @@ class PayController extends BaseController {
         $rule = array ('orderid' , 'string' , '订单编号不能为空');
         $this->checkParam ($rule);
         $order_info = D ("Order")->where (array ('orderid' => $request['orderid']))->find ();
+
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
@@ -222,6 +223,7 @@ class PayController extends BaseController {
         $payObject = new \Alipay($notify_url , $out_trade_no , $total_amount , $signType);
         $pay_string = $payObject->appPay ();
         $result['pay_string'] = $pay_string;
+
         $this->apiResponse (1 , '请求成功' , $result);
     }
 
@@ -271,7 +273,6 @@ class PayController extends BaseController {
                     }
                 } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
                     $date['detail'] = 2;
-
                     $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
                     $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
                     if ( $is_have ) {
@@ -285,12 +286,20 @@ class PayController extends BaseController {
                             $off['l_id'] = $order['card_id'];
                             $card = D ("CardUser")->where (array ('m_id' => $order['m_id'] ))->save ($off);
                         }elseif ( $have['l_id'] !== $order['card_id'] ) {
-                            $on['end_time'] = time () + (30 * 24 * 3600);
-                            $on['create_time'] = time ();
-                            $on['stare_time'] = time ();
-                            $on['l_id'] = $order['card_id'];
-                            $on['m_id'] = $order['m_id'];
-                            $card = D ("CardUser")->where(array('m_id' => $order['m_id']))->save($on);
+                            if($order['card_id'] == 1){
+                                $on['end_time'] = time () + (30 * 24 * 3600);
+                                $on['create_time'] = time ();
+                                $on['stare_time'] = time ();
+                                $on['l_id'] = $order['card_id'];
+                                $on['m_id'] = $order['m_id'];
+                                $on['is_open'] = 1;
+                                $card = D ("CardUser")->where(array('m_id' => $order['m_id']))->save($on);
+                                $ons['is_open'] = 2;
+                                $ons['end_time'] = 0;
+                                $ons['status'] = 2;
+                                $cards = D ("CardUser")->where(array('m_id' => $order['m_id'],'l_id'=>2))->save($ons);
+                            }
+
                         }
                     } elseif ( !$is_have ) {
                         $on['end_time'] = time () + (30 * 24 * 3600);

@@ -357,6 +357,7 @@ class BaseController extends ControllerService
         $sa_order = array(
             'money' => $wash_money+$foam_money+$cleaner_money,
             'pay_money' => $wash_money+$foam_money+$cleaner_money,
+            'update_time' =>time(),
         );
         $f_order = M('Order')->where($o_where)->save($sa_order);
         $data_money = array(
