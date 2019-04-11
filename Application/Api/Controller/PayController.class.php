@@ -247,6 +247,7 @@ class PayController extends BaseController {
                 $date['is_set'] = 1;
                 $date['pay_time'] = time ();
                 $date['trade_no'] = $order_no;
+
                 if ( $order['o_type'] == 1 ) {//1洗车订单
                     if ( $request['methods'] == '1' ) {
                         $cards = M ("CardUser")->where (['id' => $request['methods_id']])->field ('l_id')->find ();
@@ -263,11 +264,14 @@ class PayController extends BaseController {
                     } elseif ( $request['methods'] == '3' ) {
                         $date['is_dis'] = '0';
                     }
+                    $date['detail'] = 2;
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     if ( $save ) {
                         echo "success";
                     }
                 } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
+                    $date['detail'] = 2;
+
                     $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
                     $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
                     if ( $is_have ) {
@@ -599,6 +603,7 @@ class PayController extends BaseController {
             } elseif ( $order_info['methods'] == '3' ) {
                 $date['is_dis'] = '0';
             }
+            $date['detail'] = 2;
             $save = D ("Order")->where (array ('orderid' => $order['orderid']))->save ($date);
             if ( $save ) {
                 echo "success";
@@ -632,6 +637,7 @@ class PayController extends BaseController {
                 $on['m_id'] = $order['m_id'];
                 $card = D ("CardUser")->add ($on);
             }
+            $date['detail'] = 2;
             $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id']));
             $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             if ( $save && $pay && $card ) {

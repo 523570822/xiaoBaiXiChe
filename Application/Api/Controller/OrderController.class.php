@@ -1095,10 +1095,10 @@ class OrderController extends BaseController {
      */
     public function  Pay(){
         $post = checkAppData('token,orderid,method,methodID','token-订单ID-优惠方式-优惠卡ID');
-//        $post['token'] = 'edd4fa2b6b8e6d2da35d3b4ac20c5d98';
-//        $post['orderid'] = 'XC201903171839349455';
-//        $post['method'] = 1;     //1代表折扣卡    2代表抵用券   3无优惠方式
-//        $post['methodID'] = 17;    //折扣卡ID
+//        $post['token'] = 'c5c947eb6c11ae1ad43a405597fb7c3e';
+//        $post['orderid'] = 'XC201904101842083665';
+//        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
+//        $post['methodID'] = 19;    //折扣卡ID
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -1124,9 +1124,8 @@ class OrderController extends BaseController {
         //请求物联网接口,获取数据
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
 
-        $price = M('Appsetting')->where(array('id'=>1))->find();
-//        $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-//        $send_post = $this->send_post('device_manage',$car['mc_id'],3);
+        $prices = M('Appsetting')->where(array('id'=>1))->find();
+
 
         $wash_money =  round($details['washing'] * $car['washing_money'],2);    //水枪金额
         $foam_money = round($details['foam'] * $car['foam_money'],2); //泡沫枪金额
@@ -1146,7 +1145,6 @@ class OrderController extends BaseController {
             $cleaner_time = $cleaner_fen . $cleaner_miao;          //吸尘器时间
         }else if($details['washing'] < 60 || $details['foam'] < 60 || $details['cleaner'] < 60){
             $wash_time = 0 . '分' . $details['washing'] . '秒';    //水枪时间
-//            var_dump($details);
             $foam_time = 0 . '分' . $details['foam'] . '秒';     //泡沫枪时间
             $cleaner_time = 0 . '分' . $details['cleaner'] . '秒';   //吸尘器时间
         }
@@ -1157,12 +1155,23 @@ class OrderController extends BaseController {
             $price = round($all_money * $card_list['rebate'],2);
             $method = $card_list['name'] . '会员' . ($card_list['rebate'] * 10) . '折';
         }elseif ($post['method'] == 2){
-            $coupon_list = M ('CouponBind')->where (array ('db_coupon_bind.id' =>$post['methodID'],'db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 1))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id')->find ();
-            $price = round($all_money - $coupon_list['price'],2);
-            $method = $coupon_list['title'] . $coupon_list['price'] . '元';
+            $coupon_where = array(
+                'id' =>$post['methodID'],
+                'm_id' => $member['id'] ,
+                'is_bind' => 1,
+                'is_use' => 0,
+            );
+            $time = time();
+            $coupon_where['end_time'] = array('gt',$time);
+            $coupon_list = M ('CouponBind')->where ($coupon_where)->find ();
+            $price = round($all_money - $coupon_list['money'],2);
+            $method = $coupon_list['comes'] . $coupon_list['money'] . '元';
         }elseif ($post['method'] == 3){
             $price = $all_money;
             $method = '暂无使用优惠方式';
+        }
+        if($price<0){
+            $price = 0;
         }
         //返回的数据
         $data = array(
@@ -1207,7 +1216,7 @@ class OrderController extends BaseController {
      */
     public function proMethod(){
         $post = checkAppData('token','token');
-//        $post['token'] = '1d9edcf343210f243a313d37f159a18c';
+//        $post['token'] = 'c5c947eb6c11ae1ad43a405597fb7c3e';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
@@ -1219,7 +1228,15 @@ class OrderController extends BaseController {
         }
 
 //        $coupon_list1 = M ('CouponBind')->where (array ('db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 2))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id,db_coupon_bind.end_time')->select ();
-        $coupon_list1 = M ('CouponBind')->where (array ('m_id' => $member['id'] , 'is_bind' => 1))->field ('id,end_time,type,money,comes')->order('create_time DESC')->select ();
+        $coupon_where = array(
+            'm_id' => $member['id'] ,
+            'is_bind' => 1,
+            'is_use' => 0,
+        );
+        $time = time();
+        $coupon_where['end_time'] = array('gt',$time);
+        $coupon_list1 = M ('CouponBind')->where ($coupon_where)->field ('id,end_time,type,money,comes')->order('create_time DESC')->select ();
+        echo M('CouponBind')->_sql();
         foreach ( $coupon_list1 as $k1 => $v1 ) {
             $time = time();
             if($v1['end_time'] > $time){
@@ -1426,5 +1443,4 @@ class OrderController extends BaseController {
             }
         }
     }
-
 }
