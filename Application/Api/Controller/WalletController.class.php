@@ -89,6 +89,7 @@ class WalletController extends BaseController
             ->where ($where)
             ->field ('title,pay_money,pay_time,detail')
             ->page($request['page'], '10')
+            ->order('pay_time DESC')
             ->select ();
         if (!$order) {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
