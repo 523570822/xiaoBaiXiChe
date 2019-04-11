@@ -120,15 +120,23 @@ class InvoiceController extends BaseController
         $request = $_REQUEST;
         $rule = array ('o_id' , 'string' , "请输入订单编号");
         $this->checkParam ($rule);
-        $invoice_xq = M ('Invoice')
+        $invoice= M ('Invoice')
             ->where (array ('o_id' => $request['o_id']))
             ->where (array ('status' => array ('neq' , 9)))
             ->field ('content,status,money,type,create_time,email')
             ->order ('update_time asc')
             ->select ();
-        foreach ( $invoice_xq as $key => $v ) {
-            $invoice_xq[$key]['create_time'] = date ("Y/m/d H:i" , $v['create_time']);
+        foreach ( $invoice as $key => $v ) {
+            $invoice[$key]['create_time'] = date ("Y/m/d H:i" , $v['create_time']);
         }
+        if($invoice['status'] == 3){
+            $invoice_xq['invoice_count']= 0;
+        }elseif($invoice['status'] == 4){
+            $invoice_xq['invoice_count']= 1;
+        }
+        $invoice_xq['order_count']= 1;
+        $invoice_xq['details']=$invoice;
+        var_dump($invoice_xq);exit;
         $this->apiResponse ('1' , '请求成功' , $invoice_xq);
     }
 
