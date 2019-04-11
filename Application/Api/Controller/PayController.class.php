@@ -273,7 +273,7 @@ class PayController extends BaseController {
                     }
                 } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
                     $date['detail'] = 2;
-                    $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
+                    $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id'] ,''))->find ();
                     $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
                     if ( $is_have ) {
                         if ( $have['l_id'] == $order['card_id'] ) {
@@ -283,23 +283,14 @@ class PayController extends BaseController {
                                 $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
                             }
                             $off['update_time'] = time ();
-                            $off['l_id'] = $order['card_id'];
-                            $card = D ("CardUser")->where (array ('m_id' => $order['m_id'] ))->save ($off);
-                        }elseif ( $have['l_id'] !== $order['card_id'] ) {
-                            if($order['card_id'] == 1){
-                                $on['end_time'] = time () + (30 * 24 * 3600);
-                                $on['create_time'] = time ();
-                                $on['stare_time'] = time ();
-                                $on['l_id'] = $order['card_id'];
-                                $on['m_id'] = $order['m_id'];
-                                $on['is_open'] = 1;
-                                $card = D ("CardUser")->where(array('m_id' => $order['m_id']))->save($on);
-                                $ons['is_open'] = 2;
-                                $ons['end_time'] = 0;
-                                $ons['status'] = 2;
-                                $cards = D ("CardUser")->where(array('m_id' => $order['m_id'],'l_id'=>2))->save($ons);
-                            }
-
+                            $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $order['m_id'] , 'l_id' => $order['card_id']))->save ($off);
+                        } elseif ( $have['l_id'] !== $order['card_id'] ) {
+                            $on['end_time'] = time () + (30 * 24 * 3600);
+                            $on['create_time'] = time ();
+                            $on['stare_time'] = time ();
+                            $on['l_id'] = $order['card_id'];
+                            $on['m_id'] = $order['m_id'];
+                            $card = D ("CardUser")->add ($on);
                         }
                     } elseif ( !$is_have ) {
                         $on['end_time'] = time () + (30 * 24 * 3600);
@@ -636,7 +627,7 @@ class PayController extends BaseController {
                     $on['stare_time'] = time ();
                     $on['l_id'] = $order['card_id'];
                     $on['m_id'] = $order['m_id'];
-                    $card = D ("CardUser")->where(array('m_id' => $order['m_id']))->save($on);
+                    $card = D ("CardUser")->add ($on);
                 }
             } elseif ( !$is_have ) {
                 $on['end_time'] = time () + (30 * 24 * 3600);
@@ -812,7 +803,7 @@ class PayController extends BaseController {
                         $on['stare_time'] = time ();
                         $on['l_id'] = $order['card_id'];
                         $on['m_id'] = $m_id;
-                        $card = D ("CardUser")->where(array('m_id' => $order['m_id']))->save($on);
+                        $card = D ("CardUser")->add ($on);
                     }
                 } elseif ( !$is_have ) {
                     $on['end_time'] = time () + (30 * 24 * 3600);
