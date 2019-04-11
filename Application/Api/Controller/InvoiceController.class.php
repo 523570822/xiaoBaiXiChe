@@ -129,10 +129,10 @@ class InvoiceController extends BaseController
         foreach ( $invoice as $key => $v ) {
             $invoice[$key]['create_time'] = date ("Y/m/d H:i" , $v['create_time']);
         }
-        if($invoice['status'] == 3){
-            $invoice_xq['invoice_count']= 0;
-        }elseif($invoice['status'] == 4){
+        if($invoice['status'] == 4){
             $invoice_xq['invoice_count']= 1;
+        }else{
+            $invoice_xq['invoice_count']= 0;
         }
         $invoice_xq['order_count']= 1;
         $invoice_xq['details']=$invoice;
