@@ -211,7 +211,6 @@ class PayController extends BaseController {
         $rule = array ('orderid' , 'string' , '订单编号不能为空');
         $this->checkParam ($rule);
         $order_info = D ("Order")->where (array ('orderid' => $request['orderid']))->find ();
-
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
@@ -223,7 +222,6 @@ class PayController extends BaseController {
         $payObject = new \Alipay($notify_url , $out_trade_no , $total_amount , $signType);
         $pay_string = $payObject->appPay ();
         $result['pay_string'] = $pay_string;
-
         $this->apiResponse (1 , '请求成功' , $result);
     }
 
@@ -249,7 +247,6 @@ class PayController extends BaseController {
                 $date['is_set'] = 1;
                 $date['pay_time'] = time ();
                 $date['trade_no'] = $order_no;
-
                 if ( $order['o_type'] == 1 ) {//1洗车订单
                     if ( $request['methods'] == '1' ) {
                         $cards = M ("CardUser")->where (['id' => $request['methods_id']])->field ('l_id')->find ();
@@ -266,14 +263,12 @@ class PayController extends BaseController {
                     } elseif ( $request['methods'] == '3' ) {
                         $date['is_dis'] = '0';
                     }
-                    $date['detail'] = 2;
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     if ( $save ) {
                         echo "success";
                     }
                 } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
-                    $date['detail'] = 2;
-                    $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id'] ,''))->find ();
+                    $is_have = D ("CardUser")->where (array ('m_id' => $order['m_id']))->find ();
                     $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
                     if ( $is_have ) {
                         if ( $have['l_id'] == $order['card_id'] ) {
@@ -283,14 +278,15 @@ class PayController extends BaseController {
                                 $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
                             }
                             $off['update_time'] = time ();
-                            $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $order['m_id'] , 'l_id' => $order['card_id']))->save ($off);
-                        } elseif ( $have['l_id'] !== $order['card_id'] ) {
+                            $off['l_id'] = $order['card_id'];
+                            $card = D ("CardUser")->where (array ('m_id' => $order['m_id'] ))->save ($off);
+                        }elseif ( $have['l_id'] !== $order['card_id'] ) {
                             $on['end_time'] = time () + (30 * 24 * 3600);
                             $on['create_time'] = time ();
                             $on['stare_time'] = time ();
                             $on['l_id'] = $order['card_id'];
                             $on['m_id'] = $order['m_id'];
-                            $card = D ("CardUser")->add ($on);
+                            $card = D ("CardUser")->where(array('m_id' => $order['m_id']))->save($on);
                         }
                     } elseif ( !$is_have ) {
                         $on['end_time'] = time () + (30 * 24 * 3600);
@@ -300,7 +296,7 @@ class PayController extends BaseController {
                         $on['m_id'] = $order['m_id'];
                         $card = D ("CardUser")->add ($on);
                     }
-                    $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id']));
+                    $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     if ( $save && $pay && $card ) {
                         echo "success";
@@ -603,7 +599,6 @@ class PayController extends BaseController {
             } elseif ( $order_info['methods'] == '3' ) {
                 $date['is_dis'] = '0';
             }
-            $date['detail'] = 2;
             $save = D ("Order")->where (array ('orderid' => $order['orderid']))->save ($date);
             if ( $save ) {
                 echo "success";
@@ -627,7 +622,7 @@ class PayController extends BaseController {
                     $on['stare_time'] = time ();
                     $on['l_id'] = $order['card_id'];
                     $on['m_id'] = $order['m_id'];
-                    $card = D ("CardUser")->add ($on);
+                    $card = D ("CardUser")->where(array('m_id' => $order['m_id']))->save($on);
                 }
             } elseif ( !$is_have ) {
                 $on['end_time'] = time () + (30 * 24 * 3600);
@@ -637,8 +632,7 @@ class PayController extends BaseController {
                 $on['m_id'] = $order['m_id'];
                 $card = D ("CardUser")->add ($on);
             }
-            $date['detail'] = 2;
-            $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id']));
+            $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
             $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             if ( $save && $pay && $card ) {
                 echo "success";
@@ -803,7 +797,7 @@ class PayController extends BaseController {
                         $on['stare_time'] = time ();
                         $on['l_id'] = $order['card_id'];
                         $on['m_id'] = $m_id;
-                        $card = D ("CardUser")->add ($on);
+                        $card = D ("CardUser")->where(array('m_id' => $order['m_id']))->save($on);
                     }
                 } elseif ( !$is_have ) {
                     $on['end_time'] = time () + (30 * 24 * 3600);
