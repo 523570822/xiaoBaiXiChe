@@ -1236,7 +1236,6 @@ class OrderController extends BaseController {
         $time = time();
         $coupon_where['end_time'] = array('gt',$time);
         $coupon_list1 = M ('CouponBind')->where ($coupon_where)->field ('id,end_time,type,money,comes')->order('create_time DESC')->select ();
-        echo M('CouponBind')->_sql();
         foreach ( $coupon_list1 as $k1 => $v1 ) {
             $time = time();
             if($v1['end_time'] > $time){
