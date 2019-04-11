@@ -136,7 +136,6 @@ class InvoiceController extends BaseController
         }
         $invoice_xq['order_count']= 1;
         $invoice_xq['details']=$invoice;
-        var_dump($invoice_xq);exit;
         $this->apiResponse ('1' , '请求成功' , $invoice_xq);
     }
 
