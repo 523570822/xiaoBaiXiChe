@@ -720,7 +720,7 @@ class OrderController extends BaseController {
      *Date:2019/
      * 02/18 15:52
      */
-    public function settlement(){
+    public function settlement($off_on = 0){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
 //        $post['token'] = '88e58095574fa8a76be8bc85de9d73c6';
 //        $post['orderid'] = 'XC201904121627543913';
@@ -1230,13 +1230,9 @@ class OrderController extends BaseController {
 
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
 
-
-
-                //$this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
-
-
-
+                $this->settlement($off_on = 1);
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$k_order['id'],0,$car['mc_id']);
                 //结算存储时间
