@@ -721,10 +721,10 @@ class OrderController extends BaseController {
      * 02/18 15:52
      */
     public function settlement(){
-        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '88a82645b928a726579eeb346c8619a6';
-//        $post['orderid'] = 'XC201904111756538855';
-//        $post['off_on'] = 0;
+//        $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
+        $post['token'] = '88e58095574fa8a76be8bc85de9d73c6';
+        $post['orderid'] = 'XC201904121627543913';
+        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -762,9 +762,7 @@ class OrderController extends BaseController {
 //
 //        //结算存储时间
 //        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-
         if($order['button'] ==1){
-//            echo 123;
             //检查订单费用是否为0
             $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
             $zero = $this->payZero($member['id'],$order['id']);
@@ -777,6 +775,7 @@ class OrderController extends BaseController {
         //判断订单
         if(!empty($details)){
             if($details['status'] == 1){
+                $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                 $this->apiResponse('1','结算成功',$data_moneys);
             }
             //判断使用哪个设备
@@ -832,6 +831,7 @@ class OrderController extends BaseController {
                             if($zero == 1){
                                 $this->apiResponse('1','未产生洗车费用,已为您自动结算');
                             }
+                            $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                             $this->apiResponse('1','结算成功',$data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
 //                            echo 122;
@@ -889,6 +889,7 @@ class OrderController extends BaseController {
                         if($zero == 1){
                             $this->apiResponse('1','未产生洗车费用,已为您自动结算');
                         }
+                        $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                         $this->apiResponse('1','结算成功',$data_moneys);
                     }
                 }
@@ -934,6 +935,7 @@ class OrderController extends BaseController {
                             if($zero == 1){
                                 $this->apiResponse('1','未产生洗车费用,已为您自动结算');
                             }
+                            $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                             $this->apiResponse('1','结算成功',$data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
                             $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
@@ -988,6 +990,7 @@ class OrderController extends BaseController {
                         if($zero == 1){
                             $this->apiResponse('1','未产生洗车费用,已为您自动结算');
                         }
+                        $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                         $this->apiResponse('1','结算成功',$data_moneys);
                     }
                 }
@@ -1227,7 +1230,13 @@ class OrderController extends BaseController {
 
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-                $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+
+
+
+                //$this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+
+
+
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$k_order['id'],0,$car['mc_id']);
                 //结算存储时间
