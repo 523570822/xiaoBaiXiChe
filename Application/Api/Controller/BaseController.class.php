@@ -355,8 +355,8 @@ class BaseController extends ControllerService
         );
 //        var_dump($wash_money);exit;
         $sa_order = array(
-            'money' => $wash_money+$foam_money+$cleaner_money,
-            'pay_money' => $wash_money+$foam_money+$cleaner_money,
+            'money' => round($wash_money+$foam_money+$cleaner_money,2),
+            'pay_money' => round($wash_money+$foam_money+$cleaner_money,2),
             'update_time' =>time(),
         );
         $f_order = M('Order')->where($o_where)->save($sa_order);
@@ -365,7 +365,7 @@ class BaseController extends ControllerService
             'washing' =>$wash_time,
             'foam'=>$foam_time,
             'cleaner'=>$cleaner_time,
-            'all_money' =>$wash_money+$foam_money+$cleaner_money,
+            'all_money' =>round($wash_money+$foam_money+$cleaner_money,2),
             'off_on' => 1,
         );
         return $data_money;
@@ -444,8 +444,8 @@ class BaseController extends ControllerService
         );
 //        var_dump($wash_money);exit;
         $sa_order = array(
-            'money' => $wash_money+$foam_money+$cleaner_money,
-            'pay_money' => $wash_money+$foam_money+$cleaner_money,
+            'money' => round($wash_money+$foam_money+$cleaner_money,2),
+            'pay_money' => round($wash_money+$foam_money+$cleaner_money,2),
         );
         $f_order = M('Order')->where($o_where)->save($sa_order);
         $data_money = array(
@@ -453,7 +453,7 @@ class BaseController extends ControllerService
             'washing' =>$wash_time,
             'foam'=>$foam_time,
             'cleaner'=>$cleaner_time,
-            'all_money' =>$wash_money+$foam_money+$cleaner_money,
+            'all_money' =>round($wash_money+$foam_money+$cleaner_money,2),
             'off_on' => 0,
         );
         return $data_money;

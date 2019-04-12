@@ -296,7 +296,7 @@ class PayController extends BaseController {
                         $on['m_id'] = $order['m_id'];
                         $card = D ("CardUser")->add ($on);
                     }
-                    $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $have['l_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
+                    $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     if ( $save && $pay && $card ) {
                         echo "success";
@@ -631,7 +631,7 @@ class PayController extends BaseController {
                 $on['m_id'] = $order['m_id'];
                 $card = D ("CardUser")->add ($on);
             }
-            $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $have['l_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
+            $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
             $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             if ( $save && $pay && $card ) {
                 echo "success";
@@ -782,13 +782,16 @@ class PayController extends BaseController {
                 $have = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => $order['card_id']))->find ();
                 if ( $is_have ) {
                     if ( $have['l_id'] == $order['card_id'] ) {
-                        if ( $have['end_time'] < time () ) {
-                            $off['end_time'] = time () + (30 * 24 * 3600);
-                        } else {
-                            $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
+                        if($order['card_id'] == 1){
+                            if ( $have['end_time'] < time () ) {
+                                $off['end_time'] = time () + (30 * 24 * 3600);
+                            } else {
+                                $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
+                            }
+                            $off['update_time'] = time ();
+                            $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $m_id , 'l_id' => $order['card_id']))->save ($off);
                         }
-                        $off['update_time'] = time ();
-                        $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $m_id , 'l_id' => $order['card_id']))->save ($off);
+
                     } elseif ( $have['l_id'] !== $order['card_id'] ) {
                         $on['end_time'] = time () + (30 * 24 * 3600);
                         $on['create_time'] = time ();
@@ -805,7 +808,7 @@ class PayController extends BaseController {
                     $on['m_id'] = $m_id;
                     $card = D ("CardUser")->add ($on);
                 }
-                $pay = D ('Member')->where (array ('id' => $m_id))->save (array ('degree' => $have['l_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
+                $pay = D ('Member')->where (array ('id' => $m_id))->save (array ('degree' => $order['card_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
                 $save = D ("Order")->where (array ('orderid' => $request['orderid']))->save ($date);
             }
             if ( $save && $pay && $card ) {

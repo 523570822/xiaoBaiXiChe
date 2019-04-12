@@ -760,13 +760,13 @@ class OrderController extends BaseController {
 //        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
 //        //订单结算自动跳转
 //
-//        $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
 //        //结算存储时间
 //        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
 
         if($order['button'] ==1){
 //            echo 123;
             //检查订单费用是否为0
+            $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
             $zero = $this->payZero($member['id'],$order['id']);
             if($zero == 1){
                 $this->apiResponse('1','未产生洗车费用,已为您自动结算');
@@ -797,8 +797,8 @@ class OrderController extends BaseController {
                 $f_details = M('Details')->where($f_where)->find();
                 $data_moneyss = $this->onDetails($member['id'],$order['id'],$indication,$car['mc_id']);
                 $c_save = array(
-                    'money' => $data_moneyss['all_money'],
-                    'pay_money' => $data_moneyss['all_money'],
+                    'money' => round($data_moneyss['all_money'],2),
+                    'pay_money' => round($data_moneyss['all_money'],2),
                 );
 //                var_dump($data_moneyss);exit;
                 $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
@@ -898,8 +898,8 @@ class OrderController extends BaseController {
                 $f_details = M('Details')->where($f_where)->find();
                 $data_moneyss = $this->onDetails($member['id'],$order['id'],$indication,$car['mc_id']);
                 $c_save = array(
-                    'money' => $data_moneyss['all_money'],
-                    'pay_money' => $data_moneyss['all_money'],
+                    'money' => round($data_moneyss['all_money'],2),
+                    'pay_money' => round($data_moneyss['all_money'],2),
                 );
 //                var_dump($data_moneyss);exit;
                 $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
@@ -1039,7 +1039,7 @@ class OrderController extends BaseController {
         $wash_money =  round($details['washing'] * $car['washing_money'],2);    //水枪金额
         $foam_money = round($details['foam'] * $car['foam_money'],2); //泡沫枪金额
         $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2); //吸尘器金额
-        $all_money = $wash_money + $foam_money + $cleaner_money;  //总金额
+        $all_money = round($wash_money + $foam_money + $cleaner_money,2);  //总金额
 
         //各设备使用时间
         if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
@@ -1074,7 +1074,7 @@ class OrderController extends BaseController {
             $coupon_where['end_time'] = array('gt',$time);
             $coupon_list = M ('CouponBind')->where ($coupon_where)->find ();
             $price = round($all_money - $coupon_list['money'],2);
-            $method = $coupon_list['comes'] . $coupon_list['money'] . '元';
+            $method = $coupon_list['comes'] . round($coupon_list['money'],2) . '元';
         }elseif ($post['method'] == 3){
             $price = $all_money;
             $method = '暂无使用优惠方式';
@@ -1090,13 +1090,13 @@ class OrderController extends BaseController {
                 'cleaner' =>$cleaner_time,
             ),
             'now_price' =>array(
-                'wash_price' =>$wash_money,
-                'foam_price' =>$foam_money,
-                'cleaner_price' =>$cleaner_money
+                'wash_price' =>round($wash_money,2),
+                'foam_price' =>round($foam_money,2),
+                'cleaner_price' =>round($cleaner_money,2)
             ),
-            'all_price' =>$all_money,
+            'all_price' =>round($all_money,2),
             'method' => $method,
-            'real_price' =>$price,
+            'real_price' =>round($price,2),
             'methods' =>$post['method'],
             'methods_id' =>$post['methodID'],
         );
@@ -1109,8 +1109,8 @@ class OrderController extends BaseController {
                 'button' =>1,
             );
             $sa_data = array(
-                'money' => $all_money,
-                'pay_money' => $price
+                'money' => round($all_money,2),
+                'pay_money' => round($price,2)
             );
             $sa_order = M('Order')->where($sa_where)->save($sa_data);
             $this->apiResponse('1','查询成功',$data);
