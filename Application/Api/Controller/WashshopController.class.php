@@ -26,7 +26,7 @@ class WashshopController extends BaseController
     }
 
     /**
-     *方法释义
+     *未读消息
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/04/12 11:45
      */
@@ -37,12 +37,16 @@ class WashshopController extends BaseController
         foreach ($list as $k => $v) {
             $res = M('MsgReadLog')->where(array('m_id' => $m_id, 'msg_id' => $v['id']))->find();
             $list[$k]['is_read'] = $res ? 0 : 1;//1未读0已读
+            if($list[$k]['is_read'] == 1){
+                $count = count($list[$k]['is_read']);
+            }
         }
-        if($list[$k]['is_read'] == 1) {
+        if(!empty($count)) {
             $this->apiResponse('1', '你有未读消息');
         }else{
             $this->apiResponse('0', '无未读消息');
         }
+
     }
 
     /**
