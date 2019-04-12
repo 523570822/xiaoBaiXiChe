@@ -726,6 +726,8 @@ class OrderController extends BaseController {
 //        $post['orderid'] = 'XC201904121627543913';
 //        $post['off_on'] = 0;
 
+        $post['off_on'] = $off_on;
+
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
 
