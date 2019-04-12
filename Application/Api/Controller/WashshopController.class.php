@@ -26,6 +26,26 @@ class WashshopController extends BaseController
     }
 
     /**
+     *方法释义
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/04/12 11:45
+     */
+    public function unread(){
+        $m_id = $this->checkToken();
+        $this->errorTokenMsg($m_id);
+        $list = M('Msg')->where(array('m_id'=>['in',['0,',$m_id]],'status' => array('neq', 9),))->field ('id,type,create_time,m_id')->order('create_time desc')->select();
+        foreach ($list as $k => $v) {
+            $res = M('MsgReadLog')->where(array('m_id' => $m_id, 'msg_id' => $v['id']))->find();
+            $list[$k]['is_read'] = $res ? 0 : 1;//1未读0已读
+        }
+        if($list[$k]['is_read'] == 1) {
+            $this->apiResponse('1', '你有未读消息');
+        }else{
+            $this->apiResponse('0', '无未读消息');
+        }
+    }
+
+    /**
      * 店铺列表
      * 传递参数的方式：post
      * 需要传递的参数：
