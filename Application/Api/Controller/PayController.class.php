@@ -296,7 +296,7 @@ class PayController extends BaseController {
                         $on['m_id'] = $order['m_id'];
                         $card = D ("CardUser")->add ($on);
                     }
-                    $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id'] , 'balance' => $Member['balance'] - $order['pay_money']));
+                    $pay = D ('Member')->where (array ('id' => $order['m_id']))->save (array ('degree' => $order['card_id']));
                     $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
                     if ( $save && $pay && $card ) {
                         echo "success";
@@ -782,16 +782,50 @@ class PayController extends BaseController {
                 $have = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => $order['card_id']))->find ();
                 if ( $is_have ) {
                     if ( $have['l_id'] == $order['card_id'] ) {
-                        if($order['card_id'] == 1){
+                        if($order['card_id'] == 1){      //购买钻石卡
                             if ( $have['end_time'] < time () ) {
-                                $off['end_time'] = time () + (30 * 24 * 3600);
+                                $off['end_time'] = 741852;
+//                                $off['end_time'] = time () + (30 * 24 * 3600);
                             } else {
-                                $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
+                                $off['end_time'] = 963852;
+//                                $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
                             }
                             $off['update_time'] = time ();
+                            $off['status'] = 1;
+                            $off['is_open'] = 1;
                             $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $m_id , 'l_id' => $order['card_id']))->save ($off);
+                            $card_tsave = array(     //如果黄金卡还没过期还在使用中,直接覆盖
+                                'status' => 2,
+                                'is_open' => 2,
+                                'end_time'=>1560220307,
+                            );
+                            $card_t = M('CardUser')->where(array ('m_id' => $m_id , 'l_id' => 2,'status'=>1))->save($card_tsave);
+                        }elseif($order['card_id'] == 2){       //购买黄金卡
+                            //判断是否存在尚未过期还在使用的钻石卡
+                            $f_card = M('CardUser')->where(array('m_id' => $m_id , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
+                            if(!empty($f_card)){    //如果存在尚未过期的,等钻石卡过期再使用
+                                if ( $have['end_time'] < time () ) {
+                                    $off['end_time'] = 777888;
+//                                    $off['end_time'] = $f_card['end_time'] + (30 * 24 * 3600);
+                                }
+                                $off['update_time'] = time ();
+                                $off['status'] = 1;
+                                $off['is_open'] = 2;
+                                $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $m_id , 'l_id' => $order['card_id']))->save ($off);
+                            }else{
+                                if ( $have['end_time'] < time () ) {
+                                    $off['end_time'] = 111111;
+//                                    $off['end_time'] = time () + (30 * 24 * 3600);
+                                } else {
+                                    $off['end_time'] = 123456;
+//                                    $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
+                                }
+                                $off['update_time'] = time ();
+                                $off['status'] = 1;
+                                $off['is_open'] = 1;
+                                $card = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $m_id , 'l_id' => $order['card_id']))->save ($off);
+                            }
                         }
-
                     } elseif ( $have['l_id'] !== $order['card_id'] ) {
                         $on['end_time'] = time () + (30 * 24 * 3600);
                         $on['create_time'] = time ();
