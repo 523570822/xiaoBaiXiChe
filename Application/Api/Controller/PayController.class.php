@@ -999,6 +999,7 @@ class PayController extends BaseController {
                         }
                     }
                 } elseif ( !$is_have ) {
+                    
                     //判断是否存在未过期的钻石卡
                     $f_card = M('CardUser')->where(array('m_id' => $m_id , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
                     if(!empty($f_card)){
