@@ -741,7 +741,6 @@ class OrderController extends BaseController {
         $k_where = array(
             'm_id' =>$member['id'],
             'orderid' =>$post['orderid'],
-            'button' =>1,   //结算
         );
         $k_order = M('Order')->where($k_where)->find();
         $sw_where = array(
@@ -758,13 +757,7 @@ class OrderController extends BaseController {
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
 
         $send_post = $this->send_post('runtime_query',$car['mc_id']);       //查询洗车机状态
-//        //结算存储时间
-//        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-//        //订单结算自动跳转
-//
-//        //结算存储时间
-//        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-        if($order['button'] ==1){
+        if($order['button'] ==1){             //是否结算   1结算  0未结算
             //检查订单费用是否为0
             $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
             $zero = $this->payZero($member['id'],$order['id']);

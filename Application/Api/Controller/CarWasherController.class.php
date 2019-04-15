@@ -228,7 +228,7 @@ class CarWasherController extends BaseController
                 foreach ($queryitem[$k] as $kk=>$vv){
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
                     if($find_order['status'] == 1){
-                        if($vv[0]['queryitem']['level3_status'] == 1 && $vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 &&  $vv[0]['queryitem']['service_status'] >= 8){
+                        if($vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 &&  $vv[0]['queryitem']['service_status'] >= 8){
                             $using_where = array(
                                 'mc_id' => $vv[0]['deviceid'],
                             );
