@@ -985,7 +985,16 @@ class PayController extends BaseController {
                             'is_open' => 2,
                             'end_time'=>1555147655,
                         );
-                        $card_t = M('CardUser')->where(array ('m_id' => $m_id , 'l_id' => 2,'status'=>2))->save($card_tsave);
+                        $card_t = M('CardUser')->where(array ('m_id' => $m_id , 'l_id' => 2,'is_open'=>1))->save($card_tsave);
+                        if($have_h['end_time'] > time()){        //购买钻石卡,黄金卡未过期,自动加时间
+                            $h_time= $have_h['end_time']-$have_h['stare_time'];
+                            $om['update_time'] = time ();
+                            $om['end_time'] = $off['end_time'] + $h_time;
+                            $om['stare_time'] = $off['end_time'] ;
+                            $om['status'] = 1;
+                            $om['is_open'] = 2;
+                            $card_h = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $m_id , 'l_id' => 2))->save ($om);
+                        }
                     }elseif($order['card_id'] == 2){       //购买黄金卡
                         //判断是否存在尚未过期还在使用的钻石卡
                         $f_card = M('CardUser')->where(array('m_id' => $m_id , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
@@ -1028,7 +1037,7 @@ class PayController extends BaseController {
                             'is_open' => 2,
                             'end_time'=>1555147655,
                         );
-                        $card_t = M('CardUser')->where(array ('m_id' => $m_id , 'l_id' => 2))->save($card_tsave);
+                        $card_t = M('CardUser')->where(array ('m_id' => $m_id , 'l_id' => 2 , 'is_open'=>1))->save($card_tsave);
                     }elseif($order['card_id'] == 2){       //购买黄金卡
                         //判断是否存在尚未过期还在使用的钻石卡
                         $f_card = M('CardUser')->where(array('m_id' => $m_id , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
