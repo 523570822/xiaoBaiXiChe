@@ -993,7 +993,7 @@ class PayController extends BaseController {
                             if ( $have_h['end_time'] < time () ) {
                                 $off['end_time'] = time () + (30 * 24 * 3600);
                             } else {
-                                $off['end_time'] = $have_z['end_time'] + (30 * 24 * 3600);
+                                $off['end_time'] = $have_h['end_time'] + (30 * 24 * 3600);
                             }
                             $off['update_time'] = time ();
                             $off['status'] = 1;
