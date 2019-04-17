@@ -1032,24 +1032,22 @@ class PayController extends BaseController {
                         //判断是否存在尚未过期还在使用的钻石卡
                         $f_card = M('CardUser')->where(array('m_id' => $m_id , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
                         if(!empty($f_card)){    //如果存在尚未过期的,等钻石卡过期再使用
-                            if ( $have['end_time'] < time () ) {
-                                $off['end_time'] = time () + (30 * 24 * 3600);
-                            } else {
-                                $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
-                            }
-                            $off['update_time'] = time ();
+                            $on['end_time'] = time() + (30 * 24 * 3600);
+                            $on['create_time'] = time ();
+                            $on['stare_time'] = time();
+                            $on['l_id'] = $order['card_id'];
+                            $on['m_id'] = $m_id;
                             $off['status'] = 1;
                             $off['is_open'] = 2;
                             $card = D ("CardUser")->add($off);
                         }else{
-                            if ( $have['end_time'] < time () ) {
-                                $off['end_time'] = time () + (30 * 24 * 3600);
-                            } else {
-                                $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
-                            }
-                            $off['update_time'] = time ();
+                            $on['end_time'] = time() + (30 * 24 * 3600);
+                            $on['create_time'] = time ();
+                            $on['stare_time'] = time();
+                            $on['l_id'] = $order['card_id'];
+                            $on['m_id'] = $m_id;
+                            $on['is_open'] = 1;
                             $off['status'] = 1;
-                            $off['is_open'] = 1;
                             $degree = D ('Member')->where (array ('id' => $order['m_id']))->save (array('degree'=>$order['card_id']));
                             $card = D ("CardUser")->add($off);
                         }
