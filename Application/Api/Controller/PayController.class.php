@@ -993,7 +993,7 @@ class PayController extends BaseController {
                             $om['stare_time'] = $off['end_time'] ;
                             $om['status'] = 1;
                             $om['is_open'] = 2;
-                            $card_h = D ("CardUser")->where (array ('id' => $have['id'] , 'm_id' => $m_id , 'l_id' => 2))->save ($om);
+                            $card_h = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => 2))->save ($om);
                         }
                     }elseif($order['card_id'] == 2){       //购买黄金卡
                         //判断是否存在尚未过期还在使用的钻石卡
