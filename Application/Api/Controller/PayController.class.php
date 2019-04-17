@@ -1033,9 +1033,9 @@ class PayController extends BaseController {
                         //判断是否存在尚未过期还在使用的钻石卡
                         $f_card = M('CardUser')->where(array('m_id' => $m_id , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
                         if(!empty($f_card)){    //如果存在尚未过期的,等钻石卡过期再使用
-                            $on['end_time'] = time() + (30 * 24 * 3600);
+                            $on['end_time'] = $f_card['end_time'] + (30 * 24 * 3600);
                             $on['create_time'] = time ();
-                            $on['stare_time'] = time();
+                            $on['stare_time'] = $f_card['end_time'];
                             $on['l_id'] = $order['card_id'];
                             $on['m_id'] = $m_id;
                             $on['status'] = 1;
