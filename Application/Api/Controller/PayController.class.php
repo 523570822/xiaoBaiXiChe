@@ -1026,7 +1026,7 @@ class PayController extends BaseController {
                             'is_open' => 2,
                             'end_time'=>1555147655,
                         );
-                        $card_t = M('CardUser')->where(array ('m_id' => $m_id , 'l_id' => 2,'status'=>2))->save($card_tsave);
+                        $card_t = M('CardUser')->where(array ('m_id' => $m_id , 'l_id' => 2))->save($card_tsave);
                     }elseif($order['card_id'] == 2){       //购买黄金卡
                         //判断是否存在尚未过期还在使用的钻石卡
                         $f_card = M('CardUser')->where(array('m_id' => $m_id , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
