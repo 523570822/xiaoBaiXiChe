@@ -1012,16 +1012,15 @@ class PayController extends BaseController {
                     }
                 }else{
                     if($order['card_id'] == 1){      //购买钻石卡
-                        if ( $have['end_time'] < time () ) {
-                            $off['end_time'] = time () + (30 * 24 * 3600);
-                        } else {
-                            $off['end_time'] = $have['end_time'] + (30 * 24 * 3600);
-                        }
-                        $off['update_time'] = time ();
-                        $off['status'] = 1;
-                        $off['is_open'] = 1;
+                        $on['end_time'] = time() + (30 * 24 * 3600);
+                        $on['create_time'] = time ();
+                        $on['stare_time'] = time();
+                        $on['l_id'] = $order['card_id'];
+                        $on['m_id'] = $m_id;
+                        $on['status'] = 1;
+                        $on['is_open'] = 1;
                         $degree = D ('Member')->where (array ('id' => $order['m_id']))->save (array('degree'=>$order['card_id']));
-                        $card = D ("CardUser")->add($off);
+                        $card = D ("CardUser")->add($on);
                         $card_tsave = array(     //如果黄金卡还没过期还在使用中,直接覆盖
                             'status' => 2,
                             'is_open' => 2,
