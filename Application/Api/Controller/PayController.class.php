@@ -1037,9 +1037,9 @@ class PayController extends BaseController {
                             $on['stare_time'] = time();
                             $on['l_id'] = $order['card_id'];
                             $on['m_id'] = $m_id;
-                            $off['status'] = 1;
-                            $off['is_open'] = 2;
-                            $card = D ("CardUser")->add($off);
+                            $on['status'] = 1;
+                            $on['is_open'] = 2;
+                            $card = D ("CardUser")->add($on);
                         }else{
                             $on['end_time'] = time() + (30 * 24 * 3600);
                             $on['create_time'] = time ();
@@ -1047,9 +1047,9 @@ class PayController extends BaseController {
                             $on['l_id'] = $order['card_id'];
                             $on['m_id'] = $m_id;
                             $on['is_open'] = 1;
-                            $off['status'] = 1;
+                            $on['status'] = 1;
                             $degree = D ('Member')->where (array ('id' => $order['m_id']))->save (array('degree'=>$order['card_id']));
-                            $card = D ("CardUser")->add($off);
+                            $card = D ("CardUser")->add($on);
                         }
                     }
                 }
