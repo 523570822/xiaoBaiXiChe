@@ -489,3 +489,29 @@ function exportExcels ($list , $indexKey , $header , $filename , $startRow = 1 ,
     header ("Content-Transfer-Encoding:binary");
     $objWriter->save ('php://output');
 }
+
+/**
+ * 数据验证
+ */
+function checkData($array){
+    if (empty($array)) {
+        $array = array();
+    } else {
+        foreach ($array as $k=>$v) {
+            if (is_array($v)) {
+                $array[$k] = checkData($v);
+            } else {
+                if ($v === null || $v === NULL) {
+                    $array[$k] = '';
+                }
+                if (is_numeric($v)) {
+                    $array[$k] = (String)$v;
+                }
+                if (strpos($k,'price') > 0 || strpos($k,'price') === 0 || $k == 'balance') {
+                    $array[$k] = number_format(round($v,2),2,'.','');
+                }
+            }
+        }
+    }
+    return $array;
+}

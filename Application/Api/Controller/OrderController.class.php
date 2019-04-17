@@ -1034,9 +1034,9 @@ class OrderController extends BaseController {
         $prices = M('Appsetting')->where(array('id'=>1))->find();
 
 
-        $wash_money =  round($details['washing'] * $car['washing_money'],2);    //水枪金额
-        $foam_money = round($details['foam'] * $car['foam_money'],2); //泡沫枪金额
-        $cleaner_money = round($details['cleaner'] * $car['cleaner_money'],2); //吸尘器金额
+        $wash_money =  bcmul($details['washing'] , $car['washing_money'],2);    //水枪金额
+        $foam_money = bcmul($details['foam'] , $car['foam_money'],2); //泡沫枪金额
+        $cleaner_money = bcmul($details['cleaner'] , $car['cleaner_money'],2); //吸尘器金额
         $all_money = round($wash_money + $foam_money + $cleaner_money,2);  //总金额
 
         //各设备使用时间
@@ -1059,7 +1059,7 @@ class OrderController extends BaseController {
         //判断是否有优惠方式
         if($post['method'] == 1){
             $card_list = M ('CardUser')->where (array ('db_card_user.id' => $post['methodID'], 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->find ();
-            $price = round($all_money * $card_list['rebate'],2);
+            $price = bcmul($all_money , $card_list['rebate'],2);
             $method = $card_list['name'] . '会员' . ($card_list['rebate'] * 10) . '折';
         }elseif ($post['method'] == 2){
             $coupon_where = array(

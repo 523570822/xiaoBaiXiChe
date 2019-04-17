@@ -84,6 +84,9 @@ class ControllerService extends Controller
      * @param array $data
      */
     final protected function apiResponse($code=0, $message='', $data=array()) {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type:application/json; charset=utf-8');
+        $data = checkData($data);
         $response = array(
             'code' => $code,
             'message' => $message,

@@ -334,14 +334,25 @@ class PayController extends BaseController {
                             }elseif($order['card_id'] == 2){
                                 //判断是否存在尚未过期还在使用的钻石卡
                                 $f_card = M('CardUser')->where(array('m_id' => $order['m_id'] , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
-                                $on['end_time'] = time () + (30 * 24 * 3600);
-                                $on['create_time'] = time ();
-                                $on['stare_time'] = time ();
-                                $on['l_id'] = $order['card_id'];
-                                $on['m_id'] = $order['m_id'];
-                                $off['status'] = 1;
-                                $off['is_open'] = 2;
-                                $card = D ("CardUser")->add ($on);
+                                if(!empty($f_card)){
+                                    $on['end_time'] = $f_card['end_time'] + (30 * 24 * 3600);
+                                    $on['create_time'] = time ();
+                                    $on['stare_time'] = $f_card['end_time'];
+                                    $on['l_id'] = $order['card_id'];
+                                    $on['m_id'] = $order['m_id'];
+                                    $off['status'] = 1;
+                                    $off['is_open'] = 1;
+                                    $card = D ("CardUser")->add ($on);
+                                }else{
+                                    $on['end_time'] = time () + (30 * 24 * 3600);
+                                    $on['create_time'] = time ();
+                                    $on['stare_time'] = time ();
+                                    $on['l_id'] = $order['card_id'];
+                                    $on['m_id'] = $order['m_id'];
+                                    $off['status'] = 1;
+                                    $off['is_open'] = 1;
+                                    $card = D ("CardUser")->add ($on);
+                                }
                             }else{
                                 $on['end_time'] = time () + (30 * 24 * 3600);
                                 $on['create_time'] = time ();
@@ -355,13 +366,26 @@ class PayController extends BaseController {
                             }
                         }
                     } elseif ( !$is_have ) {
-                        $on['end_time'] = time () + (30 * 24 * 3600);
-                        $on['create_time'] = time ();
-                        $on['stare_time'] = time ();
-                        $on['l_id'] = $order['card_id'];
-                        $on['m_id'] = $order['m_id'];
-                        $card = D ("CardUser")->add ($on);
-                        $degree = D ('Member')->where (array ('id' => $order['m_id']))->save (array('degree'=>$order['card_id']));
+                        //判断是否存在尚未过期还在使用的钻石卡
+                        $f_card = M('CardUser')->where(array('m_id' => $order['m_id'] , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
+                        if(!empty($f_card)){
+                            $on['end_time'] = $f_card ['end_time'] + (30 * 24 * 3600);
+                            $on['create_time'] = time ();
+                            $on['stare_time'] = $f_card ['end_time'];
+                            $on['l_id'] = $order['card_id'];
+                            $on['m_id'] = $order['m_id'];
+                            $on['is_open'] = 2;
+                            $card = D ("CardUser")->add ($on);
+                            $degree = D ('Member')->where (array ('id' => $order['m_id']))->save (array('degree'=>$order['card_id']));
+                        }else{
+                            $on['end_time'] = time() + (30 * 24 * 3600);
+                            $on['create_time'] = time ();
+                            $on['stare_time'] = time();
+                            $on['l_id'] = $order['card_id'];
+                            $on['m_id'] = $order['m_id'];
+                            $on['is_open'] = 1;
+                            $card = D ("CardUser")->add ($on);
+                        }
                     }
                     $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
                     if ( $save && $card ) {
@@ -732,17 +756,28 @@ class PayController extends BaseController {
                             'end_time'=>1555147655,
                         );
                         $card_t = M('CardUser')->where(array ('m_id' => $order['m_id'] , 'l_id' => 2,'status'=>1))->save($card_tsave);
-                    }elseif($order['card_id'] == 2){
+                    }elseif($order['card_id'] == 2){      //购买黄金卡
                         //判断是否存在尚未过期还在使用的钻石卡
                         $f_card = M('CardUser')->where(array('m_id' => $order['m_id'] , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
-                        $on['end_time'] = time () + (30 * 24 * 3600);
-                        $on['create_time'] = time ();
-                        $on['stare_time'] = time ();
-                        $on['l_id'] = $order['card_id'];
-                        $on['m_id'] = $order['m_id'];
-                        $off['status'] = 1;
-                        $off['is_open'] = 2;
-                        $card = D ("CardUser")->add ($on);
+                        if(!empty($f_card)){
+                            $on['end_time'] = $f_card['end_time'] + (30 * 24 * 3600);
+                            $on['create_time'] = time ();
+                            $on['stare_time'] = $f_card['end_time'];
+                            $on['l_id'] = $order['card_id'];
+                            $on['m_id'] = $order['m_id'];
+                            $off['status'] = 1;
+                            $off['is_open'] = 2;
+                            $card = D ("CardUser")->add ($on);
+                        }else{
+                            $on['end_time'] = time () + (30 * 24 * 3600);
+                            $on['create_time'] = time ();
+                            $on['stare_time'] = time ();
+                            $on['l_id'] = $order['card_id'];
+                            $on['m_id'] = $order['m_id'];
+                            $off['status'] = 1;
+                            $off['is_open'] = 1;
+                            $card = D ("CardUser")->add ($on);
+                        }
                     }else{
                         $on['end_time'] = time () + (30 * 24 * 3600);
                         $on['create_time'] = time ();
@@ -756,13 +791,26 @@ class PayController extends BaseController {
                     }
                 }
             } elseif ( !$is_have ) {
-                $on['end_time'] = time () + (30 * 24 * 3600);
-                $on['create_time'] = time ();
-                $on['stare_time'] = time ();
-                $on['l_id'] = $order['card_id'];
-                $on['m_id'] = $order['m_id'];
-                $card = D ("CardUser")->add ($on);
-                $degree = D ('Member')->where (array ('id' => $order['m_id']))->save (array('degree'=>$order['card_id']));
+                //判断是否存在未过期的钻石卡
+                $f_card = M('CardUser')->where(array('m_id' => $order['m_id'], 'l_id' => 1, 'status' => 1, 'is_open' => 1))->find();
+                if (!empty($f_card)) {
+                    $on['end_time'] = $f_card['end_time'] + (30 * 24 * 3600);
+                    $on['create_time'] = time();
+                    $on['stare_time'] = $f_card['end_time'];
+                    $on['l_id'] = $order['card_id'];
+                    $on['m_id'] = $order['m_id'];
+                    $on['is_open'] = 2;
+                    $card = D("CardUser")->add($on);
+                } else {
+                    $on['end_time'] = time() + (30 * 24 * 3600);
+                    $on['create_time'] = time();
+                    $on['stare_time'] = time();
+                    $on['l_id'] = $order['card_id'];
+                    $on['m_id'] = $order['m_id'];
+                    $on['is_open'] = 1;
+                    $card = D("CardUser")->add($on);
+                    $degree = D('Member')->where(array('id' => $order['m_id']))->save(array('degree' => $order['card_id']));
+                }
             }
             $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             if ( $save && $card ) {
@@ -999,25 +1047,24 @@ class PayController extends BaseController {
                         }
                     }
                 } elseif ( !$is_have ) {
-                    
                     //判断是否存在未过期的钻石卡
                     $f_card = M('CardUser')->where(array('m_id' => $m_id , 'l_id' => 1,'status'=>1,'is_open'=>1))->find();
                     if(!empty($f_card)){
-                        $on['end_time'] = time () + (30 * 24 * 3600);
-                        $on['create_time'] = time ();
-                        $on['stare_time'] = time ();
-                        $on['l_id'] = $order['card_id'];
-                        $on['m_id'] = $m_id;
-                        $on['is_open'] = 1;
-                        $card = D ("CardUser")->add ($on);
-                        $degree = D ('Member')->where (array ('id' => $m_id))->save (array('degree'=>$order['card_id']));
-                    }else{
                         $on['end_time'] = $f_card['end_time'] + (30 * 24 * 3600);
                         $on['create_time'] = time ();
-                        $on['stare_time'] = $f_card['stare_time'] ();
+                        $on['stare_time'] = $f_card['end_time'];
                         $on['l_id'] = $order['card_id'];
                         $on['m_id'] = $m_id;
                         $on['is_open'] = 2;
+                        $card = D ("CardUser")->add ($on);
+                        $degree = D ('Member')->where (array ('id' => $m_id))->save (array('degree'=>$order['card_id']));
+                    }else{
+                        $on['end_time'] = time() + (30 * 24 * 3600);
+                        $on['create_time'] = time ();
+                        $on['stare_time'] = time();
+                        $on['l_id'] = $order['card_id'];
+                        $on['m_id'] = $m_id;
+                        $on['is_open'] = 1;
                         $on['status'] = 1;
                         $card = D ("CardUser")->add ($on);
                     }
