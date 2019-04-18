@@ -505,6 +505,7 @@ class OrderController extends BaseController {
         if ( $request['order_type'] == 2 ) {
             $where['db_order.status'] = 2;
         }
+
         $where['db_order.m_id'] = $m_id;
         $order [] = 'create_time DESC';
         $list_info = D ('Order')
@@ -514,6 +515,7 @@ class OrderController extends BaseController {
             ->order($order)
             ->page ($request['page'] , '10')
             ->select ( ['id'=>'db_order.id asc','order' =>'db_order.create_time desc']);
+
         foreach ( $list_info as $k => $v ) {
             $m = $list_info[$k]['p_id'];
             $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();
@@ -525,10 +527,10 @@ class OrderController extends BaseController {
             $this->apiResponse ('1' , $message);
         }
         $all_order = M('Order')->where(array('m_id'=>$m_id))->field("SUM(offer) as offers,SUM(calories) as caloriess,SUM(energy) as energys")->find();
-        var_dump($all_order);exit;
         $list_info['offer'] = $all_order['offers'];
         $list_info['calories'] = $all_order['caloriess'];
         $list_info['energy'] = $all_order['energys'];
+
         $this->apiResponse ('1' , '请求成功' , $list_info);
     }
 
