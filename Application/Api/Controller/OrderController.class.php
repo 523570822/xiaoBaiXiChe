@@ -524,7 +524,8 @@ class OrderController extends BaseController {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
             $this->apiResponse ('1' , $message);
         }
-        $all_order = M('Order')->where(array('m_id'=>$m_id))->field("SUM(offer) as offers,SUM(calories) as caloriess,SUM(energy) as energys")->select();
+        $all_order = M('Order')->where(array('m_id'=>$m_id))->field("SUM(offer) as offers,SUM(calories) as caloriess,SUM(energy) as energys")->find();
+        var_dump($all_order);exit;
         $list_info['offer'] = $all_order['offers'];
         $list_info['calories'] = $all_order['caloriess'];
         $list_info['energy'] = $all_order['energys'];
