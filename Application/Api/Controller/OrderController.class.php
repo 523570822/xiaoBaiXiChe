@@ -317,14 +317,6 @@ class OrderController extends BaseController {
             array ('w_type' , 'string' , '请输入洗车类型') ,
             //            array ('mc_code' , 'string' , '请输入洗车机编号') ,
         );
-        //查找未支付的订单
-//        $find_order = M('Order')->where(array('m_id'=>$m_id,'status'=>1))->find();
-//        if(!empty($find_order)){
-//            echo 222;
-//            $this->apiResponse('0','您还有未支付的订单');
-//        }
-//        echo 111;exit;
-
 
         $this->checkParam ($rule);
         //重定义名称
@@ -743,13 +735,9 @@ class OrderController extends BaseController {
             'orderid' =>$post['orderid'],
         );
         $k_order = M('Order')->where($k_where)->find();
-        $sw_where = array(
-            'm_id' =>$member['id'],
-            'orderid' =>$post['orderid'],
-        );
-        $sw_order = M('Order')->where($sw_where)->find();
+
         $d_where = array(
-            'o_id'=> $sw_order['id'],
+            'o_id'=> $k_order['id'],
             'm_id'=>$member['id'],
 //            'status'=> 0,     //0代表未完成   订单还没结束
         );
@@ -1002,10 +990,10 @@ class OrderController extends BaseController {
      */
     public function  Pay(){
         $post = checkAppData('token,orderid,method,methodID','token-订单ID-优惠方式-优惠卡ID');
-//        $post['token'] = 'c5c947eb6c11ae1ad43a405597fb7c3e';
-//        $post['orderid'] = 'XC201904101842083665';
-//        $post['method'] = 2;     //1代表折扣卡    2代表抵用券   3无优惠方式
-//        $post['methodID'] = 19;    //折扣卡ID
+//        $post['token'] = '5c62db36011de607e8556896e0cedf4b';
+//        $post['orderid'] = 'XC201904180957241369';
+//        $post['method'] = 3;     //1代表折扣卡    2代表抵用券   3无优惠方式
+//        $post['methodID'] = 0;    //折扣卡ID
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -1038,6 +1026,16 @@ class OrderController extends BaseController {
         $foam_money = bcmul($details['foam'] , $car['foam_money'],2); //泡沫枪金额
         $cleaner_money = bcmul($details['cleaner'] , $car['cleaner_money'],2); //吸尘器金额
         $all_money = round($wash_money + $foam_money + $cleaner_money,2);  //总金额
+
+        $all_time = round($details['washing'] + $details['foam'] + $details['cleaner']);   //总秒数
+        $min = 60;
+        //消耗卡路里
+        $calories = bcmul($all_time,$prices['calories'],2);
+        //节能减排
+        $energy = bcmul($all_time,$prices['energy'],2);
+        //优惠金额
+        $offer = bcsub($prices['offer'],$all_money,2);
+
 
         //各设备使用时间
         if($details['washing'] >= 60 || $details['foam'] >= 60 || $details['cleaner']>=60){
@@ -1097,6 +1095,9 @@ class OrderController extends BaseController {
             'real_price' =>round($price,2),
             'methods' =>$post['method'],
             'methods_id' =>$post['methodID'],
+            'offer' => $offer.'元',
+            'calories' => $calories.'kcal',
+            'energy' => $energy.'g'
         );
         if(!empty($data)){
             //查找条件
@@ -1108,12 +1109,14 @@ class OrderController extends BaseController {
             );
             $sa_data = array(
                 'money' => round($all_money,2),
-                'pay_money' => round($price,2)
+                'pay_money' => round($price,2),
+                'offer' => $offer,
+                'calories' => $calories,
+                'energy' => $energy,
             );
             $sa_order = M('Order')->where($sa_where)->save($sa_data);
             $this->apiResponse('1','查询成功',$data);
         }
-//        }
     }
 
     /**
