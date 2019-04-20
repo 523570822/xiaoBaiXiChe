@@ -660,6 +660,8 @@ class OrderController extends BaseController {
 
     /**
      *定时超时查询
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/04/20 09:40
      */
     public function overtime(){
         $order = D ('Order')->where (array ('is_no'=>0,'is_set'=>0,'button'=>0,'o_type' => 1 , 'w_type' => 2))->select();
@@ -718,7 +720,7 @@ class OrderController extends BaseController {
      *结算
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/
-     * 02/18 15:52
+     * Date:2019/02/18 15:52
      */
     public function settlement($off_on = 0){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
@@ -812,7 +814,6 @@ class OrderController extends BaseController {
                             //语音播报
                             $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                             $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
-                            $data_moneys = $this->details($member['id'],$k_order['id'],$indication,$car['mc_id']);
                             //结算存储时间
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                             //结算洗车机状态为1空闲
@@ -870,7 +871,6 @@ class OrderController extends BaseController {
                         $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                         $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                         $j_order = M('Order')->where(array('orderid'=>$post['orderid']))->find();
-                        $data_moneys = $this->details($member['id'],$j_order['id'],$indication,$car['mc_id']);
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         //检查订单费用是否为0

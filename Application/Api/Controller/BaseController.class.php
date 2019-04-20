@@ -321,15 +321,15 @@ class BaseController extends ControllerService
             $cleaner_time = 0 . '分' . $cleaner . '秒';   //吸尘器时间
         }
         //去除多余时间
-        if($washing < 2){
+        if($washing <= 2){
             $washing = 0;
             $wash_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
-        if($foam < 2){
+        if($foam <= 2){
             $foam = 0;
             $foam_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
-        if($cleaner < 1){
+        if($cleaner <= 2){
             $cleaner = 0;
             $cleaner_time = 0 . '分' . 0 . '秒';    //水枪时间
         }

@@ -233,11 +233,10 @@ class CarWasherController extends BaseController
                         $using_data = array(
                             'type' => 1,
                         );
-                        echo 123;
                         $using = M('CarWasher')->where($using_where)->save($using_data);
                     }
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
-//                    if(!empty($find_order)){
+                    if(!empty($find_order)){
                         if($find_order['status'] == 1){
                             if($vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 &&  $vv[0]['queryitem']['valve1_status'] == 0 && $vv[0]['queryitem']['service_status'] >= 8){
                                 $using_where = array(
@@ -266,57 +265,59 @@ class CarWasherController extends BaseController
                             $using_data = array(
                                 'type' => 4,
                             );
+                            echo 4;
                             $using = M('CarWasher')->where($using_where)->save($using_data);
                         }
-                        //判断洗车机状态   1在线   2故障   3报警   4不在线
-                        if(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump2_status'] >= 4 ) || ($vv[0]['queryitem']['valve1_status'] >= 4) ){   //三个值有一个值>=4就代表故障
-                            $malf_where = array(
-                                'mc_id' => $vv[0]['deviceid'],
-                            );
-                            $malf_data = array(
-                                'status' => 2,
-                            );
-                            $malfunction = M('CarWasher')->where($malf_where)->save($malf_data);
-                        }else if ($vv[0]['queryitem']['level2_status']  == 0 || $vv[0]['queryitem']['level1_status']  == 0){                  //三个状态判断液位不足
-                            $alarm_where = array(
-                                'mc_id' => $vv[0]['deviceid'],
-                            );
-                            $alarm_data = array(
-                                'status' => 3,
-                            );
-                            $alarm = M('CarWasher')->where($alarm_where)->save($alarm_data);
-                        }elseif ($vv[0]['queryitem']['service_status'] < 8){   //<8掉线
-                            $off_where = array(
-                                'mc_id' => $vv[0]['deviceid'],
-                            );
-                            $off_data['status'] = 4;
-                            $offline = M('CarWasher')->where($off_where)->save($off_data);
-                        } elseif ($vv[0]['queryitem']['level3_status'] == 0){   //=0泡沫不足
-                            $off_where = array(
-                                'mc_id' => $vv[0]['deviceid'],
-                            );
-                            $off_data['status'] = 5;
-                            $offline = M('CarWasher')->where($off_where)->save($off_data);
-                        }else if($vv[0]['queryitem']['service_status'] >= 8){                                                //判断正常
-                            $where = array(
-                                'mc_id' => $vv[0]['deviceid'],
-                            );
-                            $data = array(
-                                'status' => 1,
-                            );
-                            $online = M('CarWasher')->where($where)->save($data);
-                        }
-                        foreach ($vv as $kk1=>$vv1){
-                            $car_data['electricity'] = $vv1['queryitem']['device_energy'];
-                            $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
-                            $car_data['foam'] = $vv1['queryitem']['foam_usage'];
-                            $car_data['update_time'] = time();
-                        }
-                        $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
                     }
                 }
+                //判断洗车机状态   1在线   2故障   3报警   4不在线
+                if(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump2_status'] >= 4 ) || ($vv[0]['queryitem']['valve1_status'] >= 4) ){   //三个值有一个值>=4就代表故障
+                    $malf_where = array(
+                        'mc_id' => $vv[0]['deviceid'],
+                    );
+                    $malf_data = array(
+                        'status' => 2,
+                    );
+                    $malfunction = M('CarWasher')->where($malf_where)->save($malf_data);
+                }else if ($vv[0]['queryitem']['level2_status']  == 0 || $vv[0]['queryitem']['level1_status']  == 0){                  //三个状态判断液位不足
+                    $alarm_where = array(
+                        'mc_id' => $vv[0]['deviceid'],
+                    );
+                    $alarm_data = array(
+                        'status' => 3,
+                    );
+                    $alarm = M('CarWasher')->where($alarm_where)->save($alarm_data);
+                }elseif ($vv[0]['queryitem']['service_status'] < 8){   //<8掉线
+                    $off_where = array(
+                        'mc_id' => $vv[0]['deviceid'],
+                    );
+                    $off_data['status'] = 4;
+                    $offline = M('CarWasher')->where($off_where)->save($off_data);
+                } elseif ($vv[0]['queryitem']['level3_status'] == 0){   //=0泡沫不足
+                    $off_where = array(
+                        'mc_id' => $vv[0]['deviceid'],
+                    );
+                    $off_data['status'] = 5;
+                    $offline = M('CarWasher')->where($off_where)->save($off_data);
+                }else if($vv[0]['queryitem']['service_status'] >= 8){                                                //判断正常
+                    $where = array(
+                        'mc_id' => $vv[0]['deviceid'],
+                    );
+                    $data = array(
+                        'status' => 1,
+                    );
+                    $online = M('CarWasher')->where($where)->save($data);
+                }
+                foreach ($vv as $kk1=>$vv1){
+                    $car_data['electricity'] = $vv1['queryitem']['device_energy'];
+                    $car_data['water_volume'] = $vv1['queryitem']['clean_water_usage'];
+                    $car_data['foam'] = $vv1['queryitem']['foam_usage'];
+                    $car_data['update_time'] = time();
+                }
+                $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
             }
+
         }
-//    }
+    }
 
 }
