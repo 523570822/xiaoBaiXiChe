@@ -219,6 +219,9 @@ class PayController extends BaseController {
         // 生成支付字符串
         $out_trade_no = $order_info['orderid'];
         $total_amount = 0.01;//$order_info['pay_money'];
+        if($total_amount == 0.00){
+            $total_amount = 0.01;
+        }
         $signType = 'RSA2';
         $payObject = new \Alipay($notify_url , $out_trade_no , $total_amount , $signType);
         $pay_string = $payObject->appPay ();
@@ -415,6 +418,9 @@ class PayController extends BaseController {
         $xml_data['notify_url'] = C ('API_URL') . "/index.php/Api/Pay/WeChatNotify"; // 回调 URL
         $xml_data['spbill_create_ip'] = $_SERVER['REMOTE_ADDR']; // 终端 IP
         $xml_data['total_fee'] = 1; // 支付金额 单位[分]
+        if($xml_data['total_fee'] == 0){
+            $xml_data['total_fee'] = 1;
+        }
         //        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
         $xml_data['nonce_str'] = $this->getNonceStr (32);
         $key = "b2836e3bb4d1c04f567eab868fb99aee"; // 设置的KEY值相同
