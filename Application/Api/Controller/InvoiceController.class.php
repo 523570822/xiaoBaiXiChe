@@ -51,11 +51,9 @@ class InvoiceController extends BaseController
      *Date:2019/04/20 13:36
      */
     public function nvoicePage(){
-//        $post = checkAppData('token,orderid','token,订单编号');
-
-//        $post['token'] = '450c754f1d4f8d23f88f9ed7455e4694';
-//        $m_id = $this->checkToken ();
-        $m_id = 14;
+        $post = checkAppData('token,orderid','token,订单编号');
+        $m_id = $this->checkToken ();
+//        $m_id = 14;
         $invoice = M('InvoiceRise')->where(array('m_id'=>$m_id))->find();
         if(!empty($invoice)){
             $data = array(
