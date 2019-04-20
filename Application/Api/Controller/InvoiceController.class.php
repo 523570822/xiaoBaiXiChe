@@ -52,9 +52,11 @@ class InvoiceController extends BaseController
      */
     public function invoicePage(){
         $post = checkAppData('token','token');
-        $m_id = M('Member')->where(array('token'=>$post['token']))->field('id')->find();
+        $member = M('Member')->where(array('token'=>$post['token']))->find();
 //        $m_id = 14;
+        $m_id = $member['id'];
         $invoice = M('InvoiceRise')->where(array('m_id'=>$m_id))->find();
+        echo M('InvoiceRise')->_sql();
         if(!empty($invoice)){
             $data = array(
                 'title' => $invoice['title'],
@@ -115,6 +117,7 @@ class InvoiceController extends BaseController
             'r_adddress' => $request['r_adddress'],
             'bank' => $request['bank'],
             'b_account' => $request['b_account'],
+            'r_tel' => $request['r_tel'],
         );
         if(!empty($invoice)){
             $data['update_time'] = time();
