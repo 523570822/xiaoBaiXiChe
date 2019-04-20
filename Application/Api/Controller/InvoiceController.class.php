@@ -51,7 +51,7 @@ class InvoiceController extends BaseController
      *Date:2019/04/20 13:36
      */
     public function invoicePage(){
-        $post = checkAppData('token,orderid','token,订单编号');
+        $post = checkAppData('token','token');
         $m_id = M('Member')->where(array('token'=>$post['token']))->field('id')->find();
 //        $m_id = 14;
         $invoice = M('InvoiceRise')->where(array('m_id'=>$m_id))->find();
