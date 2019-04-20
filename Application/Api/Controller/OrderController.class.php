@@ -760,7 +760,14 @@ class OrderController extends BaseController {
             $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
             $zero = $this->payZero($member['id'],$order['id']);
             if($zero == 1){
-                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                $data_moneys = array(
+                    'indication' => 0,
+                    'washing' =>0,
+                    'foam'=>0,
+                    'cleaner'=>0,
+                    'all_money' =>0.00,
+                    'off_on' => 1,
+                );
             }
             $this->apiResponse('1','结算成功',$data_moneys);
         }
@@ -819,11 +826,19 @@ class OrderController extends BaseController {
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             //检查订单费用是否为0
+
+                            $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                             $zero = $this->payZero($member['id'],$order['id']);
                             if($zero == 1){
-                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                                $data_moneys = array(
+                                    'indication' => 0,
+                                    'washing' =>0,
+                                    'foam'=>0,
+                                    'cleaner'=>0,
+                                    'all_money' =>0.00,
+                                    'off_on' => 1,
+                                );
                             }
-                            $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                             $this->apiResponse('1','结算成功',$data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
 //                            echo 122;
@@ -845,7 +860,14 @@ class OrderController extends BaseController {
                             //检查订单费用是否为0
                             $zero = $this->payZero($member['id'],$order['id']);
                             if($zero == 1){
-                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                                $data_moneys = array(
+                                    'indication' => 0,
+                                    'washing' =>0,
+                                    'foam'=>0,
+                                    'cleaner'=>0,
+                                    'all_money' =>0.00,
+                                    'off_on' => 1,
+                                );
                             }
                             $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
@@ -878,7 +900,14 @@ class OrderController extends BaseController {
                         //结算洗车机状态为1空闲
                         $this->typeOne($details['c_id']);
                         if($zero == 1){
-                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                            $data_moneys = array(
+                                'indication' => 0,
+                                'washing' =>0,
+                                'foam'=>0,
+                                'cleaner'=>0,
+                                'all_money' =>0.00,
+                                'off_on' => 1,
+                            );
                         }
                         $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                         $this->apiResponse('1','结算成功',$data_moneys);
@@ -924,7 +953,14 @@ class OrderController extends BaseController {
                             //检查订单费用是否为0
                             $zero = $this->payZero($member['id'],$order['id']);
                             if($zero == 1){
-                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                                $data_moneys = array(
+                                    'indication' => 0,
+                                    'washing' =>0,
+                                    'foam'=>0,
+                                    'cleaner'=>0,
+                                    'all_money' =>0.00,
+                                    'off_on' => 1,
+                                );
                             }
                             $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                             $this->apiResponse('1','结算成功',$data_moneys);
@@ -947,7 +983,14 @@ class OrderController extends BaseController {
                             //检查订单费用是否为0
                             $zero = $this->payZero($member['id'],$order['id']);
                             if($zero == 1){
-                                $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                                $data_moneys = array(
+                                    'indication' => 0,
+                                    'washing' =>0,
+                                    'foam'=>0,
+                                    'cleaner'=>0,
+                                    'all_money' =>0.00,
+                                    'off_on' => 1,
+                                );
                             }
                             $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
@@ -979,7 +1022,14 @@ class OrderController extends BaseController {
                         //结算洗车机状态为1空闲
                         $this->typeOne($details['c_id']);
                         if($zero == 1){
-                            $this->apiResponse('1','未产生洗车费用,已为您自动结算');
+                            $data_moneys = array(
+                                'indication' => 0,
+                                'washing' =>0,
+                                'foam'=>0,
+                                'cleaner'=>0,
+                                'all_money' =>0.00,
+                                'off_on' => 1,
+                            );
                         }
                         $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                         $this->apiResponse('1','结算成功',$data_moneys);
