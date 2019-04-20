@@ -256,19 +256,21 @@ class CarWasherController extends BaseController
                                     'type' => 2,
                                 );
                                 $usings = M('CarWasher')->where($using_wheres)->save($using_datas);
+                                echo M('CarWasher')->_sql();
+
                             }
                         }
-                        if($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
-                            $using_where = array(
-                                'mc_id' => $vv[0]['deviceid'],
-                            );
-                            $using_data = array(
-                                'type' => 4,
-                            );
-                            echo 4;
-                            $using = M('CarWasher')->where($using_where)->save($using_data);
-                        }
                     }
+                    if($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
+                        $using_where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $using_data = array(
+                            'type' => 4,
+                        );
+                        $using = M('CarWasher')->where($using_where)->save($using_data);
+                    }
+
                 }
                 //判断洗车机状态   1在线   2故障   3报警   4不在线
                 if(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump2_status'] >= 4 ) || ($vv[0]['queryitem']['valve1_status'] >= 4) ){   //三个值有一个值>=4就代表故障

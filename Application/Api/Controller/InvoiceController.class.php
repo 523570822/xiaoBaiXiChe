@@ -46,6 +46,35 @@ class InvoiceController extends BaseController
     }
 
     /**
+     *开具发票页面
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/04/20 13:36
+     */
+    public function nvoicePage(){
+//        $post = checkAppData('token,orderid','token,订单编号');
+
+//        $post['token'] = '450c754f1d4f8d23f88f9ed7455e4694';
+//        $m_id = $this->checkToken ();
+        $m_id = 14;
+        $invoice = M('InvoiceRise')->where(array('m_id'=>$m_id))->find();
+        if(!empty($invoice)){
+            $data = array(
+                'title' => $invoice['title'],
+                'ti_num' => $invoice['ti_num'],
+                'r_adddress' => $invoice['r_adddress'],
+                'r_tel	' => $invoice['r_tel'],
+                'bank' => $invoice['bank'],
+                'b_account' => $invoice['b_account'],
+                'email' => $invoice['email'],
+            );
+            $this->apiResponse(1,'查询成功',$data);
+        }else{
+            $data = array();
+            $this->apiResponse(1,'查询成功',$data);
+        }
+    }
+
+    /**
      * 开具发票
      **/
     public function invoice ()
@@ -80,6 +109,23 @@ class InvoiceController extends BaseController
         $request['status'] = 3;
         $order_info = D ('Order')->where (array ('orderid' => $request['orderid']))->field ('pay_money')->find ();
         $save = D ("Order")->where (array ('orderid' => $request['orderid']))->save (array ('invoice' => 1));
+        $invoice = M('InvoiceRise')->where(array('m_id'=>$m_id))->find();
+        $data = array(
+            'title'=> $request['title'],
+            'ti_num' => $request['ti_num'],
+            'email' =>  $request['email'],
+            'r_adddress' => $request['r_adddress'],
+            'bank' => $request['bank'],
+            'b_account' => $request['b_account'],
+        );
+        if(!empty($invoice)){
+            $data['update_time'] = time();
+            $invoice_rise = M('InvoiceRise')->where(array('m_id'=>$m_id))->save($data);
+        }else{
+            $data['m_id'] = $m_id;
+            $data['create_time'] = time();
+            $invoice_rise = M('InvoiceRise')->add($data);
+        }
         if ( $save ) {
             $request['money'] = $order_info['pay_money'];
             $add = M ('Invoice')->add ($request);
