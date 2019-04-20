@@ -50,7 +50,7 @@ class InvoiceController extends BaseController
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/04/20 13:36
      */
-    public function nvoicePage(){
+    public function invoicePage(){
         $post = checkAppData('token,orderid','token,订单编号');
         $m_id = $this->checkToken ();
 //        $m_id = 14;
