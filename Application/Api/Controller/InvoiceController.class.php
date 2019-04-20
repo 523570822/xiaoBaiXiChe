@@ -52,11 +52,11 @@ class InvoiceController extends BaseController
      */
     public function invoicePage(){
         $post = checkAppData('token','token');
+//        $post['token'] = '3bf816b357a9b9d88ca928586391b914';
         $member = M('Member')->where(array('token'=>$post['token']))->find();
 //        $m_id = 14;
         $m_id = $member['id'];
         $invoice = M('InvoiceRise')->where(array('m_id'=>$m_id))->find();
-        echo M('InvoiceRise')->_sql();
         if(!empty($invoice)){
             $data = array(
                 'title' => $invoice['title'],
