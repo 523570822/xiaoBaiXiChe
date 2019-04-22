@@ -132,9 +132,9 @@ class BaseController extends ControllerService
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/02/18 17:04
      */
-    /*public function getMemberInfo($token,$type='info',$field = ''){
+    public function getMemberInfo($token,$type='info',$field = ''){
         if(empty($token)){
-            apiResponse('-1','please login again');
+            apiResponse('-1','登录失效，请重新登录');
         }
         if ($type == 'info') {
             $agent = D('Member')->findAgent(array('token'=>$token),'id,account,token,nickname,tel,realname,salt,password,');
@@ -153,7 +153,7 @@ class BaseController extends ControllerService
             apiResponse('0','You are temporarily unable to login');
         }
         return $agent;
-    }*/
+    }
 
     /**
      *接口请求地址

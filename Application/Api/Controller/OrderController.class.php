@@ -727,15 +727,16 @@ class OrderController extends BaseController {
      */
     public function settlement($off_on = 0){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '88e58095574fa8a76be8bc85de9d73c6';
-//        $post['orderid'] = 'XC201904121627543913';
+//        $post['token'] = '86ddb6539f6689c47699813a8c8ca4a6';
+//        $post['orderid'] = 'XC201904221527196192';
 //        $post['off_on'] = 0;
 
         $post['off_on'] = $off_on;
-
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
-
+        if(empty($member)){
+            $this->apiResponse('-1','登录失效，请重新登录');
+        }
         $o_where = array(
             'm_id' =>$member['id'],
             'orderid' =>$post['orderid'],
@@ -761,6 +762,8 @@ class OrderController extends BaseController {
         if($order['button'] ==1){             //是否结算   1结算  0未结算
             //检查订单费用是否为0
             $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
+            //结算洗车机状态为1空闲
+            $this->typeOne($details['c_id']);
             $zero = $this->payZero($member['id'],$order['id']);
             if($zero == 1){
                 $data_moneys = array(
@@ -779,6 +782,8 @@ class OrderController extends BaseController {
         if(!empty($details)){
             if($details['status'] == 1){
                 $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
+                //结算洗车机状态为1空闲
+                $this->typeOne($details['c_id']);
                 $this->apiResponse('1','结算成功',$data_moneys);
             }
             //判断使用哪个设备
@@ -882,6 +887,7 @@ class OrderController extends BaseController {
                         }
 
                     }elseif($post['off_on'] == 1){
+//                        echo 123456741;exit;
                         $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
                         $d_save = array(
                             'status'  => 1,
@@ -1294,6 +1300,7 @@ class OrderController extends BaseController {
 
                 $a = $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //结算洗车机状态为1空闲
+//                echo 123;
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
                 $zero = $this->payZero($order['m_id'],$order['id']);
