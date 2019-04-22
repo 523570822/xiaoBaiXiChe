@@ -51,18 +51,20 @@ class InvoiceController extends BaseController
      *Date:2019/04/20 13:36
      */
     public function invoicePage(){
-        $post = checkAppData('token','token');
+        $m_id = $this->checkToken ();
+        $this->errorTokenMsg ($m_id);
+//        $post = checkAppData('token','token');
 //        $post['token'] = '3bf816b357a9b9d88ca928586391b914';
-        $member = M('Member')->where(array('token'=>$post['token']))->find();
+//        $member = M('Member')->where(array('token'=>$post['token']))->find();
 //        $m_id = 14;
-        $m_id = $member['id'];
+//        $m_id = $member['id'];
         $invoice = M('InvoiceRise')->where(array('m_id'=>$m_id))->find();
         if(!empty($invoice)){
             $data = array(
                 'title' => $invoice['title'],
                 'ti_num' => $invoice['ti_num'],
                 'r_adddress' => $invoice['r_adddress'],
-                'r_tel	' => $invoice['r_tel'],
+                'r_tel' => $invoice['r_tel'],
                 'bank' => $invoice['bank'],
                 'b_account' => $invoice['b_account'],
                 'email' => $invoice['email'],
