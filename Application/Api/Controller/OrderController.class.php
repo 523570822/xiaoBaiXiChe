@@ -673,13 +673,44 @@ class OrderController extends BaseController {
         foreach($card_user as $ck=>$cv){
             $time = time();
             if($cv['end_time'] > $time){
-                $save = array(
-                    'status' => 1,
+                $z_where = array(
+                    'm_id'=>$cv['m_id'],
+                    'l_id'=>1,
+                    'end_time'=>array('gt',$time)
                 );
-                $s_where = array(
-                    'id' => $cv['id']
+                $h_where = array(
+                    'm_id'=>$cv['m_id'],
+                    'l_id'=>2,
+                    'end_time'=>array('gt',$time)
                 );
-                $s_card = M('CardUser')->where($s_where)->save($save);
+                $find_z = M('CardUser')->where($z_where)->find();
+                $find_h = M('CardUser')->where($h_where)->find();
+                if(!empty($find_z) && !empty($find_h)){
+                    $zh_data = array(
+                        'status' => 1,
+                        'is_open' => 1,
+                    );
+                    $zh_save = M('CardUser')->where($find_z)->save($zh_data);
+                }elseif(!empty($find_z)){
+                    $z_data = array(
+                        'status' => 1,
+                        'is_open' => 1,
+                    );
+                    $z_save = M('CardUser')->where($find_z)->save($z_data);
+                }elseif (!empty($find_h)){
+                    $h_data = array(
+                        'status' => 1,
+                        'is_open' => 1,
+                    );
+                    $h_save = M('CardUser')->where($find_h)->save($h_data);
+                }
+//                $save = array(
+//                    'status' => 1,
+//                );
+//                $s_where = array(
+//                    'id' => $cv['id']
+//                );
+//                $s_card = M('CardUser')->where($s_where)->save($save);
             }else if($cv['end_time'] <= $time){
                 $save = array(
                     'status' => 2,
@@ -1267,7 +1298,7 @@ class OrderController extends BaseController {
 			"event" => $post->event,
 	    ];
         $car = M('CarWasher')->where(array('mc_id'=>$post->deviceid))->find();
-        $order = M('Order')->where(array('c_id'=>$car['id'],'button'=>0,'o_type'=>1))->order('id DESC')->find();
+        $order = M('Order')->where(array('c_id'=>$car['id'],'o_type'=>1))->order('id DESC')->find();
         $k_where = array(
             'c_id'=>$car['id'],
             'o_type'=>1,
@@ -1277,7 +1308,6 @@ class OrderController extends BaseController {
         //        echo M('Order')->_sql();
 //        var_dump($order);exit;
         $details = M('Details')->where(array('o_id'=>$order['id']))->find();
-
         if($post->event == 1){
             $send_post = $this->send_post('device_manage',$post->event,3);
             $d_save = array(
@@ -1290,6 +1320,8 @@ class OrderController extends BaseController {
             //这台洗车机的全部订单都结算
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($o_save);
             if($send_post){
+                //结算洗车机状态为1空闲
+                $this->typeOne($details['c_id']);
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
@@ -1297,14 +1329,9 @@ class OrderController extends BaseController {
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$k_order['id'],0,$car['mc_id']);
                 //结算存储时间
-
                 $a = $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
-                //结算洗车机状态为1空闲
-//                echo 123;
-                $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
                 $zero = $this->payZero($order['m_id'],$order['id']);
-
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
