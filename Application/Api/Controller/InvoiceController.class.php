@@ -150,7 +150,7 @@ class InvoiceController extends BaseController
             ->where (array ('m_id' => $m_id))
             ->where (array ('status' => array ('neq' , 9)))
             ->field ('o_id,money,content,type,create_time')
-            ->order ('update_time asc')
+            ->order ('create_time desc')
             ->page ($page , 15)
             ->select ();
         foreach ( $invoice_list as $key => $v ) {

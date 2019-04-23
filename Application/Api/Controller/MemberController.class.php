@@ -303,7 +303,7 @@ class MemberController extends BaseController
             if($card['end_time'] > $time){
                 if($card['l_id'] == 1){
                     $member_info['degree'] = 1;
-                }if($card['l_id'] == 2){
+                }elseif($card['l_id'] == 2){
                     $member_info['degree'] = 2;
                 }
             }else{

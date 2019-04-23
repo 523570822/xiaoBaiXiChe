@@ -526,8 +526,6 @@ class OrderController extends BaseController {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
             $this->apiResponse ('1' , $message);
         }
-
-
         $this->apiResponse ('1' , '请求成功' , $list_info);
     }
 
@@ -687,59 +685,44 @@ class OrderController extends BaseController {
         $order = D ('Order')->where (array ('is_no'=>0,'is_set'=>0,'button'=>0,'o_type' => 1 , 'w_type' => 2))->select();
         $money = M('Appsetting')->where(array('id'=>1))->find();
         $card_where['status'] = array('neq',9);
-        $card_where['l_id'] = 1;
         $card_user = M('CardUser')->where($card_where)->select();
-
         foreach($card_user as $ck=>$cv){
             $time = time();
-            if($cv['end_time'] > $time){
-                $z_where = array(
-                    'm_id'=>$cv['m_id'],
-                    'l_id'=>1,
-                    'end_time'=>array('gt',$time)
+            $z_where = array(
+                'm_id'=>$cv['m_id'],
+                'l_id'=>1,
+                'end_time'=>array('gt',$time)
+            );
+            $h_where = array(
+                'm_id'=>$cv['m_id'],
+                'l_id'=>2,
+                'end_time'=>array('gt',$time)
+            );
+            $find_z = M('CardUser')->where($z_where)->find();
+            $find_h = M('CardUser')->where($h_where)->find();
+            if(!empty($find_z) && !empty($find_h)){
+                $zh_data = array(
+                    'status' => 1,
+                    'is_open' => 1,
                 );
-                $h_where = array(
-                    'm_id'=>$cv['m_id'],
-                    'l_id'=>2,
-                    'end_time'=>array('gt',$time)
-                );
-                $find_z = M('CardUser')->where($z_where)->find();
-                $find_h = M('CardUser')->where($h_where)->find();
-                if(!empty($find_z) && !empty($find_h)){
-                    $zh_data = array(
-                        'status' => 1,
-                        'is_open' => 1,
-                    );
-                    $zh_save = M('CardUser')->where($find_z)->save($zh_data);
-                }elseif(!empty($find_z)){
-                    $z_data = array(
-                        'status' => 1,
-                        'is_open' => 1,
-                    );
-                    $z_save = M('CardUser')->where($find_z)->save($z_data);
-                }elseif (!empty($find_h)){
-                    $h_data = array(
-                        'status' => 1,
-                        'is_open' => 1,
-                    );
-                    $h_save = M('CardUser')->where($find_h)->save($h_data);
-                }
-//                $save = array(
-//                    'status' => 1,
-//                );
-//                $s_where = array(
-//                    'id' => $cv['id']
-//                );
-//                $s_card = M('CardUser')->where($s_where)->save($save);
-            }else if($cv['end_time'] <= $time){
-                $save = array(
-                    'status' => 2,
+                $zh_save = M('CardUser')->where($find_z)->save($zh_data);
+                $zht_data = array(
+                    'status' => 1,
                     'is_open' => 2,
                 );
-                $d_where = array(
-                    'id' => $cv['id']
+                $zht_save = M('CardUser')->where($find_h)->save($zht_data);
+            }elseif(!empty($find_z)){
+                $z_data = array(
+                    'status' => 1,
+                    'is_open' => 1,
                 );
-                $s_card = M('CardUser')->where($d_where)->save($save);
+                $z_save = M('CardUser')->where($find_z)->save($z_data);
+            }elseif(!empty($find_h)){
+                $h_data = array(
+                    'status' => 1,
+                    'is_open' => 1,
+                );
+                $z_save = M('CardUser')->where($find_h)->save($h_data);
             }
         }
         foreach ($order as $k=>$v){
