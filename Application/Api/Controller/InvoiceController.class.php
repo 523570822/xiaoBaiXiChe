@@ -28,7 +28,7 @@ class InvoiceController extends BaseController
         $param['where']['o_type'] = $request['o_type'];
         $order_info = D ('Order')
             ->where ($param['where'])
-            ->where (array ('pay_type' => array ('neq' , 9)))
+            ->where (array ('pay_type' => array ('neq' , 9),'pay_money' => array ('neq' , 0)))
             ->field ('pay_money,orderid,create_time')
             ->order ("create_time desc")
             ->page ($page , 15)
