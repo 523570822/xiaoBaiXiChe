@@ -93,7 +93,7 @@ class IndexController extends BaseController {
         $carWasher = D ('CarWasher')->queryCount ($where);
         unset($where);
         //增长率
-        $growthRate = ($carWasher / $carWasherNum * 100) . '%';
+        $growthRate = round(($carWasher / $carWasherNum * 100),2) . '%';
         //订单的总量
         $orderNum = D ('Order')->queryCount (['status' => array ('neq' , 9)]);
         // 本月收入
