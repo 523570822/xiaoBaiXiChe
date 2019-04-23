@@ -761,8 +761,8 @@ class OrderController extends BaseController {
      */
     public function settlement($off_on = 0){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '86ddb6539f6689c47699813a8c8ca4a6';
-//        $post['orderid'] = 'XC201904221527196192';
+//        $post['token'] = '5a45638aefe00553cbba54d5c0ac15ed';
+//        $post['orderid'] = 'XC201904231403393720';
 //        $post['off_on'] = 0;
 
         $post['off_on'] = $off_on;
@@ -818,6 +818,8 @@ class OrderController extends BaseController {
                 $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
+                //检查订单费用是否为0
+                $zero = $this->payZero($member['id'],$order['id']);
                 $this->apiResponse('1','结算成功',$data_moneys);
             }
             //判断使用哪个设备
@@ -1127,7 +1129,6 @@ class OrderController extends BaseController {
         $all_money = round($wash_money + $foam_money + $cleaner_money,2);  //总金额
 
         $all_time = round($details['washing'] + $details['foam'] + $details['cleaner']);   //总秒数
-        $min = 60;
         //消耗卡路里
         $calories = bcmul($all_time,$prices['calories'],2);
         //节能减排

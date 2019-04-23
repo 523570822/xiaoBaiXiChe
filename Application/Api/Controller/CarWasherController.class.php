@@ -238,6 +238,7 @@ class CarWasherController extends BaseController
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
                     if(!empty($find_order)){
                         if($find_order['status'] == 1){
+
                             if($vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 &&  $vv[0]['queryitem']['valve1_status'] == 0 && $vv[0]['queryitem']['service_status'] >= 8){
                                 $using_where = array(
                                     'mc_id' => $vv[0]['deviceid'],
@@ -246,6 +247,15 @@ class CarWasherController extends BaseController
                                     'type' => 1,
                                 );
                                 $using = M('CarWasher')->where($using_where)->save($using_data);
+                            }elseif($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
+                                $using_where = array(
+                                    'mc_id' => $vv[0]['deviceid'],
+                                );
+                                $using_data = array(
+                                    'type' => 4,
+                                );
+                                $using = M('CarWasher')->where($using_where)->save($using_data);
+//                        echo M('CarWasher')->_sql();
                             }
                         }elseif ($find_order['status'] == 0){
                             if($vv[0]['queryitem']['level3_status'] == 1 && $vv[0]['queryitem']['valve1_status'] == 3 && $vv[0]['queryitem']['pump1_status'] == 3 && $vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 &&  $vv[0]['queryitem']['service_status'] > 8){
