@@ -543,6 +543,16 @@ class OrderController extends BaseController {
         $list_infos['offer'] = $all_order['offers'];
         $list_infos['calories'] = $all_order['caloriess'];
         $list_infos['energy'] = $all_order['energys'];
+        if(!empty($all_order)){
+            $this->apiResponse ('1' , '查询成功' , $list_infos);
+        }else{
+            $data = array(
+                'offer' => 0,
+                'calories' => 0,
+                'energy' => 0,
+            );
+            $this->apiResponse ('1' , '查询成功' , $data);
+        }
     }
 
     /**
