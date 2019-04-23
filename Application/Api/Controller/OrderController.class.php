@@ -761,8 +761,8 @@ class OrderController extends BaseController {
      */
     public function settlement($off_on = 0){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '5a45638aefe00553cbba54d5c0ac15ed';
-//        $post['orderid'] = 'XC201904231403393720';
+//        $post['token'] = '248ee5023de6921f4af47452334d79bc';
+//        $post['orderid'] = 'XC201904231427371213';
 //        $post['off_on'] = 0;
 
         $post['off_on'] = $off_on;
@@ -798,7 +798,7 @@ class OrderController extends BaseController {
             $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
             //结算洗车机状态为1空闲
             $this->typeOne($details['c_id']);
-            $zero = $this->payZero($member['id'],$order['id']);
+            $zero = $this->payZero($member['id'],$k_order['id']);
             if($zero == 1){
                 $data_moneys = array(
                     'indication' => 0,
@@ -819,7 +819,7 @@ class OrderController extends BaseController {
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
-                $zero = $this->payZero($member['id'],$order['id']);
+                $zero = $this->payZero($member['id'],$k_order['id']);
                 $this->apiResponse('1','结算成功',$data_moneys);
             }
             //判断使用哪个设备
@@ -872,7 +872,7 @@ class OrderController extends BaseController {
                             //检查订单费用是否为0
 
                             $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
-                            $zero = $this->payZero($member['id'],$order['id']);
+                            $zero = $this->payZero($member['id'],$k_order['id']);
                             if($zero == 1){
                                 $data_moneys = array(
                                     'indication' => 0,
@@ -883,6 +883,7 @@ class OrderController extends BaseController {
                                     'off_on' => 1,
                                 );
                             }
+//                            echo 789452;exit;
                             $this->apiResponse('1','结算成功',$data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
 //                            echo 122;
@@ -902,7 +903,7 @@ class OrderController extends BaseController {
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             //检查订单费用是否为0
-                            $zero = $this->payZero($member['id'],$order['id']);
+                            $zero = $this->payZero($member['id'],$k_order['id']);
                             if($zero == 1){
                                 $data_moneys = array(
                                     'indication' => 0,
@@ -941,7 +942,7 @@ class OrderController extends BaseController {
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         //检查订单费用是否为0
-                        $zero = $this->payZero($member['id'],$order['id']);
+                        $zero = $this->payZero($member['id'],$k_order['id']);
                         //结算洗车机状态为1空闲
                         $this->typeOne($details['c_id']);
                         if($zero == 1){
@@ -955,6 +956,7 @@ class OrderController extends BaseController {
                             );
                         }
                         $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
+//                        echo 852369;exit;
                         $this->apiResponse('1','结算成功',$data_moneys);
                     }
                 }
@@ -994,7 +996,7 @@ class OrderController extends BaseController {
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             //检查订单费用是否为0
-                            $zero = $this->payZero($member['id'],$order['id']);
+                            $zero = $this->payZero($member['id'],$k_order['id']);
                             if($zero == 1){
                                 $data_moneys = array(
                                     'indication' => 0,
@@ -1006,6 +1008,7 @@ class OrderController extends BaseController {
                                 );
                             }
                             $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
+//                            echo 95123;exit;
                             $this->apiResponse('1','结算成功',$data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
                             $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
@@ -1024,7 +1027,7 @@ class OrderController extends BaseController {
                             //结算洗车机状态为1空闲
                             $this->typeOne($details['c_id']);
                             //检查订单费用是否为0
-                            $zero = $this->payZero($member['id'],$order['id']);
+                            $zero = $this->payZero($member['id'],$k_order['id']);
                             if($zero == 1){
                                 $data_moneys = array(
                                     'indication' => 0,
@@ -1061,7 +1064,7 @@ class OrderController extends BaseController {
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         //检查订单费用是否为0
-                        $zero = $this->payZero($member['id'],$order['id']);
+                        $zero = $this->payZero($member['id'],$k_order['id']);
                         //结算洗车机状态为1空闲
                         $this->typeOne($details['c_id']);
                         if($zero == 1){
@@ -1075,6 +1078,7 @@ class OrderController extends BaseController {
                             );
                         }
                         $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
+//                        echo 785214;exit;
                         $this->apiResponse('1','结算成功',$data_moneys);
                     }
                 }
@@ -1335,7 +1339,7 @@ class OrderController extends BaseController {
                 //结算存储时间
                 $a = $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //检查订单费用是否为0
-                $zero = $this->payZero($order['m_id'],$order['id']);
+                $zero = $this->payZero($order['m_id'],$k_order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1366,7 +1370,7 @@ class OrderController extends BaseController {
                 //结算洗车机状态为4故障
                 $this->typeFour($details['c_id']);
                 //检查订单费用是否为0
-                $zero = $this->payZero($order['m_id'],$order['id']);
+                $zero = $this->payZero($order['m_id'],$k_order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1413,7 +1417,7 @@ class OrderController extends BaseController {
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
-                $zero = $this->payZero($order['m_id'],$order['id']);
+                $zero = $this->payZero($order['m_id'],$k_order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1444,7 +1448,7 @@ class OrderController extends BaseController {
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
-                $zero = $this->payZero($order['m_id'],$order['id']);
+                $zero = $this->payZero($order['m_id'],$k_order['id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
