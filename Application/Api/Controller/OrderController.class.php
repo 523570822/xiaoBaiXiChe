@@ -522,17 +522,27 @@ class OrderController extends BaseController {
             $list_info[$k]['shop_name'] = $shop['shop_name'];
             $list_info[$k]['is_use'] = ($list_info[$k]['type'] == 2) ? 0 : 1;//0订单正在进行中
         }
-        $list_infos['order_info'] = array_values($list_info);
-        if ( !$list_infos ) {
+        if ( !$list_info ) {
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
             $this->apiResponse ('1' , $message);
         }
+
+
+        $this->apiResponse ('1' , '请求成功' , $list_info);
+    }
+
+    /**
+     *我的消耗
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/04/23 08:42
+     */
+    public function useUp(){
+        $m_id = $this->checkToken ();
+        $this->errorTokenMsg ($m_id);
         $all_order = M('Order')->where(array('m_id'=>$m_id))->field("SUM(offer) as offers,SUM(calories) as caloriess,SUM(energy) as energys")->find();
         $list_infos['offer'] = $all_order['offers'];
         $list_infos['calories'] = $all_order['caloriess'];
         $list_infos['energy'] = $all_order['energys'];
-
-        $this->apiResponse ('1' , '请求成功' , $list_infos);
     }
 
     /**
