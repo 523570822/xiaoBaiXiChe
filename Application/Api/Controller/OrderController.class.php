@@ -1123,10 +1123,7 @@ class OrderController extends BaseController {
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         //请求物联网接口,获取数据
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
-
         $prices = M('Appsetting')->where(array('id'=>1))->find();
-
-
         $wash_money =  bcmul($details['washing'] , $car['washing_money'],2);    //水枪金额
         $foam_money = bcmul($details['foam'] , $car['foam_money'],2); //泡沫枪金额
         $cleaner_money = bcmul($details['cleaner'] , $car['cleaner_money'],2); //吸尘器金额
@@ -1199,9 +1196,9 @@ class OrderController extends BaseController {
             'real_price' =>round($price,2),
             'methods' =>$post['method'],
             'methods_id' =>$post['methodID'],
-            'offer' => $offer.'元',
-            'calories' => $calories.'kcal',
-            'energy' => $energy.'g'
+            'offer' => $offer,
+            'calories' => $calories,
+            'energy' => $energy
         );
         if(!empty($data)){
             //查找条件
