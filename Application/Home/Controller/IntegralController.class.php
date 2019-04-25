@@ -16,8 +16,9 @@ class IntegralController extends BaseController {
             $member_info['invite_code']="0";
         }
         $this->assign('code',$member_info['invite_code']);
-        $this->display('integral');
+        $this->display();
     }
+
     public function success(){
         $this->display('download');
     }
