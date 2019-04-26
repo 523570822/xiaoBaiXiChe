@@ -13,14 +13,13 @@
                     <!--上传图片-->
                     <div class="layui-form">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">上传图片</label>
+                            <label class="layui-form-label">上传发票</label>
                             <div class="layui-input-block">
                                 <div class="layui-input-inline">
                                     <button type="button" class="layui-btn" id="uploadBtn2"><i class="layui-icon"></i>上传文件</button>
                                 </div>
-                                <img src="{$row.covers}">
                                 <div class="layui-input-inline" id="filename"></div>
-                                <if condition="$row['cover']  neq 0">
+                                <if condition="$row['picture_id']  neq 0">
                                     <div class="layui-input-block img-show">
                                         <div class="img-show-item" id="Upload_cover_1_pre">
                                             <img src="{$row.covers}">
@@ -33,9 +32,15 @@
                         </div>
 
                         <div class="layui-form-item">
-                            <label class="layui-form-label">输入框</label>
+                            <label class="layui-form-label">订单编号</label>
                             <div class="layui-input-block">
-                                <input type="text" name="input" value="" placeholder="输入框" class="layui-input w300" required>
+                                <input type="text" name="input" value="{$row.o_id}" placeholder="输入框" class="layui-input w300" required readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户账号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="input" value="{$row.account}" placeholder="用户账号" class="layui-input w300" required readonly="readonly">
                             </div>
                         </div>
                         <div class="layui-form-item">

@@ -195,12 +195,14 @@ class InvoiceController extends BaseController {
             $data = $this->checkParam($rule);
             $where['id'] = $request['id'];
             $data['update_time'] = time();
-            $res = D('Member')->querySave($where,$data);
+            $res = D('Invoice')->querySave($where,$data);
             $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $data);
         }else {
             $id = $_REQUEST['id'];
             $row = D('Invoice')->queryRow($id);
+            $nickname = D('Member')->queryRow(array('id'=>$row['m_id']),'account');
             $row['covers'] = $this->getOnePath($row['picture_id']);
+            $row['account'] = $nickname['account'];
             $this->assign('row',$row);
             $this->display();
         }
