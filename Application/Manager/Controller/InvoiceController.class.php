@@ -19,13 +19,20 @@ class InvoiceController extends BaseController {
         if(!empty($_REQUEST['o_id'])){
             $where['o_id'] = array('LIKE',"%".I('request.o_id')."%");
         }
+
+        //状态查找
+        if(!empty($_REQUEST['status'])){
+            $where['status'] = I('request.status');
+        }else{
+            $where['status'] = array('lt',9);
+        }
+
         //昵称查找
         if(!empty($_REQUEST['account'])){
             $account_where['account'] = array('LIKE',I('request.account')."%");
             $data = D('Member')->where ($account_where)->getField("id", true);
             $where["m_id"] = ["in", implode ($data, ',')];
-            if (empty($data))
-            {
+            if (empty($data)) {
                 $this->display();
             }
         }
@@ -48,7 +55,6 @@ class InvoiceController extends BaseController {
 //            $parameter['sort_order'] = I('request.sort_order');
         }
 
-        $where['status'] = array('lt',9);
         $param['page_size'] = 15;
         $data = D('Invoice')->queryList($where,'*',$param);
         foreach ($data['list'] as $k=>$v){
@@ -175,11 +181,28 @@ class InvoiceController extends BaseController {
 
 
     /**
-     * 发票删除
+     * 编辑发票
      * User: admin
-     * Date: 2019-04-25 17:20:30
+     * Date: 2019-04-26 11:06:03
      */
-    public function deleteInvoice() {
-
+    public function editInvoice() {
+        if(IS_POST) {
+            $request = I('post.');
+            $rule = array(
+                array('picture_id','int','请上传电子发票图1'),
+                array('status','int','请选择发票状态'),
+            );
+            $data = $this->checkParam($rule);
+            $where['id'] = $request['id'];
+            $data['update_time'] = time();
+            $res = D('Member')->querySave($where,$data);
+            $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $data);
+        }else {
+            $id = $_REQUEST['id'];
+            $row = D('Invoice')->queryRow($id);
+            $row['covers'] = $this->getOnePath($row['picture_id']);
+            $this->assign('row',$row);
+            $this->display();
+        }
     }
 }
