@@ -25,33 +25,30 @@
                                        value="{$_REQUEST['o_id']}">
                             </div>
                             <div class="layui-input-inline">
-                            <input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"
-                            value="{$_REQUEST['nickname']}">
+                            <input type="text" class="layui-input" placeholder="请输入账号" name="account"
+                            value="{$_REQUEST['account']}">
                             </div>
                             <div class="layui-input-inline layui-form">
-                                <select name="grade" class="layui-input" style="width: 150px">
-                                    <option value="">等级</option>
-                                    <option value="1"
-                                    <if condition="$_REQUEST['grade'] eq 1">selected=true</if>
-                                    >一级</option>
-                                    <option value="2"
-                                    <if condition="$_REQUEST['grade'] eq 2">selected=true</if>
-                                    >二级</option>
+                                <select name="status" class="layui-input" style="width: 150px">
+                                    <option value="">状态</option>
                                     <option value="3"
                                     <if condition="$_REQUEST['grade'] eq 3">selected=true</if>
-                                    >三级</option>
+                                    >已申请</option>
+                                    <option value="4"
+                                    <if condition="$_REQUEST['grade'] eq 4">selected=true</if>
+                                    >已开票</option>
                                 </select>
                             </div>
 
                             <div class="layui-input-inline">
                             <input type="text" name="start_time" class="layui-input" id="test1"
-                            value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="注册开始时间">
+                            value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="申请开始时间">
                             <!--<input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']} >-->
                             </div>
                             —
                             <div class="layui-input-inline">
                             <input type="text" name="end_time" class="layui-input" id="test2"
-                            value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="注册结束时间">
+                            value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="申请结束时间">
                             <!--<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">-->
                             </div>
                             <button class="layui-btn" type="submit">搜索</button>
@@ -82,10 +79,13 @@
                                 </div>
                             </th>
                             <th>账号</th>
-                            <th>昵称</th>
-                            <th>等级</th>
-                            <th>注册时间</th>
+                            <th>订单编号</th>
+                            <th>状态</th>
+                            <th>邮箱</th>
+                            <th>发票金额</th>
+                            <th>申请时间</th>
                             <th>操作</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -99,8 +99,15 @@
                                 <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
                                 <td>{$item.id}</td>
                                 <td>{$item.account}</td>
-                                <td>{$item.nickname}</td>
-                                <td>{$item.grade}</td>
+                                <td>{$item.o_id}</td>
+                                <td>
+                                    <switch name="item.status">
+                                        <case value="3"><span style="color: lightblue;">已申请</span></case>
+                                        <case value="4"><span style="color: red;">已开票</span></case>
+                                        <default/>
+                                    </switch>
+                                <td>{$item.email}</td>
+                                <td>{$item.money}</td>
                                 <td>{$item.create_time|date='Y-m-d H:i:s',###}</td>
 
                                 <!--<td>{$item['create_time']|date='Y-m-d H:i',###}</td>-->
@@ -110,10 +117,7 @@
                                             onclick="jumpUrl('{:U('Invoice/editInvoice', array('id'=>$item['id'], 'system'=>0))}')">
                                         编辑
                                     </button>
-                                    <button class="layui-btn layui-btn-xs layui-btn-warm"
-                                            onclick="confirmOneAction('{:U('Invoice/lockInvoice')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">
-                                        {$item['status'] == 1 ? '禁用' : '启用'}
-                                    </button>
+
                                     <button class="layui-btn layui-btn-xs layui-btn-danger"
                                             onclick="confirmDelAction('{:U('Invoice/delete',array('model'=>'Invoice'))}', '删除','{$item.id}')">
                                         删除

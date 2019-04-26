@@ -31,11 +31,7 @@ class InvitationController extends BaseController {
         $param['where']['id'] = $member_info['parent_id'];
         $member = D ('Member')->queryRow ($param['where']);
         $inviterphone = $member['account'];
-        $list_info = D ('CouponLog')
-            ->where (array ('db_coupon_log.m_id' => $m_id))
-            ->join ("db_member ON db_coupon_log.s_id = db_member.id")
-            ->field ('db_coupon_log.id,db_coupon_log.create_time,db_member.nickname')
-            ->select ();
+        $list_info = D ('CouponLog')->where (array ('db_coupon_log.m_id' => $m_id))->field ('id,create_time,s_id')->select ();
         $list = D ('CouponBind')->where (array ('m_id' => $m_id , 'type' => 1))->field ('create_time')->count ();
         if ( $list_info ) {
             foreach ( $list_info as $k => $v ) {
@@ -56,14 +52,13 @@ class InvitationController extends BaseController {
         $member_info = D ('Member')->queryRow ($param['where'] , $param['field']);
         $data['integral'] = $member_info['integral'];
         $param['where']['id'] = $member_info['parent_id'];
-        $list_info = D ('CouponLog')
-            ->where (array ('db_coupon_log.m_id' => $m_id))
-            ->join ("db_member ON db_coupon_log.s_id = db_member.id")
-            ->field ('db_coupon_log.id,db_coupon_log.create_time,db_member.nickname')
-            ->select ();
-        if ( $list_info ) {//被邀请的好友
+        $list_info = D ('CouponLog')->where (array ('m_id' => $m_id))->field ('id,create_time,s_id')->select ();
+
+        if ( $list_info ) { //被邀请的好友
             foreach ( $list_info as $k => $v ) {
+                $nickname = D('Member')->where(array('id'=>$v['s_id']))->find();
                 $list_info[$k]['create_time'] = date ('Y/m/d' , $v['create_time']);
+                $list_info[$k]['nickname'] = $nickname['nickname'];
             }
         }
         $this->apiResponse (1 , '请求成功' , array ("list" => $list_info));

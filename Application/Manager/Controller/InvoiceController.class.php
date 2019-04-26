@@ -16,16 +16,18 @@ class InvoiceController extends BaseController {
     public function index () {
         $where = array();
         //账号查找
-        if(!empty($_REQUEST['account'])){
-            $where['account'] = array('LIKE',"%".I('request.account')."%");
+        if(!empty($_REQUEST['o_id'])){
+            $where['o_id'] = array('LIKE',"%".I('request.o_id')."%");
         }
         //昵称查找
-        if(!empty($_REQUEST['nickname'])){
-            $where['nickname'] = array('LIKE',"%".I('request.nickname')."%");
-        }
-        //性别查找
-        if(!empty($_REQUEST['sex'])){
-            $where['sex'] = I('request.sex');
+        if(!empty($_REQUEST['account'])){
+            $account_where['account'] = array('LIKE',I('request.account')."%");
+            $data = D('Member')->where ($account_where)->getField("id", true);
+            $where["m_id"] = ["in", implode ($data, ',')];
+            if (empty($data))
+            {
+                $this->display();
+            }
         }
 
         //注册时间查找
@@ -45,10 +47,14 @@ class InvoiceController extends BaseController {
             $param['order'] = $sort[0].' '.$sort[1];
 //            $parameter['sort_order'] = I('request.sort_order');
         }
+
         $where['status'] = array('lt',9);
         $param['page_size'] = 15;
         $data = D('Invoice')->queryList($where,'*',$param);
-        dump($data);exit;
+        foreach ($data['list'] as $k=>$v){
+            $account = D('Member')->queryRow(array('id'=>$v['m_id']),'account');
+            $data['list'][$k]['account'] = $account['account'];
+        }
         $this->assign($data);
         //页数跳转
         $this->assign('url',$this->curPageURL());
@@ -167,4 +173,13 @@ class InvoiceController extends BaseController {
         }
     }
 
+
+    /**
+     * 发票删除
+     * User: admin
+     * Date: 2019-04-25 17:20:30
+     */
+    public function deleteInvoice() {
+
+    }
 }
