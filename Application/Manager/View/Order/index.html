@@ -18,8 +18,8 @@
                                        value="{$_REQUEST['orderid']}">
                             </div>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" placeholder="请输入流水号" name="trade_no"
-                                       value="{$_REQUEST['trade_no']}">
+                                <input type="text" class="layui-input" placeholder="请输入洗车机编号" name="mc_code"
+                                       value="{$_REQUEST['mc_code']}">
                             </div>
                             <div class="layui-input-inline">
                                 <input type="text" class="layui-input" placeholder="请输入用户账号" name="account"
@@ -64,16 +64,16 @@
                                     >余额充值</option>
                                 </select>
                             </div>
-                            <div class="layui-input-inline layui-form">
-                                <select name="pay_type" class="layui-input" style="width: 150px">
-                                    <option value="">支付方式</option>
-                                    <option value="1"
-                                    <if condition="$_REQUEST['pay_type'] eq 1">selected=true</if>
-                                    >微信</option>
-                                    <option value="2"
-                                    <if condition="$_REQUEST['pay_type'] eq 2">selected=true</if>
-                                    >支付宝</option>
-                                </select>
+                            <div class="layui-input-inline">
+                                <input type="text" name="start_time" class="layui-input" id="test1"
+                                       value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="申请开始时间">
+                                <!--<input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']} >-->
+                            </div>
+                            —
+                            <div class="layui-input-inline">
+                                <input type="text" name="end_time" class="layui-input" id="test2"
+                                       value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="申请结束时间">
+                                <!--<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">-->
                             </div>
                             <button class="layui-btn" type="submit">搜索</button>
                             <a href="{:U('Order/index')}" class="layui-btn layui-btn-primary">重置</a>
@@ -105,7 +105,7 @@
                     <table class="layui-table" lay-even lay-skin="line" lay-size="">
                         <colgroup>
                             <col width="30">
-                            <col width="200">
+                            <col width="150">
                             <col>
                         </colgroup>
                         <thead>
@@ -134,7 +134,7 @@
                                 <!--<td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>-->
                                 <td>{$item.id}</td>
                                 <td>{$item.orderid}</td>
-                                <td>{$item.orderid}</td>
+                                <td>{$item.mc_code}</td>
 
                                 <td>{$item.money}(元)</td>
                                 <td>
@@ -174,13 +174,7 @@
                                         <default/>
                                     </switch>
                                 </td>
-                                <td>
-                                    <switch name="item.status">
-                                        <case value="1"><span style="color: red;">待支付</span></case>
-                                        <case value="2">{$item['create_time']|date='Y-m-d H:i',###}</case>
-                                        <default/>
-                                    </switch>
-                                </td>
+                                <td>{$item['create_time']|date='Y-m-d H:i',###}</td>
                                 <td>
                                     <switch name="item.invoice">
                                         <case value="0"><span style="color: orange;">未申请</span></case>
