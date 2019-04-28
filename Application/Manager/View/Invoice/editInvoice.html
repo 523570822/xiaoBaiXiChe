@@ -19,12 +19,12 @@
                                     <button type="button" class="layui-btn" id="uploadBtn2"><i class="layui-icon"></i>上传文件</button>
                                 </div>
                                 <div class="layui-input-inline" id="filename"></div>
-                                <if condition="$row['picture_id']  neq 0">
+                                <if condition="$row['picture_id']  neq 152">
                                     <div class="layui-input-block img-show">
                                         <div class="img-show-item" id="Upload_cover_1_pre">
                                             <img src="{$row.covers}">
-                                            <i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.cover}');"></i>
-                                            <input name="cover" value='{$row.cover}' class="layui-input" type="hidden">
+                                            <i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.picture_id}');"></i>
+                                            <input name="picture_id" value='{$row.cover}' class="layui-input" type="hidden">
                                         </div>
                                     </div>
                                 </if>
@@ -44,105 +44,34 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">输入框2</label>
+                            <label class="layui-form-label">邮箱</label>
                             <div class="layui-input-block">
-                                <div class="layui-input-inline">
-                                    <input type="text" name="input2" value="" placeholder="输入框2" class="layui-input w300" required>
-                                </div>
-                                <div class="layui-input-inline">
-                                    提示信息
-                                </div>
+                                <input type="text" name="input" value="{$row.email}" placeholder="邮箱" class="layui-input w300" required readonly="readonly">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">下拉框</label>
+                            <label class="layui-form-label">金额</label>
                             <div class="layui-input-block">
-                                <div class="layui-input-inline">
-                                    <select name="p_id" class="layui-input w300">
-                                        <option value="1">下拉框1</option>
-                                        <option value="2">下拉框2</option>
-                                    </select>
-                                </div>
-                                <div class="layui-input-inline">提示信息</div>
+                                <input type="text" name="input" value="{$row.money}" placeholder="邮箱" class="layui-input w300" required readonly="readonly">
                             </div>
                         </div>
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">单选框</label>
                             <div class="layui-input-block">
                                 <div class="layui-input-inline">
                                     <label class="layui-choose" for="radio_1">
-                                        <input type="radio" id="radio_1" name="radio" value="1" checked class="layui-input" required>
-                                        单选框1
+                                        <input type="radio" id="radio_1" name="status" value=3 class="layui-input" required>
+                                        待开票
                                     </label>
                                     <label class="layui-choose" for="radio_2">
-                                        <input type="radio" id="radio_2" name="radio" value="2" class="layui-input" required>
-                                        单选框2
-                                    </label>
-                                    <label class="layui-choose" for="radio_3">
-                                        <input type="radio" id="radio_3" name="radio" value="3" class="layui-input" required>
-                                        单选框3
+                                        <input type="radio" id="radio_2" name="status" value=4 class="layui-input" required>
+                                        已开票
                                     </label>
                                 </div>
-                                <div class="layui-input-inline">提示信息</div>
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">多选框</label>
-                            <div class="layui-input-block">
-                                <div class="layui-input-inline">
-                                    <label class="layui-choose" for="checkbox_1">
-                                        <input type="checkbox" id="checkbox_1" name="checkbox" value="1" checked class="layui-input" required>
-                                        多选框1
-                                    </label>
-                                    <label class="layui-choose" for="checkbox_2">
-                                        <input type="checkbox" id="checkbox_2" name="checkbox" value="2" class="layui-input" required>
-                                        多选框2
-                                    </label>
-                                    <label class="layui-choose" for="checkbox_3">
-                                        <input type="checkbox" id="checkbox_3" name="checkbox" value="3" class="layui-input" required>
-                                        多选框3
-                                    </label>
-                                </div>
-                                <div class="layui-input-inline">提示信息</div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">文本框1</label>
-                            <div class="layui-input-block">
-                                <div class="layui-input-inline">
-                                    <textarea name="" rows="4" class="layui-input layui-textarea w300"></textarea>
-                                </div>
-                                <div class="layui-input-inline">
-                                    提示信息
-                                </div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">文本框2</label>
-                            <div class="layui-input-block">
-                                <textarea name="" rows="4" class="layui-input layui-textarea"></textarea>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">文本编辑器</label>
-                            <div class="layui-input-block">
-                                <textarea  name="content" id="content" style="height:550px;" class="layui-input">{$row['web_content']}</textarea>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">时间选择器</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="date" class="layui-input w300" id="test1">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">排序</label>
-                            <div class="layui-input-block">
-                                <div class="layui-input-inline">
-                                    <input type="number" name="sort" value="{$row['sort']|default='0'}" placeholder="排序" class="layui-input w300" required>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="layui-form-item">
                             <div class="layui-input-block">
                                 <button class="layui-btn" onclick="goback()">返回</button>
@@ -159,16 +88,6 @@
 <script>
     // 上传文件初始化
     new UploadFile({
-        element: '#uploadBtn',
-        // 多文件上传-true 单文件上传-false
-        files: true,
-        // 展示图片
-        showFile: true,
-        // input框的name
-        filedname: 'files'
-    });
-    // 上传文件初始化
-    new UploadFile({
         element: '#uploadBtn2',
         // 多文件上传-true 单文件上传-false
         files: false,
@@ -176,7 +95,7 @@
 //        showFile: '#filename',
         showFile: 'true',
         // input框的name
-        fieldName: 'fileaaaa'
+        fieldName: 'picture_id'
     });
 
     // 提交信息
@@ -189,7 +108,7 @@
             url = '';
             data.id = id
         }else{
-            url = '{:U("RedBag/addRedBag")}'
+            url = '{:U("Invoice/editInvoice")}'
         }
         if(!data) return false;
         doPost(url, data, function(res) {

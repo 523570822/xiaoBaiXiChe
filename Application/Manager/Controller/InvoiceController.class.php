@@ -189,7 +189,7 @@ class InvoiceController extends BaseController {
         if(IS_POST) {
             $request = I('post.');
             $rule = array(
-                array('picture_id','int','请上传电子发票图1'),
+                array('picture_id','int','请上传电子发票图'),
                 array('status','int','请选择发票状态'),
             );
             $data = $this->checkParam($rule);
