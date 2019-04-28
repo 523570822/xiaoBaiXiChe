@@ -226,15 +226,6 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
-                    $electricity = round($vv[0]['queryitem']['vacuum_info']['accumulated_usage']);
-                    $water_volume = round($vv[0]['queryitem']['clean_water_usage']);
-                    $foam = round($vv[0]['queryitem']['foam_usage']);
-                    $d_save = array(
-                        'electricity'=>$electricity,
-                        'water_volume'=>$water_volume,
-                        'foam'=>$foam,
-                    );
-                    $dosage = M('CarWasher')->where(array('mc_id'=>$vv[0]['deviceid']))->save($d_save);
                     if($vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 && $vv[0]['queryitem']['service_status'] >= 8){
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
@@ -335,6 +326,15 @@ class CarWasherController extends BaseController
                 }
                 $car_save = M('CarWasher')->where(array('mc_id'=>$cars[$k]['car_num']))->save($car_data);
             }
+            $electricity = round($vv[0]['queryitem']['vacuum_info']['accumulated_usage']);
+            $water_volume = round($vv[0]['queryitem']['clean_water_usage']);
+            $foam = round($vv[0]['queryitem']['foam_usage']);
+            $d_save = array(
+                'electricity'=>$electricity,
+                'water_volume'=>$water_volume,
+                'foam'=>$foam,
+            );
+            $dosage = M('CarWasher')->where(array('mc_id'=>$vv[0]['deviceid']))->save($d_save);
 
         }
     }
