@@ -58,6 +58,7 @@ class OrderController extends BaseController
             $data['list'][$k]['m_id']=$v['m_id'];
             $date = D('Member')->where (array ('id'=>$data['list'][$k]['m_id']))->field ('account')->find();
             $data['list'][$k]['account']=$date['account'];
+            $data['list'][$k]['account']=$date['account'];
         }
         $this->assign($data);
         //页数跳转

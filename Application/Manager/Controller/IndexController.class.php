@@ -66,7 +66,6 @@ class IndexController extends BaseController {
         $id = $this->checkParam (array ('id' , 'int' , 'id不能为空'));
         $model = D ('Common/File');
         $res = $model->querySave ($id , array ('status' => 9));
-        var_dump($res);exit;
         $res ? $this->apiResponse (1 , '删除成功') : $this->apiResponse (0 , '删除失败');
     }
 

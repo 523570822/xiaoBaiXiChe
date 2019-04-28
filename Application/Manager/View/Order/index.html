@@ -111,14 +111,14 @@
                         <thead>
                         <th>ID</th>
                         <th>订单编号</th>
-                        <th>流水号</th>
+                        <th>洗车机编号</th>
                         <th>预付金额</th>
                         <th>实际金额</th>
                         <th>用户账号</th>
                         <th>订单类型</th>
                         <th>订单状态</th>
                         <th>支付方式</th>
-                        <th>付款时间</th>
+                        <th>下单时间</th>
                         <th>发票记录</th>
                         <th>操作</th>
                         <!--</tr>-->
@@ -134,13 +134,8 @@
                                 <!--<td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>-->
                                 <td>{$item.id}</td>
                                 <td>{$item.orderid}</td>
-                                <td>
-                                    <switch name="item.status">
-                                        <case value="1"><span style="color: red;">待支付</span></case>
-                                        <case value="2">{$item.trade_no}</case>
-                                        <default/>
-                                    </switch>
-                                </td>
+                                <td>{$item.orderid}</td>
+
                                 <td>{$item.money}(元)</td>
                                 <td>
                                     <switch name="item.status">
@@ -182,7 +177,7 @@
                                 <td>
                                     <switch name="item.status">
                                         <case value="1"><span style="color: red;">待支付</span></case>
-                                        <case value="2">{$item['pay_time']|date='Y-m-d H:i',###}</case>
+                                        <case value="2">{$item['create_time']|date='Y-m-d H:i',###}</case>
                                         <default/>
                                     </switch>
                                 </td>
