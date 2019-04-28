@@ -24,7 +24,7 @@
                                         <div class="img-show-item" id="Upload_cover_1_pre">
                                             <img src="{$row.covers}">
                                             <i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.picture_id}');"></i>
-                                            <input name="picture_id" value='{$row.cover}' class="layui-input" type="hidden">
+                                            <input name="picture_id" value='{$row.picture_id}' class="layui-input" type="hidden">
                                         </div>
                                     </div>
                                 </if>
@@ -60,14 +60,21 @@
                             <label class="layui-form-label">单选框</label>
                             <div class="layui-input-block">
                                 <div class="layui-input-inline">
-                                    <label class="layui-choose" for="radio_1">
-                                        <input type="radio" id="radio_1" name="status" value=3 class="layui-input" required>
-                                        待开票
-                                    </label>
-                                    <label class="layui-choose" for="radio_2">
-                                        <input type="radio" id="radio_2" name="status" value=4 class="layui-input" required>
-                                        已开票
-                                    </label>
+                                    <if condition="$row['status']  eq 3">
+                                        <label class="layui-choose" for="radio_1">
+                                            <input type="radio" id="radio_1" name="status" value=4 class="layui-input" required>
+                                            待开票
+                                        </label>
+                                    </if>
+                                    <if condition="$row['status']  eq 4">
+                                        <label class="layui-choose" for="radio_1">
+                                                <!--<input type="radio" id="radio_2" name="status" value=3 class="layui-input" required>-->
+                                            <span>已开票</span>
+                                            <input name="status" value=4 class="layui-input" type="hidden">
+                                        </label>
+                                        </label>
+                                    </if>
+
                                 </div>
                             </div>
                         </div>
@@ -108,7 +115,7 @@
             url = '';
             data.id = id
         }else{
-            url = '{:U("Invoice/editInvoice")}'
+            url = '{:U("Invoice/index")}'
         }
         if(!data) return false;
         doPost(url, data, function(res) {
