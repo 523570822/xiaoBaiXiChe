@@ -178,4 +178,13 @@ class AdminController extends BaseController
             }
         }
     }
+
+    /**
+     * 添加管理分组
+     * User: admin
+     * Date: 2019-04-30 10:52:18
+     */
+    public function addAdminGroup() {
+
+    }
 }

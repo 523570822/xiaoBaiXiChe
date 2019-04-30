@@ -33,13 +33,13 @@
                                     <option value="">等级</option>
                                     <option value="1"
                                     <if condition="$_REQUEST['grade'] eq 1">selected=true</if>
-                                    >一级</option>
+                                    >区域合伙人</option>
                                     <option value="2"
                                     <if condition="$_REQUEST['grade'] eq 2">selected=true</if>
-                                    >二级</option>
+                                    >一级</option>
                                     <option value="3"
                                     <if condition="$_REQUEST['grade'] eq 3">selected=true</if>
-                                    >三级</option>
+                                    >二级</option>
                                 </select>
                             </div>
 
@@ -55,12 +55,13 @@
                             <!--<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">-->
                             </div>
                             <button class="layui-btn" type="submit">搜索</button>
+                            <button class="layui-btn" type="button" id="button">导出搜索</button>
                             <a href="{:U('Agent/index')}" class="layui-btn layui-btn-primary">重置</a>
                         </form>
                         <script>
                             $(function () {
                                 $("#button").click(function () {
-                                    var newUrl = "{:U('Agent/exportAgent')}";    //设置新提交地址
+                                    var newUrl = "{:U('Agent/deriveAgent')}";    //设置新提交地址
                                     $("#myform").attr('action', newUrl);    //通过jquery为action属性赋值
                                     $("#myform").submit();    //提交ID为myform的表单
                                 })
@@ -100,7 +101,14 @@
                                 <td>{$item.id}</td>
                                 <td>{$item.account}</td>
                                 <td>{$item.nickname}</td>
-                                <td>{$item.grade}</td>
+                                <td>
+                                    <switch name="item.grade">
+                                        <case value="1">区域合伙人</case>
+                                        <case value="2">一级代理商</case>
+                                        <case value="3">二级代理商</case>
+                                        <default/>
+                                    </switch>
+                                </td>
                                 <td>{$item.create_time|date='Y-m-d H:i:s',###}</td>
 
                                 <!--<td>{$item['create_time']|date='Y-m-d H:i',###}</td>-->

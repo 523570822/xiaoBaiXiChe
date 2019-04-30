@@ -186,7 +186,6 @@ class InvoiceController extends BaseController {
      * Date: 2019-04-26 11:06:03
      */
     public function editInvoice() {
-        var_dump($_REQUEST);
         if(IS_POST) {
             $request = I('post.');
             $rule = array(

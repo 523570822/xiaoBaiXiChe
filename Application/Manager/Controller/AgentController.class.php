@@ -124,4 +124,67 @@ class AgentController extends BaseController {
             $this->display ();
         }
     }
+
+    /**
+     *导出搜索
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/04/30 15:01
+     */
+    public function deriveAgent() {
+        $where = array ();
+        //账号查找
+        if ( !empty($_REQUEST['account']) ) {
+            $where['account'] = array ('LIKE' , "%" . I ('request.account') . "%");
+        }
+        //        //昵称查找
+        if ( !empty($_REQUEST['nickname']) ) {
+            $where['nickname'] = array ('LIKE' , "%" . I ('request.nickname') . "%");
+        }
+        //        //使用状态查找
+        //        if(!empty($_REQUEST['type'])){
+        //            $where['type'] = I('request.type');
+        //        }
+        //等級查找
+        if ( !empty($_REQUEST['grade']) ) {
+            $where['grade'] = I ('request.grade');
+        }
+        //注册时间查找
+        if ( !empty($_REQUEST['start_time']) && !empty($_REQUEST['end_time']) ) {
+            $where['create_time'] = array ('between' , array (strtotime ($_REQUEST['start_time']) , strtotime ($_REQUEST['end_time']) + 86400));
+        } elseif ( !empty($_REQUEST['start_time']) ) {
+            $where['create_time'] = array ('egt' , strtotime ($_REQUEST['start_time']));
+        } elseif ( !empty($_REQUEST['end_time']) ) {
+            $where['create_time'] = array ('elt' , strtotime ($_REQUEST['end_time']) + 86399);
+        }
+        //排序
+        $param['order'] = 'sort desc , create_time desc';
+        if ( !empty($_REQUEST['sort_order']) ) {
+            $sort = explode ('-' , $_REQUEST['sort_order']);
+            $param['order'] = $sort[0] . ' ' . $sort[1];
+        }
+        $field = 'account,nickname,grade,create_time';
+        $data = D ('Agent')->queryList ($where , $field , $param);
+        if ( empty($data) ) {
+            $this->display ('index');
+        }
+        //把对应的数据放到数组中
+        foreach ( $data as $key => $val ) {
+            $data[$key]['create_time'] = date ('Y-m-d H:i:s' , $data[$key]['create_time']);
+            if ( $data[$key]['grade'] == '1' ) {
+                $data[$key]['grade'] = '区域合伙人';
+            } elseif ( $data[$key]['grade'] == '2' ) {
+                $data[$key]['grade'] = '一级代理商';
+            } elseif ( $data[$key]['grade'] == '3' ) {
+                $data[$key]['grade'] = '二级代理商';
+            }
+        }
+        //下面方法第一个数组，是需要的数据数组
+        //第二个数组是excel的第一行标题,如果为空则没有标题
+        //第三个是下载的文件名，现在用的是当前导出日期
+        $header = array ('账号' , '昵称' , '等级' , '创建时间');
+        $indexKey = array ('account' , 'nickname' , 'grade' , 'create_time' );
+        exportExcels ($data , $indexKey , $header , date ('代理商表' . 'Y-m-d' , NOW_TIME));
+    }
+
+
 }

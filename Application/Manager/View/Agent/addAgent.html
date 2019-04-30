@@ -147,7 +147,7 @@
         doPost(url, data, function(res) {
             showMsg(res.code, res.message, function() {
                 if(res.code == 1) {
-
+                    goback();
                 }
             });
         });
