@@ -217,4 +217,5 @@ class ControllerService extends Controller
         $path = M('File')->where(array('id'=>$id))->getField('path');
         return $path?C('API_URL').$path:C('API_URL').$default_path;
     }
+
 }
