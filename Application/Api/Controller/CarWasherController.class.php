@@ -226,6 +226,7 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
+//                    dump($vv[0]['deviceid']);
                     if($vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 && $vv[0]['queryitem']['service_status'] >= 8){
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
@@ -259,7 +260,9 @@ class CarWasherController extends BaseController
 //                        echo M('CarWasher')->_sql();
                             }
                         }elseif ($find_order['status'] == 0){
-                            if($vv[0]['queryitem']['level3_status'] == 1 && $vv[0]['queryitem']['pump1_status'] == 3 && $vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 &&  $vv[0]['queryitem']['service_status'] > 8){
+//                            dump($vv[0]['deviceid']);
+                                  //泡沫液位不足
+                            if(/*$vv[0]['queryitem']['level3_status'] == 1 &&*/ $vv[0]['queryitem']['pump1_status'] == 3 && $vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 &&  $vv[0]['queryitem']['service_status'] > 8){
                                 $using_wheres = array(
                                     'mc_id' => $vv[0]['deviceid'],
                                 );
@@ -267,6 +270,7 @@ class CarWasherController extends BaseController
                                     'type' => 2,
                                 );
                                 $usings = M('CarWasher')->where($using_wheres)->save($using_datas);
+//                                echo M('CarWasher')->_sql();
                             }
                         }
                     }elseif($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
