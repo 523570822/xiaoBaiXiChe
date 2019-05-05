@@ -761,8 +761,8 @@ class OrderController extends BaseController {
      */
     public function settlement($off_on = 0){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '248ee5023de6921f4af47452334d79bc';
-//        $post['orderid'] = 'XC201904231427371213';
+//        $post['token'] = 'aa79c17a0ec643349d9b6e7ff6e04630';
+//        $post['orderid'] = 'XC201905051456153959';
 //        $post['off_on'] = 0;
 
         $post['off_on'] = $off_on;
@@ -791,7 +791,6 @@ class OrderController extends BaseController {
         );
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
-
         $send_post = $this->send_post('runtime_query',$car['mc_id']);       //查询洗车机状态
         if($order['button'] ==1){             //是否结算   1结算  0未结算
             //检查订单费用是否为0
@@ -848,9 +847,11 @@ class OrderController extends BaseController {
                 //检查洗车机继续使用还是结算
                 if(!empty($member)){
 //                    echo 85545;
+
                     if($post['off_on'] == 0){
+
                         //结算存储时间
-                        $b = $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+                        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
 //                            echo 8784582;
                             $d_save = array(
@@ -975,7 +976,7 @@ class OrderController extends BaseController {
                 if(!empty($member)){
                     if($post['off_on'] == 0){
                         //结算存储时间
-                        $b = $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+                        $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
 //                            echo 8784582;
                             $d_save = array(

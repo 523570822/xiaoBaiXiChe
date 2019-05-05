@@ -49,7 +49,7 @@ class AgentController extends BaseController
                 $this->apiResponse('0','密码错误');
             }
         } else {
-            $this->apiResponse('0','用户不存在',array('token'=>''));
+            $this->apiResponse('0','用户不存在',array('token'=>'','grade'=>'income'));
         }
     }
 
@@ -123,20 +123,23 @@ class AgentController extends BaseController
      *Date:2018/12/19 02:01
      */
     public function income(){
-        $post = checkAppData('token,timeType,page,size','token-时间筛选-页数-个数');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
-//        $post['page'] = 2;
-//        $post['size'] = 10;
+//        $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
+        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
+        $post['grade'] = 1;
+        $post['page'] = 1;
+        $post['size'] = 5;
 
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
         $agent = $this->getAgentInfo($post['token']);
+        dump($agent);exit;
         $car_where['agent_id'] = $agent['id'];
         $car_where['status'] = array('neq',9);
         $car_num = D('CarWasher')->where($car_where)->select();
         //日筛选
-        $day = D('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('day,week_star,month,year')->select();
+        $order[] = 'sort DESC';
+        $day = D('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('day,week_star,month,year')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach ($day as $k=>$v){
             $vs[] = date("Y-m-d",$day[$k]['day']);
             $week[] = $day[$k]['week_star'];
