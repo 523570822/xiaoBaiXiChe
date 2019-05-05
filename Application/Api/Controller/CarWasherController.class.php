@@ -226,7 +226,6 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
-//                    dump($vv[0]['deviceid']);
                     if($vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 && $vv[0]['queryitem']['service_status'] >= 8){
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
@@ -235,6 +234,17 @@ class CarWasherController extends BaseController
                             'type' => 1,
                         );
                         $using = M('CarWasher')->where($using_where)->save($using_data);
+                    }
+                    elseif($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
+                        $using_where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $using_data = array(
+                            'type' => 4,
+                        );
+
+                        $using = M('CarWasher')->where($using_where)->save($using_data);
+//                        echo M('CarWasher')->_sql();
                     }
 
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
@@ -249,6 +259,7 @@ class CarWasherController extends BaseController
                                 );
                                 $using = M('CarWasher')->where($using_where)->save($using_data);
                             }elseif($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
+                                dump($vv[0]['deviceid']);
                                 $using_where = array(
                                     'mc_id' => $vv[0]['deviceid'],
                                 );
