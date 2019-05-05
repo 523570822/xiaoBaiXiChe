@@ -35,8 +35,8 @@ class AgentController extends BaseController
      */
     public function login(){
         $post = checkAppData('phone,password','账号-密码');
-        /*$post['phone'] = 17622818248;
-        $post['password'] = 123456;*/
+//        $post['phone'] = 18635356092;
+//        $post['password'] = 123456;
         if (!isMobile($post['phone'])) {
             $this->apiResponse('0','手机号格式有误');
         }
@@ -44,7 +44,7 @@ class AgentController extends BaseController
         $check_password = checkPassword($post['password'], $member['salt'], $member['password']);
         if ($member) {
             if ($check_password != 1) {
-                $this->apiResponse('1','登陆成功',array('token'=>$member['token']));
+                $this->apiResponse('1','登陆成功',array('token'=>$member['token'],'grade'=>$member['grade']));
             }else{
                 $this->apiResponse('0','密码错误');
             }

@@ -234,8 +234,7 @@ class CarWasherController extends BaseController
                             'type' => 1,
                         );
                         $using = M('CarWasher')->where($using_where)->save($using_data);
-                    }
-                    elseif($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
+                    } elseif($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
@@ -259,7 +258,7 @@ class CarWasherController extends BaseController
                                 );
                                 $using = M('CarWasher')->where($using_where)->save($using_data);
                             }elseif($vv[0]['queryitem']['pump1_status'] >= 4 || $vv[0]['queryitem']['pump2_status'] >= 4 || $vv[0]['queryitem']['valve1_status'] >= 4 || $vv[0]['queryitem']['level2_status'] == 0 || $vv[0]['queryitem']['level1_status'] == 0 || $vv[0]['queryitem']['service_status'] < 8){
-                                dump($vv[0]['deviceid']);
+//                                dump($vv[0]['deviceid']);
                                 $using_where = array(
                                     'mc_id' => $vv[0]['deviceid'],
                                 );
