@@ -1508,15 +1508,5 @@ class OrderController extends BaseController {
         }else{
             $this->apiResponse('0','暂无信息');
         }
-
-    }
-
-    /**
-     *单价
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/05/06 15:20
-     */
-    public function unit_price(){
-
     }
 }

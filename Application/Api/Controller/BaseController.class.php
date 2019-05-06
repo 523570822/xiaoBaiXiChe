@@ -360,6 +360,9 @@ class BaseController extends ControllerService
             'update_time' =>time(),
         );
         $f_order = M('Order')->where($o_where)->save($sa_order);
+        $washing_price = bcmul(60 , $car['washing_money'],2).'元/分钟';
+        $foam_price = bcmul(60 ,  $car['foam_money'],2).'元/分钟';
+        $cleaner_price = bcmul(60 , $car['cleaner_money'],2).'元/分钟';
         $data_money = array(
             'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
             'washing' =>$wash_time,
@@ -367,6 +370,9 @@ class BaseController extends ControllerService
             'cleaner'=>$cleaner_time,
             'all_money' =>round($wash_money+$foam_money+$cleaner_money,2),
             'off_on' => 1,
+            'washing_price' => $washing_price,
+            'foam_price' => $foam_price,
+            'cleaner_price' => $cleaner_price
         );
         return $data_money;
     }
@@ -448,6 +454,9 @@ class BaseController extends ControllerService
             'pay_money' => round($wash_money+$foam_money+$cleaner_money,2),
         );
         $f_order = M('Order')->where($o_where)->save($sa_order);
+        $washing_price = bcmul(60 , $car['washing_money'],2).'元/分钟';
+        $foam_price = bcmul(60 ,  $car['foam_money'],2).'元/分钟';
+        $cleaner_price = bcmul(60 , $car['cleaner_money'],2).'元/分钟';
         $data_money = array(
             'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
             'washing' =>$wash_time,
@@ -455,6 +464,9 @@ class BaseController extends ControllerService
             'cleaner'=>$cleaner_time,
             'all_money' =>round($wash_money+$foam_money+$cleaner_money,2),
             'off_on' => 0,
+            'washing_price' => $washing_price,
+            'foam_price' => $foam_price,
+            'cleaner_price' => $cleaner_price
         );
         return $data_money;
     }
