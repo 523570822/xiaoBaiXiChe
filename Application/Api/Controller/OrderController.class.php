@@ -759,13 +759,12 @@ class OrderController extends BaseController {
      *Date:2019/
      * Date:2019/02/18 15:52
      */
-    public function settlement($off_on = 0){
+    public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
 //        $post['token'] = 'aa79c17a0ec643349d9b6e7ff6e04630';
 //        $post['orderid'] = 'XC201905051456153959';
 //        $post['off_on'] = 0;
 
-        $post['off_on'] = $off_on;
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         if(empty($member)){
@@ -1331,7 +1330,7 @@ class OrderController extends BaseController {
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
-                $this->settlement($off_on = 1);
+                $this->close($off_on = 1,$order['id'],$car['mc_id']);
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$k_order['id'],0,$car['mc_id']);
                 //结算存储时间
@@ -1365,6 +1364,7 @@ class OrderController extends BaseController {
                 $data_moneys = $this->details($order['m_id'],$k_order['id'],0,$car['mc_id']);
                 //结算存储时间
                 $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
+                $this->close($off_on = 1,$order['id'],$car['mc_id']);
                 //结算洗车机状态为4故障
                 $this->typeFour($details['c_id']);
                 //检查订单费用是否为0
@@ -1414,6 +1414,7 @@ class OrderController extends BaseController {
                 $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
+                $this->close($off_on = 1,$order['id'],$car['mc_id']);
                 //检查订单费用是否为0
                 $zero = $this->payZero($order['m_id'],$k_order['id']);
                 $this->apiResponse(1,'result','OK');
@@ -1447,10 +1448,64 @@ class OrderController extends BaseController {
                 $this->typeOne($details['c_id']);
                 //检查订单费用是否为0
                 $zero = $this->payZero($order['m_id'],$k_order['id']);
+                $this->close($off_on = 1,$order['id'],$car['mc_id']);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
             }
         }
+    }
+
+    /**
+     *设备关闭
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/06 13:59
+     */
+    public function close($off_on = 0,$order_id,$car_mcid){
+        if($off_on == 1){
+            $send_post = $this->send_post('device_manage',$car_mcid,3);   //结算
+            $d_where = array(
+                'o_id' => $order_id,
+            );
+            $d_save = array(
+                'status'  => 1,
+            );
+            $detailss = M('Details')->where($d_where)->save($d_save);
+            $o_where = array(
+                'id' => $order_id,
+            );
+            $o_save = array(
+                'button' => 1,
+                'update_time' =>time(),
+            );
+            $o_order = M('Order')->where($o_where)->save($o_save);
+            $f_order = M('Order')->where($o_where)->field('orderid,m_id,c_id')->find();
+            //语音播报
+            $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+            $this->send_post('device_manage',$car_mcid,5,1,$voice['content']);
+            $j_order = M('Order')->where(array('orderid'=>$f_order['orderid']))->find();
+            //结算存储时间
+            $this->carWasherTime($car_mcid,$order_id,$f_order['m_id']);
+            //检查订单费用是否为0
+            $zero = $this->payZero($f_order['m_id'],$order_id);
+            //结算洗车机状态为1空闲
+            $this->typeOne($f_order['c_id']);
+            if($zero == 1){
+                $data_moneys = array(
+                    'indication' => 0,
+                    'washing' =>0,
+                    'foam'=>0,
+                    'cleaner'=>0,
+                    'all_money' =>0.00,
+                    'off_on' => 1,
+                );
+            }
+            $data_moneys = $this->details($f_order['m_id'],$order_id,0,$car_mcid);
+//                        echo 852369;exit;
+            $this->apiResponse('1','结算成功',$data_moneys);
+        }else{
+            $this->apiResponse('0','暂无信息');
+        }
+
     }
 }

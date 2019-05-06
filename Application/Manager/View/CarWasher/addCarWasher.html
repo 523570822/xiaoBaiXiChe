@@ -135,6 +135,17 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
+                            <label class="layui-form-label">合作方</label>
+                            <div class="layui-input-block">
+                                <select name="partner_id" class="layui-input w300">
+                                    <option value="">请选择合作方</option>
+                                    <volist name="list" id="item">
+                                        <option value="{$item.id}">{$item.h_nickname}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
                             <label class="layui-form-label">经度</label>
                             <div class="layui-input-block">
                                 <input type="text" name="lon" value="" placeholder="000.000000000000" class="layui-input w300">

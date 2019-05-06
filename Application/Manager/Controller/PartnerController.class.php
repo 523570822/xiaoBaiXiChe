@@ -85,7 +85,7 @@ class PartnerController extends BaseController {
             $data['token'] = $this->createToken ();
             $data['salt'] = NoticeStr (6);
             $data['create_time'] = time ();
-            $data['password'] = CreatePassword ($rule['passwords'] , $data['salt']);
+            $data['h_password'] = CreatePassword ($rule['h_password'] , $data['salt']);
             //            $data['update_time'] = time();
             $res = D ('Partner')->addRow ($data);
             $res ? $this->apiResponse (1 , '提交成功') : $this->apiResponse (0 , $data);

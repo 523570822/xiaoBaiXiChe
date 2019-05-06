@@ -155,6 +155,7 @@ class CarWasherController extends BaseController {
                 array ('cleaner_money' , 'string' , '吸尘器价格￥/min') ,
                 array ('p_id' , 'string' , '请选择店铺') ,
                 array ('agent_id' , 'string' , '请选择加盟商') ,
+                array ('partner_id' , 'string' , '请选择合作方') ,
                 array ('lon' , 'string' , '经度') ,
                 array ('lat' , 'string' , '纬度') ,
                 array ('province' , 'int' , '省份') ,
