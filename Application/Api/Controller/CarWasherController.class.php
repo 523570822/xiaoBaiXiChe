@@ -226,7 +226,7 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
-                    if( $vv[0]['queryitem']['service_status'] == 8 && $vv[0]['queryitem']['service_status'] == 12){
+                    if( $vv[0]['queryitem']['service_status'] == 8 || $vv[0]['queryitem']['service_status'] == 12){
 //                        dump($vv[0]['deviceid']);
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
@@ -250,7 +250,7 @@ class CarWasherController extends BaseController
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
                     if(!empty($find_order)){
                         if($find_order['status'] == 1){
-                            if($vv[0]['queryitem']['service_status'] == 8 && $vv[0]['queryitem']['service_status'] == 12){
+                            if($vv[0]['queryitem']['service_status'] == 8 || $vv[0]['queryitem']['service_status'] == 12){
 //                                dump($vv[0]['deviceid']);
                                 $using_where = array(
                                     'mc_id' => $vv[0]['deviceid'],
