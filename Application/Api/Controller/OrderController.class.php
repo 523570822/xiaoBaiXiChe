@@ -1461,7 +1461,7 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/05/06 13:59
      */
-    public function close($off_on,$order_id,$car_mcid){
+    public function close($off_on = 0,$order_id = '',$car_mcid=''){
         if($off_on == 1){
             $send_post = $this->send_post('device_manage',$car_mcid,3);   //结算
             $d_where = array(
