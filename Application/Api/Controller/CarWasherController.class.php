@@ -226,7 +226,7 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
-                    if($vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 && $vv[0]['queryitem']['pump1_status'] == 0 && $vv[0]['queryitem']['service_status'] >= 8){
+                    if( $vv[0]['queryitem']['service_status'] == 8 && $vv[0]['queryitem']['service_status'] == 12){
 //                        dump($vv[0]['deviceid']);
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
@@ -250,7 +250,7 @@ class CarWasherController extends BaseController
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
                     if(!empty($find_order)){
                         if($find_order['status'] == 1){
-                            if($vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 && $vv[0]['queryitem']['pump1_status'] == 0 && $vv[0]['queryitem']['service_status'] >= 8){
+                            if($vv[0]['queryitem']['service_status'] == 8 && $vv[0]['queryitem']['service_status'] == 12){
 //                                dump($vv[0]['deviceid']);
                                 $using_where = array(
                                     'mc_id' => $vv[0]['deviceid'],
@@ -273,7 +273,7 @@ class CarWasherController extends BaseController
                         }elseif ($find_order['status'] == 0){
 //                            dump($vv[0]['deviceid']);
                                   //泡沫液位不足
-                            if(/*$vv[0]['queryitem']['level3_status'] == 1 &&*/ $vv[0]['queryitem']['pump1_status'] == 3 && $vv[0]['queryitem']['level2_status'] == 1 && $vv[0]['queryitem']['level1_status'] == 1 &&  $vv[0]['queryitem']['service_status'] > 8){
+                            if(/*$vv[0]['queryitem']['level3_status'] == 1 &&*/ $vv[0]['queryitem']['service_status'] == 8 && $vv[0]['queryitem']['service_status'] == 13){
 //                                dump($vv[0]['deviceid']);
                                 $using_wheres = array(
                                     'mc_id' => $vv[0]['deviceid'],
