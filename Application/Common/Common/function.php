@@ -57,6 +57,8 @@ function getPassword ($password) {
 function checkPassword ($password , $salt , $old_password) {
 
     $a = CreatePassword ($password , $salt) !== $old_password;
+    dump(CreatePassword ($password , $salt));
+    dump( $salt);
     if ( CreatePassword ($password , $salt) !== $old_password ) {
         return 1;
     } else {

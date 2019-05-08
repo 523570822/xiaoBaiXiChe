@@ -88,6 +88,8 @@ class AgentController extends BaseController {
             $data['salt'] = NoticeStr (6);
             $data['create_time'] = time ();
             $data['password'] = CreatePassword ($rule['passwords'] , $data['salt']);
+//            var_dump($data['salt']);
+//            var_dump($data['password']);
             //            $data['update_time'] = time();
             $res = D ('Agent')->addRow ($data);
             $res ? $this->apiResponse (1 , '提交成功') : $this->apiResponse (0 , $data);

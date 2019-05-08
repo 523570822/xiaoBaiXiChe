@@ -83,10 +83,10 @@ class MemberModel extends ModelService
      */
     public function addRow($param){
         $data['account']  = $param['account'];
-        if($param['password']){
-            $data['salt'] = NoticeStr(6);
-            $data['password'] = CreatePassword($param['password'], $data['salt']);
-        }
+//        if($param['password']){
+//            $data['salt'] = NoticeStr(6);
+//            $data['password'] = CreatePassword($param['password'], $data['salt']);
+//        }
         if($param['parent_id']){
             $data['parent_id'] = $param['parent_id'];
         }

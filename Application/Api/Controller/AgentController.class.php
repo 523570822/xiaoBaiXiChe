@@ -35,13 +35,14 @@ class AgentController extends BaseController
      */
     public function login(){
         $post = checkAppData('phone,password','账号-密码');
-//        $post['phone'] = 18635356092;
+//        $post['phone'] = 17865130585;
 //        $post['password'] = 123456;
         if (!isMobile($post['phone'])) {
             $this->apiResponse('0','手机号格式有误');
         }
         $member = D('Agent')->where(array('account'=>$post['phone']))->find();
         $check_password = checkPassword($post['password'], $member['salt'], $member['password']);
+//        dump($member);exit;
         if ($member) {
             if ($check_password != 1) {
                 $this->apiResponse('1','登陆成功',array('token'=>$member['token'],'grade'=>$member['grade']));
