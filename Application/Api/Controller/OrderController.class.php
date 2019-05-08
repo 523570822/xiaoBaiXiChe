@@ -1321,6 +1321,7 @@ class OrderController extends BaseController {
         if($post->event == 1){
             $send_post = $this->send_post('device_manage',$post->event,3);
             $d_save = array(
+                'update_time' => time(),
                 'status' => 1,
             );
             $o_save = array(
