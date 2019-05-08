@@ -1320,7 +1320,7 @@ class OrderController extends BaseController {
                 'status' => 1,
             );
             $o_save = array(
-                'update_time' => 1111,
+                'update_time' => time(),
                 'button' =>1,
             );
             $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
