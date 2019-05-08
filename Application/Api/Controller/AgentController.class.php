@@ -35,7 +35,7 @@ class AgentController extends BaseController
      */
     public function login(){
         $post = checkAppData('phone,password','账号-密码');
-//        $post['phone'] = 18635356088;
+//        $post['phone'] = 18525259655;
 //        $post['password'] = 123456;
         if (!isMobile($post['phone'])) {
             $this->apiResponse('0','手机号格式有误');

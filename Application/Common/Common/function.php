@@ -55,7 +55,10 @@ function getPassword ($password) {
  * Date:2018/08/17
  */
 function checkPassword ($password , $salt , $old_password) {
+
     $a = CreatePassword ($password , $salt) !== $old_password;
+    dump($salt);
+    dump(CreatePassword ($password , $salt));
     if ( CreatePassword ($password , $salt) !== $old_password ) {
         return 1;
     } else {

@@ -87,9 +87,7 @@ class AgentController extends BaseController {
             $data['token'] = $this->createToken ();
             $data['salt'] = NoticeStr (6);
             $data['create_time'] = time ();
-            $data['password'] = CreatePassword ($rule['passwords'] , $data['salt']);
-//            var_dump($data['salt']);
-//            var_dump($data['password']);
+            $data['password'] = CreatePassword ($data['passwords'] , $data['salt']);
             //            $data['update_time'] = time();
             $res = D ('Agent')->addRow ($data);
             $res ? $this->apiResponse (1 , '提交成功') : $this->apiResponse (0 , $data);
@@ -115,7 +113,6 @@ class AgentController extends BaseController {
             $where['id'] = $request['id'];
             $data = $this->checkParam ($rule);
             $data['token'] = $this->createToken ();
-            $data['salt'] = NoticeStr (6);
             $data['update_time'] = time ();
             $res = D ('Agent')->querySave ($where , $data);
             $res ? $this->apiResponse (1 , '提交成功') : $this->apiResponse (0 , $data);
