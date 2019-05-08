@@ -27,21 +27,24 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">水枪价格</label>
                             <div class="layui-input-block">
-                                <input type="text" name="washing_money" value="{$row.washing_money}元/秒" placeholder="请输入水枪价格"
+                                <input type="text" name="washing_money" value="{$row.washing_money}" placeholder="请输入水枪价格"
                                        class="layui-input w300" required>
+
                             </div>
+
+
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">泡沫价格</label>
                             <div class="layui-input-block">
-                                <input type="text" name="foam_money" value="{$row.foam_money}元/秒" placeholder="请输入泡沫价格"
+                                <input type="text" name="foam_money" value="{$row.foam_money}" 元/秒placeholder="请输入泡沫价格"
                                        class="layui-input w300" required>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">吸尘器价格</label>
                             <div class="layui-input-block">
-                                <input type="text" name="cleaner_money" value="{$row.cleaner_money}元/秒" placeholder="请输入吸尘器价格"
+                                <input type="text" name="cleaner_money" value="{$row.cleaner_money}" 元/秒placeholder="请输入吸尘器价格"
                                        class="layui-input w300" required>
                             </div>
                         </div>
@@ -115,6 +118,20 @@
                                             <option value="{$item.id}" selected>{$item.nickname}</option>
                                             <else/>
                                             <option value="{$item.id}">{$item.nickname}</option>
+                                        </if>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">合作方</label>
+                            <div class="layui-input-block">
+                                <select name="partner_id" class="layui-input w300">
+                                    <volist name="partner" id="items">
+                                        <if condition="$items['id'] eq $row['partner_id']">
+                                            <!--<option value="{items.id}" selected>{items.nickname}</option>-->
+                                            <else/>
+                                            <option value="{$items.id}">{$items.nickname}</option>
                                         </if>
                                     </volist>
                                 </select>

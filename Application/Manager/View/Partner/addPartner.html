@@ -46,7 +46,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">账号</label>
                         <div class="layui-input-inline">
-                            <input type="text" class="layui-input" placeholder="请输入合作方账号" lay-verify="required|phone" name="h_account"  value="{$row['h_account']}" <if condition="$row['id']">disabled=""</if>>
+                            <input type="text" class="layui-input" placeholder="请输入合作方账号" lay-verify="required|phone" name="account"  value="{$row['account']}" <if condition="$row['id']">disabled=""</if>>
                         </div>
                         <div class="layui-form-mid layui-word-aux">账户为合作方手机号</div>
                     </div>
@@ -54,18 +54,18 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">密码</label>
                             <div class="layui-input-inline">
-                                <input type="password" class="layui-input" placeholder="请输入密码" lay-verify="required" name="h_password">
+                                <input type="password" class="layui-input" placeholder="请输入密码" lay-verify="required" name="password">
                             </div>
                             <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
                         </div>
                         <else />
-                        <input type="hidden" class="layui-input" placeholder="请输入密码" lay-verify="required" name="h_password" value="{$row['h_password']}">
+                        <input type="hidden" class="layui-input" placeholder="请输入密码" lay-verify="required" name="password" value="{$row['password']}">
                     </if>
 
                     <div class="layui-form-item">
                         <label class="layui-form-label">昵称</label>
                         <div class="layui-input-inline">
-                            <input type="text" class="layui-input" placeholder="请输入用户昵称" name="h_nickname" value="{$row['h_nickname']}">
+                            <input type="text" class="layui-input" placeholder="请输入用户昵称" name="nickname" value="{$row['nickname']}">
                         </div>
                     </div>
                     <div class="layui-form-item">

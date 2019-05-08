@@ -21,8 +21,8 @@
                         <!--搜索框也可以放这里-->
                         <form class="mab10 mal20 dinline" id="myform" action="{:U('Partner/index')}" method="GET">
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" placeholder="请输入合作方账号" name="h_account"
-                                       value="{$_REQUEST['h_account']}">
+                                <input type="text" class="layui-input" placeholder="请输入合作方账号" name="account"
+                                       value="{$_REQUEST['account']}">
                             </div>
                             <div class="layui-input-inline">
                             <input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"
@@ -99,8 +99,8 @@
                             <tr>
                                 <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
                                 <td>{$item.id}</td>
-                                <td>{$item.h_account}</td>
-                                <td>{$item.h_nickname}</td>
+                                <td>{$item.account}</td>
+                                <td>{$item.nickname}</td>
                                 <td>{$item.create_time|date='Y-m-d H:i:s',###}</td>
 
                                 <!--<td>{$item['create_time']|date='Y-m-d H:i',###}</td>-->

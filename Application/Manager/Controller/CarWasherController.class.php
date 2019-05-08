@@ -66,6 +66,9 @@ class CarWasherController extends BaseController {
             $data['list'][$k]['nickname'] = $date['nickname'];
             $date = D ('Washshop')->where (array ('id' => $data['list'][$k]['p_id']))->field ('shop_name')->find ();
             $data['list'][$k]['shop_name'] = $date['shop_name'];
+            $data['list'][$k]['washing_money'] = rtrim(rtrim($v['washing_money'], '0'), '.');
+            $data['list'][$k]['foam_money'] = rtrim(rtrim($v['foam_money'], '0'), '.');
+            $data['list'][$k]['cleaner_money'] = rtrim(rtrim($v['cleaner_money'], '0'), '.');
         }
         $this->assign ($data);
         //页数跳转
@@ -111,6 +114,9 @@ class CarWasherController extends BaseController {
         } else {
             $id = $_GET['id'];
             $row = D ('CarWasher')->queryRow ($id);
+            $row['washing_money'] = rtrim(rtrim($row['washing_money'], '0'), '.');
+            $row['foam_money'] = rtrim(rtrim($row['foam_money'], '0'), '.');
+            $row['cleaner_money'] = rtrim(rtrim($row['cleaner_money'], '0'), '.');
             $province = D ('Region')->select (array ('parent_id' => 1 , 'region_type' => '1') , 'region_name,id');
             $where = array ('status' => array ('neq' , 9));
             $field = 'id, shop_name, status';
@@ -119,12 +125,21 @@ class CarWasherController extends BaseController {
             $PAP = array ('status' => array ('neq' , 9));
             $ARA = 'id, p_id , nickname, status';
             $list = D ('Agent')->queryList ($PAP , $ARA);
+            $pa_where = array(
+                'status' => array ('neq' , 9),
+                'grade' => 4,
+            );
+            $partner = D('Agent')->queryList($pa_where,'*');
             $this->assign ('list' , $list);
+            $this->assign ('partner' , $partner);
             $this->assign ('province' , $province);
             $this->assign ('row' , $row);
             //下拉框选择
             $id = $_GET['id'];//用户id
             $row = D ('CarWasher')->queryRow ($id);
+            $row['washing_money'] = rtrim(rtrim($row['washing_money'], '0'), '.');
+            $row['foam_money'] = rtrim(rtrim($row['foam_money'], '0'), '.');
+            $row['cleaner_money'] = rtrim(rtrim($row['cleaner_money'], '0'), '.');
             $province = D ('Region')->queryList (array ('region_type' => '1') , 'region_name,id');
             $this->assign ('province' , $province);
             $this->assign ('row' , $row);

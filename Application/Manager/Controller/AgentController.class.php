@@ -79,7 +79,7 @@ class AgentController extends BaseController {
                 array ('account' , 'phone' , '用户名必须为手机号格式') ,
                 array ('passwords' , 'string' , '请输入密码') ,
                 array ('nickname' , 'string' , '请输入昵称') ,
-                array ('grade' , 'int' , '请输入等级') ,
+                array ('grade' , 'int' , '请选择等级') ,
                 array ('p_id' , 'int' , '请输入父级代理商ID') ,
                 array ('balance' , 'int' , '请输入余额') ,
             );
@@ -107,7 +107,7 @@ class AgentController extends BaseController {
             $rule = array (
                 array ('account' , 'phone' , '用户名必须为手机号格式') ,
                 array ('nickname' , 'string' , '请输入昵称') ,
-                array ('grade' , 'int' , '请输入等级') ,
+                array ('grade' , 'int' , '请选择等级') ,
             );
             $data = $this->checkParam ($rule);
             $where['id'] = $request['id'];

@@ -1465,12 +1465,13 @@ class OrderController extends BaseController {
      */
     public function close(){
         $post = checkAppData('token,orderid','token-订单ID');
-
+//        $post['token'] = '4532f907559847a37a784748b234310b';
+//        $post['orderid'] = '309';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
-
         $details = M('Details')->where(array('m_id' =>$member['id'],'o_id'=> $post['orderid']))->find();
-        if($details['status'] == 1){
+        $order = M('Order')->where(array('m_id' =>$member['id'],'id'=> $post['orderid']))->find();
+        if($details['status'] == 1 || $order['button'] == 1){
             $this->apiResponse(1,'结算成功');
         }else{
             $this->apiResponse(0,'暂无信息');

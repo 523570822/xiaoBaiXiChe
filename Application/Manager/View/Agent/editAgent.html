@@ -69,25 +69,29 @@
                         </div>
                     </div>
 
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">等级</label>
+                        <div class="layui-input-block">
+                            <div class="layui-input-inline">
+                                <select name="grade" class="layui-input w300">
+                                    <option value="">请选择</option>
+                                    <option value="1">区域合伙人</option>
+                                    <option value="2">一级代理商</option>
+                                    <option value="2">二级代理商</option>
+                                    <option value="2">合作方</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="layui-form-item">
                         <label class="layui-form-label">父级代理商ID</label>
                         <div class="layui-input-inline">
                             <input type="text" class="layui-input" placeholder="" lay-verify="number" name="p_id" value="{$row['p_id']|default='0'}">
                         </div>
                         <div class="layui-form-mid layui-word-aux"></div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">等级</label>
-                        <div class="layui-input-block">
-                            <div class="layui-input-inline">
-                                <select name="grade" class="layui-input w300">
-                                    <option value="1">一级代理商</option>
-                                    <option value="2">二级代理商</option>
-                                    <option value="2">三级代理商</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">一级代理商不用添加父级代理商</div>
-                        </div>
+                        <div class="layui-input-inline">区域合伙人不用添加父级代理商</div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">

@@ -32,9 +32,9 @@ class PartnerController extends BaseController {
         //            $where['type'] = I('request.type');
         //        }
         //等級查找
-        if ( !empty($_REQUEST['grade']) ) {
-            $where['grade'] = I ('request.grade');
-        }
+//        if ( !empty($_REQUEST['grade']) ) {
+//            $where['grade'] = I ('request.grade');
+//        }
         //注册时间查找
         if ( !empty($_REQUEST['start_time']) && !empty($_REQUEST['end_time']) ) {
             $where['create_time'] = array ('between' , array (strtotime ($_REQUEST['start_time']) , strtotime ($_REQUEST['end_time']) + 86400));
@@ -52,8 +52,10 @@ class PartnerController extends BaseController {
         if ( !$_REQUEST['status'] ) {
             $where['status'] = array ('lt' , 9);
         }
+        $where['grade'] = 4;
+
         $param['page_size'] = 15;
-        $data = D ('Partner')->queryList ($where , '*' , $param);
+        $data = D ('Agent')->queryList ($where , '*' , $param);
         //        foreach ($data['list'] as $k=>$v){
         //            $data['list'][$k]['agent_id']=$v['agent_id'];
         //            $data['list'][$k]['p_id']=$v['p_id'];
@@ -76,18 +78,19 @@ class PartnerController extends BaseController {
     public function addPartner () {
         if ( IS_POST ) {
             $rule = array (
-                array ('h_account' , 'phone' , '用户名必须为手机号格式') ,
-                array ('h_password' , 'string' , '请输入密码') ,
-                array ('h_nickname' , 'string' , '请输入昵称') ,
+                array ('account' , 'phone' , '用户名必须为手机号格式') ,
+                array ('password' , 'string' , '请输入密码') ,
+                array ('nickname' , 'string' , '请输入昵称') ,
                 array ('balance' , 'int' , '请输入余额') ,
             );
             $data = $this->checkParam ($rule);
             $data['token'] = $this->createToken ();
             $data['salt'] = NoticeStr (6);
             $data['create_time'] = time ();
-            $data['h_password'] = CreatePassword ($rule['h_password'] , $data['salt']);
+            $data['grade'] = 4;
+            $data['password'] = CreatePassword ($rule['password'] , $data['salt']);
             //            $data['update_time'] = time();
-            $res = D ('Partner')->addRow ($data);
+            $res = D ('Agent')->addRow ($data);
             $res ? $this->apiResponse (1 , '提交成功') : $this->apiResponse (0 , $data);
         } else {
             $this->display ('addPartner');
@@ -103,8 +106,8 @@ class PartnerController extends BaseController {
         if ( IS_POST ) {
             $request = I ('post.');
             $rule = array (
-                array ('acch_accountount' , 'phone' , '用户名必须为手机号格式') ,
-                array ('h_nickname' , 'string' , '请输入昵称') ,
+                array ('account' , 'phone' , '用户名必须为手机号格式') ,
+                array ('nickname' , 'string' , '请输入昵称') ,
             );
             $data = $this->checkParam ($rule);
             $where['id'] = $request['id'];
@@ -116,7 +119,7 @@ class PartnerController extends BaseController {
             $res ? $this->apiResponse (1 , '提交成功') : $this->apiResponse (0 , $data);
         } else {
             $id = $_GET['id'];
-            $row = D ('Partner')->queryRow ($id);
+            $row = D ('Agent')->queryRow ($id);
             $this->assign ('row' , $row);
             $this->display ();
         }
