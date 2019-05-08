@@ -122,8 +122,11 @@ class CarWasherController extends BaseController {
             $field = 'id, shop_name, status';
             $shop_list = D ('Washshop')->queryList ($where , $field);
             $this->assign ('shop_list' , $shop_list);
-            $PAP = array ('status' => array ('neq' , 9));
-            $ARA = 'id, p_id , nickname, status';
+            $PAP = array (
+                'status' => array ('neq' , 9),
+                'grade' => array('in','2,3'),
+            );
+            $ARA = 'id, p_id , nickname, status ,grade';
             $list = D ('Agent')->queryList ($PAP , $ARA);
             $pa_where = array(
                 'status' => array ('neq' , 9),

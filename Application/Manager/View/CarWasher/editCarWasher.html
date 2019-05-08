@@ -129,7 +129,7 @@
                                 <select name="partner_id" class="layui-input w300">
                                     <volist name="partner" id="items">
                                         <if condition="$items['id'] eq $row['partner_id']">
-                                            <!--<option value="{items.id}" selected>{items.nickname}</option>-->
+                                            <option value="{$items.id}" selected>{$items.nickname}</option>
                                             <else/>
                                             <option value="{$items.id}">{$items.nickname}</option>
                                         </if>

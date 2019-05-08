@@ -1324,6 +1324,7 @@ class OrderController extends BaseController {
                 'button' =>1,
             );
             $detail = M('Details')->where(array('c_id'=>$car['id'],'o_id'=>$order['id'],'status'=>0))->save($d_save);
+//            echo M('Details')->_sql();
             //这台洗车机的全部订单都结算
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($o_save);
             if($send_post){
