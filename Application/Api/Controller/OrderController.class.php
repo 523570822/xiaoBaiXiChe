@@ -1136,7 +1136,11 @@ class OrderController extends BaseController {
         //节能减排
         $energy = bcmul($all_time,$prices['energy'],2);
         //优惠金额
-        $offer = bcsub($prices['offer'],$all_money,2);
+        if($all_money != 0){
+            $offer = bcsub($prices['offer'],$all_money,2);
+        }else{
+            $offer = 0;
+        }
 
 
         //各设备使用时间
