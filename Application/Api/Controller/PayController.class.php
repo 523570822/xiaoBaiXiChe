@@ -259,8 +259,8 @@ class PayController extends BaseController {
                         $date['card_id'] = $request['methods_id'];
                         $date['allowance'] = $card['rebate'];
                     } elseif ( $request['methods'] == '2' ) {
-                        $coup = M ("CouponsBind")->where (['id' => $request['methods_id']])->field ('money')->find ();
-                        M ("CouponsBind")->where (['id' => $request['methods_id']])->save (['is_use' => '1']);
+                        $coup = M ("CouponBind")->where (['id' => $request['methods_id']])->field ('money')->find ();
+                        M ("CouponBind")->where (['id' => $request['methods_id']])->save (['is_use' => '1']);
                         $date['is_dis'] = '1';
                         $date['coup_id'] = $request['methods_id'];
                         $date['allowance'] = $coup['money'];
@@ -668,8 +668,8 @@ class PayController extends BaseController {
                 $date['card_id'] = $order_info['methods_id'];
                 $date['allowance'] = $card['rebate'];
             } elseif ( $order_info['methods'] == '2' ) {
-                M ("CouponsBind")->where (['id' => $order_info['methods_id']])->save (['is_use' => '1']);
-                $coup = M ("CouponsBind")->where (['id' => $order_info['methods_id']])->field ('money')->find ();
+                M ("CouponBind")->where (['id' => $order_info['methods_id']])->save (['is_use' => '1']);
+                $coup = M ("CouponBind")->where (['id' => $order_info['methods_id']])->field ('money')->find ();
                 $date['is_dis'] = '1';
                 $date['coup_id'] = $order_info['methods_id'];
                 $date['allowance'] = $coup['money'];
@@ -858,8 +858,8 @@ class PayController extends BaseController {
                     $date['card_id'] = $request['methods_id'];
                     $date['allowance'] = $card['rebate'];
                 } elseif ( $request['methods'] == '2' ) {
-                    M ("CouponsBind")->where (['id' => $request['methods_id']])->save (['is_use' => '1']);
-                    $coup = M ("CouponsBind")->where (['id' => $request['methods_id']])->field ('money')->find ();
+                    M ("CouponBind")->where (['id' => $request['methods_id']])->save (['is_use' => '1']);
+                    $coup = M ("CouponBind")->where (['id' => $request['methods_id']])->field ('money')->find ();
                     $date['is_dis'] = '1';
                     $date['coup_id'] = $request['methods_id'];
                     $date['allowance'] = $coup['money'];

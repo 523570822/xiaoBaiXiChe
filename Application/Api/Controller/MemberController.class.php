@@ -577,7 +577,7 @@ class MemberController extends BaseController
     public function checkShareCode($invite_code='', $s_id = 0)
     {
         $m_info = D ("Member")->where (array ('invite_code=' . $invite_code))->find ();
-        $check_hid = M ("coupon_log")->where ('s_id=' . $s_id)->find ();
+        $check_hid = M ("CouponLog")->where ('s_id=' . $s_id)->find ();
         $appsetting = M ('Appsetting')->find ();
         if ( $check_hid ) {
             $this->apiResponse (0 , '您已经绑定过推荐人了，请不要填写推荐码');
@@ -602,8 +602,8 @@ class MemberController extends BaseController
                 'is_bind' => 1 ,
                 'comes' => '邀请好友赠送代金券' ,
             );
-            $log = M ("coupon_log")->data ($data_ext)->add ();
-            $bind = M ("coupon_bind")->data ($data)->add ();
+            $log = M ("CouponLog")->data ($data_ext)->add ();
+            $bind = M ("CouponBind")->data ($data)->add ();
             if ( $log && $bind ) {
                 $m_info = D ("Member")->where ('invite_code=' . $invite_code)->find ();
                 $content = '您成功邀请了一位好友，获得一张现金抵用劵，快来看看吧！';
