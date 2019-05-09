@@ -877,6 +877,11 @@ class PayController extends BaseController {
                     $agent_where['id'] = $a_order['c_id'];
                     $car = M ('CarWasher')->where ($agent_where)->field ('agent_id')->find ();   //查找代理商id
                     $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance')->find ();
+                    if($agent['grade'] == 3){
+
+                    }elseif($agent['grade'] == 2){
+
+                    }
                     $income_where['agent_id'] = $car['agent_id'];
                     $income_where['car_washer_id'] = $a_order['c_id'];
                     $income_where['day'] = strtotime (date ('Y-m-d' , $a_order['pay_time']));

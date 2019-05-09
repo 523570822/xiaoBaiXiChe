@@ -124,17 +124,17 @@ class AgentController extends BaseController
      *Date:2018/12/19 02:01
      */
     public function income(){
-//        $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
-        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
-        $post['grade'] = 1;
-        $post['page'] = 1;
-        $post['size'] = 5;
+        $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
+//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+//        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
+//        $post['grade'] = 1;
+//        $post['page'] = 1;
+//        $post['size'] = 5;
 
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
         $agent = $this->getAgentInfo($post['token']);
-        dump($agent);exit;
+//        dump($agent);exit;
         $car_where['agent_id'] = $agent['id'];
         $car_where['status'] = array('neq',9);
         $car_num = D('CarWasher')->where($car_where)->select();

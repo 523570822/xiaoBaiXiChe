@@ -103,7 +103,7 @@ class BaseController extends ControllerService
      */
     public function getAgentInfo($token,$type='info',$field = ''){
         if(empty($token)){
-            apiResponse('-1','please login again');
+            apiResponse('-1','登录失效，请重新登录');
         }
         if ($type == 'info') {
             $agent = D('Agent')->findAgent(array('token'=>$token),'id,account,token,nickname,balance,salt,password,grade');
