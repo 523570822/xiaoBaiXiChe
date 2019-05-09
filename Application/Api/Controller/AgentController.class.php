@@ -124,7 +124,7 @@ class AgentController extends BaseController
      *Date:2018/12/19 02:01
      */
     public function income(){
-        $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
+        $post = checkAppData('token,timeType,page,size','token-时间筛选-页数-个数');
 //        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
 //        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
 //        $post['grade'] = 1;
