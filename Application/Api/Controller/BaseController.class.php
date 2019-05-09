@@ -304,7 +304,7 @@ class BaseController extends ControllerService
         $n_owhere = array(
             'mc_id' => $mc_id,
         );
-        $n_order = M('Order')->where($n_owhere)->find();
+        $n_order = M('CarWasher')->where($n_owhere)->find();
         $n_dwhere = array(
             'c_id' =>$n_order['id'],
             'status' => 0,
