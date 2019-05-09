@@ -300,6 +300,20 @@ class BaseController extends ControllerService
             'status'=> 1,     //0代表未完成   订单还没结束
         );
 
+        //结算时所有该机器的未结算订单全部改成结算状态
+        $n_owhere = array(
+            'mc_id' => $mc_id,
+        );
+        $n_order = M('Order')->where($n_owhere)->find();
+        $n_dwhere = array(
+            'c_id' =>$n_order['id'],
+            'status' => 0,
+        );
+        $n_dsave = array(
+            'status' => 1
+        );
+        $n_details = M('Details')->where($n_dwhere)->save($n_dsave);
+
         $details = M('Details')->where($d_where)->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $washing = round($send_post['devices'][0]['queryitem']['clean_water_duration']) - $details['washing_start_time'];
