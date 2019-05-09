@@ -273,7 +273,7 @@ class CarWasherController extends BaseController
                         }elseif ($find_order['status'] == 0){
 //                            dump($vv[0]['deviceid']);
                                   //泡沫液位不足
-                            if(/*$vv[0]['queryitem']['level3_status'] == 1 &&*/ $vv[0]['queryitem']['service_status'] == 8 && $vv[0]['queryitem']['service_status'] == 13){
+                            if(/*$vv[0]['queryitem']['level3_status'] == 1 &&*/  $vv[0]['queryitem']['service_status'] == 13){
 //                                dump($vv[0]['deviceid']);
                                 $using_wheres = array(
                                     'mc_id' => $vv[0]['deviceid'],

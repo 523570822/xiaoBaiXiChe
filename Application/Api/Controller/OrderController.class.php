@@ -831,7 +831,6 @@ class OrderController extends BaseController {
             }else{
                 $indication = 0;
             }
-
             //判断机器使用状态
             if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
                 $f_where['id'] = $details['id'];
@@ -845,6 +844,7 @@ class OrderController extends BaseController {
 //                var_dump($data_moneyss);exit;
                 $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
                 //检查洗车机继续使用还是结算
+
                 if(!empty($member)){
 //                    echo 85545;
 
