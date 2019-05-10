@@ -376,6 +376,7 @@ class OrderController extends BaseController {
                 'status' => 1,
             );
             $g_details = M('Details')->where(array('c_id'=>$c_id,'status'=>0,'o_id'=>array('neq',$o_id)))->save($g_dsave);
+
         }
 
         //变更机器 空闲中->使用中
