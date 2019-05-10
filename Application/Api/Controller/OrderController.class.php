@@ -762,8 +762,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = 'aa79c17a0ec643349d9b6e7ff6e04630';
-//        $post['orderid'] = 'XC201905051456153959';
+//        $post['token'] = '33e4e14747b44d966e9181a04f90e4b5';
+//        $post['orderid'] = 'XC201905091856323652';
 //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
@@ -1474,6 +1474,8 @@ class OrderController extends BaseController {
         $post = checkAppData('token,orderid','token-订单ID');
 //        $post['token'] = '4532f907559847a37a784748b234310b';
 //        $post['orderid'] = '309';
+        $m_id = $this->checkToken();
+        $this->errorTokenMsg($m_id);
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $details = M('Details')->where(array('m_id' =>$member['id'],'o_id'=> $post['orderid']))->find();

@@ -212,6 +212,16 @@ class CarWasherController extends BaseController
     }
 
     /**
+     *异常订单结算
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/10 10:01
+     */
+    public function malfunction(){
+
+    }
+
+
+    /**
      *实时状态查询
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/30 14:36
@@ -226,6 +236,11 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
+                    //所有故障机的订单都结算
+                    $g_car = M('CarWasher')->where(array('mc_id'=>$vv[0]['deviceid']))->find();
+                    if($g_car['type'] == 4){
+
+                    }
                     if( $vv[0]['queryitem']['service_status'] == 8 || $vv[0]['queryitem']['service_status'] == 12){
 //                        dump($vv[0]['deviceid']);
                         $using_where = array(
