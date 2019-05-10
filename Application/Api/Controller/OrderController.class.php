@@ -361,23 +361,23 @@ class OrderController extends BaseController {
         //添加订单
         $data = $this->status ('2' , $m_id , $mc_id , $c_id );
         $res = M ('Order')->add ($data);
-
-//        //添加订单,洗车机之前所有异常订单结算
-//        if($res){
-//            $g_save = array(
-//                'update_time' => time(),
-//                'button' => 1,
-//            );
-//            $g_order = M('Order')->where(array('c_id'=>$c_id,'button'=>0))->save($g_save);
-//            $g_dsave = array(
-//                'update_time' => time(),
-//                'status' => 1,
-//            );
-//            $g_details = M('Details')->where(array('c_id'=>$c_id,'status'=>0))->save($g_dsave);
-//        }
         //查询订单ID
         $find = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
         $o_id = $find['id'];
+        //添加订单,洗车机之前所有异常订单结算
+        if($res){
+            $g_save = array(
+                'update_time' => time(),
+                'button' => 1,
+            );
+            $g_order = M('Order')->where(array('c_id'=>$c_id,'button'=>0,'orderid'=>array('neq',$data['orderid'])))->save($g_save);
+            $g_dsave = array(
+                'update_time' => time(),
+                'status' => 1,
+            );
+            $g_details = M('Details')->where(array('c_id'=>$c_id,'status'=>0,'o_id'=>array('neq',$o_id)))->save($g_dsave);
+        }
+
         //变更机器 空闲中->使用中
         $yes = M ('CarWasher')->where (array ('mc_id' => $mc_id))->save (array ('type' => '2'));
         //控制机器
