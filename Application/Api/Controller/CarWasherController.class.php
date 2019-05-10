@@ -253,10 +253,18 @@ class CarWasherController extends BaseController
                         $using_data = array(
                             'type' => 4,
                         );
-
                         $using = M('CarWasher')->where($using_where)->save($using_data);
 //                        echo M('CarWasher')->_sql();
+                    } elseif ($vv[0]['queryitem']['service_status'] == 13){
+                        $using_where = array(
+                            'mc_id' => $vv[0]['deviceid'],
+                        );
+                        $using_data = array(
+                            'type' => 2,
+                        );
+                        $using = M('CarWasher')->where($using_where)->save($using_data);
                     }
+//                    dump($vv[0]['deviceid']);
 
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
                     if(!empty($find_order)){
@@ -364,13 +372,13 @@ class CarWasherController extends BaseController
             $dosage = M('CarWasher')->where(array('mc_id'=>$vv[0]['deviceid']))->save($d_save);
 
             //所有空闲中的机器和故障的机器订单都结算
-            if($v['type'] =in_array( 'in','2,3')){
-
-                echo 785849;exit;
-            }else{
-                echo 741852963;exit;
-
-            }
+//            if($v['type'] =in_array( 'in','2,3')){
+//
+//                echo 785849;exit;
+//            }else{
+//                echo 741852963;exit;
+//
+//            }
         }
     }
 

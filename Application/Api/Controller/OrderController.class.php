@@ -777,9 +777,9 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '795e9de2b318f5907e32dac8a088dc53';
-//        $post['orderid'] = 'XC201905091856323652';
-//        $post['off_on'] = 1;
+//        $post['token'] = 'e5008f151784f2274de8cff7c2b455e0';
+//        $post['orderid'] = 'XC201905101533188420';
+//        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -798,7 +798,6 @@ class OrderController extends BaseController {
             'orderid' =>$post['orderid'],
         );
         $k_order = M('Order')->where($k_where)->find();
-
         $d_where = array(
             'o_id'=> $k_order['id'],
             'm_id'=>$member['id'],
@@ -846,6 +845,7 @@ class OrderController extends BaseController {
             }else{
                 $indication = 0;
             }
+//            echo 7846;exit;
 
             //判断机器使用状态
             if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
@@ -865,6 +865,7 @@ class OrderController extends BaseController {
 //                    echo 85545;
 
                     if($post['off_on'] == 0){
+
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
@@ -934,6 +935,7 @@ class OrderController extends BaseController {
                         } else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
                             $this->apiResponse('0','当前洗车机尚未开启');
                         }else{
+
                             //结算存储时间
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                             $this->apiResponse('1','查询成功',$data_moneyss);
