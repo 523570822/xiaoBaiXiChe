@@ -1117,8 +1117,6 @@ class OrderController extends BaseController {
                     $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                     //结算存储时间
                     $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
-                    //检查订单费用是否为0
-                    $zero = $this->payZero($member['id'],$k_order['id']);
                     if($zero == 1){
                         $data_moneys = array(
                             'indication' => 0,
