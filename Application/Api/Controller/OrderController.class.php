@@ -762,9 +762,9 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = '33e4e14747b44d966e9181a04f90e4b5';
+//        $post['token'] = '795e9de2b318f5907e32dac8a088dc53';
 //        $post['orderid'] = 'XC201905091856323652';
-//        $post['off_on'] = 0;
+//        $post['off_on'] = 1;
 
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
@@ -831,6 +831,7 @@ class OrderController extends BaseController {
             }else{
                 $indication = 0;
             }
+
             //判断机器使用状态
             if($car['type'] == 2){     //当机器service_status =13的时候,洗车机开启
                 $f_where['id'] = $details['id'];
@@ -849,7 +850,6 @@ class OrderController extends BaseController {
 //                    echo 85545;
 
                     if($post['off_on'] == 0){
-
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
@@ -1082,6 +1082,39 @@ class OrderController extends BaseController {
 //                        echo 785214;exit;
                         $this->apiResponse('1','结算成功',$data_moneys);
                     }
+                }
+            } elseif($car['type'] == 1){
+                if($post['off_on'] == 1){
+                    $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
+                    $d_save = array(
+                        'status'  => 1,
+                    );
+                    $detailss = M('Details')->where($d_where)->save($d_save);
+                    $o_save = array(
+                        'button' => 1,
+                        'update_time' =>time(),
+                    );
+                    $o_order = M('Order')->where($o_where)->save($o_save);
+                    //语音播报
+                    $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                    $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                    //结算存储时间
+                    $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
+                    //检查订单费用是否为0
+                    $zero = $this->payZero($member['id'],$k_order['id']);
+                    if($zero == 1){
+                        $data_moneys = array(
+                            'indication' => 0,
+                            'washing' =>0,
+                            'foam'=>0,
+                            'cleaner'=>0,
+                            'all_money' =>0.00,
+                            'off_on' => 1,
+                        );
+                    }
+                    $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
+//                        echo 852369;exit;
+                    $this->apiResponse('1','结算成功',$data_moneys);
                 }
             }
         }else{
