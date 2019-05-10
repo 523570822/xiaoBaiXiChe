@@ -217,7 +217,8 @@ class CarWasherController extends BaseController
      *Date:2019/05/10 10:01
      */
     public function malfunction(){
-
+        $where['status'] = array('neq',9);
+        $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
     }
 
 
@@ -228,7 +229,7 @@ class CarWasherController extends BaseController
      */
     public function realTime(){
         $where['status'] = array('neq',9);
-        $car = M('CarWasher')->where($where)->field('mc_id,id')->select();
+        $car = M('CarWasher')->where($where)->field('mc_id,id,type')->select();
         foreach ($car as $k=>$v){
             $cars[$k]['car_num'] = $v['mc_id'];
             $cars[$k]['id'] = $v['id'];
@@ -236,11 +237,6 @@ class CarWasherController extends BaseController
             $queryitem[$k] = $this->send_post($query,$cars[$k]['car_num']);
             if(!empty($queryitem[$k])){
                 foreach ($queryitem[$k] as $kk=>$vv){
-                    //所有故障机的订单都结算
-                    $g_car = M('CarWasher')->where(array('mc_id'=>$vv[0]['deviceid']))->find();
-                    if($g_car['type'] == 4){
-
-                    }
                     if( $vv[0]['queryitem']['service_status'] == 8 || $vv[0]['queryitem']['service_status'] == 12){
 //                        dump($vv[0]['deviceid']);
                         $using_where = array(
@@ -367,6 +363,14 @@ class CarWasherController extends BaseController
             );
             $dosage = M('CarWasher')->where(array('mc_id'=>$vv[0]['deviceid']))->save($d_save);
 
+            //所有空闲中的机器和故障的机器订单都结算
+            if($v['type'] =in_array( 'in','2,3')){
+
+                echo 785849;exit;
+            }else{
+                echo 741852963;exit;
+
+            }
         }
     }
 

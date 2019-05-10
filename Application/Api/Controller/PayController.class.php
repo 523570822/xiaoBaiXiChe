@@ -966,13 +966,7 @@ class PayController extends BaseController {
             }
         }
     }
-
-    /**
-     * 数据实时请求
-     */
-    public function postLinux () {
-
-    }
+    
 
     /**
      *获取时间
