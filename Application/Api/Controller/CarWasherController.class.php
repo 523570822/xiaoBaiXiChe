@@ -256,6 +256,8 @@ class CarWasherController extends BaseController
                         $using = M('CarWasher')->where($using_where)->save($using_data);
 //                        echo M('CarWasher')->_sql();
                     } elseif ($vv[0]['queryitem']['service_status'] == 13){
+                        dump($vv[0]['deviceid']);
+
                         $using_where = array(
                             'mc_id' => $vv[0]['deviceid'],
                         );
@@ -264,8 +266,6 @@ class CarWasherController extends BaseController
                         );
                         $using = M('CarWasher')->where($using_where)->save($using_data);
                     }
-//                    dump($vv[0]['deviceid']);
-
                     $find_order = M('Details')->where(array('c_id'=>$v['id']))->order(array('id DESC'))->find();
                     if(!empty($find_order)){
                         if($find_order['status'] == 1){

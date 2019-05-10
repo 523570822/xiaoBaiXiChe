@@ -362,19 +362,19 @@ class OrderController extends BaseController {
         $data = $this->status ('2' , $m_id , $mc_id , $c_id );
         $res = M ('Order')->add ($data);
 
-        //添加订单,洗车机之前所有异常订单结算
-        if($res){
-            $g_save = array(
-                'update_time' => time(),
-                'button' => 1,
-            );
-            $g_order = M('Order')->where(array('c_id'=>$c_id,'button'=>0))->save($g_save);
-            $g_dsave = array(
-                'update_time' => time(),
-                'status' => 1,
-            );
-            $g_details = M('Details')->where(array('c_id'=>$c_id,'status'=>0))->save($g_dsave);
-        }
+//        //添加订单,洗车机之前所有异常订单结算
+//        if($res){
+//            $g_save = array(
+//                'update_time' => time(),
+//                'button' => 1,
+//            );
+//            $g_order = M('Order')->where(array('c_id'=>$c_id,'button'=>0))->save($g_save);
+//            $g_dsave = array(
+//                'update_time' => time(),
+//                'status' => 1,
+//            );
+//            $g_details = M('Details')->where(array('c_id'=>$c_id,'status'=>0))->save($g_dsave);
+//        }
         //查询订单ID
         $find = M ('Order')->where (array ('orderid' => $data['orderid']))->find ();
         $o_id = $find['id'];
