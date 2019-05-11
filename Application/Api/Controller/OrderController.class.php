@@ -308,7 +308,7 @@ class OrderController extends BaseController {
         $this->errorTokenMsg ($m_id);
         //接收数据
         $request = I ('post.');
-        $this->apiResponse('0',$request['mc_code'].'-'.$request['o_type'].'-'.$request['w_type']);
+        //$this->apiResponse('0',$request['mc_code'].'-'.$request['o_type'].'-'.$request['w_type']);
         $rules = array ('mc_code' , 'string' , '请输入洗车机编号');
         $this->checkParam ($rules);
         //var_dump($request['mc_code']);die;
