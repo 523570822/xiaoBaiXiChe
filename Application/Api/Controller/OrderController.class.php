@@ -1527,9 +1527,16 @@ class OrderController extends BaseController {
         $m_id = $this->checkToken();
         $this->errorTokenMsg($m_id);
         $where['token'] = $post['token'];
+        if(empty($post['orderid'])){
+            $this->apiResponse(0,'订单编号为空');
+        }
+
         $member = M('Member')->where($where)->find();
         $details = M('Details')->where(array('m_id' =>$member['id'],'o_id'=> $post['orderid']))->find();
         $order = M('Order')->where(array('m_id' =>$member['id'],'id'=> $post['orderid']))->find();
+        if(empty($details) || empty($order)){
+            $this->apiResponse(0,'查询不到订单呀');
+        }
         if($details['status'] == 1 || $order['button'] == 1){
             $this->apiResponse(1,'结算成功');
         }else{
