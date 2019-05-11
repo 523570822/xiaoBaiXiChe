@@ -26,110 +26,18 @@ class NewAgentController extends BaseController
         parent::_initialize();
     }
 
-
-
-    /**
-     *登录方法
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2018/12/18 16:22
-     */
-    public function login(){
-        $post = checkAppData('phone,password','账号-密码');
-//        $post['phone'] = 18525259655;
-//        $post['password'] = 123456;
-        if (!isMobile($post['phone'])) {
-            $this->apiResponse('0','手机号格式有误');
-        }
-        $member = D('Agent')->where(array('account'=>$post['phone']))->find();
-        $check_password = checkPassword($post['password'], $member['salt'], $member['password']);
-//        dump($member);exit;
-        if ($member) {
-            if ($check_password != 1) {
-                $this->apiResponse('1','登陆成功',array('token'=>$member['token'],'grade'=>$member['grade']));
-            }else{
-                $this->apiResponse('0','密码错误');
-            }
-        } else {
-            $this->apiResponse('0','用户不存在',array('token'=>'','grade'=>'income'));
-        }
-    }
-
-    /**
-     *添加
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/18 17:49
-     */
-//    public function add(){
-//        $post['account'] = 18635356098;
-//        $post['password'] = 123456;
-//        $post['nickname'] = '东南角';
-//        $token = $this->createToken();
-//        $data['salt'] = NoticeStr(6);;
-//        $data['password'] = CreatePassword($post['password'], $data['salt']);
-//        $data['account'] = $post['account'];
-//        $data['token'] = $token['token'];
-//        $data['token'] = $token['token'];
-//        $data['nickname'] = $post['nickname'];
-//        $data['grade'] = 1;
-//
-//        $add = M('Agent')->add($data);
-//    }
-
-    /**
-     *修改密码
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/14 01:36
-     */
-    public function changePassword(){
-        $post = checkAppData('token,old_password,password,apassword','token-旧密码-新密码-再一次输新密码');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['old_password'] = 123456;
-//        $post['password'] = 123456;
-//        $post['apassword'] = 123456;
-        if($post['old_password'] == $post['password']){
-            $this->apiResponse('1','新旧密码不能一致');
-        }
-        if($post['password'] != $post['apassword']){
-            $this->apiResponse('1','新密码不一致');
-        }
-        $member = $this->getAgentInfo($post['token']);
-//        var_dump($post['old_password']);
-//        var_dump($post['password']);
-//        var_dump($member);exit;
-//        $a = checkPassword($post['old_password'],$member['salt'],$member['password']);
-//        var_dump($a);exit;
-        $check_password = checkPassword($post['old_password'],$member['salt'],$member['password']);
-        if ($check_password != 1) {
-//            $password = getPassword($post['password']);
-            $data['salt'] = NoticeStr(6);
-            $data['password'] = CreatePassword($post['password'], $data['salt']);
-            $mem['password'] = $data['password'];
-            $mem['salt'] = $data['salt'];
-            $mem['update_time'] = time();
-            $r = M('Agent')->where(array('id'=>$member['id']))->save($mem);
-
-            if ($r) {
-                $this->apiResponse('1','成功');
-            } else {
-                $this->apiResponse('0','修改失败');
-            }
-        } else {
-            $this->apiResponse('0','原密码错误');
-        }
-    }
-
     /**
      *收益
      *user:jiaming.wang  459681469@qq.com
      *Date:2018/12/19 02:01
      */
     public function income(){
-        $post = checkAppData('token,timeType,page,size','token-时间筛选-页数-个数');
-//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
-//        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
-//        $post['grade'] = 1;
-//        $post['page'] = 1;
-//        $post['size'] = 5;
+//        $post = checkAppData('token,timeType,grade，page,size','token-时间筛选-身份-页数-个数');
+        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
+        $post['grade'] = 1;
+        $post['page'] = 1;
+        $post['size'] = 100;
 
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
@@ -139,15 +47,16 @@ class NewAgentController extends BaseController
         $car_where['status'] = array('neq',9);
         $car_num = D('CarWasher')->where($car_where)->select();
         //日筛选
-        $order[] = 'sort DESC';
-        $day = D('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('day,week_star,month,year')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-        foreach ($day as $k=>$v){
-            $vs[] = date("Y-m-d",$day[$k]['day']);
-            $week[] = $day[$k]['week_star'];
-            $mon[] = date("Y-m",$day[$k]['month']);
-            $year[] = date("Y", $day[$k]['year']);
+        $order[] = 'sort DESC,create_time DESC';
+        $day = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,day,create_time')->group("day")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $week = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,week_star,create_time')->group("week_star")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $mon = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,month ,create_time')->group("month")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $year = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,year ,create_time')->group("year")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        foreach ($week as $k=>$v){
+            $vs[] = date("Y-m-d",$v['week_star']);
+
         }
-        $days = array_unique($vs);
+        dump($vs);exit;
         //周筛选
         $weeks = array_unique($week);
         foreach ($weeks as $key=>$value){
