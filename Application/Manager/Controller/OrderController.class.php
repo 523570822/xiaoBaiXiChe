@@ -170,16 +170,25 @@ class OrderController extends BaseController
             $mid = M('Member')->where(array('id' =>$val['m_id'] ))->find();
             $data[$key]['m_id'] = $mid['account'];
             if(!empty($data[$key]['start_time'])){
-                $data[$key]['start_time'] = date ('Y-m-d H:i:s' , $data[$key]['start_time']);
+                $data[$key]['start_time'] = date ('Y-m-d' , $data[$key]['start_time']);
             }else{
                 $data[$key]['start_time'] = '';
             }
+            if(!empty($data[$key]['start_time'])){
+                $data[$key]['start_time1'] = date ('H:i:s' , $data[$key]['start_time']);
+            }else{
+                $data[$key]['start_time1'] = '';
+            }
             if(!empty($data[$key]['update_time'])){
-                $data[$key]['update_time'] = date ('Y-m-d H:i:s' , $data[$key]['update_time']);
+                $data[$key]['update_time'] = date ('Y-m-d' , $data[$key]['update_time']);
             }else{
                 $data[$key]['update_time'] = '';
             }
-
+            if(!empty($data[$key]['update_time'])){
+                $data[$key]['update_time1'] = date ('H:i:s' , $data[$key]['update_time']);
+            }else{
+                $data[$key]['update_time1'] = '';
+            }
             if ( $data[$key]['status'] == '1' ) {
                 $data[$key]['status'] = '待支付';
             } elseif ( $data[$key]['status'] == '2' ) {
