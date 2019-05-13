@@ -161,8 +161,10 @@ class OrderController extends BaseController
         $field = 'orderid,c_id,m_id,pay_money,start_time,update_time,o_type,status';
         $data = D ('Order')->queryList ($where , $field , $param);
         if ( empty($data) ) {
-            $this->display ('index');
+            $this->display ('index');exit;
         }
+
+
         //把对应的数据放到数组中
         foreach ( $data as $key => $val ) {
             $cid = M('CarWasher')->where(array('id' =>$val['c_id'] ))->find();

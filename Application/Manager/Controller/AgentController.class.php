@@ -164,7 +164,7 @@ class AgentController extends BaseController {
         $field = 'account,nickname,grade,create_time';
         $data = D ('Agent')->queryList ($where , $field , $param);
         if ( empty($data) ) {
-            $this->display ('index');
+            $this->display ('index');exit;
         }
         //把对应的数据放到数组中
         foreach ( $data as $key => $val ) {
