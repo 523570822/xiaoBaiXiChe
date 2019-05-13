@@ -200,8 +200,8 @@ class OrderController extends BaseController
         //下面方法第一个数组，是需要的数据数组
         //第二个数组是excel的第一行标题,如果为空则没有标题
         //第三个是下载的文件名，现在用的是当前导出日期
-        $header = array ('订单编号' , '洗车机编号' , '用户账号' , '花费金额' ,  '洗车时间' , '洗车结束时间' , '状态');
-        $indexKey = array ('orderid' , 'c_id' , 'm_id' , 'pay_money' , 'start_time' , 'update_time' , 'status');
+        $header = array ('订单编号' , '洗车机编号' , '用户账号' , '花费金额' ,  '洗车日期' , '洗车结束日期' , '洗车时间' , '洗车结束时间' ,  '状态');
+        $indexKey = array ('orderid' , 'c_id' , 'm_id' , 'pay_money' , 'start_time' , 'update_time' , 'start_time1' ,  'update_time1' , 'status');
         exportExcels ($data , $indexKey , $header , date ('订单表' . 'Y-m-d' , NOW_TIME));
     }
 
