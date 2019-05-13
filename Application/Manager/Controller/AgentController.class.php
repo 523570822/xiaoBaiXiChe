@@ -175,6 +175,8 @@ class AgentController extends BaseController {
                 $data[$key]['grade'] = '一级代理商';
             } elseif ( $data[$key]['grade'] == '3' ) {
                 $data[$key]['grade'] = '二级代理商';
+            } elseif ( $data[$key]['grade'] == '4' ) {
+                $data[$key]['grade'] = '合作方';
             }
         }
         //下面方法第一个数组，是需要的数据数组

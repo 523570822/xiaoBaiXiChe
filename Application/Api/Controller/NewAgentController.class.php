@@ -11,7 +11,7 @@ use Common\Service\ControllerService;
 
 /**
  * 新加盟商模块
- * Class AgentController
+ * Class NewAgentController
  * @package Api\Controller
  */
 class NewAgentController extends BaseController
@@ -27,11 +27,46 @@ class NewAgentController extends BaseController
     }
 
     /**
+     *首页
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/11 16:03
+     */
+    public function income(){
+//        $post = checkAppData('token,timeType,grade，page,size','token-时间筛选-身份-页数-个数');
+        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
+        $post['grade'] = 1;
+        $post['page'] = 1;
+        $post['size'] = 10000000;
+
+        /*$month = date('Y/m',$post['month']);
+        var_dump($month);exit;*/
+        $agent = $this->getAgentInfo($post['token']);
+//        dump($agent);exit;
+        $car_where['agent_id'] = $agent['id'];
+        $car_where['status'] = array('neq',9);
+        $car_num = D('CarWasher')->where($car_where)->select();
+        //日筛选
+        $order[] = 'sort DESC,create_time DESC';
+        $day = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,day,create_time')->group("day")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $week = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,week_star,create_time')->group("week_star")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $mon = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,month ,create_time')->group("month")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $year = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,year ,create_time')->group("year")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        foreach ($day as $k=>$v){
+            $vs[] = date("Y-m-d",$v['day']);
+            $vs[] = $v['id'];
+        }
+        dump($vs);exit;
+
+    }
+
+
+    /**
      *收益
      *user:jiaming.wang  459681469@qq.com
      *Date:2018/12/19 02:01
      */
-    public function income(){
+    public function incomesssss(){
 //        $post = checkAppData('token,timeType,grade，page,size','token-时间筛选-身份-页数-个数');
         $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
         $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
@@ -54,7 +89,6 @@ class NewAgentController extends BaseController
         $year = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,year ,create_time')->group("year")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach ($week as $k=>$v){
             $vs[] = date("Y-m-d",$v['week_star']);
-
         }
         dump($vs);exit;
         //周筛选

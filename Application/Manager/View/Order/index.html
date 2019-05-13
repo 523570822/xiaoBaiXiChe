@@ -66,22 +66,23 @@
                             </div>
                             <div class="layui-input-inline">
                                 <input type="text" name="start_time" class="layui-input" id="test1"
-                                       value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="开始时间">
+                                       value="{$_REQUEST['start_time']}" autocomplete="off" placeholder="洗车时间">
                                 <!--<input class="layui-input" id="test5" placeholder="注册开始时间" type="text" name="start_time" value="{$_REQUEST['start_time']} >-->
                             </div>
                             —
                             <div class="layui-input-inline">
                                 <input type="text" name="end_time" class="layui-input" id="test2"
-                                       value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="结束时间">
+                                       value="{$_REQUEST['end_time']}" autocomplete="off" placeholder="洗车时间">
                                 <!--<input class="layui-input" id="test6" placeholder="注册结束时间" type="text" name="end_time" value="{$_REQUEST['end_time']}">-->
                             </div>
                             <button class="layui-btn" type="submit">搜索</button>
+                            <button class="layui-btn" type="button" id="button">导出搜索</button>
                             <a href="{:U('Order/index')}" class="layui-btn layui-btn-primary">重置</a>
                         </form>
                         <script>
                             $(function () {
                                 $("#button").click(function () {
-                                    var newUrl = "{:U('Order/exportOrder')}";    //设置新提交地址
+                                    var newUrl = "{:U('Order/deriveOrder')}";    //设置新提交地址
                                     $("#myform").attr('action', newUrl);    //通过jquery为action属性赋值
                                     $("#myform").submit();    //提交ID为myform的表单
                                 })
