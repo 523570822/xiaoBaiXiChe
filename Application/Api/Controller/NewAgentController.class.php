@@ -32,12 +32,12 @@ class NewAgentController extends BaseController
      *Date:2019/05/11 16:03
      */
     public function income(){
-//        $post = checkAppData('token,timeType,grade，page,size','token-时间筛选-身份-页数-个数');
-        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-        $post['timeType'] = 4;                 //查询方式  1日  2周  3月   4年
-        $post['grade'] = 3;
-        $post['page'] = 1;
-        $post['size'] = 10000000;
+        $post = checkAppData('token,timeType,grade，page,size','token-时间筛选-身份-页数-个数');
+//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+//        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
+//        $post['grade'] = 4;
+//        $post['page'] = 1;
+//        $post['size'] = 10000000;
 
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
@@ -47,32 +47,63 @@ class NewAgentController extends BaseController
         $car_where['status'] = array('neq',9);
         $car = D('CarWasher')->where($car_where)->select();
         //日期筛选
-        $order[] = 'create_time DESC';
-        if($post['timeType'] == 1){
-            $data = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,day as time,detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(car_wash) as car_wash,create_time')->group("day")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-            $todaytime=strtotime("today");
-        }elseif($post['timeType'] == 2){
-            $data = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,week_star as time,detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(car_wash) as car_wash,create_time')->group("week_star")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-            $todaytime = strtotime (date ('Y-m-d' , strtotime ("this week Monday" , time())));
-        }elseif($post['timeType'] == 3){
-            $data = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,month as time,detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(car_wash) as car_wash,create_time')->group("month")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-            $todaytime = strtotime (date ('Y-m' , time()));    //月份
-        }elseif($post['timeType'] == 4){
-            $data = M('Income')->where(array('agent_id'=>$agent['id'],'status'=>1))->field('id,year as time,detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(car_wash) as car_wash,create_time')->group("year")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-            $todaytime = strtotime (date ('Y' , time()) . '-1-1');     //年份
-        }
+        $array = $this->filter($post['timeType'],$agent['id'],$post['page'],$post['size']);
         //身份筛选
         if($post['grade'] == 1){
             $this->apiResponse('1','区域合伙人无数据');
         }elseif ($post['grade'] == 2){
-            foreach ($data as $k=>$v) {
-                $rult['date_time'] = date("Y-m-d", $v['time']);
+            $f_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->select();
+            foreach($f_agent as $key=>$val){
+                $arr = $this->filter($post['timeType'],$val['id'],$post['page'],$post['size']);
+                if(!empty($arr)){             //获取下级分润
+                    foreach ($arr['data'] as $k1=>$v1){
+                        $s_data[] =array(
+                            'time' => $v1['time'],
+                            'p_money' => $v1['p_money'],
+                        );
+                    }
+                }
             }
+            foreach ($array['data'] as $k2=>$v2) {
+                if($array['todaytime'] == $array['data'][0]['time']){
+                    if($array['todaytime'] == $s_data[0]['time']){
+                        $s_money = $s_data[0]['p_money'];
+                    }else{
+                        $s_money = 0;
+                    }
+                    $new_income = bcadd($array['data'][0]['net_income'],$s_money,2);
+                    $wash_num = $array['data'][0]['car_wash'];
+                }else{
+                    $new_income = 0;
+                    $wash_num = 0;
+                }
+                $date_time = date("Y-m-d",$v2['time']);
+                foreach ($s_data as &$v3){
+                    if($v2['time'] == $v3['time']){
+                        $s_income = $v3['p_money'];
+                    }else{
+                        $s_income = 0;
+                    }
+                }
+                $income = bcadd($v2['net_income'],$s_income,2);
+                $record = array(
+                    'date_time' => $date_time,
+                    'income' => $income,
+                );
+                $records[] = $record;
+            }
+            $car_num = count($car);
+            $result = array(
+                'new_income' => $new_income,    //今日收益
+                'record' =>$records,             //记录
+                'wash_num' => $wash_num,      //洗车数量
+                'car_num' => $car_num,      //设备数量
+            );
         }elseif ($post['grade'] == 3){
-            foreach ($data as $k=>$v){
-                if($todaytime == $data[0]['time']){
-                    $new_income =$v['net_income'];
-                    $wash_num = $v['car_wash'];
+            foreach ($array['data'] as $k=>$v){
+                if($array['todaytime'] == $array['data'][0]['time']){
+                    $new_income =$array['data'][0]['net_income'];
+                    $wash_num = $array['data'][0]['car_wash'];
                 }else{
                     $new_income = 0;
                     $wash_num = 0;
@@ -93,10 +124,96 @@ class NewAgentController extends BaseController
                 'car_num' => $car_num,      //设备数量
             );
         }elseif ($post['grade'] == 4){
+            $car_Washer = M('CarWasher')->where(array('partner_id'=>$agent['id'],'status'=>1))->field('id')->select();
+            foreach ($car_Washer as $ck=>$cv){
 
+                $order[] = 'create_time DESC';
+                if($post['timeType'] == 1){
+                    $month = strtotime(date ('Y-m' , time()));      //当前月份  查找本月份数据
+                    $datas[] = M('Income')->where(array('car_washer_id'=>$cv['id'],'status'=>1,'month'=>$month))->field('id,agent_id,day as time,SUM(partner_money) as partner_money,create_time')->group("day")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+                    $todaytime=strtotime("today");
+                }elseif($post['timeType'] == 2){
+                    $month = strtotime(date ('Y-m' , time()));
+                    $datas[] = M('Income')->where(array('car_washer_id'=>$cv['id'],'status'=>1,'month'=>$month))->field('id,agent_id,week_star as time,SUM(partner_money) as partner_money,create_time')->group("week_star")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+                    $todaytime = strtotime (date ('Y-m-d' , strtotime ("this week Monday" , time())));
+                }elseif($post['timeType'] == 3){
+                    $year = strtotime (date ('Y' , time()) . '-1-1');
+                    $datas[] = M('Income')->where(array('car_washer_id'=>$cv['id'],'status'=>1,'year'=>$year))->field('id,agent_id,month as time,SUM(partner_money) as partner_money,create_time')->group("month")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+                    $todaytime = strtotime (date ('Y-m' , time()));    //月份
+                }elseif($post['timeType'] == 4){
+                    $datas[] = M('Income')->where(array('car_washer_id'=>$cv['id'],'status'=>1))->field('id,agent_id,year as time,SUM(partner_money) as partner_money,create_time')->group("year")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+                    $todaytime = strtotime (date ('Y' , time()) . '-1-1');     //年份
+                }
+            }
+            foreach ($datas as &$dv){
+                foreach($dv as $dv1){
+                    $taskData[] = $dv1;
+                }
+            }
+            $item=[];
+            foreach($taskData as $k4=>$v4) {
+                if (!isset($item[$v4['time']])) {
+                    $item[$v4['time']] = $v4;
+                } else {
+                    $item[$v4['time']]['partner_money'] += $v4['partner_money'];
+                }
+            }
+            foreach ($item as $k=>$v){
+                if($todaytime == $item[$todaytime]['time']){
+                    $new_income =$item[$todaytime]['partner_money'];
+                }else{
+                    $new_income = 0;
+                }
+                $date_time = date("Y-m-d",$v['time']);
+                $income = $v['partner_money'];
+                $record = array(
+                    'date_time' => $date_time,
+                    'income' => $income,
+                );
+                $records[] = $record;
+            }
+            $result = array(
+                'new_income' => $new_income,    //今日收益
+                'record' =>$records,             //记录
+            );
         }
         $this->apiResponse('1','查询成功',$result);
 
+    }
+
+    /**
+     *筛选日期
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/14 10:38
+     */
+    public function filter($time = 1,$agent_id,$page=1,$size=15){
+        if(empty($agent_id)){
+            $this->apiResponse('0','代理商不能为空');
+        }
+        $order[] = 'create_time DESC';
+        if($time == 1){
+            $month = strtotime(date ('Y-m' , time()));      //当前月份  查找本月份数据
+            $data = M('Income')->where(array('agent_id'=>$agent_id,'status'=>1,'month'=>$month))->field('id,agent_id,day as time,SUM(net_income) as net_income,SUM(p_money) as p_money,SUM(car_wash) as car_wash,create_time')->group("day")->order($order)->limit(($page - 1) * $size, $size)->select();
+            $todaytime=strtotime("today");
+        }elseif($time == 2){
+            $month = strtotime(date ('Y-m' , time()));
+            $data = M('Income')->where(array('agent_id'=>$agent_id,'status'=>1,'month'=>$month))->field('id,agent_id,week_star as time,SUM(net_income) as net_income,SUM(p_money) as p_money,SUM(car_wash) as car_wash,create_time')->group("week_star")->order($order)->limit(($page - 1) * $size, $size)->select();
+            $todaytime = strtotime (date ('Y-m-d' , strtotime ("this week Monday" , time())));
+        }elseif($time == 3){
+            $year = strtotime (date ('Y' , time()) . '-1-1');
+            $data = M('Income')->where(array('agent_id'=>$agent_id,'status'=>1,'year'=>$year))->field('id,agent_id,month as time,SUM(net_income) as net_income,SUM(p_money) as p_money,SUM(car_wash) as car_wash,create_time')->group("month")->order($order)->limit(($page - 1) * $size, $size)->select();
+            $todaytime = strtotime (date ('Y-m' , time()));    //月份
+        }elseif($time == 4){
+            $data = M('Income')->where(array('agent_id'=>$agent_id,'status'=>1))->field('id,agent_id,year as time,SUM(net_income) as net_income,SUM(p_money) as p_money,SUM(car_wash) as car_wash,create_time')->group("year")->order($order)->limit(($page - 1) * $size, $size)->select();
+            $todaytime = strtotime (date ('Y' , time()) . '-1-1');     //年份
+        }
+        if(!empty($data)){
+            $array = array(
+                'data' => $data,
+                'todaytime' => $todaytime,
+            );
+        }
+        return $array;
     }
 
 

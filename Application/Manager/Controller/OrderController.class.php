@@ -66,6 +66,8 @@ class OrderController extends BaseController
             $where['create_time'] = array('elt',strtotime($_REQUEST['end_time'])+86399);
         }
         $param['page_size'] = 15;
+        //排序
+        $param['order'] = 'create_time desc';
         $data = D('Order')->queryList($where, '*',$param);
         foreach ($data['list'] as $k=>$v){
             $data['list'][$k]['m_id']=$v['m_id'];
