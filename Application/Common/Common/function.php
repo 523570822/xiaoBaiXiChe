@@ -507,9 +507,9 @@ function checkData($array){
                 if (is_numeric($v)) {
                     $array[$k] = (String)$v;
                 }
-                if (strpos($k,'price') > 0 || strpos($k,'price') === 0 || $k == 'balance') {
-                    $array[$k] = number_format(round($v,2),2,'.','');
-                }
+//                if (strpos($k,'price') > 0 || strpos($k,'price') === 0 || $k == 'balance') {
+//                    $array[$k] = number_format(round($v,2),2,'.','');
+//                }
             }
         }
     }

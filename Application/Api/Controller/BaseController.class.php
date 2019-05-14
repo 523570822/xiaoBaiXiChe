@@ -103,7 +103,7 @@ class BaseController extends ControllerService
      */
     public function getAgentInfo($token,$type='info',$field = ''){
         if(empty($token)){
-            apiResponse('-1','登录失效，请重新登录');
+            $this->apiResponse('-1','登录失效，请重新登录');
         }
         if ($type == 'info') {
             $agent = D('Agent')->findAgent(array('token'=>$token),'id,account,token,nickname,balance,salt,password,grade');
@@ -113,13 +113,13 @@ class BaseController extends ControllerService
             $agent = D('Agent')->findAgent(array('token'=>$token),'id,password,salt');
         }
         if(!$agent){
-            apiResponse('0','Your account has been dropped. Please log in again.');
+            $this->apiResponse('-1','登录失效，请重新登录');
         }
         if($agent['status'] == 9){
-            apiResponse('0','User information has been deleted');
+            $this->apiResponse('-1','登录失效，请重新登录');
         }
         if($agent['status'] == 2){
-            apiResponse('0','You are temporarily unable to login');
+            $this->apiResponse('-1','您暂时无法登录');
         }
         return $agent;
     }

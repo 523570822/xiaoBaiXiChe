@@ -139,8 +139,8 @@
                             <div class="layui-input-block">
                                 <select name="partner_id" class="layui-input w300">
                                     <option value="">请选择合作方</option>
-                                    <volist name="list" id="item">
-                                        <option value="{$item.id}">{$item.h_nickname}</option>
+                                    <volist name="partner" id="items">
+                                        <option value="{$items.id}">{$items.nickname}</option>
                                     </volist>
                                 </select>
                             </div>

@@ -201,6 +201,12 @@ class CarWasherController extends BaseController {
             $PAP = array ('status' => array ('neq' , 9));
             $ARA = 'id, p_id , nickname, status';
             $list = D ('Agent')->queryList ($PAP , $ARA);
+            $pa_where = array(
+                'status' => array ('neq' , 9),
+                'grade' => 4,
+            );
+            $partner = D('Agent')->queryList($pa_where,'*');
+            $this->assign ('partner' , $partner);
             $this->assign ('list' , $list);
             $this->assign ('province' , $province);
             $this->display ();
