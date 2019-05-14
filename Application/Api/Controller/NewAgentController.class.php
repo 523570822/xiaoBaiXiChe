@@ -32,7 +32,7 @@ class NewAgentController extends BaseController
      *Date:2019/05/11 16:03
      */
     public function income(){
-        $post = checkAppData('token,timeType,grade，page,size','token-时间筛选-身份-页数-个数');
+        $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
 //        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
 //        $post['timeType'] = 1;                 //查询方式  1日  2周  3月   4年
 //        $post['grade'] = 4;
