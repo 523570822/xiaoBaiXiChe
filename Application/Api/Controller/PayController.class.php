@@ -251,6 +251,7 @@ class PayController extends BaseController {
                 $date['is_set'] = 1;
                 $date['pay_time'] = time ();
                 $date['trade_no'] = $order_no;
+                $date['detail'] = 2;
                 if ( $order['o_type'] == 1 ) {//1洗车订单
                     if ( $request['methods'] == '1' ) {
                         $cards = M ("CardUser")->where (['id' => $request['methods_id']])->field ('l_id')->find ();
@@ -747,6 +748,7 @@ class PayController extends BaseController {
         $date['is_set'] = 1;
         $date['pay_type'] = 1;
         $date['trade_no'] = $info;
+        $date['detail'] = 2;
         if ( $order['o_type'] == 1 ) {//1洗车订单
             if ( $order_info['methods'] == '1' ) {
                 $cards = M ("CardUser")->where (['id' => $order_info['methods_id']])->field ('l_id')->find ();
