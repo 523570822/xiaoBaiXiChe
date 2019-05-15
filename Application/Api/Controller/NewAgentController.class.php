@@ -188,7 +188,7 @@ class NewAgentController extends BaseController
      */
     public function incomeInfo(){
 //        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
         $post['day'] = 1557763200;
         $post['page'] = 2;
         $post['size'] = 10;
@@ -196,34 +196,14 @@ class NewAgentController extends BaseController
             $post['day'] = strtotime(date('Y-m-d'));
         }*/
         $agent = $this->getAgentInfo($post['token']);
-
-        $order[] = 'id ASC';
-        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_code')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-        foreach ($car_washer as $k=>$v){
-            $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->find();
-            var_dump($order_num);
-            $time = strtotime(date('Y-m-d',$order_num['pay_time']));
-
-//            var_dump($time);exit;
-            if($time == $post['day']){
-                if(!empty($order_num['orderid'])){
-                    if($agent['grade'] == 1){
-                        $cars[$k]['net_income'] = $order_num['net_income']-$order_num['net_income']*0.05;
-                    }elseif($agent['grade'] == 2){
-                        $cars[$k]['net_income'] = $order_num['net_income']-$order_num['net_income']*0.10;
-                    }elseif($agent['grade'] == 3){
-                        $cars[$k]['net_income'] = $order_num['net_income']-$order_num['net_income']*0.15;
-                    }
-
-                    $cars[$k]['create_time'] = $order_num['pay_time'];
-                    $cars[$k]['mc_id'] = $order_num['orderid'];
-                    $cars[$k]['car_washer'] = $v['mc_id'];
-                }
-            }
+        $order[] = 'create_time ASC';
+        $income = M('Income')->where(array('agent_id'=>$agent['id'],'day'=>$post['day']))->field('orderid,net_income,detail,car_washer_id,create_time')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        foreach($income as $k=>$v){
+            $mc_code = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
+            $income[$k]['car_washer_id'] = $mc_code['mc_code'];
         }
-//        var_dump($cars);exit;
-        if(!empty($cars)){
-            $this->apiResponse('1','成功',$cars);
+        if(!empty($income)){
+            $this->apiResponse('1','成功',$income);
         }else{
             $this->apiResponse('0','暂无收入详情');
         }
