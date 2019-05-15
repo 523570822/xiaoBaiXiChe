@@ -187,14 +187,16 @@ class NewAgentController extends BaseController
      *Date:2019/05/15 14:39
      */
     public function incomeInfo(){
-//        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
-        $post['day'] = 1557763200;
-        $post['page'] = 2;
-        $post['size'] = 10;
-        /*if(empty($post['day'])){
+        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['day'] = 1555862400;
+//        $post['page'] = 2;
+//        $post['size'] = 10;
+        if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
-        }*/
+        }else{
+            $post['day'] = strtotime(date('Y-m-d',$post['day']));
+        }
         $agent = $this->getAgentInfo($post['token']);
         $order[] = 'create_time ASC';
         $income = M('Income')->where(array('agent_id'=>$agent['id'],'day'=>$post['day']))->field('orderid,net_income,detail,car_washer_id,create_time')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
@@ -242,6 +244,46 @@ class NewAgentController extends BaseController
             );
         }
         return $array;
+    }
+
+    /**
+     *代理商洗车机数量
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/15 16:52
+     */
+    public function caNum(){
+        $post = checkAppData('token,grade','token-等级');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['grade'] = 3;
+
+        $agent = $this->getAgentInfo($post['token']);
+        $car = M('CarWasher')->where(array('agent_id'=>$agent['id']))->select();
+        if($post['grade'] == 2){
+            $t_adent = M('Agent')->where(array('p_id'=>$agent['id']))->select();
+            foreach($t_adent as &$v){
+                $t_car = M('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
+                if(!empty($t_car)){
+                    $t_cars[] = $t_car;
+                }
+            }
+//            $a = count($t_cars);
+            foreach ($t_cars as &$vv){
+                foreach ($vv as &$vvs){
+                    $car_num[] = $vvs;
+                }
+            }
+        }
+        $data = array(
+            'car_num' => count($car),
+            't_agent' => count($t_adent),
+            't_car' => count($car_num),
+        );
+        if(!empty($car) || !empty($t_adent) || !empty($car_num)){
+            $this->apiResponse(1,'查询成功',$data);
+        }else{
+            $this->apiResponse(0,'暂无数据');
+        }
+
     }
 
 
