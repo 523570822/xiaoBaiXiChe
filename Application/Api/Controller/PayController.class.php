@@ -338,6 +338,7 @@ class PayController extends BaseController {
                             'month' => $month ,
                             'year' => $year ,
                             'create_time' => $a_order['pay_time'] ,
+                            'orderid' => $a_where['orderid'],
                         );
                         M ('Income')->add ($income_add);
                         $agent_save['balance'] = $agent['balance'] + $net_income;
@@ -833,6 +834,7 @@ class PayController extends BaseController {
                     'month' => $month ,
                     'year' => $year ,
                     'create_time' => $a_order['pay_time'] ,
+                    'orderid' => $a_where['orderid'],
                 );
                 M ('Income')->add ($income_add);
                 $agent_save['balance'] = $agent['balance'] + $net_income;
@@ -1074,14 +1076,6 @@ class PayController extends BaseController {
 //                    $income_where['agent_id'] = $car['agent_id'];
 //                    $income_where['car_washer_id'] = $a_order['c_id'];
                     $income_where['day'] = strtotime (date ('Y-m-d' , $a_order['pay_time']));
-//                    $income = M ('Income')->where ($income_where)->field ('detail,net_income,car_wash,day,week_star,week_end,month,year,create_time')->find ();
-//                    if ( $agent['grade'] == 1 ) {
-//                        $net_income = $a_order['pay_money'] - $a_order['pay_money'] * 0.05;
-//                    } elseif ( $agent['grade'] == 2 ) {
-//                        $net_income = $a_order['pay_money'] - $a_order['pay_money'] * 0.1;
-//                    } elseif ( $agent['grade'] == 3 ) {
-//                        $net_income = $a_order['pay_money'] - $a_order['pay_money'] * 0.15;
-//                    }
                         //获取时间戳
                         $timestamp = $a_order['pay_time'];
                         $week_star = strtotime (date ('Y-m-d' , strtotime ("this week Monday" , $timestamp)));
@@ -1104,6 +1098,7 @@ class PayController extends BaseController {
                             'month' => $month ,
                             'year' => $year ,
                             'create_time' => $a_order['pay_time'] ,
+                            'orderid' => $a_where['orderid'],
                         );
                         M ('Income')->add ($income_add);
                         $agent_save['balance'] = $agent['balance'] + $net_income;

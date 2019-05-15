@@ -57,24 +57,26 @@ class NewCarWasherController extends BaseController
     }
 
     /**
-     *洗车机收入
+     *设备收入
      *user:jiaming.wang  459681469@qq.com
      *Date:2018/12/20 11:53
      */
     public function carWasherIncome(){
-        $post = checkAppData('token,car_washer_id,in_month,page,size','token-洗车机ID-月份时间戳-页数-个数');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['car_washer_id'] = 1;
-//        $post['in_month'] = 'all';
+        $post = checkAppData('token,car_washer_id,page,size','token-洗车机ID-页数-个数');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['car_washer_id'] = 2;
+//        $post['in_month'] = '';
 //        $post['page'] = 1;
 //        $post['size'] = 10;
-        if($post['in_month'] == 'all'){
+        $post['in_month'] = $_REQUEST['in_month'];
+        if(empty($post['in_month'])){
             $post['in_month'] = strtotime(date('Y-m'));
         }
         $agent = $this->getAgentInfo($post['token']);
-        $order[] = 'sort DESC';
-        $income = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agrnt_id'=>$agent['id'],'month'=>$post['in_month']))->field('net_income,car_wash,day,car_washer_id')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-        $month = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agrnt_id'=>$agent['id'],'month'=>$post['in_month']))->field('SUM(net_income) as net_income,month as ag_month')->select();
+        $order[] = 'create_time DESC';
+        $income = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agrnt_id'=>$agent['id'],'month'=>$post['in_month']))->field('SUM(net_income) as net_income,SUM(car_wash) as car_wash,day')->group("day")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+
+        $month = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agrnt_id'=>$agent['id'],'month'=>$post['in_month']))->field('SUM(net_income) as net_income,month as ag_month')->group("month")->select();
         $data = array(
             'now_month' => $month,
             'income' => $income,
