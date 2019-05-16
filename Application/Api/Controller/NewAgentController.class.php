@@ -254,11 +254,11 @@ class NewAgentController extends BaseController
     public function caNum(){
         $post = checkAppData('token,grade','token-等级');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['grade'] = 3;
+//        $post['grade'] = 2;
 
         $agent = $this->getAgentInfo($post['token']);
         $car = M('CarWasher')->where(array('agent_id'=>$agent['id']))->select();
-        if($post['grade'] == 2){
+        if($post['grade'] == 1){
             $t_adent = M('Agent')->where(array('p_id'=>$agent['id']))->select();
             foreach($t_adent as &$v){
                 $t_car = M('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();

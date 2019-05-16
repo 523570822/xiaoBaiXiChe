@@ -94,25 +94,29 @@ class NewCarWasherController extends BaseController
      *Date:2019/01/19 11:45
      */
     public function myCarWasher(){
-        $post = checkAppData('token,address,car_num,status,page,size','token-洗车机地址-洗车机编号-洗车机状态-页数-个数');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['address'] = 'all';
-//        $post['car_num'] = 'all';
-//        $post['status'] = 'all';
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['address'] = '';
+//        $post['car_num'] = '';
+//        $post['status'] = '';
 //        $post['page'] = 1;
 //        $post['size'] = 10;
-        if($post['address'] == 'all'){
-            $post['address'] = '';
-        }
-        if($post['car_num'] == 'all'){
-            $post['car_num'] = '';
-        }
-        if($post['status'] == 'all'){
-            $post['status'] = '';
-        }
+
+        $request = $_REQUEST;
+        $post['address'] = $request['address'];
+        $post['car_num'] = $request['car_num'];
+        $post['status'] = $request['status'];
+//        if($post['address'] == 'all'){
+//            $post['address'] = '';
+//        }
+//        if($post['car_num'] == 'all'){
+//            $post['car_num'] = '';
+//        }
+//        if($post['status'] == 'all'){
+//            $post['status'] = '';
+//        }
         $order[] = 'sort DESC';
         if($post['address']){            //筛选地址
-
             if(!empty($post['address'])){
                 $where['address'] = array('LIKE', "%" . $post['address'] . "%");
             }else{
