@@ -141,12 +141,22 @@ class NewCarWasherController extends BaseController
         }
 
         $agent = $this->getAgentInfo($post['token']);
-
         $where['agent_id'] = $agent['id'];
         if ($post['page'] != '') {
             $result = M('CarWasher')->field('address,mc_code as mc_id,status')->where($where)->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         } else {
             $result = M('CarWasher')->field('address,mc_code as mc_id,status')->where($where)->order($order)->select();
+        }
+        foreach($result as $k=>$v){
+            if($v['status'] == 1){
+                $result[$k]['status'] = '正常';
+            }elseif ($v['status'] == 2){
+                $result[$k]['status'] = '故障';
+            }elseif ($v['status'] == 3){
+                $result[$k]['status'] = '报警';
+            }elseif ($v['status'] == 4){
+                $result[$k]['status'] = '不在线';
+            }
         }
         if($result){
             $this->apiResponse('1','成功',$result);
