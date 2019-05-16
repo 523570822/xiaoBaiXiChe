@@ -1018,7 +1018,7 @@ class PayController extends BaseController {
             $this->apiResponse (0 , '您的余额不足，请充值');
         }
         if ( $order['pay_money'] == 0.00 ) {
-            $order['pay_money'] = 0.01;
+            $this->apiResponse (0 , '数据异常' , '');
         }
         if ( $order['o_type'] ) {
             if ( $order['o_type'] == 1 ) {//1洗车订单

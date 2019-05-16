@@ -1231,8 +1231,8 @@ class OrderController extends BaseController {
             $price = $all_money;
             $method = '暂无使用优惠方式';
         }
-        if($price<0){
-            $price = 0;
+        if($price<=0){
+            $price = 0.01;
         }
         //返回的数据
         $data = array(
