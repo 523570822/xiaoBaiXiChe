@@ -1231,9 +1231,12 @@ class OrderController extends BaseController {
             $price = $all_money;
             $method = '暂无使用优惠方式';
         }
-        if($price<=0){
-            $price = 0.01;
+        if($all_money != 0){
+            if($price<=0){
+                $price = 0.01;
+            }
         }
+
         //返回的数据
         $data = array(
             'time' =>array(
@@ -1382,7 +1385,8 @@ class OrderController extends BaseController {
 //            echo M('Details')->_sql();
             //这台洗车机的全部订单都结算
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($o_save);
-            if($f_order){
+            //两种情况有一种发生就播报语音
+            if($f_order || $detail){
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //语音播报
