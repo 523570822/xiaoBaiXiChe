@@ -59,7 +59,7 @@ class NewCarWasherController extends BaseController
     /**
      *设备收入
      *user:jiaming.wang  459681469@qq.com
-     *Date:2018/12/20 11:53
+     *Date:2019/05/16 15:03
      */
     public function carWasherIncome(){
         $post = checkAppData('token,car_washer_id,page,size','token-洗车机ID-页数-个数');
@@ -91,7 +91,7 @@ class NewCarWasherController extends BaseController
     /**
      *我的洗车机
      *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/19 11:45
+     *Date:2019/05/16 15:03
      */
     public function myCarWasher(){
         $post = checkAppData('token,page,size','token-页数-个数');
@@ -114,7 +114,6 @@ class NewCarWasherController extends BaseController
                 $where['address'] = '';
             }
         }
-
         if($post['car_num']){        //搜索洗车机编号
             if(!empty($post['car_num'])){
                 $where['mc_code'] = array('Like', "%" . $post['car_num'] . "%");
@@ -162,6 +161,41 @@ class NewCarWasherController extends BaseController
     }
 
     /**
+     *设备详情
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/16 15:02
+     */
+    public function carInfo(){
+        $post = checkAppData('token,car_id','token-洗车机ID');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['car_id'] = 'A00104';
+
+        $agent = $this->getAgentInfo($post['token']);
+        $where['agent_id'] = $agent['id'];
+        $where['status'] = array('neq',9);
+        $where['mc_code'] = $post['car_id'];
+        $car_washer = M('CarWasher')->where($where)->field('mc_code as mc_id,address,status,electricity,water_volume,foam')->find();
+        //状态
+        if($car_washer['status'] == 1){
+            $car_washer['status'] = '正常';
+        }elseif ($car_washer['status'] == 2){
+            $car_washer['status'] = '故障';
+        }elseif ($car_washer['status'] == 3){
+            $car_washer['status'] = '液位不足';
+        }elseif ($car_washer['status'] == 4){
+            $car_washer['status'] = '不在线';
+        }elseif ($car_washer['status'] == 5){
+            $car_washer['status'] = '液位不足';
+        }
+
+        if($car_washer){
+            $this->apiResponse('1','成功',$car_washer);
+        }else{
+            $this->apiResponse('0','暂无此设备信息');
+        }
+    }
+
+    /**
      *收入详情
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/02 10:22
@@ -203,40 +237,7 @@ class NewCarWasherController extends BaseController
         }
     }
 
-    /**
-     *设备详情
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/24 14:49
-     */
-    public function carInfo(){
-        $post = checkAppData('token,car_id','token-洗车机ID');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['car_id'] = 'A00104';
 
-        $agent = $this->getAgentInfo($post['token']);
-        $where['agent_id'] = $agent['id'];
-        $where['status'] = array('neq',9);
-        $where['mc_code'] = $post['car_id'];
-        $car_washer = M('CarWasher')->where($where)->field('mc_code as mc_id,address,status,electricity,water_volume,foam')->find();
-
-        if($car_washer['status'] == 1){
-            $car_washer['status'] = '正常';
-        }elseif ($car_washer['status'] == 2){
-            $car_washer['status'] = '故障';
-        }elseif ($car_washer['status'] == 3){
-            $car_washer['status'] = '液位不足';
-        }elseif ($car_washer['status'] == 4){
-            $car_washer['status'] = '不在线';
-        }elseif ($car_washer['status'] == 5){
-            $car_washer['status'] = '液位不足';
-        }
-
-        if($car_washer){
-            $this->apiResponse('1','成功',$car_washer);
-        }else{
-            $this->apiResponse('0','暂无此设备信息');
-        }
-    }
 
     /**
      *异常订单结算

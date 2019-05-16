@@ -1382,7 +1382,7 @@ class OrderController extends BaseController {
 //            echo M('Details')->_sql();
             //这台洗车机的全部订单都结算
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($o_save);
-            if($send_post){
+            if($f_order){
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
                 //语音播报
