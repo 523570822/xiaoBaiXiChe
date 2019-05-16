@@ -96,25 +96,16 @@ class NewCarWasherController extends BaseController
     public function myCarWasher(){
         $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['address'] = '';
-//        $post['car_num'] = '';
-//        $post['status'] = '';
 //        $post['page'] = 1;
 //        $post['size'] = 10;
-
         $request = $_REQUEST;
         $post['address'] = $request['address'];
         $post['car_num'] = $request['car_num'];
         $post['status'] = $request['status'];
-//        if($post['address'] == 'all'){
-//            $post['address'] = '';
-//        }
-//        if($post['car_num'] == 'all'){
-//            $post['car_num'] = '';
-//        }
-//        if($post['status'] == 'all'){
-//            $post['status'] = '';
-//        }
+
+//        $post['address'] = '';
+//        $post['car_num'] = '';
+//        $post['status'] = 3;
         $order[] = 'sort DESC';
         if($post['address']){            //筛选地址
             if(!empty($post['address'])){
@@ -132,6 +123,9 @@ class NewCarWasherController extends BaseController
             }
         }
 
+        if($post['status'] == 3){
+            $post['status'] = array('in','3,5');
+        }
         if($post['status']){                  //筛选状态  1正常  2故障 3报警  4不在线
             if(!empty($post['status'])){
                 $where['status'] = $post['status'];
@@ -153,9 +147,11 @@ class NewCarWasherController extends BaseController
             }elseif ($v['status'] == 2){
                 $result[$k]['status'] = '故障';
             }elseif ($v['status'] == 3){
-                $result[$k]['status'] = '报警';
+                $result[$k]['status'] = '液位不足';
             }elseif ($v['status'] == 4){
                 $result[$k]['status'] = '不在线';
+            }elseif ($v['status'] == 5){
+                $result[$k]['status'] = '液位不足';
             }
         }
         if($result){
@@ -172,7 +168,7 @@ class NewCarWasherController extends BaseController
      */
     public function carIncomeInfo(){
         $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['day'] = 1550132967;
 //        $post['page'] = 1;
 //        $post['size'] = 1;
@@ -214,14 +210,27 @@ class NewCarWasherController extends BaseController
      */
     public function carInfo(){
         $post = checkAppData('token,car_id','token-洗车机ID');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-//        $post['car_id'] = 'A00001';
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['car_id'] = 'A00104';
 
         $agent = $this->getAgentInfo($post['token']);
         $where['agent_id'] = $agent['id'];
         $where['status'] = array('neq',9);
         $where['mc_code'] = $post['car_id'];
         $car_washer = M('CarWasher')->where($where)->field('mc_code as mc_id,address,status,electricity,water_volume,foam')->find();
+
+        if($car_washer['status'] == 1){
+            $car_washer['status'] = '正常';
+        }elseif ($car_washer['status'] == 2){
+            $car_washer['status'] = '故障';
+        }elseif ($car_washer['status'] == 3){
+            $car_washer['status'] = '液位不足';
+        }elseif ($car_washer['status'] == 4){
+            $car_washer['status'] = '不在线';
+        }elseif ($car_washer['status'] == 5){
+            $car_washer['status'] = '液位不足';
+        }
+
         if($car_washer){
             $this->apiResponse('1','成功',$car_washer);
         }else{
