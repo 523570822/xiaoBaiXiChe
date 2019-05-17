@@ -627,29 +627,35 @@ class NewAgentController extends BaseController
         }else{
             $this->apiResponse('1','暂无数据');
         }
-
     }
 
     /**
-     *收入明细
+     *明细详情
      *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/22 14:01
+     *Date:2019/05/17 16:13
      */
     public function incomeDetail(){
-        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['in_month'] = 1348950453;
-//        $post['page'] = 1;
-//        $post['size'] = 10;
-//        if($post['in_month'] == 'all'){
-//            $post['in_month'] = strtotime(date('Y-m'));
-//        }
+//        $post = checkAppData('token,in_month,page,size,grade','token-月份时间戳-页数-个数-身份');
+        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $post['in_month'] = 1558082005;
+        $post['page'] = 1;
+        $post['size'] = 10;
+        $post['grade'] = 2;           //1一级代理商   2二级代理商   3合作方   4区域合伙人
+        if($post['in_month'] == 'all'){
+            $post['in_month'] = strtotime(date('Y-m'));
+        }
         $agent = $this->getAgentInfo($post['token']);
         $car_where['status'] = array('neq',9);
         $car_where['agent_id'] = array('eq',$agent['id']);
         $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
         //总净收入
-        $income = M('Income')->where($car_where)->field('SUM(net_income) as de_income')->find();
+        if(in_array($post['grade'],array('1','2'))){
+            $income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money')->find();
+        }else{
+            $income = array();
+        }
+
+        dump($income);exit;
 
         //每天净收入
 

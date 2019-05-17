@@ -63,6 +63,12 @@ class WashshopController extends BaseController
         if ( empty($lon) && empty($lat) ) {
             $this->apiResponse ('0' , '缺少坐标参数');
         }
+        if($lon>180){
+            $lon = bcsub (180,$lon,12);
+        }
+        if($lat>90){
+            $lat = bcsub (90,$lon,12);
+        }
         $wh3 = '(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(' . $lat . '-lat)/360),2)+COS(3.1415926535898*' . $lat . '/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(' . $lon . '-lon)/360),2))))*1000';
         $shopList = M ('Washshop')->where (array ('status' => 1))->field ('id,shop_pic,shop_name,lon,lat,shop_phone,address,startime,create_time,endtime,mtime,etime,' . $wh3 . ' as distance')->order ('distance asc')->select ();
         if ( $shopList ) {
