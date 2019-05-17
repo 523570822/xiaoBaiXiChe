@@ -505,9 +505,9 @@ class PayController extends BaseController {
         $xml_data['out_trade_no'] = $order_info['orderid']; // 订单流水
         $xml_data['notify_url'] = C ('API_URL') . "/index.php/Api/Pay/WeChatNotify"; // 回调 URL
         $xml_data['spbill_create_ip'] = $_SERVER['REMOTE_ADDR']; // 终端 IP
-        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
+//        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
 
-//        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
+        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
         if($xml_data['total_fee'] == 0){
             $xml_data['total_fee'] = 1;
         }
