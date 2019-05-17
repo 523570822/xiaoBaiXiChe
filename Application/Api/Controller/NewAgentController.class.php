@@ -311,7 +311,7 @@ class NewAgentController extends BaseController
      */
     public function agent(){
         $post = checkAppData('token,grade,page,size','token-加盟商等级-页数-个数');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['grade'] = 2;
 //        $post['page'] = 3;
 //        $post['size'] = 2;
@@ -345,7 +345,7 @@ class NewAgentController extends BaseController
      */
     public function agentInfo(){
         $post = checkAppData('token','token');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
         $agent = $this->getAgentInfo($post['token']);
         $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->select();
         $data['car_washer'] = count($car_washer);
@@ -485,38 +485,84 @@ class NewAgentController extends BaseController
      *Date:2019/01/05 16:07
      */
     public function detail(){
-        $post = checkAppData('token','token');
-//        $post['token'] = '64a516f028e6fb9cdc7f9dc497f5653a';
+        $post = checkAppData('token,page,size,grade','token-页数-个数-身份');
+//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+//        $post['page'] = 24;
+//        $post['size'] = 10;
+//        $post['grade'] = 3;    //1 一级代理商    2  二级代理商   3合作方
+
         $agent = $this->getAgentInfo($post['token']);
         $car_where['status'] = array('neq',9);
         $car_where['agent_id'] = array('eq',$agent['id']);
-        $car = M('CarWasher')->where($car_where)->field('id,agent_id')->select();
-        foreach ($car as $k=>$v){
-            $in_where['status'] = array('eq',2);
-            $in_where['c_id'] = array('eq',$v['id']);
-            $in_where['o_type'] = array('eq',1);
-            $income = M('Order')->where($in_where)->field('SUM(pay_money) income,id')->find();
-            $incomes[] = $income;
+        $car_where['grade'] = array('neq',4);
+        //寻找一级代理商下的二级代理商
+        $p_money = array();
+        $partner = array();
+        if($post['grade'] == 1){
+            $f_agent = M('Agent')->where(array('p_id'=>$agent['id'],'status'=>array('neq',9),'grade'=>3))->field('id')->select();
+            foreach($f_agent as $kk=>$vv){
+                $f_income = M('Income')->where(array('agent_id'=>$vv['id'],'status'=>array('neq',9)))->field('p_money as money,create_time')->select();
+                if(!empty($f_income)){
+                    //给分润增加类别
+                    foreach ($f_income as $f=>$m){
+                        $f_income[$f]['type'] = 3;     //上级代理商分润
+                        $f_income[$f]['money'] = '+'.$f_income[$f]['money'];     //上级代理商分润
+                    }
+                    //分润为0去除
+                    if($m['money'] != 0){
+                        $ft_income[] = $f_income;
+                    }
+                }
+            }
+            foreach ($ft_income as $kk1=>$vv1){
+                foreach ($vv1 as $kk2=>$vv2){
+                    $p_money[] = $vv2;
+                }
+            }
+        }elseif ($post['grade'] == 3) {
+            $f_car = M('CarWasher')->where(array('partner_id' => $agent['id'], 'status' => array('neq', 9)))->field('id')->select();
+            foreach ($f_car as $kkk => $vvv) {
+                $h_income[] = M('Income')->where(array('car_washer_id' => $vvv['id']))->field('partner_money as money,create_time')->select();
+            }
+            foreach ($h_income as $hk=>$hv){
+                foreach ($hv as $hks=>$hvs){
+                    $hvs['money'] = '+'.$hvs['money'];
+                    $hvs['type'] = 4;
+                    if($hvs['money'] != 0){
+                        $partner[] = $hvs;
+                    }
+                }
+            }
         }
-        $sum = 0;
-        for($i = 0; $i < count($incomes); $i++) {
-            $sum += $incomes[$i]['income'];
+        $income = M('Income')->where($car_where)->field('net_income as money,create_time')->select();
+        $withdraw = M('Withdraw')->where($car_where)->field('money,create_time')->select();
+
+        foreach($income as $k=>$v){
+            $income[$k]['money'] = '+'.$income[$k]['money'];
+            $income[$k]['type'] = 1;    //代表账单收入
         }
-        if($agent['grade'] == 1){
-            $comm = $sum*0.05;
-        }elseif($agent['grade'] == 2){
-            $comm = $sum*0.10;
-        }elseif($agent['grade'] == 3) {
-            $comm = $sum * 0.15;
+        foreach($withdraw as $k1=>$v1){
+            $withdraw[$k1]['money'] = '-'.$withdraw[$k1]['money'];
+            $withdraw[$k1]['type'] = 2;    //代表提现
+
         }
-        $income = $sum-$comm;
-        $data = array(
-            'total' => $sum,     //总收入
-            'income' => $income,     //总收入
-            'come' => $comm,     //总收入
-        );
+
+        $list=array_merge($income,$withdraw,$p_money,$partner);
+        $lists = list_sort_by($list, 'create_time', 'desc');
+        for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
+            $datas[] = $lists[$i];
+        }
+        foreach ($datas as $k3=>$v3) {
+            if(!empty($datas[$k3])){
+                $data = $datas[$k3];
+                $datass[] = $data;
+            }
+        }
+
         if($data){
-            $this->apiResponse('1','成功',$data);
+            $this->apiResponse('1','成功',$datass);
+        }else{
+            $this->apiResponse('1','暂无数据');
         }
     }
 
@@ -527,7 +573,7 @@ class NewAgentController extends BaseController
      */
     public function incomeDetail(){
         $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['in_month'] = 1348950453;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
@@ -574,7 +620,7 @@ class NewAgentController extends BaseController
      */
     public function carIncomeInfosss(){
         $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-//        $post['token'] = '64a516f028e6fb9cdc7f9dc497f5653a';
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['day'] = 1548000000;
 //        $post['page'] = 2;
 //        $post['size'] = 10;
@@ -622,7 +668,7 @@ class NewAgentController extends BaseController
      */
     public function CommDetail(){
         $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['in_month'] = 1543593788;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
@@ -669,7 +715,7 @@ class NewAgentController extends BaseController
      */
     public function carCommInfo(){
         $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['day'] = 1550073600;
 //        $post['page'] = 1;
 //        $post['size'] = 1;
@@ -726,7 +772,7 @@ class NewAgentController extends BaseController
      */
     public function myInfo(){
         $post = checkAppData('token','token');
-//        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 
         $agent = $this->getAgentInfo($post['token']);
 

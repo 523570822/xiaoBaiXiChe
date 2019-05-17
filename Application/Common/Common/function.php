@@ -341,6 +341,35 @@ function api ($name , $vars = array ()) {
 }
 
 /**
+ *排序方法
+ * @param $list  二维数组
+ * @param $field  排序字段
+ * @param string $sort_by  排序方法 默认正序
+ * @return array
+ *user:jiaming.wang  459681469@qq.com
+ *Date:2019/05/17 00:35
+ */
+function list_sort_by($list, $field, $sort_by = 'asc') {
+    if(is_array($list)) {
+        $refer = $resultSet = array();
+        foreach ($list as $i => $data)
+            $refer[$i] = &$data[$field];
+        switch ($sort_by) {
+            case 'asc': // 正向排序
+                asort($refer);
+                break;
+            case 'desc':// 逆向排序
+                arsort($refer);
+                break;
+        }
+        foreach ( $refer as $key=> $val)
+            $resultSet[] = &$list[$key];
+        return $resultSet;
+    }
+    return false;
+}
+
+/**
  *接口验空
  * @param null $parameter
  * @param null $keys
