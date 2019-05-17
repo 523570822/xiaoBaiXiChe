@@ -63,16 +63,17 @@ class WashshopController extends BaseController
         if ( empty($lon) && empty($lat) ) {
             $this->apiResponse ('0' , '缺少坐标参数');
         }
-        if($lon>180){
-            $lon = bcsub (180,$lon,12);
-        }
-        if($lat>90){
-            $lat = bcsub (90,$lon,12);
-        }
+
         $wh3 = '(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(' . $lat . '-lat)/360),2)+COS(3.1415926535898*' . $lat . '/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(' . $lon . '-lon)/360),2))))*1000';
         $shopList = M ('Washshop')->where (array ('status' => 1))->field ('id,shop_pic,shop_name,lon,lat,shop_phone,address,startime,create_time,endtime,mtime,etime,' . $wh3 . ' as distance')->order ('distance asc')->select ();
         if ( $shopList ) {
             foreach ( $shopList as $k => $v ) {
+                if($shopList[$k]['lon']>180){
+                    $shopList[$k]['lon'] = bcsub (180,$shopList[$k]['lon'],12);
+                }
+                if($shopList[$k]['lat']>90){
+                    $shopList[$k]['lat'] = bcsub (90,$shopList[$k]['lat'],12);
+                }
                 if ( $lat == "" ) {
                 } else {
                     $shopList[$k]['distance'] = round ($v['distance'] / 1000 , 2) . 'Km';// '距离我' .;
@@ -251,6 +252,12 @@ class WashshopController extends BaseController
         $washcar = M ('CarWasher')->where ($washer_where)->field ('id,p_id,lon,lat,address,mc_code as mc_id ,status,type,' . $wh3 . ' as distance')->order ('distance ASC')->select ();
         if ( $washcar ) {
             foreach ( $washcar as $k => $v ) {
+                if($washcar[$k]['lon']>180){
+                    $washcar[$k]['lon'] = bcsub (180,$washcar[$k]['lon'],12);
+                }
+                if($washcar[$k]['lat']>90){
+                    $washcar[$k]['lat'] = bcsub (90,$washcar[$k]['lat'],12);
+                }
                 if ( $lat == "" ) {
                 } else {
                     $washcar[$k]['distance'] = round ($v['distance'] / 1000 , 2) . 'Km';// '距离我' .;
