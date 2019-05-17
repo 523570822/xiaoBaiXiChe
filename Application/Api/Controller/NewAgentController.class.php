@@ -567,6 +567,70 @@ class NewAgentController extends BaseController
     }
 
     /**
+     *明细汇总
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/17 09:59
+     */
+    public function summary(){
+        $post = checkAppData('token,grade','token-等级');
+//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+//        $post['grade'] = 3;           //1一级代理商   2二级代理商   3合作方
+        $agent = $this->getAgentInfo($post['token']);
+
+        if($post['grade'] == 1){
+            $n_income = M('Income')->where(array('agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(partner_money) as partner_money,SUM(plat_money) as plat_money')->find();
+            $trade = bcsub($n_income['detail'],$n_income['platform'],2);
+            $f_tagent = M('Agent')->where(array('p_id'=>$agent['id']))->field('id')->select();
+            foreach($f_tagent as $k=>$v){
+                $f_tincome = M('Income')->where(array('agent_id'=>$v['id']))->field('SUM(p_money) as p_money')->find();
+                if($f_tincome['p_money'] != 0){
+                    $p_money[] = $f_tincome['p_money'];
+                }
+            }
+            $p_money = (string)array_sum($p_money);
+            $all_money = bcadd($n_income['net_income'],$p_money,2);
+            $n_income['p_money'] = '';
+            $all_partner = '';
+        }elseif ($post['grade'] == 2){
+            $n_income = M('Income')->where(array('agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(partner_money) as partner_money,SUM(plat_money) as plat_money,SUM(p_money) as p_money')->find();
+            $trade = bcsub($n_income['detail'],$n_income['platform'],2);
+            $p_money = '';
+            $all_money = '';
+            $all_partner = '';
+        }elseif ($post['grade'] == 3){
+            $car = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id')->select();
+            foreach ($car as $ck=>$cv){
+                $h_income = M('Income')->where(array('car_washer_id'=>$cv['id']))->field('SUM(partner_money) as partner_money')->find();
+                $a[] = $h_income['partner_money'];
+            }
+            $all_partner = (string)array_sum($a);
+            $n_income['p_money'] = '';
+            $n_income['net_income'] = '';
+            $trade = '';
+            $p_money = '';
+            $all_money = '';
+            $n_income['partner_money'] = '';
+            $n_income['plat_money'] = '';
+        }
+        $data = array(
+            'net_income' => $n_income['net_income'],    //净收入
+            'trade' => $trade,         //营业收入
+            'p_money' => $p_money,          //下级分润收入
+            'all_money' => $all_money,       //总收入
+            'partner_money' => $n_income['partner_money'],                //合作方分润
+            'plat_money' => $n_income['plat_money'],                    //平台分润
+            'below' => $n_income['p_money'],                    //上级分润支出
+            'all_partner' => $all_partner,                 //总分润收入
+        );
+        if($data){
+            $this->apiResponse('1','查询成功',$data);
+        }else{
+            $this->apiResponse('1','暂无数据');
+        }
+
+    }
+
+    /**
      *收入明细
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/22 14:01
