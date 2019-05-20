@@ -436,6 +436,71 @@ function array_merge_rec(&$array) {  // 参数是使用引用传递的
 }
 
 /**
+ *根据键名排序
+ * @param $array要排序的数组
+ * @param $keys排序的键名
+ * @param $type排序方式，默认为升序排序
+ *user:jiaming.wang  459681469@qq.com
+ *Date:2019/05/20 14:38
+ */
+function array_sort($array, $keys, $type = 'asc'){
+    $keysvalue = $new_array = array();
+    foreach($array as $k=>$v){
+        $keysvalue[$k] = $v[$keys];
+    }
+
+    if($type == 'asc'){
+        asort($keysvalue);
+    }else{
+        arsort($keysvalue);
+    }
+    reset($keysvalue);
+    $i = 0;
+    foreach ($keysvalue as $k=>$v){
+        $new_array[$i++] = $array[$k];
+    }
+    return $new_array;
+}
+
+/**
+ *获取二维数组中的元素
+ * @param $input
+ * @param $columnKey
+ * @param null $indexKey
+ *user:jiaming.wang  459681469@qq.com
+ *Date:2019/05/20 15:06
+ */
+function i_array_column($input, $columnKey, $indexKey=null){
+    if(!function_exists('array_column')){
+        $columnKeyIsNumber  = (is_numeric($columnKey))?true:false;
+        $indexKeyIsNull            = (is_null($indexKey))?true :false;
+        $indexKeyIsNumber     = (is_numeric($indexKey))?true:false;
+        $result                         = array();
+        foreach((array)$input as $key=>$row){
+            if($columnKeyIsNumber){
+                $tmp= array_slice($row, $columnKey, 1);
+                $tmp= (is_array($tmp) && !empty($tmp))?current($tmp):null;
+            }else{
+                $tmp= isset($row[$columnKey])?$row[$columnKey]:null;
+            }
+            if(!$indexKeyIsNull){
+                if($indexKeyIsNumber){
+                    $key = array_slice($row, $indexKey, 1);
+                    $key = (is_array($key) && !empty($key))?current($key):null;
+                    $key = is_null($key)?0:$key;
+                }else{
+                    $key = isset($row[$indexKey])?$row[$indexKey]:0;
+                }
+            }
+            $result[$key] = $tmp;
+        }
+        return $result;
+    }else{
+        return array_column($input, $columnKey, $indexKey);
+    }
+}
+
+/**
  *验证手机号
  * @param $mobile
  *user:jiaming.wang  459681469@qq.com
