@@ -1,0 +1,140 @@
+[ 2019-05-20T14:22:24+08:00 ] 127.0.0.1 /index.php/Api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001958s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003166s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003321s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 397 行.
+
+[ 2019-05-20T14:22:37+08:00 ] 127.0.0.1 /index.php/Api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002597s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000884s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000932s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0108s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0133s ]
+SQL: SELECT SUM(net_income) as net_income FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY month LIMIT 1   [ RunTime:0.0109s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY day  [ RunTime:0.0112s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0104s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0106s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0099s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0125s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0139s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0122s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 6 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0101s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0102s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0108s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0100s ]
+
+[ 2019-05-20T14:23:39+08:00 ] 127.0.0.1 /index.php/Api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000880s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000712s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000776s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0105s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0091s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0105s ]
+SQL: SELECT SUM(net_income) as net_income FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY month LIMIT 1   [ RunTime:0.0088s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY day  [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0112s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0091s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0085s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0090s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0092s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0159s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 6 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0092s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0090s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0092s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0092s ]
+NOTIC: [8] Undefined index: day D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 696 行.
+
+[ 2019-05-20T14:23:45+08:00 ] 127.0.0.1 /index.php/Api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000438s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000779s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000857s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0103s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0091s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0107s ]
+SQL: SELECT SUM(net_income) as net_income FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY month LIMIT 1   [ RunTime:0.0086s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY day  [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0097s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0085s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0087s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0093s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0096s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0093s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 6 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0092s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0103s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0131s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0095s ]
+
+[ 2019-05-20T14:24:24+08:00 ] 127.0.0.1 /index.php/Api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000527s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000572s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0093s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0127s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0106s ]
+SQL: SELECT SUM(net_income) as net_income FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY month LIMIT 1   [ RunTime:0.0084s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY day  [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0104s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0087s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0094s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0085s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0085s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0081s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 6 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0090s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0083s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0100s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0120s ]
+
+[ 2019-05-20T14:24:50+08:00 ] 127.0.0.1 /index.php/Api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000550s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001193s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001300s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0093s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0090s ]
+SQL: SELECT SUM(net_income) as net_income FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY month LIMIT 1   [ RunTime:0.0080s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY day  [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0085s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0114s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0091s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0152s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0092s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0089s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 6 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0124s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0095s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0093s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0111s ]
+

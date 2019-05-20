@@ -693,8 +693,10 @@ class NewAgentController extends BaseController
                 $result[$value['day']]['open']+=$value['open'];
             }
         }
+        $res = array_values($result);
+//        dump($a);exit;
         if($result){
-            $this->apiResponse(1,'查询成功',$result);
+            $this->apiResponse(1,'查询成功',$res);
         }
 
 
