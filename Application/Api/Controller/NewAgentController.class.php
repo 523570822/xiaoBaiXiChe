@@ -730,7 +730,10 @@ class NewAgentController extends BaseController
         //总净收入
         $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money,month')->group("month")->find();
         //日净收入
-        $day_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform,day')->group("day")->order('day DESC')->select();
+        $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform,day')->group("day")->order('day DESC')->select();
+        foreach($day_income as $dk=>$dv){
+            $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
+        }
         $data = array(
             'all_income' => $month_income,
             'now_income' => $day_income,
