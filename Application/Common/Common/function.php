@@ -410,6 +410,32 @@ function checkAppData ($parameter = null , $keys = null , $jump = null) {
 }
 
 /**
+ *多维数组变一维数组
+ * @param $array
+ *user:jiaming.wang  459681469@qq.com
+ *Date:2019/05/20 01:49
+ */
+function array_merge_rec(&$array) {  // 参数是使用引用传递的
+    // 定义一个新的数组
+    $new_array = array ();
+    // 遍历当前数组的所有元素
+    foreach ( $array as $item ) {
+        if (is_array ( $item )) {
+            // 如果当前数组元素还是数组的话，就递归调用方法进行合并
+            array_merge_rec ( $item );
+            // 将得到的一维数组和当前新数组合并
+            $new_array = array_merge ( $new_array, $item );
+        } else {
+            // 如果当前元素不是数组，就添加元素到新数组中
+            $new_array [] = $item;
+        }
+    }
+    // 修改引用传递进来的数组参数值
+    $array = $new_array;
+    return $array;
+}
+
+/**
  *验证手机号
  * @param $mobile
  *user:jiaming.wang  459681469@qq.com

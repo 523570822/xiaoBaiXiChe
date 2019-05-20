@@ -443,8 +443,6 @@ class NewAgentController extends BaseController
                         }
                     }
                 }
-//                var_dump($agentNum);exit;
-
                 foreach ($agentNum as $key1=>$value1){
                     foreach ($value1 as $key2=>$value2){
                         foreach ($value2 as $key3=>$vale3){
@@ -629,58 +627,84 @@ class NewAgentController extends BaseController
         }
     }
 
+
+
     /**
-     *明细详情
+     *一级代理商明细详情
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/05/17 16:13
      */
-    public function incomeDetail(){
-//        $post = checkAppData('token,in_month,page,size,grade','token-月份时间戳-页数-个数-身份');
-        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-        $post['in_month'] = 1558082005;
-        $post['page'] = 1;
-        $post['size'] = 10;
-        $post['grade'] = 2;           //1一级代理商   2二级代理商   3合作方   4区域合伙人
-        if($post['in_month'] == 'all'){
+    public function oneDetail(){
+        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['in_month'] = 1558082005;
+//        $post['page'] = 1;
+//        $post['size'] = 10;
+        if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
         $agent = $this->getAgentInfo($post['token']);
+        if($agent['grade'] != 2){
+            $this->apiResponse('0','您不是一级代理商');
+        }
         $car_where['status'] = array('neq',9);
         $car_where['agent_id'] = array('eq',$agent['id']);
         $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
         //总净收入
-        if(in_array($post['grade'],array('1','2'))){
-            $income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money')->find();
-        }else{
-            $income = array();
+        $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income')->group("month")->find();
+        $month_income['p_money'] = '';
+        $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,day')->group("day")->select();
+        foreach ($day_income as &$dv){
+            $dv['p_money'] = 0;
+            $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
         }
-
-        dump($income);exit;
-
-        //每天净收入
-
-        $order[] = 'sort DESC';
-        $day_income = M('Income')->where($car_where)->field('day,SUM(net_income) as net_income,SUM(detail) as detail')->group('day')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-        foreach ($day_income as $k=>$v){
-            $time = strtotime(date('Y-m',$v['day']));
-            if($time == $car_where['month']){
-                $now_day['day'] = $v['day'];
-                $now_day['net_income'] = $v['net_income'];
-                $now_day['detail'] = $v['detail'];
-                $now_days[] = $now_day;
+        $under = M('Agent')->where(array('p_id'=>$agent['id']))->field('id')->select();
+        foreach($under as $uk=>$uv){
+            $under_income = M('Income')->where(array('agent_id'=>$uv['id'],'month'=>$car_where['month']))->field('SUM(p_money) as p_money,day')->group("day")->order('day DESC')->select();
+            if(!empty($under_income)){
+                $under_incomes[] = $under_income;
             }
         }
-        $data = array(
-            'now_month' => $car_where['month'],
-            'income' => $income,
-            'day_income' => $now_days,
-        );
-
-        if(!empty($now_days)){
-            $this->apiResponse('1','成功',$data);
-        }else{
-            $this->apiResponse('0','暂无数据信息');
+//            $a = array_merge_rec($under_income);
+        foreach($under_incomes as $uk1=>$uv1){
+            foreach($uv1 as &$uv2){
+                $uv2['detail'] = 0;
+                $uv2['net_income'] = 0;
+                $uv2['plat_money'] = 0;
+                $uv2['partner_money'] = 0;
+                $uv2['platform'] = 0;
+                $uv2['open'] = 0;
+                $unders[] = $uv2;
+            }
         }
+        $new_under = array_merge($unders,$day_income);
+        //相同键值相加形成新数组
+        $result = array();
+        foreach($new_under as $key=>$value){
+            if(!isset($result[$value['day']])){
+                $result[$value['day']]=$value;
+            }else{
+                $result[$value['day']]['p_money']+=$value['p_money'];
+                $result[$value['day']]['detail']+=$value['detail'];
+                $result[$value['day']]['net_income']+=$value['net_income'];
+                $result[$value['day']]['plat_money']+=$value['plat_money'];
+                $result[$value['day']]['partner_money']+=$value['partner_money'];
+                $result[$value['day']]['platform']+=$value['platform'];
+                $result[$value['day']]['open']+=$value['open'];
+            }
+        }
+        if($result){
+            $this->apiResponse(1,'查询成功',$result);
+        }
+
+
+//            elseif($post['grade']==2) {
+//            $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money')->group("day")->find();
+//            $day_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform')->group("day")->select();
+//        }else{
+//            $day_income = array();
+//        }
+
     }
 
     /**
