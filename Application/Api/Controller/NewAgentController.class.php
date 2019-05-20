@@ -681,6 +681,7 @@ class NewAgentController extends BaseController
         //相同键值相加形成新数组
         $result = array();
         foreach($new_under as $key=>$value){
+            $month_income['p_money'] += $value['p_money'];
             if(!isset($result[$value['day']])){
                 $result[$value['day']]=$value;
             }else{
@@ -693,22 +694,48 @@ class NewAgentController extends BaseController
                 $result[$value['day']]['open']+=$value['open'];
             }
         }
+        $month_income['p_money'] = (string)$month_income['p_money'];
+        //数组按时间排序
         array_multisort(i_array_column($result,'day'),SORT_DESC,$result);
+        $data = array(
+            'all_income' => $month_income,
+            'now_income' => $result,
+        );
         if($result){
-            $this->apiResponse(1,'查询成功',$result);
+            $this->apiResponse(1,'查询成功',$data);
         }
-
-
-//            elseif($post['grade']==2) {
-//            $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money')->group("day")->find();
-//            $day_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform')->group("day")->select();
-//        }else{
-//            $day_income = array();
-//        }
-
     }
 
     /**
+     *二级代理商明细详情
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/20 15:12
+     */
+    public function twoDetail(){
+//        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
+        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+        $post['in_month'] = 1558082005;
+        $post['page'] = 1;
+        $post['size'] = 10;
+        if($post['in_month'] == ''){
+            $post['in_month'] = strtotime(date('Y-m'));
+        }
+        $agent = $this->getAgentInfo($post['token']);
+        if($agent['grade'] != 3){
+            $this->apiResponse('0','您不是二级代理商');
+        }
+        $car_where['status'] = array('neq',9);
+        $car_where['agent_id'] = array('eq',$agent['id']);
+        $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
+        //总净收入
+        $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money')->group("day")->find();
+        //日净收入
+        $day_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform')->group("day")->select();
+
+    }
+
+
+        /**
      *净收入详情
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/02 10:22
