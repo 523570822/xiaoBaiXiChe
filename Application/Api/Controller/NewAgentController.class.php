@@ -651,7 +651,7 @@ class NewAgentController extends BaseController
         $car_where['agent_id'] = array('eq',$agent['id']);
         $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
         //总净收入
-        $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income')->group("month")->find();
+        $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,month')->group("month")->find();
         $month_income['p_money'] = '';
         $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,day')->group("day")->select();
         foreach ($day_income as &$dv){
@@ -712,11 +712,11 @@ class NewAgentController extends BaseController
      *Date:2019/05/20 15:12
      */
     public function twoDetail(){
-//        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
-        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
-        $post['in_month'] = 1558082005;
-        $post['page'] = 1;
-        $post['size'] = 10;
+        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
+//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+//        $post['in_month'] = 1558082005;
+//        $post['page'] = 1;
+//        $post['size'] = 10;
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
@@ -728,9 +728,16 @@ class NewAgentController extends BaseController
         $car_where['agent_id'] = array('eq',$agent['id']);
         $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
         //总净收入
-        $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money')->group("day")->find();
+        $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money,month')->group("month")->find();
         //日净收入
-        $day_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform')->group("day")->select();
+        $day_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform,day')->group("day")->order('day DESC')->select();
+        $data = array(
+            'all_income' => $month_income,
+            'now_income' => $day_income,
+        );
+        if($data){
+            $this->apiResponse(1,'查询成功',$data);
+        }
 
     }
 
