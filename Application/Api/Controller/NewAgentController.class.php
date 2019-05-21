@@ -653,7 +653,7 @@ class NewAgentController extends BaseController
         //总净收入
         $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,month')->group("month")->find();
         $month_income['p_money'] = '';
-        $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,day')->group("day")->select();
+        $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,day')->group("day")->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach ($day_income as &$dv){
             $dv['p_money'] = 0;
             $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
@@ -665,7 +665,6 @@ class NewAgentController extends BaseController
                 $under_incomes[] = $under_income;
             }
         }
-//            $a = array_merge_rec($under_income);
         foreach($under_incomes as $uk1=>$uv1){
             foreach($uv1 as &$uv2){
                 $uv2['detail'] = 0;
@@ -730,7 +729,7 @@ class NewAgentController extends BaseController
         //总净收入
         $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money,month')->group("month")->find();
         //日净收入
-        $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform,day')->group("day")->order('day DESC')->select();
+        $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform,day')->group("day")->order('day DESC')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach($day_income as &$dv){
             $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
         }
@@ -741,8 +740,87 @@ class NewAgentController extends BaseController
         if($data){
             $this->apiResponse(1,'查询成功',$data);
         }
-
     }
+
+    /**
+     *合作方分润明细
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/20 17:24
+     */
+    public function partnerDetail(){
+        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
+//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+//        $post['in_month'] = 1558082005;
+//        $post['page'] = 1;
+//        $post['size'] = 10;
+        if($post['in_month'] == ''){
+            $post['in_month'] = strtotime(date('Y-m'));
+        }
+        $agent = $this->getAgentInfo($post['token']);
+        if($agent['grade'] != 4){
+            $this->apiResponse('0','您不是合作方');
+        }
+        $car_where['status'] = array('neq',9);
+        $car_where['partner_id'] = array('eq',$agent['id']);
+        $month =strtotime(date('Y-m',$post['in_month'])) ;
+        $car = M('CarWasher')->where($car_where)->field('id')->select();
+        foreach ($car as &$v){
+            //总分润
+            $income = M('Income')->where(array('car_washer_id'=>$v['id'],'month'=>$month))->field('SUM(partner_money) as partner_money,month')->group('month')->find();
+            if($income['partner_money'] != 0){
+                $incomes[] = $income['partner_money'];
+            }
+            //日分润
+            $day_income[] = M('Income')->where(array('car_washer_id'=>$v['id'],'month'=>$month))->field('SUM(partner_money) as partner_money,day')->group('day')->order('day DESC')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+
+        }
+        foreach($day_income as &$dv){
+            foreach ($dv as $dk2 => $dv2){
+                $new_under[] = $dv2;
+            }
+        }
+        //相同键值相加形成新数组
+        $result = array();
+        foreach($new_under as $key=>$value){
+            if(!isset($result[$value['day']])){
+                $result[$value['day']]=$value;
+            }else{
+                $result[$value['day']]['partner_money']+=$value['partner_money'];
+            }
+        }
+        $now_income = array_values($result);
+        $all_income['month'] = $month;
+        $all_income['partner_money'] = (string)array_sum($incomes);
+
+        $data = array(
+            'all_income' => $all_income,
+            'now_income' => $now_income,
+        );
+        if($data){
+            $this->apiResponse(1,'查询成功',$data);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         /**
