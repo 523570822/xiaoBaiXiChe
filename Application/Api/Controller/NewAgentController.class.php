@@ -874,17 +874,23 @@ class NewAgentController extends BaseController
      *Date:2019/05/21 16:22
      */
     public function franchiseeAgent(){
-//        $post = checkAppData('token,grade','token-等级');
-        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
-        $post['grade'] = 1;
+        $post = checkAppData('token,grade','token-等级');
+//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+//        $post['grade'] = 1;
 
         $agent = $this->getAgentInfo($post['token']);
         if($post['grade'] == 1){
-            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
+            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id,nickname,account,token')->select();
         }elseif ($post['grade'] == 2){
-            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id')->select();
+            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id,nickname,account,token')->select();
         }
-        dump($agents);exit;
+        foreach($agents as &$v){
+            $car = M('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
+            $v['car_num'] = count($car);
+        }
+        if($agents){
+            $this->apiResponse(1,'查询成功',$agents);
+        }
 
     }
 
