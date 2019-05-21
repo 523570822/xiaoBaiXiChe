@@ -483,7 +483,7 @@ class NewAgentController extends BaseController
      *Date:2019/01/05 16:07
      */
     public function detail(){
-        $post = checkAppData('token,page,size,grade','token-页数-个数-身份');
+        $post = checkAppData('token,page,size,grade,status','token-页数-个数-身份-状态');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['page'] = 1;
 //        $post['size'] = 400;
