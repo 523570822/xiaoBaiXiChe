@@ -484,10 +484,14 @@ class NewAgentController extends BaseController
      */
     public function detail(){
         $post = checkAppData('token,page,size,grade','token-页数-个数-身份');
-//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
-//        $post['page'] = 24;
-//        $post['size'] = 10;
-//        $post['grade'] = 3;    //1 一级代理商    2  二级代理商   3合作方
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['page'] = 1;
+//        $post['size'] = 400;
+//        $post['grade'] = 1;    //1 一级代理商    2  二级代理商   3合作方
+//        $post['status'] = 2;    //1 全部    2  收入   3支出
+
+//        $request = $_REQUEST;
+//        $post['status'] = $request['status'];
 
         $agent = $this->getAgentInfo($post['token']);
         $car_where['status'] = array('neq',9);
@@ -535,6 +539,7 @@ class NewAgentController extends BaseController
         $income = M('Income')->where($car_where)->field('net_income as money,create_time')->select();
         $withdraw = M('Withdraw')->where($car_where)->field('money,create_time')->select();
 
+
         foreach($income as $k=>$v){
             $income[$k]['money'] = '+'.$income[$k]['money'];
             $income[$k]['type'] = 1;    //代表账单收入
@@ -545,20 +550,23 @@ class NewAgentController extends BaseController
 
         }
 
-        $list=array_merge($income,$withdraw,$p_money,$partner);
+        if($post['status'] == 1){
+            $list=array_merge($income,$withdraw,$p_money,$partner);
+        }elseif($post['status'] == 2){
+            $list=array_merge($income,$p_money,$partner);
+        }elseif($post['status'] == 3){
+            $list=array_merge($withdraw);
+        }
+
         $lists = list_sort_by($list, 'create_time', 'desc');
         for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
-            $datas[] = $lists[$i];
-        }
-        foreach ($datas as $k3=>$v3) {
-            if(!empty($datas[$k3])){
-                $data = $datas[$k3];
-                $datass[] = $data;
+            if(!empty($lists[$i])){
+                $datas[] = $lists[$i];
             }
         }
 
-        if($data){
-            $this->apiResponse('1','成功',$datass);
+        if($datas){
+            $this->apiResponse('1','成功',$datas);
         }else{
             $this->apiResponse('1','暂无数据');
         }
@@ -817,7 +825,7 @@ class NewAgentController extends BaseController
             if(!empty($one_car)){
                 $one_cars[] = $one_car;
             }
-            $two_agent = M('Agent')->where(array('p_id'=>$v['id']))->field('id')->select();
+            $two_agent = M('Agent')->where(array('p_id'=>$v['id'],'grade'=>3))->field('id')->select();
             if(!empty($two_agent)){
                 $two_agents[] = $two_agent;
             }
@@ -858,6 +866,26 @@ class NewAgentController extends BaseController
         if($data){
             $this->apiResponse(1,'查询成功',$data);
         }
+    }
+
+    /**
+     *区域合伙人-代理商列表
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/21 16:22
+     */
+    public function franchiseeAgent(){
+//        $post = checkAppData('token,grade','token-等级');
+        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+        $post['grade'] = 1;
+
+        $agent = $this->getAgentInfo($post['token']);
+        if($post['grade'] == 1){
+            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
+        }elseif ($post['grade'] == 2){
+            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id')->select();
+        }
+        dump($agents);exit;
+
     }
 
 
@@ -1026,7 +1054,6 @@ class NewAgentController extends BaseController
 //            $v['create_time'] = $create_time;
 //            $v['car_washer'] = $car_washerss;
         }
-
 
         if(!empty($cars)){
             $this->apiResponse('1','成功',$cars);
