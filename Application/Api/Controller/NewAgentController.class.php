@@ -801,6 +801,66 @@ class NewAgentController extends BaseController
         }
     }
 
+    /**
+     *区域合伙人-代理商
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/21 14:56
+     */
+    public function franchisee(){
+        $post = checkAppData('token','token');
+//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+
+        $agent = $this->getAgentInfo($post['token']);
+        $one_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
+        foreach($one_agent as &$v){
+            $one_car = M('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
+            if(!empty($one_car)){
+                $one_cars[] = $one_car;
+            }
+            $two_agent = M('Agent')->where(array('p_id'=>$v['id']))->field('id')->select();
+            if(!empty($two_agent)){
+                $two_agents[] = $two_agent;
+            }
+        }
+        //一级代理商洗车机
+        foreach ($one_cars as &$cv){
+            foreach ($cv as &$cv2){
+                $one_car_num[] =  $cv2;
+            }
+        }
+        //二级代理商
+        foreach($two_agents as &$tv){
+            foreach($tv as &$tv2){
+                $two_agent_num[] = $tv2;
+                $two_car = M('CarWasher')->where(array('agent_id'=>$tv2['id']))->field('id,mc_code')->select();
+                if(!empty($two_car)){
+                    $two_cars[] = $two_car;
+                }
+            }
+        }
+        //二级代理商洗车机
+        foreach ($two_cars as &$cv3){
+            foreach ($cv3 as &$cv4){
+                $two_car_num[] =  $cv4;
+            }
+        }
+        //一级代理商洗车机数量
+        $one_car_num = count($one_car_num);
+        $one_agent_num = count($one_agent);
+        $two_agent_num = count($two_agent_num);
+        $two_car_num = count($two_car_num);
+        $data = array(
+            'one_car_num' => $one_car_num,
+            'one_agent_num' => $one_agent_num,
+            'two_agent_num' => $two_agent_num,
+            'two_car_num' => $two_car_num,
+        );
+        if($data){
+            $this->apiResponse(1,'查询成功',$data);
+        }
+    }
+
+
 
 
 
