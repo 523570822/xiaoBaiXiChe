@@ -874,15 +874,15 @@ class NewAgentController extends BaseController
      *Date:2019/05/21 16:22
      */
     public function franchiseeAgent(){
-        $post = checkAppData('token,grade','token-等级');
+        $post = checkAppData('token,grade,page,size','token-等级-页数-个数');
 //        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
 //        $post['grade'] = 1;
 
         $agent = $this->getAgentInfo($post['token']);
         if($post['grade'] == 1){
-            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id,nickname,account,token')->select();
+            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id,nickname,account,token')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         }elseif ($post['grade'] == 2){
-            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id,nickname,account,token')->select();
+            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id,nickname,account,token')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         }
         foreach($agents as &$v){
             $car = M('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
@@ -892,6 +892,81 @@ class NewAgentController extends BaseController
             $this->apiResponse(1,'查询成功',$agents);
         }
 
+    }
+
+    /**
+     *一级代理商下二级代理商列表
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/22 11:39
+     */
+    public function oneAgentList(){
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+
+        $agent = $this->getAgentInfo($post['token']);
+
+        $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id,nickname,account,token')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+
+        foreach($agents as &$v){
+            $car = M('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
+            $v['car_num'] = count($car);
+        }
+        if($agents){
+            $this->apiResponse(1,'查询成功',$agents);
+        }
+
+    }
+
+    /**
+     *管理
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/22 01:26
+     */
+    public function board(){
+//        $reguest = $_REQUEST;
+//        $post['page'] = $reguest['page'];
+//        $post['size'] = $reguest['size'];
+
+        $post['page'] = 1;
+        $post['size'] = 10;
+
+        $agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->field('id,nickname')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        foreach ($agent as $k=>$v){
+            $one_agent = M('Agent')->where(array('p_id'=>$v['id'],'grade'=>2))->field('id')->select();
+            foreach($one_agent as &$ov){
+                $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('id')->select();
+                if(!empty($two_agent)){
+                    foreach($two_agent as &$tv){
+                        $two_car = M('CarWasher')->where(array('agent_id'=>$tv['id']))->field('p_id')->select();
+                        if(!empty($two_car)){
+                            $two_cars[] = $two_car;
+                        }
+                    }
+                }
+                $one_car = M('CarWasher')->where(array('agent_id'=>$ov['id']))->field('id,p_id')->select();
+
+                $all_car = array_merge($one_car,$two_cars);
+                //一级代理商洗车店数量
+                $result= array();
+                foreach ($all_car as $key => $value) {
+                    $result[$value['p_id']][] = $value;
+                }
+                dump($result);
+
+            }
+            if(!empty($one_agent)){
+                $one_agents[] = $one_agent;
+            }
+//            dump($one_agents);
+        }
+//        dump($one_car);
+        exit;
+        dump($one_agents);
+//        foreach ($one_cars as &$ov2){
+//            foreach ($ov2 as &$ov3){
+//                $one_carss[] = $ov3;
+//            }
+//        }
     }
 
 
