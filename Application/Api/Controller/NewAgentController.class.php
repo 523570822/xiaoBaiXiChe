@@ -1117,9 +1117,15 @@ class NewAgentController extends BaseController
 //        $post['size'] = 10;
 
         $agent = $this->getAgentInfo($post['token']);
-        $car = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id')->select();
-        foreach ($car as &$v){
-            $income = M('Income')->where(array('car_washer_id'=>$v['id']))->field('detail,platform,partner_money,create_time')->select();
+        if($agent['grade'] != 4){
+            $this->apiResponse(0,'您不是合作方');
+        }
+        $car = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id,mc_code')->select();
+        foreach ($car as $k=>$v){
+            $income = M('Income')->where(array('car_washer_id'=>$car[$k]['id']))->field('orderid,detail,platform,partner_money,create_time')->select();
+            foreach($income as &$cv){
+                $cv['mc_code'] = $car[$k]['mc_code'];
+            }
             if(!empty($income)){
                 $incomes[] = $income;
             }
