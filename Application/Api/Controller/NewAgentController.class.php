@@ -973,7 +973,7 @@ class NewAgentController extends BaseController
 //        $post['size'] = 10;
 
         $agent = $this->getAgentInfo($post['token']);
-        $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id,nickname,account')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id,nickname,account,token')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach($two_agent as $k=>$v){
             $n_income = M('Income')->where(array('agent_id'=>$v['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(p_money) as p_money')->find();
             $two_agent[$k]['net_income'] = $n_income['net_income'];
@@ -985,6 +985,93 @@ class NewAgentController extends BaseController
             $this->apiResponse(1,'查询成功',$two_agent);
         }else{
             $this->apiResponse(0,'暂无数据');
+
+        }
+    }
+
+    /**
+     *一级代理商-一级代理商订单明细
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/22 15:16
+     */
+    public function oneAgentDetail(){
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['page'] = 1;
+//        $post['size'] = 250;
+        $agent = $this->getAgentInfo($post['token']);
+        if($agent['grade'] != 2){
+            $this->apiResponse('0','您不是一级代理商');
+        }
+        $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id')->select();
+        foreach($two_agent as &$tv){
+            $tincome = M('Income')->where(array('agent_id'=>$tv['id']))->field('car_washer_id,orderid,p_money,create_time')->order('create_time DESC')->select();
+            foreach ($tincome as &$iv){
+                $iv['detail'] = '';
+                $iv['net_income'] = '';
+                $iv['platform'] = '';
+                $iv['plat_money'] = '';
+                $iv['partner_money'] = '';
+                $iv['trade'] = '';
+                $car = M('CarWasher')->where(array('id'=>$iv['car_washer_id']))->field('mc_code')->find();
+                $iv['car_washer_id'] = $car['mc_code'];
+            }
+            if(!empty($tincome)){
+                $incomes[] = $tincome;
+            }
+        }
+        foreach($incomes as &$iv2){
+            foreach($iv2 as &$iv3){
+                $incomess[] = $iv3;
+            }
+        }
+        $income = M('Income')->where(array('agent_id' => $agent['id']))->field('car_washer_id,orderid,detail,net_income,platform,plat_money,partner_money,create_time')->order('create_time DESC')->select();
+        foreach($income as &$v){
+            $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
+            $trade = bcsub($v['detail'],$v['platform'],2);
+            $v['car_washer_id'] = $car['mc_code'];
+            $v['trade'] = $trade;
+            $v['p_money'] = '';
+        }
+        $list=array_merge($income,$incomess);
+        $lists = list_sort_by($list, 'create_time', 'desc');
+        for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
+            if(!empty($lists[$i])){
+                $datas[] = $lists[$i];
+            }
+        }
+        if(!empty($datas)){
+            $this->apiResponse(1,'查询成功',$datas);
+        }else{
+            $this->apiResponse(1,'暂无数据');
+        }
+    }
+
+    /**
+     *一级代理商-二级代理商订单明细
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/22 15:16
+     */
+    public function twoAgentDetail(){
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
+        $agent = $this->getAgentInfo($post['token']);
+        if($agent['grade'] != 3){
+            $this->apiResponse('0','您不是二级代理商');
+        }
+        $income = M('Income')->where(array('agent_id' => $agent['id']))->field('car_washer_id,orderid,detail,net_income,platform,p_money,create_time')->limit(($post['page'] - 1) * $post['size'], $post['size'])->order('create_time DESC')->select();
+        foreach($income as &$v){
+            $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
+            $trade = bcsub($v['detail'],$v['platform'],2);
+            $v['car_washer_id'] = $car['mc_code'];
+            $v['trade'] = $trade;
+        }
+        if(!empty($income)){
+            $this->apiResponse(1,'查询成功',$income);
+        }else{
+            $this->apiResponse(1,'暂无数据');
 
         }
     }
