@@ -918,6 +918,54 @@ class NewAgentController extends BaseController
     }
 
     /**
+     *一级代理商-代理商收入
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/22 13:41
+     */
+    public function oneAgentIncome(){
+        $post = checkAppData('token','token');
+
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $agent = $this->getAgentInfo($post['token']);
+        $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id')->select();
+        foreach($two_agent as &$v){
+            $n_income = M('Income')->where(array('agent_id'=>$v['id']))->field('status,SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(partner_money) as partner_money,SUM(p_money) as p_money')->find();
+            if($n_income['detail'] != 0){
+                $n_incomes[] = $n_income;
+            }
+        }
+//        dump($n_incomes);exit;
+        //相同键值day相加形成新数组
+        $result = array();
+        foreach($n_incomes as $key=>$value){
+            if(!isset($result[$value['status']])){
+                $result[$value['status']]=$value;
+            }else{
+                $result[$value['status']]['net_income']+=$value['net_income'];
+                $result[$value['status']]['detail']+=$value['detail'];
+                $result[$value['status']]['platform']+=$value['platform'];
+                $result[$value['status']]['partner_money']+=$value['partner_money'];
+                $result[$value['status']]['p_money']+=$value['p_money'];
+            }
+        }
+
+        $trade = bcsub($result[$value['status']]['detail'],$result[$value['status']]['platform'],2);
+        $data = array(
+            'net_income' => $result[$value['status']]['net_income'],
+            'trade' => $trade,
+            'p_money' => $result[$value['status']]['p_money'],
+        );
+
+        if($data){
+            $this->apiResponse(1,'查询成功',$data);
+        }
+
+
+
+
+    }
+
+    /**
      *管理
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/05/22 01:26
