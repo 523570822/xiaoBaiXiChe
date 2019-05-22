@@ -1077,6 +1077,35 @@ class NewAgentController extends BaseController
     }
 
     /**
+     *二级代理商-订单明细
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/22 16:31
+     */
+    public function twoAgentOrder(){
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
+        $agent = $this->getAgentInfo($post['token']);
+        if($agent['grade'] != 3){
+            $this->apiResponse('0','您不是二级代理商');
+        }
+        $income = M('Income')->where(array('agent_id' => $agent['id']))->field('car_washer_id,orderid,detail,net_income,platform,p_money,plat_money,partner_money,create_time')->limit(($post['page'] - 1) * $post['size'], $post['size'])->order('create_time DESC')->select();
+        foreach($income as &$v){
+            $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
+            $trade = bcsub($v['detail'],$v['platform'],2);
+            $v['car_washer_id'] = $car['mc_code'];
+            $v['trade'] = $trade;
+        }
+        if(!empty($income)){
+            $this->apiResponse(1,'查询成功',$income);
+        }else{
+            $this->apiResponse(1,'暂无数据');
+
+        }
+    }
+
+    /**
      *管理
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/05/22 01:26
