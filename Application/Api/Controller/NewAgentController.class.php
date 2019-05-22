@@ -948,21 +948,45 @@ class NewAgentController extends BaseController
                 $result[$value['status']]['p_money']+=$value['p_money'];
             }
         }
-
+        //营业收入
         $trade = bcsub($result[$value['status']]['detail'],$result[$value['status']]['platform'],2);
         $data = array(
             'net_income' => $result[$value['status']]['net_income'],
             'trade' => $trade,
             'p_money' => $result[$value['status']]['p_money'],
         );
-
         if($data){
             $this->apiResponse(1,'查询成功',$data);
         }
+    }
 
+    /**
+     *一级代理商-代理商收入-代理商
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/22 14:52
+     */
+    public function twoAgentList(){
+        $post = checkAppData('token,page,size','token-页数-个数');
 
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
 
+        $agent = $this->getAgentInfo($post['token']);
+        $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id,nickname,account')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        foreach($two_agent as $k=>$v){
+            $n_income = M('Income')->where(array('agent_id'=>$v['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(p_money) as p_money')->find();
+            $two_agent[$k]['net_income'] = $n_income['net_income'];
+            $two_agent[$k]['p_money'] = $n_income['p_money'];
+            $trade = bcsub($n_income['detail'],$n_income['platform'],2);
+            $two_agent[$k]['trade'] = $trade;
+        }
+        if(!empty($two_agent)){
+            $this->apiResponse(1,'查询成功',$two_agent);
+        }else{
+            $this->apiResponse(0,'暂无数据');
 
+        }
     }
 
     /**
