@@ -1150,6 +1150,128 @@ class NewAgentController extends BaseController
     }
 
     /**
+     *区域合伙人-一级代理商
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/22 22:15
+     */
+    public function partnerOne(){
+        $post = checkAppData('token','token');
+
+//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+
+        $agent = $this->getAgentInfo($post['token']);
+
+        if($agent['grade'] != 1){
+            $this->apiResponse(0,'您的身份不是区域合伙人');
+        }
+        $agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
+        foreach ($agent as &$v){
+            $two_agent = M('Agent')->where(array('p_id'=>$v['id'],'grade'=>3))->field('id')->select();
+            if(!empty($two_agent)){
+                foreach ($two_agent as &$tv){
+                    $two_income = M('Income')->where(array('agent_id'=>$tv['id']))->field('status,SUM(p_money) as p_money')->select();
+                    if($two_income){
+                        $two_incomes[] = $two_income;
+                    }
+                }
+            }
+            $income[] = M('Income')->where(array('agent_id'=>$v['id']))->field('status,SUM(detail) as detail,SUM(net_income) as net_income,SUM(platform) as platform')->select();
+        }
+        foreach($income as &$iv){
+            foreach($iv as &$iv2){
+                if($iv2['detail'] != 0){
+                    $iv2['p_money'] = 0;
+                    $trade = bcsub($iv2['detail'],$iv2['platform'],2);
+                    $iv2['trade'] = $trade;
+
+                    $one_income[] = $iv2;
+                }
+            }
+        }
+        foreach($two_incomes as &$iv3){
+            foreach($iv3 as &$iv4){
+                if($iv4['status'] != 0){
+                    $iv4['detail'] = 0;
+                    $iv4['net_income'] = 0;
+                    $iv4['platform'] = 0;
+                    $iv4['trade'] = 0;
+                    $two_incomess[] = $iv4;
+                }
+            }
+        }
+        $all_income = array_merge($one_income,$two_incomess);
+        $result = array();
+        foreach($all_income as $key=>$value){
+            if(!isset($result[$value['status']])){
+                $result[$value['status']]=$value;
+            }else{
+                $result[$value['status']]['detail']+=$value['detail'];
+                $result[$value['status']]['net_income']+=$value['net_income'];
+                $result[$value['status']]['platform']+=$value['platform'];
+                $result[$value['status']]['p_money']+=$value['p_money'];
+                $result[$value['status']]['trade']+=$value['trade'];
+            }
+        }
+        if($result){
+            $this->apiResponse(1,'查询成功',$result);
+        }
+    }
+
+    /**
+     *区域合伙人-二级代理商
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/23 01:59
+     */
+    public function partnerTwo(){
+        $post = checkAppData('token','token');
+
+//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+
+        $agent = $this->getAgentInfo($post['token']);
+
+        if($agent['grade'] != 1){
+            $this->apiResponse(0,'您的身份不是区域合伙人');
+        }
+        $agent = M('Agent')->where(array('p_id'=>$agent['id']))->field('id')->select();
+        foreach ($agent as &$v){
+            $two_agent = M('Agent')->where(array('p_id'=>$v['id']))->field('id')->select();
+            if(!empty($two_agent)){
+                foreach ($two_agent as &$tv){
+                    $two_income = M('Income')->where(array('agent_id'=>$tv['id']))->field('status,SUM(detail) as detail,SUM(platform) as platform,SUM(net_income) as net_income')->select();
+                    if($two_income){
+                        $two_incomes[] = $two_income;
+                    }
+                }
+            }
+        }
+
+        foreach($two_incomes as &$iv3){
+            foreach($iv3 as &$iv4){
+                if($iv4['status'] != 0){
+                    $trade = bcsub($iv4['detail'],$iv4['platform'],2);
+                    $iv4['trade'] = $trade;
+                    $two_incomess[] = $iv4;
+                }
+            }
+        }
+        $result = array();
+        foreach($two_incomess as $key=>$value){
+            if(!isset($result[$value['status']])){
+                $result[$value['status']]=$value;
+            }else{
+                $result[$value['status']]['detail']+=$value['detail'];
+                $result[$value['status']]['net_income']+=$value['net_income'];
+                $result[$value['status']]['platform']+=$value['platform'];
+                $result[$value['status']]['trade']+=$value['trade'];
+            }
+        }
+        if($result){
+            $this->apiResponse(1,'查询成功',$result);
+        }
+    }
+
+
+    /**
      *管理
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/05/22 01:26
@@ -1164,35 +1286,36 @@ class NewAgentController extends BaseController
 
         $agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->field('id,nickname')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach ($agent as $k=>$v){
+            //一级代理商
             $one_agent = M('Agent')->where(array('p_id'=>$v['id'],'grade'=>2))->field('id')->select();
-            foreach($one_agent as &$ov){
-                $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('id')->select();
-                if(!empty($two_agent)){
-                    foreach($two_agent as &$tv){
-                        $two_car = M('CarWasher')->where(array('agent_id'=>$tv['id']))->field('p_id')->select();
-                        if(!empty($two_car)){
-                            $two_cars[] = $two_car;
-                        }
-                    }
-                }
-                $one_car = M('CarWasher')->where(array('agent_id'=>$ov['id']))->field('id,p_id')->select();
-
-                $all_car = array_merge($one_car,$two_cars);
-                //一级代理商洗车店数量
-                $result= array();
-                foreach ($all_car as $key => $value) {
-                    $result[$value['p_id']][] = $value;
-                }
-                dump($result);
-
-            }
+//            foreach($one_agent as &$ov){
+//                //二级代理商
+//                $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('id')->select();
+//                if(!empty($two_agent)){
+//                    foreach($two_agent as &$tv){
+//                        $two_car = M('CarWasher')->where(array('agent_id'=>$tv['id']))->field('p_id')->select();
+//                        if(!empty($two_car)){
+//                            $two_cars[] = $two_car;
+//                        }
+//                    }
+//                }
+//                $one_car = M('CarWasher')->where(array('agent_id'=>$ov['id']))->field('id,p_id')->select();
+//
+//                $all_car = array_merge($one_car,$two_cars);
+//                //一级代理商洗车店数量
+//                $result= array();
+//                foreach ($all_car as $key => $value) {
+//                    $result[$value['p_id']][] = $value;
+//                }
+//                dump($result);
+//
+//            }
             if(!empty($one_agent)){
                 $one_agents[] = $one_agent;
             }
 //            dump($one_agents);
         }
 //        dump($one_car);
-        exit;
         dump($one_agents);
 //        foreach ($one_cars as &$ov2){
 //            foreach ($ov2 as &$ov3){
