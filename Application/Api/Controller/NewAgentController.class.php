@@ -1106,6 +1106,44 @@ class NewAgentController extends BaseController
     }
 
     /**
+     *合作方-订单明细
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/22 16:56
+     */
+    public function partnerOrderDetail(){
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
+
+        $agent = $this->getAgentInfo($post['token']);
+        $car = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id')->select();
+        foreach ($car as &$v){
+            $income = M('Income')->where(array('car_washer_id'=>$v['id']))->field('detail,platform,partner_money,create_time')->select();
+            if(!empty($income)){
+                $incomes[] = $income;
+            }
+        }
+        foreach ($incomes as &$iv){
+            foreach($iv as &$iv2){
+                $trade = bcsub($iv2['detail'],$iv2['platform'],2);
+                $iv2['trade']= $trade;
+                $incomess[] = $iv2;
+            }
+        }
+
+        $lists = list_sort_by($incomess, 'create_time', 'desc');
+        for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
+            if(!empty($lists[$i])){
+                $datas[] = $lists[$i];
+            }
+        }
+        if($datas){
+            $this->apiResponse(1,'查询成功',$datas);
+        }
+    }
+
+    /**
      *管理
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/05/22 01:26
