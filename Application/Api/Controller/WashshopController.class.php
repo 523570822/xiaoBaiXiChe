@@ -256,8 +256,10 @@ class WashshopController extends BaseController
                     $washcar[$k]['lon'] = bcsub (180,$washcar[$k]['lon'],12);
                 }
                 if($washcar[$k]['lat']>90){
+                    var_dump($washcar[$k]['lat']);
                     $washcar[$k]['lat'] = bcsub (90,$washcar[$k]['lat'],12);
                 }
+               $this->apiResponse(1,'查询',$washcar);
                 if ( $lat == "" ) {
                 } else {
                     $washcar[$k]['distance'] = round ($v['distance'] / 1000 , 2) . 'Km';// '距离我' .;

@@ -876,21 +876,40 @@ class NewAgentController extends BaseController
     public function franchiseeAgent(){
         $post = checkAppData('token,grade,page,size','token-等级-页数-个数');
 //        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
-//        $post['grade'] = 1;
+//        $post['grade'] = 2;
 
         $agent = $this->getAgentInfo($post['token']);
         if($post['grade'] == 1){
             $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id,nickname,account,token')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+            foreach($agents as &$v){
+                $car = M('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
+                $v['car_num'] = count($car);
+            }
+            if($agents){
+                $this->apiResponse(1,'查询成功',$agents);
+            }
         }elseif ($post['grade'] == 2){
-            $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id,nickname,account,token')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+            $one_agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
+            foreach ($one_agents as &$sv){
+                $two_agent = M('Agent')->where(array('p_id'=>$sv['id'],'grade'=>3))->field('id,nickname,account,token')->select();
+                if(!empty($two_agent)){
+                    $agents[] = $two_agent;
+                }
+            }
+            foreach($agents as &$agv){
+                foreach($agv as &$agvs){
+                    $car = M('CarWasher')->where(array('agent_id'=>$agvs['id']))->field('id')->select();
+                    if(!empty($car)){
+                        $agvs['car_num'] = count($car);
+                    }
+                }
+            }
+            if($agents){
+                $this->apiResponse(1,'查询成功',$agents);
+            }
+
         }
-        foreach($agents as &$v){
-            $car = M('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
-            $v['car_num'] = count($car);
-        }
-        if($agents){
-            $this->apiResponse(1,'查询成功',$agents);
-        }
+
 
     }
 
@@ -1364,6 +1383,114 @@ class NewAgentController extends BaseController
         $my = M('Agent')->where(array('id'=>$agent['id']))->field('account,nickname,balance,grade')->find();
         if($my){
             $this->apiResponse('1','成功',$my);
+        }
+    }
+
+    /**
+     *区域合伙人-代理商收入-代理商
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/23 11:25
+     */
+    public function franchOne(){
+        $post = checkAppData('token,page,size','token-页数-个数');
+
+//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
+
+        $agent = $this->getAgentInfo($post['token']);
+        if($agent['grade'] != 1){
+            $this->apiResponse(0,'您的身份不是区域合伙人');
+        }
+        $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id,nickname,account,token')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        foreach($two_agent as $k=>$v){
+            $n_income = M('Income')->where(array('agent_id'=>$v['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(p_money) as p_money')->find();
+            if($n_income['net_income'] == 0){
+                $n_income['net_income'] = (int)0;
+            }
+            if($n_income['p_money'] == 0){
+                $n_income['p_money'] = (int)0;
+            }
+            if($n_income['detail'] == 0){
+                $n_income['detail'] = (int)0;
+            }
+            if($n_income['platform'] == 0){
+                $n_income['platform'] = (int)0;
+            }
+            $two_agent[$k]['net_income'] = $n_income['net_income'];
+            $two_agent[$k]['p_money'] = $n_income['p_money'];
+            $trade = bcsub($n_income['detail'],$n_income['platform'],2);
+            $two_agent[$k]['trade'] = $trade;
+        }
+        if(!empty($two_agent)){
+            $this->apiResponse(1,'查询成功',$two_agent);
+        }else{
+            $this->apiResponse(0,'暂无数据');
+
+        }
+    }
+
+    /**
+     *方法释义
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/24 02:07
+     */
+    public function franchTwo(){
+        $post = checkAppData('token,page,size','token-页数-个数');
+
+//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+//        $post['page'] = 1;
+//        $post['size'] = 2;
+
+        $agent = $this->getAgentInfo($post['token']);
+        if($agent['grade'] != 1){
+            $this->apiResponse(0,'您的身份不是区域合伙人');
+        }
+        $one_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
+        foreach($one_agent as $ok=>$ov){
+            $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('create_time,id,nickname,account,token')->select();
+            foreach ($two_agent as $k=>$v){
+                $n_income = M('Income')->where(array('agent_id'=>$v['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform')->find();
+                if($n_income['net_income'] == 0){
+                    $n_income['net_income'] = (int)0;
+                }
+                if($n_income['detail'] == 0){
+                    $n_income['detail'] = (int)0;
+                }
+                if($n_income['platform'] == 0){
+                    $n_income['platform'] = (int)0;
+                }
+                $data['trade'] = bcsub($n_income['detail'],$n_income['platform'],2);
+                $data['nickname'] = $two_agent[$k]['nickname'];
+                $data['account'] = $two_agent[$k]['account'];
+                $data['net_income'] = $n_income['net_income'];
+                $n_incomes[] = $data;
+
+            }
+            $lists = list_sort_by($n_incomes, 'create_time', 'desc');
+//            dump($lists);
+            for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
+                if(!empty($lists[$i])){
+                    $datas[] = $lists[$i];
+                }
+            }
+            dump($datas);
+//                foreach($datas as &$dv){
+//
+//                }
+//                $two_agent[$k]['net_income'] = $n_income['net_income'];
+//                $two_agent[$k]['p_money'] = $n_income['p_money'];
+//                $trade = bcsub($n_income['detail'],$n_income['platform'],2);
+//                $two_agent[$k]['trade'] = $trade;
+
+
+            exit;
+        }
+        if(!empty($two_agent)){
+            $this->apiResponse(1,'查询成功',$two_agent);
+        }else{
+            $this->apiResponse(0,'暂无数据');
+
         }
     }
 }
