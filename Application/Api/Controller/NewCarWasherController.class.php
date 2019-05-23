@@ -33,10 +33,10 @@ class NewCarWasherController extends BaseController
     */
     public function carWasher()
     {
-        $post = checkAppData('token,page,size','token-页数-个数');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['page'] = 1;
-//        $post['size'] = 10;
+//        $post = checkAppData('token,page,size','token-页数-个数');
+        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+        $post['page'] = 1;
+        $post['size'] = 10;
         $agent = $this->getAgentInfo($post['token']);
         $orders[] = 'id ASC';
         $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id'],'status'=>array('neq',9)))->field('id,mc_code')->order($orders)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();

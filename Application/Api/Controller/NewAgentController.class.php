@@ -1223,9 +1223,9 @@ class NewAgentController extends BaseController
      *Date:2019/05/23 01:59
      */
     public function partnerTwo(){
-        $post = checkAppData('token','token');
+//        $post = checkAppData('token','token');
 
-//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
 
         $agent = $this->getAgentInfo($post['token']);
 
@@ -1265,8 +1265,12 @@ class NewAgentController extends BaseController
                 $result[$value['status']]['trade']+=$value['trade'];
             }
         }
+        $data = array(
+            'net_income' => $result[$value['status']]['net_income'],
+            'trade' => $result[$value['status']]['trade'],
+        );
         if($result){
-            $this->apiResponse(1,'查询成功',$result);
+            $this->apiResponse(1,'查询成功',$data);
         }
     }
 
@@ -1339,197 +1343,4 @@ class NewAgentController extends BaseController
             $this->apiResponse(1,'查询成功',$agent);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /**
-     *净收入详情
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/02 10:22
-     */
-    public function carIncomeInfosss(){
-        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['day'] = 1548000000;
-//        $post['page'] = 2;
-//        $post['size'] = 10;
-        /*if(empty($post['day'])){
-            $post['day'] = strtotime(date('Y-m-d'));
-        }*/
-        $agent = $this->getAgentInfo($post['token']);
-
-        $order[] = 'id ASC';
-        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_code as mc_id')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-
-        foreach ($car_washer as $k=>$v){
-            $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->find();
-            $time = strtotime(date('Y-m-d',$order_num['pay_time']));
-
-//            var_dump($time);exit;
-            if($time == $post['day']){
-                if(!empty($order_num['orderid'])){
-                    if($agent['grade'] == 1){
-                        $cars[$k]['net_income'] = $order_num['net_income']-$order_num['net_income']*0.05;
-                    }elseif($agent['grade'] == 2){
-                        $cars[$k]['net_income'] = $order_num['net_income']-$order_num['net_income']*0.10;
-                    }elseif($agent['grade'] == 3){
-                        $cars[$k]['net_income'] = $order_num['net_income']-$order_num['net_income']*0.15;
-                    }
-
-                    $cars[$k]['create_time'] = $order_num['pay_time'];
-                    $cars[$k]['mc_id'] = $order_num['orderid'];
-                    $cars[$k]['car_washer'] = $v['mc_id'];
-                }
-            }
-        }
-//        var_dump($cars);exit;
-        if(!empty($cars)){
-            $this->apiResponse('1','成功',$cars);
-        }else{
-            $this->apiResponse('0','暂无收入详情');
-        }
-    }
-
-    /**
-     *提成明细
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/22 14:01
-     */
-    public function CommDetail(){
-        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['in_month'] = 1543593788;
-//        $post['page'] = 1;
-//        $post['size'] = 10;
-//        if($post['in_month'] == 'all'){
-//            $post['in_month'] = strtotime(date('Y-m'));
-//        }
-        $agent = $this->getAgentInfo($post['token']);
-        $car_where['status'] = array('neq',9);
-        $car_where['agent_id'] = array('eq',$agent['id']);
-        $car_where['month'] = strtotime(date('Y-m',$post['in_month']));
-        //总提成
-        $income = M('Income')->where($car_where)->field('SUM(net_income) as de_income,SUM(detail) as de_detail')->find();
-        $commission = $income['de_detail']-$income['de_income'];
-
-        //每天提成
-        $order[] = 'sort DESC';
-        $day_income = M('Income')->where($car_where)->field('day,SUM(net_income) as net_income,SUM(detail) as detail')->group('day')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-
-        foreach ($day_income as $k=>$v){
-            $time = strtotime(date('Y-m',$v['day']));
-            if($time == $car_where['month']){
-                $now_day['day'] = $v['day'];
-                $now_day['net_commission'] = $v['detail']-$v['net_income'];
-                $now_days[] = $now_day;
-            }
-        }
-        $data = array(
-            'now_month' => $car_where['month'],
-            'commission' => $commission,
-            'day_commission' => $now_days,
-        );
-
-        if(!empty($now_days)){
-            $this->apiResponse('1','成功',$data);
-        }else{
-            $this->apiResponse('0','暂无数据信息');
-        }
-    }
-
-    /**
-     *提成详情
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/22 17:16
-     */
-    public function carCommInfo(){
-        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['day'] = 1550073600;
-//        $post['page'] = 1;
-//        $post['size'] = 1;
-        /*if(empty($post['day'])){
-            $post['day'] = strtotime(date('Y-m-d'));
-        }*/
-        $agent = $this->getAgentInfo($post['token']);
-
-        $order[] = 'id ASC';
-        $car_washer = M('CarWasher')->where(array('agent_id'=>$agent['id']))->field('id,mc_code as mc_id')->select();
-
-        foreach ($car_washer as $k=>$v){
-            $order_num = M('Order')->where(array('c_id'=>$v['id']))->field('c_id,orderid,pay_money as net_income,pay_time')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-            foreach ($order_num as $kkk=>$vvv) {
-                $time = strtotime(date('Y-m-d', $vvv['pay_time']));
-
-                if ($time == $post['day']) {
-                    if (!empty($vvv['orderid'])) {
-                        if ($agent['grade'] == 1) {
-                            $cars[$kkk]['net_income'] = $vvv['net_income'] * 0.05;
-                        } elseif ($agent['grade'] == 2) {
-                            $cars[$kkk]['net_income'] = $vvv['net_income'] * 0.10;
-                        } elseif ($agent['grade'] == 3) {
-                            $cars[$kkk]['net_income'] = $vvv['net_income'] * 0.15;
-                        }
-                        $cars[$kkk]['create_time'] = $vvv['pay_time'];
-                        $cars[$kkk]['mc_id'] = $vvv['orderid'];
-                        $cars[$kkk]['car_washer'] = $v['mc_id'];
-
-//                        $net_income = $cars[$kkk]['net_income'];
-//                        $create_time = $cars[$kkk]['create_time'];
-//                        $car_washerss = $cars[$kkk]['car_washer'];
-                    }
-                }
-            }
-
-//            $v['net_income'] = $net_income;
-//            $v['create_time'] = $create_time;
-//            $v['car_washer'] = $car_washerss;
-        }
-
-        if(!empty($cars)){
-            $this->apiResponse('1','成功',$cars);
-        }else{
-            $this->apiResponse('0','暂无详情');
-        }
-    }
-
-    /**
-     *我的详情
-     *user:jiaming.wang  459681469@qq.com
-     *Date:2019/01/19 17:51
-     */
-    public function myInfo(){
-        $post = checkAppData('token','token');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-
-        $agent = $this->getAgentInfo($post['token']);
-
-        $my = M('Agent')->where(array('id'=>$agent['id']))->field('account,nickname,balance,grade')->find();
-        if($my){
-            $this->apiResponse('1','成功',$my);
-        }
-    }
-
-
 }
