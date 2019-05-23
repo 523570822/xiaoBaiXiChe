@@ -1349,4 +1349,21 @@ class NewAgentController extends BaseController
             $this->apiResponse(1,'查询成功',$agent);
         }
     }
+
+    /**
+     *我的详情
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/01/19 17:51
+     */
+    public function myInfo(){
+        $post = checkAppData('token','token');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+
+        $agent = $this->getAgentInfo($post['token']);
+
+        $my = M('Agent')->where(array('id'=>$agent['id']))->field('account,nickname,balance,grade')->find();
+        if($my){
+            $this->apiResponse('1','成功',$my);
+        }
+    }
 }
