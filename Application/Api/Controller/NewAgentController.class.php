@@ -1212,8 +1212,14 @@ class NewAgentController extends BaseController
                 $result[$value['status']]['trade']+=$value['trade'];
             }
         }
+        $data = array(
+            'detail' => $result[$value['status']]['detail'],
+            'net_income' => $result[$value['status']]['net_income'],
+            'p_money' => $result[$value['status']]['p_money'],
+            'trade' => $result[$value['status']]['trade'],
+        );
         if($result){
-            $this->apiResponse(1,'查询成功',$result);
+            $this->apiResponse(1,'查询成功',$data);
         }
     }
 
@@ -1223,9 +1229,9 @@ class NewAgentController extends BaseController
      *Date:2019/05/23 01:59
      */
     public function partnerTwo(){
-//        $post = checkAppData('token','token');
+        $post = checkAppData('token','token');
 
-        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
 
         $agent = $this->getAgentInfo($post['token']);
 
