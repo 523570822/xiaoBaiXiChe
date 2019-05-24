@@ -651,7 +651,7 @@ class NewAgentController extends BaseController
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
 
-        $post['in_month'] = 1553405114;
+//        $post['in_month'] = 1553405114;
 
 
         if($post['in_month'] == ''){
