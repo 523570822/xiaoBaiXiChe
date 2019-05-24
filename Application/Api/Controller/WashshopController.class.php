@@ -242,8 +242,10 @@ class WashshopController extends BaseController
     public function washcarList ()
     {
         $m_id = $this->checkToken ();
-//        $lon = empty($_REQUEST['lon']) ? 0 : $_REQUEST['lon'];  // 经度
-//        $lat = empty($_REQUEST['lat']) ? 0 : $_REQUEST['lat'];  // 纬度
+        $lon = empty($_REQUEST['lon']) ? 0 : $_REQUEST['lon'];  // 经度
+        $lat = empty($_REQUEST['lat']) ? 0 : $_REQUEST['lat'];  // 纬度
+//        $lon = 116.4072154982;
+//        $lat = 39.9047253699;
         if ( empty($lon) && empty($lat) ) {
             $this->apiResponse ('0' , '缺少坐标参数');
         }
@@ -251,17 +253,13 @@ class WashshopController extends BaseController
         $washer_where['status'] = array('neq',9);
         $washcar = M ('CarWasher')->where ($washer_where)->field ('id,p_id,lon,lat,address,mc_code as mc_id ,status,type,' . $wh3 . ' as distance')->order ('distance ASC')->select ();
         if ( $washcar ) {
-            $this->apiResponse(1,'查询',$washcar);
+//            $this->apiResponse(1,'查询',$washcar);
 
             foreach ( $washcar as $k => $v ) {
-                dump($v);
                 if($washcar[$k]['lon']>180){
-                    echo 123;
                     $washcar[$k]['lon'] = bcsub (180,$washcar[$k]['lon'],12);
                 }
                 if($washcar[$k]['lat']>90){
-                    echo 456;
-
                     $washcar[$k]['lat'] = bcsub (90,$washcar[$k]['lat'],12);
                 }
                 if ( $lat == "" ) {
