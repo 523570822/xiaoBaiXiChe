@@ -645,12 +645,15 @@ class NewAgentController extends BaseController
     public function oneDetail(){
         $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['in_month'] = 1558082005;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
 
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
+
+        $post['in_month'] = 1553405114;
+
+
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
@@ -663,6 +666,9 @@ class NewAgentController extends BaseController
         $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
         //总净收入
         $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,month')->group("month")->find();
+        if(empty($month_income)){
+            $month_income['net_income'] = 0;
+        }
         $month_income['p_money'] = '';
         $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,day')->group("day")->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach ($day_income as &$dv){
@@ -711,6 +717,8 @@ class NewAgentController extends BaseController
             'all_income' => $month_income,
             'now_income' => $result,
         );
+//        dump($data);exit;
+
         if($result){
             $this->apiResponse(1,'查询成功',$data);
         }
@@ -1027,13 +1035,22 @@ class NewAgentController extends BaseController
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['page'] = 1;
 //        $post['size'] = 250;
+
+        $request = $_REQUEST;
+        $post['data_time'] = $request['data_time'];
+        if($post['data_time'] == ''){
+            $post['data_time'] = strtotime(date('Y-m'));
+        }
+        $post['data_time'] = 1553405114;
+        $month =strtotime(date('Y-m',$post['data_time'])) ;
+
         $agent = $this->getAgentInfo($post['token']);
         if($agent['grade'] != 2){
             $this->apiResponse('0','您不是一级代理商');
         }
         $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id')->select();
         foreach($two_agent as &$tv){
-            $tincome = M('Income')->where(array('agent_id'=>$tv['id']))->field('car_washer_id,orderid,p_money,create_time')->order('create_time DESC')->select();
+            $tincome = M('Income')->where(array('agent_id'=>$tv['id'],'month'=>$month))->field('car_washer_id,orderid,p_money,create_time')->order('create_time DESC')->select();
             foreach ($tincome as &$iv){
                 $iv['detail'] = '';
                 $iv['net_income'] = '';
@@ -1041,6 +1058,7 @@ class NewAgentController extends BaseController
                 $iv['plat_money'] = '';
                 $iv['partner_money'] = '';
                 $iv['trade'] = '';
+                $iv['style'] = 2;
                 $car = M('CarWasher')->where(array('id'=>$iv['car_washer_id']))->field('mc_code')->find();
                 $iv['car_washer_id'] = $car['mc_code'];
             }
@@ -1053,13 +1071,14 @@ class NewAgentController extends BaseController
                 $incomess[] = $iv3;
             }
         }
-        $income = M('Income')->where(array('agent_id' => $agent['id']))->field('car_washer_id,orderid,detail,net_income,platform,plat_money,partner_money,create_time')->order('create_time DESC')->select();
+        $income = M('Income')->where(array('agent_id' => $agent['id'],'month'=>$month))->field('car_washer_id,orderid,detail,net_income,platform,plat_money,partner_money,create_time')->order('create_time DESC')->select();
         foreach($income as &$v){
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
             $v['car_washer_id'] = $car['mc_code'];
             $v['trade'] = $trade;
             $v['p_money'] = '';
+            $v['style'] = 1;
         }
         $list=array_merge($income,$incomess);
         $lists = list_sort_by($list, 'create_time', 'desc');
@@ -1139,10 +1158,16 @@ class NewAgentController extends BaseController
      *Date:2019/05/22 16:56
      */
     public function partnerOrderDetail(){
-        $post = checkAppData('token,page,size','token-页数-个数');
-//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
-//        $post['page'] = 1;
-//        $post['size'] = 10;
+//        $post = checkAppData('token,page,size','token-页数-个数');
+        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+        $post['page'] = 1;
+        $post['size'] = 10;
+        $request = $_REQUEST;
+        $post['in_month'] = $request['in_month'];
+        if($post['in_month'] == ''){
+            $post['in_month'] = strtotime(date('Y-m'));
+        }
+        $month =strtotime(date('Y-m',$post['in_month'])) ;
 
         $agent = $this->getAgentInfo($post['token']);
         if($agent['grade'] != 4){
@@ -1150,7 +1175,7 @@ class NewAgentController extends BaseController
         }
         $car = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id,mc_code')->select();
         foreach ($car as $k=>$v){
-            $income = M('Income')->where(array('car_washer_id'=>$car[$k]['id']))->field('orderid,detail,platform,partner_money,create_time')->select();
+            $income = M('Income')->where(array('car_washer_id'=>$car[$k]['id'],'month'=>$month))->field('orderid,detail,platform,partner_money,create_time')->select();
             foreach($income as &$cv){
                 $cv['mc_code'] = $car[$k]['mc_code'];
             }

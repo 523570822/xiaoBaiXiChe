@@ -1,0 +1,816 @@
+[ 2019-05-24T13:23:29+08:00 ] 127.0.0.1 /api/washshop/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004385s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001217s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001267s ]
+
+[ 2019-05-24T13:23:39+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003120s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002869s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003553s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 653 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0174s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0145s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0136s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY month LIMIT 1   [ RunTime:0.0112s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY day LIMIT 0,10   [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0459s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0133s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0117s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0106s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0112s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0167s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0106s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0137s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0100s ]
+
+[ 2019-05-24T13:26:16+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000531s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000992s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001055s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 653 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0126s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0093s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0098s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY month LIMIT 1   [ RunTime:0.0091s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY day LIMIT 0,10   [ RunTime:0.0092s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0094s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0090s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0095s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0089s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0089s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0098s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0083s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0093s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0081s ]
+
+[ 2019-05-24T13:28:16+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000412s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000560s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000615s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 653 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0119s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0084s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0101s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY month LIMIT 1   [ RunTime:0.0096s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY day LIMIT 0,10   [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0100s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0106s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0105s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0095s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0095s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0100s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0087s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0093s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0083s ]
+
+[ 2019-05-24T13:28:19+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001379s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001155s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001248s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 653 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0113s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0103s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0104s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY month LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1556640000 GROUP BY day LIMIT 0,10   [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0106s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0099s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0094s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0099s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0128s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0096s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0096s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0100s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 GROUP BY day ORDER BY day DESC  [ RunTime:0.0115s ]
+
+[ 2019-05-24T13:28:54+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000537s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000565s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000619s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 652 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0122s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0145s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY month LIMIT 1   [ RunTime:0.0116s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY day LIMIT 0,10   [ RunTime:0.0151s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0125s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0094s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0082s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0081s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0107s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0107s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0122s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0154s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0092s ]
+NOTIC: [8] Undefined variable: under_incomes D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 682 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 682 行.
+NOTIC: [8] Undefined variable: unders D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 693 行.
+NOTIC: [2] array_merge(): Argument #1 is not an array D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 693 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 696 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002195s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002282s ]
+
+[ 2019-05-24T13:29:23+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001085s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000914s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001004s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 652 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0229s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0259s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0306s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY month LIMIT 1   [ RunTime:0.0370s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY day LIMIT 0,10   [ RunTime:0.0230s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0176s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0134s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0155s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0131s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0213s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0255s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0260s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0155s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0363s ]
+NOTIC: [8] Undefined variable: under_incomes D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 683 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 683 行.
+NOTIC: [8] Undefined variable: unders D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 694 行.
+NOTIC: [2] array_merge(): Argument #1 is not an array D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 694 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 697 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000673s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000707s ]
+
+[ 2019-05-24T13:34:20+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000937s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000991s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 652 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0992s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0881s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0221s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY month LIMIT 1   [ RunTime:0.0165s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY day LIMIT 0,10   [ RunTime:0.0175s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0099s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0175s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0152s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0091s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0104s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0088s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0082s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0083s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0080s ]
+NOTIC: [8] Undefined variable: under_incomes D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 686 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 686 行.
+NOTIC: [8] Undefined variable: unders D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 697 行.
+NOTIC: [2] array_merge(): Argument #1 is not an array D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 697 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 700 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001255s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001295s ]
+
+[ 2019-05-24T13:39:56+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000678s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000936s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000992s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 652 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.2473s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0263s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.1541s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY month LIMIT 1   [ RunTime:0.0885s ]
+
+[ 2019-05-24T13:45:57+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000761s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001302s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001389s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 652 行.
+ERR: SQLSTATE[HY000] [2002] �������ӷ���һ��ʱ���û����ȷ�𸴻����ӵ�����û�з�Ӧ�����ӳ���ʧ�ܡ�
+
+
+[ 2019-05-24T13:45:59+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000405s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000922s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001010s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 652 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0135s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0095s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0114s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY month LIMIT 1   [ RunTime:0.0092s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY day LIMIT 0,10   [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0102s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0119s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0104s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0101s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0098s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0098s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0097s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0102s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0098s ]
+NOTIC: [8] Undefined variable: under_incomes D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 685 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 685 行.
+NOTIC: [8] Undefined variable: unders D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 696 行.
+NOTIC: [2] array_merge(): Argument #1 is not an array D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 696 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 699 行.
+
+[ 2019-05-24T13:46:52+08:00 ] 127.0.0.1 /api/NewAgent/oneDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001314s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001409s ]
+NOTIC: [8] Undefined index: in_month D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 652 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0116s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0106s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0125s ]
+SQL: SELECT SUM(net_income) as net_income,`month` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY month LIMIT 1   [ RunTime:0.0102s ]
+SQL: SELECT SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,`day` FROM `db_income` WHERE `status` <> 9 AND `agent_id` = '1' AND `month` = 1551369600 GROUP BY day LIMIT 0,10   [ RunTime:0.0136s ]
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0179s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1  [ RunTime:0.0128s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0108s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0107s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0104s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0096s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0102s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0112s ]
+SQL: SELECT SUM(p_money) as p_money,`day` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1551369600 GROUP BY day ORDER BY day DESC  [ RunTime:0.0103s ]
+NOTIC: [8] Undefined variable: under_incomes D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 685 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 685 行.
+NOTIC: [8] Undefined variable: unders D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 696 行.
+NOTIC: [2] array_merge(): Argument #1 is not an array D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 696 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 699 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001204s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001239s ]
+
+[ 2019-05-24T15:34:12+08:00 ] 127.0.0.1 /api/NewAgent/oneAgentDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000954s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001272s ]
+NOTIC: [8] Undefined index: data_time D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1040 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0606s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0582s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0454s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1 AND `grade` = 3  [ RunTime:0.0611s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0464s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1556640000 ORDER BY create_time DESC  [ RunTime:0.0694s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0598s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0570s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0628s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0447s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0582s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0516s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0683s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0449s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0716s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0463s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0526s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0494s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0490s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.2037s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0735s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0430s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0614s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0668s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0758s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0647s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0598s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0488s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0571s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0862s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0638s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.2366s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.1638s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0661s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0391s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0553s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0589s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0468s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0556s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0544s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0535s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0519s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0559s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0457s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0445s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0536s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0460s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0643s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0463s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0527s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0407s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0456s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0520s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0665s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0611s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0499s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0538s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0475s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0572s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0595s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0709s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0594s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0447s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0633s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0479s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0578s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0507s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0603s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0605s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0495s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0556s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0518s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0519s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0507s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0481s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0545s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0525s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0536s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0583s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0439s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0488s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0495s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0620s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0522s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0425s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1556640000 ORDER BY create_time DESC  [ RunTime:0.0732s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0481s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0472s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0570s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0525s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0545s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0461s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0536s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0614s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0444s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0495s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0456s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0446s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0420s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0438s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0616s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0460s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0498s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0503s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0601s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0495s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0537s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0750s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0537s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0568s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0510s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0495s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0653s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0579s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0446s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0886s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0517s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0508s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0590s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0536s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0545s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0590s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0543s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0565s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0486s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0453s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0441s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0506s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0499s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0493s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0483s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0512s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0466s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0640s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0648s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0455s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0467s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0790s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0402s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0506s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0473s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0735s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0499s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0585s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0451s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0486s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0508s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0527s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0476s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1556640000 ORDER BY create_time DESC  [ RunTime:0.0532s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1556640000 ORDER BY create_time DESC  [ RunTime:0.1029s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1556640000 ORDER BY create_time DESC  [ RunTime:0.0611s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1556640000 ORDER BY create_time DESC  [ RunTime:0.0632s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0541s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0582s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0642s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0495s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0512s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0808s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0480s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0523s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0658s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0420s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0520s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0552s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0565s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0552s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0562s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0488s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0724s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0755s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0549s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0575s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0508s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0492s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0476s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0475s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0509s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0480s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0597s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0491s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0538s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0521s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0471s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0601s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0512s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0522s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0466s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0732s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0530s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0885s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0768s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0587s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0580s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0544s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0679s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0500s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0454s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0667s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0456s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0514s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0582s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0586s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0580s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0544s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0549s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1556640000 ORDER BY create_time DESC  [ RunTime:0.0747s ]
+SQL: SELECT `car_washer_id`,`orderid`,`detail`,`net_income`,`platform`,`plat_money`,`partner_money`,`create_time` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1556640000 ORDER BY create_time DESC  [ RunTime:0.1322s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0734s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0557s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0498s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0427s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0564s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0578s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0440s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0399s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0484s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0472s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0598s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0483s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0606s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0431s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0566s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0778s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0713s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0504s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0432s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0643s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0657s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0543s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0548s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0541s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0698s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0535s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0500s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0524s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0592s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0534s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0535s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0480s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0501s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0422s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0543s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0581s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0559s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0580s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0527s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0518s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0532s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0506s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0644s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0541s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0514s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0764s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0466s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0752s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0522s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0492s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0474s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0502s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0493s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0464s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0615s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0613s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0559s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0511s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0455s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0496s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0531s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0511s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0455s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0515s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0426s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0445s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0615s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0575s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0519s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0552s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0688s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0516s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0479s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0566s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0511s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0542s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0702s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0540s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0461s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0652s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0615s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0751s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0637s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0636s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0563s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0496s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0535s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0456s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0471s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0688s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0435s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0550s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0560s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0472s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0484s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0614s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0575s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0496s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0528s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0510s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0465s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0504s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0545s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0459s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0621s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0507s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0561s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0531s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0483s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0511s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0552s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0497s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0478s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0585s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0716s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0770s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0542s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0488s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0425s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0437s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0629s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0665s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0660s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0596s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0509s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0742s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.1029s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0593s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0514s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0534s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0474s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0456s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0437s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0480s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0492s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0437s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0438s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0448s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0476s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0402s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0466s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0437s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0437s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0438s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0580s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0425s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0476s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0463s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0491s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0485s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0435s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0438s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0476s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0536s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0472s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0529s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0553s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.1095s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0444s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0474s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0553s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0532s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0649s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0548s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0558s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0757s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0579s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0582s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0569s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0562s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0509s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0603s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0700s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0546s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0613s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0625s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0520s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0702s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.1692s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0555s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0501s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0488s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0473s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0623s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.1395s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0575s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0464s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0477s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0717s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0429s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0569s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0709s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0532s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0604s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0459s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0455s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0527s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0462s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0690s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0526s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0536s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0531s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0821s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0577s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0547s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0840s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0590s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0456s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0616s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0595s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0530s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0525s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0547s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0498s ]
+
+[ 2019-05-24T15:39:10+08:00 ] 127.0.0.1 /api/NewAgent/oneAgentDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000641s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001344s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001437s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 397 行.
+
+[ 2019-05-24T15:39:22+08:00 ] 127.0.0.1 /api/NewAgent/oneAgentDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000981s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000833s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000901s ]
+NOTIC: [8] Undefined index: token D:\test\Littlewhale\Application\Common\Common\function.php 第 397 行.
+
+[ 2019-05-24T15:39:42+08:00 ] 127.0.0.1 /api/NewAgent/oneAgentDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001505s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003595s ]
+NOTIC: [8] Undefined index: data_time D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1040 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.1704s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0694s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0565s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1 AND `grade` = 3  [ RunTime:0.0530s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0489s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0479s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0524s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0494s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0520s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0660s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0582s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0562s ]
+NOTIC: [8] Undefined variable: incomes D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1069 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1069 行.
+SQL: SELECT `car_washer_id`,`orderid`,`detail`,`net_income`,`platform`,`plat_money`,`partner_money`,`create_time` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0529s ]
+NOTIC: [8] Undefined variable: incomess D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1083 行.
+NOTIC: [2] array_merge(): Argument #2 is not an array D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1083 行.
+
+[ 2019-05-24T15:45:44+08:00 ] 127.0.0.1 /api/NewAgent/oneAgentDetail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000820s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000904s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000977s ]
+NOTIC: [8] Undefined index: data_time D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1040 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0550s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Common\Model\AgentModel.class.php 第 23 行.
+SQL: SELECT `id`,`account`,`token`,`nickname`,`balance`,`salt`,`password`,`grade` FROM `db_agent` WHERE `token` = '60abe1fe939803dd1e4ea29fb1d0fd58' AND `status` <> '9' LIMIT 1   [ RunTime:0.0855s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 118 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Api\Controller\BaseController.class.php 第 121 行.
+SQL: SHOW COLUMNS FROM `db_agent` [ RunTime:0.0561s ]
+SQL: SELECT `id` FROM `db_agent` WHERE `p_id` = 1 AND `grade` = 3  [ RunTime:0.0675s ]
+SQL: SHOW COLUMNS FROM `db_income` [ RunTime:0.0517s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 2 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0737s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 3 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0989s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 4 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0512s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 5 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0552s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 8 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0569s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 9 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0628s ]
+SQL: SELECT `car_washer_id`,`orderid`,`p_money`,`create_time` FROM `db_income` WHERE `agent_id` = 27 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0580s ]
+NOTIC: [8] Undefined variable: incomes D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1069 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1069 行.
+SQL: SELECT `car_washer_id`,`orderid`,`detail`,`net_income`,`platform`,`plat_money`,`partner_money`,`create_time` FROM `db_income` WHERE `agent_id` = 1 AND `month` = 1551369600 ORDER BY create_time DESC  [ RunTime:0.0710s ]
+NOTIC: [8] Undefined variable: incomess D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1083 行.
+NOTIC: [2] array_merge(): Argument #2 is not an array D:\test\Littlewhale\Application\Api\Controller\NewAgentController.class.php 第 1083 行.
+
