@@ -651,7 +651,7 @@ class NewAgentController extends BaseController
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
 
-//        $post['in_month'] = 1553405114;
+//        $post['in_month'] = 1553448192;
 
 
         if($post['in_month'] == ''){
@@ -717,10 +717,12 @@ class NewAgentController extends BaseController
             'all_income' => $month_income,
             'now_income' => $result,
         );
-//        dump($data);exit;
 
         if($result){
             $this->apiResponse(1,'查询成功',$data);
+        }else{
+            $this->apiResponse(1,'暂无数据');
+
         }
     }
 
