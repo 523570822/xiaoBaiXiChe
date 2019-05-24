@@ -1449,6 +1449,7 @@ class NewAgentController extends BaseController
         $one_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
         foreach($one_agent as $ok=>$ov){
             $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('create_time,id,nickname,account,token')->select();
+//            dump($two_agent);
             foreach ($two_agent as $k=>$v){
                 $n_income = M('Income')->where(array('agent_id'=>$v['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform')->find();
                 if($n_income['net_income'] == 0){
@@ -1468,29 +1469,14 @@ class NewAgentController extends BaseController
 
             }
             $lists = list_sort_by($n_incomes, 'create_time', 'desc');
-//            dump($lists);
             for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
-                if(!empty($lists[$i])){
-                    $datas[] = $lists[$i];
-                }
+                $datas[] = $lists[$i];
             }
-            dump($datas);
-//                foreach($datas as &$dv){
-//
-//                }
-//                $two_agent[$k]['net_income'] = $n_income['net_income'];
-//                $two_agent[$k]['p_money'] = $n_income['p_money'];
-//                $trade = bcsub($n_income['detail'],$n_income['platform'],2);
-//                $two_agent[$k]['trade'] = $trade;
-
-
-            exit;
         }
         if(!empty($two_agent)){
-            $this->apiResponse(1,'查询成功',$two_agent);
+            $this->apiResponse(1,'查询成功',$datas);
         }else{
             $this->apiResponse(0,'暂无数据');
-
         }
     }
 }
