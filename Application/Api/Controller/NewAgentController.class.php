@@ -1473,7 +1473,7 @@ class NewAgentController extends BaseController
                 $datas[] = $lists[$i];
             }
         }
-        if($two_agent){
+        if($datas){
             $this->apiResponse(1,'查询成功',$datas);
         }else{
             $this->apiResponse(0,'暂无数据');
