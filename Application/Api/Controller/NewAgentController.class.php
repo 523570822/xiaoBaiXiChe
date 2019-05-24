@@ -643,11 +643,14 @@ class NewAgentController extends BaseController
      *Date:2019/05/17 16:13
      */
     public function oneDetail(){
-        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
+        $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['in_month'] = 1558082005;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
+
+        $request = $_REQUEST;
+        $post['in_month'] = $request['in_month'];
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
@@ -719,11 +722,14 @@ class NewAgentController extends BaseController
      *Date:2019/05/20 15:12
      */
     public function twoDetail(){
-        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
+        $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
 //        $post['in_month'] = 1558082005;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
+        $request = $_REQUEST;
+        $post['in_month'] = $request['in_month'];
+
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
@@ -756,11 +762,14 @@ class NewAgentController extends BaseController
      *Date:2019/05/20 17:24
      */
     public function partnerDetail(){
-        $post = checkAppData('token,in_month,page,size','token-月份时间戳-页数-个数');
+        $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
 //        $post['in_month'] = 1558082005;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
+
+        $request = $_REQUEST;
+        $post['in_month'] = $request['in_month'];
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
