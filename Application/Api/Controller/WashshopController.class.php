@@ -257,10 +257,10 @@ class WashshopController extends BaseController
 
             foreach ( $washcar as $k => $v ) {
                 if($washcar[$k]['lon']>180){
-                    $washcar[$k]['lon'] = bcsub (180,$washcar[$k]['lon'],12);
+                    $washcar[$k]['lon'] = bcsub ($washcar[$k]['lon'],180,12);
                 }
                 if($washcar[$k]['lat']>90){
-                    $washcar[$k]['lat'] = bcsub (90,$washcar[$k]['lat'],12);
+                    $washcar[$k]['lat'] = bcsub ($washcar[$k]['lat'],90,12);
                 }
                 if ( $lat == "" ) {
                 } else {
