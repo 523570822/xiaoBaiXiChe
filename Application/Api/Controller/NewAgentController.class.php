@@ -1440,7 +1440,7 @@ class NewAgentController extends BaseController
 
 //        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
 //        $post['page'] = 1;
-//        $post['size'] = 2;
+//        $post['size'] = 10;
 
         $agent = $this->getAgentInfo($post['token']);
         if($agent['grade'] != 1){
@@ -1465,11 +1465,15 @@ class NewAgentController extends BaseController
                 $data['nickname'] = $two_agent[$k]['nickname'];
                 $data['account'] = $two_agent[$k]['account'];
                 $data['net_income'] = $n_income['net_income'];
+                $data['create_time'] = $two_agent[$k]['create_time'];
                 $n_incomes[] = $data;
 
             }
-            $lists = list_sort_by($n_incomes, 'create_time', 'desc');
-            for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
+
+        }
+        $lists = list_sort_by($n_incomes, 'create_time', 'desc');
+        for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
+            if(!empty($lists[$i])){
                 $datas[] = $lists[$i];
             }
         }
