@@ -1034,15 +1034,15 @@ class NewAgentController extends BaseController
         $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['page'] = 1;
-//        $post['size'] = 250;
+//        $post['size'] = 10;
 
         $request = $_REQUEST;
         $post['data_time'] = $request['data_time'];
         if($post['data_time'] == ''){
             $post['data_time'] = strtotime(date('Y-m'));
         }
-        $post['data_time'] = 1553405114;
-        $month =strtotime(date('Y-m',$post['data_time'])) ;
+//        $post['data_time'] = 1558686980;
+        $day =strtotime(date('Y-m-d',$post['data_time'])) ;
 
         $agent = $this->getAgentInfo($post['token']);
         if($agent['grade'] != 2){
@@ -1050,7 +1050,7 @@ class NewAgentController extends BaseController
         }
         $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id')->select();
         foreach($two_agent as &$tv){
-            $tincome = M('Income')->where(array('agent_id'=>$tv['id'],'month'=>$month))->field('car_washer_id,orderid,p_money,create_time')->order('create_time DESC')->select();
+            $tincome = M('Income')->where(array('agent_id'=>$tv['id'],'day'=>$day))->field('car_washer_id,orderid,p_money,create_time')->order('create_time DESC')->select();
             foreach ($tincome as &$iv){
                 $iv['detail'] = '';
                 $iv['net_income'] = '';
@@ -1104,11 +1104,20 @@ class NewAgentController extends BaseController
 //        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
 //        $post['page'] = 1;
 //        $post['size'] = 10;
+
+        $request = $_REQUEST;
+        $post['data_time'] = $request['data_time'];
+        if($post['data_time'] == ''){
+            $post['data_time'] = strtotime(date('Y-m'));
+        }
+//        $post['data_time'] = 1558686980;
+        $day =strtotime(date('Y-m-d',$post['data_time'])) ;
+
         $agent = $this->getAgentInfo($post['token']);
         if($agent['grade'] != 3){
             $this->apiResponse('0','您不是二级代理商');
         }
-        $income = M('Income')->where(array('agent_id' => $agent['id']))->field('car_washer_id,orderid,detail,net_income,platform,p_money,create_time')->limit(($post['page'] - 1) * $post['size'], $post['size'])->order('create_time DESC')->select();
+        $income = M('Income')->where(array('agent_id' => $agent['id'],'day'=>$day))->field('car_washer_id,orderid,detail,net_income,platform,p_money,create_time')->limit(($post['page'] - 1) * $post['size'], $post['size'])->order('create_time DESC')->select();
         foreach($income as &$v){
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
@@ -1133,11 +1142,20 @@ class NewAgentController extends BaseController
 //        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
 //        $post['page'] = 1;
 //        $post['size'] = 10;
+
+        $request = $_REQUEST;
+        $post['data_time'] = $request['data_time'];
+        if($post['data_time'] == ''){
+            $post['data_time'] = strtotime(date('Y-m'));
+        }
+//        $post['data_time'] = 1558686980;
+        $day =strtotime(date('Y-m-d',$post['data_time'])) ;
+
         $agent = $this->getAgentInfo($post['token']);
         if($agent['grade'] != 3){
             $this->apiResponse('0','您不是二级代理商');
         }
-        $income = M('Income')->where(array('agent_id' => $agent['id']))->field('car_washer_id,orderid,detail,net_income,platform,p_money,plat_money,partner_money,create_time')->limit(($post['page'] - 1) * $post['size'], $post['size'])->order('create_time DESC')->select();
+        $income = M('Income')->where(array('agent_id' => $agent['id'],'day'=>$day))->field('car_washer_id,orderid,detail,net_income,platform,p_money,plat_money,partner_money,create_time')->limit(($post['page'] - 1) * $post['size'], $post['size'])->order('create_time DESC')->select();
         foreach($income as &$v){
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
@@ -1158,16 +1176,17 @@ class NewAgentController extends BaseController
      *Date:2019/05/22 16:56
      */
     public function partnerOrderDetail(){
-//        $post = checkAppData('token,page,size','token-页数-个数');
-        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
-        $post['page'] = 1;
-        $post['size'] = 10;
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
         $request = $_REQUEST;
-        $post['in_month'] = $request['in_month'];
-        if($post['in_month'] == ''){
-            $post['in_month'] = strtotime(date('Y-m'));
+        $post['data_time'] = $request['data_time'];
+        if($post['data_time'] == ''){
+            $post['data_time'] = strtotime(date('Y-m'));
         }
-        $month =strtotime(date('Y-m',$post['in_month'])) ;
+//        $post['data_time'] = 1558686980;
+        $day =strtotime(date('Y-m-d',$post['data_time'])) ;
 
         $agent = $this->getAgentInfo($post['token']);
         if($agent['grade'] != 4){
@@ -1175,7 +1194,7 @@ class NewAgentController extends BaseController
         }
         $car = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id,mc_code')->select();
         foreach ($car as $k=>$v){
-            $income = M('Income')->where(array('car_washer_id'=>$car[$k]['id'],'month'=>$month))->field('orderid,detail,platform,partner_money,create_time')->select();
+            $income = M('Income')->where(array('car_washer_id'=>$car[$k]['id'],'day'=>$day))->field('orderid,detail,platform,partner_money,create_time')->select();
             foreach($income as &$cv){
                 $cv['mc_code'] = $car[$k]['mc_code'];
             }
@@ -1183,6 +1202,7 @@ class NewAgentController extends BaseController
                 $incomes[] = $income;
             }
         }
+
         foreach ($incomes as &$iv){
             foreach($iv as &$iv2){
                 $trade = bcsub($iv2['detail'],$iv2['platform'],2);
@@ -1431,6 +1451,7 @@ class NewAgentController extends BaseController
 //        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
 //        $post['page'] = 1;
 //        $post['size'] = 10;
+
 
         $agent = $this->getAgentInfo($post['token']);
         if($agent['grade'] != 1){
