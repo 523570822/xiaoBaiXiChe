@@ -1431,7 +1431,7 @@ class NewAgentController extends BaseController
     }
 
     /**
-     *方法释义
+     *区域合伙人-2级代理商收入-代理商
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/05/24 02:07
      */
@@ -1473,7 +1473,7 @@ class NewAgentController extends BaseController
                 $datas[] = $lists[$i];
             }
         }
-        if(!empty($two_agent)){
+        if($two_agent){
             $this->apiResponse(1,'查询成功',$datas);
         }else{
             $this->apiResponse(0,'暂无数据');
