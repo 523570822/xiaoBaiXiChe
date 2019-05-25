@@ -1532,6 +1532,7 @@ class NewAgentController extends BaseController
                 $data['account'] = $two_agent[$k]['account'];
                 $data['net_income'] = $n_income['net_income'];
                 $data['create_time'] = $two_agent[$k]['create_time'];
+                $data['token'] = $two_agent[$k]['token'];
                 $n_incomes[] = $data;
 
             }
