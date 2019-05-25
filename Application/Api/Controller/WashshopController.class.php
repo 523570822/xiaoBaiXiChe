@@ -263,6 +263,7 @@ class WashshopController extends BaseController
         $m_id = $this->checkToken ();
         $lon = empty($_REQUEST['lon']) ? 0 : $_REQUEST['lon'];  // 经度
         $lat = empty($_REQUEST['lat']) ? 0 : $_REQUEST['lat'];  // 纬度
+        $request = $_REQUEST;
 //        $lon = 116.4072154982;
 //        $lat = 39.9047253699;
         if ( empty($lon) && empty($lat) ) {
@@ -275,10 +276,11 @@ class WashshopController extends BaseController
 //            $this->apiResponse(1,'查询',$washcar);
 
             foreach ( $washcar as $k => $v ) {
-//                if(){
-//
-//                }
-                $a = $this->Convert_GCJ02_To_BD09($washcar[$k]['lat'],$washcar[$k]['lon']);
+                if($request['wx'] == 1){
+                    $a = $this->Convert_GCJ02_To_BD09($washcar[$k]['lat'],$washcar[$k]['lon']);
+                    $washcar[$k]['lon'] = $a['lng'];
+                    $washcar[$k]['lat'] = $a['lat'];
+                }
                 if($washcar[$k]['lon']>180){
                     $washcar[$k]['lon'] = bcsub ($washcar[$k]['lon'],180,12);
                 }
