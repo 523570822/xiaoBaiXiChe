@@ -904,6 +904,8 @@ class NewAgentController extends BaseController
     public function franchiseeAgent(){
         $post = checkAppData('token,grade,page,size','token-等级-页数-个数');
 //        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
 //        $post['grade'] = 2;
 
         $agent = $this->getAgentInfo($post['token']);
@@ -920,16 +922,17 @@ class NewAgentController extends BaseController
             $one_agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
             foreach ($one_agents as &$sv){
                 $two_agent = M('Agent')->where(array('p_id'=>$sv['id'],'grade'=>3))->field('id,nickname,account,token')->select();
-                if(!empty($two_agent)){
-                    $agents[] = $two_agent;
+                foreach($two_agent as &$tv){
+                    if(!empty($tv)){
+                        $agents[] = $tv;
+                    }
                 }
+
             }
             foreach($agents as &$agv){
-                foreach($agv as &$agvs){
-                    $car = M('CarWasher')->where(array('agent_id'=>$agvs['id']))->field('id')->select();
-                    if(!empty($car)){
-                        $agvs['car_num'] = count($car);
-                    }
+                $car = M('CarWasher')->where(array('agent_id'=>$agv['id']))->field('id')->select();
+                if(!empty($car)){
+                    $agv['car_num'] = count($car);
                 }
             }
             if($agents){
