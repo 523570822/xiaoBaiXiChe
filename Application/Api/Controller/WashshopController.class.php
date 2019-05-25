@@ -233,6 +233,25 @@ class WashshopController extends BaseController
     }
 
     /**
+     *转化为百度坐标
+     * @param $lat
+     * @param $lng
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/05/25 13:42
+     */
+    function Convert_GCJ02_To_BD09($lat,$lng){
+        $x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+        $x = $lng;
+        $y = $lat;
+        $z =sqrt($x * $x + $y * $y) + 0.00002 * sin($y * $x_pi);
+        $theta = atan2($y, $x) + 0.000003 * cos($x * $x_pi);
+        $lng = $z * cos($theta) + 0.0065;
+        $lat = $z * sin($theta) + 0.006;
+        return array('lng'=>$lng,'lat'=>$lat);
+    }
+
+
+    /**
      * 洗车机列表
      * 传递参数的方式：post
      * 需要传递的参数：
@@ -256,6 +275,10 @@ class WashshopController extends BaseController
 //            $this->apiResponse(1,'查询',$washcar);
 
             foreach ( $washcar as $k => $v ) {
+//                if(){
+//
+//                }
+                $a = $this->Convert_GCJ02_To_BD09($washcar[$k]['lat'],$washcar[$k]['lon']);
                 if($washcar[$k]['lon']>180){
                     $washcar[$k]['lon'] = bcsub ($washcar[$k]['lon'],180,12);
                 }

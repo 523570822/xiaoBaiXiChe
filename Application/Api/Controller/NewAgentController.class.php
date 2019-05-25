@@ -721,7 +721,11 @@ class NewAgentController extends BaseController
         if($result){
             $this->apiResponse(1,'查询成功',$data);
         }else{
-            $this->apiResponse(1,'暂无数据');
+            $data = array(
+                'all_income' => array(),
+                'now_income' => array(),
+            );
+            $this->apiResponse(1,'暂无数据',$data);
 
         }
     }
@@ -734,11 +738,11 @@ class NewAgentController extends BaseController
     public function twoDetail(){
         $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
-//        $post['in_month'] = 1558082005;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
+//        $post['in_month'] = 1558082005;
 
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
@@ -761,8 +765,10 @@ class NewAgentController extends BaseController
             'all_income' => $month_income,
             'now_income' => $day_income,
         );
-        if($data){
+        if(!empty($day_income)){
             $this->apiResponse(1,'查询成功',$data);
+        }else{
+            $this->apiResponse(0,'暂无数据');
         }
     }
 
@@ -774,12 +780,13 @@ class NewAgentController extends BaseController
     public function partnerDetail(){
         $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
-//        $post['in_month'] = 1558082005;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
 
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
+//        $post['in_month'] = 1535082005;
+
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
@@ -823,8 +830,10 @@ class NewAgentController extends BaseController
             'all_income' => $all_income,
             'now_income' => $now_income,
         );
-        if($data){
+        if(!empty($now_income)){
             $this->apiResponse(1,'查询成功',$data);
+        }else{
+            $this->apiResponse(1,'暂无数据');
         }
     }
 
