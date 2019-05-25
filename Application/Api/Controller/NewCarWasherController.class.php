@@ -125,7 +125,7 @@ class NewCarWasherController extends BaseController
         if($post['status'] == 3){
             $post['status'] = array('in','3,5');
         }
-        if($post['status']){                  //筛选状态  1正常  2故障 3报警  4不在线
+        if($post['status']){                  //筛选状态  1正常  2故障 3报警  4掉线
             if(!empty($post['status'])){
                 $where['status'] = $post['status'];
             }else{
@@ -148,7 +148,7 @@ class NewCarWasherController extends BaseController
             }elseif ($v['status'] == 3){
                 $result[$k]['status'] = '液位不足';
             }elseif ($v['status'] == 4){
-                $result[$k]['status'] = '不在线';
+                $result[$k]['status'] = '掉线';
             }elseif ($v['status'] == 5){
                 $result[$k]['status'] = '液位不足';
             }
@@ -183,7 +183,7 @@ class NewCarWasherController extends BaseController
         }elseif ($car_washer['status'] == 3){
             $car_washer['status'] = '液位不足';
         }elseif ($car_washer['status'] == 4){
-            $car_washer['status'] = '不在线';
+            $car_washer['status'] = '掉线';
         }elseif ($car_washer['status'] == 5){
             $car_washer['status'] = '液位不足';
         }
@@ -341,7 +341,7 @@ class NewCarWasherController extends BaseController
 //                        echo M('CarWasher')->_sql();
                     }
                 }
-                //判断洗车机状态   1在线   2故障   3报警   4不在线
+                //判断洗车机状态   1在线   2故障   3报警   4掉线
                 if(($vv[0]['queryitem']['pump1_status'] >= 4) || ($vv[0]['queryitem']['pump2_status'] >= 4 ) || ($vv[0]['queryitem']['valve1_status'] >= 4) ){   //三个值有一个值>=4就代表故障
                     $malf_where = array(
                         'mc_id' => $vv[0]['deviceid'],
