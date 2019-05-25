@@ -1514,7 +1514,7 @@ class NewAgentController extends BaseController
         }
         $one_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
         foreach($one_agent as $ok=>$ov){
-            $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('create_time,id,nickname,account,token')->select();
+            $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('token,create_time,id,nickname,account,token')->select();
 //            dump($two_agent);
             foreach ($two_agent as $k=>$v){
                 $n_income = M('Income')->where(array('agent_id'=>$v['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform')->find();
