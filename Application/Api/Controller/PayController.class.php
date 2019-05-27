@@ -1017,6 +1017,9 @@ class PayController extends BaseController {
         if ( $Member['balance'] < $order['pay_money'] ) {
             $this->apiResponse (0 , '您的余额不足，请充值');
         }
+        if($order['pay_money'] == 0){
+            $order['pay_money'] = 0.01;
+        }
 
         if ( $order['o_type'] ) {
             if ( $order['o_type'] == 1 ) {//1洗车订单
