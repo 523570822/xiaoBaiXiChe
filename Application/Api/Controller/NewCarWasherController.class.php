@@ -187,7 +187,7 @@ class NewCarWasherController extends BaseController
         }elseif ($car_washer['status'] == 5){
             $car_washer['status'] = '液位不足';
         }
-
+//        dump($car_washer);exit;
         if($car_washer){
             $this->apiResponse('1','成功',$car_washer);
         }else{
