@@ -233,20 +233,20 @@ class WashshopController extends BaseController
     }
 
     /**
-     *转化为百度坐标
+     *转化为腾讯坐标
      * @param $lat
      * @param $lng
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/05/25 13:42
      */
-    function Convert_GCJ02_To_BD09($lat,$lng){
+    function Convert_BD09_To_GCJ02($lat,$lng){
         $x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-        $x = $lng;
-        $y = $lat;
-        $z =sqrt($x * $x + $y * $y) + 0.00002 * sin($y * $x_pi);
-        $theta = atan2($y, $x) + 0.000003 * cos($x * $x_pi);
-        $lng = $z * cos($theta) + 0.0065;
-        $lat = $z * sin($theta) + 0.006;
+        $x = $lng - 0.0065;
+        $y = $lat - 0.006;
+        $z = sqrt($x * $x + $y * $y) - 0.00002 * sin($y * $x_pi);
+        $theta = atan2($y, $x) - 0.000003 * cos($x * $x_pi);
+        $lng = $z * cos($theta);
+        $lat = $z * sin($theta);
         return array('lng'=>$lng,'lat'=>$lat);
     }
 
@@ -274,10 +274,9 @@ class WashshopController extends BaseController
         $washcar = M ('CarWasher')->where ($washer_where)->field ('id,p_id,lon,lat,address,mc_code as mc_id ,status,type,' . $wh3 . ' as distance')->order ('distance ASC')->select ();
         if ( $washcar ) {
 //            $this->apiResponse(1,'查询',$washcar);
-
             foreach ( $washcar as $k => $v ) {
                 if($request['wx'] == 1){
-                    $a = $this->Convert_GCJ02_To_BD09($washcar[$k]['lat'],$washcar[$k]['lon']);
+                    $a = $this->Convert_BD09_To_GCJ02($washcar[$k]['lat'],$washcar[$k]['lon']);
                     $washcar[$k]['lon'] = $a['lng'];
                     $washcar[$k]['lat'] = $a['lat'];
                 }

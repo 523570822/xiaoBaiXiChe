@@ -52,7 +52,7 @@ class CouponController extends BaseController {
         //            $param['order'] = $sort[0].' '.$sort[1];
         //
         //        }
-
+        $param['order'] = 'create_time desc';
         $param['page_size'] = 15;
         $data = D ('CouponBind')->queryList ($where , '*' , $param);
         foreach ( $data['list'] as $k => $v ) {
