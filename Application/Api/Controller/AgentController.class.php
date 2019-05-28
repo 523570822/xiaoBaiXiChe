@@ -87,10 +87,10 @@ class AgentController extends BaseController
 //        $post['password'] = 123456;
 //        $post['apassword'] = 123456;
         if($post['old_password'] == $post['password']){
-            $this->apiResponse('1','新旧密码不能一致');
+            $this->apiResponse('0','新旧密码不能一致');
         }
         if($post['password'] != $post['apassword']){
-            $this->apiResponse('1','新密码不一致');
+            $this->apiResponse('0','新密码不一致');
         }
         $member = $this->getAgentInfo($post['token']);
 //        var_dump($post['old_password']);

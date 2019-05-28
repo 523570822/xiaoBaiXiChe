@@ -187,11 +187,11 @@ class NewAgentController extends BaseController
      *Date:2019/05/15 14:39
      */
     public function incomeInfo(){
-        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['day'] = 1555862400;
-//        $post['page'] = 2;
-//        $post['size'] = 10;
+//        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
+        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $post['day'] = 1558972800;
+        $post['page'] = 1;
+        $post['size'] = 10;
         if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
         }else{
@@ -200,6 +200,8 @@ class NewAgentController extends BaseController
         $agent = $this->getAgentInfo($post['token']);
         $order[] = 'create_time ASC';
         $income = M('Income')->where(array('agent_id'=>$agent['id'],'day'=>$post['day']))->field('orderid,net_income,detail,car_washer_id,create_time')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        echo M('Income')->_sql();
+        dump($income);exit;
         foreach($income as $k=>$v){
             $mc_code = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $income[$k]['car_washer_id'] = $mc_code['mc_code'];
