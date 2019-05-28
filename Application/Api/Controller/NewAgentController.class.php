@@ -579,11 +579,14 @@ class NewAgentController extends BaseController
      */
     public function summary(){
         $post = checkAppData('token,grade','token-等级');
-//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
-//        $post['grade'] = 3;           //1一级代理商   2二级代理商   3合作方
+//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+//        $post['grade'] = 1;            //1一级代理商   2二级代理商   3合作方
         $agent = $this->getAgentInfo($post['token']);
 
         if($post['grade'] == 1){
+            if($agent['grade'] != 2){
+                $this->apiResponse(0,'您的身份不是一级代理商');
+            }
             $n_income = M('Income')->where(array('agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(partner_money) as partner_money,SUM(plat_money) as plat_money')->find();
             $trade = bcsub($n_income['detail'],$n_income['platform'],2);
             $f_tagent = M('Agent')->where(array('p_id'=>$agent['id']))->field('id')->select();
@@ -598,12 +601,18 @@ class NewAgentController extends BaseController
             $n_income['p_money'] = '';
             $all_partner = '';
         }elseif ($post['grade'] == 2){
+            if($agent['grade'] != 3){
+                $this->apiResponse(0,'您的身份不是二级代理商');
+            }
             $n_income = M('Income')->where(array('agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(partner_money) as partner_money,SUM(plat_money) as plat_money,SUM(p_money) as p_money')->find();
             $trade = bcsub($n_income['detail'],$n_income['platform'],2);
             $p_money = '';
             $all_money = '';
             $all_partner = '';
         }elseif ($post['grade'] == 3){
+            if($agent['grade'] != 4){
+                $this->apiResponse(0,'您的身份不是合作方');
+            }
             $car = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id')->select();
             foreach ($car as $ck=>$cv){
                 $h_income = M('Income')->where(array('car_washer_id'=>$cv['id']))->field('SUM(partner_money) as partner_money')->find();
