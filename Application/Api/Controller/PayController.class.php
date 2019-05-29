@@ -1043,7 +1043,7 @@ class PayController extends BaseController {
                 if ( $save && $pay ) {
                     //添加到收益表
                     $a_where['orderid'] = $request['orderid'];
-                    $a_where['status'] = 2;
+//                    $a_where['status'] = 2;
                     $a_where['o_type'] = 1;
                     $a_order = M ('Order')->where ($a_where)->field ('c_id,pay_money,pay_time')->find ();
                     $agent_where['id'] = $a_order['c_id'];
