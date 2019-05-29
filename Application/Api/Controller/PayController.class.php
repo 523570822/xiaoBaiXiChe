@@ -1002,7 +1002,7 @@ class PayController extends BaseController {
         $where['m_id'] = $m_id;
         $where['orderid'] = $request['orderid'];
         $where['is_set'] = 0;
-        $where['status'] = 1;
+//        $where['status'] = 1;
         $order = D ("Order")->where ($where)->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
         if ( !$order ) {
