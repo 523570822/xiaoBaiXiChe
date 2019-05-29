@@ -200,8 +200,8 @@ class NewAgentController extends BaseController
         $agent = $this->getAgentInfo($post['token']);
         $order[] = 'create_time ASC';
         $income = M('Income')->where(array('agent_id'=>$agent['id'],'day'=>$post['day']))->field('orderid,net_income,detail,car_washer_id,create_time')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-        echo M('Income')->_sql();
-        dump($income);exit;
+//        echo M('Income')->_sql();
+//        dump($income);exit;
         foreach($income as $k=>$v){
             $mc_code = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $income[$k]['car_washer_id'] = $mc_code['mc_code'];
