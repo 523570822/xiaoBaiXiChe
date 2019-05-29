@@ -998,10 +998,10 @@ class PayController extends BaseController {
         $request = I ('post.');
         $rule = array ('orderid' , 'string' , '订单编号不能为空');
         $this->checkParam ($rule);
-        $where['o_type'] = array ('neq' , 3);
-        $where['m_id'] = $m_id;
+//        $where['o_type'] = array ('neq' , 3);
+//        $where['m_id'] = $m_id;
         $where['orderid'] = $request['orderid'];
-        $where['is_set'] = 0;
+//        $where['is_set'] = 0;
 //        $where['status'] = 1;
         $order = D ("Order")->where ($where)->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
