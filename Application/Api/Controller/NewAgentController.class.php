@@ -94,7 +94,7 @@ class NewAgentController extends BaseController
             }
             $car_num = count($car);
             $result = array(
-                'new_income' => $new_income,    //今日收益
+                'news_income' => $new_income,    //今日收益
                 'record' =>$records,             //记录
                 'wash_num' => $wash_num,      //洗车数量
                 'car_num' => $car_num,      //设备数量
@@ -118,7 +118,7 @@ class NewAgentController extends BaseController
             }
             $car_num = count($car);
             $result = array(
-                'new_income' => $new_income,    //今日收益
+                'news_income' => $new_income,    //今日收益
                 'record' =>$records,             //记录
                 'wash_num' => $wash_num,      //洗车数量
                 'car_num' => $car_num,      //设备数量
@@ -173,7 +173,7 @@ class NewAgentController extends BaseController
                 $records[] = $record;
             }
             $result = array(
-                'new_income' => $new_income,    //今日收益
+                'news_income' => $new_income,    //今日收益
                 'record' =>$records,             //记录
             );
         }
