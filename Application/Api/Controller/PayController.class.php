@@ -69,15 +69,16 @@ class PayController extends BaseController {
      */
     public function addBankCard () {
         $post = checkAppData ('token,card_name,card_code,ID_card,phone,card_id' , 'token-持卡人姓名-持卡人卡号-身份证号-手机号-卡类型');
-        //        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
-        //        $post['card_name'] = '王子';
-        //        $post['card_code'] = '621679087718187784568';
-        //        $post['ID_card'] = '587456988541235187';
-        //        $post['phone'] = '18635359874';
-        //        $post['card_id'] = 1;         //1建行  2中行  3农行
+//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+//        $post['card_name'] = '王子';
+//        $post['card_code'] = '6216736088718187784568';
+//        $post['ID_card'] = '587456988541235187';
+//        $post['phone'] = '18635359874';
+//        $post['card_id'] = 1;         //1建行  2中行  3农行
 
         $agent = $this->getAgentInfo ($post['token']);
         $data = array (
+            'create_time' => time(),
             'agent_id' => $agent['id'] ,
             'card_name' => $post['card_name'] ,
             'card_code' => $post['card_code'] ,
@@ -103,13 +104,12 @@ class PayController extends BaseController {
         //         }else if($post['card_id'] = 3){
         //             $car = '农行储蓄卡  尾号'.$car_way;
         //         }
-        if ( empty($card) ) {
-            $add = M ('BankCard')->add ($data);
+        $add = M ('BankCard')->add ($data);
+        if($add){
             $this->apiResponse ('1' , '绑定成功' , $car);
-        } else {
-            $save = M ('BankCard')->where (array ('agent_id' => $data['agent_id']))->save ($data);
-            $this->apiResponse ('1' , '已修改' , $car);
         }
+
+
     }
 
     /**
@@ -119,9 +119,9 @@ class PayController extends BaseController {
      */
     public function withdrawWay () {
         $post = checkAppData ('token,page,size' , 'token-页数-个数');
-        //        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
-        //        $post['page'] = 1;
-        //        $post['size'] = 10;
+//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
         $agent = $this->getAgentInfo ($post['token']);
 
         $where['agent_id'] = $agent['id'];
@@ -139,6 +139,7 @@ class PayController extends BaseController {
             $cars[$k]['bank_pic'] = $bank_pic;
             $cars[$k]['tail_number'] = $v['tail_number'];
         };
+//        dump($cars);exit;
         if ( $cars ) {
             $this->apiResponse ('1' , '成功' , $cars);
         } else {
@@ -186,9 +187,9 @@ class PayController extends BaseController {
      */
     public function withdrawInfo () {
         $post = checkAppData ('token,page,size' , 'token-页数-个数');
-        //        $post['token'] = 'b7c6f0307448306e8c840ec6fc322cb4';
-        //        $post['page'] = 2;
-        //        $post['size'] = 1;
+//                $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+//                $post['page'] = 1;
+//                $post['size'] = 10;
         $agent = $this->getAgentInfo ($post['token']);
         $order[] = 'sort DESC';
         $withdraw = M ('Withdraw')->where (array ('agent_id' => $agent['id']))->field ('money,status,create_time')->order ($order)->limit (($post['page'] - 1) * $post['size'] , $post['size'])->select ();

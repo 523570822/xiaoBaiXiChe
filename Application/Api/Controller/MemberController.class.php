@@ -55,6 +55,12 @@ class MemberController extends BaseController
         if (!empty($share_from_code)) {
             $this->checkShareCodeBefore($share_from_code);
         }
+        //检查密码长度不得小于6位
+        $long = strlen($request['password']);
+        if($long < 6){
+            $this->apiResponse('0', '密码长度不得小于6位');
+
+        }
         //邀请码
         if ($request['invite_code'] == '' || $request['invite_code'] == null) {
             $request['parent_id'] = 0;
@@ -63,10 +69,10 @@ class MemberController extends BaseController
             $request['parent_id'] = $mem['id'];
         }
         //检查短信验证码
-        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'register');
-        if ($res['error']) {
-            $this->apiResponse('0', $res['error']);
-        }
+//        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'register');
+//        if ($res['error']) {
+//            $this->apiResponse('0', $res['error']);
+//        }
         //注册用户
         $member_add_info = D('Member')->addRow($request);
         if (empty($member_add_info)) {
@@ -342,6 +348,12 @@ class MemberController extends BaseController
                 $this->apiResponse('0', '两次密码不一致，请重试');
             }
         }
+        //检查密码长度不得小于6位
+        $long = strlen($request['password']);
+        if($long < 6){
+            $this->apiResponse('0', '密码长度不得小于6位');
+
+        }
         //检查短信验证码
         $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'retrieve');
         if ($res['error']) {
@@ -387,6 +399,12 @@ class MemberController extends BaseController
         if(empty($request['repassword'])){
             $this->apiResponse('0', '请再次输入密码');
         }
+        //检查密码长度不得小于6位
+        $long = strlen($request['password']);
+        if($long < 6){
+            $this->apiResponse('0', '密码长度不得小于6位');
+
+        }
         if (!empty($request['password']) && !empty($request['repassword'])) {
             if ($request['password'] != $request['repassword']) {
                 $this->apiResponse('0', '两次密码不一致，请重试');
@@ -429,6 +447,12 @@ class MemberController extends BaseController
         if(empty($request['repassword'])){
             $this->apiResponse('0', '请再次输入密码');
         }
+        //检查密码长度不得小于6位
+        $long = strlen($request['password']);
+        if($long < 6){
+            $this->apiResponse('0', '密码长度不得小于6位');
+
+        }
         if (!empty($request['old_password']) && !empty($request['password'])) {
             if ($request['old_password'] == $request['password']) {
                 $this->apiResponse('0', '新旧密码一致，请重试');
@@ -439,6 +463,9 @@ class MemberController extends BaseController
                 $this->apiResponse('0', '两次密码不一致，请重试');
             }
         }
+//        if($request['password'] || $request['repassword']){
+//
+//        }
         unset($param);
         $param['where']['id'] = $m_id;
         $member_info = D('Member')->queryRow($param['where'], $param['field']);

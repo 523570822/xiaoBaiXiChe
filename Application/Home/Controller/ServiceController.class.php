@@ -14,6 +14,8 @@ use Common\Service\ControllerService;
 class ServiceController extends BaseController
 {
     public function index(){
+        $info = M('Info')->where(array('type'=>1))->field('content')->find();
+        $this->assign('info',$info);
         $this->display('service');//download
     }
 }
