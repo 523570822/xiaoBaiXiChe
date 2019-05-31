@@ -954,9 +954,8 @@ class NewAgentController extends BaseController
             }
             foreach($agents as &$agv){
                 $car = M('CarWasher')->where(array('agent_id'=>$agv['id']))->field('id')->select();
-                if(!empty($car)){
-                    $agv['car_num'] = count($car);
-                }
+                $agv['car_num'] = count($car);
+
             }
             if($agents){
                 $this->apiResponse(1,'查询成功',$agents);
