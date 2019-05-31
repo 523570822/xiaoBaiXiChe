@@ -17,6 +17,7 @@ return array(
         'app_logo' => '163',
         'app_name' => '小鲸洗车',
         'app_version' => 'V1.0.0',
+        'ag_code' => '1',
         'app_intro' => 'Copyright © 2019-2020    
 北京小鲸一诺科技有限公司',
     ),

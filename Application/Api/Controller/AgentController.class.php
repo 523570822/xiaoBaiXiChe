@@ -45,7 +45,7 @@ class AgentController extends BaseController
 //        dump($member);exit;
         if ($member) {
             if ($check_password != 1) {
-                $this->apiResponse('1','登陆成功',array('token'=>$member['token'],'grade'=>$member['grade']));
+                $this->apiResponse('1','登录成功',array('token'=>$member['token'],'grade'=>$member['grade']));
             }else{
                 $this->apiResponse('0','密码错误');
             }

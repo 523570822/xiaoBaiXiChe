@@ -14,7 +14,7 @@ class UpgradeController extends BaseController{
         if($request['member_type'] == 1){
             $result_data['uri']  = C('API_URL').'/Api/Upgrade/memberUpgrade';
             $result_data['name'] = substr(C('APP')['app_version'],1);
-
+            $result_data['ag_code'] = substr(C('APP')['ag_code'],1);
         }
         if($request['member_type'] == 2){
             $result_data['uri']  = C('API_URL').'/Api/Upgrade/memberUpgrades';

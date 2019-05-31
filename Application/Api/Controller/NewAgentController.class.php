@@ -33,15 +33,19 @@ class NewAgentController extends BaseController
      */
     public function income(){
         $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
-//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
-//        $post['timeType'] = 4;                 //查询方式  1日  2周  3月   4年
-//        $post['grade'] = 3;
+//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+//        $post['timeType'] = 4;                   //查询方式  1日  2周  3月   4年
+//        $post['grade'] = 4;                      //1区域合作人 2一级代理商 3二级代理商 4合作方
 //        $post['page'] = 1;
 //        $post['size'] = 10000000;
 
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
         $agent = $this->getAgentInfo($post['token']);
+        if($agent['grade'] != $post['grade']){
+            $this->apiResponse(0,'您的身份信息有误');
+        }
+
 //        dump($agent);exit;
         $car_where['agent_id'] = $agent['id'];
         $car_where['status'] = array('neq',9);
@@ -77,7 +81,7 @@ class NewAgentController extends BaseController
                     $new_income = 0;
                     $wash_num = 0;
                 }
-                $date_time = date("Y-m-d",$v2['time']);
+                $date_time = $v2['time'];
                 foreach ($s_data as &$v3){
                     if($v2['time'] == $v3['time']){
                         $s_income = $v3['p_money'];
@@ -108,7 +112,7 @@ class NewAgentController extends BaseController
                     $new_income = 0;
                     $wash_num = 0;
                 }
-                $date_time = date("Y-m-d",$v['time']);
+                $date_time = $v['time'];
                 $income = $v['net_income'];
                 $record = array(
                     'date_time' => $date_time,
@@ -134,7 +138,7 @@ class NewAgentController extends BaseController
                     $todaytime=strtotime("today");
                 }elseif($post['timeType'] == 2){
                     $month = strtotime(date ('Y-m' , time()));
-                    $datas[] = M('Income')->where(array('car_washer_id'=>$cv['id'],'status'=>1,'month'=>$month))->field('id,agent_id,week_star as time,SUM(partner_money) as partner_money,create_time')->group("week_star")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+                    $datas[] = M('Income')->where(array('car_washer_id'=>$cv['id'],'status'=>1,'month'=>$month))->field('id,agent_id,week_star as time,week_end,SUM(partner_money) as partner_money,create_time')->group("week_star")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
                     $todaytime = strtotime (date ('Y-m-d' , strtotime ("this week Monday" , time())));
                 }elseif($post['timeType'] == 3){
                     $year = strtotime (date ('Y' , time()) . '-1-1');
@@ -164,7 +168,15 @@ class NewAgentController extends BaseController
                 }else{
                     $new_income = 0;
                 }
-                $date_time = date("Y-m-d",$v['time']);
+                if($post['timeType'] == 1){
+                    $date_time = date('Y-m-d',$v['time']);
+                }elseif($post['timeType'] == 2){
+                    $date_time = date('Y-m-d',$v['time']).'~'.date('Y-m-d',$v['week_end']);
+                }elseif($post['timeType'] == 3){
+                    $date_time = date('Y-m',$v['time']);
+                }elseif($post['timeType'] == 4){
+                    $date_time = date('Y',$v['time']);
+                }
                 $income = $v['partner_money'];
                 $record = array(
                     'date_time' => $date_time,
