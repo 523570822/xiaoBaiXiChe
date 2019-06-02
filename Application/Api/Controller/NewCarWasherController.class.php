@@ -87,7 +87,11 @@ class NewCarWasherController extends BaseController
         if(!empty($income)){
             $this->apiResponse('1','成功',$data);
         }else{
-            $this->apiResponse('0','暂无加盟商信息');
+            $data = array(
+               'now_month' => 0,
+                'income' => array(),
+            );
+            $this->apiResponse('1','成功',$data);
         }
     }
 
