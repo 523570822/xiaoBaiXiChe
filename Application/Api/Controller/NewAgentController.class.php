@@ -33,9 +33,9 @@ class NewAgentController extends BaseController
      */
     public function income(){
         $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
-//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
-//        $post['timeType'] = 4;                   //查询方式  1日  2周  3月   4年
-//        $post['grade'] = 4;                      //1区域合作人 2一级代理商 3二级代理商 4合作方
+//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+//        $post['timeType'] = 1;                   //查询方式  1日  2周  3月   4年
+//        $post['grade'] = 3;                      //1区域合作人 2一级代理商 3二级代理商 4合作方
 //        $post['page'] = 1;
 //        $post['size'] = 10000000;
 
@@ -105,7 +105,13 @@ class NewAgentController extends BaseController
             );
         }elseif ($post['grade'] == 3){
             foreach ($array['data'] as $k=>$v){
-                if($array['todaytime'] == $array['data'][0]['time']){
+                if($post['timeType'] == 4){
+                    $year_time = $array['data'][0]['time'] . '-1-1';
+                    $array_time = strtotime($year_time );
+                }else{
+                    $array_time = strtotime($array['data'][0]['time']);
+                }
+                if($array['todaytime'] == $array_time){
                     $new_income =$array['data'][0]['net_income'];
                     $wash_num = $array['data'][0]['car_wash'];
                 }else{
@@ -114,10 +120,14 @@ class NewAgentController extends BaseController
                 }
                 $date_time = $v['time'];
                 $income = $v['net_income'];
-                $record = array(
-                    'date_time' => $date_time,
-                    'income' => $income,
-                );
+                if(!empty($income)){
+                    $record = array(
+                        'date_time' => $date_time,
+                        'income' => $income,
+                    );
+                }else{
+                    $record =array();
+                }
                 $records[] = $record;
             }
             $car_num = count($car);
@@ -130,7 +140,6 @@ class NewAgentController extends BaseController
         }elseif ($post['grade'] == 4){
             $car_Washer = M('CarWasher')->where(array('partner_id'=>$agent['id'],'status'=>1))->field('id')->select();
             foreach ($car_Washer as $ck=>$cv){
-
                 $order[] = 'create_time DESC';
                 if($post['timeType'] == 1){
                     $month = strtotime(date ('Y-m' , time()));      //当前月份  查找本月份数据
@@ -238,6 +247,13 @@ class NewAgentController extends BaseController
         if($time == 1){
             $month = strtotime(date ('Y-m' , time()));      //当前月份  查找本月份数据
             $data = M('Income')->where(array('agent_id'=>$agent_id,'status'=>1,'month'=>$month))->field('id,agent_id,day as time,SUM(net_income) as net_income,SUM(p_money) as p_money,SUM(car_wash) as car_wash,create_time')->group("day")->order($order)->limit(($page - 1) * $size, $size)->select();
+            if(empty($data)){
+                $data[0] = array(
+                    'net_income' => 0,
+                    'p_money' => 0,
+                    'car_wash' => 0,
+                );
+            }
             $todaytime=strtotime("today");
             foreach ($data as &$v){
                 $v['time'] = date ('Y-m-d' , $v['time']);
@@ -263,9 +279,15 @@ class NewAgentController extends BaseController
             }
             $todaytime = strtotime (date ('Y' , time()) . '-1-1');     //年份
         }
-        if(!empty($data)){
+        if(!empty($data)) {
+//            echo 231;exit;
             $array = array(
                 'data' => $data,
+                'todaytime' => $todaytime,
+            );
+        }else{
+            $array = array(
+                'data' => 0,
                 'todaytime' => $todaytime,
             );
         }
