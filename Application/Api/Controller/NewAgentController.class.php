@@ -32,12 +32,12 @@ class NewAgentController extends BaseController
      *Date:2019/05/11 16:03
      */
     public function income(){
-//        $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
-        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
-        $post['timeType'] = 2;                   //查询方式  1日  2周  3月   4年
-        $post['grade'] = 3;                      //1区域合作人 2一级代理商 3二级代理商 4合作方
-        $post['page'] = 1;
-        $post['size'] = 10000000;
+        $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
+//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+//        $post['timeType'] = 2;                   //查询方式  1日  2周  3月   4年
+//        $post['grade'] = 3;                      //1区域合作人 2一级代理商 3二级代理商 4合作方
+//        $post['page'] = 1;
+//        $post['size'] = 10000000;
 
         /*$month = date('Y/m',$post['month']);
         var_dump($month);exit;*/
@@ -96,10 +96,15 @@ class NewAgentController extends BaseController
                     }
                 }
                 $income = bcadd($v2['net_income'],$s_income,2);
-                $record = array(
-                    'date_time' => $date_time,
-                    'income' => $income,
-                );
+                if(!empty($income)){
+                    $record = array(
+                        'date_time' => $date_time,
+                        'income' => $income,
+                    );
+                }else{
+                    $record = array();
+                }
+
                 $records[] = $record;
             }
             $car_num = count($car);
@@ -132,7 +137,7 @@ class NewAgentController extends BaseController
                         'income' => $income,
                     );
                 }else{
-                    $record = '';
+                    $record = array();
                 }
                 $records[] = $record;
             }
@@ -193,10 +198,15 @@ class NewAgentController extends BaseController
                     $date_time = date('Y',$v['time']);
                 }
                 $income = $v['partner_money'];
-                $record = array(
-                    'date_time' => $date_time,
-                    'income' => $income,
-                );
+                if(!empty($income)){
+                    $record = array(
+                        'date_time' => $date_time,
+                        'income' => $income,
+                    );
+                }else{
+                    $record = array();
+                }
+
                 $records[] = $record;
             }
             $result = array(
