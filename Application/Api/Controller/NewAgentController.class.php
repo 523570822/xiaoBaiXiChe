@@ -102,7 +102,7 @@ class NewAgentController extends BaseController
                         'income' => $income,
                     );
                 }else{
-                    $record = array();
+                    $record = 0;
                 }
 
                 $records[] = $record;
@@ -137,9 +137,9 @@ class NewAgentController extends BaseController
                         'income' => $income,
                     );
                 }else{
-                    $record = array();
+                    $record = 0;
                 }
-                $records[] = $record;
+                $records = $record;
             }
             $car_num = count($car);
             $result = array(
@@ -204,7 +204,7 @@ class NewAgentController extends BaseController
                         'income' => $income,
                     );
                 }else{
-                    $record = array();
+                    $record = 0;
                 }
 
                 $records[] = $record;
