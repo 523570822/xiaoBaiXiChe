@@ -102,32 +102,34 @@ class NewCarWasherController extends BaseController
      */
     public function myCarWasher(){
         $post = checkAppData('token,page,size','token-页数-个数');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
 //        $post['page'] = 1;
 //        $post['size'] = 10;
         $request = $_REQUEST;
-        $post['address'] = $request['address'];
-        $post['car_num'] = $request['car_num'];
-        $post['status'] = $request['status'];
 
-//        $post['address'] = '';
-//        $post['car_num'] = '';
-//        $post['status'] = 3;
+        $post['status'] = $request['status'];
+        $post['inquire'] = $request['inquire'];
+
         $order[] = 'sort DESC';
-        if($post['address']){            //筛选地址
-            if(!empty($post['address'])){
-                $where['address'] = array('LIKE', "%" . $post['address'] . "%");
+        if($post['inquire']){            //筛选地址
+            if(!empty($post['inquire'])){
+                if(preg_match('/[\x{4e00}-\x{9fa5}]/u', $post['inquire'])>0){     //判断是否有汉字
+                    $where['address'] = array('LIKE', "%" . $post['inquire'] . "%");
+                }else{
+                    $where['mc_code'] = array('LIKE', "%" . $post['inquire'] . "%");
+                }
             }else{
                 $where['address'] = '';
-            }
-        }
-        if($post['car_num']){        //搜索洗车机编号
-            if(!empty($post['car_num'])){
-                $where['mc_code'] = array('Like', "%" . $post['car_num'] . "%");
-            }else{
                 $where['mc_code'] = '';
             }
         }
+//        if($post['car_num']){        //搜索洗车机编号
+//            if(!empty($post['car_num'])){
+//                $where['mc_code'] = array('Like', "%" . $post['car_num'] . "%");
+//            }else{
+//                $where['mc_code'] = '';
+//            }
+//        }
 
         if($post['status'] == 3){
             $post['status'] = array('in','3,5');
