@@ -642,8 +642,6 @@ class NewAgentController extends BaseController
         }
         $income = M('Income')->where($car_where)->field('net_income as money,create_time')->select();
         $withdraw = M('Withdraw')->where($car_where)->field('money,create_time')->select();
-
-
         foreach($income as $k=>$v){
             $income[$k]['money'] = '+'.$income[$k]['money'];
             $income[$k]['type'] = 1;    //代表账单收入

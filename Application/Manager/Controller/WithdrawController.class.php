@@ -92,6 +92,8 @@ class WithdrawController extends BaseController {
         $id = $_POST['id'];
         $data['status'] = 3;
         $Res = D ('Withdraw')->querySave ($id , $data);
+        $withdraw = M ('Withdraw')->where(array('id'=>$id))->field('agent_id,money')->find();
+        $agent = M('Agent')->where(array('id'=>$withdraw['agent_id']))->setInc('balance',$withdraw['money']);
         if ( $Res ) {
             $this->apiResponse ('1' , '拒绝提现');
         }
