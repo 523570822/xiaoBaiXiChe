@@ -296,29 +296,10 @@ class BaseController extends ControllerService
         $send_post = $this->send_post('runtime_query',$mc_id);       //查询洗车机状态
         $d_where = array(
             'o_id'=>$orderid,
-            'm_id'=>$m_id,
-            'status'=> 1,     //0代表未完成   订单还没结束
+//            'status'=> 1,     //0代表未完成   订单还没结束
         );
 
-        //结算时所有该机器的未结算订单全部改成结算状态
-        $n_owhere = array(
-            'mc_id' => $mc_id,
-        );
-        $n_car = M('CarWasher')->where($n_owhere)->find();
-        $n_dwhere = array(
-            'c_id' =>$n_car['id'],
-            'status' => 0,
-        );
-        $n_dsave = array(
-            'status' => 1
-        );
-        $n_osave = array(
-            'button'=>1
-        );
-        $n_order = M('Order')->where(array('c_id'=>$n_car['id'],'button'=>0))->save($n_osave);
-        $n_details = M('Details')->where($n_dwhere)->save($n_dsave);
-
-        $details = M('Details')->where($d_where)->find();
+        $details = M('Details')->where($d_where)->order('id DESC')->find();
         $car = M('CarWasher')->where(array('id'=>$details['c_id']))->find();
         $washing = round($send_post['devices'][0]['queryitem']['clean_water_duration']) - $details['washing_start_time'];
         $foam = round($send_post['devices'][0]['queryitem']['foam_duration']) - $details['foam_start_time'];
@@ -363,12 +344,14 @@ class BaseController extends ControllerService
             'washing' => $washing,
             'foam' => $foam,
             'cleaner' => $cleaner,
+            'update_time' =>time(),
+            'status'=>1 ,
+
         );
-        $s_details = M('Details')->where($d_where)->save($s_save);
+        $s_details = M('Details')->where(array('o_id'=>$orderid))->save($s_save);
 
         //订单金额添加
         $o_where = array(
-            'id' =>$orderid,
             'm_id' => $m_id,
         );
 //        var_dump($wash_money);exit;
@@ -376,8 +359,9 @@ class BaseController extends ControllerService
             'money' => round($wash_money+$foam_money+$cleaner_money,2),
             'pay_money' => round($wash_money+$foam_money+$cleaner_money,2),
             'update_time' =>time(),
+            'button'=>1 ,
         );
-        $f_order = M('Order')->where($o_where)->save($sa_order);
+        $f_order = M('Order')->where(array('id' =>$orderid))->save($sa_order);
         $washing_price = bcmul(60 , $car['washing_money'],2);
         $foam_price = bcmul(60 ,  $car['foam_money'],2);
         $cleaner_price = bcmul(60 , $car['cleaner_money'],2);
@@ -470,6 +454,7 @@ class BaseController extends ControllerService
         $sa_order = array(
             'money' => round($wash_money+$foam_money+$cleaner_money,2),
             'pay_money' => round($wash_money+$foam_money+$cleaner_money,2),
+            'update_time' => time(),
         );
         $f_order = M('Order')->where($o_where)->save($sa_order);
         $washing_price = bcmul(60 , $car['washing_money'],2);

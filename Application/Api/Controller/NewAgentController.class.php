@@ -782,6 +782,7 @@ class NewAgentController extends BaseController
         }
         $month_income['p_money'] = '';
         $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,day')->group("day")->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        dump($day_income);exit;
         foreach ($day_income as &$dv){
             $dv['p_money'] = 0;
             $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入

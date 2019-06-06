@@ -1366,9 +1366,9 @@ class OrderController extends BaseController {
         $k_where = array(
             'c_id'=>$car['id'],
             'o_type'=>1,
-            'button' =>1,   //结算
+//            'button' =>1,   //结算
         );
-        $k_order = M('Order')->where($k_where)->find();
+        $k_order = M('Order')->where($k_where)->order('create_time DESC')->find();
         //        echo M('Order')->_sql();
 //        var_dump($order);exit;
         $details = M('Details')->where(array('o_id'=>$order['id']))->find();
@@ -1419,7 +1419,7 @@ class OrderController extends BaseController {
                 'button' =>  1
             );
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($q_save);
-            if($send_post){
+            if($detail || $f_order){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>7 ,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
@@ -1468,13 +1468,14 @@ class OrderController extends BaseController {
                 'button' =>  1
             );
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($t_save);
-            if($send_post){
+            if($detail || $f_order){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>5,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$k_order['id'],0,$car['mc_id']);
                 //结算存储时间
+
                 $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //结算洗车机状态为1空闲
                 $this->typeOne($details['c_id']);
@@ -1500,7 +1501,7 @@ class OrderController extends BaseController {
                 'button' =>  1
             );
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($a_save);
-            if($send_post){
+            if($detail || $f_order){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>6,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
