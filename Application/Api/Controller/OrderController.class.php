@@ -1410,7 +1410,7 @@ class OrderController extends BaseController {
         if($post->event == 2){
 //            echo 753;exit;
             //结算
-            $send_post = $this->send_post('device_manage',$post->event,3);
+            $send_post = $this->send_post('device_manage',$post->deviceid,3);
             $d_save = array(
                 'status' => 1,
             );
@@ -1458,7 +1458,7 @@ class OrderController extends BaseController {
         if($post->event == 4){
 //            echo 8525;exit;
             //结算
-            $send_post = $this->send_post('device_manage',$post->event,3);
+            $send_post = $this->send_post('device_manage',$post->deviceid,3);
             $d_save = array(
                 'status' => 1,
             );
@@ -1491,7 +1491,7 @@ class OrderController extends BaseController {
         if($post->event == 5){
 //            echo 785155;exit;
             //结算
-            $send_post = $this->send_post('device_manage',$post->event,3);
+            $send_post = $this->send_post('device_manage',$post->deviceid,3);
             $d_save = array(
                 'status' => 1,
             );
