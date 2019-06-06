@@ -551,12 +551,14 @@ class BaseController extends ControllerService
      */
     public function typeOne($c_id){
         $save['type'] = 1;
+        $save['status'] = 1;
         $order = M('CarWasher')->where(array('id'=>$c_id))->save($save);
     }
 
     //洗车机故障
     public function typeFour($c_id){
         $save['type'] = 4;
+        $save['status'] = 2;
         $order = M('CarWasher')->where(array('id'=>$c_id))->save($save);
     }
 }
