@@ -64,14 +64,14 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">创建时间</label>
                             <div class="layui-input-block">
-                                <blockquote class="layui-elem-quote">{$row.create_time|date='Y-m-d H:i',###}
+                                <blockquote class="layui-elem-quote">{$row.create_time|date='Y-m-d H:i:s',###}
                                 </blockquote>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">结束时间</label>
                             <div class="layui-input-block">
-                                <blockquote class="layui-elem-quote">{$row.update_time|date='Y-m-d H:i',###}
+                                <blockquote class="layui-elem-quote">{$row.update_time|date='Y-m-d H:i:s',###}
                                 </blockquote>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                             <label class="layui-form-label">付款时间</label>
                             <div class="layui-input-block">
                                 <notempty name="row.pay_time">
-                                    <blockquote class="layui-elem-quote">{$row.pay_time|date='Y-m-d H:i',###}
+                                    <blockquote class="layui-elem-quote">{$row.pay_time|date='Y-m-d H:i:s',###}
                                     </blockquote>
                                     <else/>
                                     <blockquote class="layui-elem-quote layui-quote-nm">待支付</blockquote>
