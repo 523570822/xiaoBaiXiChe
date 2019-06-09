@@ -52,7 +52,7 @@ class NewCarWasherController extends BaseController
         if(!empty($car_washer)){
             $this->apiResponse('1','成功',$car_washer);
         }else{
-            $this->apiResponse('0','暂无洗车机信息');
+            $this->apiResponse('1','暂无洗车机信息');
         }
     }
 
@@ -165,7 +165,7 @@ class NewCarWasherController extends BaseController
         if($result){
             $this->apiResponse('1','成功',$result);
         }else{
-            $this->apiResponse('0','暂无数据');
+            $this->apiResponse('1','暂无数据');
         }
     }
 
@@ -200,7 +200,7 @@ class NewCarWasherController extends BaseController
         if($car_washer){
             $this->apiResponse('1','成功',$car_washer);
         }else{
-            $this->apiResponse('0','暂无此设备信息');
+            $this->apiResponse('1','暂无此设备信息');
         }
     }
 
@@ -242,7 +242,7 @@ class NewCarWasherController extends BaseController
         if(!empty($order_nums)){
             $this->apiResponse('1','成功',$order_nums);
         }else{
-            $this->apiResponse('0','暂无收入详情');
+            $this->apiResponse('1','暂无收入详情');
         }
     }
 

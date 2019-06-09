@@ -261,7 +261,7 @@ class NewAgentController extends BaseController
         if(!empty($income)){
             $this->apiResponse('1','成功',$income);
         }else{
-            $this->apiResponse('0','暂无收入详情');
+            $this->apiResponse('1','暂无收入详情');
         }
     }
 
@@ -385,7 +385,7 @@ class NewAgentController extends BaseController
         if(!empty($car) || !empty($t_adent) || !empty($car_num)){
             $this->apiResponse(1,'查询成功',$data);
         }else{
-            $this->apiResponse(0,'暂无数据');
+            $this->apiResponse(1,'暂无数据');
         }
 
     }
@@ -438,7 +438,7 @@ class NewAgentController extends BaseController
         if(!empty($agent)){
             $this->apiResponse('1','成功',$agent);
         }else{
-            $this->apiResponse('0','暂无可查询加盟商');
+            $this->apiResponse('1','暂无可查询加盟商');
         }
     }
 
@@ -577,7 +577,7 @@ class NewAgentController extends BaseController
         if($age){
             $this->apiResponse('1','成功',$age);
         }else{
-            $this->apiResponse('0','暂无更多数据');
+            $this->apiResponse('1','暂无更多数据');
         }
     }
 
@@ -756,7 +756,7 @@ class NewAgentController extends BaseController
     public function oneDetail(){
         $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['page'] = 100;
+//        $post['page'] = 2;
 //        $post['size'] = 10;
 
         $request = $_REQUEST;
@@ -805,12 +805,12 @@ class NewAgentController extends BaseController
                 $unders[] = $uv2;
             }
         }
-//        if(empty($day_income)){
-//            $new_under = array_merge($unders,$day_income);
-//        }else{
-//            $new_under = array_merge($day_income);
-//        }
-        $new_under = array_merge($unders,$day_income);
+        if(!empty($day_income)){
+            $new_under = array_merge($unders,$day_income);
+        }else{
+            $new_under = array_merge($day_income);
+        }
+//        $new_under = array_merge($unders,$day_income);
 
 //        dump($new_under);exit;
         //相同键值相加形成新数组
@@ -837,7 +837,7 @@ class NewAgentController extends BaseController
             'now_income' => $result,
         );
 
-        if($result){
+        if($day_income){
             $this->apiResponse(1,'查询成功',$data);
         }else{
             $data = array(
@@ -887,7 +887,7 @@ class NewAgentController extends BaseController
         if(!empty($day_income)){
             $this->apiResponse(1,'查询成功',$data);
         }else{
-            $this->apiResponse(0,'暂无数据');
+            $this->apiResponse(1,'暂无数据');
         }
     }
 
@@ -1152,7 +1152,7 @@ class NewAgentController extends BaseController
         if(!empty($two_agent)){
             $this->apiResponse(1,'查询成功',$two_agent);
         }else{
-            $this->apiResponse(0,'暂无数据');
+            $this->apiResponse(1,'暂无数据');
 
         }
     }
@@ -1612,7 +1612,7 @@ class NewAgentController extends BaseController
         if(!empty($two_agent)){
             $this->apiResponse(1,'查询成功',$two_agent);
         }else{
-            $this->apiResponse(0,'暂无数据');
+            $this->apiResponse(1,'暂无数据');
 
         }
     }
@@ -1668,7 +1668,7 @@ class NewAgentController extends BaseController
         if($datas){
             $this->apiResponse(1,'查询成功',$datas);
         }else{
-            $this->apiResponse(0,'暂无数据');
+            $this->apiResponse(1,'暂无数据');
         }
     }
 }
