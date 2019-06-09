@@ -756,7 +756,7 @@ class NewAgentController extends BaseController
     public function oneDetail(){
         $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['page'] = 1;
+//        $post['page'] = 100;
 //        $post['size'] = 10;
 
         $request = $_REQUEST;
@@ -782,7 +782,7 @@ class NewAgentController extends BaseController
         }
         $month_income['p_money'] = '';
         $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,day')->group("day")->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-        dump($day_income);exit;
+
         foreach ($day_income as &$dv){
             $dv['p_money'] = 0;
             $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
@@ -805,7 +805,14 @@ class NewAgentController extends BaseController
                 $unders[] = $uv2;
             }
         }
+//        if(empty($day_income)){
+//            $new_under = array_merge($unders,$day_income);
+//        }else{
+//            $new_under = array_merge($day_income);
+//        }
         $new_under = array_merge($unders,$day_income);
+
+//        dump($new_under);exit;
         //相同键值相加形成新数组
         $result = array();
         foreach($new_under as $key=>$value){
