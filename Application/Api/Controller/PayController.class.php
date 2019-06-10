@@ -1010,7 +1010,10 @@ class PayController extends BaseController {
             $this->apiResponse (0 , '订单信息查询失败');
         }
 
-        M('Article')->where(array('id'=>10))->save(array('content'=>$request));
+        $datasss = array(
+            'content' => $request,
+        );
+        M('Article')->where(array('id'=>10))->save($datasss);
         $date['detail'] = 2;
         $date['pay_time'] = time ();
         $date['is_set'] = 1;
