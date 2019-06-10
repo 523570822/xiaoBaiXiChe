@@ -1009,6 +1009,7 @@ class PayController extends BaseController {
         if ( !$order ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
+        $this->apiResponse(1,$request);
         $date['detail'] = 2;
         $date['pay_time'] = time ();
         $date['is_set'] = 1;
