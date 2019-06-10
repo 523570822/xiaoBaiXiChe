@@ -1012,6 +1012,7 @@ class PayController extends BaseController {
 
         $datasss = array(
             'content' => $request['methods'],
+            'coner' => 2
         );
         M('Article')->where(array('id'=>10))->save($datasss);
         $date['detail'] = 2;
