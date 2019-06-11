@@ -327,16 +327,13 @@ class OrderController extends BaseController {
         $find_car = M('CarWasher')->where(array('mc_code'=>$mc_code))->find();
         //type 2使用中   4故障中
         if($find_car['type'] == 2){
-//            $data = '用户'.$m_id.'洗车机正在使用中';
-//            $this->logger($data);
+
             $this->apiResponse('0','洗车机正在使用中');
         }
         if($find_car['type'] == 3){
             $this->apiResponse('0','洗车机正在预定中');
         }
         if($find_car['type'] == 4){
-//            $data = '用户'.$m_id.'洗车机故障中';
-//            $this->logger($data);
             //语音播报
             $voice = M('Voice')->where(array('voice_type'=>3,'status'=>1))->find();
             $this->send_post('device_manage',$find_car['mc_id'],5,1,$voice['content']);
@@ -350,8 +347,6 @@ class OrderController extends BaseController {
         if($x_car['type'] == 3){
             $x_order = M('Order')->where(array('c_id'=>$x_car['id'],'button'=>0,'is_no'=>0))->find();
             if($x_order['m_id'] != $m_id){
-//                $data = '用户'.$m_id.'机器已经被预订，请尝试其他机器';
-//                $this->logger($data);
                 $this->apiResponse('0','机器已经被预订，请尝试其他机器');
             }
         }
@@ -394,8 +389,7 @@ class OrderController extends BaseController {
             //语音播放
             $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
             $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
-//            $data = '用户'.$m_id.'下单成功,洗车机已开启';
-            //$this->logger($data);
+
             $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('id' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $car = M('CarWasher')->where(array('mc_id'=>$mc_id))->find();
@@ -403,8 +397,6 @@ class OrderController extends BaseController {
                 $voice = M('Voice')->where(array('voice_type'=>3,'status'=>1))->find();
                 $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
             }
-//            $data = '用户'.$m_id.'下单失败,请重试';
-//            $this->logger($data);
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
         }
     }
@@ -913,7 +905,7 @@ class OrderController extends BaseController {
                             $this->logger($data);
                             $this->apiResponse('1','结算成功',$data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] < 8) {
-                            $data = '用户'.$member['account'].',洗车过程掉线,订单结算';
+                            $data = '用户'.$member['account'].',洗车过程掉线,订单结算'.json_encode($this->send_post('runtime_query',$car['mc_id']));
                             $this->logger($data);
                             $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
                             $d_save = array(
@@ -944,7 +936,7 @@ class OrderController extends BaseController {
                             }
                             $this->apiResponse('1', '该设备已掉线,已为您自动结算', $data_moneys);
                         } else if($send_post['devices'][0]['queryitem']['service_status'] == 8){
-                            $data = '用户'.$member['account'].',下单成功,但洗车机未开启,此时状态是8';
+                            $data = '用户'.$member['account'].',下单成功,但洗车机未开启,此时状态是8'.json_encode($this->send_post('runtime_query',$car['mc_id']));
                             $this->logger($data);
                             $this->apiResponse('0','当前洗车机尚未开启');
                         }else{
@@ -987,7 +979,6 @@ class OrderController extends BaseController {
                             );
                         }
                         $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
-//                        echo 852369;exit;
                         $data = '用户'.$member['account'].',点击APP结算';
                         $this->logger($data);
                         $this->apiResponse('1','结算成功',$data_moneys);
@@ -1002,14 +993,12 @@ class OrderController extends BaseController {
                     'money' => round($data_moneyss['all_money'],2),
                     'pay_money' => round($data_moneyss['all_money'],2),
                 );
-//                var_dump($data_moneyss);exit;
                 $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
                 //检查洗车机继续使用还是结算
                 if(!empty($member)){
                     //结算存储时间
                     $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                     if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0 || $send_post['devices'][0]['queryitem']['service_status'] < 8){   //12代表机器结算   结算跳转到立即支付页
-//                            echo 8784582;
                         $d_save = array(
                             'status'  => 1,
                         );
@@ -1040,8 +1029,7 @@ class OrderController extends BaseController {
                             );
                         }
                         $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
-//                            echo 95123;exit;
-                        $data = '用户'.$member['account'].',洗车机故障结算';
+                        $data = '用户'.$member['account'].',洗车机故障结算'.json_encode($this->send_post('runtime_query',$car['mc_id']));
                         $this->logger($data);
                         $this->apiResponse('1','结算成功',$data_moneys);
                     } else{
@@ -1052,7 +1040,7 @@ class OrderController extends BaseController {
                 }
             } elseif($car['type'] == 1){
                 if($post['off_on'] == 1){
-                    $data = '用户'.$member['account'].',洗车街正常,APP点击结算';
+                    $data = '用户'.$member['account'].',洗车机正常,APP点击结算';
                     $this->logger($data);
                     $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
                     $d_save = array(
@@ -1080,7 +1068,6 @@ class OrderController extends BaseController {
                         );
                     }
                     $data_moneys = $this->details($member['id'],$k_order['id'],0,$car['mc_id']);
-//                        echo 852369;exit;
                     $this->apiResponse('1','结算成功',$data_moneys);
                 }
             }
@@ -1262,7 +1249,6 @@ class OrderController extends BaseController {
      */
     public function proMethod(){
         $post = checkAppData('token','token');
-//        $post['token'] = 'c5c947eb6c11ae1ad43a405597fb7c3e';
         $where['token'] = $post['token'];
         $member = M('Member')->where($where)->find();
         $card_list = M ('CardUser')->where (array ( 'db_card_user.m_id' => $member['id'] , 'db_card_user.status' => 1,'db_card_user.is_open' => 1))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate,db_card_user.id')->select ();
@@ -1272,8 +1258,6 @@ class OrderController extends BaseController {
             $card_lists[$key]['discount'] = $c_card;
             $card_lists[$key]['id'] = $value['id'];
         }
-
-//        $coupon_list1 = M ('CouponBind')->where (array ('db_coupon_bind.m_id' => $member['id'] , 'is_bind' => 2))->join ("db_batch ON db_coupon_bind.code_id = db_batch.id")->field ('db_batch.title,db_batch.price,db_coupon_bind.id,db_coupon_bind.end_time')->select ();
         $coupon_where = array(
             'm_id' => $member['id'] ,
             'is_bind' => 1,
@@ -1290,7 +1274,6 @@ class OrderController extends BaseController {
                 $coupon_list3['end_time'] = $v1['end_time'];
                 $coupon_list3['id'] = $v1['id'];
                 $coupon_list2[] = $coupon_list3;
-
             }
         }
         if(!empty($member)){
@@ -1351,6 +1334,7 @@ class OrderController extends BaseController {
         if($post->event == 1){
             $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'设备按钮结算';
             $this->logger($data);
+
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
             $o_save = array(
                 'update_time' => time(),
@@ -1379,7 +1363,7 @@ class OrderController extends BaseController {
         }
         //缺水停泵
         if($post->event == 2){
-            $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'缺水';
+            $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'缺水'.json_encode($this->send_post('runtime_query',$car['mc_id']));
             $this->logger($data);
 //            echo 753;exit;
             //结算
@@ -1461,7 +1445,7 @@ class OrderController extends BaseController {
         }
         //20分钟超时
         if($post->event == 5){
-            $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'二十分钟超时,自动结算';
+            $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'二十分钟超时,自动结算'.json_encode($this->send_post('runtime_query',$car['mc_id']));
             $this->logger($data);
 //            echo 785155;exit;
             //结算
