@@ -1098,36 +1098,21 @@ class OrderController extends BaseController {
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/06/11 15:37
      */
-//    public function logger($content){
-//        header("Content-type:text/html;charset=utf-8");
-//        $path = './Logs/';
-////检查目录是否存在
-//        if(is_dir($path)){
-//            echo '目录存在';
-//// 检查目录是否可写
-//            if(is_writable($path)){
-//                echo '目录可写';
-//            }else{
-//                echo '目录不可写';
-//                chmod($path,0777);
+    public function logger($content){
+        header("Content-type:text/html;charset=utf-8");
+        $path = './Logs/';
+
+        if(!empty($content)){
+            $email = $content;
+            $log = $path."settlement.txt";
+            $input = $email."\r\n";
+//            $max = 2*1024*1024;
+//            if(strlen($input)>$max){
+//
 //            }
-//        }else{
-//            echo '目录不存在';
-//// 新建目录
-//            mkdir($path, 0777, true);
-//            chmod($path,0777);
-//        }
-//        if(!empty($content)){
-//            $email = $content;
-//            $log = $path."settlement.txt";
-//            $input = $email."\r\n";
-////            $max = 2*1024*1024;
-////            if(strlen($input)>$max){
-////
-////            }
-//            file_put_contents($log,date('Y-m-d H:i:s') . " " .$input. "\n",FILE_APPEND);
-//        }
-//    }
+            file_put_contents($log,date('Y-m-d H:i:s') . " " .$input. "\n",FILE_APPEND);
+        }
+    }
 
 
     /**
