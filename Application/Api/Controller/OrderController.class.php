@@ -327,16 +327,16 @@ class OrderController extends BaseController {
         $find_car = M('CarWasher')->where(array('mc_code'=>$mc_code))->find();
         //type 2使用中   4故障中
         if($find_car['type'] == 2){
-            $data = '用户'.$m_id.'洗车机正在使用中';
-            $this->logger($data);
+//            $data = '用户'.$m_id.'洗车机正在使用中';
+//            $this->logger($data);
             $this->apiResponse('0','洗车机正在使用中');
         }
         if($find_car['type'] == 3){
             $this->apiResponse('0','洗车机正在预定中');
         }
         if($find_car['type'] == 4){
-            $data = '用户'.$m_id.'洗车机故障中';
-            $this->logger($data);
+//            $data = '用户'.$m_id.'洗车机故障中';
+//            $this->logger($data);
             //语音播报
             $voice = M('Voice')->where(array('voice_type'=>3,'status'=>1))->find();
             $this->send_post('device_manage',$find_car['mc_id'],5,1,$voice['content']);
@@ -350,8 +350,8 @@ class OrderController extends BaseController {
         if($x_car['type'] == 3){
             $x_order = M('Order')->where(array('c_id'=>$x_car['id'],'button'=>0,'is_no'=>0))->find();
             if($x_order['m_id'] != $m_id){
-                $data = '用户'.$m_id.'机器已经被预订，请尝试其他机器';
-                $this->logger($data);
+//                $data = '用户'.$m_id.'机器已经被预订，请尝试其他机器';
+//                $this->logger($data);
                 $this->apiResponse('0','机器已经被预订，请尝试其他机器');
             }
         }
@@ -394,8 +394,8 @@ class OrderController extends BaseController {
             //语音播放
             $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
             $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
-            $data = '用户'.$m_id.'下单成功,洗车机已开启';
-            $this->logger($data);
+//            $data = '用户'.$m_id.'下单成功,洗车机已开启';
+            //$this->logger($data);
             $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('id' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $car = M('CarWasher')->where(array('mc_id'=>$mc_id))->find();
@@ -403,8 +403,8 @@ class OrderController extends BaseController {
                 $voice = M('Voice')->where(array('voice_type'=>3,'status'=>1))->find();
                 $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
             }
-            $data = '用户'.$m_id.'下单失败,请重试';
-            $this->logger($data);
+//            $data = '用户'.$m_id.'下单失败,请重试';
+//            $this->logger($data);
             $this->apiResponse ('0' , '下单失败,请重试' , 'The order failed, please try again');
         }
     }
