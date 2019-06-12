@@ -389,7 +389,8 @@ class OrderController extends BaseController {
             //语音播放
             $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
             $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
-
+            $data = '用户id:'.$m_id.',下单成功';
+            $this->logger($data);
             $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('id' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $car = M('CarWasher')->where(array('mc_id'=>$mc_id))->find();
@@ -824,7 +825,7 @@ class OrderController extends BaseController {
                     'off_on' => 1,
                 );
             }
-            $data = '用户'.$member['account'].',检查订单是否结算,button为1';
+            $data = '用户账号'.$member['account'].',检查订单是否结算,button为1';
             $this->logger($data);
             $this->apiResponse('1','结算成功',$data_moneys);
         }
@@ -1072,7 +1073,7 @@ class OrderController extends BaseController {
                 }
             }
         }else{
-            $data = '用户'.$member['account'].',下单失败,找不到订单';
+            $data = '用户'.$member['account'].',下单失败,找不到订单'.'订单id'.$k_order['id'].'用户id'.$member['id'];
             $this->logger($data);
             $this->apiResponse('0','请先扫码或手动输入下单');
         }
@@ -1332,7 +1333,7 @@ class OrderController extends BaseController {
 //        var_dump($order);exit;
         $details = M('Details')->where(array('o_id'=>$order['id']))->find();
         if($post->event == 1){
-            $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'设备按钮结算';
+            $data = '洗车机:'.$car['id'].'用户id:'.$order['m_id'].',设备按钮结算';
             $this->logger($data);
 
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
@@ -1340,13 +1341,12 @@ class OrderController extends BaseController {
                 'update_time' => time(),
                 'button' =>1,
             );
-//            echo M('Details')->_sql();
             //这台洗车机的全部订单都结算
             $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($o_save);
             //两种情况有一种发生就播报语音
             if($send_post){
                 //结算洗车机状态为4故障
-                $this->typeFour($details['c_id']);
+                $this->typeOne($details['c_id']);
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
@@ -1363,7 +1363,7 @@ class OrderController extends BaseController {
         }
         //缺水停泵
         if($post->event == 2){
-            $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'缺水'.json_encode($this->send_post('runtime_query',$car['mc_id']));
+            $data = '洗车机:'.$car['id'].'用户id:'.$order['m_id'].',缺水'.json_encode($this->send_post('runtime_query',$car['mc_id']));
             $this->logger($data);
 //            echo 753;exit;
             //结算
@@ -1393,7 +1393,7 @@ class OrderController extends BaseController {
         }
         //8分钟超时
         if($post->event == 3){
-            $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'八分钟超时';
+            $data = '洗车机:'.$car['id'].'用户id:'.$order['m_id'].',八分钟超时';
             $this->logger($data);
 //            echo 589;exit;
             //语音播报
@@ -1411,7 +1411,7 @@ class OrderController extends BaseController {
         }
         //10分钟超时
         if($post->event == 4){
-            $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'十分钟超时';
+            $data = '洗车机:'.$car['id'].'用户id:'.$order['m_id'].',十分钟超时';
             $this->logger($data);
 //            echo 8525;exit;
             //结算
@@ -1445,7 +1445,7 @@ class OrderController extends BaseController {
         }
         //20分钟超时
         if($post->event == 5){
-            $data = '洗车机'.$car['id'].'用户'.$order['m_id'].'二十分钟超时,自动结算'.json_encode($this->send_post('runtime_query',$car['mc_id']));
+            $data = '洗车机:'.$car['id'].'用户id:'.$order['m_id'].',二十分钟超时,自动结算'.json_encode($this->send_post('runtime_query',$car['mc_id']));
             $this->logger($data);
 //            echo 785155;exit;
             //结算
