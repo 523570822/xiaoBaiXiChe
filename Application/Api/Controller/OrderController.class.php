@@ -389,8 +389,7 @@ class OrderController extends BaseController {
             //语音播放
             $voice = M('Voice')->where(array('voice_type'=>1,'status'=>1))->find();
             $this->send_post('device_manage',$mc_id,5,1,$voice['content']);
-            $data = '用户id:'.$m_id.',下单成功';
-            $this->logger($data);
+           
             $this->apiResponse ('1' , '下单成功,洗车机已开启' , array ('id' => $o_id , 'orderid' => $data['orderid']));
         } else {
             $car = M('CarWasher')->where(array('mc_id'=>$mc_id))->find();
