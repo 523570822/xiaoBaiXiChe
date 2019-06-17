@@ -747,7 +747,7 @@ class NewAgentController extends BaseController
     public function oneDetail(){
         $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['page'] = 2;
+//        $post['page'] = 3;
 //        $post['size'] = 10;
 
         $request = $_REQUEST;
@@ -772,14 +772,16 @@ class NewAgentController extends BaseController
             $month_income['net_income'] = 0;
         }
         $month_income['p_money'] = '';
-        $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,day')->group("day")->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(platform) as platform,day')->group("day")->select();
 
         foreach ($day_income as &$dv){
             $dv['p_money'] = 0;
             $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
         }
+        //查找下级id
         $under = M('Agent')->where(array('p_id'=>$agent['id']))->field('id')->select();
         foreach($under as $uk=>$uv){
+            //查询收益
             $under_income = M('Income')->where(array('agent_id'=>$uv['id'],'month'=>$car_where['month']))->field('SUM(p_money) as p_money,day')->group("day")->order('day DESC')->select();
             if(!empty($under_income)){
                 $under_incomes[] = $under_income;
@@ -823,11 +825,15 @@ class NewAgentController extends BaseController
         $month_income['p_money'] = (string)$month_income['p_money'];
         //数组按时间排序
         array_multisort(i_array_column($result,'day'),SORT_DESC,$result);
+        for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
+            if(!empty($result[$i])){
+                $datas[] = $result[$i];
+            }
+        }
         $data = array(
             'all_income' => $month_income,
-            'now_income' => $result,
+            'now_income' => $datas? $datas : array(),
         );
-
         if($day_income){
             $this->apiResponse(1,'查询成功',$data);
         }else{
