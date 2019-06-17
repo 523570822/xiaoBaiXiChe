@@ -699,13 +699,14 @@ class NewAgentController extends BaseController
             $all_money = bcadd($n_income['net_income'],$p_money,2);
             $n_income['p_money'] = '';
             $all_partner = '';
-        }elseif ($post['grade'] == 3){
+        }elseif ($agent['grade'] == 3){
             $n_income = M('Income')->where(array('agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(partner_money) as partner_money,SUM(plat_money) as plat_money,SUM(p_money) as p_money')->find();
+
             $trade = bcsub($n_income['detail'],$n_income['platform'],2);
             $p_money = '';
             $all_money = '';
             $all_partner = '';
-        }elseif ($post['grade'] == 4){
+        }elseif ($agent['grade'] == 4){
             $car = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id')->select();
             foreach ($car as $ck=>$cv){
                 $h_income = M('Income')->where(array('car_washer_id'=>$cv['id']))->field('SUM(partner_money) as partner_money')->find();
