@@ -1328,10 +1328,10 @@ class NewAgentController extends BaseController
      *Date:2019/05/22 16:56
      */
     public function partnerOrderDetail(){
-        $post = checkAppData('token,page,size','token-页数-个数');
-//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
-//        $post['page'] = 1;
-//        $post['size'] = 10;
+//        $post = checkAppData('token,page,size','token-页数-个数');
+        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+        $post['page'] = 1;
+        $post['size'] = 10;
         $request = $_REQUEST;
         $post['data_time'] = $request['data_time'];
         if($post['data_time'] == ''){

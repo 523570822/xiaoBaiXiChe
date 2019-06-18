@@ -153,10 +153,10 @@ class PayController extends BaseController {
      *Date:2019/01/04 02:01
      */
     public function getWithdraw () {
-//        $post = checkAppData ('token,price,card_id' , 'token-提现金额-银行卡ID');
-                $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-                $post['price'] = 2;
-                $post['card_id'] = 3;
+        $post = checkAppData ('token,price,card_id' , 'token-提现金额-银行卡ID');
+//                $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//                $post['price'] = 2;
+//                $post['card_id'] = 3;
 
         $agent = $this->getAgentInfo ($post['token']);
         $data = array (
