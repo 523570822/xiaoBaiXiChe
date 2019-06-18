@@ -1042,10 +1042,10 @@ class NewAgentController extends BaseController
 //        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
 //        $post['page'] = 1;
 //        $post['size'] = 10;
-//        $post['grade'] = 2;
+//        $post['grade'] = 1;
 
         $agent = $this->getAgentInfo($post['token']);
-        if($agent['grade'] == 2){
+        if($post['grade'] == 1){
             $agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id,nickname,account,token')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
             foreach($agents as &$v){
                 $car = M('CarWasher')->where(array('agent_id'=>$v['id']))->field('id')->select();
@@ -1054,7 +1054,7 @@ class NewAgentController extends BaseController
             if($agents){
                 $this->apiResponse(1,'查询成功',$agents);
             }
-        }elseif ($agent['grade'] == 3){
+        }elseif ($post['grade'] == 2){
             $one_agents = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>2))->field('id')->select();
             foreach ($one_agents as &$sv){
                 $two_agent = M('Agent')->where(array('p_id'=>$sv['id'],'grade'=>3))->field('id,nickname,account,token')->select();
@@ -1328,10 +1328,10 @@ class NewAgentController extends BaseController
      *Date:2019/05/22 16:56
      */
     public function partnerOrderDetail(){
-//        $post = checkAppData('token,page,size','token-页数-个数');
-        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
-        $post['page'] = 1;
-        $post['size'] = 10;
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
+//        $post['page'] = 2;
+//        $post['size'] = 10;
         $request = $_REQUEST;
         $post['data_time'] = $request['data_time'];
         if($post['data_time'] == ''){
@@ -1371,6 +1371,9 @@ class NewAgentController extends BaseController
         }
         if($datas){
             $this->apiResponse(1,'查询成功',$datas);
+        }else{
+            $this->apiResponse(1,'暂无详情');
+
         }
     }
 
