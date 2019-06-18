@@ -14,7 +14,7 @@ return array(
         'sms_sign' => '',
     ),
     'APP' =>  array(
-        'app_logo' => '163',
+        'app_logo' => '196',
         'app_name' => '小鲸洗车',
         'app_version' => 'V1.0.0',
         'ag_code' => '1',

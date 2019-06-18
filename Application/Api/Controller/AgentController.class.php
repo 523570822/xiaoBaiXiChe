@@ -92,7 +92,16 @@ class AgentController extends BaseController
         if($post['password'] != $post['apassword']){
             $this->apiResponse('0','新密码不一致');
         }
+        //检查密码长度不得小于6位
+        $long = strlen($post['password'] );
+        if($long < 6){
+            $this->apiResponse('0', '密码长度不得小于6位');
+        }elseif($long > 16){
+            $this->apiResponse('0', '密码长度不得大于于16位');
+
+        }
         $member = $this->getAgentInfo($post['token']);
+
 //        var_dump($post['old_password']);
 //        var_dump($post['password']);
 //        var_dump($member);exit;

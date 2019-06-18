@@ -153,10 +153,10 @@ class PayController extends BaseController {
      *Date:2019/01/04 02:01
      */
     public function getWithdraw () {
-        $post = checkAppData ('token,price,card_id' , 'token-提现金额-银行卡ID');
-        //        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
-        //        $post['price'] = 500;
-        //        $post['card_id'] = 3;
+//        $post = checkAppData ('token,price,card_id' , 'token-提现金额-银行卡ID');
+                $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+                $post['price'] = 2;
+                $post['card_id'] = 3;
 
         $agent = $this->getAgentInfo ($post['token']);
         $data = array (
@@ -164,6 +164,13 @@ class PayController extends BaseController {
         );
         if ( $data['balance'] < 0 ) {
             $this->apiResponse ('0' , '对不起,您余额不足');
+        }
+        if($post['price'] == 0){
+            $this->apiResponse ('0' , '请输入正确金额');
+        }
+        $find_with = M('Withdraw')->where(array('agent_id'=>$agent['id'],'status'=>1))->find();
+        if(!empty($find_with)){
+            $this->apiResponse ('0' , '对不起,您有一笔提现金额待审核');
         }
         $balance = M ('Agent')->where (array ('id' => $agent['id']))->save ($data);
         $add = array (
@@ -191,7 +198,7 @@ class PayController extends BaseController {
 //                $post['page'] = 1;
 //                $post['size'] = 10;
         $agent = $this->getAgentInfo ($post['token']);
-        $order[] = 'sort DESC';
+        $order[] = 'create_time DESC';
         $withdraw = M ('Withdraw')->where (array ('agent_id' => $agent['id']))->field ('money,status,create_time')->order ($order)->limit (($post['page'] - 1) * $post['size'] , $post['size'])->select ();
         //var_dump($withdraw);exit;
         if ( !empty($withdraw) ) {
@@ -278,7 +285,7 @@ class PayController extends BaseController {
                         $a_order = M ('Order')->where ($a_where)->field ('c_id,pay_money,pay_time')->find ();
                         $agent_where['id'] = $a_order['c_id'];
                         $car = M ('CarWasher')->where ($agent_where)->find ();   //查找代理商id
-                        $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance')->find ();
+                        $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance,p_id')->find ();
 
                         //新增代理商分润
                         if($agent['grade'] == 2){
@@ -306,6 +313,7 @@ class PayController extends BaseController {
                             $net_incomess = bcsub($net_incomes , $partner_money ,2);
                             $net_incomesss = bcsub($net_incomess , $platform ,2);
                             $net_income = bcsub($net_incomesss , $p_money,2);              //净收入
+                            M('Agent')->where(array('id'=>$agent['p_id']))->setInc('balance',$p_money);    //上级代理商增加收入
                         }
 //                    $income_where['agent_id'] = $car['agent_id'];
 //                    $income_where['car_washer_id'] = $a_order['c_id'];
@@ -343,8 +351,9 @@ class PayController extends BaseController {
                             'orderid' => $a_where['orderid'],
                         );
                         M ('Income')->add ($income_add);
-                        $agent_save['balance'] = $agent['balance'] + $net_income;
-                        M ('Agent')->where (array ('id' => $car['agent_id']))->save ($agent_save);
+                        M ('Agent')->where (array ('id' => $car['agent_id']))->setInc('balance',$net_income);     //代理商增加收入
+                        M('Agent')->where(array('id'=>$car['partner_id']))->setInc('balance',$partner_money);    //合作方增加收入
+
 //                    } else {
 //                        $income_save = array (
 //                            'detail' => $income['detail'] + $a_order['pay_money'] ,
@@ -776,7 +785,7 @@ class PayController extends BaseController {
                 $a_order = M ('Order')->where ($a_where)->field ('c_id,pay_money,pay_time')->find ();
                 $agent_where['id'] = $a_order['c_id'];
                 $car = M ('CarWasher')->where ($agent_where)->find ();   //查找代理商id
-                $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance')->find ();
+                $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance,p_id')->find ();
 
                 //新增代理商分润
                 if($agent['grade'] == 2){
@@ -804,6 +813,8 @@ class PayController extends BaseController {
                     $net_incomess = bcsub($net_incomes , $partner_money ,2);
                     $net_incomesss = bcsub($net_incomess , $platform ,2);
                     $net_income = bcsub($net_incomesss , $p_money,2);              //净收入
+                    M('Agent')->where(array('id'=>$agent['p_id']))->setInc('balance',$p_money);    //上级代理商增加收入
+
                 }
 //                    $income_where['agent_id'] = $car['agent_id'];
 //                    $income_where['car_washer_id'] = $a_order['c_id'];
@@ -841,8 +852,9 @@ class PayController extends BaseController {
                     'orderid' => $a_where['orderid'],
                 );
                 M ('Income')->add ($income_add);
-                $agent_save['balance'] = $agent['balance'] + $net_income;
-                M ('Agent')->where (array ('id' => $car['agent_id']))->save ($agent_save);
+                M ('Agent')->where (array ('id' => $car['agent_id']))->setInc('balance',$net_income);     //代理商增加收入
+                M('Agent')->where(array('id'=>$car['partner_id']))->setInc('balance',$partner_money);    //合作方增加收入
+
 //                    } else {
 //                        $income_save = array (
 //                            'detail' => $income['detail'] + $a_order['pay_money'] ,
@@ -1049,7 +1061,7 @@ class PayController extends BaseController {
                     $a_order = M ('Order')->where ($a_where)->field ('c_id,pay_money,pay_time')->find ();
                     $agent_where['id'] = $a_order['c_id'];
                     $car = M ('CarWasher')->where ($agent_where)->find ();   //查找代理商id
-                    $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance')->find ();
+                    $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance,p_id')->find ();
 
                     //新增代理商分润
                     if($agent['grade'] == 2){
@@ -1077,38 +1089,40 @@ class PayController extends BaseController {
                         $net_incomess = bcsub($net_incomes , $partner_money ,2);
                         $net_incomesss = bcsub($net_incomess , $platform ,2);
                         $net_income = bcsub($net_incomesss , $p_money,2);              //净收入
+                        M('Agent')->where(array('id'=>$agent['p_id']))->setInc('balance',$p_money);    //上级代理商增加收入
                     }
 //                    $income_where['agent_id'] = $car['agent_id'];
 //                    $income_where['car_washer_id'] = $a_order['c_id'];
                     $income_where['day'] = strtotime (date ('Y-m-d' , $a_order['pay_time']));
-                        //获取时间戳
-                        $timestamp = $a_order['pay_time'];
-                        $week_star = strtotime (date ('Y-m-d' , strtotime ("this week Monday" , $timestamp)));
-                        $week_end = strtotime (date ('Y-m-d' , strtotime ("this week Sunday" , $timestamp))) + 24 * 3600 - 1;
-                        $month = strtotime (date ('Y-m' , $timestamp));    //月份
-                        $year = strtotime (date ('Y' , $timestamp) . '-1-1');     //年份
-                        $income_add = array (
-                            'agent_id' => $car['agent_id'] ,
-                            'car_washer_id' => $a_order['c_id'] ,
-                            'detail' => $a_order['pay_money'] ,
-                            'net_income' => $net_income ,     //净收入
-                            'platform' => $platform,                //平台运营费
-                            'plat_money' => $plat_money,             //平台分润
-                            'partner_money' => $partner_money,           //合作方分润
-                            'p_money' => $p_money ,                  //上级代理商分润
-                            'car_wash' => 1 ,
-                            'day' => $income_where['day'] ,
-                            'week_star' => $week_star ,
-                            'week_end' => $week_end ,
-                            'month' => $month ,
-                            'year' => $year ,
-                            'create_time' => $a_order['pay_time'] ,
-                            'orderid' => $a_where['orderid'],
-                        );
-                        M ('Income')->add ($income_add);
-                        $agent_save['balance'] = $agent['balance'] + $net_income;
-                        M ('Agent')->where (array ('id' => $car['agent_id']))->save ($agent_save);
-//                    } else {
+                    //获取时间戳
+                    $timestamp = $a_order['pay_time'];
+                    $week_star = strtotime (date ('Y-m-d' , strtotime ("this week Monday" , $timestamp)));
+                    $week_end = strtotime (date ('Y-m-d' , strtotime ("this week Sunday" , $timestamp))) + 24 * 3600 - 1;
+                    $month = strtotime (date ('Y-m' , $timestamp));    //月份
+                    $year = strtotime (date ('Y' , $timestamp) . '-1-1');     //年份
+                    $income_add = array (
+                        'agent_id' => $car['agent_id'] ,
+                        'car_washer_id' => $a_order['c_id'] ,
+                        'detail' => $a_order['pay_money'] ,
+                        'net_income' => $net_income ,     //净收入
+                        'platform' => $platform,                //平台运营费
+                        'plat_money' => $plat_money,             //平台分润
+                        'partner_money' => $partner_money,           //合作方分润
+                        'p_money' => $p_money ,                  //上级代理商分润
+                        'car_wash' => 1 ,
+                        'day' => $income_where['day'] ,
+                        'week_star' => $week_star ,
+                        'week_end' => $week_end ,
+                        'month' => $month ,
+                        'year' => $year ,
+                        'create_time' => $a_order['pay_time'] ,
+                        'orderid' => $a_where['orderid'],
+                    );
+                    M ('Income')->add ($income_add);
+                    M ('Agent')->where (array ('id' => $car['agent_id']))->setInc('balance',$net_income);   //代理商增加收入
+                    M('Agent')->where(array('id'=>$car['partner_id']))->setInc('balance',$partner_money);    //合作方增加收入
+
+                    //                    } else {
 //                        $income_save = array (
 //                            'detail' => $income['detail'] + $a_order['pay_money'] ,
 //                            'net_income' => $income['net_income'] + $net_income ,

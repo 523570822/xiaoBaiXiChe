@@ -27,7 +27,7 @@ class AboutUsController extends BaseController
      **/
     public function aboutUs(){
         $aboutus_info = C('APP');
-        $picture['app_agent'] =$this->getOnePath ($aboutus_info['app_agent']);
+        $picture['app_agent'] =$this->getOnePath ($aboutus_info['app_logo']);
         $this->apiResponse('1','查询成功',array ('app_agent'=>$picture['app_agent'],'app_name'=>$aboutus_info['app_name'],'app_version'=>$aboutus_info['app_version'],'app_intro'=>$aboutus_info['app_intro']));
     }
 }
