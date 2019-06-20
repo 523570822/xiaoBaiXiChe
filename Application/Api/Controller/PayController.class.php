@@ -734,6 +734,28 @@ class PayController extends BaseController {
     }
 
     /**
+     *写入日志
+     * @param $content
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/06/11 15:37
+     */
+    public function loggers($content){
+        header("Content-type:text/html;charset=utf-8");
+        $path = './Logs/';
+
+        if(!empty($content)){
+            $email = $content;
+            $log = $path."settlements.txt";
+            $input = $email."\r\n";
+//            $max = 2*1024*1024;
+//            if(strlen($input)>$max){
+//
+//            }
+            file_put_contents($log,date('Y-m-d H:i:s') . " " .$input. "\n",FILE_APPEND);
+        }
+    }
+
+    /**
      * 微信支付回调
      */
     public function WeChatNotify () {
@@ -806,6 +828,7 @@ class PayController extends BaseController {
                     }else{
                         $platform = $car['service_money'];
                     }
+                    $this->loggers($car.$order_info);
                     $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
                     $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
                     $p_money = bcmul($order['pay_money'] , $car['p_rate'],2);          //上级代理商分润
