@@ -836,7 +836,7 @@ class PayController extends BaseController {
                         $platform = $car['service_money'];
                     }
                     //日志
-                    $this->loggers($car.$order_info);
+                    $this->loggers('洗车机id:'.$car['id'].'洗车机合作商分润:'.$car['h_rate'].'参数'.$order_info['methods']);
                     $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
                     $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
                     //日志
