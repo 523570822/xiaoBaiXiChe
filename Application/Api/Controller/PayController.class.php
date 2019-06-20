@@ -520,9 +520,9 @@ class PayController extends BaseController {
         $xml_data['out_trade_no'] = $order_info['orderid']; // 订单流水
         $xml_data['notify_url'] = C ('API_URL') . "/index.php/Api/Pay/WeChatNotify"; // 回调 URL
         $xml_data['spbill_create_ip'] = $_SERVER['REMOTE_ADDR']; // 终端 IP
-        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
+//        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
 
-//        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
+        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
         if($xml_data['total_fee'] == 0){
             $xml_data['total_fee'] = 1;
         }
@@ -840,7 +840,7 @@ class PayController extends BaseController {
                     $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
                     $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
                     //日志
-                    $this->loggers('微信'.$partner_money,$car['h_rate']);
+                    $this->loggers('微信'.$partner_money.'洗车机合作商分润'.$car['h_rate']);
                     $p_money = bcmul($order['pay_money'] , $car['p_rate'],2);          //上级代理商分润
                     $net_incomes = bcsub($order['pay_money'] , $plat_money ,2);
                     $net_incomess = bcsub($net_incomes , $partner_money ,2);
