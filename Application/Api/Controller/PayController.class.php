@@ -287,7 +287,7 @@ class PayController extends BaseController {
                         $car = M ('CarWasher')->where ($agent_where)->find ();   //查找代理商id
                         $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance,p_id')->find ();
                         //日志
-                        $this->loggers($car);
+                        $this->loggers($car['h_rate']);
                         //新增代理商分润
                         if($agent['grade'] == 2){
                             if($order['pay_money'] < 1.5){
