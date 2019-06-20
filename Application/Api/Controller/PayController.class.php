@@ -286,7 +286,8 @@ class PayController extends BaseController {
                         $agent_where['id'] = $a_order['c_id'];
                         $car = M ('CarWasher')->where ($agent_where)->find ();   //查找代理商id
                         $agent = M ('Agent')->where (array ('id' => $car['agent_id']))->field ('grade,balance,p_id')->find ();
-
+                        //日志
+                        $this->loggers($car);
                         //新增代理商分润
                         if($agent['grade'] == 2){
                             if($order['pay_money'] < 1.5){
@@ -828,6 +829,7 @@ class PayController extends BaseController {
                     }else{
                         $platform = $car['service_money'];
                     }
+                    //日志
                     $this->loggers($car.$order_info);
                     $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
                     $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
