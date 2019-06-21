@@ -36,7 +36,7 @@ class NewAgentController extends BaseController
 //        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
 //        $post['timeType'] = 1;                   //查询方式  1日  2周  3月   4年
 //        $post['grade'] = 4;                      //1区域合作人 2一级代理商 3二级代理商 4合作方
-//        $post['page'] = 4;
+//        $post['page'] = 1;
 //        $post['size'] = 10;
 
         /*$month = date('Y/m',$post['month']);
@@ -161,8 +161,7 @@ class NewAgentController extends BaseController
                 'car_num' => $car_num,      //设备数量
             );
         }elseif ($agent['grade'] == 4){
-            $car_Washer = M('CarWasher')->where(array('partner_id'=>$agent['id'],'status'=>1))->field('id')->select();
-//            dump($car_Washer);exit;
+            $car_Washer = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id')->select();
             foreach ($car_Washer as $ck=>$cv){
                 $order[] = 'create_time DESC';
                 if($post['timeType'] == 1){
@@ -187,6 +186,7 @@ class NewAgentController extends BaseController
                     $taskData[] = $dv1;
                 }
             }
+
             $item=[];
             foreach($taskData as $k4=>$v4) {
                 if (!isset($item[$v4['time']])) {
@@ -195,6 +195,7 @@ class NewAgentController extends BaseController
                     $item[$v4['time']]['partner_money'] += $v4['partner_money'];
                 }
             }
+
             foreach ($item as $k=>$v){
                 if($todaytime == $item[$todaytime]['time']){
                     $new_income =$item[$todaytime]['partner_money'];
@@ -223,13 +224,13 @@ class NewAgentController extends BaseController
             $listsss = list_sort_by($records, 'date_time', 'desc');
 
             for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
-
                 if(!empty($listsss[$i])){
 
                     $datas[] = $listsss[$i];
                 }
             }
 
+//            dump($listsss);exit;
             if(!empty($car_Washer)){
                 $result = array(
                     'news_income' => $new_income,    //今日收益
