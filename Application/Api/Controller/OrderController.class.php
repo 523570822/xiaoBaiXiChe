@@ -327,7 +327,6 @@ class OrderController extends BaseController {
         $find_car = M('CarWasher')->where(array('mc_code'=>$mc_code))->find();
         //type 2使用中   4故障中
         if($find_car['type'] == 2){
-
             $this->apiResponse('0','洗车机正在使用中');
         }
         if($find_car['type'] == 3){
@@ -779,8 +778,8 @@ class OrderController extends BaseController {
      */
     public function settlement(){
         $post = checkAppData('token,orderid,off_on','token-订单ID-开关');
-//        $post['token'] = 'e5008f151784f2274de8cff7c2b455e0';
-//        $post['orderid'] = 'XC201905101533188420';
+//        $post['token'] = '383754a893b3eb3fa41d10d58233c602';
+//        $post['orderid'] = 'XC201906211052511777';
 //        $post['off_on'] = 0;
 
         $where['token'] = $post['token'];

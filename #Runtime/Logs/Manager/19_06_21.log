@@ -1,0 +1,742 @@
+[ 2019-06-21T10:36:00+08:00 ] 127.0.0.1 /Manager
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004583s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001269s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001402s ]
+
+[ 2019-06-21T10:36:01+08:00 ] 127.0.0.1 /index.php/Manager/Admin/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000874s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001243s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001354s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000164s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.118414s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.118484s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002304s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002375s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.009234s ]
+INFO: [ app_end ] --END-- [ RunTime:0.009333s ]
+
+[ 2019-06-21T10:36:01+08:00 ] 127.0.0.1 /index.php/Manager/Index/verifyImage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000746s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001444s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001532s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001640s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001763s ]
+
+[ 2019-06-21T10:36:12+08:00 ] 127.0.0.1 /index.php/Manager/Admin/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001233s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001912s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002015s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\test\Littlewhale\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_admin` [ RunTime:0.0117s ]
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`group_id`,`username`,`password`,`salt`,`status` FROM `db_admin` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0117s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0114s ]
+SQL: SHOW COLUMNS FROM `db_admin_menu` [ RunTime:0.0128s ]
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`router`,`type`,`icon`,`system`,`sort`,`status` FROM `db_admin_menu` WHERE `status` <> 9 ORDER BY sort ASC, id ASC  [ RunTime:0.0133s ]
+
+[ 2019-06-21T10:36:13+08:00 ] 127.0.0.1 /index.php/Manager/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000137s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001437s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000537s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000590s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0110s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 196 LIMIT 1   [ RunTime:0.0107s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000172s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000239s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019802s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019871s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000857s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000904s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002351s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002446s ]
+
+[ 2019-06-21T10:36:14+08:00 ] 127.0.0.1 /index.php/Manager/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000454s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001153s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002275s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0109s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_member` WHERE `status` < 9 LIMIT 1   [ RunTime:0.0103s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0104s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE `status` < 9 LIMIT 1   [ RunTime:0.0102s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE ( `create_time` > 1556640000 AND `create_time` < 1559318399  ) AND `status` < 9 LIMIT 1   [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0103s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` <> 9 LIMIT 1   [ RunTime:0.0108s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0103s ]
+SQL: SELECT SUM(pay_money) AS tp_sum FROM `db_order` WHERE `pay_type` <> 3 AND ( `pay_time` > 1559318400 AND `pay_time` < 1561910399  ) AND `status` = 2 LIMIT 1   [ RunTime:0.0118s ]
+SQL: SHOW COLUMNS FROM `db_details` [ RunTime:0.0127s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_details` WHERE `status` <> 9 LIMIT 1   [ RunTime:0.0097s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000110s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000157s ]
+NOTIC: [8] Undefined variable: title D:\test\Littlewhale\#Runtime\Cache\Manager\551b4c972bd9534d74c3627ae91c582f.php 第 9 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013754s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013829s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001301s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001359s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002132s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002206s ]
+
+[ 2019-06-21T10:36:16+08:00 ] 127.0.0.1 /index.php/Manager/Order/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000741s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001606s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001696s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0122s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单列表','Manager/Order/index','http://littlewhale.com/index.php/Manager/Order/index.html','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561084576') [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Manager\Controller\OrderController.class.php 第 57 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0116s ]
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 1   [ RunTime:0.0118s ]
+NOTIC: [8] Undefined index: parameter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 0,15   [ RunTime:0.0127s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0125s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0130s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0120s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0108s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0115s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0189s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0144s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0237s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0123s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0103s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 387 LIMIT 1   [ RunTime:0.0106s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0111s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 386 LIMIT 1   [ RunTime:0.0307s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0111s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0330s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0329s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0239s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0241s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0340s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0105s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 385 LIMIT 1   [ RunTime:0.0106s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0244s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0109s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0299s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0107s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0116s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0107s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0341s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0109s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0306s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 252 LIMIT 1   [ RunTime:0.0267s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0112s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000141s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000189s ]
+NOTIC: [8] Undefined index: orderid D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 134 行.
+NOTIC: [8] Undefined index: mc_code D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 138 行.
+NOTIC: [8] Undefined index: account D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 142 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 148 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 151 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 159 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 162 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 165 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 173 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 176 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 179 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 185 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 186 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 191 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 192 行.
+NOTIC: [8] Undefined index: sort_order D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020218s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020287s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001607s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001663s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001140s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001187s ]
+
+[ 2019-06-21T10:36:17+08:00 ] 127.0.0.1 /index.php/Manager/Order/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000565s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000572s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000623s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0111s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单列表','Manager/Order/index','http://littlewhale.com/index.php/Manager/Order/index.html','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561084576') [ RunTime:0.0135s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Manager\Controller\OrderController.class.php 第 57 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0162s ]
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 1   [ RunTime:0.0101s ]
+NOTIC: [8] Undefined index: parameter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 0,15   [ RunTime:0.0119s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0128s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0103s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0116s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0104s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0117s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0116s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0102s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0107s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 387 LIMIT 1   [ RunTime:0.0131s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0129s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 386 LIMIT 1   [ RunTime:0.0105s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0109s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0109s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0103s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0113s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0127s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 385 LIMIT 1   [ RunTime:0.0106s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0107s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0117s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0111s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0125s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0243s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0162s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0262s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0113s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 252 LIMIT 1   [ RunTime:0.0105s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0102s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000124s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000164s ]
+NOTIC: [8] Undefined index: orderid D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 134 行.
+NOTIC: [8] Undefined index: mc_code D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 138 行.
+NOTIC: [8] Undefined index: account D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 142 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 148 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 151 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 159 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 162 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 165 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 173 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 176 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 179 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 185 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 186 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 191 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 192 行.
+NOTIC: [8] Undefined index: sort_order D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013157s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013199s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000347s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000374s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001948s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002019s ]
+
+[ 2019-06-21T11:10:38+08:00 ] 127.0.0.1 /index.php/Manager/Order/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000443s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000700s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000760s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0107s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单列表','Manager/Order/index','http://littlewhale.com/index.php/Manager/Order/index.html','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561086637') [ RunTime:0.0110s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Manager\Controller\OrderController.class.php 第 57 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0112s ]
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 1   [ RunTime:0.0116s ]
+NOTIC: [8] Undefined index: parameter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 0,15   [ RunTime:0.0128s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0116s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 55 LIMIT 1   [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0113s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0104s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 55 LIMIT 1   [ RunTime:0.0109s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0098s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 55 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0121s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0111s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0108s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0099s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0105s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0102s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0112s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 387 LIMIT 1   [ RunTime:0.0129s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0099s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 386 LIMIT 1   [ RunTime:0.0109s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0103s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0105s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0118s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0105s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 385 LIMIT 1   [ RunTime:0.0112s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0134s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0102s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0106s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0095s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000140s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000191s ]
+NOTIC: [8] Undefined index: orderid D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 134 行.
+NOTIC: [8] Undefined index: mc_code D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 138 行.
+NOTIC: [8] Undefined index: account D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 142 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 148 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 151 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 159 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 162 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 165 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 173 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 176 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 179 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 185 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 186 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 191 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 192 行.
+NOTIC: [8] Undefined index: sort_order D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029683s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029733s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001214s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001254s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001516s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001579s ]
+
+[ 2019-06-21T11:10:38+08:00 ] 127.0.0.1 /index.php/Manager/Order/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000867s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001332s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001425s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0119s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单列表','Manager/Order/index','http://littlewhale.com/index.php/Manager/Order/index.html','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561086638') [ RunTime:0.0103s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Manager\Controller\OrderController.class.php 第 57 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0105s ]
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 1   [ RunTime:0.0115s ]
+NOTIC: [8] Undefined index: parameter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 0,15   [ RunTime:0.0108s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0137s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 55 LIMIT 1   [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0106s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0092s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 55 LIMIT 1   [ RunTime:0.0098s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0099s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 55 LIMIT 1   [ RunTime:0.0094s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0111s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0104s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0092s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0094s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0127s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0095s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0095s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0096s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 387 LIMIT 1   [ RunTime:0.0116s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0102s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 386 LIMIT 1   [ RunTime:0.0115s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0095s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0104s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0097s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0099s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0097s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0097s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0092s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 385 LIMIT 1   [ RunTime:0.0102s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0101s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0098s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0115s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0096s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0101s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000197s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000257s ]
+NOTIC: [8] Undefined index: orderid D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 134 行.
+NOTIC: [8] Undefined index: mc_code D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 138 行.
+NOTIC: [8] Undefined index: account D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 142 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 148 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 151 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 159 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 162 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 165 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 173 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 176 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 179 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 185 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 186 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 191 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 192 行.
+NOTIC: [8] Undefined index: sort_order D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022981s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023029s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000763s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000801s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001431s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001488s ]
+
+[ 2019-06-21T11:10:45+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000378s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000724s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000810s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0368s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单详情','Manager/Order/infoOrder','http://littlewhale.com/index.php/Manager/Order/infoOrder/id/1250/system/0.html','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561086644') [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `db_order` WHERE `id` = 1250 LIMIT 1   [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0116s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0107s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000102s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000144s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012574s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012666s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000324s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000357s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001082s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001125s ]
+
+[ 2019-06-21T11:13:25+08:00 ] 127.0.0.1 /index.php/Manager/Order/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000509s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001066s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001124s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单列表','Manager/Order/index','http://littlewhale.com/index.php/Manager/Order/index.html','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561086804') [ RunTime:0.0094s ]
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\Application\Manager\Controller\OrderController.class.php 第 57 行.
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0119s ]
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 1   [ RunTime:0.0144s ]
+NOTIC: [8] Undefined index: parameter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_order` WHERE `status` < 9 ORDER BY create_time desc LIMIT 0,15   [ RunTime:0.0139s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0107s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 55 LIMIT 1   [ RunTime:0.0139s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0115s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 55 LIMIT 1   [ RunTime:0.0094s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0092s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 55 LIMIT 1   [ RunTime:0.0098s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0097s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0089s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0086s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 343 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0110s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0089s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 172 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0095s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 387 LIMIT 1   [ RunTime:0.0092s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0085s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 386 LIMIT 1   [ RunTime:0.0091s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0094s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0084s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0143s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0148s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0149s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:0.0087s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0106s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 385 LIMIT 1   [ RunTime:0.0093s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0093s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0088s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0083s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0091s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0117s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000254s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000336s ]
+NOTIC: [8] Undefined index: orderid D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 134 行.
+NOTIC: [8] Undefined index: mc_code D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 138 行.
+NOTIC: [8] Undefined index: account D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 142 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 148 行.
+NOTIC: [8] Undefined index: status D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 151 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 159 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 162 行.
+NOTIC: [8] Undefined index: pay_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 165 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 173 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 176 行.
+NOTIC: [8] Undefined index: o_type D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 179 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 185 行.
+NOTIC: [8] Undefined index: start_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 186 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 191 行.
+NOTIC: [8] Undefined index: end_time D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 192 行.
+NOTIC: [8] Undefined index: sort_order D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017234s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017277s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000662s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000715s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002147s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002242s ]
+
+[ 2019-06-21T11:13:53+08:00 ] 127.0.0.1 /index.php/Manager/Order/index.html?orderid=XC201906192024193368&mc_code=&account=&status=&pay_type=&o_type=&start_time=&end_time=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000727s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000804s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.1966s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单列表','Manager/Order/index','http://littlewhale.com/index.php/Manager/Order/index.html?orderid=XC201906192024193368&mc_code=&account=&status=&pay_type=&o_type=&start_time=&end_time=','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561086817') [ RunTime:0.4614s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.9748s ]
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_order` WHERE `orderid` LIKE '%XC201906192024193368%' AND `status` < 9 ORDER BY create_time desc LIMIT 1   [ RunTime:1.9282s ]
+NOTIC: [8] Undefined index: parameter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_order` WHERE `orderid` LIKE '%XC201906192024193368%' AND `status` < 9 ORDER BY create_time desc LIMIT 0,15   [ RunTime:2.3154s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:2.4154s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:2.5627s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:2.0190s ]
+SQL: SELECT `mc_code` FROM `db_car_washer` WHERE `id` = 6 LIMIT 1   [ RunTime:1.5757s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000130s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000170s ]
+NOTIC: [8] Undefined index: sort_order D:\test\Littlewhale\#Runtime\Cache\Manager\1d8a473f003d40f35f558446cd57648d.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014650s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014692s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000328s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000357s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001419s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001502s ]
+
+[ 2019-06-21T11:14:30+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000435s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000558s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000607s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:2.4451s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单详情','Manager/Order/infoOrder','http://littlewhale.com/index.php/Manager/Order/infoOrder/id/1250/system/0.html','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561086847') [ RunTime:2.9959s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:1.4546s ]
+SQL: SELECT * FROM `db_order` WHERE `id` = 1250 LIMIT 1   [ RunTime:1.9199s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:1.8332s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:2.6955s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000104s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000148s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016561s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016646s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000499s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000552s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001321s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001385s ]
+
+[ 2019-06-21T11:14:53+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000568s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000881s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000933s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:1.7924s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单详情','Manager/Order/infoOrder','http://littlewhale.com/index.php/Manager/Order/infoOrder/id/1250/system/0.html','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561086870') [ RunTime:2.5822s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:2.1238s ]
+SQL: SELECT * FROM `db_order` WHERE `id` = 1250 LIMIT 1   [ RunTime:2.9341s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:2.8055s ]
+SQL: SELECT `account` FROM `db_member` WHERE `id` = 24 LIMIT 1   [ RunTime:1.1143s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000101s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000143s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013182s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013243s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000835s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000873s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001075s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001118s ]
+
+[ 2019-06-21T11:15:06+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000604s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000657s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:1.2225s ]
+NOTIC: [8] Undefined index: validate D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto D:\test\Littlewhale\ThinkPHP\Library\Think\Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','订单详情','Manager/Order/infoOrder','http://littlewhale.com/index.php/Manager/Order/infoOrder/id/1250/system/0.html','POST: 
+Cookie:PHPSESSID=h21t9uvp9sm7mlth98ck534c26&ADMUSERNAME=admin','0','1561086893') [ RunTime:0.8851s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.5559s ]
+SQL: SELECT * FROM `db_order` WHERE `id` = 1250 LIMIT 1   [ RunTime:1.2125s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:2.7255s ]
+
+[ 2019-06-21T11:15:06+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000541s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001053s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001130s ]
+
+[ 2019-06-21T11:15:06+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000691s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002252s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002337s ]
+
+[ 2019-06-21T11:15:06+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000584s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002026s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002132s ]
+
+[ 2019-06-21T11:15:06+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000820s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000894s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000947s ]
+
+[ 2019-06-21T11:15:06+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000531s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001411s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001497s ]
+
+[ 2019-06-21T11:15:06+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000633s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001524s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001596s ]
+
+[ 2019-06-21T11:15:11+08:00 ] 127.0.0.1 /index.php/Manager/Order/infoOrder/id/1250/system/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000613s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001579s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001672s ]
+
+[ 2019-06-21T11:15:11+08:00 ] 127.0.0.1 /index.php/Manager/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000540s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000872s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000921s ]
+
+[ 2019-06-21T11:15:11+08:00 ] 127.0.0.1 /index.php/Manager/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000598s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000911s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001025s ]
+
+[ 2019-06-21T11:15:13+08:00 ] 127.0.0.1 /index.php/Manager/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000703s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000905s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000981s ]
+
