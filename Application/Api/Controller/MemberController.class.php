@@ -69,14 +69,15 @@ class MemberController extends BaseController
             $request['parent_id'] = $mem['id'];
         }
         //检查短信验证码
-        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'register');
-        if ($res['error']) {
-            $this->apiResponse('0', $res['error']);
-        }
+//        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'register');
+//        if ($res['error']) {
+//            $this->apiResponse('0', $res['error']);
+//        }
         //注册用户
         $request['salt'] = NoticeStr(6);
         $request['password'] = CreatePassword($request['password'], $request['salt']);
         $member_add_info = M('Member')->add($request);
+
         if (empty($member_add_info)) {
             $this->apiResponse('0', '注册失败');
         }
@@ -91,6 +92,27 @@ class MemberController extends BaseController
         $relust['integral'] = $membe['integral'] + 1;
         //绑定推荐人id
 
+        if($request['invite_code'] != '' || $request['invite_code'] != null){
+            $appsetting = M ('Appsetting')->find ();
+            $data_ext = array (
+                'm_id' => $member_add_info ,
+                's_id' => $request['parent_id'] ,
+                'create_time' => time () ,
+                'status' => 1 ,
+                'desc' => '被好友邀请得注册券一张' ,
+            );
+            $data = array (
+                'm_id' => $member_add_info ,
+                'create_time' => time () ,
+                'end_time' => time () + ($appsetting['expire_time'] * 24 * 3600) ,
+                'money'=>$appsetting['price'],
+                'type' => 3 ,
+                'is_bind' => 1 ,
+                'comes' => '被好友邀请得注册券一张' ,
+            );
+            $log = M ("CouponLog")->data ($data_ext)->add ();
+            $bind = M ("CouponBind")->data ($data)->add ();
+        }
         D('Member')->where(array('parent_id' => $request['parent_id']))->querySave($relust);
         unset($param);
         unset($member_info);
