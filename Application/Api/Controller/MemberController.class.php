@@ -69,10 +69,10 @@ class MemberController extends BaseController
             $request['parent_id'] = $mem['id'];
         }
         //检查短信验证码
-//        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'register');
-//        if ($res['error']) {
-//            $this->apiResponse('0', $res['error']);
-//        }
+        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 'register');
+        if ($res['error']) {
+            $this->apiResponse('0', $res['error']);
+        }
         //注册用户
         $request['salt'] = NoticeStr(6);
         $request['password'] = CreatePassword($request['password'], $request['salt']);
