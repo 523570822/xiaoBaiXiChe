@@ -74,7 +74,9 @@ class MemberController extends BaseController
 //            $this->apiResponse('0', $res['error']);
 //        }
         //注册用户
-        $member_add_info = D('Member')->addRow($request);
+        $request['salt'] = NoticeStr(6);
+        $request['password'] = CreatePassword($request['password'], $request['salt']);
+        $member_add_info = M('Member')->add($request);
         if (empty($member_add_info)) {
             $this->apiResponse('0', '注册失败');
         }
@@ -88,6 +90,7 @@ class MemberController extends BaseController
         //增加积分
         $relust['integral'] = $membe['integral'] + 1;
         //绑定推荐人id
+
         D('Member')->where(array('parent_id' => $request['parent_id']))->querySave($relust);
         unset($param);
         unset($member_info);
