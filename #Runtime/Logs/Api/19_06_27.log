@@ -1,0 +1,13 @@
+[ 2019-06-27T18:40:45+08:00 ] 127.0.0.1 /index.php/Api/Coupon/Coupon
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000976s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001318s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001380s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0101s ]
+NOTIC: [8] Undefined index: fetchSql D:\test\Littlewhale\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = 'dc5d83166e204b1a05410323f491a2b5' AND `expired_time` >= 1561632045 AND `status` <> 0 LIMIT 1   [ RunTime:0.0087s ]
+SQL: SHOW COLUMNS FROM `db_coupon_bind` [ RunTime:0.0108s ]
+SQL: SELECT `id`,`code_id`,`end_time`,`money` FROM `db_coupon_bind` WHERE `m_id` = 14 AND `is_use` = 0 AND `end_time` > 1561632045 LIMIT 0,10   [ RunTime:0.0092s ]
+

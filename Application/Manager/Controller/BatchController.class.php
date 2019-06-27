@@ -98,7 +98,6 @@ class BatchController extends BaseController
 
 //            $res = D('Batch')->addRow($data);
             $res = $this->redirect('Api/Coupon/couponCode',array('end_time'=>$end,'start_time'=>$start,'remark'=>$request['remark'],'prefix'=>$request['prefix'],'code_length'=>$request['code_length'],'title'=>$data['title'],'nums'=>$data['num'],'price'=>$data['price'],));
-            dump($res);exit;
             $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $data);
         }else {
             $this->display('editBatch');
@@ -122,6 +121,8 @@ class BatchController extends BaseController
             $data = $this->checkParam($rule);
             $where['id'] = $request['id'];
             $data['update_time'] = time();
+            $data['start_time'] = strtotime($data['start_time']);
+            $data['end_time'] = strtotime($data['end_time']);
             $res = D('Batch')->querySave($where,$data);
             $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $data);
         }else {

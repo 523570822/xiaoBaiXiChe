@@ -1,0 +1,11 @@
+[ 2019-06-28T03:21:26+08:00 ] 127.0.0.1 /Api/Index/ajax_test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000404s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000689s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0096s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0115s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE `status` <> 1 LIMIT 1   [ RunTime:0.0085s ]
+

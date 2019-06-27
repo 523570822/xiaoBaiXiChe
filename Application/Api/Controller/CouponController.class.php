@@ -144,7 +144,7 @@ class CouponController extends BaseController
             $where['is_bind'] = 1;
             $where['type'] = 2;
             $where['create_time'] = time ();
-            $where['end_time'] = $have_code['end_time'];
+            $where['end_time'] = $batch['end_time'];
             $where['comes'] = $batch['title'];
             $where['money'] = $batch['price'];
             $where['code_id'] = $have_code['id'];
