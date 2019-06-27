@@ -252,15 +252,15 @@ class PayController extends BaseController {
             if ( $trade_status == 'TRADE_SUCCESS' ) {
 //                $index = new IndexController();
 //                $index->testCronTab (json_encode ($request));
-                $order = D ('Order')->where (array ('orderid' => $out_trade_no))->find ();
-                $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
+                $order = M ('Order')->where (array ('orderid' => $out_trade_no))->find ();
+                $Member = M ('Member')->where (array ('id' => $order['m_id']))->find ();
                 $date['pay_type'] = 2;
                 $date['status'] = 2;
                 $date['is_set'] = 1;
                 $date['pay_time'] = time ();
                 $date['trade_no'] = $order_no;
                 $date['detail'] = 2;
-                if ( $order['o_type'] == 1 ) {//1洗车订单
+                if ( $order['o_type'] == 1 && $order['status'] == 1) {//1洗车订单
                     if ( $request['methods'] == '1' ) {
                         $cards = M ("CardUser")->where (['id' => $request['methods_id']])->field ('l_id')->find ();
                         $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
@@ -374,7 +374,7 @@ class PayController extends BaseController {
 //                    }
                         echo "success";
                     }
-                } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
+                } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {//2小鲸卡购买
                     //判断是否存在小鲸卡
                     $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
                     $have_h = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => 2))->find ();
@@ -478,10 +478,10 @@ class PayController extends BaseController {
                     if ( $save && $card ) {
                         echo "success";
                     }
-                } elseif ( $order['o_type'] == 3 ) {//3余额充值
+                } elseif ( $order['o_type'] == 3 && $order['status'] == 1) {//3余额充值
                     $date['detail'] = 1;
-                    $save = D ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
-                    $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
+                    $save = M ("Order")->where (array ('orderid' => $out_trade_no))->save ($date);
+                    $buy = M ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
                     if ( $save && $buy ) {
                         echo "success";
                     }
@@ -791,7 +791,7 @@ class PayController extends BaseController {
         $date['pay_type'] = 1;
         $date['trade_no'] = $info;
         $date['detail'] = 2;
-        if ( $order['o_type'] == 1 ) {//1洗车订单
+        if ( $order['o_type'] == 1 && $order['status'] == 1) {//1洗车订单
             if ( $order_info['methods'] == '1' ) {
                 $cards = M ("CardUser")->where (['id' => $order_info['methods_id']])->field ('l_id')->find ();
                 $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
@@ -907,7 +907,7 @@ class PayController extends BaseController {
 //                    }
                 echo "success";
             }
-        } elseif ( $order['o_type'] == 2 ) {                        //2小鲸卡购买
+        } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {                        //2小鲸卡购买
 
             //判断是否存在小鲸卡
             $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
@@ -1012,7 +1012,7 @@ class PayController extends BaseController {
             if ( $save && $card ) {
                 echo "success";
             }
-        } elseif ( $order['o_type'] == 3 ) {//3余额充值
+        } elseif ( $order['o_type'] == 3 && $order['status'] == 1) {//3余额充值
             $date['detail'] = 1;
             $save = D ("Order")->where (array ('orderid' => $order_no))->save ($date);
             $buy = D ('Member')->where (array ('id' => $order['m_id']))->Save (array ('balance' => $Member['balance'] + $order['pay_money'] + $order['give_money']));
@@ -1072,7 +1072,7 @@ class PayController extends BaseController {
         }
 
         if ( $order['o_type'] ) {
-            if ( $order['o_type'] == 1 ) {//1洗车订单
+            if ( $order['o_type'] == 1 && $order['status'] == 1) {//1洗车订单
                 if ( $request['methods'] == '1' ) {
                     $cards = M ("CardUser")->where (['id' => $request['methods_id']])->field ('l_id')->find ();
                     $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
@@ -1174,7 +1174,7 @@ class PayController extends BaseController {
 //                    }
                     $this->apiResponse (1 , '支付成功');
                 }
-            } elseif ( $order['o_type'] == 2 ) {//2小鲸卡购买
+            } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {//2小鲸卡购买
                 //判断是否存在小鲸卡
                 $have = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => $order['card_id']))->find ();
                 $have_h = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => 2))->find ();
