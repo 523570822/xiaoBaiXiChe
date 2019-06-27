@@ -37,7 +37,8 @@ class CouponController extends BaseController
                 'end_time'=> array('lt',time ())
             );
         }
-        $date = D ('CouponBind')->where (array ('m_id' => $m_id))->where ($where)->field ('id,end_time,money')->page ($request['page'] , '10')->select ();
+        $date = D ('CouponBind')->where (array ('m_id' => $m_id))->where ($where)->field ('id,code_id,end_time,money')->page ($request['page'] , '10')->select ();
+        echo D('CouponBind')->_sql();exit;
         foreach ($date as $k=>$v){
             $date[$k]['title']='小鲸洗车代金券';
             $date[$k]['remarks']='请在有效期内使用。';
@@ -61,11 +62,12 @@ class CouponController extends BaseController
         $rule = array (
             array ('title' , 'string' , '批次名称'),
             array ('price' , 'int' , '批次价格'),
-            array ('data' , 'int' , '有效期天数'),
             array ('nums' , 'int' , '批次数量'),
             array ('code_length' , 'int' , '批次长度'),
             array ('prefix' , 'string' , '批次前缀'),
-            array ('remark' , 'string' , '批次备注'),
+//            array ('remark' , 'string' , '批次备注'),
+            array ('start_time' , 'int' , '开始时间'),
+            array ('end_time' , 'int' , '结束时间'),
             );
         $this->checkParam ($rule);
         $date['title']=$request['title'];
@@ -73,13 +75,13 @@ class CouponController extends BaseController
         $date['price']=$request['price'];
         $date['remark']=$request['remark'];
         $date['create_time']=time ();
-        $date['start_time']=time ();
-        $date['end_time']=time ()+($request['data']*24*3600);
+        $date['start_time']=$request['start_time'];
+        $date['end_time']=$request['end_time'];
         $batch=D ('Batch')->add ($date);
         $code=$this->generateCode($request['nums'],'',$request['code_length'],$request['prefix']);
         foreach ($code as $k => $v) {
             $one= $code[$k];
-            $data = [['exchange'=>$one,'is_activation'=>0,'create_time'=>time (),'end_time'=>time ()+($request['data']*24*3600),'b_id'=>$batch['id']]];
+            $data = [['exchange'=>$one,'is_activation'=>0,'create_time'=>time (),'end_time'=>$date['end_time'],'b_id'=>$batch['id']]];
             M ('RedeemCode')->addAll($data);
         }
         $this->apiResponse (1,'添加成功',count ($one));

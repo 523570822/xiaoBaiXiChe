@@ -11,7 +11,7 @@ namespace Manager\Controller;
 
 class CouponController extends BaseController {
     /**
-     * 代金券列表
+     * 代金券使用记录列表
      * User: admin
      * Date: 2019-03-16 17:10:30
      */
@@ -62,6 +62,9 @@ class CouponController extends BaseController {
             $dates = D ('batch')->where (array ('id' => $data['list'][$k]['code_id']))->field ('title')->find ();
             $data['list'][$k]['nickname'] = $date['nickname'];
             $data['list'][$k]['title'] = $dates['title'];
+            if($v['code_id'] == 0){
+                $data['list'][$k]['title'] = '邀请';
+            }
         }
         $this->assign ($data);
         //页数跳转
