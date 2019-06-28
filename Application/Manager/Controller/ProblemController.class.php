@@ -2,22 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: 权限控制自动生成 By admin
- * Date: 2018-08-15
- * Time: 16:30:24
+ * Date: 2019-06-29
+ * Time: 02:19:23
  */
 
 namespace Manager\Controller;
 
 
-class FeedbackController extends BaseController
+class ProblemController extends BaseController
 {
+
+
     /**
-     * 意见反馈
+     * 问题表
      * User: admin
-     * Date: 2018-08-15 16:30:24
+     * Date: 2019-06-29 02:19:23
      */
-    public function index()
-    {
+    public function index() {
         $where = array ();
         //按用户账号查找
         if(!empty($_REQUEST['nickname'])){
@@ -41,7 +42,7 @@ class FeedbackController extends BaseController
             $where['status'] = array ('lt' , 9);
         }
         $param['page_size'] = 15;
-        $data = D ('Feedback')->queryList ($where , '*' , $param);
+        $data = D ('Problem')->queryList ($where , '*' , $param);
         foreach ($data['list'] as $k=>$v){
             $data['list'][$k]['contents']=$v['content'];
             $data['list'][$k]['m_id']=$v['m_id'];
@@ -57,39 +58,21 @@ class FeedbackController extends BaseController
         $this->display ();
     }
 
-    public function saveFeedback()
-    {
-        $id = $this->checkParam(array('id', 'int'));
-        $status = D('Feedback')->where(array('id'=>$id))->getField('status');
-        $data = $status == 1 ? array('status'=>0) : array('status'=>1);
-        D('Feedback')->where(array('id'=>$id))->save($data);
-        $this->apiResponse(1, $status ==1 ? '已处理' : "" ) ;
+    /**
+     * 添加问题
+     * User: admin
+     * Date: 2019-06-29 02:19:54
+     */
+    public function addProblem() {
+
     }
 
     /**
-     * 反馈编辑
+     * 编辑问题
      * User: admin
-     * Date: 2019-06-29 01:48:03
+     * Date: 2019-06-29 02:20:24
      */
-    public function editFeedback() {
-        if(IS_POST) {
-            $request = I('post.');
-            $where['id'] = $request['id'];
-            $requests['update_time'] = time();
-            $requests['reply'] = $request['reply'];
-            $res = D('Feedback')->querySave($where,$requests);
-            $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $requests);
-        }else {
-            $id = $_GET['id'];
-            $row = D('Feedback')->queryRow($id);
-            $row['nickname'] = D('Member')->queryField(array('id'=>$row['m_id']),'nickname');
-            $pro = array(
-                'id'=>$row['pro_id'],
-                'type'=> 1,
-            );
-            $row['pro'] = D('Problem')->queryField($pro,'content');
-            $this->assign('row',$row);
-            $this->display();
-        }
+    public function editProblem() {
+
     }
 }

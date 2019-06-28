@@ -2,22 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: 权限控制自动生成 By admin
- * Date: 2018-08-15
- * Time: 16:30:24
+ * Date: 2019-06-29
+ * Time: 01:59:12
  */
 
 namespace Manager\Controller;
 
 
-class FeedbackController extends BaseController
+class FaultController extends BaseController
 {
+
+
     /**
-     * 意见反馈
+     * 故障表
      * User: admin
-     * Date: 2018-08-15 16:30:24
+     * Date: 2019-06-29 01:59:12
      */
-    public function index()
-    {
+    public function index() {
         $where = array ();
         //按用户账号查找
         if(!empty($_REQUEST['nickname'])){
@@ -41,7 +42,7 @@ class FeedbackController extends BaseController
             $where['status'] = array ('lt' , 9);
         }
         $param['page_size'] = 15;
-        $data = D ('Feedback')->queryList ($where , '*' , $param);
+        $data = D ('Fault')->queryList ($where , '*' , $param);
         foreach ($data['list'] as $k=>$v){
             $data['list'][$k]['contents']=$v['content'];
             $data['list'][$k]['m_id']=$v['m_id'];
@@ -57,39 +58,49 @@ class FeedbackController extends BaseController
         $this->display ();
     }
 
-    public function saveFeedback()
-    {
-        $id = $this->checkParam(array('id', 'int'));
-        $status = D('Feedback')->where(array('id'=>$id))->getField('status');
-        $data = $status == 1 ? array('status'=>0) : array('status'=>1);
-        D('Feedback')->where(array('id'=>$id))->save($data);
-        $this->apiResponse(1, $status ==1 ? '已处理' : "" ) ;
-    }
-
     /**
-     * 反馈编辑
+     * 编辑故障表
      * User: admin
-     * Date: 2019-06-29 01:48:03
+     * Date: 2019-06-29 01:59:39
      */
-    public function editFeedback() {
+    public function editFault() {
         if(IS_POST) {
             $request = I('post.');
             $where['id'] = $request['id'];
             $requests['update_time'] = time();
             $requests['reply'] = $request['reply'];
-            $res = D('Feedback')->querySave($where,$requests);
+            $res = D('Fault')->querySave($where,$requests);
             $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $requests);
         }else {
             $id = $_GET['id'];
-            $row = D('Feedback')->queryRow($id);
+            $row = D('Fault')->queryRow($id);
             $row['nickname'] = D('Member')->queryField(array('id'=>$row['m_id']),'nickname');
             $pro = array(
                 'id'=>$row['pro_id'],
-                'type'=> 1,
+                'type'=> 2,
             );
+
+            if(!empty($row['pic_id'])){
+                $row['pic_id'] = explode(',',$row['pic_id']);
+                for($i = 0;$i < count($row['pic_id']); $i++){
+                    $row['pic_id'][$i] = $this->getOnePath($row['pic_id'][$i], 0);
+                }
+            }
+            dump($row);exit;
             $row['pro'] = D('Problem')->queryField($pro,'content');
             $this->assign('row',$row);
             $this->display();
         }
+    }
+
+
+
+    public function saveFault()
+    {
+        $id = $this->checkParam(array('id', 'int'));
+        $status = D('Fault')->where(array('id'=>$id))->getField('status');
+        $data = $status == 1 ? array('status'=>0) : array('status'=>1);
+        D('Fault')->where(array('id'=>$id))->save($data);
+        $this->apiResponse(1, $status ==1 ? '已处理' : "" ) ;
     }
 }

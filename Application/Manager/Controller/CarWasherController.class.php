@@ -209,6 +209,7 @@ class CarWasherController extends BaseController {
             $wheress['mc_id']  = $data['mc_id'];
             $wheress['_logic'] = 'or';
             $map['_complex'] = $wheress;
+            $map['status']  = array('neq',9);
             $car = M('CarWasher')->where($map)->find();
             if(!empty($car)){
                 $this->apiResponse(0,'洗车机编号已存在');

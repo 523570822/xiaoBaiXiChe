@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--如果不是必填值 不需要加 required 属性-->
+
+                    <!--上传图片-->
+
+
+                    <!--<div class="layui-form">-->
+
+                    <!--<div class="layui-form-item">-->
+                    <!--<label class="layui-form-label">上传图片</label>-->
+                    <!--<div class="layui-input-block">-->
+                    <!--<button type="button" class="layui-btn" id="uploadBtn"><i class="layui-icon"></i>上传文件</button>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--<div class="layui-form-item">-->
+                    <!--<label class="layui-form-label">上传图片</label>-->
+                    <!--<div class="layui-input-block">-->
+                    <!--<div class="layui-input-inline">-->
+                    <!--<button type="button" class="layui-btn" id="uploadBtn2"><i class="layui-icon"></i>上传文件</button>-->
+                    <!--</div>-->
+                    <!--<div class="layui-input-inline" id="filename"></div>-->
+                    <!--<if condition="$row['cover']  neq 0">-->
+                    <!--<div class="layui-input-block img-show">-->
+                    <!--<div class="img-show-item" id="Upload_cover_1_pre">-->
+                    <!--<img src="{$row.covers}">-->
+                    <!--<i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.cover}');"></i>-->
+                    <!--<input name="cover" value='{$row.cover}' class="layui-input" type="hidden">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</if>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户</label>
+                        <div class="layui-input-block">
+                            <blockquote class="layui-elem-quote">{$row.nickname}</blockquote>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">问题</label>
+                        <div class="layui-input-block">
+                            <blockquote class="layui-elem-quote">{$row.pro}</blockquote>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">反馈内容</label>
+                        <div class="layui-input-block">
+                            <blockquote class="layui-elem-quote">{$row.content}</blockquote>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">联系方式</label>
+                        <div class="layui-input-block">
+                            <blockquote class="layui-elem-quote">{$row.contact}</blockquote>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">回复建议</label>
+                        <div class="layui-input-block">
+                            <textarea name="reply" required placeholder="个人简介" class="layui-textarea layui-input">{$row['reply']|default=""}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" onclick="goback()">返回</button>
+                            <button class="layui-btn" onclick="submit()">确认保存</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        var url="";
+        var id = "{$row['id']}";
+        if(id){
+            url = '';
+            data.id = id
+        }else{
+            url = '{:U("Feedback/editFeedback")}'
+        }
+        if(!data) return false;
+        doPost(url, data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+                    goback();
+                }
+            });
+        });
+    }
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1', //指定元素
+        // range: true //或 range: '~' 来自定义分割字符
+        type:'datetime'
+        // ,isInitValue: true //是否允许填充初始值，默认为 true
+        ,trigger: 'click' //采用click弹出
+    });
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test2', //指定元素
+        type:'datetime'
+        // ,isInitValue: true //是否允许填充初始值，默认为 true
+        ,trigger: 'click' //采用click弹出
+
+    });
+
+    //编辑器初始化
+    $(document).ready(function(){
+        KindEditor.ready(function(K){
+            window.editor = K.create('#content',{
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items:[
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough','lineheight', '|',
+                    'image', 'multiimage', '|',
+                    'link', 'baidumap','fullscreen'
+                ],
+                afterBlur:function(){this.sync();}
+            });
+        });
+    });
+</script>
+</body>
+</html>

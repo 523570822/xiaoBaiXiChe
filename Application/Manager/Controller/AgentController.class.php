@@ -84,6 +84,10 @@ class AgentController extends BaseController {
                 array ('balance' , 'int' , '请输入余额') ,
             );
             $data = $this->checkParam ($rule);
+            $f_agent = M('Agent')->where(array('account'=>$data['account'],'status'=>array('neq',9)))->find();
+            if(!empty($f_agent)){
+                $this->apiResponse(0,'该手机号已存在');
+            }
             $data['token'] = $this->createToken ();
             $data['salt'] = NoticeStr (6);
             $data['create_time'] = time ();

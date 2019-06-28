@@ -13,7 +13,7 @@
                     <div class="mab10">
                         <input type="hidden" id="url" value="{$url}">
                         <!--搜索框也可以放这里-->
-                        <form class="mab10 mal20 dinline" id="myform" action="{:U('Feedback/index')}" method="GET">
+                        <form class="mab10 mal20 dinline" id="myform" action="{:U('Fault/index')}" method="GET">
                             <div class="layui-input-inline">
                                 <input type="text" class="layui-input" placeholder="请输入昵称" name="nickname"
                                        value="{$_REQUEST['nickname']}">
@@ -31,12 +31,12 @@
                             </div>
 
                             <button class="layui-btn" type="submit">搜索</button>
-                            <a href="{:U('Feedback/index')}" class="layui-btn layui-btn-primary">重置</a>
+                            <a href="{:U('Fault/index')}" class="layui-btn layui-btn-primary">重置</a>
                         </form>
                         <script>
                             $(function () {
                                 $("#button").click(function () {
-                                    var newUrl = "{:U('Feedback/exportFeedback')}";    //设置新提交地址
+                                    var newUrl = "{:U('Fault/exportFault')}";    //设置新提交地址
                                     $("#myform").attr('action', newUrl);    //通过jquery为action属性赋值
                                     $("#myform").submit();    //提交ID为myform的表单
                                 })
@@ -65,23 +65,23 @@
                             <td colspan="12" style="text-align: center;">暂无数据</td>
                         </tr>
                     </empty>
-                    <volist name="list" id="db_feedback">
+                    <volist name="list" id="db_fault">
                         <tr>
-                            <td>{$db_feedback.id}</td>
-                            <td>{$db_feedback.nickname}</td>
-                            <td>{$db_feedback.content}</td>
-                            <td>{$db_feedback.contents}</td>
-                            <td>{$db_feedback['create_time']|date="Y/m/d",###}</td>
-                            <td>{$db_feedback['status'] == 1 ? '未处理' : '已处理'}</td>
+                            <td>{$db_fault.id}</td>
+                            <td>{$db_fault.nickname}</td>
+                            <td>{$db_fault.content}</td>
+                            <td>{$db_fault.contents}</td>
+                            <td>{$db_fault['create_time']|date="Y/m/d",###}</td>
+                            <td>{$db_fault['status'] == 1 ? '未处理' : '已处理'}</td>
                             <td>
                                 <button class="layui-btn layui-btn-xs layui-btn-normal"
-                                        onclick="jumpUrl('{:U('Feedback/editFeedback', array('id'=>$db_feedback['id'], 'system'=>0))}')">
+                                        onclick="jumpUrl('{:U('fault/editFault', array('id'=>$db_fault['id'], 'system'=>0))}')">
                                     编辑
                                 </button>
-                                <if condition="$db_feedback['status'] eq 1">
+                                <if condition="$db_fault['status'] eq 1">
                                     <button class="layui-btn layui-btn-xs layui-btn-normal"
-                                            onclick="confirmOneAction('{:U('Feedback/saveFeedback')}','{$db_feedback['status'] == 1 ? '未处理' : '已处理'}','{$db_feedback.id}')">
-                                        {$db_feedback['status'] == 1 ? '处理' : ''}
+                                            onclick="confirmOneAction('{:U('Fault/saveFault')}','{$db_fault['status'] == 1 ? '未处理' : '已处理'}','{$db_fault.id}')">
+                                        {$db_fault['status'] == 1 ? '处理' : ''}
                                     </button>
 
                                     <else/>
