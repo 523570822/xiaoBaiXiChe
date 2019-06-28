@@ -86,7 +86,6 @@ class FaultController extends BaseController
                     $row['pic_id'][$i] = $this->getOnePath($row['pic_id'][$i], 0);
                 }
             }
-            dump($row);exit;
             $row['pro'] = D('Problem')->queryField($pro,'content');
             $this->assign('row',$row);
             $this->display();
