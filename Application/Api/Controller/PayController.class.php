@@ -295,29 +295,29 @@ class PayController extends BaseController {
                             }else{
                                 $platform = $car['service_money'];
                             }
-                            $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
-                            $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
+                            $operating = bcsub($order['pay_money'],$platform,2);         //营业收入
+                            $plat_money = bcmul ($operating , $car['pt_rate'],2);         //平台分润
+                            $partner_money = bcmul($operating , $car['h_rate'],2);           //合作方分润
                             //日志
                             $this->loggers('支付宝'.$partner_money.$car['h_rate']);
                             $p_money = 0;          //上级代理商分润
-                            $net_incomes = bcsub($order['pay_money'] , $plat_money ,2);
-                            $net_incomess = bcsub($net_incomes , $partner_money ,2);
-                            $net_income = bcsub($net_incomess , $platform ,2);                //净收入
+                            $net_incomes = bcsub($operating , $plat_money ,2);
+                            $net_income = bcsub($net_incomes , $partner_money ,2);       //净收入
                         }elseif($agent['grade'] == 3){
                             if($order['pay_money'] < 1.5){
                                 $platform = 0;
                             }else{
                                 $platform = $car['service_money'];
                             }
-                            $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
-                            $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
+                            $operating = bcsub($order['pay_money'],$platform,2);         //营业收入
+                            $plat_money = bcmul ($operating , $car['pt_rate'],2);         //平台分润
+                            $partner_money = bcmul($operating , $car['h_rate'],2);           //合作方分润
                             //日志
                             $this->loggers('支付宝'.$partner_money.$car['h_rate']);
-                            $p_money = bcmul($order['pay_money'] , $car['p_rate'],2);          //上级代理商分润
-                            $net_incomes = bcsub($order['pay_money'] , $plat_money ,2);
-                            $net_incomess = bcsub($net_incomes , $partner_money ,2);
-                            $net_incomesss = bcsub($net_incomess , $platform ,2);
-                            $net_income = bcsub($net_incomesss , $p_money,2);              //净收入
+                            $p_money = bcmul($operating , $car['p_rate'],2);          //上级代理商分润
+                            $net_incomes = bcsub($operating , $plat_money ,2);            //营业收入减去平台分润
+                            $net_incomess = bcsub($net_incomes , $partner_money ,2);       //再减去合作方分润
+                            $net_income = bcsub($net_incomess , $p_money,2);              //再减去代理商收入 = 净收入
                             M('Agent')->where(array('id'=>$agent['p_id']))->setInc('balance',$p_money);    //上级代理商增加收入
                         }
 //                    $income_where['agent_id'] = $car['agent_id'];
@@ -825,14 +825,14 @@ class PayController extends BaseController {
                     }else{
                         $platform = $car['service_money'];
                     }
-                    $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
-                    $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
+                    $operating = bcsub($order['pay_money'],$platform,2);         //营业收入
+                    $plat_money = bcmul ($operating , $car['pt_rate'],2);         //平台分润
+                    $partner_money = bcmul($operating , $car['h_rate'],2);           //合作方分润
                     //日志
                     $this->loggers('微信'.$partner_money,$car['h_rate']);
                     $p_money = 0;          //上级代理商分润
-                    $net_incomes = bcsub($order['pay_money'] , $plat_money ,2);
-                    $net_incomess = bcsub($net_incomes , $partner_money ,2);
-                    $net_income = bcsub($net_incomess , $platform ,2);                //净收入
+                    $net_incomes = bcsub($operating , $plat_money ,2);
+                    $net_income = bcsub($net_incomes , $partner_money ,2);       //净收入
                 }elseif($agent['grade'] == 3){
                     if($order['pay_money'] < 1.5){
                         $platform = 0;
@@ -841,17 +841,16 @@ class PayController extends BaseController {
                     }
                     //日志
                     $this->loggers('洗车机id:'.$car['id'].'洗车机合作商分润:'.$car['h_rate'].'参数'.$order_info['methods']);
-                    $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
-                    $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
+                    $operating = bcsub($order['pay_money'],$platform,2);         //营业收入
+                    $plat_money = bcmul ($operating , $car['pt_rate'],2);         //平台分润
+                    $partner_money = bcmul($operating , $car['h_rate'],2);           //合作方分润
                     //日志
                     $this->loggers('微信'.$partner_money.'洗车机合作商分润'.$car['h_rate']);
-                    $p_money = bcmul($order['pay_money'] , $car['p_rate'],2);          //上级代理商分润
-                    $net_incomes = bcsub($order['pay_money'] , $plat_money ,2);
-                    $net_incomess = bcsub($net_incomes , $partner_money ,2);
-                    $net_incomesss = bcsub($net_incomess , $platform ,2);
-                    $net_income = bcsub($net_incomesss , $p_money,2);              //净收入
+                    $p_money = bcmul($operating , $car['p_rate'],2);          //上级代理商分润
+                    $net_incomes = bcsub($operating , $plat_money ,2);          //营业收入减去平台分润
+                    $net_incomess = bcsub($net_incomes , $partner_money ,2);    //再减去合作方分润
+                    $net_income = bcsub($net_incomess , $p_money,2);              // 再减去上级分润 = 净收入
                     M('Agent')->where(array('id'=>$agent['p_id']))->setInc('balance',$p_money);    //上级代理商增加收入
-
                 }
 //                    $income_where['agent_id'] = $car['agent_id'];
 //                    $income_where['car_washer_id'] = $a_order['c_id'];
@@ -1107,25 +1106,25 @@ class PayController extends BaseController {
                         }else{
                             $platform = $car['service_money'];
                         }
-                        $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
-                        $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
+                        $operating = bcsub($order['pay_money'],$platform,2);         //营业收入
+                        $plat_money = bcmul ($operating , $car['pt_rate'],2);         //平台分润
+                        $partner_money = bcmul($operating , $car['h_rate'],2);           //合作方分润
                         $p_money = 0;          //上级代理商分润
-                        $net_incomes = bcsub($order['pay_money'] , $plat_money ,2);
-                        $net_incomess = bcsub($net_incomes , $partner_money ,2);
-                        $net_income = bcsub($net_incomess , $platform ,2);                //净收入
+                        $net_incomes = bcsub($operating , $plat_money ,2);
+                        $net_income = bcsub($net_incomes , $partner_money ,2);       //净收入
                     }elseif($agent['grade'] == 3){
                         if($order['pay_money'] < 1.5){
                             $platform = 0;
                         }else{
                             $platform = $car['service_money'];
                         }
-                        $plat_money = bcmul ($order['pay_money'] , $car['pt_rate'],2);         //平台分润
-                        $partner_money = bcmul($order['pay_money'] , $car['h_rate'],2);           //合作方分润
-                        $p_money = bcmul($order['pay_money'] , $car['p_rate'],2);          //上级代理商分润
-                        $net_incomes = bcsub($order['pay_money'] , $plat_money ,2);
-                        $net_incomess = bcsub($net_incomes , $partner_money ,2);
-                        $net_incomesss = bcsub($net_incomess , $platform ,2);
-                        $net_income = bcsub($net_incomesss , $p_money,2);              //净收入
+                        $operating = bcsub($order['pay_money'],$platform,2);         //营业收入
+                        $plat_money = bcmul ($operating , $car['pt_rate'],2);         //平台分润
+                        $partner_money = bcmul($operating , $car['h_rate'],2);           //合作方分润
+                        $p_money = bcmul($operating , $car['p_rate'],2);          //上级代理商分润
+                        $net_incomes = bcsub($operating , $plat_money ,2);           //营业收入减去平台分润
+                        $net_incomess = bcsub($net_incomes , $partner_money ,2);      //再减去合作方分润
+                        $net_income = bcsub($net_incomess , $p_money,2);              // 再减去上级分润 = 净收入
                         M('Agent')->where(array('id'=>$agent['p_id']))->setInc('balance',$p_money);    //上级代理商增加收入
                     }
 //                    $income_where['agent_id'] = $car['agent_id'];
@@ -1158,20 +1157,6 @@ class PayController extends BaseController {
                     M ('Income')->add ($income_add);
                     M ('Agent')->where (array ('id' => $car['agent_id']))->setInc('balance',$net_income);   //代理商增加收入
                     M('Agent')->where(array('id'=>$car['partner_id']))->setInc('balance',$partner_money);    //合作方增加收入
-
-                    //                    } else {
-//                        $income_save = array (
-//                            'detail' => $income['detail'] + $a_order['pay_money'] ,
-//                            'net_income' => $income['net_income'] + $net_income ,
-//                            'car_wash' => $income['car_wash'] + 1 ,
-//                            'create_time' => $a_order['pay_time'] ,
-//                        );
-//                        if ( $income['create_time'] != $a_order['pay_time'] ) {
-//                            M ('Income')->where ($income_where)->save ($income_save);
-//                            $agent_save['balance'] = $agent['balance'] + $net_income;
-//                            M ('Agent')->where (array ('id' => $car['agent_id']))->save ($agent_save);
-//                        }
-//                    }
                     $this->apiResponse (1 , '支付成功');
                 }
             } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {//2小鲸卡购买
