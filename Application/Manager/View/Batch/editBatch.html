@@ -95,50 +95,53 @@
                             <input type="text" class="layui-input" placeholder="请输入价格" name="price" value="{$row['price']}" value="{$row['price']}" <if condition="$row['id']">disabled=""</if>>
                         </div>
                     </div>
-                    <!--列表-->
-                    <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
-                        <thead>
-                        <tr>
-                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
-                            <th>
-                                <div class="layui-table-cell laytable-cell-1-id">
-                                    <span>ID</span>
-                                    <span class="layui-table-sort layui-inline" id="id-sort" lay-sort="">
+                    <if condition="$row['id'] neq null">
+                        <!--列表-->
+                        <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                            <thead>
+                            <tr>
+                                <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                                <th>
+                                    <div class="layui-table-cell laytable-cell-1-id">
+                                        <span>ID</span>
+                                        <span class="layui-table-sort layui-inline" id="id-sort" lay-sort="">
                                         <i class="layui-edge layui-table-sort-asc" value="id" sort="asc"></i>
                                         <i class="layui-edge layui-table-sort-desc" value="id" sort="desc"></i>
                                     </span>
-                                </div>
-                            </th>
-                            <th>兑换码</th>
-                            <th>状态</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <empty name="list">
-                            <tr>
-                                <td colspan="12" style="text-align: center;">暂无数据</td>
+                                    </div>
+                                </th>
+                                <th>兑换码</th>
+                                <th>状态</th>
                             </tr>
-                        </empty>
-                        <volist name="list" id="item">
-                            <tr>
-                                <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
-                                <td>{$item.id}</td>
-                                <td>{$item.exchange}</td>
+                            </thead>
+                            <tbody>
+                            <empty name="list">
+                                <tr>
+                                    <td colspan="12" style="text-align: center;">暂无数据</td>
+                                </tr>
+                            </empty>
+                            <volist name="list" id="item">
+                                <tr>
+                                    <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                    <td>{$item.id}</td>
+                                    <td>{$item.exchange}</td>
 
-                                <!--<td>{$item['is_bind'] == 0 ? '未绑定' : '已绑定'}</td>-->
-                                <!--<td>{$item['type'] == 1 ? '邀请赠送券' : '活动代金券'}</td>-->
-                                <td> <switch name="item.is_activation">
-                                    <case value="1"><span style="color: green">已激活</span></case>
-                                    <case value="0"><span style="color: red">未激活</span></case>
-                                    <!--<case value="2">提现失败</case>-->
-                                    <default/>
-                                </switch></td>
-                                <!--<td>{$item['is_use'] == 0 ? '未使用' : '已使用'}</td>-->
+                                    <!--<td>{$item['is_bind'] == 0 ? '未绑定' : '已绑定'}</td>-->
+                                    <!--<td>{$item['type'] == 1 ? '邀请赠送券' : '活动代金券'}</td>-->
+                                    <td> <switch name="item.is_activation">
+                                        <case value="1"><span style="color: green">已激活</span></case>
+                                        <case value="0"><span style="color: red">未激活</span></case>
+                                        <!--<case value="2">提现失败</case>-->
+                                        <default/>
+                                    </switch></td>
+                                    <!--<td>{$item['is_use'] == 0 ? '未使用' : '已使用'}</td>-->
 
-                            </tr>
-                        </volist>
-                        </tbody>
-                    </table>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        </else>
+                    </if>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
                             <button class="layui-btn" onclick="goback()">返回</button>
@@ -153,27 +156,6 @@
 </div>
 </div>
 <script>
-    // 上传文件初始化
-    new UploadFile({
-        element: '#uploadBtn',
-        // 多文件上传-true 单文件上传-false
-        files: true,
-        // 展示图片
-        showFile: true,
-        // input框的name
-        filedname: 'files'
-    });
-    // 上传文件初始化
-    new UploadFile({
-        element: '#uploadBtn2',
-        // 多文件上传-true 单文件上传-false
-        files: false,
-        // 展示图片
-//        showFile: '#filename',
-        showFile: 'true',
-        // input框的name
-        fieldName: 'fileaaaa'
-    });
 
     // 提交信息
     function submit() {
@@ -191,7 +173,7 @@
         doPost(url, data, function(res) {
             showMsg(res.code, res.message, function() {
                 if(res.code == 1) {
-
+                    goback();
                 }
             });
         });
