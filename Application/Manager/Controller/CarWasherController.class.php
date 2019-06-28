@@ -66,9 +66,9 @@ class CarWasherController extends BaseController {
             $data['list'][$k]['nickname'] = $date['nickname'];
             $date = D ('Washshop')->where (array ('id' => $data['list'][$k]['p_id']))->field ('shop_name')->find ();
             $data['list'][$k]['shop_name'] = $date['shop_name'];
-            $data['list'][$k]['washing_money'] = rtrim(rtrim($v['washing_money'], '0'), '.');
-            $data['list'][$k]['foam_money'] = rtrim(rtrim($v['foam_money'], '0'), '.');
-            $data['list'][$k]['cleaner_money'] = rtrim(rtrim($v['cleaner_money'], '0'), '.');
+            $data['list'][$k]['washing_money'] = round($v['washing_money']*60,2);
+            $data['list'][$k]['foam_money'] = round($v['foam_money']*60,2);
+            $data['list'][$k]['cleaner_money'] = round($v['cleaner_money']*60,2);
         }
         $this->assign ($data);
         //页数跳转
@@ -87,9 +87,13 @@ class CarWasherController extends BaseController {
             $rule = array (
                 array ('mc_code' , 'string' , '二维码编号') ,
                 array ('mc_id' , 'string' , '洗车机编号') ,
-                array ('washing_money' , 'string' , '水枪价格￥/min') ,
-                array ('foam_money' , 'string' , '泡沫价格￥/min') ,
-                array ('cleaner_money' , 'string' , '吸尘器价格￥/min') ,
+                array ('washing_money' , 'int' , '水枪价格￥/min') ,
+                array ('foam_money' , 'int' , '泡沫价格￥/min') ,
+                array ('cleaner_money' , 'int' , '吸尘器价格￥/min') ,
+                array ('service_money' , 'int' , '平添运营服务费') ,
+                array ('p_rate' , 'int' , '上级代理商分润') ,
+                array ('h_rate' , 'int' , '合作方分润') ,
+                array ('pt_rate' , 'int' , '平台分润') ,
                 array ('p_id' , 'string' , '请选择店铺') ,
                 array ('agent_id' , 'string' , '请选择加盟商') ,
                 array ('lon' , 'string' , '经度') ,
@@ -104,6 +108,12 @@ class CarWasherController extends BaseController {
                 //                array('washcar_pic','string','机器照片'),
             );
             $data = $this->checkParam ($rule);
+            $data['washing_money'] = round($data['washing_money']/60,5);
+            $data['foam_money'] = round($data['foam_money']/60,5);
+            $data['cleaner_money'] = round($data['cleaner_money']/60,5);
+            $data['p_rate'] = round($data['p_rate']/100,2);
+            $data['h_rate'] = round($data['h_rate']/100,2);
+            $data['pt_rate'] = round($data['pt_rate']/100,2);
             $data['update_time'] = time ();
             $data['washcar_pic'] = $request['washcar_pic'];
             $data['area'] = $request['area'];
@@ -115,9 +125,7 @@ class CarWasherController extends BaseController {
         } else {
             $id = $_GET['id'];
             $row = D ('CarWasher')->queryRow ($id);
-            $row['washing_money'] = rtrim(rtrim($row['washing_money'], '0'), '.');
-            $row['foam_money'] = rtrim(rtrim($row['foam_money'], '0'), '.');
-            $row['cleaner_money'] = rtrim(rtrim($row['cleaner_money'], '0'), '.');
+
             $province = D ('Region')->select (array ('parent_id' => 1 , 'region_type' => '1') , 'region_name,id');
             $where = array ('status' => array ('neq' , 9));
             $field = 'id, shop_name, status';
@@ -146,6 +154,12 @@ class CarWasherController extends BaseController {
             $row['cleaner_money'] = rtrim(rtrim($row['cleaner_money'], '0'), '.');
             $province = D ('Region')->queryList (array ('region_type' => '1') , 'region_name,id');
             $this->assign ('province' , $province);
+            $row['washing_money'] = round($row['washing_money']*60,2);
+            $row['foam_money'] = round($row['foam_money']*60,2);
+            $row['cleaner_money'] = round($row['cleaner_money']*60,2);
+            $row['p_rate'] = round($row['p_rate']*100,2);
+            $row['h_rate'] = round($row['h_rate']*100,2);
+            $row['pt_rate'] = round($row['pt_rate']*100,2);
             $this->assign ('row' , $row);
             //显示
             $fall = [];
@@ -169,9 +183,13 @@ class CarWasherController extends BaseController {
             $rule = array (
                 array ('mc_code' , 'string' , '二维码编号') ,
                 array ('mc_id' , 'string' , '洗车机编号') ,
-                array ('washing_money' , 'string' , '水枪价格￥/min') ,
-                array ('foam_money' , 'string' , '泡沫价格￥/min') ,
-                array ('cleaner_money' , 'string' , '吸尘器价格￥/min') ,
+                array ('washing_money' , 'int' , '水枪价格￥/min') ,
+                array ('foam_money' , 'int' , '泡沫价格￥/min') ,
+                array ('cleaner_money' , 'int' , '吸尘器价格￥/min') ,
+                array ('service_money' , 'int' , '平添运营服务费') ,
+                array ('p_rate' , 'int' , '上级代理商分润') ,
+                array ('h_rate' , 'int' , '合作方分润') ,
+                array ('pt_rate' , 'int' , '平台分润') ,
                 array ('p_id' , 'string' , '请选择店铺') ,
                 array ('agent_id' , 'string' , '请选择加盟商') ,
                 array ('partner_id' , 'string' , '请选择合作方') ,
@@ -187,6 +205,20 @@ class CarWasherController extends BaseController {
                 //                array('washcar_pic','string','机器照片'),
             );
             $data = $this->checkParam ($rule);
+            $wheress['mc_code']  = $data['mc_code'];
+            $wheress['mc_id']  = $data['mc_id'];
+            $wheress['_logic'] = 'or';
+            $map['_complex'] = $wheress;
+            $car = M('CarWasher')->where($map)->find();
+            if(!empty($car)){
+                $this->apiResponse(0,'洗车机编号已存在');
+            }
+            $data['washing_money'] = round($data['washing_money']/60,5);
+            $data['foam_money'] = round($data['foam_money']/60,5);
+            $data['cleaner_money'] = round($data['cleaner_money']/60,5);
+            $data['p_rate'] = round($data['p_rate']/100,2);
+            $data['h_rate'] = round($data['h_rate']/100,2);
+            $data['pt_rate'] = round($data['pt_rate']/100,2);
             $data['create_time'] = time ();
             $data['washcar_pic'] = $request['washcar_pic'];
             $data['area'] = $request['area'];
