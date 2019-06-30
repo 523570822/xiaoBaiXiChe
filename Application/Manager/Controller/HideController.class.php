@@ -24,11 +24,11 @@ class HideController extends BaseController
             $rule = array(
                 array('one_opera','int','请选择一级营业收入'),
                 array('one_partner','int','请选择一级合作方分润'),
-//                array('one_platform','int','请选择一级平台分润'),
-//                array('two_opera','int','请选择二级营业收入'),
-//                array('two_partner','int','请选择二级合作方分润'),
-//                array('two_platform','int','请选择二级平台分润'),
-//                array('two_father','int','请选择上级分润'),
+                array('one_platform','int','请选择一级平台分润'),
+                array('two_opera','int','请选择二级营业收入'),
+                array('two_partner','int','请选择二级合作方分润'),
+                array('two_platform','int','请选择二级平台分润'),
+                array('two_father','int','请选择上级分润'),
             );
             $data = $this->checkParam($rule);
             $where['id'] = 1;
