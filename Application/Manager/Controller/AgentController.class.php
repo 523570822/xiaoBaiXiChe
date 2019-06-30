@@ -191,5 +191,12 @@ class AgentController extends BaseController {
         exportExcels ($data , $indexKey , $header , date ('代理商表' . 'Y-m-d' , NOW_TIME));
     }
 
+    public function lockAgent() {
+        $id = $this->checkParam (array ('id' , 'int'));
+        $status = D ('Agent')->queryField ($id , 'status');
+        $data = $status == 1 ? array ('status' => 0) : array ('status' => 1);
+        $Res = D ('Agent')->querySave ($id , $data);
+        $Res ? $this->apiResponse (1 , $status == 1 ? '禁用成功' : '启用成功') : $this->apiResponse (0 , $status == 1 ? '禁用失败' : '启用失败');
+    }
 
 }

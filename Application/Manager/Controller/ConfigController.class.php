@@ -20,6 +20,11 @@ class ConfigController extends ControllerService
         if(IS_POST) {
             $data = $this->checkParam(array(
                 'website_name',
+                'website_phone',
+                'app_version_foreman',
+                'app_foreman_logo',
+                'app_member_info',
+                'app_expert_info',
                 'website_url',
                 'website_keyword',
                 'website_description',

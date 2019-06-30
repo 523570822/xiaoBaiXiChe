@@ -5,6 +5,7 @@ return array(
         'website_url' => 'https://www.xiaojingxiche.com',
         'website_keyword' => '小鲸鱼洗车 自动洗车',
         'website_description' => '小鲸鱼自动洗车',
+        'website_phone' => '020-65994111',
     ),
     'SMS' =>  array(
         'sms_type' => 'zhutong',
@@ -14,12 +15,15 @@ return array(
         'sms_sign' => '',
     ),
     'APP' =>  array(
-        'app_logo' => '196',
+        'app_logo' => '122',
         'app_name' => '小鲸洗车',
         'app_version' => 'V1.0.0',
-        'ag_code' => '1',
         'app_intro' => 'Copyright © 2019-2020    
 北京小鲸一诺科技有限公司',
+        'app_version_foreman' => 'V1.0.0',
+        'app_foreman_logo' => '',
+        'app_member_info' => '这是用户端啊',
+        'app_expert_info' => '这是代理商端',
     ),
     'PUSH' =>  array(
         'push_type' => 'jpush',

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--如果不是必填值 不需要加 required 属性-->
+
+                    <!--上传图片-->
+
+
+                    <div class="layui-form">
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 150px">一级营业收入</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="radio_1">
+                                    <input type="radio" id="radio_1" name="one_opera" value="1" class="layui-input" required <if condition="$row['one_opera'] eq 1">checked <elseif condition="empty($row['one_opera'])"/>checked</if>>
+                                    开通
+                                </label>
+                                <label class="layui-choose" for="radio_2">
+                                    <input type="radio" id="radio_2" name="one_opera" value="2" class="layui-input" required <if condition="$row['one_opera'] eq 2"> checked</if>>
+                                    隐藏
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 150px">一级合作方分润</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="radio_1">
+                                    <input type="radio" id="radio_1" name="one_partner" value="1" class="layui-input" required <if condition="$row['one_partner'] eq 1">checked <elseif condition="empty($row['one_partner'])"/>checked</if>>
+                                    开通
+                                </label>
+                                <label class="layui-choose" for="radio_2">
+                                    <input type="radio" id="radio_2" name="one_partner" value="2" class="layui-input" required <if condition="$row['one_partner'] eq 2"> checked</if>>
+                                    隐藏
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 150px">一级平台分润</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="radio_1">
+                                    <input type="radio" id="radio_1" name="one_platform" value="1" class="layui-input" required <if condition="$row['one_platform'] eq 1">checked <elseif condition="empty($row['one_platform'])"/>checked</if>>
+                                    开通
+                                </label>
+                                <label class="layui-choose" for="radio_2">
+                                    <input type="radio" id="radio_2" name="one_platform" value="2" class="layui-input" required <if condition="$row['one_platform'] eq 2"> checked</if>>
+                                    隐藏
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 150px">二级营业收入</label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="radio_1">
+                                    <input type="radio" id="radio_1" name="two_opera" value="1" class="layui-input" required <if condition="$row['two_opera'] eq 1">checked <elseif condition="empty($row['two_opera'])"/>checked</if>>
+                                    开通
+                                </label>
+                                <label class="layui-choose" for="radio_2">
+                                    <input type="radio" id="radio_2" name="two_opera" value="2" class="layui-input" required <if condition="$row['two_opera'] eq 2"> checked</if>>
+                                    隐藏
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 150px">二级合作方分润 </label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="radio_1">
+                                    <input type="radio" id="radio_1" name="two_partner" value="1" class="layui-input" required <if condition="$row['two_partner'] eq 1">checked <elseif condition="empty($row['two_partner'])"/>checked</if>>
+                                    开通
+                                </label>
+                                <label class="layui-choose" for="radio_2">
+                                    <input type="radio" id="radio_2" name="two_partner" value="2" class="layui-input" required <if condition="$row['two_partner'] eq 2"> checked</if>>
+                                    隐藏
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 150px">二级平台分润 </label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="radio_1">
+                                    <input type="radio" id="radio_1" name="two_platform" value="1" class="layui-input" required <if condition="$row['two_platform'] eq 1">checked <elseif condition="empty($row['two_platform'])"/>checked</if>>
+                                    开通
+                                </label>
+                                <label class="layui-choose" for="radio_2">
+                                    <input type="radio" id="radio_2" name="two_platform" value="2" class="layui-input" required <if condition="$row['two_platform'] eq 2"> checked</if>>
+                                    隐藏
+                                </label>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 150px">上级分润 </label>
+                            <div class="layui-input-block">
+                                <label class="layui-choose" for="radio_1">
+                                    <input type="radio" id="radio_1" name="two_father" value="1" class="layui-input" required <if condition="$row['two_father'] eq 1">checked <elseif condition="empty($row['two_father'])"/>checked</if>>
+                                    开通
+                                </label>
+                                <label class="layui-choose" for="radio_2">
+                                    <input type="radio" id="radio_2" name="two_father" value="2" class="layui-input" required <if condition="$row['two_father'] eq 2"> checked</if>>
+                                    隐藏
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <!--<button class="layui-btn" onclick="goback()">返回</button>-->
+                                <button class="layui-btn" onclick="submit()">确认保存</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 上传文件初始化
+    new UploadFile({
+        element: '#uploadBtn2',
+        // 多文件上传-true 单文件上传-false
+        files: false,
+        // 展示图片
+//        showFile: '#filename',
+        showFile: 'true',
+        // input框的name
+        fieldName: 'head_pic'
+    });
+
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        var id = "{$row['id']}";
+        if(id){
+            url = '';
+            data.id = id
+        }else{
+            url = '{:U("Hide/editHide")}'
+        }
+        console.log(data);
+        if(!data) return false;
+        doPost(url, data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+                    goback();
+                }
+            });
+        });
+    }
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+
+    //编辑器初始化
+    $(document).ready(function(){
+        KindEditor.ready(function(K){
+            window.editor = K.create('#content',{
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items:[
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough','lineheight', '|',
+                    'image', '|',
+                    'link', 'baidumap','fullscreen'
+                ],
+                afterBlur:function(){this.sync();}
+            });
+        });
+    });
+    $(function() {
+        var type = 1;
+        $("#province").removeClass('hide')
+        $('#type').change(function () {
+            var type = $(this).val();
+            $('#country option[value!=""]').remove();
+            $('#province option[value!=""]').remove();
+            $('#city option[value!=""]').remove();
+            $('#area option[value!=""]').remove();
+            var province = $(this).val();
+            $("#city").addClass('hide')
+            $("#province").addClass('hide')
+            window.txt = $("#province").find("option:selected").text(); //alert(txt);
+            $.ajax({
+                url: "{:U('Region/ajaxGetCountry')}",
+                type: 'post',
+                data: {type: type},
+                success: function (data) {
+                    if (type == 1) {
+                        var html = '<option value="">--请选择省份--</option>';
+                        for (var i in data) {
+                            html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                        }
+                        var html1 = '<option value="1">中国</option>';
+                        $('#country').html(html1);
+                        $("#province").removeClass('hide')
+                        $('#province').html(html);
+                    } else {
+                        var html = '<option value="">--请选择国家--</option>';
+                        for (var i in data) {
+                            html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                        }
+                        $('#country').html(html);
+                    }
+                }
+            })
+
+        });
+
+        $('#country').change(function () {
+            $('#city option[value!=""]').remove();
+            $('#province option[value!=""]').remove();
+            var province = $(this).val();
+            $("#city").addClass('hide')
+            $("#province").addClass('hide')
+            window.txt = $("#province").find("option:selected").text(); //alert(txt);
+            $.ajax({
+                url: "{:U('Region/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: province},
+                success: function (data) {
+                    var html = '<option value="">--请选择下级--</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    $('#province').html(html);
+                    $("#province").removeClass('hide')
+                }
+            })
+        });
+
+
+        $('#province').change(function () {
+            $('#city option[value!=""]').remove();
+            $('#area option[value!=""]').remove();
+            var province = $(this).val();
+            window.txt = $("#province").find("option:selected").text(); //alert(txt);
+            $.ajax({
+                url: "{:U('Region/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: province},
+                success: function (data) {
+                    var html = '<option value="">--请选择城市--</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    if (data.length > 0) {
+                        $('#city').html(html);
+                        $("#city").removeClass('hide')
+                        $("#area").addClass('hide')
+                    } else {
+                        $("#city").addClass('hide')
+                        $("#area").addClass('hide')
+                    }
+                }
+            })
+        });
+
+        $('#city').change(function () {
+            $('#area option[value!=""]').remove();
+            var city = $(this).val();
+            window.txt = $("#city").find("option:selected").text(); //alert(txt);
+            $.ajax({
+                url: "{:U('Region/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: city},
+                success: function (data) {
+                    var html = '<option value="">--请选择地区--</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    if (data.length > 0) {
+                        $('#area').html(html);
+                        $("#area").removeClass('hide')
+                    } else {
+                        $("#area").addClass('hide')
+                    }
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>

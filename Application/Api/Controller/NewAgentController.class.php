@@ -697,10 +697,10 @@ class NewAgentController extends BaseController
 //        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
 //        $post['grade'] = 1;            //1一级代理商   2二级代理商   3合作方
         $agent = $this->getAgentInfo($post['token']);
-
+        $app = D('Appsetting')->queryRow(array('id'=>1));
         if($agent['grade'] == 2){
             $n_income = M('Income')->where(array('agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(partner_money) as partner_money,SUM(plat_money) as plat_money')->find();
-            $trade = bcsub($n_income['detail'],$n_income['platform'],2);
+
             $f_tagent = M('Agent')->where(array('p_id'=>$agent['id']))->field('id')->select();
             foreach($f_tagent as $k=>$v){
                 $f_tincome = M('Income')->where(array('agent_id'=>$v['id']))->field('SUM(p_money) as p_money')->find();
@@ -712,13 +712,47 @@ class NewAgentController extends BaseController
             $all_money = bcadd($n_income['net_income'],$p_money,2);
             $n_income['p_money'] = '';
             $all_partner = '';
+            if($app['one_opera'] == 1){      //营业收入
+                $trade = bcsub($n_income['detail'],$n_income['platform'],2);
+            }elseif ($app['one_opera'] == 2){
+                $trade = '';
+            }
+            if($app['one_partner'] == 1){      //合作方分润
+                $n_income['partner_money'] = $n_income['partner_money'];
+            }elseif ($app['one_partner'] == 2){
+                $n_income['partner_money'] = '';
+            }
+            if($app['one_platform'] == 1){      //平台分润
+                $n_income['plat_money'] = $n_income['plat_money'];
+            }elseif ($app['one_platform'] == 2){
+                $n_income['plat_money'] = '';
+            }
         }elseif ($agent['grade'] == 3){
             $n_income = M('Income')->where(array('agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(partner_money) as partner_money,SUM(plat_money) as plat_money,SUM(p_money) as p_money')->find();
 
-            $trade = bcsub($n_income['detail'],$n_income['platform'],2);
             $p_money = '';
             $all_money = '';
             $all_partner = '';
+            if($app['two_opera'] == 1){      //二级营业收入
+                $trade = bcsub($n_income['detail'],$n_income['platform'],2);
+            }elseif ($app['two_opera'] == 2){
+                $trade = '';
+            }
+            if($app['two_partner'] == 1){      //二级合作方分润
+                $n_income['partner_money'] = $n_income['partner_money'];
+            }elseif ($app['two_partner'] == 2){
+                $n_income['partner_money'] = '';
+            }
+            if($app['two_platform'] == 1){      //二级平台分润
+                $n_income['plat_money'] = $n_income['plat_money'];
+            }elseif ($app['two_platform'] == 2){
+                $n_income['plat_money'] = '';
+            }
+            if($app['two_father'] == 1){      //二级上级分润
+                $n_income['p_money'] = $n_income['p_money'];
+            }elseif ($app['two_father'] == 2){
+                $n_income['p_money'] = '';
+            }
         }elseif ($agent['grade'] == 4){
             $car = M('CarWasher')->where(array('partner_id'=>$agent['id']))->field('id')->select();
             foreach ($car as $ck=>$cv){
@@ -761,19 +795,20 @@ class NewAgentController extends BaseController
     public function oneDetail(){
         $post = checkAppData('token,page,size','token-页数-个数');
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['page'] = 3;
+//        $post['page'] = 2;
 //        $post['size'] = 10;
 
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
 
-//        $post['in_month'] = 1553448192;
+//        $post['in_month'] = 1559328774;
 
 
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
         $agent = $this->getAgentInfo($post['token']);
+        $app = D('Appsetting')->queryRow(array('id'=>1));
         if($agent['grade'] != 2){
             $this->apiResponse('0','您不是一级代理商');
         }
@@ -830,10 +865,22 @@ class NewAgentController extends BaseController
                 $result[$value['day']]['p_money']+=$value['p_money'];
                 $result[$value['day']]['detail']+=$value['detail'];
                 $result[$value['day']]['net_income']+=$value['net_income'];
-                $result[$value['day']]['plat_money']+=$value['plat_money'];
-                $result[$value['day']]['partner_money']+=$value['partner_money'];
+                if($app['one_platform'] == 1){
+                    $result[$value['day']]['plat_money']+=$value['plat_money'];
+                }elseif($app['one_platform'] == 2){
+                    $result[$value['day']]['plat_money'] = '';
+                }
+                if($app['one_partner'] == 1){
+                    $result[$value['day']]['partner_money']+=$value['partner_money'];
+                }elseif ($app['one_partner'] == 2){
+                    $result[$value['day']]['partner_money'] = '';
+                }
                 $result[$value['day']]['platform']+=$value['platform'];
-                $result[$value['day']]['open']+=$value['open'];
+                if($app['one_opera'] == 1){
+                    $result[$value['day']]['open']+=$value['open'];
+                }elseif($app['one_opera'] == 2){
+                    $result[$value['day']]['open'] = '';
+                }
             }
         }
         $month_income['p_money'] = (string)$month_income['p_money'];
@@ -844,6 +891,7 @@ class NewAgentController extends BaseController
                 $datas[] = $result[$i];
             }
         }
+//        dump($datas);exit;
         $data = array(
             'all_income' => $month_income,
             'now_income' => $datas? $datas : array(),
@@ -872,12 +920,13 @@ class NewAgentController extends BaseController
 //        $post['size'] = 10;
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
-//        $post['in_month'] = 1558082005;
+//        $post['in_month'] = 1559328774;
 
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
         $agent = $this->getAgentInfo($post['token']);
+        $app = D('Appsetting')->queryRow(array('id'=>1));
         if($agent['grade'] != 3){
             $this->apiResponse('0','您不是二级代理商');
         }
@@ -889,7 +938,20 @@ class NewAgentController extends BaseController
         //日净收入
         $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform,day')->group("day")->order('day DESC')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach($day_income as &$dv){
-            $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
+            if($app['two_opera'] == 1){
+                $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
+            }elseif($app['two_opera'] == 2){
+                $dv['open'] = '';
+            }
+            if($app['two_partner'] == 2){        //合作方分润
+                $dv['partner_money'] = '';
+            }
+            if($app['two_platform'] == 2){       //平台分润
+                $dv['plat_money'] = '';
+            }
+            if($app['two_father'] == 2){              //上级分润
+                $dv['p_money'] = '';
+            }
         }
         $data = array(
             'all_income' => $month_income,
@@ -1194,10 +1256,13 @@ class NewAgentController extends BaseController
         if($post['data_time'] == ''){
             $post['data_time'] = strtotime(date('Y-m'));
         }
-//        $post['data_time'] = 1558686980;
+
+//        $post['data_time'] = 1561824000;
+
         $day =strtotime(date('Y-m-d',$post['data_time'])) ;
 
         $agent = $this->getAgentInfo($post['token']);
+        $app = D('Appsetting')->queryRow(array('id'=>1));
         if($agent['grade'] != 2){
             $this->apiResponse('0','您不是一级代理商');
         }
@@ -1224,7 +1289,7 @@ class NewAgentController extends BaseController
                 $incomess[] = $iv3;
             }
         }
-        $income = M('Income')->where(array('agent_id' => $agent['id'],'month'=>$month))->field('car_washer_id,orderid,detail,net_income,platform,plat_money,partner_money,create_time')->order('create_time DESC')->select();
+        $income = M('Income')->where(array('agent_id' => $agent['id'],'day'=>$day))->field('car_washer_id,orderid,detail,net_income,platform,plat_money,partner_money,create_time')->order('create_time DESC')->select();
         foreach($income as &$v){
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
@@ -1232,6 +1297,15 @@ class NewAgentController extends BaseController
             $v['trade'] = $trade;
             $v['p_money'] = '';
             $v['style'] = 1;
+            if($app['one_opera'] == 2){   //营业收入
+                $v['trade'] = '';
+            }
+            if($app['one_partner'] == 2){   //合作方分润
+                $v['partner_money'] = '';
+            }
+            if($app['one_platform'] == 2){   //平台分润
+                $v['plat_money'] = '';
+            }
         }
         $list=array_merge($income,$incomess);
         $lists = list_sort_by($list, 'create_time', 'desc');
@@ -1301,10 +1375,12 @@ class NewAgentController extends BaseController
         if($post['data_time'] == ''){
             $post['data_time'] = strtotime(date('Y-m'));
         }
-//        $post['data_time'] = 1558686980;
+//        $post['data_time'] = 1561824000;
         $day =strtotime(date('Y-m-d',$post['data_time'])) ;
 
         $agent = $this->getAgentInfo($post['token']);
+        $app = D('Appsetting')->queryRow(array('id'=>1));
+
         if($agent['grade'] != 3){
             $this->apiResponse('0','您不是二级代理商');
         }
@@ -1314,6 +1390,18 @@ class NewAgentController extends BaseController
             $trade = bcsub($v['detail'],$v['platform'],2);
             $v['car_washer_id'] = $car['mc_code'];
             $v['trade'] = $trade;
+            if($app['two_opera'] == 2){          //营业收入
+                $v['trade'] = '';
+            }
+            if($app['two_partner'] == 2){              //合作方分润
+                $v['partner_money'] = '';
+            }
+            if($app['two_platform'] == 2){             //平台分润
+                $v['plat_money'] = '';
+            }
+            if($app['two_father'] == 2){                //上级分润
+                $v['p_money'] = '';
+            }
         }
         if(!empty($income)){
             $this->apiResponse(1,'查询成功',$income);

@@ -97,6 +97,7 @@ class BatchController extends BaseController
             $end = strtotime($data['end_time']);
 
 //            $res = D('Batch')->addRow($data);
+            //调用生成代金券接口
             $res = $this->redirect('Api/Coupon/couponCode',array('end_time'=>$end,'start_time'=>$start,'remark'=>$request['remark'],'prefix'=>$request['prefix'],'code_length'=>$request['code_length'],'title'=>$data['title'],'nums'=>$data['num'],'price'=>$data['price'],));
             $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $data);
         }else {
@@ -130,6 +131,7 @@ class BatchController extends BaseController
             $row = D('Batch')->queryRow($id);
             $param['order'] = 'create_time desc';
             $param['page_size'] = 15;
+            //调用生成代金券接口
             $code = D('RedeemCode')->queryList(array('b_id'=>$row['id']),'id,create_time,exchange,is_activation',$param);
             $this->assign('row',$row);
             $this->assign($code);
