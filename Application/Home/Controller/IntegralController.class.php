@@ -18,6 +18,7 @@ class IntegralController extends BaseController {
             $token=$_REQUEST['token'];
             $member_info = M('Member')->where(array('token'=>$token))->field($param['field'])->find();
         }
+        dump($member_info);exit;
         if(!$member_info) {
             $member_info['invite_code']="0";
         }
