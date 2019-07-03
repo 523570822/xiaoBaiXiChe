@@ -542,7 +542,7 @@ class PayController extends BaseController {
         //日志
         $this->loggers('订单号:'.$order_info['orderid'].'金额:'.$xml_data['total_fee']);
 //日志
-        $this->loggers('支付宝优惠方式:'.$request['methods'].'优惠ID:'.$request['methods_id']);
+        $this->loggers('微信优惠方式:'.$request['methods'].'优惠ID:'.$request['methods_id']);
 
         if($xml_data['total_fee'] == 0){
             $xml_data['total_fee'] = 1;
