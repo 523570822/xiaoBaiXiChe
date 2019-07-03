@@ -216,14 +216,17 @@ class PayController extends BaseController {
      **/
     public function Alipay () {
         Vendor ('Txunda.Alipay.Alipay');
-        $request = I ('post.');
+//        $request = I ('post.');
+        $request = $_REQUEST;// I('post.');
+
         $rule = array ('orderid' , 'string' , '订单编号不能为空');
         $this->checkParam ($rule);
         $order_info = D ("Order")->where (array ('orderid' => $request['orderid']))->find ();
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
-        $this->loggers('优惠方式:'.$request['methods'].'优惠ID:'.$request['methods_id']);
+        //日志
+        $this->loggers('支付宝优惠方式:'.$request['methods'].'优惠ID:'.$request['methods_id']);
 
         $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify/methods/' . $request['methods'] . '/methods_id/' . $request['methods_id'];
         // 生成支付字符串
@@ -509,7 +512,13 @@ class PayController extends BaseController {
      * $APPSECRET = 'fbd773e0cfb5e2ea14304f042fa917aa' | '9ab5724077031f646f388f1bba29e70b';
      */
     public function Wechat () {
-        $request = I ("");
+//        $request = I ("");
+        $request = $_REQUEST;// I('post.');
+//        $rule = array(
+//            array('methods', 'string', '请输入手机号'),
+//            array('methods_id', 'string', '请输入密码'),
+//        );
+//        $this->checkParam($rule);
         // 查询订单信息
         $order_info = M ("Order")->where (array ('orderid' => $request['orderid']))->find ();
 
@@ -532,6 +541,8 @@ class PayController extends BaseController {
         $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
         //日志
         $this->loggers('订单号:'.$order_info['orderid'].'金额:'.$xml_data['total_fee']);
+//日志
+        $this->loggers('支付宝优惠方式:'.$request['methods'].'优惠ID:'.$request['methods_id']);
 
         if($xml_data['total_fee'] == 0){
             $xml_data['total_fee'] = 1;
