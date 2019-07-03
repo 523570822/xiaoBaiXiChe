@@ -223,6 +223,8 @@ class PayController extends BaseController {
         if ( !$order_info ) {
             $this->apiResponse (0 , '订单信息查询失败');
         }
+        $this->loggers('优惠方式:'.$request['methods'].'优惠ID:'.$request['methods_id']);
+
         $notify_url = C ('API_URL') . '/index.php/Api/Pay/AlipayNotify/methods/' . $request['methods'] . '/methods_id/' . $request['methods_id'];
         // 生成支付字符串
         $out_trade_no = $order_info['orderid'];
@@ -518,6 +520,9 @@ class PayController extends BaseController {
         $url_unifiedorder = "https://api.mch.weixin.qq.com/pay/unifiedorder"; // 统一下单 URL
         $xml_data = [];
         $xml_data['body'] = "小鲸洗车-订单号-" . $order_info['orderid']; // 商品描述
+//        if($request['methods'] == 1){           //1小鲸卡 2代金券 3无优惠方式
+//
+//        }
         $xml_data['out_trade_no'] = $order_info['orderid']; // 订单流水
         $xml_data['notify_url'] = C ('API_URL') . "/index.php/Api/Pay/WeChatNotify"; // 回调 URL
         $xml_data['spbill_create_ip'] = $_SERVER['REMOTE_ADDR']; // 终端 IP
@@ -527,6 +532,7 @@ class PayController extends BaseController {
         $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
         //日志
         $this->loggers('订单号:'.$order_info['orderid'].'金额:'.$xml_data['total_fee']);
+
         if($xml_data['total_fee'] == 0){
             $xml_data['total_fee'] = 1;
         }
@@ -1072,13 +1078,13 @@ class PayController extends BaseController {
 
         if ( $order['o_type'] ) {
             if ( $order['o_type'] == 1 && $order['status'] == 1) {//1洗车订单
-                if ( $request['methods'] == '1' ) {
+                if ( $request['methods'] == 1 ) {
                     $cards = M ("CardUser")->where (['id' => $request['methods_id']])->field ('l_id')->find ();
                     $card = M ("LittlewhaleCard")->where (['id' => $cards])->field ('rebate')->find ();
-                    $date['is_dis'] = '1';
+                    $date['is_dis'] = 1;
                     $date['card_id'] = $request['methods_id'];
                     $date['allowance'] = $card['rebate'];
-                } elseif ( $request['methods'] == '2' ) {
+                } elseif ( $request['methods'] == 2 ) {
                     M ("CouponBind")->where (['id' => $request['methods_id']])->save (['is_use' => '1']);
                     $coup = M ("CouponBind")->where (['id' => $request['methods_id']])->field ('money')->find ();
                     $date['is_dis'] = '1';

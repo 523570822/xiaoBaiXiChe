@@ -152,4 +152,63 @@ class BatchController extends BaseController
         $Res ? $this->apiResponse(1, $status == 1 ? '禁用成功' : '启用成功') : $this->apiResponse(0, $status == 1 ? '禁用失败' : '启用失败');
 
     }
+
+    /**
+     *代金券发放
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/07/02 01:41
+     */
+    public function editSendRedBag() {
+        $param['order'] = 'create_time desc';
+        $param['page_size'] = 15;
+        $code = D('RedeemCode')->queryList(array('is_activation'=>0,'end_time'=>array('gt',time())),'id,create_time,exchange,is_activation',$param);
+        $this->assign($code);
+        $this->display();
+    }
+
+    /**
+     *代金券发放
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/07/02 02:08
+     */
+    public function SendRedBag() {
+        $rule = array(
+            array('red_bag_id','string>0','请输入兑换码'),
+            array('m_id','string>0','请输入用户昵称'),
+        );
+        $data = $this->checkParam($rule);
+        $wheres['exchange'] = array('LIKE','%'.$data['red_bag_id'].'%');
+        $wheres['is_activation'] = 0;
+        $red_bag_info = D('RedeemCode')->queryRow($wheres);
+        $batch = D('Batch')->queryRow(array('id'=>$red_bag_info['b_id']));
+        if(!$red_bag_info){
+            $this->apiResponse(0,'该代金券不存在');
+        }
+        unset($wheres['exchange']);
+        $wheres['nickname'] = array('LIKE','%'.$data['m_id'].'%');
+
+        $m_id = D('Member')->queryField($wheres,'id');
+
+        if(!$m_id){
+            $this->apiResponse(0,'该用户不存在');
+        }
+
+        if($m_id && $red_bag_info) {
+            $wheress['exchange'] = array('LIKE','%'.$data['red_bag_id'].'%');
+            $wheress['is_activation'] = 0;
+            $save['is_activation'] = 1;
+            D('RedeemCode')->querySave($wheress,$save);
+            $where['m_id'] = $m_id;
+            $where['is_bind'] = 1;
+            $where['type'] = 2;
+            $where['create_time'] = time ();
+            $where['end_time'] = $red_bag_info['end_time'];
+            $where['comes'] = $batch['title'];
+            $where['money'] = $batch['price'];
+            $where['code_id'] = $red_bag_info['id'];
+            $BD = D ('CouponBind')->add ($where);
+            $this->apiResponse(1, '发送完成');
+        }
+    }
+
 }
