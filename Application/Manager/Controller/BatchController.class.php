@@ -174,7 +174,7 @@ class BatchController extends BaseController
     public function SendRedBag() {
         $rule = array(
             array('red_bag_id','string>0','请输入兑换码'),
-            array('m_id','string>0','请输入用户昵称'),
+            array('m_id','string>0','请输入用户账号'),
         );
         $data = $this->checkParam($rule);
         $wheres['exchange'] = array('LIKE','%'.$data['red_bag_id'].'%');
@@ -185,7 +185,7 @@ class BatchController extends BaseController
             $this->apiResponse(0,'该代金券不存在');
         }
         unset($wheres['exchange']);
-        $wheres['nickname'] = array('LIKE','%'.$data['m_id'].'%');
+        $wheres['account'] = array('LIKE','%'.$data['m_id'].'%');
 
         $m_id = D('Member')->queryField($wheres,'id');
 
