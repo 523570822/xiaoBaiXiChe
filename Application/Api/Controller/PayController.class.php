@@ -554,7 +554,7 @@ class PayController extends BaseController {
         ];
         $xml_data['attach'] = json_encode ($attach_data); // 附加数据 JSON
 
-        if ( $request['trade_type'] ) {// 小程序
+        if ( $request['trade_type'] == 1) {// 小程序
             $xml_data['appid'] = 'wxf348bbbcc28d7e10'; // APP ID
             $xml_data['mch_id'] = '1524895951'; // 商户号
             $xml_data['trade_type'] = 'JSAPI'; // 支付类型

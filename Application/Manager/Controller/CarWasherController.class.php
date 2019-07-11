@@ -120,6 +120,7 @@ class CarWasherController extends BaseController {
             $data['old_address'] = $request['address'];
             $data['sort'] = $request['sort'];
             $data['mc_id'] = $request['mc_id'];
+            $data['partner_id'] = $request['partner_id'];
             $res = D ('CarWasher')->querySave (["id" => I ('post.id')] , $data);
             $res ? $this->apiResponse (1 , '修改成功') : $this->apiResponse (0 , "修改失败" , $data);
         } else {
