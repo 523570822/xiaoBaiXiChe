@@ -55,7 +55,7 @@ class OrderController extends BaseController
             $where['status'] = I ('request.status');
         }
         if (!$_REQUEST['status']){
-            $where['status'] = array('lt',9);
+            $where['status'] = array('elt',9);
         }
         //注册时间查找
         if(!empty($_REQUEST['start_time']) && !empty($_REQUEST['end_time'])){
