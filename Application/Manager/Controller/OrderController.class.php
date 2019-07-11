@@ -160,7 +160,7 @@ class OrderController extends BaseController
             $sort = explode ('-' , $_REQUEST['sort_order']);
             $param['order'] = $sort[0] . ' ' . $sort[1];
     }
-        $field = 'orderid,c_id,m_id,pay_money,start_time,update_time,o_type,status';
+        $field = 'orderid,c_id,m_id,pay_money,start_time,update_time,o_type,status,pay_time';
         $data = D ('Order')->queryList ($where , $field , $param);
         if ( empty($data) ) {
             $this->display ('index');exit;
@@ -173,6 +173,9 @@ class OrderController extends BaseController
             $data[$key]['c_id'] = $cid['mc_code'];
             $mid = M('Member')->where(array('id' =>$val['m_id'] ))->find();
             $data[$key]['m_id'] = $mid['account'];
+            if(!empty($data[$key]['pay_time'])){
+                $data[$key]['pay_time'] = date ('Y-m-d H:i:s' , $data[$key]['pay_time']);
+            }
             if(!empty($data[$key]['start_time'])){
                 $data[$key]['s_time'] = date ('Y-m-d H:i:s' , $data[$key]['start_time']);
                 $data[$key]['data'] = explode (" ",$data[$key]['s_time']);
@@ -209,8 +212,8 @@ class OrderController extends BaseController
         //下面方法第一个数组，是需要的数据数组
         //第二个数组是excel的第一行标题,如果为空则没有标题
         //第三个是下载的文件名，现在用的是当前导出日期
-        $header = array ('订单编号' , '洗车机编号' , '用户账号' , '花费金额' ,  '洗车日期' , '洗车结束日期' , '洗车时间' , '洗车结束时间' , '订单类型', '状态');
-        $indexKey = array ('orderid' , 'c_id' , 'm_id' , 'pay_money' , 'start_time' , 'update_time' , 'start_time1' ,  'update_time1' , 'o_type' , 'status');
+        $header = array ('订单编号' , '洗车机编号' , '用户账号' , '花费金额' ,  '洗车日期' , '洗车结束日期' , '洗车时间' , '洗车结束时间' , '支付时间','订单类型', '状态');
+        $indexKey = array ('orderid' , 'c_id' , 'm_id' , 'pay_money' , 'start_time' , 'update_time' , 'start_time1' ,  'update_time1' , 'pay_time','o_type' , 'status');
         exportExcels ($data , $indexKey , $header , date ('订单表' . 'Y-m-d' , NOW_TIME));
     }
 
