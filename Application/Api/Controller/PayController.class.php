@@ -250,7 +250,13 @@ class PayController extends BaseController {
         Vendor ('Txunda.Alipay.Notify');
         $notify = new \Notify();
         if ( $notify->rsaCheck () ) {
+            //日志
+            $this->loggers('huidiao订单号:'.$request['out_trade_no'].'金额:'.$log['total_fee']);
             $out_trade_no = substr($request['out_trade_no'], 0, -4); //本地订单号
+            //日志
+            $this->loggers('bendi订单号:'.$out_trade_no.'金额:'.$log['total_fee']);
+
+
             $trade_status = $request['trade_status'];
 //            $pay_money = $request['total_amount']; //钱
             $order_no = $request['trade_no']; //支付宝流水号
@@ -535,8 +541,8 @@ class PayController extends BaseController {
         $xml_data['out_trade_no'] = $order_info['orderid'].rand(1000,9999); // 订单流水
         $xml_data['notify_url'] = C ('API_URL') . "/index.php/Api/Pay/WeChatNotify"; // 回调 URL
         $xml_data['spbill_create_ip'] = $_SERVER['REMOTE_ADDR']; // 终端 IP
-        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
-//        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
+//        $xml_data['total_fee'] = 1; // 支付金额 单位[分]
+        $xml_data['total_fee'] = $order_info['pay_money'] * 100; // 支付金额 单位[分]
         //日志
         $this->loggers('订单号:'.$order_info['orderid'].'金额:'.$xml_data['total_fee']);
 //日志
