@@ -1137,9 +1137,9 @@ class OrderController extends BaseController {
         //请求物联网接口,获取数据
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
         $prices = M('Appsetting')->where(array('id'=>1))->find();
-        $wash_money =  bcmul($details['washing'] , $car['washing_money']);    //水枪金额
-        $foam_money = bcmul($details['foam'] , $car['foam_money']); //泡沫枪金额
-        $cleaner_money = bcmul($details['cleaner'] , $car['cleaner_money']); //吸尘器金额
+        $wash_money =  bcmul($details['washing'] , $car['washing_money'],2);    //水枪金额
+        $foam_money = bcmul($details['foam'] , $car['foam_money'],2); //泡沫枪金额
+        $cleaner_money = bcmul($details['cleaner'] , $car['cleaner_money'],2); //吸尘器金额
         $all_money = round($wash_money + $foam_money + $cleaner_money,2);  //总金额
 
         $all_time = round($details['washing'] + $details['foam'] + $details['cleaner']);   //总秒数

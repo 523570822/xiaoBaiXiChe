@@ -362,9 +362,9 @@ class BaseController extends ControllerService
             'button'=>1 ,
         );
         $f_order = M('Order')->where(array('id' =>$orderid))->save($sa_order);
-        $washing_price = bcmul(60 , $car['washing_money'],2);
-        $foam_price = bcmul(60 ,  $car['foam_money'],2);
-        $cleaner_price = bcmul(60 , $car['cleaner_money'],2);
+        $washing_price = bcmul(60 , $car['washing_money']);
+        $foam_price = bcmul(60 ,  $car['foam_money']);
+        $cleaner_price = bcmul(60 , $car['cleaner_money']);
         $data_money = array(
             'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
             'washing' =>$wash_time,
@@ -372,9 +372,9 @@ class BaseController extends ControllerService
             'cleaner'=>$cleaner_time,
             'all_money' =>round($wash_money+$foam_money+$cleaner_money,2),
             'off_on' => 1,
-            'washing_price' => $washing_price,
-            'foam_price' => $foam_price,
-            'cleaner_price' => $cleaner_price
+            'washing_price' => round($washing_price,2),
+            'foam_price' => round($foam_price,2),
+            'cleaner_price' => round($cleaner_price,2)
         );
         return $data_money;
     }
@@ -457,9 +457,9 @@ class BaseController extends ControllerService
             'update_time' => time(),
         );
         $f_order = M('Order')->where($o_where)->save($sa_order);
-        $washing_price = bcmul(60 , $car['washing_money'],2);
-        $foam_price = bcmul(60 ,  $car['foam_money'],2);
-        $cleaner_price = bcmul(60 , $car['cleaner_money'],2);
+        $washing_price = bcmul(60 , $car['washing_money']);
+        $foam_price = bcmul(60 ,  $car['foam_money']);
+        $cleaner_price = bcmul(60 , $car['cleaner_money']);
         $data_money = array(
             'indication' => $indication,    //1  代表水枪    2代表泡沫枪   3代表吸尘器
             'washing' =>$wash_time,
@@ -467,9 +467,9 @@ class BaseController extends ControllerService
             'cleaner'=>$cleaner_time,
             'all_money' =>round($wash_money+$foam_money+$cleaner_money,2),
             'off_on' => 0,
-            'washing_price' => $washing_price,
-            'foam_price' => $foam_price,
-            'cleaner_price' => $cleaner_price
+            'washing_price' => round($washing_price,2),
+            'foam_price' => round($foam_price,2),
+            'cleaner_price' => round($cleaner_price,2)
         );
         return $data_money;
     }
