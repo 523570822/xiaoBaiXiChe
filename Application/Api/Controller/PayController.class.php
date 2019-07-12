@@ -250,11 +250,13 @@ class PayController extends BaseController {
         Vendor ('Txunda.Alipay.Notify');
         $notify = new \Notify();
         if ( $notify->rsaCheck () ) {
+            $comma_separated = implode(",", $request);
+            $this->loggers($comma_separated);
             //日志
-            $this->loggers('huidiao订单号:'.$request['out_trade_no'].'金额:'.$log['total_fee']);
+            $this->loggers('huidiao订单号:'.$request['out_trade_no'].'金额:'.$request['total_fee']);
             $out_trade_no = substr($request['out_trade_no'], 0, -4); //本地订单号
             //日志
-            $this->loggers('bendi订单号:'.$out_trade_no.'金额:'.$log['total_fee']);
+            $this->loggers('bendi订单号:'.$out_trade_no.'金额:'.$request['total_fee']);
 
 
             $trade_status = $request['trade_status'];
