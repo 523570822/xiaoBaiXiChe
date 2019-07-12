@@ -796,6 +796,8 @@ class PayController extends BaseController {
         $this->loggers('huidiao订单号:'.$log['out_trade_no'].'金额:'.$log['total_fee']);
         // 获取订单流水号
         $order_no = substr($log['out_trade_no'], 0, -4); //本地订单号
+        $this->loggers('bendi订单号:'.$order_no.'金额:'.$log['total_fee']);
+
         //获取三方交易流水号
         $info = $log['transaction_id'];
         //获取其他订单信息
