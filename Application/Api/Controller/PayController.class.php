@@ -792,6 +792,8 @@ class PayController extends BaseController {
         //        $txt = json_encode ($log);
         //        fwrite ($myfile , $txt);
         //        fclose ($myfile);
+        //日志
+        $this->loggers('订单号:'.$log['orderid'].'金额:'.$log['total_fee']);
         // 获取订单流水号
         $order_no = substr($log['out_trade_no'], 0, -4); //本地订单号
         //获取三方交易流水号
