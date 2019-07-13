@@ -93,8 +93,14 @@ class OrderController extends BaseController
         $account = D('Member')->where (array ('id'=>$row['m_id']))->field ('account')->find();
         $detail = M('Details')->where(array('o_id'=> $id))->find();
         $row['washing'] = $detail['washing']?:'0';
+        $row['washing_start_time'] = $detail['washing_start_time']?:'0';
+        $row['washing_end_time'] = $detail['washing_end_time']?:'0';
         $row['foam'] = $detail['foam']?:'0';
+        $row['foam_start_time'] = $detail['foam_start_time']?:'0';
+        $row['foam_end_time'] = $detail['foam_end_time']?:'0';
         $row['cleaner'] = $detail['cleaner']?:'0';
+        $row['cleaner_start_time'] = $detail['cleaner_start_time']?:'0';
+        $row['cleaner_end_time'] = $detail['cleaner_end_time']?:'0';
         $this->assign ('row' , $row);
         $this->assign ('account' , $account);
         $this->display();
