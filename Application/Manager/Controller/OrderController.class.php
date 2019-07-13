@@ -71,8 +71,8 @@ class OrderController extends BaseController
         $data = D('Order')->queryList($where, '*',$param);
         foreach ($data['list'] as $k=>$v){
             $data['list'][$k]['m_id']=$v['m_id'];
-            $date = D('Member')->where (array ('id'=>$data['list'][$k]['m_id']))->field ('account')->find();
-            $data['list'][$k]['account']=$date['account'];
+            $dates = D('Member')->where (array ('id'=>$data['list'][$k]['m_id']))->field ('account')->find();
+            $data['list'][$k]['account']=$dates['account'];
             $mc_code = M('CarWasher')->where(array('id'=>$data['list'][$k]['c_id']))->field('mc_code')->find();
             $data['list'][$k]['mc_code']=$mc_code['mc_code'];
         }
@@ -91,6 +91,10 @@ class OrderController extends BaseController
         $id = $_GET['id'];
         $row = D ('Order')->find ($id);
         $account = D('Member')->where (array ('id'=>$row['m_id']))->field ('account')->find();
+        $detail = M('Details')->where(array('o_id'=> $id))->find();
+        $row['washing'] = $detail['washing']?:'0';
+        $row['foam'] = $detail['foam']?:'0';
+        $row['cleaner'] = $detail['cleaner']?:'0';
         $this->assign ('row' , $row);
         $this->assign ('account' , $account);
         $this->display();
