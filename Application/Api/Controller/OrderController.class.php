@@ -827,7 +827,6 @@ class OrderController extends BaseController {
             $this->logger($data);
             $this->apiResponse('1','结算成功',$data_moneys);
         }
-
         //判断订单
         if(!empty($details)){
             if($details['status'] == 1){
@@ -874,7 +873,7 @@ class OrderController extends BaseController {
                             $d_save = array(
                                 'status'  => 1,
                             );
-                            $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
+                            $detailsss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);    //洗车数据详情表状态改为1,订单结束
                             $o_save = array(
                                 'button' => 1,
                                 'update_time' =>time(),
@@ -910,7 +909,7 @@ class OrderController extends BaseController {
                             $d_save = array(
                                 'status' => 1,
                             );
-                            $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
+                            $detailsss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);    //洗车数据详情表状态改为1,订单结束
                             $o_save = array(
                                 'button' => 1,
                                 'update_time' =>time(),
@@ -951,7 +950,7 @@ class OrderController extends BaseController {
                         $d_save = array(
                             'status'  => 1,
                         );
-                        $detailss = M('Details')->where($d_where)->save($d_save);
+                        $detailss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);
                         $o_save = array(
                             'button' => 1,
                             'update_time' =>time(),
@@ -1001,7 +1000,7 @@ class OrderController extends BaseController {
                         $d_save = array(
                             'status'  => 1,
                         );
-                        $detailsss = M('Details')->where($d_where)->save($d_save);    //洗车数据详情表状态改为1,订单结束
+                        $detailsss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);    //洗车数据详情表状态改为1,订单结束
                         $o_save = array(
                             'button' => 1,
                             'update_time' =>time(),
@@ -1045,7 +1044,7 @@ class OrderController extends BaseController {
                     $d_save = array(
                         'status'  => 1,
                     );
-                    $detailss = M('Details')->where($d_where)->save($d_save);
+                    $detailss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);
                     $o_save = array(
                         'button' => 1,
                         'update_time' =>time(),

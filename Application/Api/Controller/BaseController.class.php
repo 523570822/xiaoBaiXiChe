@@ -346,10 +346,8 @@ class BaseController extends ControllerService
             'cleaner' => $cleaner,
             'update_time' =>time(),
             'status'=>1 ,
-
         );
-        $s_details = M('Details')->where(array('o_id'=>$orderid))->save($s_save);
-
+        $s_details = M('Details')->where(array('o_id'=>$orderid,'status'=>0))->save($s_save);
         //订单金额添加
         $o_where = array(
             'm_id' => $m_id,
@@ -489,36 +487,31 @@ class BaseController extends ControllerService
             'm_id'=>$m_id,
         );
         $details = M('Details')->where($d_where)->find();
-
+        $data = array();
         //水枪使用时间
-        $w_end_data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
-        $w_end_data['washing'] = $w_end_data['washing_end_time'] - $details['washing_start_time'] ;
-        if(($w_end_data['washing_end_time'] - $details['washing_start_time']) < 2 ){    //为-1就等于0
-            $w_end_data['washing'] = 0;
+        $data['washing_end_time'] = round($send_post['devices'][0]['queryitem']['clean_water_duration']);
+        $data['washing'] = $data['washing_end_time'] - $details['washing_start_time'] ;
+        if(($data['washing_end_time'] - $details['washing_start_time']) < 2 ){    //为-1就等于0
+            $data['washing'] = 0;
         }
-        $d_where['status'] = 0;
-        $d_where['id'] = $details['id'];
-        $w_start = M('Details')->where($d_where)->save($w_end_data);
 
         //泡沫枪使用时间
-        $f_end_data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
-        $f_end_data['foam'] = $f_end_data['foam_end_time'] - $details['foam_start_time'];
-        if(($f_end_data['foam_end_time'] - $details['foam_start_time']) < 2 ){    //为-1就等于0
-            $f_end_data['foam'] = 0;
+        $data['foam_end_time'] = round($send_post['devices'][0]['queryitem']['foam_duration']);
+        $data['foam'] = $data['foam_end_time'] - $details['foam_start_time'];
+        if(($data['foam_end_time'] - $details['foam_start_time']) < 2 ){    //为-1就等于0
+            $data['foam'] = 0;
         }
-        $d_where['status'] = 0;
-        $d_where['id'] = $details['id'];
-        $f_start = M('Details')->where($d_where)->save($f_end_data);
 
         //吸尘器使用时间
-        $c_end_data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
-        $c_end_data['cleaner'] = $c_end_data['cleaner_end_time'] - $details['cleaner_start_time'];
-        if(($c_end_data['cleaner_end_time'] - $details['cleaner_start_time']) < 2 ){    //为-1就等于0
-            $c_end_data['cleaner'] = 0;
+        $data['cleaner_end_time'] = round($send_post['devices'][0]['queryitem']['vacuum_info']['accumulated_usage']);
+        $data['cleaner'] = $data['cleaner_end_time'] - $details['cleaner_start_time'];
+        if(($data['cleaner_end_time'] - $details['cleaner_start_time']) < 2 ){    //为-1就等于0
+            $data['cleaner'] = 0;
         }
+
         $d_where['status'] = 0;
         $d_where['id'] = $details['id'];
-        $c_start = M('Details')->where($d_where)->save($c_end_data);
+        $c_start = M('Details')->where($d_where)->save($data);
         return 'OK';
     }
 
