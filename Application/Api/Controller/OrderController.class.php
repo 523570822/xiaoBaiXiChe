@@ -513,6 +513,9 @@ class OrderController extends BaseController {
             array ('page' , 'string' , '请输入参数:page') ,
         );
         $this->checkParam ($rule);
+//        $m_id =14;
+//        $request['order_type']=0;
+//        $request['page']=1;
         $where['db_order.o_type'] = 1;
         $where['db_order.status'] = array ('neq' , 9);
         if ( $request['order_type'] == 1 ) {
@@ -527,12 +530,22 @@ class OrderController extends BaseController {
         $list_info = D ('Order')
             ->where ($where)
             ->join ("LEFT JOIN db_car_washer ON db_order.c_id = db_car_washer.id")
-            ->field ('db_order.id,db_order.orderid,db_order.status,db_order.create_time,db_order.w_type,db_order.money,db_order.pay_money,db_order.is_no,is_set,db_order.button,db_car_washer.mc_code as mc_id ,db_car_washer.p_id,db_car_washer.type')
+            ->field ('db_order.id,db_order.c_id,db_order.orderid,db_order.status,db_order.create_time,db_order.w_type,db_order.money,db_order.pay_money,db_order.is_no,is_set,db_order.button,db_car_washer.mc_code as mc_id ,db_car_washer.p_id,db_car_washer.type')
             ->order($order)
             ->page ($request['page'] , '10')
             ->select ( ['id'=>'db_order.id asc','order' =>'db_order.create_time desc']);
 
         foreach ( $list_info as $k => $v ) {
+            $detail = M('Details')->where(array('o_id'=>$list_info[$k]['id']))->find();
+            $cars = M('CarWasher')->where(array('id'=>$list_info[$k]['c_id']))->find();
+            $wash_money =  round(bcmul($detail['washing'] , $cars['washing_money'],3),2);
+            $foam_money = round(bcmul($detail['foam'] , $cars['foam_money'],3),2);
+            $cleaner_money = round(bcmul($detail['cleaner'] , $cars['cleaner_money'],3),2);
+            $data = array(
+                'money' => round($wash_money+$foam_money+$cleaner_money,2),
+                'pay_money' => round($wash_money+$foam_money+$cleaner_money,2),
+            );
+            $save_order = M('Order')->where(array('id'=>$list_info[$k]['id']))->save($data);
             $m = $list_info[$k]['p_id'];
             $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();
             $list_info[$k]['shop_name'] = $shop['shop_name'];

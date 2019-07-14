@@ -332,9 +332,9 @@ class BaseController extends ControllerService
             $cleaner = 0;
             $cleaner_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
-        $wash_money =  bcmul ($washing , $car['washing_money'],2);
-        $foam_money = bcmul ($foam , $car['foam_money'],2);
-        $cleaner_money = bcmul ($cleaner , $car['cleaner_money'],2);
+        $wash_money =  round(bcmul($washing , $car['washing_money'],3),2);
+        $foam_money = round(bcmul($foam , $car['foam_money'],3),2);
+        $cleaner_money = round(bcmul($cleaner , $car['cleaner_money'],3),2);
 
         //存储结束时间
         $s_save = array(
@@ -428,9 +428,9 @@ class BaseController extends ControllerService
             $cleaner_time = 0 . '分' . 0 . '秒';    //水枪时间
         }
 
-        $wash_money =  bcmul($washing , $car['washing_money'],2);
-        $foam_money = bcmul($foam , $car['foam_money'],2);
-        $cleaner_money = bcmul($cleaner , $car['cleaner_money'],2);
+        $wash_money =  round(bcmul($washing , $car['washing_money'],3),2);
+        $foam_money = round(bcmul($foam , $car['foam_money'],3),2);
+        $cleaner_money = round(bcmul($cleaner , $car['cleaner_money'],3),2);
 
         //存储结束时间
         $s_save = array(
