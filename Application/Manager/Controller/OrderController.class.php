@@ -28,8 +28,9 @@ class OrderController extends BaseController
             $account_where['mc_code'] = array('LIKE',"%".I('request.mc_code')."%");
             $data['id'] = D('CarWasher')->where ($account_where)->getField("id", true);
             $where["c_id"] = ["in", implode ($data['id'], ',')];
-            if (empty($data)) {
-                $this->display();
+            if (empty($data['id'])) {
+                $this->display();exit;
+
             }
         }
         //按用户账号查找
@@ -39,7 +40,7 @@ class OrderController extends BaseController
             $where["m_id"] = ["in", implode ($data, ',')];
             if (empty($data))
             {
-                $this->display();
+                $this->display();exit;
             }
         }
         //订单类型查找
