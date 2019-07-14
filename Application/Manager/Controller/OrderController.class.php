@@ -25,7 +25,7 @@ class OrderController extends BaseController
         }
         //按洗车机编号查找
         if(!empty($_REQUEST['mc_code'])){
-            $account_where['mc_code'] = array('LIKE',I('request.mc_code')."%");
+            $account_where['mc_code'] = array('LIKE',"%".I('request.mc_code')."%");
             $data['id'] = D('CarWasher')->where ($account_where)->getField("id", true);
             $where["c_id"] = ["in", implode ($data['id'], ',')];
             if (empty($data)) {
@@ -68,6 +68,7 @@ class OrderController extends BaseController
         $param['page_size'] = 15;
         //排序
         $param['order'] = 'create_time desc';
+
         $data = D('Order')->queryList($where, '*',$param);
         foreach ($data['list'] as $k=>$v){
             $data['list'][$k]['m_id']=$v['m_id'];

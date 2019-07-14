@@ -574,11 +574,13 @@ class OrderController extends BaseController {
      * 订单详情
      **/
     public function orderDetails () {
-        $m_id = $this->checkToken ();
-        $this->errorTokenMsg ($m_id);
-        $request = $_REQUEST;
-        $rule = array ('id' , 'string' , '请选择查看的订单详情');
-        $this->checkParam ($rule);
+//        $m_id = $this->checkToken ();
+//        $this->errorTokenMsg ($m_id);
+//        $request = $_REQUEST;
+//        $rule = array ('id' , 'string' , '请选择查看的订单详情');
+//        $this->checkParam ($rule);
+        $m_id = 14;
+        $request['id'] = 1611;
         $order = D ('Order')->where (array ('id' => $request['id'] , 'o_type' => 1))->find ();
         if ( !$order ) {
             $this->apiResponse ('0' , '请输入正确订单ID');
