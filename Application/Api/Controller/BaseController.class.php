@@ -359,7 +359,7 @@ class BaseController extends ControllerService
             'update_time' =>time(),
             'button'=>1 ,
         );
-        $f_order = M('Order')->where(array('id' =>$orderid))->save($sa_order);
+        $f_order = M('Order')->where(array('id' =>$orderid ,'button'=>0))->save($sa_order);
         $washing_price = bcmul(60 , $car['washing_money'],6);
         $foam_price = bcmul(60 ,  $car['foam_money'],6);
         $cleaner_price = bcmul(60 , $car['cleaner_money'],6);
@@ -454,7 +454,7 @@ class BaseController extends ControllerService
             'pay_money' => round($wash_money+$foam_money+$cleaner_money,2),
             'update_time' => time(),
         );
-        $f_order = M('Order')->where($o_where)->save($sa_order);
+        $f_order = M('Order')->where(array('id' =>$orderid, 'm_id' => $m_id, 'button'=>0))->save($sa_order);
         $washing_price = bcmul(60 , $car['washing_money'],6);
         $foam_price = bcmul(60 ,  $car['foam_money'],6);
         $cleaner_price = bcmul(60 , $car['cleaner_money'],6);
@@ -531,7 +531,7 @@ class BaseController extends ControllerService
                 'pay_time' => time(),
                 'is_set'=>1
             );
-            $order_pay = M('Order')->where(array('m_id'=>$m_id,'id'=>$o_id))->save($order_pay_save);
+            $order_pay = M('Order')->where(array('m_id'=>$m_id,'id'=>$o_id,'button'=>0))->save($order_pay_save);
             return 1;
         }
     }

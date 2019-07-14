@@ -284,7 +284,7 @@ class OrderController extends BaseController {
                 $this->checkhave($m_id ,'2' , $mc_code);
                 //变更机器 预订中->使用中
                 $yes = M ('CarWasher')->where (array ('mc_code' => $mc_code))->save (array ('type' => '2'));
-                $res = M ('Order')->where (array ('id'=>$Order['id']))->save (array ('create_time' => time ()));
+                $res = M ('Order')->where (array ('id'=>$Order['id'] , 'button'=>0))->save (array ('create_time' => time ()));
                 //控制机器
                 $this->receive ($CarWasher['mc_id'] , $Order['id'] , $m_id , $CarWasher['id'] , '5');
                 //返回数据
@@ -755,7 +755,7 @@ class OrderController extends BaseController {
                         $pmae['is_no'] = 1;
                         $pmae['button'] = 1;
                         $pmae['pay_money'] = $money['overtime_money'];
-                        D('Order')->where(array('id' => $v['id']))->save($pmae);
+                        D('Order')->where(array('id' => $v['id'] ,'button'=>0))->save($pmae);
                         $car = M('CarWasher')->where(array('id' => $order[$k]['c_id']))->find();
                         //结算
                         $send_post = $this->send_post('device_manage', $car['mc_id'], 3);
@@ -865,7 +865,7 @@ class OrderController extends BaseController {
                     'pay_money' => round($data_moneyss['all_money'],2),
                 );
 //                var_dump($data_moneyss);exit;
-                $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
+                $c_order = M('Order')->where(array('orderid'=>$post['orderid'] , 'button'=>0))->save($c_save);
                 //检查洗车机继续使用还是结算
 
                 if(!empty($member)){
@@ -994,7 +994,7 @@ class OrderController extends BaseController {
                     'money' => round($data_moneyss['all_money'],2),
                     'pay_money' => round($data_moneyss['all_money'],2),
                 );
-                $c_order = M('Order')->where(array('orderid'=>$post['orderid']))->save($c_save);
+                $c_order = M('Order')->where(array('orderid'=>$post['orderid'] ,'button'=>0 ))->save($c_save);
                 //检查洗车机继续使用还是结算
                 if(!empty($member)){
                     //结算存储时间
