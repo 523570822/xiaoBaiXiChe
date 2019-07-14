@@ -441,7 +441,7 @@ class BaseController extends ControllerService
             'foam' => $foam,
             'cleaner' => $cleaner,
         );
-        $s_details = M('Details')->where($d_where)->save($s_save);
+        $s_details = M('Details')->where(array('o_id'=>$orderid,'m_id'=>$m_id,'status'=> 0, ))->save($s_save);
 
         //订单金额添加
         $o_where = array(

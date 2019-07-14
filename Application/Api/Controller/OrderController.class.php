@@ -79,12 +79,12 @@ class OrderController extends BaseController {
             $date['washing_end_time'] = $one['water_S'];
             $date['foam_end_time'] = $one['foam_S'];
             $date['cleaner_end_time'] = $one['vacuum_S'];
-            D ('Details')->where (array ('m_id' => $m_id , 'o_id' => $o_id , 'c_id' => $c_id))->save ($date);
+            D ('Details')->where (array ('m_id' => $m_id , 'o_id' => $o_id , 'c_id' => $c_id,'status'=>0))->save ($date);
             $find = D ('Details')->where (array ('m_id' => $m_id , 'o_id' => $o_id , 'c_id' => $c_id))->find ();
             $where['washing'] = $find['washing_end_time'] - $find['washing_start_time'];
             $where['foam'] = $find['foam_end_time'] - $find['foam_start_time'];
             $where['cleaner'] = $find['cleaner_end_time'] - $find['cleaner_start_time'];
-            $save = D ('Details')->where (array ('id' => $find['id']))->save ($where);
+            $save = D ('Details')->where (array ('id' => $find['id'],'status'=>0))->save ($where);
             $close = $this->send_post ('device_manage' , $mc_id , '3');
             if ( !$save && !$close ) {
                 $this->apiResponse ('0' , '关闭失败');
@@ -611,9 +611,10 @@ class OrderController extends BaseController {
         $order['washing'] = $wash_time;
         $order['foam'] = $foam_time;
         $order['cleaner'] = $cleaner_time;
-        $order['washing_money'] = $details['washing'] * $car['washing_money'];
-        $order['foam_money'] = $details['foam'] * $car['foam_money'];
-        $order['cleaner_money'] = $details['cleaner'] * $car['cleaner_money'];
+        //精确数相乘用bcmul(直接用round,苹果会报错),但是不能四舍五入,所以用round取约等于值
+        $order['washing_money'] = round(bcmul($details['washing'] , $car['washing_money'] , 3),2);
+        $order['foam_money'] = round(bcmul($details['foam'] , $car['foam_money'] ,3),2);
+        $order['cleaner_money'] = round(bcmul($details['cleaner'] , $car['cleaner_money'] ,3),2);
         if ( $order['is_dis'] == 0 ) {//无优惠
             $this->apiResponse ('1' , '查询成功' , $order);
         }
