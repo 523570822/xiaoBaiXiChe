@@ -888,6 +888,7 @@ class OrderController extends BaseController {
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                             if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0){   //12代表机器结算   结算跳转到立即支付页
                                 $d_save = array(
+                                    'update_time' =>time(),
                                     'status'  => 1,
                                 );
                                 $detailsss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);    //洗车数据详情表状态改为1,订单结束
@@ -926,6 +927,7 @@ class OrderController extends BaseController {
                                 $this->logger($data);
                                 $send_post = $this->send_post('device_manage', $car['mc_id'], 3);   //结算
                                 $d_save = array(
+                                    'update_time' =>time(),
                                     'status' => 1,
                                 );
                                 $detailsss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);    //洗车数据详情表状态改为1,订单结束
@@ -964,6 +966,7 @@ class OrderController extends BaseController {
                         }elseif($post['off_on'] == 1){
                             $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
                             $d_save = array(
+                                'update_time' =>time(),
                                 'status'  => 1,
                             );
                             $detailss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);
@@ -1017,6 +1020,7 @@ class OrderController extends BaseController {
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         if($send_post['devices'][0]['queryitem']['pump1_status'] >= 4 || $send_post['devices'][0]['queryitem']['pump2_status'] >= 4 || $send_post['devices'][0]['queryitem']['valve1_status'] >= 4 || $send_post['devices'][0]['queryitem']['level2_status'] == 0 || $send_post['devices'][0]['queryitem']['service_status'] < 8){   //12代表机器结算   结算跳转到立即支付页
                             $d_save = array(
+                                'update_time' =>time(),
                                 'status'  => 1,
                             );
                             $detailsss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);    //洗车数据详情表状态改为1,订单结束
@@ -1063,6 +1067,7 @@ class OrderController extends BaseController {
                         $this->logger($data);
                         $send_post = $this->send_post('device_manage',$car['mc_id'],3);   //结算
                         $d_save = array(
+                            'update_time' =>time(),
                             'status'  => 1,
                         );
                         $detailss = M('Details')->where(array( 'o_id'=> $k_order['id'],'status'=>0))->save($d_save);
