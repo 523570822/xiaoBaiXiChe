@@ -593,8 +593,8 @@ class OrderController extends BaseController {
         $request = $_REQUEST;
         $rule = array ('id' , 'string' , '请选择查看的订单详情');
         $this->checkParam ($rule);
-//        $m_id = 14;
-//        $request['id'] = 1611;
+//        $m_id = 55;
+//        $request['id'] = 1672;
         $order = D ('Order')->where (array ('id' => $request['id'] , 'o_type' => 1))->find ();
         if ( !$order ) {
             $this->apiResponse ('0' , '请输入正确订单ID');
@@ -630,6 +630,7 @@ class OrderController extends BaseController {
         $order['foam_money'] = round(bcmul($details['foam'] , $car['foam_money'] ,3),2);
         $order['cleaner_money'] = round(bcmul($details['cleaner'] , $car['cleaner_money'] ,3),2);
         if ( $order['is_dis'] == 0 ) {//无优惠
+
             $this->apiResponse ('1' , '查询成功' , $order);
         }
         if ( $order['is_dis'] == 1 ) {//有优惠
@@ -1135,8 +1136,8 @@ class OrderController extends BaseController {
      */
     public function  Pay(){
         $post = checkAppData('token,orderid,method,methodID','token-订单ID-优惠方式-优惠卡ID');
-//        $post['token'] = '6e834ac2f101a86d309feeb1b2b0a686';
-//        $post['orderid'] = 'XC201907151505157143';
+//        $post['token'] = '641f8190e240858cfca079f86db49b48';
+//        $post['orderid'] = 'XC201907151648216473';
 //        $post['method'] = 3;     //1代表折扣卡    2代表抵用券   3无优惠方式
 //        $post['methodID'] = 0;    //折扣卡ID
 
@@ -1165,9 +1166,9 @@ class OrderController extends BaseController {
         $send_post = $this->send_post('runtime_query',$car['mc_id']);
 //        dump($send_post['devices'][0]['queryitem']['service_status']);exit;
         $prices = M('Appsetting')->where(array('id'=>1))->find();
-        $wash_money =  bcmul($details['washing'] , $car['washing_money'],2);    //水枪金额
-        $foam_money = bcmul($details['foam'] , $car['foam_money'],2); //泡沫枪金额
-        $cleaner_money = bcmul($details['cleaner'] , $car['cleaner_money'],2); //吸尘器金额
+        $wash_money =  round(bcmul($details['washing'] , $car['washing_money'],3),2);    //水枪金额
+        $foam_money = round(bcmul($details['foam'] , $car['foam_money'],3),2); //泡沫枪金额
+        $cleaner_money = round(bcmul($details['cleaner'] , $car['cleaner_money'],3),2); //吸尘器金额
         $all_money = round($wash_money + $foam_money + $cleaner_money,2);  //总金额
 
         $all_time = round($details['washing'] + $details['foam'] + $details['cleaner']);   //总秒数
