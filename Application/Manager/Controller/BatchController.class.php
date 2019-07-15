@@ -223,7 +223,7 @@ class BatchController extends BaseController
         $code = D('Batch')->queryList(array('status'=>1),'id,title,price,start_time,end_time',$param);
         foreach ($code['list'] as &$v ){
             $v['num'] = M('RedeemCode')->where(array('b_id'=>$v['id'],'is_activation'=>0))->count();
-            if($v['end_time'] ){
+            if($v['end_time'] > time()){
 
             }
         }
