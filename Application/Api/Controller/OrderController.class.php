@@ -778,8 +778,10 @@ class OrderController extends BaseController {
                         D('CarWasher')->where(array('id' => $order[$k]['c_id']))->save($where);
 
                         //语音播报
-//                        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-//                        $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                        $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                        $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                        $data = '第一个结算';
+                        $this->logger($data);
                     }
                 }
             }else{
@@ -895,8 +897,10 @@ class OrderController extends BaseController {
                                 );
                                 $o_order = M('Order')->where($o_where)->save($o_save);
                                 //语音播报
-//                                $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-//                                $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                                $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                                $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                                $data = '第二个结算';
+                                $this->logger($data);
                                 //结算存储时间
                                 $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                                 //结算洗车机状态为1空闲
@@ -971,6 +975,8 @@ class OrderController extends BaseController {
                             //语音播报
                             $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                             $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                            $data = '第三个结算';
+                            $this->logger($data);
                             $j_order = M('Order')->where(array('orderid'=>$post['orderid']))->find();
                             //结算存储时间
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
@@ -1020,8 +1026,10 @@ class OrderController extends BaseController {
                             );
                             $o_order = M('Order')->where($o_where)->save($o_save);
                             //语音播报
-//                            $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
-//                            $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                            $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
+                            $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                            $data = '第四个结算';
+                            $this->logger($data);
                             $data_moneys = $this->details($member['id'],$k_order['id'],$indication,$car['mc_id']);
                             //结算存储时间
                             $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
@@ -1066,6 +1074,8 @@ class OrderController extends BaseController {
                         //语音播报
                         $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                         $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                        $data = '第五个结算';
+                        $this->logger($data);
                         //结算存储时间
                         $this->carWasherTime($car['mc_id'],$order['id'],$member['id']);
                         if($zero == 1){
@@ -1349,12 +1359,6 @@ class OrderController extends BaseController {
             $this->logger($data);
 
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
-            $o_save = array(
-                'update_time' => time(),
-                'button' =>1,
-            );
-            //这台洗车机的全部订单都结算
-            $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($o_save);
             //两种情况有一种发生就播报语音
             if($send_post){
                 //结算洗车机状态为4故障
@@ -1362,12 +1366,20 @@ class OrderController extends BaseController {
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>2,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
+                $data = '第六个结算';
+                $this->logger($data);
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$k_order['id'],0,$car['mc_id']);
                 //结算存储时间
                 $a = $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //检查订单费用是否为0
                 $zero = $this->payZero($order['m_id'],$k_order['id']);
+                $o_save = array(
+                    'update_time' => time(),
+                    'button' =>1,
+                );
+                //这台洗车机的全部订单都结算
+                $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($o_save);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1380,11 +1392,6 @@ class OrderController extends BaseController {
 //            echo 753;exit;
             //结算
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
-            $q_save = array(
-                'update_time' => time(),
-                'button' =>  1
-            );
-            $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($q_save);
             if($send_post){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>7 ,'status'=>1))->find();
@@ -1398,6 +1405,12 @@ class OrderController extends BaseController {
                 //检查订单费用是否为0
                 $zero = $this->payZero($order['m_id'],$k_order['id']);
 //                $this->close($off_on = 1,$order['id'],$car['mc_id']);
+                $q_save = array(
+                    'update_time' => time(),
+                    'button' =>  1
+                );
+                //所有未结算订单结算
+                $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($q_save);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1428,14 +1441,6 @@ class OrderController extends BaseController {
 //            echo 8525;exit;
             //结算
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
-            //这台洗车机的全部订单都结算
-            $t_save = array(
-                'button' =>  1,
-                'update_time' => time(),
-
-            );
-            $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($t_save);
-
             if($send_post){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>5,'status'=>1))->find();
@@ -1443,13 +1448,18 @@ class OrderController extends BaseController {
                 //存储金额
                 $data_moneys = $this->details($order['m_id'],$k_order['id'],0,$car['mc_id']);
                 //结算存储时间
-
                 $this->carWasherTime($car['mc_id'],$order['id'],$order['m_id']);
                 //结算洗车机状态为4故障
                 $this->typeFour($details['c_id']);
                 //检查订单费用是否为0
                 $zero = $this->payZero($order['m_id'],$k_order['id']);
 //                $this->close($off_on = 1,$order['id'],$car['mc_id']);
+                //这台洗车机的全部订单都结算
+                $t_save = array(
+                    'button' =>  1,
+                    'update_time' => time(),
+                );
+                $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($t_save);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
@@ -1462,13 +1472,6 @@ class OrderController extends BaseController {
 //            echo 785155;exit;
             //结算
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
-
-            //这台洗车机的全部订单都统一结算
-            $a_save = array(
-                'update_time' => time(),
-                'button' =>  1
-            );
-            $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($a_save);
             if($send_post){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>6,'status'=>1))->find();
@@ -1482,6 +1485,12 @@ class OrderController extends BaseController {
                 //检查订单费用是否为0
                 $zero = $this->payZero($order['m_id'],$k_order['id']);
 //                $this->close($off_on = 1,$order['id'],$car['mc_id']);
+                //这台洗车机的全部订单都统一结算
+                $a_save = array(
+                    'update_time' => time(),
+                    'button' =>  1
+                );
+                $f_order = M('Order')->where(array('button'=>0,'c_id'=>$car['id'],'o_type'=>1))->save($a_save);
                 $this->apiResponse(1,'result','OK');
             }else{
                 $this->apiResponse(0,'result','FAILED');
