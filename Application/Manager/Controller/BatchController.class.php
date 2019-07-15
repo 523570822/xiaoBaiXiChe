@@ -154,7 +154,7 @@ class BatchController extends BaseController
     }
 
     /**
-     *代金券发放
+     *代金券发放页面
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/07/02 01:41
      */
@@ -211,4 +211,26 @@ class BatchController extends BaseController
         }
     }
 
+
+    /**
+     * 批量发放代金券页面
+     * User: admin
+     * Date: 2019-07-15 09:58:25
+     */
+    public function editSendRedBags() {
+        $param['order'] = 'create_time desc';
+        $param['page_size'] = 15;
+        $code = D('RedeemCode')->queryList(array('is_activation'=>0,'end_time'=>array('gt',time())),'id,create_time,exchange,is_activation',$param);
+        $this->assign($code);
+        $this->display();
+    }
+
+    /**
+     * 批量发放
+     * User: admin
+     * Date: 2019-07-15 09:59:42
+     */
+    public function SendRedBags() {
+
+    }
 }

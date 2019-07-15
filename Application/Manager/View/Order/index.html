@@ -142,6 +142,7 @@
                                     <switch name="item.status">
                                         <case value="1"><span style="color: red;">待支付</span></case>
                                         <case value="2">{$item.pay_money}(元)</case>
+                                        <case value="9">{$item.pay_money}(元)</case>
                                         <default/>
                                     </switch>
                                 </td>
@@ -158,6 +159,14 @@
                                     <switch name="item.status">
                                         <case value="1"><span style="color: red;">待支付</span></case>
                                         <case value="2"><span style="color: green;">已完成</span></case>
+                                        <case value="9">
+                                            <switch name="item.pay_type">
+                                                <case value="1"><span style="color: green;">已完成</span></case>
+                                                <case value="2"><span style="color: green;">已完成</span></case>
+                                                <case value="3"><span style="color: green;">已完成</span></case>
+                                                <default/>
+                                            </switch>
+                                        </case>
                                         <default/>
                                     </switch>
                                 </td>
@@ -165,6 +174,14 @@
                                     <switch name="item.status">
                                         <case value="1"><span style="color: red;">待支付</span></case>
                                         <case value="2">
+                                            <switch name="item.pay_type">
+                                                <case value="1"><span style="color: green;">微信</span></case>
+                                                <case value="2"><span style="color: deepskyblue;">支付宝</span></case>
+                                                <case value="3"><span style="color: black;">余额</span></case>
+                                                <default/>
+                                            </switch>
+                                        </case>
+                                        <case value="9">
                                             <switch name="item.pay_type">
                                                 <case value="1"><span style="color: green;">微信</span></case>
                                                 <case value="2"><span style="color: deepskyblue;">支付宝</span></case>

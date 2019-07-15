@@ -545,7 +545,7 @@ class OrderController extends BaseController {
                 'money' => round($wash_money+$foam_money+$cleaner_money,2),
                 'pay_money' => round($wash_money+$foam_money+$cleaner_money,2),
             );
-            $save_order = M('Order')->where(array('id'=>$list_info[$k]['id']))->save($data);
+            $save_order = M('Order')->where(array('id'=>$list_info[$k]['id'],'status'=>1))->save($data);
             $m = $list_info[$k]['p_id'];
             $shop = D ('Washshop')->where (array ('id' => $m))->field ('shop_name')->find ();
             $list_info[$k]['shop_name'] = $shop['shop_name'];
