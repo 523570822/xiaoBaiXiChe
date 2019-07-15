@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--如果不是必填值 不需要加 required 属性-->
+
+                    <!--上传图片-->
+
+
+                    <div class="layui-form">
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">请输入批次名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="tags_1" placeholder="批次名称" name="red_bag_id">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item m_id">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">用户账号</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="tags_2" placeholder="请输入用户账号"  name="m_id">
+                                    <div class="layui-form-mid layui-word-aux">多个账号用,隔开</div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="member_type" value="">
+                        <div class="layui-form-item" style="margin-top: 30px">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" onclick="goback()">返回</button>
+                                <button class="layui-btn" onclick="submit()">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                        <thead>
+                        <tr>
+                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                            <th>
+                                <div class="layui-table-cell laytable-cell-1-id">
+                                    <span>ID</span>
+                                    <span class="layui-table-sort layui-inline" id="id-sort" lay-sort="">
+                                        <i class="layui-edge layui-table-sort-asc" value="id" sort="asc"></i>
+                                        <i class="layui-edge layui-table-sort-desc" value="id" sort="desc"></i>
+                                    </span>
+                                </div>
+                            </th>
+                            <th>兑换码</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr>
+                                <td colspan="12" style="text-align: center;">暂无数据</td>
+                            </tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                <td>{$item.id}</td>
+                                <td>{$item.exchange}</td>
+
+                                <!--<td>{$item['is_bind'] == 0 ? '未绑定' : '已绑定'}</td>-->
+                                <!--<td>{$item['type'] == 1 ? '邀请赠送券' : '活动代金券'}</td>-->
+                                <td> <switch name="item.is_activation">
+                                    <case value="1"><span style="color: green">已激活</span></case>
+                                    <case value="0"><span style="color: red">未激活</span></case>
+                                    <!--<case value="2">提现失败</case>-->
+                                    <default/>
+                                </switch></td>
+                                <!--<td>{$item['is_use'] == 0 ? '未使用' : '已使用'}</td>-->
+
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".member_type").change(function(){
+        var select_vals = $(this).children('option:selected').val();
+        if(select_vals == 1){
+            $("#member_type").val(1)
+        }else{
+            $("#member_type").val(2)
+        }
+    })
+
+    $(".type").change(function(){
+        var select_val = $(this).children('option:selected').val();
+        if(select_val == 1){
+            $('.member').show()
+            $('.m_id').show()
+            $(".area").hide()
+        }else{
+            $('.member').hide()
+            $('.m_id').hide()
+            $(".area").show()
+        }
+    })
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        url = '{:U("Batch/SendRedBag")}'
+        if(!data) return false;
+        doPost(url, data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+                    window.location.reload();
+                }
+            });
+        });
+    }
+
+    $(function() {
+        var type = 1;
+        $("#province").removeClass('hide')
+        $('#type').change(function () {
+            var type = $(this).val();
+            $('#country option[value!=""]').remove();
+            $('#province option[value!=""]').remove();
+            $('#city option[value!=""]').remove();
+            $('#area option[value!=""]').remove();
+            var province = $(this).val();
+            $("#city").addClass('hide')
+            $("#province").addClass('hide')
+            window.txt = $("#province").find("option:selected").text(); //alert(txt);
+            $.ajax({
+                url: "{:U('Region/ajaxGetCountry')}",
+                type: 'post',
+                data: {type: type},
+                success: function (data) {
+                    if (type == 1) {
+                        var html = '<option value="">--请选择省份--</option>';
+                        for (var i in data) {
+                            html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                        }
+                        var html1 = '<option value="1">中国</option>';
+                        $('#country').html(html1);
+                        $("#province").removeClass('hide')
+                        $('#province').html(html);
+                    } else {
+                        var html = '<option value="">--请选择国家--</option>';
+                        for (var i in data) {
+                            html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                        }
+                        $('#country').html(html);
+                    }
+                }
+            })
+
+        });
+
+        $('#country').change(function () {
+            $('#city option[value!=""]').remove();
+            $('#province option[value!=""]').remove();
+            var province = $(this).val();
+            $("#city").addClass('hide')
+            $("#province").addClass('hide')
+            window.txt = $("#province").find("option:selected").text(); //alert(txt);
+            $.ajax({
+                url: "{:U('Region/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: province},
+                success: function (data) {
+                    var html = '<option value="">--请选择下级--</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    $('#province').html(html);
+                    $("#province").removeClass('hide')
+                }
+            })
+        });
+
+
+        $('#province').change(function () {
+            $('#city option[value!=""]').remove();
+            $('#area option[value!=""]').remove();
+            var province = $(this).val();
+            window.txt = $("#province").find("option:selected").text(); //alert(txt);
+            $.ajax({
+                url: "{:U('Region/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: province},
+                success: function (data) {
+                    var html = '<option value="">--请选择城市--</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    if (data.length > 0) {
+                        $('#city').html(html);
+                        $("#city").removeClass('hide')
+                        $("#area").addClass('hide')
+                    } else {
+                        $("#city").addClass('hide')
+                        $("#area").addClass('hide')
+                    }
+                }
+            })
+        });
+
+        $('#city').change(function () {
+            $('#area option[value!=""]').remove();
+            var city = $(this).val();
+            window.txt = $("#city").find("option:selected").text(); //alert(txt);
+            $.ajax({
+                url: "{:U('Region/ajaxGetRegion')}",
+                type: 'post',
+                data: {id: city},
+                success: function (data) {
+                    var html = '<option value="">--请选择地区--</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].region_name + '</option>';
+                    }
+                    if (data.length > 0) {
+                        $('#area').html(html);
+                        $("#area").removeClass('hide')
+                    } else {
+                        $("#area").addClass('hide')
+                    }
+                }
+            })
+        });
+    })
+    var url = ''
+    var urls = ''
+    $("#tags_1").on("change",function(){
+        var member_type = $("#member_type").val()
+        if(member_type == 1){
+            urls = "{:U('Manager/Base/getRedBag/redbag_type/1')}"
+            $( "#tags_1" ).autocomplete({
+                source: urls
+            });
+        }else if(member_type == 2){
+            urls = "{:U('Manager/Base/getRedBag/redbag_type/2')}"
+            $( "#tags_1" ).autocomplete({
+                source: urls
+            });
+        }
+
+    })
+    $("#tags_2").on("change",function(){
+        var member_type = $("#member_type").val()
+        if(member_type == 1){
+            url = "{:U('Base/getMember')}"
+        }else if(member_type == 2){
+            url = "{:U('Base/getExpert')}"
+        }
+
+        $( "#tags_2" ).autocomplete({
+            source: url
+        });
+    })
+</script>
+</body>
+</html>

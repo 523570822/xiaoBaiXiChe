@@ -14,6 +14,7 @@
                         <input type="hidden" id="url" value="{$url}">
                         <a href="{:U('Batch/addBatch')}" class="layui-btn layui-btn-normal layui-btn-radius">添加代金券</a>
                         <a href="{:U('Batch/editSendRedBag')}" class="layui-btn layui-btn-normal layui-btn-radius">发放代金券</a>
+                        <a href="{:U('Batch/editSendRedBags')}" class="layui-btn layui-btn-normal layui-btn-radius">批量发放代金券</a>
                         <button class="layui-btn layui-btn-danger layui-btn-radius"
                                 onclick="confirmAllAction('{:U('Batch/delete',array('model'=>'Batch'))}', '删除')">删除
                         </button>

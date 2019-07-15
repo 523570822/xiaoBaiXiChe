@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+
+                    <!--如果不是必填值 不需要加 required 属性-->
+
+                    <!--上传图片-->
+
+
+                    <!--<div class="layui-form">-->
+
+                    <!--<div class="layui-form-item">-->
+                    <!--<label class="layui-form-label">上传图片</label>-->
+                    <!--<div class="layui-input-block">-->
+                    <!--<button type="button" class="layui-btn" id="uploadBtn"><i class="layui-icon"></i>上传文件</button>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--<div class="layui-form-item">-->
+                    <!--<label class="layui-form-label">上传图片</label>-->
+                    <!--<div class="layui-input-block">-->
+                    <!--<div class="layui-input-inline">-->
+                    <!--<button type="button" class="layui-btn" id="uploadBtn2"><i class="layui-icon"></i>上传文件</button>-->
+                    <!--</div>-->
+                    <!--<div class="layui-input-inline" id="filename"></div>-->
+                    <!--<if condition="$row['cover']  neq 0">-->
+                    <!--<div class="layui-input-block img-show">-->
+                    <!--<div class="img-show-item" id="Upload_cover_1_pre">-->
+                    <!--<img src="{$row.covers}">-->
+                    <!--<i class="layui-icon layui-icon-close close" onclick="delFile('Upload_cover_1', '{$row.cover}');"></i>-->
+                    <!--<input name="cover" value='{$row.cover}' class="layui-input" type="hidden">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</if>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">批次名称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" placeholder="请输入批次名称" lay-verify="required" name="title"  value="{$row['title']}" <if condition="$row['id']">disabled=""</if>>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux"></div>
+                    </div>
+                    <if condition="$row['id'] eq null">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入数量" lay-verify="required" name="num" value="{$row['num']}" <if condition="$row['id']">disabled=""</if>>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">批次位数</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入批次位数" lay-verify="required" name="code_length" <if condition="$row['id']">disabled=""</if>>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">批次前缀</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入批次位数" lay-verify="required" name="prefix" <if condition="$row['id']">disabled=""</if>>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">批次备注</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入批次备注" lay-verify="required" name="remark" <if condition="$row['id']">disabled=""</if>>
+                            </div>
+                        </div>
+                        <else />
+                    </if>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">开始日期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="start_time" class="layui-input" id="test1" value="{$row['start_time']|date='Y-m-d H:i:s',###}" autocomplete="off" placeholder="开始时间">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">结束日期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="end_time" class="layui-input" id="test2" value="{$row['end_time']|date='Y-m-d H:i:s',###}" autocomplete="off" placeholder="结束时间">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">价格</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" placeholder="请输入价格" name="price" value="{$row['price']}" value="{$row['price']}" <if condition="$row['id']">disabled=""</if>>
+                        </div>
+                    </div>
+                    <if condition="$row['id'] neq null">
+                        <!--列表-->
+                        <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                            <thead>
+                            <tr>
+                                <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                                <th>
+                                    <div class="layui-table-cell laytable-cell-1-id">
+                                        <span>ID</span>
+                                        <span class="layui-table-sort layui-inline" id="id-sort" lay-sort="">
+                                        <i class="layui-edge layui-table-sort-asc" value="id" sort="asc"></i>
+                                        <i class="layui-edge layui-table-sort-desc" value="id" sort="desc"></i>
+                                    </span>
+                                    </div>
+                                </th>
+                                <th>兑换码</th>
+                                <th>状态</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <empty name="list">
+                                <tr>
+                                    <td colspan="12" style="text-align: center;">暂无数据</td>
+                                </tr>
+                            </empty>
+                            <volist name="list" id="item">
+                                <tr>
+                                    <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                    <td>{$item.id}</td>
+                                    <td>{$item.exchange}</td>
+
+                                    <!--<td>{$item['is_bind'] == 0 ? '未绑定' : '已绑定'}</td>-->
+                                    <!--<td>{$item['type'] == 1 ? '邀请赠送券' : '活动代金券'}</td>-->
+                                    <td> <switch name="item.is_activation">
+                                        <case value="1"><span style="color: green">已激活</span></case>
+                                        <case value="0"><span style="color: red">未激活</span></case>
+                                        <!--<case value="2">提现失败</case>-->
+                                        <default/>
+                                    </switch></td>
+                                    <!--<td>{$item['is_use'] == 0 ? '未使用' : '已使用'}</td>-->
+
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        </else>
+                    </if>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" onclick="goback()">返回</button>
+                            <button class="layui-btn" onclick="submit()">确认保存</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+
+    // 提交信息
+    function submit() {
+        // 检查参数
+        var data = checkParam();
+        var url="";
+        var id = "{$row['id']}";
+        if(id){
+            url = '';
+            data.id = id
+        }else{
+            url = '{:U("Batch/addBatch")}'
+        }
+        if(!data) return false;
+        doPost(url, data, function(res) {
+            showMsg(res.code, res.message, function() {
+                if(res.code == 1) {
+                    goback();
+                }
+            });
+        });
+    }
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1', //指定元素
+        // range: true //或 range: '~' 来自定义分割字符
+        type:'datetime'
+        // ,isInitValue: true //是否允许填充初始值，默认为 true
+        ,trigger: 'click' //采用click弹出
+    });
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test2', //指定元素
+        type:'datetime'
+        // ,isInitValue: true //是否允许填充初始值，默认为 true
+        ,trigger: 'click' //采用click弹出
+
+    });
+
+    //编辑器初始化
+    $(document).ready(function(){
+        KindEditor.ready(function(K){
+            window.editor = K.create('#content',{
+                cssData: 'body {font-size: 15px; font-color:#000}',
+                items:[
+                    'source', '|',
+                    'undo', 'redo', '|',
+                    'indent', 'outdent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'clearhtml', '|',
+                    'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough','lineheight', '|',
+                    'image', 'multiimage', '|',
+                    'link', 'baidumap','fullscreen'
+                ],
+                afterBlur:function(){this.sync();}
+            });
+        });
+    });
+</script>
+</body>
+</html>

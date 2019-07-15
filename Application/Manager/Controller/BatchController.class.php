@@ -218,9 +218,16 @@ class BatchController extends BaseController
      * Date: 2019-07-15 09:58:25
      */
     public function editSendRedBags() {
-        $param['order'] = 'create_time desc';
+        $param['order'] = 'id desc,create_time desc';
         $param['page_size'] = 15;
-        $code = D('RedeemCode')->queryList(array('is_activation'=>0,'end_time'=>array('gt',time())),'id,create_time,exchange,is_activation',$param);
+        $code = D('Batch')->queryList(array('status'=>1),'id,title,price,start_time,end_time',$param);
+        foreach ($code['list'] as &$v ){
+            $v['num'] = M('RedeemCode')->where(array('b_id'=>$v['id'],'is_activation'=>0))->count();
+            if($v['end_time'] ){
+
+            }
+        }
+        dump($code);exit;
         $this->assign($code);
         $this->display();
     }
