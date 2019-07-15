@@ -1365,7 +1365,7 @@ class OrderController extends BaseController {
 
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
             //两种情况有一种发生就播报语音
-            if($send_post){
+            if($details['status'] == 0){
                 //结算洗车机状态为4故障
                 $this->typeOne($details['c_id']);
                 //语音播报
@@ -1397,7 +1397,7 @@ class OrderController extends BaseController {
 //            echo 753;exit;
             //结算
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
-            if($send_post){
+            if($details['status'] == 0){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>7 ,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
@@ -1446,7 +1446,7 @@ class OrderController extends BaseController {
 //            echo 8525;exit;
             //结算
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
-            if($send_post){
+            if($details['status'] == 0){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>5,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
@@ -1477,7 +1477,7 @@ class OrderController extends BaseController {
 //            echo 785155;exit;
             //结算
             $send_post = $this->send_post('device_manage',$post->deviceid,3);
-            if($send_post){
+            if($details['status'] == 0){
                 //语音播报
                 $voice = M('Voice')->where(array('voice_type'=>6,'status'=>1))->find();
                 $this->send_post('device_manage',$car['mc_id'],5,1,$voice['content']);
