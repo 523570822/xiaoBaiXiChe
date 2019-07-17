@@ -51,13 +51,17 @@
                                 <div class="layui-table-cell laytable-cell-1-id">
                                     <span>ID</span>
                                     <span class="layui-table-sort layui-inline" id="id-sort" lay-sort="">
-                                        <i class="layui-edge layui-table-sort-asc" value="id" sort="asc"></i>
-                                        <i class="layui-edge layui-table-sort-desc" value="id" sort="desc"></i>
+                                        <!--<i class="layui-edge layui-table-sort-asc" value="id" sort="asc"></i>-->
+                                        <!--<i class="layui-edge layui-table-sort-desc" value="id" sort="desc"></i>-->
                                     </span>
                                 </div>
                             </th>
                             <th>兑换码</th>
+                            <th>批次名称</th>
+                            <th>金额</th>
                             <th>状态</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -71,6 +75,8 @@
                                 <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
                                 <td>{$item.id}</td>
                                 <td>{$item.exchange}</td>
+                                <td>{$item.title}</td>
+                                <td>{$item.price}</td>
 
                                 <!--<td>{$item['is_bind'] == 0 ? '未绑定' : '已绑定'}</td>-->
                                 <!--<td>{$item['type'] == 1 ? '邀请赠送券' : '活动代金券'}</td>-->
@@ -80,13 +86,15 @@
                                     <!--<case value="2">提现失败</case>-->
                                     <default/>
                                 </switch></td>
+                                <td>{$item['create_time']|date='Y-m-d H:i',###}</td>
+                                <td>{$item['end_time']|date='Y-m-d H:i',###}</td>
                                 <!--<td>{$item['is_use'] == 0 ? '未使用' : '已使用'}</td>-->
-
                             </tr>
                         </volist>
                         </tbody>
                     </table>
-
+                    <!--分页-->
+                    {$page}
                 </div>
             </div>
         </div>

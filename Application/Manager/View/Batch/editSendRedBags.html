@@ -30,7 +30,7 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">用户账号</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" class="layui-input" id="tags_2" placeholder="请输入用户账号"  name="m_id">
+                                    <textarea  class="layui-input"  placeholder="请输入用户账号"  name="m_id" style="width: 300px"></textarea>
                                     <div class="layui-form-mid layui-word-aux">多个账号用,隔开</div>
                                 </div>
                             </div>
@@ -56,8 +56,12 @@
                                     </span>
                                 </div>
                             </th>
-                            <th>兑换码</th>
+                            <th>批次名称</th>
+                            <th>金额</th>
                             <th>状态</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>剩余数量</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -70,18 +74,12 @@
                             <tr>
                                 <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
                                 <td>{$item.id}</td>
-                                <td>{$item.exchange}</td>
-
-                                <!--<td>{$item['is_bind'] == 0 ? '未绑定' : '已绑定'}</td>-->
-                                <!--<td>{$item['type'] == 1 ? '邀请赠送券' : '活动代金券'}</td>-->
-                                <td> <switch name="item.is_activation">
-                                    <case value="1"><span style="color: green">已激活</span></case>
-                                    <case value="0"><span style="color: red">未激活</span></case>
-                                    <!--<case value="2">提现失败</case>-->
-                                    <default/>
-                                </switch></td>
-                                <!--<td>{$item['is_use'] == 0 ? '未使用' : '已使用'}</td>-->
-
+                                <td>{$item.title}</td>
+                                <td>{$item.price}</td>
+                                <td>{$item.class}</td>
+                                <td>{$item['start_time']|date='Y-m-d H:i',###}</td>
+                                <td>{$item['end_time']|date='Y-m-d H:i',###}</td>
+                                <td>{$item.num}</td>
                             </tr>
                         </volist>
                         </tbody>
@@ -118,7 +116,7 @@
     function submit() {
         // 检查参数
         var data = checkParam();
-        url = '{:U("Batch/SendRedBag")}'
+        url = '{:U("Batch/SendRedBags")}'
         if(!data) return false;
         doPost(url, data, function(res) {
             showMsg(res.code, res.message, function() {

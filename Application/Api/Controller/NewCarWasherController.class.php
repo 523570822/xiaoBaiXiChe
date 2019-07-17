@@ -150,6 +150,7 @@ class NewCarWasherController extends BaseController
             $result = M('CarWasher')->field('address,mc_code as mc_id,status')->where($where)->order($order)->select();
         }
         foreach($result as $k=>$v){
+            $result[$k]['mc_code'] = $v['mc_id'];
             if($v['status'] == 1){
                 $result[$k]['status'] = '正常';
             }elseif ($v['status'] == 2){
@@ -184,6 +185,7 @@ class NewCarWasherController extends BaseController
         $where['status'] = array('neq',9);
         $where['mc_code'] = $post['car_id'];
         $car_washer = M('CarWasher')->where($where)->field('mc_code as mc_id,address,status,electricity,water_volume,foam')->find();
+        $car_washer['mc_code'] = $car_washer['mc_id'];
         //状态
         if($car_washer['status'] == 1){
             $car_washer['status'] = '正常';

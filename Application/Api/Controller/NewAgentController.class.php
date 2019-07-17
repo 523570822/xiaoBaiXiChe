@@ -270,6 +270,7 @@ class NewAgentController extends BaseController
         foreach($income as $k=>$v){
             $mc_code = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $income[$k]['car_washer_id'] = $mc_code['mc_code'];
+            $income[$k]['mc_code'] = $mc_code['mc_code'];
         }
         if(!empty($income)){
             $this->apiResponse('1','成功',$income);
@@ -1279,6 +1280,7 @@ class NewAgentController extends BaseController
                 $iv['style'] = 2;
                 $car = M('CarWasher')->where(array('id'=>$iv['car_washer_id']))->field('mc_code')->find();
                 $iv['car_washer_id'] = $car['mc_code'];
+                $iv['mc_code'] = $car['mc_code'];
             }
             if(!empty($tincome)){
                 $incomes[] = $tincome;
@@ -1349,6 +1351,7 @@ class NewAgentController extends BaseController
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
             $v['car_washer_id'] = $car['mc_code'];
+            $v['mc_code'] = $car['mc_code'];
             $v['trade'] = $trade;
         }
         if(!empty($income)){
@@ -1389,6 +1392,7 @@ class NewAgentController extends BaseController
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
             $v['car_washer_id'] = $car['mc_code'];
+            $v['mc_code'] = $car['mc_code'];
             $v['trade'] = $trade;
             if($app['two_opera'] == 2){          //营业收入
                 $v['trade'] = '';

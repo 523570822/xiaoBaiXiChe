@@ -81,7 +81,7 @@ class CouponController extends BaseController
         $code=$this->generateCode($request['nums'],'',$request['code_length'],$request['prefix']);
         foreach ($code as $k => $v) {
             $one= $code[$k];
-            $data = [['exchange'=>$one,'is_activation'=>0,'create_time'=>time (),'end_time'=>$date['end_time'],'b_id'=>$batch['id']]];
+            $data = [['exchange'=>$one,'is_activation'=>0,'create_time'=>$date['start_time'],'end_time'=>$date['end_time'],'b_id'=>$batch['id']]];
             M ('RedeemCode')->addAll($data);
         }
         $this->apiResponse (1,'添加成功',count ($one));

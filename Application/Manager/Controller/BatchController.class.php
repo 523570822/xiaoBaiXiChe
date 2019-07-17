@@ -91,6 +91,10 @@ class BatchController extends BaseController
                 array('end_time','string','请选择过期时间'),
             );
             $data = $this->checkParam($rule);
+            $find = M('Batch')->where(array('title'=>$data['title']))->find();
+            if(!empty($find)){
+                $this->apiResponse(0,'该批次名称已存在');
+            }
             $data['create_time'] = time();
             $data['update_time'] = time();
             $start = strtotime($data['start_time']);
@@ -120,6 +124,10 @@ class BatchController extends BaseController
                 array('end_time','string','请选择过期时间'),
             );
             $data = $this->checkParam($rule);
+            $find = M('Batch')->where(array('title'=>$data['title']))->find();
+            if(!empty($find)){
+                $this->apiResponse(0,'该批次名称已存在');
+            }
             $where['id'] = $request['id'];
             $data['update_time'] = time();
             $data['start_time'] = strtotime($data['start_time']);
@@ -161,7 +169,12 @@ class BatchController extends BaseController
     public function editSendRedBag() {
         $param['order'] = 'create_time desc';
         $param['page_size'] = 15;
-        $code = D('RedeemCode')->queryList(array('is_activation'=>0,'end_time'=>array('gt',time())),'id,create_time,exchange,is_activation',$param);
+        $code = D('RedeemCode')->queryList(array('is_activation'=>0,'end_time'=>array('gt',time())),'id,b_id,create_time,exchange,is_activation,create_time,end_time',$param);
+        foreach ($code['list'] as &$v){
+            $find_batch = M('Batch')->where(array('id'=>$v['b_id']))->find();
+            $v['title'] = $find_batch['title'];
+            $v['price'] = $find_batch['price'];
+        }
         $this->assign($code);
         $this->display();
     }
@@ -186,9 +199,7 @@ class BatchController extends BaseController
         }
         unset($wheres['exchange']);
         $wheres['account'] = array('LIKE','%'.$data['m_id'].'%');
-
         $m_id = D('Member')->queryField($wheres,'id');
-
         if(!$m_id){
             $this->apiResponse(0,'该用户不存在');
         }
@@ -220,14 +231,10 @@ class BatchController extends BaseController
     public function editSendRedBags() {
         $param['order'] = 'id desc,create_time desc';
         $param['page_size'] = 15;
-        $code = D('Batch')->queryList(array('status'=>1),'id,title,price,start_time,end_time',$param);
+        $code = D('Batch')->queryList(array('status'=>1,'end_time'=>array('gt',time())),'id,title,price,start_time,end_time',$param);
         foreach ($code['list'] as &$v ){
             $v['num'] = M('RedeemCode')->where(array('b_id'=>$v['id'],'is_activation'=>0))->count();
-            if($v['end_time'] > time()){
-
-            }
         }
-        dump($code);exit;
         $this->assign($code);
         $this->display();
     }
@@ -238,6 +245,45 @@ class BatchController extends BaseController
      * Date: 2019-07-15 09:59:42
      */
     public function SendRedBags() {
+        $rule = array(
+            array('red_bag_id','string>0','请输入批次名称'),
+            array('m_id','string>0','请输入用户账号'),
+        );
+        $data = $this->checkParam($rule);
+        $str = $data['m_id'];
+        $data['account'] = explode(',',$data['m_id']);
+        $data['account'] = array_filter($data['account']);
+        foreach ($data['account'] as &$vs){
+            $wheres['account'] = array('LIKE','%'.$vs.'%');
+            $wheres['status'] = 1;
+            $m_id = D('Member')->where($wheres)->find();
+            if(empty($m_id)){
+                $this->apiResponse(0,$m_id['account'].'用户不存在');
+            }
+        }
+        $where_batch['title'] = array('LIKE','%'.$data['red_bag_id'].'%');
+        $where_batch['end_time'] = array('gt',time());
+        $batch = D('Batch')->queryRow($where_batch);
+        if(empty($batch)){
+            $this->apiResponse(0,'该代金券不存在');
+        }
 
+
+        if($m_id && $batch) {
+            $wheress['exchange'] = array('LIKE','%'.$data['red_bag_id'].'%');
+            $wheress['is_activation'] = 0;
+            $save['is_activation'] = 1;
+            D('RedeemCode')->querySave($wheress,$save);
+            $where['m_id'] = $m_id;
+            $where['is_bind'] = 1;
+            $where['type'] = 2;
+            $where['create_time'] = time ();
+            $where['end_time'] = $red_bag_info['end_time'];
+            $where['comes'] = $batch['title'];
+            $where['money'] = $batch['price'];
+            $where['code_id'] = $red_bag_info['id'];
+            $BD = D ('CouponBind')->add ($where);
+            $this->apiResponse(1, '发送完成');
+        }
     }
 }
