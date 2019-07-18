@@ -1672,6 +1672,8 @@ class NewAgentController extends BaseController
             }else{
                 $this->apiResponse(1,'查询成功');
             }
+        }else{
+            $this->apiResponse(1,'查询成功');
         }
     }
 
