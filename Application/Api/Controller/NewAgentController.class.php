@@ -1614,63 +1614,64 @@ class NewAgentController extends BaseController
 //        $post['page'] = 1;
 //        $post['size'] = 10;
         $agents = $this->getAgentInfo($post['token']);
-        $agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->field('id,nickname')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+        if($agents['grade'] == 1){
+            $agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->field('id,nickname')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
 //        dump($agent);exit;
-        foreach ($agent as $k=>$v){
-            //一级代理商
-            $one_agent = M('Agent')->where(array('p_id'=>$v['id'],'grade'=>2))->field('id')->select();
-            foreach($one_agent as &$ov){
-                //二级代理商
-                $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('id')->select();
-                if(!empty($two_agent)){
-                    foreach($two_agent as &$tv){
-                        $two_car = M('CarWasher')->where(array('agent_id'=>$tv['id']))->field('id,p_id')->select();
-                        if(!empty($two_car)){
-                            $two_cars[] = $two_car;
+            foreach ($agent as $k=>$v){
+                //一级代理商
+                $one_agent = M('Agent')->where(array('p_id'=>$v['id'],'grade'=>2))->field('id')->select();
+                foreach($one_agent as &$ov){
+                    //二级代理商
+                    $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('id')->select();
+                    if(!empty($two_agent)){
+                        foreach($two_agent as &$tv){
+                            $two_car = M('CarWasher')->where(array('agent_id'=>$tv['id']))->field('id,p_id')->select();
+                            if(!empty($two_car)){
+                                $two_cars[] = $two_car;
+                            }
+                        }
+                        foreach ($two_cars as &$tvv){
+                            foreach($tvv as &$tvv2){
+                                $two_carss[] = $tvv2;
+                            }
+                        }
+                        $results = array();
+                        foreach($two_carss as $key1=>$value1){
+                            if(!isset($results[$value1['p_id']])){
+                                $results[$value1['p_id']]=$value1;
+                            }else{
+                                $results[$value1['p_id']]['id']+=$value1['id'];
+                            }
                         }
                     }
-                    foreach ($two_cars as &$tvv){
-                        foreach($tvv as &$tvv2){
-                            $two_carss[] = $tvv2;
-                        }
-                    }
-                    $results = array();
-                    foreach($two_carss as $key1=>$value1){
-                        if(!isset($results[$value1['p_id']])){
-                            $results[$value1['p_id']]=$value1;
-                        }else{
-                            $results[$value1['p_id']]['id']+=$value1['id'];
-                        }
-                    }
-                }
-                $one_car = M('CarWasher')->where(array('agent_id'=>$ov['id']))->field('id,p_id')->select();
-                foreach ($one_car as &$ov){
+                    $one_car = M('CarWasher')->where(array('agent_id'=>$ov['id']))->field('id,p_id')->select();
+                    foreach ($one_car as &$ov){
 //                    dump($ov);
-                    $one_cars[] = $ov;
-                }
-                //一级代理商洗车店数量
-                $result = array();
-                foreach($one_cars as $key=>$value){
-                    if(!isset($result[$value['p_id']])){
-                        $result[$value['p_id']]=$value;
-                    }else{
-                        $result[$value['p_id']]['id']+=$value['id'];
+                        $one_cars[] = $ov;
+                    }
+                    //一级代理商洗车店数量
+                    $result = array();
+                    foreach($one_cars as $key=>$value){
+                        if(!isset($result[$value['p_id']])){
+                            $result[$value['p_id']]=$value;
+                        }else{
+                            $result[$value['p_id']]['id']+=$value['id'];
+                        }
                     }
                 }
-            }
-            $one_num = count($result);
+                $one_num = count($result);
 //            dump($results);
-            $two_num = count($results);
+                $two_num = count($results);
 //            dump($two_num);
 
-            $agent[$k]['car_num'] = $one_num+$two_num;
-        }
+                $agent[$k]['car_num'] = $one_num+$two_num;
+            }
 //        exit;
-        if($agent){
-            $this->apiResponse(1,'查询成功',$agent);
-        }else{
-            $this->apiResponse(1,'查询成功');
-
+            if($agent){
+                $this->apiResponse(1,'查询成功',$agent);
+            }else{
+                $this->apiResponse(1,'查询成功');
+            }
         }
     }
 
