@@ -1614,10 +1614,6 @@ class NewAgentController extends BaseController
 //        $post['page'] = 1;
 //        $post['size'] = 10;
         $agents = $this->getAgentInfo($post['token']);
-        if($agents['grade'] != 1){
-            $this->apiResponse(0,'您不是区域合伙人');
-        }
-
         $agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->field('id,nickname')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
 //        dump($agent);exit;
         foreach ($agent as $k=>$v){
@@ -1648,12 +1644,10 @@ class NewAgentController extends BaseController
                     }
                 }
                 $one_car = M('CarWasher')->where(array('agent_id'=>$ov['id']))->field('id,p_id')->select();
-
                 foreach ($one_car as &$ov){
+//                    dump($ov);
                     $one_cars[] = $ov;
                 }
-
-
                 //一级代理商洗车店数量
                 $result = array();
                 foreach($one_cars as $key=>$value){
@@ -1665,11 +1659,18 @@ class NewAgentController extends BaseController
                 }
             }
             $one_num = count($result);
+//            dump($results);
             $two_num = count($results);
+//            dump($two_num);
+
             $agent[$k]['car_num'] = $one_num+$two_num;
         }
+//        exit;
         if($agent){
             $this->apiResponse(1,'查询成功',$agent);
+        }else{
+            $this->apiResponse(1,'查询成功');
+
         }
     }
 
