@@ -109,7 +109,7 @@ class NewCarWasherController extends BaseController
 
         $post['status'] = $request['status'];
         $post['inquire'] = $request['inquire'];
-
+        $where['status'] = array('neq',9);
         $order[] = 'sort DESC';
         if($post['inquire']){            //筛选地址
             if(!empty($post['inquire'])){

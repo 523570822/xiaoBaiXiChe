@@ -1609,14 +1609,14 @@ class NewAgentController extends BaseController
      *Date:2019/05/22 01:26
      */
     public function board(){
-        $post = checkAppData('token,page,size','token-页数-个数');
-//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
-//        $post['page'] = 1;
-//        $post['size'] = 10;
+//        $post = checkAppData('token,page,size','token-页数-个数');
+        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+        $post['page'] = 1;
+        $post['size'] = 10;
         $agents = $this->getAgentInfo($post['token']);
         if($agents['grade'] == 1){
             $agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->field('id,nickname')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-//        dump($agent);exit;
+        dump($agent);exit;
             foreach ($agent as $k=>$v){
                 //一级代理商
                 $one_agent = M('Agent')->where(array('p_id'=>$v['id'],'grade'=>2))->field('id')->select();
