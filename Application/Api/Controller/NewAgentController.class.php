@@ -1291,14 +1291,15 @@ class NewAgentController extends BaseController
                 $incomess[] = $iv3;
             }
         }
-        $income = M('Income')->where(array('agent_id' => $agent['id'],'day'=>$day))->field('car_washer_id,orderid,detail,net_income,platform,plat_money,partner_money,create_time')->order('create_time DESC')->select();
-        foreach($income as &$v){
+        $son_income = M('Income')->where(array('agent_id' => $agent['id'],'day'=>$day))->field('car_washer_id,orderid,detail,net_income,platform,plat_money,partner_money,create_time')->order('create_time DESC')->select();
+        foreach($son_income as &$v){
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
             $v['car_washer_id'] = $car['mc_code'];
             $v['trade'] = $trade;
             $v['p_money'] = '';
             $v['style'] = 1;
+            $v['mc_code'] = $car['mc_code'];
             if($app['one_opera'] == 2){   //营业收入
                 $v['trade'] = '';
             }
@@ -1309,7 +1310,7 @@ class NewAgentController extends BaseController
                 $v['plat_money'] = '';
             }
         }
-        $list=array_merge($income,$incomess);
+        $list=array_merge($son_income,$incomess);
         $lists = list_sort_by($list, 'create_time', 'desc');
         for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
             if(!empty($lists[$i])){
@@ -1618,6 +1619,7 @@ class NewAgentController extends BaseController
         }
 
         $agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->field('id,nickname')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+//        dump($agent);exit;
         foreach ($agent as $k=>$v){
             //一级代理商
             $one_agent = M('Agent')->where(array('p_id'=>$v['id'],'grade'=>2))->field('id')->select();
