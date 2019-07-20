@@ -34,7 +34,7 @@ class NewAgentController extends BaseController
     public function income(){
         $post = checkAppData('token,timeType,grade,page,size','token-时间筛选-身份-页数-个数');
 //        $post['token'] = 'd7b8e3afec48f4b75d1ea8ebb3182845';
-//        $post['timeType'] = 1;                   //查询方式  1日  2周  3月   4年
+//        $post['timeType'] = 2;                   //查询方式  1日  2周  3月   4年
 //        $post['grade'] = 4;                      //1区域合作人 2一级代理商 3二级代理商 4合作方
 //        $post['page'] = 1;
 //        $post['size'] = 10;
@@ -205,7 +205,7 @@ class NewAgentController extends BaseController
                 if($post['timeType'] == 1){
                     $date_time = date('Y-m-d',$v['time']);
                 }elseif($post['timeType'] == 2){
-                    $date_time = date('Y-m-d',$v['time']).'~'.date('Y-m-d',$v['week_end']);
+                    $date_time = date('m-d',$v['time']).'~'.date('m-d',$v['week_end']);
                 }elseif($post['timeType'] == 3){
                     $date_time = date('Y-m',$v['time']);
                 }elseif($post['timeType'] == 4){
@@ -319,7 +319,7 @@ class NewAgentController extends BaseController
             $todaytime = strtotime (date ('Y-m-d' , strtotime ("this week Monday" , time())));
             foreach ($data as &$v){
                 $v['week_star'] = date('Y-m-d',$v['time']);
-                $v['time'] = date ('Y-m-d' , $v['time']).'~'.date ('Y-m-d' , $v['week_end']);
+                $v['time'] = date ('m-d' , $v['time']).'~'.date ('m-d' , $v['week_end']);
             }
         }elseif($time == 3){
             $year = strtotime (date ('Y' , time()) . '-1-1');
@@ -375,7 +375,7 @@ class NewAgentController extends BaseController
 //        $post['grade'] = 2;
 
         $agent = $this->getAgentInfo($post['token']);
-        $car = M('CarWasher')->where(array('agent_id'=>$agent['id']))->select();
+        $car = M('CarWasher')->where(array('agent_id'=>$agent['id'],'status'=>array('neq',9)))->select();
         if($agent['grade'] == 2){
             $t_adent = M('Agent')->where(array('p_id'=>$agent['id']))->select();
             foreach($t_adent as &$v){
@@ -1616,42 +1616,39 @@ class NewAgentController extends BaseController
         $agents = $this->getAgentInfo($post['token']);
         if($agents['grade'] == 1){
             $agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->field('id,nickname')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-        dump($agent);exit;
             foreach ($agent as $k=>$v){
                 //一级代理商
-                $one_agent = M('Agent')->where(array('p_id'=>$v['id'],'grade'=>2))->field('id')->select();
+                $one_agent = M('Agent')->where(array('p_id'=>$agent[$k]['id'],'grade'=>2,'status'=>array('neq',9)))->field('id')->select();
+                if(empty($one_agent)){
+                    $agent[$k]['car_num'] = 0;
+                }
                 foreach($one_agent as &$ov){
+                    $one_car[] = M('CarWasher')->where(array('agent_id'=>$ov['id'],'status'=>array('neq',9)))->field('id,p_id')->group("p_id")->select();
+
                     //二级代理商
-                    $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3))->field('id')->select();
-                    if(!empty($two_agent)){
-                        foreach($two_agent as &$tv){
-                            $two_car = M('CarWasher')->where(array('agent_id'=>$tv['id']))->field('id,p_id')->select();
-                            if(!empty($two_car)){
-                                $two_cars[] = $two_car;
-                            }
-                        }
-                        foreach ($two_cars as &$tvv){
-                            foreach($tvv as &$tvv2){
-                                $two_carss[] = $tvv2;
-                            }
-                        }
-                        $results = array();
-                        foreach($two_carss as $key1=>$value1){
-                            if(!isset($results[$value1['p_id']])){
-                                $results[$value1['p_id']]=$value1;
-                            }else{
-                                $results[$value1['p_id']]['id']+=$value1['id'];
-                            }
-                        }
+                    $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3,))->field('id')->select();
+                    foreach ($two_agent as $kk=>$vv){
+                        $two_car = M('CarWasher')->where(array('agent_id'=>$two_agent[$kk]['id'],'status'=>array('neq',9)))->field('id,p_id')->select();
+//                        dump($two_car);
+                        $two_cars[]=$two_car;
+//                        dump($two_cars);
+
                     }
-                    $one_car = M('CarWasher')->where(array('agent_id'=>$ov['id']))->field('id,p_id')->select();
+
+//                    dump($two_cars);
+
+                    $res = array(); //想要的结果
+                    foreach ($one_car as $ks => $vs) {
+                        $res[$vs['p_id']][] = $vs;
+                    }
                     foreach ($one_car as &$ov){
-//                    dump($ov);
                         $one_cars[] = $ov;
                     }
+                    $agent[$k]['car_num'] = count($one_cars);
+
                     //一级代理商洗车店数量
                     $result = array();
-                    foreach($one_cars as $key=>$value){
+                    foreach($two_cars as $key=>$value){
                         if(!isset($result[$value['p_id']])){
                             $result[$value['p_id']]=$value;
                         }else{
@@ -1659,14 +1656,24 @@ class NewAgentController extends BaseController
                         }
                     }
                 }
-                $one_num = count($result);
+                dump($two_cars);
+
+//                $agent[$k]['car_num'] = count($res);
+//                dump($res);exit;
+
+
+
+
 //            dump($results);
-                $two_num = count($results);
+//                $two_num = count($results);
 //            dump($two_num);
 
-                $agent[$k]['car_num'] = $one_num+$two_num;
+//                $agent[$k]['car_num'] = $one_num+$two_num;
             }
-//        exit;
+//            dump($agent[$k]['car_num']);
+//            dump($agent);
+
+            exit;
             if($agent){
                 $this->apiResponse(1,'查询成功',$agent);
             }else{
