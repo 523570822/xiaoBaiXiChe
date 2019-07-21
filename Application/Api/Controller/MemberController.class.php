@@ -243,6 +243,9 @@ class MemberController extends BaseController
         if ($res['error']) {
             $this->apiResponse('0', $res['error']);
         }
+        $phone = M('Member')->where(array('account'=>$request['account'],'status'=>array('neq',9)))->find();
+        $find_bind = M('MemberBind')->where(array('m_id'=>$phone['id']))->find();
+//        if(){}
         unset($param);
         $param['where']['id'] = $request['bind_id'];
         $bind_info = D('MemberBind')->queryRow($param['where']);

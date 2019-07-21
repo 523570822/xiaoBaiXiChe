@@ -1609,73 +1609,19 @@ class NewAgentController extends BaseController
      *Date:2019/05/22 01:26
      */
     public function board(){
-//        $post = checkAppData('token,page,size','token-页数-个数');
-        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
-        $post['page'] = 1;
-        $post['size'] = 10;
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+//        $post['page'] = 1;
+//        $post['size'] = 10;
         $agents = $this->getAgentInfo($post['token']);
         if($agents['grade'] == 1){
-            $agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->field('id,nickname')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-            foreach ($agent as $k=>$v){
-                //一级代理商
-                $one_agent = M('Agent')->where(array('p_id'=>$agent[$k]['id'],'grade'=>2,'status'=>array('neq',9)))->field('id')->select();
-                if(empty($one_agent)){
-                    $agent[$k]['car_num'] = 0;
-                }
-                foreach($one_agent as &$ov){
-                    $one_car[] = M('CarWasher')->where(array('agent_id'=>$ov['id'],'status'=>array('neq',9)))->field('id,p_id')->group("p_id")->select();
-
-                    //二级代理商
-                    $two_agent = M('Agent')->where(array('p_id'=>$ov['id'],'grade'=>3,))->field('id')->select();
-                    foreach ($two_agent as $kk=>$vv){
-                        $two_car = M('CarWasher')->where(array('agent_id'=>$two_agent[$kk]['id'],'status'=>array('neq',9)))->field('id,p_id')->select();
-//                        dump($two_car);
-                        $two_cars[]=$two_car;
-//                        dump($two_cars);
-
-                    }
-
-//                    dump($two_cars);
-
-                    $res = array(); //想要的结果
-                    foreach ($one_car as $ks => $vs) {
-                        $res[$vs['p_id']][] = $vs;
-                    }
-                    foreach ($one_car as &$ov){
-                        $one_cars[] = $ov;
-                    }
-                    $agent[$k]['car_num'] = count($one_cars);
-
-                    //一级代理商洗车店数量
-                    $result = array();
-                    foreach($two_cars as $key=>$value){
-                        if(!isset($result[$value['p_id']])){
-                            $result[$value['p_id']]=$value;
-                        }else{
-                            $result[$value['p_id']]['id']+=$value['id'];
-                        }
-                    }
-                }
-                dump($two_cars);
-
-//                $agent[$k]['car_num'] = count($res);
-//                dump($res);exit;
-
-
-
-
-//            dump($results);
-//                $two_num = count($results);
-//            dump($two_num);
-
-//                $agent[$k]['car_num'] = $one_num+$two_num;
+            $find = M('Management')->where(array('status'=>array('neq',9)))->field('id ,agent_id as nickname, car_num ')->limit(($post['page'] - 1) * $post['size'], $post['size'])->order('create_time DESC')->select();
+            foreach ($find as &$v){
+                $agent = M('Agent')->where(array('id'=>$v['nickname']))->find();
+                $v['nickname'] = $agent['nickname'];
             }
-//            dump($agent[$k]['car_num']);
-//            dump($agent);
-
-            exit;
-            if($agent){
-                $this->apiResponse(1,'查询成功',$agent);
+            if($find){
+                $this->apiResponse(1,'查询成功',$find);
             }else{
                 $this->apiResponse(1,'查询成功');
             }

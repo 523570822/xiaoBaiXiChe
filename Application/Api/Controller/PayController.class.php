@@ -265,7 +265,7 @@ class PayController extends BaseController {
             if ( $trade_status == 'TRADE_SUCCESS' ) {
 //                $index = new IndexController();
 //                $index->testCronTab (json_encode ($request));
-                $order = M ('Order')->where (array ('orderid' => $out_trade_no))->find ();
+                $order = M ('Order')->where (array ('orderid' => $out_trade_no ,'status'=>1))->find ();
                 $Member = M ('Member')->where (array ('id' => $order['m_id']))->find ();
                 $date['pay_type'] = 2;
                 $date['status'] = 2;
@@ -810,7 +810,7 @@ class PayController extends BaseController {
         $info = $log['transaction_id'];
         //获取其他订单信息
         $order_info = json_decode ($log['attach'] , true);
-        $order = D ('Order')->where (array ('orderid' => $order_no))->find ();
+        $order = D ('Order')->where (array ('orderid' => $order_no ,'status'=>1))->find ();
         $Member = D ('Member')->where (array ('id' => $order['m_id']))->find ();
         $date['pay_time'] = time ();
         $date['status'] = 2;
