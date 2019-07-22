@@ -1523,7 +1523,6 @@ class NewAgentController extends BaseController
 //        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
 
         $agent = $this->getAgentInfo($post['token']);
-        $app = D('Appsetting')->queryRow(array('id'=>1));
         if($agent['grade'] != 1){
             $this->apiResponse(0,'您的身份不是区域合伙人');
         }
@@ -1571,16 +1570,9 @@ class NewAgentController extends BaseController
                 $result[$value['status']]['detail']+=$value['detail'];
                 $result[$value['status']]['net_income']+=$value['net_income'];
                 $result[$value['status']]['platform']+=$value['platform'];
-                if($app['two_father'] == 1){
-                    $result[$value['status']]['p_money']+=$value['p_money'];
-                }elseif ($app['two_father'] == 2){
-                    $result[$value['status']]['p_money'] = '';
-                }
-                if($app['one_opera'] == 1){
-                    $result[$value['status']]['trade']+=$value['trade'];
-                }elseif ($app['one_opera'] == 2){
-                    $result[$value['status']]['trade'] = '';
-                }
+                $result[$value['status']]['p_money']+=$value['p_money'];
+                $result[$value['status']]['trade']+=$value['trade'];
+
             }
         }
         $data = array(
@@ -1639,11 +1631,7 @@ class NewAgentController extends BaseController
                 $result[$value['status']]['detail']+=$value['detail'];
                 $result[$value['status']]['net_income']+=$value['net_income'];
                 $result[$value['status']]['platform']+=$value['platform'];
-                if($app['two_opera'] == 1){
-                    $result[$value['status']]['trade']+=$value['trade'];
-                }elseif ($app['two_opera'] == 2){
-                    $result[$value['status']]['trade'] = '';
-                }
+                $result[$value['status']]['trade']+=$value['trade'];
             }
         }
         $data = array(
@@ -1734,17 +1722,10 @@ class NewAgentController extends BaseController
                 $n_income['platform'] = (int)0;
             }
             $two_agent[$k]['net_income'] = $n_income['net_income'];
-            if($app['two_father'] == 1){
-                $two_agent[$k]['p_money'] = $n_income['p_money'];
-            }elseif ($app['two_father'] == 2){
-                $two_agent[$k]['p_money'] = '';
-            }
+            $two_agent[$k]['p_money'] = $n_income['p_money'];
             $trade = bcsub($n_income['detail'],$n_income['platform'],2);
-            if($app['one_opera'] == 1){
-                $two_agent[$k]['trade'] = $trade;
-            }elseif ($app['one_opera'] == 2){
-                $two_agent[$k]['trade'] = '';
-            }
+            $two_agent[$k]['trade'] = $trade;
+
         }
         if(!empty($two_agent)){
             $this->apiResponse(1,'查询成功',$two_agent);
@@ -1801,13 +1782,6 @@ class NewAgentController extends BaseController
         for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
             if(!empty($lists[$i])){
                 $datas[] = $lists[$i];
-            }
-        }
-        foreach ($datas as &$xv){
-            if($app['two_opera'] == 1){
-                $xv['trade'] = $xv['trade'];
-            }elseif ($app['two_opera'] == 2){
-                $xv['trade'] = '';
             }
         }
         if($datas){
