@@ -1247,13 +1247,22 @@ class NewAgentController extends BaseController
 //        $post['size'] = 10;
 
         $agent = $this->getAgentInfo($post['token']);
+        $app = D('Appsetting')->queryRow(array('id'=>1));
         $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id,nickname,account,token')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach($two_agent as $k=>$v){
             $n_income = M('Income')->where(array('agent_id'=>$v['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(p_money) as p_money')->find();
             $two_agent[$k]['net_income'] = $n_income['net_income'];
-            $two_agent[$k]['p_money'] = $n_income['p_money'];
+            if($app['two_father'] == 1){
+                $two_agent[$k]['p_money'] = $n_income['p_money'];
+            }elseif ($app['two_father'] == 2){
+                $two_agent[$k]['p_money'] = '';
+            }
             $trade = bcsub($n_income['detail'],$n_income['platform'],2);
-            $two_agent[$k]['trade'] = $trade;
+            if($app['two_opera'] == 1){
+                $two_agent[$k]['trade'] = $trade;
+            }elseif ($app['two_opera'] == 2){
+                $two_agent[$k]['trade'] = '';
+            }
         }
         if(!empty($two_agent)){
             $this->apiResponse(1,'查询成功',$two_agent);
