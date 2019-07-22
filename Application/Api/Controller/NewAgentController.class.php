@@ -948,6 +948,11 @@ class NewAgentController extends BaseController
         $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
         //总净收入
         $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money,month')->group("month")->find();
+        if($app['two_father'] == 1){
+            $month_income['p_money'] = $month_income['p_money'];
+        }elseif($app['two_father'] == 2){
+            $month_income['p_money'] = '';
+        }
         //日净收入
         $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform,day')->group("day")->order('day DESC')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach($day_income as &$dv){
