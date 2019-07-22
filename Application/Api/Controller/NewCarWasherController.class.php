@@ -84,7 +84,7 @@ class NewCarWasherController extends BaseController
             $this->apiResponse('1','成功',$data);
         }else{
             $data = array(
-               'now_month' => 0,
+               'now_month' => array(),
                 'income' => array(),
             );
             $this->apiResponse('1','成功',$data);
