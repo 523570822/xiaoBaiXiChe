@@ -1710,6 +1710,7 @@ class NewAgentController extends BaseController
 
 
         $agent = $this->getAgentInfo($post['token']);
+        $app = D('Appsetting')->queryRow(array('id'=>1));
         if($agent['grade'] != 1){
             $this->apiResponse(0,'您的身份不是区域合伙人');
         }
@@ -1729,9 +1730,17 @@ class NewAgentController extends BaseController
                 $n_income['platform'] = (int)0;
             }
             $two_agent[$k]['net_income'] = $n_income['net_income'];
-            $two_agent[$k]['p_money'] = $n_income['p_money'];
+            if($app['two_father'] == 1){
+                $two_agent[$k]['p_money'] = $n_income['p_money'];
+            }elseif ($app['two_father'] == 2){
+                $two_agent[$k]['p_money'] = '';
+            }
             $trade = bcsub($n_income['detail'],$n_income['platform'],2);
-            $two_agent[$k]['trade'] = $trade;
+            if($app['one_opera'] == 1){
+                $two_agent[$k]['trade'] = $trade;
+            }elseif ($app['one_opera'] == 2){
+                $two_agent[$k]['trade'] = '';
+            }
         }
         if(!empty($two_agent)){
             $this->apiResponse(1,'查询成功',$two_agent);
