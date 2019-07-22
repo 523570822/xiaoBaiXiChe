@@ -241,12 +241,23 @@ class WashshopController extends BaseController
      */
     function Convert_BD09_To_GCJ02($lat,$lng){
         $x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-        $x = $lng - 0.0065;
-        $y = $lat - 0.006;
-        $z = sqrt($x * $x + $y * $y) - 0.00002 * sin($y * $x_pi);
-        $theta = atan2($y, $x) - 0.000003 * cos($x * $x_pi);
-        $lng = $z * cos($theta);
-        $lat = $z * sin($theta);
+        $x = $lng;
+        $y = $lat;
+        $z =sqrt($x * $x + $y * $y) + 0.00002 * sin($y * $x_pi);
+        $theta = atan2($y, $x) + 0.000003 * cos($x * $x_pi);
+        $lng = $z * cos($theta) + 0.0065;
+        $lat = $z * sin($theta) + 0.006;
+        return array('lng'=>$lng,'lat'=>$lat);
+    }
+
+    function Convert_GCJ02_To_BD09($lat,$lng){
+        $x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+        $x = $lng;
+        $y = $lat;
+        $z =sqrt($x * $x + $y * $y) + 0.00002 * sin($y * $x_pi);
+        $theta = atan2($y, $x) + 0.000003 * cos($x * $x_pi);
+        $lng = $z * cos($theta) + 0.0065;
+        $lat = $z * sin($theta) + 0.006;
         return array('lng'=>$lng,'lat'=>$lat);
     }
 
