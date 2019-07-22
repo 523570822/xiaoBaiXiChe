@@ -1767,6 +1767,7 @@ class NewAgentController extends BaseController
 //        $post['size'] = 10;
 
         $agent = $this->getAgentInfo($post['token']);
+        $app = D('Appsetting')->queryRow(array('id'=>1));
         if($agent['grade'] != 1){
             $this->apiResponse(0,'您的身份不是区域合伙人');
         }
@@ -1800,6 +1801,13 @@ class NewAgentController extends BaseController
         for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
             if(!empty($lists[$i])){
                 $datas[] = $lists[$i];
+            }
+        }
+        foreach ($datas as &$xv){
+            if($app['two_opera'] == 1){
+                $xv['trade'] = $xv['trade'];
+            }elseif ($app['two_opera'] == 2){
+                $xv['trade'] = '';
             }
         }
         if($datas){
