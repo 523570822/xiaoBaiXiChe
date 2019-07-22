@@ -63,15 +63,12 @@ class NewCarWasherController extends BaseController
      */
     public function carWasherIncome(){
         $post = checkAppData('token,car_washer_id,page,size','token-洗车机ID-页数-个数');
-//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
-//        $post['car_washer_id'] = 2;
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['car_washer_id'] = 13;
 //        $post['page'] = 1;
 //        $post['size'] = 10;
-
-        $post['in_month'] = $_REQUEST['in_month'];
-
-//        $post['in_month'] = 1556640000;
-
+//        $_REQUEST['in_month'] = 1556620058;
+        $post['in_month'] = strtotime(date('Y-m',$_REQUEST['in_month']));
         if(empty($post['in_month'])){
             $post['in_month'] = strtotime(date('Y-m'));
         }
@@ -79,7 +76,6 @@ class NewCarWasherController extends BaseController
         $order[] = 'create_time DESC';
         $income = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agent_id'=>$agent['id'],'month'=>$post['in_month']))->field('SUM(net_income) as net_income,SUM(car_wash) as car_wash,day')->group("day")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         $month = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agent_id'=>$agent['id'],'month'=>$post['in_month']))->field('SUM(net_income) as net_income,month as ag_month')->group("month")->select();
-
         $data = array(
             'now_month' => $month,
             'income' => $income,

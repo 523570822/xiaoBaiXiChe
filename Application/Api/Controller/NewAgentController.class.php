@@ -252,11 +252,12 @@ class NewAgentController extends BaseController
      *Date:2019/05/15 14:39
      */
     public function incomeInfo(){
-        $post = checkAppData('token,day,page,size','token-日期时间戳-页数-个数');
-//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
-//        $post['day'] = 1558972800;
-//        $post['page'] = 1;
-//        $post['size'] = 10;
+//        $post = checkAppData('token,day,car_washer_id,page,size','token-日期时间戳-洗车机ID-页数-个数');
+        $post['car_washer_id'] = 13;
+        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $post['day'] = 1557417655;
+        $post['page'] = 1;
+        $post['size'] = 10;
         if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
         }else{
@@ -264,9 +265,8 @@ class NewAgentController extends BaseController
         }
         $agent = $this->getAgentInfo($post['token']);
         $order[] = 'create_time ASC';
-        $income = M('Income')->where(array('agent_id'=>$agent['id'],'day'=>$post['day']))->field('orderid,net_income,detail,car_washer_id,create_time')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
-//        echo M('Income')->_sql();
-//        dump($income);exit;
+        $income = M('Income')->where(array('agent_id'=>$agent['id'],'car_washer_id'=>$post['car_washer_id'],'day'=>$post['day']))->field('orderid,net_income,detail,car_washer_id,create_time')->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
+
         foreach($income as $k=>$v){
             $mc_code = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $income[$k]['car_washer_id'] = $mc_code['mc_code'];
@@ -794,10 +794,10 @@ class NewAgentController extends BaseController
      *Date:2019/05/17 16:13
      */
     public function oneDetail(){
-        $post = checkAppData('token,page,size','token-页数-个数');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['page'] = 2;
-//        $post['size'] = 10;
+//        $post = checkAppData('token,page,size','token-页数-个数');
+        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $post['page'] = 2;
+        $post['size'] = 10;
 
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
@@ -863,7 +863,11 @@ class NewAgentController extends BaseController
             if(!isset($result[$value['day']])){
                 $result[$value['day']]=$value;
             }else{
-                $result[$value['day']]['p_money']+=$value['p_money'];
+                if($app['two_father'] == 1){
+                    $result[$value['day']]['p_money']+=$value['p_money'];
+                }elseif($app['two_father'] == 2){
+                    $result[$value['day']]['p_money'] = '';
+                }
                 $result[$value['day']]['detail']+=$value['detail'];
                 $result[$value['day']]['net_income']+=$value['net_income'];
                 if($app['one_platform'] == 1){
@@ -884,7 +888,11 @@ class NewAgentController extends BaseController
                 }
             }
         }
-        $month_income['p_money'] = (string)$month_income['p_money'];
+        if($app['two_father'] == 1){
+            $month_income['p_money'] = (string)$month_income['p_money'];
+        }elseif ($app['two_father'] == 2){
+            $month_income['p_money'] = '';
+        }
         //数组按时间排序
         array_multisort(i_array_column($result,'day'),SORT_DESC,$result);
         for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
@@ -1178,6 +1186,8 @@ class NewAgentController extends BaseController
         $post = checkAppData('token','token');
 
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $app = D('Appsetting')->queryRow(array('id'=>1));
+
         $agent = $this->getAgentInfo($post['token']);
         $two_agent = M('Agent')->where(array('p_id'=>$agent['id'],'grade'=>3))->field('id')->select();
         foreach($two_agent as &$v){
@@ -1197,11 +1207,19 @@ class NewAgentController extends BaseController
                 $result[$value['status']]['detail']+=$value['detail'];
                 $result[$value['status']]['platform']+=$value['platform'];
                 $result[$value['status']]['partner_money']+=$value['partner_money'];
-                $result[$value['status']]['p_money']+=$value['p_money'];
+                if($app['two_father'] == 1){
+                    $result[$value['status']]['p_money']+=$value['p_money'];
+                }elseif ($app['two_father'] == 2){
+                    $result[$value['status']]['p_money'] = '';
+                }
             }
         }
         //营业收入
-        $trade = bcsub($result[$value['status']]['detail'],$result[$value['status']]['platform'],2);
+        if($app['two_opera'] == 1){
+            $trade = bcsub($result[$value['status']]['detail'],$result[$value['status']]['platform'],2);
+        }elseif ($app['two_opera'] == 2){
+            $trade = '';
+        }
         $data = array(
             'net_income' => $result[$value['status']]['net_income'],
             'trade' => $trade,
