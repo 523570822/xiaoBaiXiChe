@@ -695,7 +695,7 @@ class NewAgentController extends BaseController
      */
     public function summary(){
         $post = checkAppData('token,grade','token-等级');
-//        $post['token'] = '5ecb3d16004f758c566a350346e0454b';
+//        $post['token'] = 'a8178ff7c6647e8e628971017ea4f55a';
 //        $post['grade'] = 1;            //1一级代理商   2二级代理商   3合作方
         $agent = $this->getAgentInfo($post['token']);
         $app = D('Appsetting')->queryRow(array('id'=>1));
@@ -728,9 +728,13 @@ class NewAgentController extends BaseController
             }elseif ($app['one_platform'] == 2){
                 $n_income['plat_money'] = '';
             }
+            if($app['two_father'] == 1){
+                $p_money = (string)array_sum($p_money);
+            }elseif($app['two_father'] == 2){
+                $p_money = '';
+            }
         }elseif ($agent['grade'] == 3){
             $n_income = M('Income')->where(array('agent_id'=>$agent['id']))->field('SUM(net_income) as net_income,SUM(detail) as detail,SUM(platform) as platform,SUM(partner_money) as partner_money,SUM(plat_money) as plat_money,SUM(p_money) as p_money')->find();
-
             $p_money = '';
             $all_money = '';
             $all_partner = '';
