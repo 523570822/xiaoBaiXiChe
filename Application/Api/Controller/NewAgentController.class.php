@@ -1293,6 +1293,11 @@ class NewAgentController extends BaseController
         foreach($two_agent as &$tv){
             $tincome = M('Income')->where(array('agent_id'=>$tv['id'],'day'=>$day))->field('car_washer_id,orderid,p_money,create_time')->order('create_time DESC')->select();
             foreach ($tincome as &$iv){
+                if($app['two_father'] == 1){
+                    $iv['p_money'] = $iv['p_money'];
+                }elseif($app['two_father'] == 2){
+                    $iv['p_money'] = '';
+                }
                 $iv['detail'] = '';
                 $iv['net_income'] = '';
                 $iv['platform'] = '';
