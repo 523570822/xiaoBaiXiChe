@@ -794,10 +794,10 @@ class NewAgentController extends BaseController
      *Date:2019/05/17 16:13
      */
     public function oneDetail(){
-//        $post = checkAppData('token,page,size','token-页数-个数');
-        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-        $post['page'] = 2;
-        $post['size'] = 10;
+        $post = checkAppData('token,page,size','token-页数-个数');
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['page'] = 2;
+//        $post['size'] = 10;
 
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
