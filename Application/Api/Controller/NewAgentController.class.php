@@ -1523,7 +1523,7 @@ class NewAgentController extends BaseController
 //        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
 
         $agent = $this->getAgentInfo($post['token']);
-
+        $app = D('Appsetting')->queryRow(array('id'=>1));
         if($agent['grade'] != 1){
             $this->apiResponse(0,'您的身份不是区域合伙人');
         }
@@ -1571,8 +1571,16 @@ class NewAgentController extends BaseController
                 $result[$value['status']]['detail']+=$value['detail'];
                 $result[$value['status']]['net_income']+=$value['net_income'];
                 $result[$value['status']]['platform']+=$value['platform'];
-                $result[$value['status']]['p_money']+=$value['p_money'];
-                $result[$value['status']]['trade']+=$value['trade'];
+                if($app['two_father'] == 1){
+                    $result[$value['status']]['p_money']+=$value['p_money'];
+                }elseif ($app['two_father'] == 2){
+                    $result[$value['status']]['p_money'] = '';
+                }
+                if($app['one_opera'] == 1){
+                    $result[$value['status']]['trade']+=$value['trade'];
+                }elseif ($app['one_opera'] == 2){
+                    $result[$value['status']]['trade'] = '';
+                }
             }
         }
         $data = array(
