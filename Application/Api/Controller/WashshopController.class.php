@@ -275,11 +275,11 @@ class WashshopController extends BaseController
         if ( $washcar ) {
 //            $this->apiResponse(1,'查询',$washcar);
             foreach ( $washcar as $k => $v ) {
-//                if($request['wx'] == 1){
-//                    $a = $this->Convert_BD09_To_GCJ02($washcar[$k]['lat'],$washcar[$k]['lon']);
-//                    $washcar[$k]['lon'] = $a['lng'];
-//                    $washcar[$k]['lat'] = $a['lat'];
-//                }
+                if($request['wx'] == 1){
+                    $a = $this->Convert_BD09_To_GCJ02($washcar[$k]['lat'],$washcar[$k]['lon']);
+                    $washcar[$k]['lon'] = $a['lng'];
+                    $washcar[$k]['lat'] = $a['lat'];
+                }
                 if($washcar[$k]['lon']>180){
                     $washcar[$k]['lon'] = bcsub ($washcar[$k]['lon'],180,12);
                 }
