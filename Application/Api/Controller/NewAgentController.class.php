@@ -252,12 +252,12 @@ class NewAgentController extends BaseController
      *Date:2019/05/15 14:39
      */
     public function incomeInfo(){
-//        $post = checkAppData('token,day,car_washer_id,page,size','token-日期时间戳-洗车机ID-页数-个数');
-        $post['car_washer_id'] = 13;
-        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-        $post['day'] = 1557417655;
-        $post['page'] = 1;
-        $post['size'] = 10;
+        $post = checkAppData('token,day,car_washer_id,page,size','token-日期时间戳-洗车机ID-页数-个数');
+//        $post['car_washer_id'] = 13;
+//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+//        $post['day'] = 1557417655;
+//        $post['page'] = 1;
+//        $post['size'] = 10;
         if(empty($post['day'])){
             $post['day'] = strtotime(date('Y-m-d'));
         }else{
