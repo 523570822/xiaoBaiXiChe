@@ -941,6 +941,8 @@ class NewAgentController extends BaseController
 //        $post['page'] = 1;
 //        $post['size'] = 10;
         $request = $_REQUEST;
+//        $request['type'] = 1;
+//        $request['in_month'] = 15855465456;
         $post['in_month'] = $request['in_month'];
         $post['type'] = $request['type'];
 //        $post['in_month'] = 1559328774;
@@ -998,7 +1000,15 @@ class NewAgentController extends BaseController
         if(!empty($day_income)){
             $this->apiResponse(1,'查询成功',$data);
         }else{
-            $this->apiResponse(1,'暂无数据');
+            $data = array(
+                'all_income' => array(
+                    'net_income' => 0,
+                    'p_money' => 0,
+                    'month' => $post['in_month'],
+                ),
+                'now_income' => $day_income,
+            );
+            $this->apiResponse(1,'暂无数据',$data);
         }
     }
 
