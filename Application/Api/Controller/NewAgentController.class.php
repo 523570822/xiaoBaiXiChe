@@ -958,6 +958,8 @@ class NewAgentController extends BaseController
         $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
         //总净收入
         $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money,month')->group("month")->find();
+        $month_income['net_income'] = $month_income['net_income'] ? $month_income['net_income'] : 0;
+        $month_income['month'] = $month_income['month'] ? $month_income['month'] : 0;
         if($post['type'] == 1){
             $month_income['p_money'] = $month_income['p_money'];
         }else{
