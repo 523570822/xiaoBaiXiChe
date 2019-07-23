@@ -240,6 +240,23 @@ class BatchController extends BaseController
     }
 
     /**
+     *取出随机数
+     * @param $a
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/07/23 17:55
+     */
+    function get_one(&$a){
+        if(count($a)>=1){
+            $key=array_rand($a,1);
+            $value=$a[$key];
+            unset($a[$key]);
+            return $value;
+        }else{
+            return "都取光了";
+        }
+    }
+
+    /**
      * 批量发放
      * User: admin
      * Date: 2019-07-15 09:59:42
@@ -266,28 +283,36 @@ class BatchController extends BaseController
         $where_batch['end_time'] = array('gt',time());
         $batch = D('Batch')->queryRow($where_batch);
         if(empty($batch)){
-            $this->apiResponse(0,'该代金券不存在');
+            $this->apiResponse(0,'该优惠卷不存在');
         }
-        dump($m_ids);exit;
-
-
-
-
-
-        if($m_id && $batch) {
-            $wheress['exchange'] = array('LIKE','%'.$data['red_bag_id'].'%');
-            $wheress['is_activation'] = 0;
-            $save['is_activation'] = 1;
-            D('RedeemCode')->querySave($wheress,$save);
-            $where['m_id'] = $m_id;
-            $where['is_bind'] = 1;
-            $where['type'] = 2;
-            $where['create_time'] = time ();
-            $where['end_time'] = $red_bag_info['end_time'];
-            $where['comes'] = $batch['title'];
-            $where['money'] = $batch['price'];
-            $where['code_id'] = $red_bag_info['id'];
-            $BD = D ('CouponBind')->add ($where);
+        $m_num = count($m_ids);
+        $find_batch = M('RedeemCode')->where(array('b_id'=>$batch['id'],'is_activation'=>0))->select();
+        foreach ($find_batch as &$fb){
+            $b_arr[] = $fb['exchange'];
+        }
+        $b_num = count($find_batch);
+        if($b_num<$m_num){
+            $this->apiResponse(0,'优惠卷剩余数量不足');
+        }
+        if($m_ids && $batch) {
+            foreach ($m_ids as &$mv){
+                $code = $this->get_one($b_arr);
+                $wheress['b_id'] = $batch['id'];
+                $wheress['exchange'] = $code;
+                $wheress['is_activation'] = 0;
+                $save['is_activation'] = 1;
+                M('RedeemCode')->where($wheress)->save($save);
+                $where['m_id'] = $mv['id'];
+                $where['is_bind'] = 1;
+                $where['type'] = 2;
+                $where['create_time'] = time ();
+                $where['end_time'] = $batch['end_time'];
+                $where['comes'] = $batch['title'];
+                $where['money'] = $batch['price'];
+                $find = M('RedeemCode')->where(array('exchange'=>$code))->find();
+                $where['code_id'] = $find['id'];
+                $BD = D ('CouponBind')->add ($where);
+            }
             $this->apiResponse(1, '发送完成');
         }
     }
