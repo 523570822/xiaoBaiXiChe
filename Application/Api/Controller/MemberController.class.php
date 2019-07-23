@@ -12,7 +12,6 @@ class MemberController extends BaseController
     public function _initialize()
     {
         parent::_initialize();
-
     }
 
     /**
@@ -238,17 +237,23 @@ class MemberController extends BaseController
             array('verify', 'string', '请输入验证码'),
         );
         $this->checkParam($rule);
+//        $request['bind_id'] = 64;
+//        $request['account'] = 18635356092;
+//        $request['bind_id'] = ;
         //检查短信验证码
         $res = D('Sms')->checkVerify($request['account'], $request['verify'], 're_bind');
         if ($res['error']) {
             $this->apiResponse('0', $res['error']);
         }
         $phone = M('Member')->where(array('account'=>$request['account'],'status'=>array('neq',9)))->find();
-        $find_bind = M('MemberBind')->where(array('m_id'=>$phone['id']))->find();
-//        if(){}
+
         unset($param);
         $param['where']['id'] = $request['bind_id'];
         $bind_info = D('MemberBind')->queryRow($param['where']);
+        $find_bind = M('MemberBind')->where(array('m_id'=>$phone['id'],'type'=>1))->find();
+        if(!empty($find_bind)){
+            $this->apiResponse('0', '此手机号已绑定');
+        }
         if (!$bind_info) {
             $this->apiResponse('0', '绑定手机号失败');
         }
