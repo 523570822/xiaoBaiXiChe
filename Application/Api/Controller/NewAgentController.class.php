@@ -802,13 +802,10 @@ class NewAgentController extends BaseController
 //        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
 //        $post['page'] = 2;
 //        $post['size'] = 10;
-
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
-
+        $post['type'] = $request['type'];
 //        $post['in_month'] = 1559328774;
-
-
         if($post['in_month'] == ''){
             $post['in_month'] = strtotime(date('Y-m'));
         }
@@ -857,9 +854,6 @@ class NewAgentController extends BaseController
         }else{
             $new_under = array_merge($day_income);
         }
-//        $new_under = array_merge($unders,$day_income);
-
-//        dump($new_under);exit;
         //相同键值相加形成新数组
         $result = array();
         foreach($new_under as $key=>$value){
@@ -867,36 +861,48 @@ class NewAgentController extends BaseController
             if(!isset($result[$value['day']])){
                 $result[$value['day']]=$value;
             }else{
-                if($app['two_father'] == 1){
-                    $result[$value['day']]['p_money']+=$value['p_money'];
-                }elseif($app['two_father'] == 2){
-                    $result[$value['day']]['p_money'] = '';
-                }
                 $result[$value['day']]['detail']+=$value['detail'];
                 $result[$value['day']]['net_income']+=$value['net_income'];
-                if($app['one_platform'] == 1){
-                    $result[$value['day']]['plat_money']+=$value['plat_money'];
-                }elseif($app['one_platform'] == 2){
-                    $result[$value['day']]['plat_money'] = '';
-                }
-                if($app['one_partner'] == 1){
-                    $result[$value['day']]['partner_money']+=$value['partner_money'];
-                }elseif ($app['one_partner'] == 2){
-                    $result[$value['day']]['partner_money'] = '';
-                }
                 $result[$value['day']]['platform']+=$value['platform'];
-                if($app['one_opera'] == 1){
+                if($post['type'] == 1){
+                    $result[$value['day']]['p_money']+=$value['p_money'];
+                    $result[$value['day']]['plat_money']+=$value['plat_money'];
+                    $result[$value['day']]['partner_money']+=$value['partner_money'];
                     $result[$value['day']]['open']+=$value['open'];
-                }elseif($app['one_opera'] == 2){
-                    $result[$value['day']]['open'] = '';
+                }else{
+                    if($app['two_father'] == 1){
+                        $result[$value['day']]['p_money']+=$value['p_money'];
+                    }elseif($app['two_father'] == 2){
+                        $result[$value['day']]['p_money'] = '';
+                    }
+                    if($app['one_platform'] == 1){
+                        $result[$value['day']]['plat_money']+=$value['plat_money'];
+                    }elseif($app['one_platform'] == 2){
+                        $result[$value['day']]['plat_money'] = '';
+                    }
+                    if($app['one_partner'] == 1){
+                        $result[$value['day']]['partner_money']+=$value['partner_money'];
+                    }elseif ($app['one_partner'] == 2){
+                        $result[$value['day']]['partner_money'] = '';
+                    }
+                    if($app['one_opera'] == 1){
+                        $result[$value['day']]['open']+=$value['open'];
+                    }elseif($app['one_opera'] == 2){
+                        $result[$value['day']]['open'] = '';
+                    }
                 }
             }
         }
-        if($app['two_father'] == 1){
+        if($post['type'] == 1){
             $month_income['p_money'] = (string)$month_income['p_money'];
-        }elseif ($app['two_father'] == 2){
-            $month_income['p_money'] = '';
+        }else{
+            if($app['two_father'] == 1){
+                $month_income['p_money'] = (string)$month_income['p_money'];
+            }elseif ($app['two_father'] == 2){
+                $month_income['p_money'] = '';
+            }
         }
+
         //数组按时间排序
         array_multisort(i_array_column($result,'day'),SORT_DESC,$result);
         for($i = ($post['page'] - 1) * $post['size']; $i < $post['page'] * $post['size']; $i++){
@@ -933,6 +939,7 @@ class NewAgentController extends BaseController
 //        $post['size'] = 10;
         $request = $_REQUEST;
         $post['in_month'] = $request['in_month'];
+        $post['type'] = $request['type'];
 //        $post['in_month'] = 1559328774;
 
         if($post['in_month'] == ''){
@@ -948,27 +955,35 @@ class NewAgentController extends BaseController
         $car_where['month'] =strtotime(date('Y-m',$post['in_month'])) ;
         //总净收入
         $month_income = M('Income')->where($car_where)->field('SUM(net_income) as net_income,SUM(p_money) as p_money,month')->group("month")->find();
-        if($app['two_father'] == 1){
+        if($post['type'] == 1){
             $month_income['p_money'] = $month_income['p_money'];
-        }elseif($app['two_father'] == 2){
-            $month_income['p_money'] = '';
+        }else{
+            if($app['two_father'] == 1){
+                $month_income['p_money'] = $month_income['p_money'];
+            }elseif($app['two_father'] == 2){
+                $month_income['p_money'] = '';
+            }
         }
         //日净收入
         $day_income = M('Income')->where($car_where)->field('SUM(detail) as detail,SUM(net_income) as net_income,SUM(plat_money) as plat_money,SUM(partner_money) as partner_money,SUM(p_money) as p_money,SUM(platform) as platform,day')->group("day")->order('day DESC')->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         foreach($day_income as &$dv){
-            if($app['two_opera'] == 1){
+            if($post['type'] == 1){
                 $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
-            }elseif($app['two_opera'] == 2){
-                $dv['open'] = '';
-            }
-            if($app['two_partner'] == 2){        //合作方分润
-                $dv['partner_money'] = '';
-            }
-            if($app['two_platform'] == 2){       //平台分润
-                $dv['plat_money'] = '';
-            }
-            if($app['two_father'] == 2){              //上级分润
-                $dv['p_money'] = '';
+            }else{
+                if($app['two_opera'] == 1){
+                    $dv['open'] = bcsub ($dv['detail'],$dv['platform'],2);   //营业收入
+                }elseif($app['two_opera'] == 2){
+                    $dv['open'] = '';
+                }
+                if($app['two_partner'] == 2){        //合作方分润
+                    $dv['partner_money'] = '';
+                }
+                if($app['two_platform'] == 2){       //平台分润
+                    $dv['plat_money'] = '';
+                }
+                if($app['two_father'] == 2){              //上级分润
+                    $dv['p_money'] = '';
+                }
             }
         }
         $data = array(
@@ -1289,7 +1304,9 @@ class NewAgentController extends BaseController
 //        $post['size'] = 10;
 
         $request = $_REQUEST;
+//        $request['type'] = 2;
         $post['data_time'] = $request['data_time'];
+        $post['type'] = $request['type'];
         if($post['data_time'] == ''){
             $post['data_time'] = strtotime(date('Y-m'));
         }
@@ -1307,11 +1324,16 @@ class NewAgentController extends BaseController
         foreach($two_agent as &$tv){
             $tincome = M('Income')->where(array('agent_id'=>$tv['id'],'day'=>$day))->field('car_washer_id,orderid,p_money,create_time')->order('create_time DESC')->select();
             foreach ($tincome as &$iv){
-                if($app['two_father'] == 1){
+                if($post['type'] == 1){
                     $iv['p_money'] = $iv['p_money'];
-                }elseif($app['two_father'] == 2){
-                    $iv['p_money'] = '';
+                }else{
+                    if($app['two_father'] == 1){
+                        $iv['p_money'] = $iv['p_money'];
+                    }elseif($app['two_father'] == 2){
+                        $iv['p_money'] = '';
+                    }
                 }
+
                 $iv['detail'] = '';
                 $iv['net_income'] = '';
                 $iv['platform'] = '';
@@ -1341,14 +1363,16 @@ class NewAgentController extends BaseController
             $v['p_money'] = '';
             $v['style'] = 1;
             $v['mc_code'] = $car['mc_code'];
-            if($app['one_opera'] == 2){   //营业收入
-                $v['trade'] = '';
-            }
-            if($app['one_partner'] == 2){   //合作方分润
-                $v['partner_money'] = '';
-            }
-            if($app['one_platform'] == 2){   //平台分润
-                $v['plat_money'] = '';
+            if($post['type'] != 1){
+                if($app['one_opera'] == 2){   //营业收入
+                    $v['trade'] = '';
+                }
+                if($app['one_partner'] == 2){   //合作方分润
+                    $v['partner_money'] = '';
+                }
+                if($app['one_platform'] == 2){   //平台分润
+                    $v['plat_money'] = '';
+                }
             }
         }
         $list=array_merge($son_income,$incomess);
@@ -1434,7 +1458,7 @@ class NewAgentController extends BaseController
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
             $v['car_washer_id'] = $car['mc_code'];
-            $v['mc_code'] = $car['mc_code'];
+            $v['mc_code'] = 111111111111111111;
             $v['trade'] = $trade;
             if($app['two_opera'] == 2){          //营业收入
                 $v['trade'] = '';
