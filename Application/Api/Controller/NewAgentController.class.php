@@ -910,7 +910,6 @@ class NewAgentController extends BaseController
                 $datas[] = $result[$i];
             }
         }
-//        dump($datas);exit;
         $data = array(
             'all_income' => $month_income,
             'now_income' => $datas? $datas : array(),
@@ -919,7 +918,11 @@ class NewAgentController extends BaseController
             $this->apiResponse(1,'查询成功',$data);
         }else{
             $data = array(
-                'all_income' => array(),
+                'all_income' => array(
+                    'net_income' => 0,
+                    'month' => $post['in_month'],
+                    'p_money' => 0,
+                ),
                 'now_income' => array(),
             );
             $this->apiResponse(1,'暂无数据',$data);
@@ -1440,7 +1443,9 @@ class NewAgentController extends BaseController
 //        $post['size'] = 10;
 
         $request = $_REQUEST;
+        $request['type'] = '';
         $post['data_time'] = $request['data_time'];
+        $post['type'] = $request['type'];
         if($post['data_time'] == ''){
             $post['data_time'] = strtotime(date('Y-m'));
         }
@@ -1457,20 +1462,22 @@ class NewAgentController extends BaseController
         foreach($income as &$v){
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
-            $v['car_washer_id'] = 2222222222;
-            $v['mc_code'] = 11111111;
+            $v['car_washer_id'] = $car['mc_code'];
+            $v['mc_code'] = $car['mc_code'];
             $v['trade'] = $trade;
-            if($app['two_opera'] == 2){          //营业收入
-                $v['trade'] = '';
-            }
-            if($app['two_partner'] == 2){              //合作方分润
-                $v['partner_money'] = '';
-            }
-            if($app['two_platform'] == 2){             //平台分润
-                $v['plat_money'] = '';
-            }
-            if($app['two_father'] == 2){                //上级分润
-                $v['p_money'] = '';
+            if($post['type'] != 1){
+                if($app['two_opera'] == 2){          //营业收入
+                    $v['trade'] = '';
+                }
+                if($app['two_partner'] == 2){              //合作方分润
+                    $v['partner_money'] = '';
+                }
+                if($app['two_platform'] == 2){             //平台分润
+                    $v['plat_money'] = '';
+                }
+                if($app['two_father'] == 2){                //上级分润
+                    $v['p_money'] = '';
+                }
             }
         }
         if(!empty($income)){

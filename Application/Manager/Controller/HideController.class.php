@@ -31,6 +31,7 @@ class HideController extends BaseController
                 array('two_father','int','请选择上级分润'),
             );
             $data = $this->checkParam($rule);
+            $data['update_tiem'] = time();
             $where['id'] = 1;
             $res = D('Appsetting')->querySave($where,$data);
             $res ?  $this->apiResponse(1, '提交成功') : $this->apiResponse(0, $data);

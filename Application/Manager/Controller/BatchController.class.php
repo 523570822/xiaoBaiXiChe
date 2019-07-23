@@ -256,10 +256,11 @@ class BatchController extends BaseController
         foreach ($data['account'] as &$vs){
             $wheres['account'] = array('LIKE','%'.$vs.'%');
             $wheres['status'] = 1;
-            $m_id = D('Member')->where($wheres)->find();
+            $m_id = D('Member')->where($wheres)->field('id')->find();
             if(empty($m_id)){
                 $this->apiResponse(0,$m_id['account'].'用户不存在');
             }
+            $m_ids[] = $m_id;
         }
         $where_batch['title'] = array('LIKE','%'.$data['red_bag_id'].'%');
         $where_batch['end_time'] = array('gt',time());
@@ -267,6 +268,10 @@ class BatchController extends BaseController
         if(empty($batch)){
             $this->apiResponse(0,'该代金券不存在');
         }
+        dump($m_ids);exit;
+
+
+
 
 
         if($m_id && $batch) {

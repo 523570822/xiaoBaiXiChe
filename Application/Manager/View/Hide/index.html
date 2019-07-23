@@ -123,17 +123,6 @@
     </div>
 </div>
 <script>
-    // 上传文件初始化
-    new UploadFile({
-        element: '#uploadBtn2',
-        // 多文件上传-true 单文件上传-false
-        files: false,
-        // 展示图片
-//        showFile: '#filename',
-        showFile: 'true',
-        // input框的name
-        fieldName: 'head_pic'
-    });
 
     // 提交信息
     function submit() {
@@ -151,7 +140,7 @@
         doPost(url, data, function(res) {
             showMsg(res.code, res.message, function() {
                 if(res.code == 1) {
-                    goback();
+
                 }
             });
         });
