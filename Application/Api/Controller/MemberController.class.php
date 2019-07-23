@@ -240,7 +240,11 @@ class MemberController extends BaseController
 //        $request['bind_id'] = 606;
 //        $request['account'] = 18635356092;
 //        $request['verify'] = 785846;
-
+        //检查短信验证码
+        $res = D('Sms')->checkVerify($request['account'], $request['verify'], 're_bind');
+        if ($res['error']) {
+            $this->apiResponse('0', $res['error']);
+        }
         $phone = M('Member')->where(array('account'=>$request['account'],'status'=>array('neq',9)))->find();
 
         unset($param);
@@ -253,11 +257,7 @@ class MemberController extends BaseController
         if (!$bind_info) {
             $this->apiResponse('0', '绑定手机号失败');
         }
-        //检查短信验证码
-        $res = D('Sms')->checkVerify(18635356092, 980694, 're_bind');
-        if ($res['error']) {
-            $this->apiResponse('0', $res['error']);
-        }
+
         unset($param);
         $param['where']['account'] = $request['account'];
         $param['where']['status'] = array('neq', 9);
