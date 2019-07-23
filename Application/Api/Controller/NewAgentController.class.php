@@ -1416,8 +1416,8 @@ class NewAgentController extends BaseController
         foreach($income as &$v){
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
-            $v['car_washer_id'] = 11111111111111111;
-            $v['mc_code'] = $car['mc_code'];
+            $v['car_washer_id'] = $car['mc_code'];
+            $v['mc_code'] = 11111111111111;
             $v['trade'] = $trade;
         }
         if(!empty($income)){
