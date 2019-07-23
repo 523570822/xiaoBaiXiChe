@@ -1362,7 +1362,7 @@ class NewAgentController extends BaseController
             $v['trade'] = $trade;
             $v['p_money'] = '';
             $v['style'] = 1;
-            $v['mc_code'] = 1111111111;
+            $v['mc_code'] = $car['mc_code'];
             if($post['type'] != 1){
                 if($app['one_opera'] == 2){   //营业收入
                     $v['trade'] = '';
@@ -1457,8 +1457,8 @@ class NewAgentController extends BaseController
         foreach($income as &$v){
             $car = M('CarWasher')->where(array('id'=>$v['car_washer_id']))->field('mc_code')->find();
             $trade = bcsub($v['detail'],$v['platform'],2);
-            $v['car_washer_id'] = $car['mc_code'];
-            $v['mc_code'] = $car['mc_code'];
+            $v['car_washer_id'] = 2222222222;
+            $v['mc_code'] = 11111111;
             $v['trade'] = $trade;
             if($app['two_opera'] == 2){          //营业收入
                 $v['trade'] = '';
