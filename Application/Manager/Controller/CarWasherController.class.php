@@ -119,8 +119,32 @@ class CarWasherController extends BaseController {
             $data['area'] = $request['area'];
             $data['old_address'] = $request['address'];
             $data['sort'] = $request['sort'];
-            $data['mc_id'] = $request['mc_id'];
+            $data['mc_id'] = strtolower($request['mc_id']);
             $data['partner_id'] = $request['partner_id'];
+            $find_agent = M('Agent')->where(array('id'=>$data['agent_id']))->find();
+            //增加管理
+            if($find_agent['grade'] == 2){
+                M('Management')->where(array('agent_id'=>$find_agent['p_id']))->setInc('car_num',1);
+                $find_car = M('CarWasher')->where(array('id'=>$request['id']))->find();
+                $find_ag = M('Agent')->where(array('id'=>$find_car['agent_id']))->find();
+                if($find_ag['grade'] == 2){
+                    M('Management')->where(array('agent_id'=>$find_ag['p_id']))->setDec('car_num',1);
+                }elseif ($find_ag['grade'] == 3){
+                    $find_two = M('Agent')->where(array('id'=>$find_ag['p_id']))->find();
+                    M('Management')->where(array('agent_id'=>$find_two['p_id']))->setDec('car_num',1);
+                }
+            }elseif($find_agent['grade'] == 3){
+                $find_one = M('Agent')->where(array('id'=>$find_agent['p_id']))->find();
+                M('Management')->where(array('agent_id'=>$find_one['p_id']))->setInc('car_num',1);
+                $find_cars = M('CarWasher')->where(array('id'=>$request['id']))->find();
+                $find_age = M('Agent')->where(array('id'=>$find_cars['agent_id']))->find();
+                if($find_age['grade'] == 2){
+                    M('Management')->where(array('agent_id'=>$find_age['p_id']))->setDec('car_num',1);
+                }elseif ($find_age['grade'] == 3){
+                    $find_twos = M('Agent')->where(array('id'=>$find_age['p_id']))->find();
+                    M('Management')->where(array('agent_id'=>$find_twos['p_id']))->setDec('car_num',1);
+                }
+            }
             $res = D ('CarWasher')->querySave (["id" => I ('post.id')] , $data);
             $res ? $this->apiResponse (1 , '修改成功') : $this->apiResponse (0 , "修改失败" , $data);
         } else {
@@ -225,6 +249,15 @@ class CarWasherController extends BaseController {
             $data['washcar_pic'] = $request['washcar_pic'];
             $data['area'] = $request['area'];
             $data['old_address'] = $request['address'];
+            $data['mc_id'] = strtolower($request['mc_id']);
+            //增加管理
+            $find_agent = M('Agent')->where(array('id'=>$data['agent_id']))->find();
+            if($find_agent['grade'] == 2){
+                M('Management')->where(array('agent_id'=>$find_agent['p_id']))->setInc('car_num',1);
+            }elseif($find_agent['grade'] == 3){
+                $find_one = M('Agent')->where(array('id'=>$find_agent['p_id']))->find();
+                M('Management')->where(array('agent_id'=>$find_one['p_id']))->setInc('car_num',1);
+            }
             $res = D ('CarWasher')->add ($data);
             $res ? $this->apiResponse (1 , '添加成功') : $this->apiResponse (0 , '添加失败' , $data);
         } else {
