@@ -161,14 +161,43 @@
                             <!--</div>-->
                         <!--</div>-->
                         <div class="layui-form-item">
-                            <label class="layui-form-label">加盟商</label>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">代理商级别</label>
+                                <div class="layui-input-inline layui-form">
+                                    <select name="grade" class="layui-input type" style="width: 300px">
+                                        <option value="">请选择代理商级别</option>
+                                        <option value="2" <if condition="$_REQUEST['grade'] eq 2">selected=true</if>>一级代理商</option>
+                                        <option value="3" <if condition="$_REQUEST['grade'] eq 3">selected=true</if>>二级代理商</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item area" style="display: none">
+                            <label class="layui-form-label">一级代理商</label>
                             <div class="layui-input-block">
-                                <select name="agent_id" class="layui-input w300">
-                                    <option value="">请选择加盟商</option>
-                                    <volist name="list" id="item">
-                                        <option value="{$item.id}">{$item.nickname}</option>
+                                <select name="agent_id" class="layui-input w300" id="ones">
+                                    <option value="">请选择一级代理商</option>
+                                    <volist name="list" id="items">
+                                        <option value="{$items.id}" >{$items.nickname}</option>
                                     </volist>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item areas"  style="display: none">
+                            <div class="layui-form-province areas">
+                                <label class="layui-form-label">一级代理商</label>
+                                <div class="layui-input-block">
+
+                                    <select name="one" class="layui-input w300 hide" id="one">
+                                        <option value="">--请选择一级代理商--</option>
+                                        <volist name="region" id="province_item">
+                                            <option value="{$province_item.id}">{$province_item.nickname}</option>
+                                        </volist>
+                                    </select>
+                                    <select name="agent_ids" class="layui-input w300" id="two">
+                                        <option value="">请选择二级代理商</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -229,7 +258,18 @@
 </div>
 </body>
 <script>
-        // 提交信息
+    $(".type").change(function(){
+        var select_val = $(this).children('option:selected').val();
+        if(select_val == 2){
+            $(".area").show()
+            $(".areas").hide()
+        }else if(select_val == 3){
+            $(".area").hide()
+            $(".areas").show()
+        }
+    })
+
+    // 提交信息
     function submit() {
         var data = checkParam();
         if (!data) return false;
@@ -243,7 +283,6 @@
     }
     $(function () {
         $('#province').change(function () {
-            $('#city option[value!=""]').remove();
             $('#area option[value!=""]').remove();
             var province = $(this).val();
             $.ajax({
@@ -275,6 +314,24 @@
                 }
             })
         })
+
+        $('#one').change(function () {
+            $('#two option[value!=""]').remove();
+            var one = $(this).val();
+            $.ajax({
+                url: "{:U('CarWasher/ajaxGetAgent')}",
+                type: 'post',
+                data: {id: one},
+                success: function (data) {
+                    var html = '<option value="">请选择二级代理商</option>';
+                    for (var i in data) {
+                        html += '<option value="' + data[i].id + '">' + data[i].nickname + '</option>';
+                    }
+                    $('#two').html(html);
+                }
+            })
+        });
+
     });
 
     //编辑器

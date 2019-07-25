@@ -75,6 +75,7 @@ class MemberController extends BaseController
         //注册用户
         $request['salt'] = NoticeStr(6);
         $request['password'] = CreatePassword($request['password'], $request['salt']);
+        $request['create_time'] = time();
         $member_add_info = M('Member')->add($request);
 
         if (empty($member_add_info)) {

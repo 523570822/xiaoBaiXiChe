@@ -216,7 +216,7 @@ class CarWasherController extends BaseController {
                 array ('h_rate' , 'int' , '合作方分润') ,
                 array ('pt_rate' , 'int' , '平台分润') ,
                 array ('p_id' , 'string' , '请选择店铺') ,
-                array ('agent_id' , 'string' , '请选择加盟商') ,
+//                array ('agent_id' , 'int' , '请选择加盟商') ,
                 array ('partner_id' , 'string' , '请选择合作方') ,
                 array ('lon' , 'string' , '经度') ,
                 array ('lat' , 'string' , '纬度') ,
@@ -230,6 +230,21 @@ class CarWasherController extends BaseController {
                 //                array('washcar_pic','string','机器照片'),
             );
             $data = $this->checkParam ($rule);
+            $grade = $_REQUEST['grade'];
+            if ($grade == 2) {
+
+                if(empty($request['agent_id'])){
+                    $this->apiResponse(0,'请选择一级代理商');
+                }else{
+                    $data['agent_id'] = $request['agent_id'];
+                }
+            } elseif ($grade == 3) {
+                if(empty($request['agent_ids'])){
+                    $this->apiResponse(0,'请选择二级代理商');
+                }else{
+                    $data['agent_id'] = $request['agent_ids'];
+                }
+            }
             $wheress['mc_code']  = $data['mc_code'];
             $wheress['mc_id']  = $data['mc_id'];
             $wheress['_logic'] = 'or';
@@ -266,13 +281,18 @@ class CarWasherController extends BaseController {
             $field = 'id, shop_name, status';
             $shop_list = D ('Washshop')->queryList ($where , $field);
             $this->assign ('shop_list' , $shop_list);
-            $PAP = array ('status' => array ('neq' , 9));
+            $PAP = array (
+                'status' => array ('neq' , 9),
+                'grade' => 2,
+            );
             $ARA = 'id, p_id , nickname, status';
             $list = D ('Agent')->queryList ($PAP , $ARA);
             $pa_where = array(
                 'status' => array ('neq' , 9),
                 'grade' => 4,
             );
+            $region = D('Agent')->queryList(array('grade' => 2,'status'=>array('neq',9)), 'nickname,id');
+            $this->assign('region', $region);
             $partner = D('Agent')->queryList($pa_where,'*');
             $this->assign ('partner' , $partner);
             $this->assign ('list' , $list);
@@ -324,6 +344,18 @@ class CarWasherController extends BaseController {
     public function ajaxGetRegion () {
         $request = I ('POST.');
         $region = D ('Region')->queryList (array ('parent_id' => $request['id']) , 'region_name,id');
+        $this->ajaxReturn ($region , 'JSON');
+    }
+
+    /**/
+    /**
+     * 三级联动
+     * User: admin
+     * Date: 2019-02-13 15:22:46
+     */
+    public function ajaxGetAgent() {
+        $request = I ('POST.');
+        $region = D ('Agent')->queryList (array ('p_id' => $request['id']) , 'nickname,id');
         $this->ajaxReturn ($region , 'JSON');
     }
 
