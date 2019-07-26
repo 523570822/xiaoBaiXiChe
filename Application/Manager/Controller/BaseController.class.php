@@ -85,4 +85,29 @@ class BaseController extends ControllerService
         $Res = D($request['model'])->where($where)->data($data)->save();
         $Res ? $this->apiResponse(1, '删除成功') : $this->apiResponse(0, '删除失败');
     }
+
+    /**
+     *洗车机删除
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/07/25 14:20
+     */
+    public function deletes() {
+        $this->checkParam(array('ids','array','请选择至少一条'));
+        $request  = I('Request.');
+        //判断是数组ID还是字符ID
+        if(is_array($request['ids'])) {
+            //数组ID
+            $where['id'] = array('in',$request['ids']);
+        } elseif (is_numeric($request['ids'])) {
+            //数字ID
+            $where['id'] = $request['ids'];
+        }
+
+        $data = array(
+            'status'        => 9,
+            'update_time'   => time()
+        );
+        $Res = D($request['model'])->where($where)->data($data)->save();
+        $Res ? $this->apiResponse(1, '删除成功') : $this->apiResponse(0, '删除失败');
+    }
 }

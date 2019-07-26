@@ -1715,6 +1715,27 @@ class NewAgentController extends BaseController
     }
 
     /**
+     *管理
+     *user:jiaming.wang  459681469@qq.com
+     *Date:2019/07/25 14:29
+     */
+    public function boards(){
+//        $post = checkAppData('token,page,size','token-页数-个数');
+        $post['token'] = 'c00c797967b0d8480a1c8f9645bde388';
+        $post['page'] = 1;
+        $post['size'] = 10;
+        $agents = $this->getAgentInfo($post['token']);
+        if($agents['grade'] == 1){
+            $one_agent = M('Agent')->where(array('grade'=>1,'status'=>array('neq',9)))->select();
+            foreach ($one_agent as &$ov){
+                $two_agent = M('Agent')->where(array('p_id'=>$ov['id']))->select();
+                dump($two_agent);
+            }
+        }
+
+    }
+
+        /**
      *我的详情
      *user:jiaming.wang  459681469@qq.com
      *Date:2019/01/19 17:51

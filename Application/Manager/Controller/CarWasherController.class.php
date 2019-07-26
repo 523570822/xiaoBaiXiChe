@@ -232,7 +232,6 @@ class CarWasherController extends BaseController {
             $data = $this->checkParam ($rule);
             $grade = $_REQUEST['grade'];
             if ($grade == 2) {
-
                 if(empty($request['agent_id'])){
                     $this->apiResponse(0,'请选择一级代理商');
                 }else{
