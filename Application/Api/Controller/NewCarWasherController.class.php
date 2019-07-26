@@ -62,12 +62,12 @@ class NewCarWasherController extends BaseController
      *Date:2019/05/16 15:03
      */
     public function carWasherIncome(){
-        $post = checkAppData('token,car_washer_id,page,size','token-洗车机ID-页数-个数');
-//        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
-//        $post['car_washer_id'] = 13;
-//        $post['page'] = 1;
-//        $post['size'] = 10;
-//        $_REQUEST['in_month'] = 1556620058;
+//        $post = checkAppData('token,car_washer_id,page,size','token-洗车机ID-页数-个数');
+        $post['token'] = '60abe1fe939803dd1e4ea29fb1d0fd58';
+        $post['car_washer_id'] = 13;
+        $post['page'] = 1;
+        $post['size'] = 10;
+        $_REQUEST['in_month'] = 1556620058;
         $post['in_month'] = strtotime(date('Y-m',$_REQUEST['in_month']));
         if(empty($post['in_month'])){
             $post['in_month'] = strtotime(date('Y-m'));
@@ -85,7 +85,7 @@ class NewCarWasherController extends BaseController
         }else{
             $data = array(
                 'now_month' => array(
-                    'net_income'=>0,
+                    'net_income'=>1,
                     'ag_month'=>$post['in_month'],
                 ),
                 'income' => array(),
