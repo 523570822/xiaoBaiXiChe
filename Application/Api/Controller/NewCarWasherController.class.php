@@ -77,7 +77,10 @@ class NewCarWasherController extends BaseController
         $income = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agent_id'=>$agent['id'],'month'=>$post['in_month']))->field('SUM(net_income) as net_income,SUM(car_wash) as car_wash,day,car_washer_id')->group("day")->order($order)->limit(($post['page'] - 1) * $post['size'], $post['size'])->select();
         $month = M('Income')->where(array('car_washer_id'=>$post['car_washer_id'],'agent_id'=>$agent['id'],'month'=>$post['in_month']))->field('SUM(net_income) as net_income,month as ag_month')->group("month")->select();
         $data = array(
-            'now_month' => $month,
+            'now_month' => array(
+                'net_income'=>0,
+                'ag_month'=>$post['in_month'],
+            ),
             'income' => $income,
         );
         if(!empty($income)){
