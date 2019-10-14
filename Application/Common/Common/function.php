@@ -635,3 +635,21 @@ function checkData($array){
     }
     return $array;
 }
+
+/**
+ *去除二维数组重复项
+ * @param $array
+ * @return array
+ * user：jiaming.wang 459681469@qq.com
+ * Date：2019/7/29 3:23
+ */
+function remove_duplicate($array){
+    $result=array();
+    for($i=0;$i<count($array);$i++){
+        $source=$array[$i];
+        if(array_search($source,$array)==$i && $source<>"" ){
+            $result[]=$source;
+        }
+    }
+    return $result;
+}

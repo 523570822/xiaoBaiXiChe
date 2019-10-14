@@ -147,10 +147,6 @@
                                             onclick="jumpUrl('{:U('CarWasher/editCarWasher', array('id'=>$item['id'], 'system'=>0))}')">
                                         编辑
                                     </button>
-                                    <button class="layui-btn layui-btn-xs layui-btn-warm"
-                                            onclick="confirmOneAction('{:U('CarWasher/lockCarWasher')}', '{$item['status'] == 1 ? '关闭' : '处理'}','{$item.id}')">
-                                        {$item['status'] == 1 ? '关闭' : '处理'}
-                                    </button>
                                     <button class="layui-btn layui-btn-xs layui-btn-danger"
                                             onclick="confirmDelAction('{:U('CarWasher/delete',array('model'=>'CarWasher'))}', '删除','{$item.id}')">
                                         删除

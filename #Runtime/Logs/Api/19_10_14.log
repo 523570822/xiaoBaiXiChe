@@ -1,0 +1,522 @@
+[ 2019-10-14T02:28:34+08:00 ] 127.0.0.1 /Api/Index/ajax_test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000229s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000435s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000469s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0092s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0079s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE `status` <> 1 LIMIT 1   [ RunTime:0.0088s ]
+
+[ 2019-10-14T09:26:36+08:00 ] 127.0.0.1 /Api/Index/ajax_test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000222s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000390s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0128s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE `status` <> 1 LIMIT 1   [ RunTime:0.0103s ]
+
+[ 2019-10-14T09:26:48+08:00 ] 127.0.0.1 /Api/Index/ajax_test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000229s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000357s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000389s ]
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0097s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0088s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_car_washer` WHERE `status` <> 1 LIMIT 1   [ RunTime:0.0088s ]
+
+[ 2019-10-14T11:47:36+08:00 ] 192.168.1.181 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000235s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000408s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000432s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: Undefined class constant 'MYSQL_ATTR_INIT_COMMAND'
+
+[ 2019-10-14T11:51:09+08:00 ] 192.168.1.181 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000004s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000232s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000365s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000386s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: Undefined class constant 'MYSQL_ATTR_INIT_COMMAND'
+
+[ 2019-10-14T11:51:31+08:00 ] 192.168.1.223 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000273s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000364s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000384s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-10-14T11:52:14+08:00 ] 192.168.1.223 /index.php/Api/Member/login?account=1560
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000230s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000481s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000501s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-10-14T11:52:40+08:00 ] 192.168.1.223 /index.php/Api/Member/login?account=1560&password=122
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000293s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000450s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000472s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: Undefined class constant 'MYSQL_ATTR_INIT_COMMAND'
+
+[ 2019-10-14T11:56:14+08:00 ] 192.168.1.223 /index.php/Api/Member/login?account=1560&password=122
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000342s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000483s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000508s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: Undefined class constant 'MYSQL_ATTR_INIT_COMMAND'
+
+[ 2019-10-14T11:56:24+08:00 ] 192.168.1.223 /index.php/Api/Member
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000414s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000437s ]
+
+[ 2019-10-14T12:41:35+08:00 ] 192.168.1.181 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000275s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000520s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000545s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: Undefined class constant 'MYSQL_ATTR_INIT_COMMAND'
+
+[ 2019-10-14T12:45:25+08:00 ] 192.168.1.181 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000232s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000366s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000499s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+
+[ 2019-10-14T12:45:34+08:00 ] 192.168.1.181 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000252s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000400s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000423s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+
+[ 2019-10-14T12:45:38+08:00 ] 192.168.1.181 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000278s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000375s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000400s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+
+[ 2019-10-14T12:47:53+08:00 ] 192.168.1.223 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000560s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000591s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-10-14T12:48:11+08:00 ] 192.168.1.223 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000302s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000452s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000479s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-10-14T12:49:01+08:00 ] 192.168.1.181 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000239s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000383s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+
+[ 2019-10-14T12:49:30+08:00 ] 192.168.1.181 /index.php/Api/Member/login?account=17320239690&password=qwe123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000294s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000378s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000401s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+
+[ 2019-10-14T12:50:02+08:00 ] 192.168.1.223 /index.php/Api/Member/login?account=17320239690&password=qwe123
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000350s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000545s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000576s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+ERR: 1146:Table 'Littlewhale.db_member' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `db_member`
+
+[ 2019-10-14T12:57:01+08:00 ] 192.168.1.181 /index.php/Api/Member/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000519s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000474s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000506s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\work\Littlewhale1\Vendor\Txunda\Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0087s ]
+NOTIC: [8] Undefined index: fetchSql D:\work\Littlewhale1\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `account` = '17320239690' AND `status` <> 9 LIMIT 1   [ RunTime:0.0081s ]
+SQL: UPDATE `db_member` SET `token`='37d4d6e95a3946e75dfc9e2f4d27cfbd',`expired_time`='1571633821' WHERE `id` = 8 [ RunTime:0.0071s ]
+
+[ 2019-10-14T12:57:03+08:00 ] 192.168.1.181 /index.php/Api/Index/Msg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000273s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000402s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000423s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: fetchSql D:\work\Littlewhale1\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '37d4d6e95a3946e75dfc9e2f4d27cfbd' AND `expired_time` >= 1571029023 AND `status` <> 0 LIMIT 1   [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0070s ]
+SQL: SELECT `id`,`o_id` FROM `db_msg` WHERE `m_id` IN ('0,','8') AND `status` <> 9  [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `db_msg_read_log` [ RunTime:0.0071s ]
+SQL: SELECT * FROM `db_msg_read_log` WHERE `m_id` = 8 AND `msg_id` = 29 LIMIT 1   [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0072s ]
+SQL: SELECT * FROM `db_order` WHERE `status` = 1 AND `o_type` = 1 AND `m_id` = 8 LIMIT 1   [ RunTime:0.0131s ]
+
+[ 2019-10-14T12:57:04+08:00 ] 192.168.1.181 /index.php/Api/Member/memberCenter
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000478s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000504s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0089s ]
+NOTIC: [8] Undefined index: fetchSql D:\work\Littlewhale1\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '37d4d6e95a3946e75dfc9e2f4d27cfbd' AND `expired_time` >= 1571029023 AND `status` <> 0 LIMIT 1   [ RunTime:0.0086s ]
+SQL: SHOW COLUMNS FROM `db_card_user` [ RunTime:0.0086s ]
+SQL: SELECT * FROM `db_card_user` WHERE `m_id` = 8 LIMIT 1   [ RunTime:0.0090s ]
+SQL: SELECT id as m_id,`head_pic`,`nickname`,account as tel,`degree` FROM `db_member` WHERE `id` = 8 AND `status` = 1 LIMIT 1   [ RunTime:0.0083s ]
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0088s ]
+SQL: SELECT `path` FROM `db_file` WHERE `id` = 212 LIMIT 1   [ RunTime:0.0091s ]
+
+[ 2019-10-14T12:57:04+08:00 ] 192.168.1.181 /index.php/Api/Index/Msg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000402s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000429s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0108s ]
+NOTIC: [8] Undefined index: fetchSql D:\work\Littlewhale1\Application\Common\Service\ModelService.class.php 第 245 行.
+SQL: SELECT `id` FROM `db_member` WHERE `token` = '37d4d6e95a3946e75dfc9e2f4d27cfbd' AND `expired_time` >= 1571029024 AND `status` <> 0 LIMIT 1   [ RunTime:0.0087s ]
+SQL: SHOW COLUMNS FROM `db_msg` [ RunTime:0.0088s ]
+SQL: SELECT `id`,`o_id` FROM `db_msg` WHERE `m_id` IN ('0,','8') AND `status` <> 9  [ RunTime:0.0077s ]
+SQL: SHOW COLUMNS FROM `db_msg_read_log` [ RunTime:0.0088s ]
+SQL: SELECT * FROM `db_msg_read_log` WHERE `m_id` = 8 AND `msg_id` = 29 LIMIT 1   [ RunTime:0.0079s ]
+SQL: SHOW COLUMNS FROM `db_order` [ RunTime:0.0089s ]
+SQL: SELECT * FROM `db_order` WHERE `status` = 1 AND `o_type` = 1 AND `m_id` = 8 LIMIT 1   [ RunTime:0.0139s ]
+
+[ 2019-10-14T12:57:05+08:00 ] 192.168.1.181 /index.php/Api/Washshop/washcarList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000242s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000395s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000419s ]
+NOTIC: [8] Undefined index: token D:\work\Littlewhale1\Application\Api\Controller\BaseController.class.php 第 25 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0100s ]
+SQL: SELECT `id`,`p_id`,`lon`,`lat`,`address`,mc_code as mc_id,`status`,`type`,(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(31.247674-lat)/360),2)+COS(3.1415926535898*31.247674/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(121.497858-lon)/360),2))))*1000 as distance FROM `db_car_washer` WHERE `status` <> 9 ORDER BY distance ASC  [ RunTime:0.0082s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SHOW COLUMNS FROM `db_washshop` [ RunTime:0.0070s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 21 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0072s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 10 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0066s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 14 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 11 LIMIT 1   [ RunTime:0.0072s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 12 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 19 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 15 LIMIT 1   [ RunTime:0.0066s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0064s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 17 LIMIT 1   [ RunTime:0.0065s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0066s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0084s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0067s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0068s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0065s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0068s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0068s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0066s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0064s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0067s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0065s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0064s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0067s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0068s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0065s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0067s ]
+
+[ 2019-10-14T12:58:05+08:00 ] 192.168.1.181 /index.php/Api/Washshop/washcarList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000235s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000441s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000464s ]
+NOTIC: [8] Undefined index: token D:\work\Littlewhale1\Application\Api\Controller\BaseController.class.php 第 25 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0103s ]
+SQL: SELECT `id`,`p_id`,`lon`,`lat`,`address`,mc_code as mc_id,`status`,`type`,(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(31.247674-lat)/360),2)+COS(3.1415926535898*31.247674/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(121.497858-lon)/360),2))))*1000 as distance FROM `db_car_washer` WHERE `status` <> 9 ORDER BY distance ASC  [ RunTime:0.0091s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SHOW COLUMNS FROM `db_washshop` [ RunTime:0.0088s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0098s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 21 LIMIT 1   [ RunTime:0.0078s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 10 LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0083s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 14 LIMIT 1   [ RunTime:0.0082s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0078s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 11 LIMIT 1   [ RunTime:0.0083s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 12 LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0075s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 19 LIMIT 1   [ RunTime:0.0159s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 15 LIMIT 1   [ RunTime:0.0081s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0079s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 17 LIMIT 1   [ RunTime:0.0078s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0078s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0127s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0075s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0105s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0097s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0122s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0078s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0078s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0180s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0107s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0114s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0080s ]
+
+[ 2019-10-14T12:59:04+08:00 ] 192.168.1.181 /index.php/Api/Washshop/washcarList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000266s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000451s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000475s ]
+NOTIC: [8] Undefined index: token D:\work\Littlewhale1\Application\Api\Controller\BaseController.class.php 第 25 行.
+SQL: SHOW COLUMNS FROM `db_car_washer` [ RunTime:0.0081s ]
+SQL: SELECT `id`,`p_id`,`lon`,`lat`,`address`,mc_code as mc_id,`status`,`type`,(2 * 6378.137* ASIN(SQRT(POW(SIN(3.1415926535898*(31.247674-lat)/360),2)+COS(3.1415926535898*31.247674/180)* COS(lat * 3.1415926535898/180)*POW(SIN(3.1415926535898*(121.497858-lon)/360),2))))*1000 as distance FROM `db_car_washer` WHERE `status` <> 9 ORDER BY distance ASC  [ RunTime:0.0080s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SHOW COLUMNS FROM `db_washshop` [ RunTime:0.0075s ]
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 20 LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 21 LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0076s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 10 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 14 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0073s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 11 LIMIT 1   [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 12 LIMIT 1   [ RunTime:0.0067s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 19 LIMIT 1   [ RunTime:0.0072s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 15 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0081s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 17 LIMIT 1   [ RunTime:0.0068s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0073s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0072s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0072s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0078s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0069s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0070s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: wx D:\work\Littlewhale1\Application\Api\Controller\WashshopController.class.php 第 278 行.
+SQL: SELECT `shop_name` FROM `db_washshop` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0070s ]
+

@@ -15,12 +15,12 @@ return array(
         'sms_sign' => '',
     ),
     'APP' =>  array(
-        'app_logo' => '122',
+        'app_logo' => '226',
         'app_name' => '小鲸洗车',
-        'app_version' => 'V1.0.0',
+        'app_version' => '1.0.1',
         'app_intro' => 'Copyright © 2019-2020    
 北京小鲸一诺科技有限公司',
-        'app_version_foreman' => 'V1.0.0',
+        'app_version_foreman' => '1.0.0',
         'app_foreman_logo' => '',
         'app_member_info' => '这是用户端啊',
         'app_expert_info' => '这是代理商端',
@@ -51,5 +51,11 @@ return array(
         'aliapp_appid' => '2018121362529699',
         'aliapp_public_key' => 'MIIEpAIBAAKCAQEAom2bRG5AXhDdmNDwhMwrQp+ho2xi7QBRuMPo/vD1lk1LXv5BE45Mdg5ZRBj+m74BFHNu5dLKmrmCJBk2HyCxGUXffxKL83sE47fNxB1J7lKIUR87el0M1HNr2zldFT0Wu7XGDUQ6QI/7L3oj/pSCfIoIOcMfVE3GaZzQe0X3m7jL5QQXQ7ouF5qb7454/8ehA/nRwDGmfdzmqNrGcDWPu/7X8kd5FSq8T5nJwHlpbssgVDh',
         'aliapp_private_key' => 'MIIEogIBAAKCAQEArl4hVzm1fkVio75fWmRW5rb6syrVEaqPTVVUrhJVxlIARrZtvyGnIxpoDkJ4zhMt31UlLdxX15x9ab2UHhFiuMIBTdvDQHlVPCsx',
+    ),
+    'AGS' =>  array(
+        'ags_code' => '0',
+    ),
+    'AG' =>  array(
+        'ag_code' => '0',
     ),
 );

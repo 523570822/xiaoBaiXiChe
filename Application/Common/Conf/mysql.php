@@ -7,19 +7,18 @@
  */
 return array(
     //'配置项'=>'配置值'
-    'DB_TYPE'   => 'Mysql', // 数据库类型
-    'DB_HOST'   => '101.201.252.128', // 服务器地址
-    'DB_NAME'   => 'Littlewhale', // 数据库名
-    'DB_USER'   => 'Littlewhale', // 用户名
-    'DB_PWD'    => 'Littlewhale1655',  // 密码
-    'DB_PORT'   => '3306', // 端口
-    'DB_PREFIX' => 'db_', // 数据库表前缀
+    'DB_TYPE'   => 'Mysql', 
+    'DB_HOST'   => '114.116.111.212',
+    'DB_NAME'   => 'Littlewhale',
+    'DB_USER'   => 'root',
+    'DB_PWD'    => 'root',
+    'DB_PORT'   => '3306', 
+    'DB_PREFIX' => 'db_', 
+	'WDADFSA' =>  array(
+        'WADSAW' => 'Littlewhale',
+        'WEVCXZ' => 'Littlewhale',
+        'Dwkiujsuh' => 'db_Littlewhale',
+        'oiaokask' => 'p2836e3bb4d1c04f56yudb868fb99aee',
+    ),
 
-//    'DB_TYPE'   => 'Mysql', // 数据库类型
-//    'DB_HOST'   => '127.0.0.1', // 服务器地址
-//    'DB_NAME'   => 'share', // 数据库名
-//    'DB_USER'   => 'root', // 用户名
-//    'DB_PWD'    => 'root',  // 密码
-//    'DB_PORT'   => '3306', // 端口
-//    'DB_PREFIX' => 'db_', // 数据库表前缀
 );

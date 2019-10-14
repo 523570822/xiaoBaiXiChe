@@ -12,11 +12,7 @@
                     <!--顶部按钮-->
                     <div class="mab10">
                         <input type="hidden" id="url" value="{$url}">
-                        <a href="{:U('Member/addMember')}" class="layui-btn layui-btn-normal layui-btn-radius">添加用户</a>
-                        <button class="layui-btn layui-btn-warm layui-btn-radius">锁定</button>
-                        <button class="layui-btn layui-btn-danger layui-btn-radius"
-                                onclick="confirmAllAction('{:U('Member/delete',array('model'=>'Member'))}', '删除')">删除
-                        </button>
+                     
                         <!--搜索框也可以放这里-->
                         <form class="mab10 mal20 dinline" id="myform" action="{:U('Member/index')}" method="GET">
                             <div class="layui-input-inline">
@@ -85,7 +81,6 @@
                             <th>性别</th>
                             <th>注册时间</th>
                             <th>状态</th>
-                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -110,20 +105,7 @@
                                 </td>
                                 <td>{$item['create_time']|date='Y-m-d H:i',###}</td>
                                 <td>{$item['status'] == 1 ? '启用' : '禁用'}</td>
-                                <td>
-                                    <button class="layui-btn layui-btn-xs layui-btn-normal"
-                                            onclick="jumpUrl('{:U('Member/editMember', array('id'=>$item['id'], 'system'=>0))}')">
-                                        编辑
-                                    </button>
-                                    <button class="layui-btn layui-btn-xs layui-btn-warm"
-                                            onclick="confirmOneAction('{:U('Member/lockMember')}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">
-                                        {$item['status'] == 1 ? '禁用' : '启用'}
-                                    </button>
-                                    <button class="layui-btn layui-btn-xs layui-btn-danger"
-                                            onclick="confirmDelAction('{:U('Member/delete',array('model'=>'Member'))}', '删除','{$item.id}')">
-                                        删除
-                                    </button>
-                                </td>
+                                
                             </tr>
                         </volist>
                         </tbody>

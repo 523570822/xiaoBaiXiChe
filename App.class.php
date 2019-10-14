@@ -10,23 +10,23 @@
 // +----------------------------------------------------------------------
 namespace Think;
 /**
- * ThinkPHP åº”ç”¨ç¨‹åºç±» æ‰§è¡Œåº”ç”¨è¿‡ç¨‹ç®¡ç†
+ * ThinkPHP Ó¦ÓÃ³ÌĞòÀà Ö´ĞĞÓ¦ÓÃ¹ı³Ì¹ÜÀí
  */
 class App {
 
     /**
-     * åº”ç”¨ç¨‹åºåˆå§‹åŒ–
+     * Ó¦ÓÃ³ÌĞò³õÊ¼»¯
      * @access public
      * @return void
      */
     static public function init() {
-        // åŠ è½½åŠ¨æ€åº”ç”¨å…¬å…±æ–‡ä»¶å’Œé…ç½®
+        // ¼ÓÔØ¶¯Ì¬Ó¦ÓÃ¹«¹²ÎÄ¼şºÍÅäÖÃ
         load_ext_file(COMMON_PATH);
 
-        // æ—¥å¿—ç›®å½•è½¬æ¢ä¸ºç»å¯¹è·¯å¾„ é»˜è®¤æƒ…å†µä¸‹å­˜å‚¨åˆ°å…¬å…±æ¨¡å—ä¸‹é¢
+        // ÈÕÖ¾Ä¿Â¼×ª»»Îª¾ø¶ÔÂ·¾¶ Ä¬ÈÏÇé¿öÏÂ´æ´¢µ½¹«¹²Ä£¿éÏÂÃæ
         C('LOG_PATH',   realpath(LOG_PATH).'/Common/');
 
-        // å®šä¹‰å½“å‰è¯·æ±‚çš„ç³»ç»Ÿå¸¸é‡
+        // ¶¨Òåµ±Ç°ÇëÇóµÄÏµÍ³³£Á¿
         define('NOW_TIME',      $_SERVER['REQUEST_TIME']);
         define('REQUEST_METHOD',$_SERVER['REQUEST_METHOD']);
         define('IS_GET',        REQUEST_METHOD =='GET' ? true : false);
@@ -34,58 +34,58 @@ class App {
         define('IS_PUT',        REQUEST_METHOD =='PUT' ? true : false);
         define('IS_DELETE',     REQUEST_METHOD =='DELETE' ? true : false);
 
-        // URLè°ƒåº¦
+        // URLµ÷¶È
         Dispatcher::dispatch();
 
         if(C('REQUEST_VARS_FILTER')){
-			// å…¨å±€å®‰å…¨è¿‡æ»¤
+			// È«¾Ö°²È«¹ıÂË
 			array_walk_recursive($_GET,		'think_filter');
 			array_walk_recursive($_POST,	'think_filter');
 			array_walk_recursive($_REQUEST,	'think_filter');
 		}
 
-        // URLè°ƒåº¦ç»“æŸæ ‡ç­¾
+        // URLµ÷¶È½áÊø±êÇ©
         Hook::listen('url_dispatch');         
 
         define('IS_AJAX',       ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || !empty($_POST[C('VAR_AJAX_SUBMIT')]) || !empty($_GET[C('VAR_AJAX_SUBMIT')])) ? true : false);
 
-        // TMPL_EXCEPTION_FILE æ”¹ä¸ºç»å¯¹åœ°å€
+        // TMPL_EXCEPTION_FILE ¸ÄÎª¾ø¶ÔµØÖ·
         C('TMPL_EXCEPTION_FILE',realpath(C('TMPL_EXCEPTION_FILE')));
         return ;
     }
 
     /**
-     * æ‰§è¡Œåº”ç”¨ç¨‹åº
+     * Ö´ĞĞÓ¦ÓÃ³ÌĞò
      * @access public
      * @return void
      */
     static public function exec() {
     
-        if(!preg_match('/^[A-Za-z](\/|\w)*$/',CONTROLLER_NAME)){ // å®‰å…¨æ£€æµ‹
+        if(!preg_match('/^[A-Za-z](\/|\w)*$/',CONTROLLER_NAME)){ // °²È«¼ì²â
             $module  =  false;
         }elseif(C('ACTION_BIND_CLASS')){
-            // æ“ä½œç»‘å®šåˆ°ç±»ï¼šæ¨¡å—\Controller\æ§åˆ¶å™¨\æ“ä½œ
+            // ²Ù×÷°ó¶¨µ½Àà£ºÄ£¿é\Controller\¿ØÖÆÆ÷\²Ù×÷
             $layer  =   C('DEFAULT_C_LAYER');
             if(is_dir(MODULE_PATH.$layer.'/'.CONTROLLER_NAME)){
                 $namespace  =   MODULE_NAME.'\\'.$layer.'\\'.CONTROLLER_NAME.'\\';
             }else{
-                // ç©ºæ§åˆ¶å™¨
+                // ¿Õ¿ØÖÆÆ÷
                 $namespace  =   MODULE_NAME.'\\'.$layer.'\\_empty\\';                    
             }
             $actionName     =   strtolower(ACTION_NAME);
             if(class_exists($namespace.$actionName)){
                 $class   =  $namespace.$actionName;
             }elseif(class_exists($namespace.'_empty')){
-                // ç©ºæ“ä½œ
+                // ¿Õ²Ù×÷
                 $class   =  $namespace.'_empty';
             }else{
                 E(L('_ERROR_ACTION_').':'.ACTION_NAME);
             }
             $module  =  new $class;
-            // æ“ä½œç»‘å®šåˆ°ç±»å å›ºå®šæ‰§è¡Œrunå…¥å£
+            // ²Ù×÷°ó¶¨µ½Ààºó ¹Ì¶¨Ö´ĞĞrunÈë¿Ú
             $action  =  'run';
         }else{
-            //åˆ›å»ºæ§åˆ¶å™¨å®ä¾‹
+            //´´½¨¿ØÖÆÆ÷ÊµÀı
             $module  =  controller(CONTROLLER_NAME,CONTROLLER_PATH);                
         }
 
@@ -95,21 +95,21 @@ class App {
                 exit(base64_decode(App::logo()));
             }
 
-            // æ˜¯å¦å®šä¹‰Emptyæ§åˆ¶å™¨
+            // ÊÇ·ñ¶¨ÒåEmpty¿ØÖÆÆ÷
             $module = A('Empty');
             if(!$module){
                 E(L('_CONTROLLER_NOT_EXIST_').':'.CONTROLLER_NAME);
             }
         }
 
-        // è·å–å½“å‰æ“ä½œå æ”¯æŒåŠ¨æ€è·¯ç”±
+        // »ñÈ¡µ±Ç°²Ù×÷Ãû Ö§³Ö¶¯Ì¬Â·ÓÉ
         if(!isset($action)){
             $action    =   ACTION_NAME.C('ACTION_SUFFIX');  
         }
         try{
             self::invokeAction($module,$action);
         } catch (\ReflectionException $e) { 
-            // æ–¹æ³•è°ƒç”¨å‘ç”Ÿå¼‚å¸¸å å¼•å¯¼åˆ°__callæ–¹æ³•å¤„ç†
+            // ·½·¨µ÷ÓÃ·¢ÉúÒì³£ºó Òıµ¼µ½__call·½·¨´¦Àí
             $method = new \ReflectionMethod($module,'__call');
             $method->invokeArgs($module,array($action,''));
         }
@@ -117,21 +117,21 @@ class App {
     }
     public static function invokeAction($module,$action){
 	if(!preg_match('/^[A-Za-z](\w)*$/',$action)){
-		// éæ³•æ“ä½œ
+		// ·Ç·¨²Ù×÷
 		throw new \ReflectionException();
 	}
-	//æ‰§è¡Œå½“å‰æ“ä½œ
+	//Ö´ĞĞµ±Ç°²Ù×÷
 	$method =   new \ReflectionMethod($module, $action);
 	if($method->isPublic() && !$method->isStatic()) {
 		$class  =   new \ReflectionClass($module);
-		// å‰ç½®æ“ä½œ
+		// Ç°ÖÃ²Ù×÷
 		if($class->hasMethod('_before_'.$action)) {
 			$before =   $class->getMethod('_before_'.$action);
 			if($before->isPublic()) {
 				$before->invoke($module);
 			}
 		}
-		// URLå‚æ•°ç»‘å®šæ£€æµ‹
+		// URL²ÎÊı°ó¶¨¼ì²â
 		if($method->getNumberOfParameters()>0 && C('URL_PARAMS_BIND')){
 			switch($_SERVER['REQUEST_METHOD']) {
 				case 'POST':
@@ -157,13 +157,13 @@ class App {
 					E(L('_PARAM_ERROR_').':'.$name);
 				}   
 			}
-			// å¼€å¯ç»‘å®šå‚æ•°è¿‡æ»¤æœºåˆ¶
+			// ¿ªÆô°ó¶¨²ÎÊı¹ıÂË»úÖÆ
 			if(C('URL_PARAMS_SAFE')){
 				$filters     =   C('URL_PARAMS_FILTER')?:C('DEFAULT_FILTER');
 				if($filters) {
 					$filters    =   explode(',',$filters);
 					foreach($filters as $filter){
-						$args   =   array_map_recursive($filter,$args); // å‚æ•°è¿‡æ»¤
+						$args   =   array_map_recursive($filter,$args); // ²ÎÊı¹ıÂË
 					}
 				}                        
 			}
@@ -172,7 +172,7 @@ class App {
 		}else{
 			$method->invoke($module);
 		}
-		// åç½®æ“ä½œ
+		// ºóÖÃ²Ù×÷
 		if($class->hasMethod('_after_'.$action)) {
 			$after =   $class->getMethod('_after_'.$action);
 			if($after->isPublic()) {
@@ -180,29 +180,29 @@ class App {
 			}
 		}
 	}else{
-		// æ“ä½œæ–¹æ³•ä¸æ˜¯Public æŠ›å‡ºå¼‚å¸¸
+		// ²Ù×÷·½·¨²»ÊÇPublic Å×³öÒì³£
 		throw new \ReflectionException();
 	}
     }
     /**
-     * è¿è¡Œåº”ç”¨å®ä¾‹ å…¥å£æ–‡ä»¶ä½¿ç”¨çš„å¿«æ·æ–¹æ³•
+     * ÔËĞĞÓ¦ÓÃÊµÀı Èë¿ÚÎÄ¼şÊ¹ÓÃµÄ¿ì½İ·½·¨
      * @access public
      * @return void
      */
     static public function run() {
-        // åº”ç”¨åˆå§‹åŒ–æ ‡ç­¾
+        // Ó¦ÓÃ³õÊ¼»¯±êÇ©
         Hook::listen('app_init');
         App::init();
-        // åº”ç”¨å¼€å§‹æ ‡ç­¾
+        // Ó¦ÓÃ¿ªÊ¼±êÇ©
         Hook::listen('app_begin');
-        // Sessionåˆå§‹åŒ–
+        // Session³õÊ¼»¯
         if(!IS_CLI){
             session(C('SESSION_OPTIONS'));
         }
-        // è®°å½•åº”ç”¨åˆå§‹åŒ–æ—¶é—´
+        // ¼ÇÂ¼Ó¦ÓÃ³õÊ¼»¯Ê±¼ä
         G('initTime');
         App::exec();
-        // åº”ç”¨ç»“æŸæ ‡ç­¾
+        // Ó¦ÓÃ½áÊø±êÇ©
         Hook::listen('app_end');
         return ;
     }
