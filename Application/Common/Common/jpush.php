@@ -34,13 +34,13 @@ function pushOneUser($content,$msg_user,$msg_type,$type){
             ),
         ))
         ->androidNotification($content, array(
-            'title' => '小鲸洗车',
+            'title' => '白洗车',
             'extras' => array(
                 'msg_type'=>$msg_type,
             ),
         ))
         ->message($content, array(
-            'title' => '小鲸洗车',
+            'title' => '白洗车',
             'extras' => array(
                 'msg_type'=>$msg_type,
             ),
@@ -97,13 +97,13 @@ function pushAllUser($content,$msg_type,$type){
             ),
         ))
         ->androidNotification($content, array(
-            'title' => '小鲸洗车',
+            'title' => '白洗车',
             'extras' => array(
                 'msg_type'=>$msg_type,
             ),
         ))
         ->message($content, array(
-            'title' => '小鲸洗车',
+            'title' => '白洗车',
             'extras' => array(
                 'msg_type'=>$msg_type
             ),

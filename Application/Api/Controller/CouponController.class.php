@@ -40,7 +40,7 @@ class CouponController extends BaseController
         $date = D ('CouponBind')->where (array ('m_id' => $m_id))->where ($where)->field ('id,code_id,end_time,money')->page ($request['page'] , '10')->select ();
 //        echo D('CouponBind')->_sql();exit;
         foreach ($date as $k=>$v){
-            $date[$k]['title']='小鲸洗车代金券';
+            $date[$k]['title']='白洗车代金券';
             $date[$k]['remarks']='请在有效期内使用。';
             $date[$k]['status']=$request['status'];
         }

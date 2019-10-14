@@ -1,7 +1,7 @@
 <?php
 return array(
     'WEBSITE' =>  array(
-        'website_name' => '小鲸洗车',
+        'website_name' => '白洗车',
         'website_url' => 'https://www.xiaojingxiche.com',
         'website_keyword' => '小鲸鱼洗车 自动洗车',
         'website_description' => '小鲸鱼自动洗车',
@@ -16,7 +16,7 @@ return array(
     ),
     'APP' =>  array(
         'app_logo' => '226',
-        'app_name' => '小鲸洗车',
+        'app_name' => '白洗车',
         'app_version' => '1.0.1',
         'app_intro' => 'Copyright © 2019-2020    
 北京小鲸一诺科技有限公司',

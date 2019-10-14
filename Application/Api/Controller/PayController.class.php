@@ -536,7 +536,7 @@ class PayController extends BaseController {
         /* 统一下单 start */
         $url_unifiedorder = "https://api.mch.weixin.qq.com/pay/unifiedorder"; // 统一下单 URL
         $xml_data = [];
-        $xml_data['body'] = "小鲸洗车-订单号-" . $order_info['orderid']; // 商品描述
+        $xml_data['body'] = "白洗车-订单号-" . $order_info['orderid']; // 商品描述
 //        if($request['methods'] == 1){           //1小鲸卡 2代金券 3无优惠方式
 //
 //        }
