@@ -58,7 +58,7 @@ class AdminController extends BaseController
             // 缓存菜单权限
 
             if(!D('AdminGroup')->getMenu($adminInfo['id'], $adminInfo['group_id'])) {
-                $this->apiResponse(0, '缓存权限失败1, 请检查目录读写权限'+D('AdminGroup')->getMenu($adminInfo['id'], $adminInfo['group_id']));
+                $this->apiResponse(0, '缓存权限失败1, 请检查目录读写权限');
             }
             // 记住用户名
             if($data['remember'] == 1) cookie('ADMUSERNAME', $data['username']);
