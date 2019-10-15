@@ -222,13 +222,13 @@ class OrderController extends BaseController {
             $data['create_time'] = time ();
             $data['subs_time'] = time () + (15 * 60);
             return $data;
-        } elseif ( $status == '4' ) {//小鲸卡购买
+        } elseif ( $status == '4' ) {//白卡购买
             $data['m_id'] = $m_id;
             $data['pay_money'] = $card['card_price'];
             $data['allowance'] = $card['rebate'];
             $data['card_id'] = $card['id'];
             $data['orderid'] = 'MK' . date ('YmdHis') . rand (1000 , 9999);
-            $data['title'] = "小鲸卡购买";
+            $data['title'] = "白卡购买";
             $data['o_type'] = '2';
             $data['status'] = '1';
             $data['create_time'] = time ();
@@ -464,7 +464,7 @@ class OrderController extends BaseController {
     }
 
     /**
-     * 小鲸卡购买
+     * 白卡购买
      **/
     public function MembershipCardOrder () {
         //检查Token
@@ -474,7 +474,7 @@ class OrderController extends BaseController {
         $request = I ('post.');
         $rule = array (
             array ('o_type' , 'string' , '请输入订单类型') ,
-            array ('id' , 'string' , '请选择小鲸卡') ,
+            array ('id' , 'string' , '请选择白卡') ,
         );
         $this->checkParam ($rule);
         //重定义名称
@@ -484,7 +484,7 @@ class OrderController extends BaseController {
         if ( $o_type !== '2' ) {
             $this->apiResponse ('0' , '订单类型错误');
         }elseif (empty($id)){
-            $this->apiResponse ('0' , '小鲸卡为空');
+            $this->apiResponse ('0' , '白卡为空');
         }
         //查询卡表
         $card = M ('LittlewhaleCard')->where (array ('id' => $id))->find ();
@@ -634,7 +634,7 @@ class OrderController extends BaseController {
             $this->apiResponse ('1' , '查询成功' , $order);
         }
         if ( $order['is_dis'] == 1 ) {//有优惠
-            if ( $order['card_id'] ) {//小鲸卡
+            if ( $order['card_id'] ) {//白卡
                 $m_id = $this->checkToken ();
                 $this->errorTokenMsg ($m_id);
                 $list = D ('CardUser')->where (array ('db_card_user.id' => $order['card_id'] , 'db_card_user.m_id' => $m_id , 'db_card_user.status' => array ('neq' , 9)))->join ("db_littlewhale_card ON db_card_user.l_id = db_littlewhale_card.id")->field ('db_littlewhale_card.name,db_littlewhale_card.rebate')->select ();

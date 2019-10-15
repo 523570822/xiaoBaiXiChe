@@ -8,7 +8,7 @@
 
 namespace Api\Controller;
 /**
- * 小鲸卡模块
+ * 白卡模块
  * Class MsgController
  * @package Api\Controller
  */
@@ -24,7 +24,7 @@ class CardController extends BaseController
     }
 
     /**
-     *小鲸卡封面上传
+     *白卡封面上传
      **/
     public function uploadpic()
     {
@@ -48,7 +48,7 @@ class CardController extends BaseController
     }
 
     /**
-     *小鲸卡购买列表
+     *白卡购买列表
      **/
     public function cardList ()
     {
@@ -64,11 +64,11 @@ class CardController extends BaseController
             $message = $request['page'] == 1 ? '暂无消息' : '无更多消息';
             $this->apiResponse('1', $message);
         }
-        $this->apiResponse ('1' , '小鲸卡购买列表' ,$wallet);
+        $this->apiResponse ('1' , '白卡购买列表' ,$wallet);
     }
 
     /**
-     *我的小鲸卡
+     *我的白卡
      **/
     public function myCard (){
         $m_id = $this->checkToken ();

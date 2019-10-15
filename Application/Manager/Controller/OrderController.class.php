@@ -216,7 +216,7 @@ class OrderController extends BaseController
             if ( $data[$key]['o_type'] == '1' ) {
                 $data[$key]['o_type'] = '洗车订单';
             } elseif ( $data[$key]['o_type'] == '2' ) {
-                $data[$key]['o_type'] = '小鲸卡购买';
+                $data[$key]['o_type'] = '白卡购买';
             } elseif ( $data[$key]['o_type'] == '3' ) {
                 $data[$key]['o_type'] = '余额充值';
             }

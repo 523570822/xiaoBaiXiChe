@@ -387,8 +387,8 @@ class PayController extends BaseController {
 //                    }
                         echo "success";
                     }
-                } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {//2小鲸卡购买
-                    //判断是否存在小鲸卡
+                } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {//2白卡购买
+                    //判断是否存在白卡
                     $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
                     $have_h = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => 2))->find ();
                     $have_z = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => 1))->find ();
@@ -537,7 +537,7 @@ class PayController extends BaseController {
         $url_unifiedorder = "https://api.mch.weixin.qq.com/pay/unifiedorder"; // 统一下单 URL
         $xml_data = [];
         $xml_data['body'] = "白洗车-订单号-" . $order_info['orderid']; // 商品描述
-//        if($request['methods'] == 1){           //1小鲸卡 2代金券 3无优惠方式
+//        if($request['methods'] == 1){           //1白卡 2代金券 3无优惠方式
 //
 //        }
         $xml_data['out_trade_no'] = $order_info['orderid'].rand(1000,9999); // 订单流水
@@ -933,9 +933,9 @@ class PayController extends BaseController {
 //                    }
                 echo "success";
             }
-        } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {                        //2小鲸卡购买
+        } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {                        //2白卡购买
 
-            //判断是否存在小鲸卡
+            //判断是否存在白卡
             $have = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => $order['card_id']))->find ();
             $have_h = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => 2))->find ();
             $have_z = D ("CardUser")->where (array ('m_id' => $order['m_id'] , 'l_id' => 1))->find ();
@@ -1186,8 +1186,8 @@ class PayController extends BaseController {
                     M('Agent')->where(array('id'=>$car['partner_id']))->setInc('balance',$partner_money);    //合作方增加收入
                     $this->apiResponse (1 , '支付成功');
                 }
-            } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {//2小鲸卡购买
-                //判断是否存在小鲸卡
+            } elseif ( $order['o_type'] == 2 && $order['status'] == 1) {//2白卡购买
+                //判断是否存在白卡
                 $have = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => $order['card_id']))->find ();
                 $have_h = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => 2))->find ();
                 $have_z = D ("CardUser")->where (array ('m_id' => $m_id , 'l_id' => 1))->find ();
