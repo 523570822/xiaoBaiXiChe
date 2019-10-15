@@ -154,6 +154,5 @@ class ConfigController extends ControllerService
             $this->assign('config', $config);
             $this->display();
         }
-
     }
 }
