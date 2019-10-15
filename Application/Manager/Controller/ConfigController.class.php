@@ -67,6 +67,7 @@ class ConfigController extends ControllerService
         if(I('success') == 1) {
             exit('<script>parent.location.reload();</script>');
         }
+
         if(!D('AdminGroup')->getMenu($this->userId, $this->userInfo['group_id'])) {
             $this->error('缓存权限失败, 请检查目录读写权限');
         }
